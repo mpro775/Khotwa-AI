@@ -6,6 +6,7 @@ import { Schema, internalValue, output } from "./contracts";
 import { ApiFault, RequestContext } from "./http";
 import { Security, cookieValue } from "./security";
 import { TransitionResult } from "./math-gateway";
+import { projectDiagnosis } from "./diagnosis";
 
 type Tx = Prisma.TransactionClient;
 type GuestRow = {
@@ -39,6 +40,10 @@ export type AttemptRow = {
   notation_profile: "ar-mashriq-school-v1";
   opened_at: Date;
   updated_at: Date;
+  highest_hint_level_seen?: number;
+  independent_evidence_eligible?: boolean;
+  full_solution_seen?: boolean;
+  assistance_revision?: number;
 };
 export type StepRow = {
   id: string;
@@ -236,6 +241,7 @@ export class Store implements OnModuleDestroy {
     body: unknown,
     work: (tx: Tx) => Promise<MutationResult<T>>,
     logout = false,
+    replay?: (tx: Tx, cached: T) => Promise<T>,
   ): Promise<MutationResult<T>> {
     const keyHash = bytes(this.security.keyDigest(key)),
       fingerprint = bytes(this.security.fingerprint(body));
@@ -266,7 +272,9 @@ export class Store implements OnModuleDestroy {
             );
           return {
             status: existing.response_code,
-            data: existing.response_cache,
+            data: replay
+              ? await replay(tx, existing.response_cache)
+              : existing.response_cache,
           };
         }
         this.active(guest);
@@ -473,7 +481,10 @@ export class Store implements OnModuleDestroy {
       updatedAt: a.updated_at.toISOString(),
       parentEpisodeId: null,
       currentVerification: current
-        ? output("VerificationReport", current.report_json)
+        ? await projectDiagnosis(
+            tx,
+            output("VerificationReport", current.report_json),
+          )
         : null,
     };
   }

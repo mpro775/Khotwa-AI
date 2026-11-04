@@ -1,0 +1,1034 @@
+{
+  "phase": "PH-06",
+  "runId": "557a2ef7-8cbf-4047-a3d2-9694e770f3b0",
+  "recordedAt": "2026-11-04T04:51:24.895Z",
+  "contracts": [
+    {
+      "operationId": "getBootstrap",
+      "status": 200
+    },
+    {
+      "operationId": "createGuestSession",
+      "status": 201
+    },
+    {
+      "operationId": "createLearningSession",
+      "status": 201
+    },
+    {
+      "operationId": "getBootstrap",
+      "status": 200
+    },
+    {
+      "operationId": "createGuestSession",
+      "status": 201
+    },
+    {
+      "operationId": "createLearningSession",
+      "status": 201
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 201
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 201
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 201
+    },
+    {
+      "operationId": "answerDiagnosticProbe",
+      "status": 201
+    },
+    {
+      "operationId": "answerDiagnosticProbe",
+      "status": 201
+    },
+    {
+      "operationId": "answerDiagnosticProbe",
+      "status": 409
+    },
+    {
+      "operationId": "answerDiagnosticProbe",
+      "status": 409
+    },
+    {
+      "operationId": "getAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 409
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 201
+    },
+    {
+      "operationId": "answerDiagnosticProbe",
+      "status": 201
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 201
+    },
+    {
+      "operationId": "answerDiagnosticProbe",
+      "status": 201
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 201
+    },
+    {
+      "operationId": "answerDiagnosticProbe",
+      "status": 201
+    },
+    {
+      "operationId": "getAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 201
+    },
+    {
+      "operationId": "answerDiagnosticProbe",
+      "status": 201
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 201
+    },
+    {
+      "operationId": "answerDiagnosticProbe",
+      "status": 201
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 409
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 409
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 409
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 409
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 409
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 409
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 409
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 201
+    },
+    {
+      "operationId": "updateStep",
+      "status": 200
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 409
+    },
+    {
+      "operationId": "answerDiagnosticProbe",
+      "status": 409
+    },
+    {
+      "operationId": "getAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "updateStep",
+      "status": 200
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 409
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 201
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 404
+    },
+    {
+      "operationId": "answerDiagnosticProbe",
+      "status": 404
+    },
+    {
+      "operationId": "answerDiagnosticProbe",
+      "status": 422
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "getAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "answerDiagnosticProbe",
+      "status": 409
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 409
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 409
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 422
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 503
+    },
+    {
+      "operationId": "getAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 201
+    }
+  ],
+  "validatedResponses": 178,
+  "golden": [
+    {
+      "id": "GOLD-DIAG-001",
+      "mathCase": "GOLD-MATH-029",
+      "scope": "public_saved_attempt",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-01"
+      },
+      "actual": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-01"
+      },
+      "matched": true,
+      "reviewStatus": "draft_not_human_approved",
+      "issue": null
+    },
+    {
+      "id": "GOLD-DIAG-002",
+      "mathCase": "GOLD-MATH-035",
+      "scope": "public_saved_attempt",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-01"
+      },
+      "actual": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-01"
+      },
+      "matched": true,
+      "reviewStatus": "draft_not_human_approved",
+      "issue": null
+    },
+    {
+      "id": "GOLD-DIAG-003",
+      "mathCase": "GOLD-MATH-030",
+      "scope": "public_saved_attempt",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-02"
+      },
+      "actual": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-02"
+      },
+      "matched": true,
+      "reviewStatus": "draft_not_human_approved",
+      "issue": null
+    },
+    {
+      "id": "GOLD-DIAG-004",
+      "mathCase": "GOLD-MATH-031",
+      "scope": "public_saved_attempt",
+      "expected": {
+        "state": "tentative",
+        "pattern": "ERR-ALG-03"
+      },
+      "actual": {
+        "state": "tentative",
+        "pattern": "ERR-ALG-03"
+      },
+      "matched": true,
+      "reviewStatus": "draft_not_human_approved",
+      "issue": null
+    },
+    {
+      "id": "GOLD-DIAG-005",
+      "mathCase": "GOLD-MATH-032",
+      "scope": "public_saved_attempt",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-04"
+      },
+      "actual": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-04"
+      },
+      "matched": true,
+      "reviewStatus": "draft_not_human_approved",
+      "issue": null
+    },
+    {
+      "id": "GOLD-DIAG-006",
+      "mathCase": "GOLD-MATH-034",
+      "scope": "public_saved_attempt",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-06"
+      },
+      "actual": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-06"
+      },
+      "matched": true,
+      "reviewStatus": "draft_not_human_approved",
+      "issue": null
+    },
+    {
+      "id": "GOLD-DIAG-007",
+      "mathCase": "GOLD-MATH-045",
+      "scope": "public_saved_attempt",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-06"
+      },
+      "actual": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-06"
+      },
+      "matched": true,
+      "reviewStatus": "draft_not_human_approved",
+      "issue": null
+    },
+    {
+      "id": "GOLD-DIAG-008",
+      "mathCase": "GOLD-MATH-037",
+      "scope": "public_saved_attempt",
+      "expected": {
+        "state": "unresolved",
+        "pattern": "—"
+      },
+      "actual": {
+        "state": "unresolved",
+        "pattern": "—"
+      },
+      "matched": true,
+      "reviewStatus": "draft_not_human_approved",
+      "issue": null
+    },
+    {
+      "id": "GOLD-DIAG-009",
+      "mathCase": "GOLD-MATH-001",
+      "scope": "public_saved_attempt",
+      "expected": {
+        "state": "none",
+        "pattern": "—"
+      },
+      "actual": {
+        "state": "none",
+        "pattern": "—"
+      },
+      "matched": true,
+      "reviewStatus": "draft_not_human_approved",
+      "issue": null
+    },
+    {
+      "id": "GOLD-DIAG-010",
+      "mathCase": "GOLD-MATH-002",
+      "scope": "public_saved_attempt",
+      "expected": {
+        "state": "none",
+        "pattern": "—"
+      },
+      "actual": {
+        "state": "none",
+        "pattern": "—"
+      },
+      "matched": true,
+      "reviewStatus": "draft_not_human_approved",
+      "issue": null
+    },
+    {
+      "id": "GOLD-DIAG-011",
+      "mathCase": "GOLD-MATH-027",
+      "scope": "internal_guard_not_published",
+      "expected": {
+        "state": "none",
+        "pattern": "—"
+      },
+      "actual": {
+        "state": "none",
+        "pattern": "—"
+      },
+      "matched": true,
+      "reviewStatus": "draft_not_human_approved",
+      "issue": null
+    },
+    {
+      "id": "GOLD-DIAG-012",
+      "mathCase": "GOLD-MATH-033",
+      "scope": "public_saved_attempt",
+      "expected": {
+        "state": "tentative",
+        "pattern": "ERR-ALG-03"
+      },
+      "actual": {
+        "state": "tentative",
+        "pattern": "ERR-ALG-03"
+      },
+      "matched": true,
+      "reviewStatus": "draft_not_human_approved",
+      "issue": null
+    },
+    {
+      "id": "GOLD-DIAG-013",
+      "mathCase": "GOLD-MATH-038",
+      "scope": "public_saved_attempt",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-04"
+      },
+      "actual": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-04"
+      },
+      "matched": true,
+      "reviewStatus": "draft_not_human_approved",
+      "issue": null
+    },
+    {
+      "id": "GOLD-DIAG-014",
+      "mathCase": "GOLD-MATH-039",
+      "scope": "public_saved_attempt",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-04"
+      },
+      "actual": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-04"
+      },
+      "matched": true,
+      "reviewStatus": "draft_not_human_approved",
+      "issue": null
+    },
+    {
+      "id": "GOLD-DIAG-015",
+      "mathCase": "GOLD-MATH-046",
+      "scope": "public_saved_attempt",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-03"
+      },
+      "actual": {
+        "state": "tentative",
+        "pattern": "ERR-ALG-03"
+      },
+      "matched": false,
+      "reviewStatus": "draft_not_human_approved",
+      "issue": "DATASET-ISSUE-PH06-01"
+    },
+    {
+      "id": "GOLD-DIAG-016",
+      "mathCase": "GOLD-MATH-055",
+      "scope": "public_saved_attempt",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-05"
+      },
+      "actual": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-05"
+      },
+      "matched": true,
+      "reviewStatus": "draft_not_human_approved",
+      "issue": null
+    },
+    {
+      "id": "GOLD-DIAG-017",
+      "mathCase": "GOLD-MATH-056",
+      "scope": "public_saved_attempt",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-05"
+      },
+      "actual": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-05"
+      },
+      "matched": true,
+      "reviewStatus": "draft_not_human_approved",
+      "issue": null
+    },
+    {
+      "id": "GOLD-DIAG-018",
+      "mathCase": "GOLD-MATH-057",
+      "scope": "public_saved_attempt",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-05"
+      },
+      "actual": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-05"
+      },
+      "matched": true,
+      "reviewStatus": "draft_not_human_approved",
+      "issue": null
+    }
+  ],
+  "goldenMatched": 17,
+  "goldenMismatches": [
+    {
+      "id": "GOLD-DIAG-015",
+      "mathCase": "GOLD-MATH-046",
+      "scope": "public_saved_attempt",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-03"
+      },
+      "actual": {
+        "state": "tentative",
+        "pattern": "ERR-ALG-03"
+      },
+      "matched": false,
+      "reviewStatus": "draft_not_human_approved",
+      "issue": "DATASET-ISSUE-PH06-01"
+    }
+  ],
+  "goldenConformance": "not_passed_pending_reference_review",
+  "reviewerApproval": "pending",
+  "syntheticOnly": true,
+  "services": "real NestJS + PostgreSQL 17.6 + Python/SymPy; no external AI",
+  "node": "v24.11.1"
+}

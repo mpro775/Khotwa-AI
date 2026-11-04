@@ -23,6 +23,8 @@ jobs:
       - run: npm run verify:ph03
       - run: npm run test:api
       - run: npm run test:workspace
+      - run: npm run test:diagnosis
+      - run: npm run test:tutoring
   api-data:
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -33,3 +35,13 @@ jobs:
           node-version: "24.11.1"
       - run: node tools/verify-ph04-container.mjs
       - run: node tools/verify-ph05-container.mjs
+      - run: node tools/verify-ph06-container.mjs
+  tutoring:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24.11.1"
+      - run: node tools/verify-ph07-container.mjs

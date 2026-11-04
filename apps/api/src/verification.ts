@@ -8,6 +8,8 @@ import {
   TransitionResult,
 } from "./math-gateway";
 import { GuestAuth, StepRow, Store } from "./store";
+import { DiagnosisService, projectDiagnosis } from "./diagnosis";
+import { hasAssistance } from "./assistance";
 
 const ENGINE = "0.3.0";
 const bytes = (hex: string) => Buffer.from(hex, "hex");
@@ -42,6 +44,7 @@ type Prepared =
   | { cached: Schema<"VerificationReport"> }
   | { snapshot: Snapshot };
 interface Computed {
+  original: ParseResult;
   parses: Map<string, ParseResult>;
   transitions: TransitionResult[];
   final: FinalResult | null;
@@ -54,6 +57,7 @@ export class VerificationService {
     readonly store: Store,
     readonly math: MathPort,
     readonly timeoutMs: number,
+    readonly diagnosis?: DiagnosisService,
   ) {
     if (
       !Number.isSafeInteger(timeoutMs) ||
@@ -98,7 +102,7 @@ export class VerificationService {
             report.problemRevisionId !== a.problem_revision_id
           )
             throw conflict(Number(a.revision));
-          return { cached: report };
+          return { cached: await projectDiagnosis(tx, report, false) };
         }
         const [running] = await tx.$queryRaw<
           { id: string; deadline_at: Date }[]
@@ -266,7 +270,7 @@ export class VerificationService {
         };
       }
     }
-    return { parses, transitions, final, completion };
+    return { original, parses, transitions, final, completion };
   }
   private async commit(
     auth: GuestAuth,
@@ -339,6 +343,21 @@ export class VerificationService {
         const blocking = verdicts.findIndex(
           (v) => v.mathStatus !== "verified_valid",
         );
+        const diagnosis =
+          current &&
+          s.scope === "current_sequence" &&
+          blocking >= 0 &&
+          this.diagnosis
+            ? await this.diagnosis.persist(
+                tx,
+                a,
+                verdicts,
+                blocking === 0
+                  ? c.original.ast
+                  : c.parses.get(s.steps[blocking - 1]!.version_id)!.ast,
+                c.parses.get(s.steps[blocking]!.version_id)!.ast,
+              )
+            : null;
         const report = output("VerificationReport", {
           id: s.id,
           attemptId: a.id,
@@ -356,7 +375,7 @@ export class VerificationService {
                 explanationAr:
                   "هذه نتيجة تاريخية لإصدار سابق؛ أعد فحص النسخة الحالية.",
               },
-          diagnosisCandidate: null,
+          diagnosisCandidate: diagnosis,
         });
         const serialized = JSON.stringify(report);
         if (Buffer.byteLength(serialized) > 60000) throw unavailable();
@@ -364,7 +383,7 @@ export class VerificationService {
         await tx.$executeRaw`UPDATE idempotency_records SET state='completed',response_code=${current ? 200 : 409},response_cache=${serialized}::jsonb WHERE id=${s.recordId}::uuid`;
         if (current && s.scope === "current_sequence") {
           const complete = c.completion.canMarkAttemptCompleted;
-          await tx.$executeRaw`UPDATE attempts SET completion_verdict=${c.completion.state},status=${complete ? (a.status === "assisted_completed" ? "assisted_completed" : "completed") : "in_progress"},closed_at=${complete ? new Date() : null},updated_at=now() WHERE id=${a.id}::uuid`;
+          await tx.$executeRaw`UPDATE attempts SET completion_verdict=${c.completion.state},status=${complete ? (hasAssistance(a) ? "assisted_completed" : "completed") : "in_progress"},closed_at=${complete ? new Date() : null},updated_at=now() WHERE id=${a.id}::uuid`;
         }
         return { report, revision: Number(a.revision) };
       },

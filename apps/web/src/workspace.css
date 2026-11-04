@@ -170,3 +170,44 @@
     font-size: 1.4rem;
   }
 }
+.diagnostic-card {
+  border: 1px solid #b89559;
+  border-inline-start: 4px solid #b89559;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-block: 1rem;
+  background: #fffaf0;
+}
+.diagnostic-card fieldset {
+  border: 0;
+  padding: 0;
+}
+.probe-option {
+  display: block;
+  margin-block: 0.75rem;
+}
+.hint-card {
+  border: 1px solid #86a39a;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-block: 1rem;
+  background: #f5faf7;
+}
+.hint-card details {
+  margin-block: 1rem;
+}
+.hint-card label {
+  display: block;
+  margin-block: 0.75rem;
+}
+.hint-card button {
+  margin-inline-end: 0.75rem;
+}
+.hint-card li {
+  padding-block: 0.5rem;
+}
+.assistance-badge {
+  border-inline-start: 4px solid #b89559;
+  padding: 0.75rem;
+  background: #fffaf0;
+}

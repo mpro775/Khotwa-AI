@@ -342,6 +342,20 @@
         },
         "required": ["id", "status", "expiresAt", "createdAt"]
       },
+      "HintEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/TutoringEvent" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "HintLevel": {
+        "type": "string",
+        "description": "المساعدة من دون تلميح إلى الحل الكامل.",
+        "enum": ["H0", "H1", "H2", "H3", "H4"]
+      },
       "LearningSession": {
         "type": "object",
         "additionalProperties": false,
@@ -578,6 +592,116 @@
           }
         },
         "required": ["requestId", "serverTime", "apiVersion"]
+      },
+      "Probe": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "لا تُرسل الإجابة الصحيحة إلى الطالب قبل إرسال الإجابة.",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "attemptId": { "type": "string", "format": "uuid" },
+          "attemptRevision": {
+            "type": "integer",
+            "format": "int32",
+            "description": "إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.",
+            "minimum": 0,
+            "maximum": 2147483647,
+            "example": 4
+          },
+          "diagnosisId": {
+            "anyOf": [
+              { "type": "string", "format": "uuid" },
+              { "type": "null" }
+            ]
+          },
+          "questionAr": { "type": "string" },
+          "responseMode": { "type": "string", "enum": ["choice", "text"] },
+          "options": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ProbeOption" }
+          },
+          "status": {
+            "type": "string",
+            "enum": ["open", "answered", "cancelled"]
+          }
+        },
+        "required": [
+          "id",
+          "attemptId",
+          "attemptRevision",
+          "diagnosisId",
+          "questionAr",
+          "responseMode",
+          "options",
+          "status"
+        ]
+      },
+      "ProbeAnswerEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/ProbeEvaluation" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "ProbeEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/Probe" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "ProbeEvaluation": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "probeId": { "type": "string", "format": "uuid" },
+          "attemptId": { "type": "string", "format": "uuid" },
+          "attemptRevision": {
+            "type": "integer",
+            "format": "int32",
+            "description": "إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.",
+            "minimum": 0,
+            "maximum": 2147483647,
+            "example": 4
+          },
+          "evaluation": {
+            "type": "string",
+            "enum": ["supported", "not_supported", "unclear", "unverified"]
+          },
+          "diagnosis": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/DiagnosisCandidate" },
+              { "type": "null" }
+            ]
+          },
+          "feedbackAr": { "type": "string" },
+          "nextAction": {
+            "type": "string",
+            "enum": ["hint", "remediation", "continue", "clarify"]
+          }
+        },
+        "required": [
+          "probeId",
+          "attemptId",
+          "attemptRevision",
+          "evaluation",
+          "diagnosis",
+          "feedbackAr",
+          "nextAction"
+        ]
+      },
+      "ProbeOption": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "maxLength": 64 },
+          "labelAr": { "type": "string", "maxLength": 300 }
+        },
+        "required": ["id", "labelAr"]
       },
       "ProblemDetail": {
         "type": "object",
@@ -909,6 +1033,59 @@
           "evidence",
           "engineVersion",
           "notationProfileVersion"
+        ]
+      },
+      "TutoringEvent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "attemptId": { "type": "string", "format": "uuid" },
+          "attemptRevision": {
+            "type": "integer",
+            "format": "int32",
+            "description": "إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.",
+            "minimum": 0,
+            "maximum": 2147483647,
+            "example": 4
+          },
+          "eventType": {
+            "type": "string",
+            "enum": ["hint", "full_solution", "fallback", "pause"]
+          },
+          "hintLevel": { "$ref": "#/components/schemas/HintLevel" },
+          "textAr": {
+            "type": "string",
+            "description": "رسالة عربية مراجعة أو مولدة خاضعة للتصفية والتحقق."
+          },
+          "solutionStepsAr": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "خطوة معتمدة رياضيًا، لا ينتجها LLM بلا تحقق."
+            }
+          },
+          "generationSource": {
+            "type": "string",
+            "enum": ["reviewed_template", "llm_validated", "manual"]
+          },
+          "independentEvidenceEligible": {
+            "type": "boolean",
+            "description": "false عند عرض H4 أو الحل الكامل."
+          },
+          "createdAt": { "type": "string", "format": "date-time" }
+        },
+        "required": [
+          "id",
+          "attemptId",
+          "attemptRevision",
+          "eventType",
+          "hintLevel",
+          "textAr",
+          "solutionStepsAr",
+          "generationSource",
+          "independentEvidenceEligible",
+          "createdAt"
         ]
       },
       "ValidationIssue": {

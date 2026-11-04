@@ -29,6 +29,8 @@ services:
       AI_ENABLED: "false"
       # Enable only after local migrations and HTTPS origin configuration.
       PH04_API_ENABLED: ${PH04_API_ENABLED:-false}
+      PH07_API_ENABLED: ${PH07_API_ENABLED:-false}
+      PH06_API_ENABLED: ${PH06_API_ENABLED:-false}
       PH05_API_ENABLED: ${PH05_API_ENABLED:-false}
       PH05_VERIFY_TIMEOUT_MS: ${PH05_VERIFY_TIMEOUT_MS:-}
       KHOTWA_SYNTHETIC_DATA: ${KHOTWA_SYNTHETIC_DATA:-false}

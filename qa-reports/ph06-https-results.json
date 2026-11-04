@@ -1,0 +1,26 @@
+{
+  "phase": "PH-06",
+  "runId": "1e3125f8-84df-42ee-bca5-ca5fcc00feb5",
+  "url": "https://localhost:8444",
+  "recordedAt": "2026-11-04T04:05:59.450Z",
+  "passed": 10,
+  "checks": [
+    "HTTPS page and strict CSP with pinned local CA; verification remains enabled",
+    "real TLS guest bootstrap, CSRF and secured host-only cookie",
+    "live published synthetic catalog, no answer specification",
+    "HTTPS → nginx → NestJS → PostgreSQL → real Python → verified chain completion",
+    "HTTPS verification retry reuses the same result",
+    "HTTPS pinned invalid-edge hypothesis and private-key-free diagnostic probe",
+    "HTTPS uncertain answer remains unresolved and idempotent",
+    "HTTPS stale probe-answer replay rejected after revision change",
+    "cross-origin HTTPS mutation rejected",
+    "private paths blocked by public proxy"
+  ],
+  "tls": {
+    "certificateValidation": true,
+    "explicitTestCa": true,
+    "globalTrustStoreChanged": false,
+    "browserAcceptance": "separate manual certificate handoff required"
+  },
+  "syntheticOnly": true
+}

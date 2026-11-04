@@ -53,3 +53,38 @@ export const arabicNumber = (value: string | number): string =>
   String(value).replace(/[0-9-]/g, (c) =>
     c === "-" ? "−" : "٠١٢٣٤٥٦٧٨٩"[Number(c)]!,
   );
+
+export function canAdoptProbe(
+  report: Schema<"VerificationReport">,
+  response: Schema<"Probe"> | Schema<"ProbeEvaluation">,
+  expectedProbeId?: string,
+): boolean {
+  const diagnosisId =
+    "diagnosisId" in response
+      ? response.diagnosisId
+      : response.diagnosis?.diagnosisId;
+  const index = report.firstBlockingTransitionIndex;
+  return (
+    report.isCurrent &&
+    report.scope === "current_sequence" &&
+    index !== null &&
+    report.transitions[index]?.mathStatus === "verified_invalid" &&
+    response.attemptId === report.attemptId &&
+    response.attemptRevision === report.attemptRevision &&
+    !!diagnosisId &&
+    diagnosisId === report.diagnosisCandidate?.diagnosisId &&
+    (expectedProbeId === undefined ||
+      ("probeId" in response && response.probeId === expectedProbeId))
+  );
+}
+
+export function canAdoptHint(
+  attempt: Schema<"Attempt"> | null,
+  event: Schema<"TutoringEvent">,
+): boolean {
+  return (
+    !!attempt &&
+    attempt.id === event.attemptId &&
+    attempt.revision === event.attemptRevision
+  );
+}

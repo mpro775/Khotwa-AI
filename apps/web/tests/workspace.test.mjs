@@ -6,6 +6,8 @@ import { test } from "node:test";
 const require = createRequire(import.meta.url);
 const {
   canAdoptVerification,
+  canAdoptProbe,
+  canAdoptHint,
   statusLabels,
 } = require("../../../.local/ph05-web-tests/apps/web/src/workspace-model.js");
 const {
@@ -32,6 +34,60 @@ const report = () => ({
     explanationAr: "لم يثبت اكتمال الحل.",
   },
   diagnosisCandidate: null,
+});
+
+test("hint responses cannot restore another attempt or an edited revision", () => {
+  const attempt = { id: randomUUID(), revision: 3 };
+  const hint = { attemptId: attempt.id, attemptRevision: 3 };
+  assert.equal(canAdoptHint(attempt, hint), true);
+  assert.equal(canAdoptHint(null, hint), false);
+  assert.equal(canAdoptHint({ ...attempt, revision: 4 }, hint), false);
+  assert.equal(canAdoptHint({ ...attempt, id: randomUUID() }, hint), false);
+});
+
+test("probe responses are bound to the same current attempt, revision, hypothesis and probe", () => {
+  const current = {
+    ...report(),
+    firstBlockingTransitionIndex: 0,
+    transitions: [{ mathStatus: "verified_invalid" }],
+    diagnosisCandidate: { diagnosisId: randomUUID() },
+  };
+  const probe = {
+    id: randomUUID(),
+    attemptId: current.attemptId,
+    attemptRevision: current.attemptRevision,
+    diagnosisId: current.diagnosisCandidate.diagnosisId,
+  };
+  assert.equal(canAdoptProbe(current, probe), true);
+  assert.equal(
+    canAdoptProbe(current, { ...probe, diagnosisId: randomUUID() }),
+    false,
+  );
+  assert.equal(
+    canAdoptProbe(current, { ...probe, attemptId: randomUUID() }),
+    false,
+  );
+  assert.equal(
+    canAdoptProbe(current, { ...probe, attemptRevision: 99 }),
+    false,
+  );
+  assert.equal(canAdoptProbe({ ...current, isCurrent: false }, probe), false);
+  assert.equal(
+    canAdoptProbe({ ...current, diagnosisCandidate: null }, probe),
+    false,
+  );
+  assert.equal(
+    canAdoptProbe({ ...current, scope: "target_edge" }, probe),
+    false,
+  );
+  const result = {
+    probeId: probe.id,
+    attemptId: probe.attemptId,
+    attemptRevision: probe.attemptRevision,
+    diagnosis: { diagnosisId: probe.diagnosisId },
+  };
+  assert.equal(canAdoptProbe(current, result, probe.id), true);
+  assert.equal(canAdoptProbe(current, result, randomUUID()), false);
 });
 test("UI rejects late results after local edits, server revisions, resource changes or replaced step versions", () => {
   const result = report(),
@@ -208,5 +264,26 @@ test("browser validators run with dynamic code generation disabled (strict CSP)"
       meta: meta(),
     }),
     true,
+  );
+  const question = {
+    data: {
+      id: randomUUID(),
+      attemptId: randomUUID(),
+      attemptRevision: 1,
+      diagnosisId: randomUUID(),
+      questionAr: "أي التعبيرين مكافئ؟",
+      responseMode: "choice",
+      options: [{ id: randomUUID(), labelAr: "الخيار الأول" }],
+      status: "open",
+    },
+    meta: meta(),
+  };
+  assert.equal(sandbox.exports.ProbeEnvelope(question), true);
+  assert.equal(
+    sandbox.exports.ProbeEnvelope({
+      ...question,
+      data: { ...question.data, correctOptionId: question.data.options[0].id },
+    }),
+    false,
   );
 });

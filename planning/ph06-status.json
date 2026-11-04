@@ -1,0 +1,129 @@
+{
+  "phase": "PH-06",
+  "date": "2026-11-04 / Asia/Riyadh",
+  "recordedAt": "2026-11-04T04:08:18.998Z",
+  "branch": "codex/ph06-conservative-diagnosis",
+  "baseCommit": "640e1976c18b798e3942b2b051b76531ee48370a",
+  "worktreeCommitted": false,
+  "ownerAuthorization": "نفذ الآن PH-06 كاملاً، وهذا أمر مني.",
+  "status": "partial_ready_for_technical_review_acceptance_blocked",
+  "tasks": [
+    "TASK-061",
+    "TASK-062",
+    "TASK-063",
+    "TASK-064",
+    "TASK-065"
+  ],
+  "implementation": "six structural pattern hypotheses, ambiguity/abstention, private-key-free probe selection/evaluation, immutable pinned evidence and currentness",
+  "policyVersion": "conservative-algebra-0.6.0",
+  "activation": "off by default; explicit server-side synthetic-review-only activation",
+  "staticChecks": {
+    "passed": 10,
+    "failed": 0
+  },
+  "unitTests": {
+    "api": 29,
+    "diagnosis": 7,
+    "editor": 12,
+    "workspace": 7,
+    "smoke": 7
+  },
+  "realIntegration": {
+    "runId": "2fd5c1b1-3faa-4b9a-8a58-2192f631f14d",
+    "services": "real NestJS + PostgreSQL 17.6 + Python/SymPy; no external AI",
+    "validatedResponses": 178,
+    "tests": {
+      "total": 14,
+      "passed": 13,
+      "failed": 1,
+      "coreIntegrationPassed": true,
+      "exactGoldenConformance": "not_passed_pending_reference_review"
+    },
+    "commandExitCode": 1,
+    "failure": "Core integration passed; exact draft Golden conformance failed: GOLD-DIAG-015 (DATASET-ISSUE-PH06-01 pending review)",
+    "postgres": "17.6",
+    "businessTables": 22,
+    "migrations": 5,
+    "deltaRollbackAndReplay": true
+  },
+  "golden": {
+    "scope": "18 draft reference expectations; 17 public synthetic attempts and 1 unpublished internal guard",
+    "total": 18,
+    "matched": 17,
+    "patternMatches": 18,
+    "stateMatches": 17,
+    "exactConformance": "FAILED",
+    "mismatches": [
+      {
+        "id": "GOLD-DIAG-015",
+        "mathCase": "GOLD-MATH-046",
+        "scope": "public_saved_attempt",
+        "expected": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-03"
+        },
+        "actual": {
+          "state": "tentative",
+          "pattern": "ERR-ALG-03"
+        },
+        "matched": false,
+        "reviewStatus": "draft_not_human_approved",
+        "issue": "DATASET-ISSUE-PH06-01"
+      }
+    ],
+    "referenceChanged": false,
+    "humanApproval": "pending",
+    "issue": "DATASET-ISSUE-PH06-01 pending math/pedagogy and QA decision; no test exemptions"
+  },
+  "https": {
+    "checks": 10,
+    "runId": "1e3125f8-84df-42ee-bca5-ca5fcc00feb5",
+    "url": "https://localhost:8444",
+    "trustStoreChanged": false,
+    "certificateVerificationDisabled": false,
+    "interactiveBrowserProven": false
+  },
+  "regressions": {
+    "ph04": {
+      "failure": null,
+      "nodeTests": 51,
+      "httpResponses": 91,
+      "runtimeChecks": 7
+    },
+    "ph05": {
+      "failure": null,
+      "nodeTests": 13,
+      "httpResponses": 394,
+      "draftParser": 40,
+      "draftTransitions": 53
+    },
+    "mode": "PH06 disabled; previous behavior and migration/rollback compatibility"
+  },
+  "sourceImageChecks": 13,
+  "publicApiChanged": false,
+  "astChanged": false,
+  "mathScopeChanged": false,
+  "mathEngineSourceChanged": false,
+  "canonicalGoldenChanged": false,
+  "realLearnerDataUsed": false,
+  "baseComposeDatabaseMigrated": false,
+  "publicDeployment": false,
+  "phone": "not_run_unavailable",
+  "desktop": "not_run_prior_manual_step_deferred_by_owner; no new screenshots",
+  "contentAndProbeTemplates": "synthetic draft; no reviewer identity or approval invented",
+  "skillProgressWritesImplemented": false,
+  "llmUsed": false,
+  "gates": {
+    "GATE-1": "BLOCKED_NOT_APPROVED",
+    "GATE-2": "NOT_APPROVED"
+  },
+  "ph07": "not_started",
+  "reviewers": {
+    "mathAndPedagogy": "pending",
+    "qa": "pending",
+    "nestjs": "pending",
+    "frontend": "pending"
+  },
+  "nextSteps": "planning/ph06-local-run.md",
+  "report": "qa-reports/ph06-delivery.md"
+}

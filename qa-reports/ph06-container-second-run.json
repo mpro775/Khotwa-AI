@@ -1,0 +1,221 @@
+{
+  "phase": "PH-06",
+  "recordedAt": "2026-11-04T03:47:14.214Z",
+  "failure": "Real integration checks failed: ",
+  "checks": [
+    {
+      "command": [
+        "docker",
+        "build",
+        "--target",
+        "ph06-test",
+        "-t",
+        "khotwa-ph06-test",
+        "."
+      ],
+      "exitCode": 0,
+      "seconds": 26.7,
+      "stdout": "",
+      "stderr": "#0 building with \"desktop-linux\" instance using docker driver\n\n#1 [internal] load build definition from Dockerfile\n#1 transferring dockerfile: 2.21kB 0.0s done\n#1 DONE 0.0s\n\n#2 [internal] load metadata for docker.io/library/node:24.11.1-alpine3.22\n#2 DONE 0.1s\n\n#3 [internal] load .dockerignore\n#3 transferring context: 161B done\n#3 DONE 0.0s\n\n#4 [node-build 1/9] FROM docker.io/library/node:24.11.1-alpine3.22@sha256:2867d550cf9d8bb50059a0fff528741f11a84d985c732e60e19e8e75c7239c43\n#4 resolve docker.io/library/node:24.11.1-alpine3.22@sha256:2867d550cf9d8bb50059a0fff528741f11a84d985c732e60e19e8e75c7239c43 0.0s done\n#4 DONE 0.0s\n\n#5 [internal] load build context\n#5 transferring context: 3.27MB 0.5s done\n#5 DONE 0.5s\n\n#6 [node-build 3/9] COPY package.json package-lock.json ./\n#6 CACHED\n\n#7 [node-build 4/9] COPY apps/api/package.json apps/api/package.json\n#7 CACHED\n\n#8 [node-build 5/9] COPY apps/web/package.json apps/web/package.json\n#8 CACHED\n\n#9 [node-build 6/9] COPY packages/contracts/package.json packages/contracts/package.json\n#9 CACHED\n\n#10 [node-build 2/9] WORKDIR /app\n#10 CACHED\n\n#11 [node-build 7/9] RUN npm ci --include=optional --no-audit --no-fund && node --input-type=module -e \"await import('rolldown')\"\n#11 CACHED\n\n#12 [node-build 8/9] COPY . .\n#12 DONE 0.2s\n\n#13 [node-build 9/9] RUN npm run contracts && npm run build --workspace @khotwa/api && npm run build --workspace @khotwa/web\n#13 0.525 \n#13 0.525 > khotwa-ai@0.1.0 contracts\n#13 0.525 > node tools/contracts.mjs\n#13 0.525 \n#13 2.686 Canonical OpenAPI mirror, 3 JSON mirrors, and generated public types generated.\n#13 4.946 \n#13 4.946 > @khotwa/api@0.1.0 build\n#13 4.946 > npm run generate && tsc -p tsconfig.json\n#13 4.946 \n#13 5.216 \n#13 5.216 > @khotwa/api@0.1.0 generate\n#13 5.216 > prisma generate --config prisma.config.ts\n#13 5.216 \n#13 6.922 Loaded Prisma config from prisma.config.ts.\n#13 6.922 \n#13 7.205 Prisma schema loaded from prisma/schema.prisma.\n#13 8.156 \n#13 8.156 ✔ Generated Prisma Client (v7.10.1) to ./../../node_modules/@prisma/client in 676ms\n#13 8.156 \n#13 8.156 Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)\n#13 8.156 \n#13 8.156 \n#13 16.67 \n#13 16.67 > @khotwa/web@0.1.0 build\n#13 16.67 > tsc --noEmit && vite build\n#13 16.67 \n#13 21.12 vite v8.3.5 building client environment for production...\n#13 21.32 transforming...\n#13 22.01 ✓ 32 modules transformed.\n#13 22.17 rendering chunks...\n#13 22.47 computing gzip size...\n#13 22.50 dist/index.html                                         0.40 kB │ gzip:   0.28 kB\n#13 22.50 dist/assets/KaTeX_Size4-Regular-Dl5lxZxV.woff2          4.92 kB\n#13 22.50 dist/assets/KaTeX_Size2-Regular-Dy4dx90m.woff2          5.20 kB\n#13 22.50 dist/assets/KaTeX_Size1-Regular-mCD8mA8B.woff2          5.46 kB\n#13 22.50 dist/assets/KaTeX_Caligraphic-Regular-Di6jR-x-.woff2    6.90 kB\n#13 22.50 dist/assets/KaTeX_Caligraphic-Bold-Dq_IR9rO.woff2       6.91 kB\n#13 22.50 dist/assets/KaTeX_Script-Regular-D3wIWfF6.woff2         9.64 kB\n#13 22.50 dist/assets/KaTeX_SansSerif-Regular-DDBCnlJ7.woff2     10.34 kB\n#13 22.50 dist/assets/KaTeX_Fraktur-Regular-CTYiF6lA.woff2       11.31 kB\n#13 22.50 dist/assets/KaTeX_Fraktur-Bold-CL6g_b3V.woff2          11.34 kB\n#13 22.50 dist/assets/KaTeX_SansSerif-Italic-C3H0VqGB.woff2      12.02 kB\n#13 22.50 dist/assets/KaTeX_SansSerif-Bold-D1sUS0GD.woff2        12.21 kB\n#13 22.50 dist/assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2    13.56 kB\n#13 22.50 dist/assets/KaTeX_Math-BoldItalic-CZnvNsCZ.woff2       16.40 kB\n#13 22.50 dist/assets/KaTeX_Math-Italic-t53AETM-.woff2           16.44 kB\n#13 22.50 dist/assets/KaTeX_Main-BoldItalic-DxDJ3AOS.woff2       16.78 kB\n#13 22.50 dist/assets/KaTeX_Main-Italic-NWA7e6Wa.woff2           16.98 kB\n#13 22.50 dist/assets/KaTeX_Main-Bold-Cx986IdX.woff2             25.32 kB\n#13 22.50 dist/assets/KaTeX_Main-Regular-B22Nviop.woff2          26.27 kB\n#13 22.50 dist/assets/KaTeX_AMS-Regular-BQhdFMY1.woff2           28.07 kB\n#13 22.50 dist/assets/index-CVaYJWG3.css                          7.25 kB │ gzip:   2.32 kB\n#13 22.50 dist/assets/ArabicEditor-BnjoTxG4.css                   8.00 kB │ gzip:   4.20 kB\n#13 22.50 dist/assets/index-DXYXFiIB.js                         449.34 kB │ gzip:  99.89 kB\n#13 22.50 dist/assets/ArabicEditor-Dae_vFf4.js                  816.76 kB │ gzip: 225.27 kB\n#13 22.50 \n#13 22.50 [plugin builtin:vite-reporter] \n#13 22.50 (!) Some chunks are larger than 500 kB after minification. Consider:\n#13 22.50 - Using dynamic import() to code-split the application\n#13 22.50 - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting\n#13 22.50 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n#13 22.51 ✓ built in 1.38s\n#13 DONE 22.6s\n\n#14 exporting to image\n#14 exporting layers\n#14 exporting layers 1.4s done\n#14 exporting manifest sha256:a98300a22407b7a492f3ee806652a1fc579f4ed095b43e440cdc5252e1f55cf0 0.0s done\n#14 exporting config sha256:10937ed6722589355c1783dd40b686751f0af38e86c2c76ecaa886701a257e19 0.0s done\n#14 exporting attestation manifest sha256:3384eec35648fefead4de0c32ff55cfcc856ac70607a5ecad0a537cea60dd950 0.0s done\n#14 exporting manifest list sha256:1b608e2089bcd0e83bd2dc73694d69d9ad0ca719ce197e6ee26e1c27f2d4089f\n#14 exporting manifest list sha256:1b608e2089bcd0e83bd2dc73694d69d9ad0ca719ce197e6ee26e1c27f2d4089f 0.0s done\n#14 naming to docker.io/library/khotwa-ph06-test:latest done\n#14 unpacking to docker.io/library/khotwa-ph06-test:latest\n#14 unpacking to docker.io/library/khotwa-ph06-test:latest 0.3s done\n#14 DONE 1.8s\n"
+    },
+    {
+      "command": [
+        "docker",
+        "build",
+        "--target",
+        "math",
+        "-t",
+        "khotwa-ph06-math",
+        "."
+      ],
+      "exitCode": 0,
+      "seconds": 2.3,
+      "stdout": "",
+      "stderr": "#0 building with \"desktop-linux\" instance using docker driver\n\n#1 [internal] load build definition from Dockerfile\n#1 transferring dockerfile: 2.21kB 0.0s done\n#1 DONE 0.0s\n\n#2 [internal] load metadata for docker.io/library/python:3.13.7-slim-bookworm\n#2 DONE 0.9s\n\n#3 [internal] load .dockerignore\n#3 transferring context: 161B done\n#3 DONE 0.0s\n\n#4 [internal] load build context\n#4 transferring context: 965B 0.0s done\n#4 DONE 0.0s\n\n#5 [math 1/5] FROM docker.io/library/python:3.13.7-slim-bookworm@sha256:adafcc17694d715c905b4c7bebd96907a1fd5cf183395f0ebc4d3428bd22d92d\n#5 resolve docker.io/library/python:3.13.7-slim-bookworm@sha256:adafcc17694d715c905b4c7bebd96907a1fd5cf183395f0ebc4d3428bd22d92d 0.1s done\n#5 DONE 0.1s\n\n#6 [math 3/5] COPY services/math-engine/requirements.lock ./requirements.lock\n#6 CACHED\n\n#7 [math 2/5] WORKDIR /app\n#7 CACHED\n\n#8 [math 4/5] RUN pip install --no-cache-dir --no-deps -r requirements.lock && useradd --uid 10001 --create-home mathuser\n#8 CACHED\n\n#9 [math 5/5] COPY --chown=10001:10001 services/math-engine/src /app/src\n#9 CACHED\n\n#10 exporting to image\n#10 exporting layers\n#10 exporting layers done\n#10 exporting manifest sha256:16209cc264699f42c27c546de51b332afc38eb4f508cbf4de2d62765ec53f732 done\n#10 exporting config sha256:dbf374c91a1e59c9b204f8f03353d7acf29696de5475c7fe6c7cdad34c51bacc done\n#10 exporting attestation manifest sha256:5ed89c92ad0970b2d7de3ec41a5abafb69a92c32e8932ba48cd9f94a908ac2b5 0.0s done\n#10 exporting manifest list sha256:98040db148eaa2e22f931a58fe9a8efc1eeb9de324991d9b02029272a04517dd 0.0s done\n#10 naming to docker.io/library/khotwa-ph06-math:latest\n#10 naming to docker.io/library/khotwa-ph06-math:latest done\n#10 unpacking to docker.io/library/khotwa-ph06-math:latest 0.0s done\n#10 DONE 0.2s\n"
+    },
+    {
+      "command": [
+        "docker",
+        "network",
+        "create",
+        "--internal",
+        "--label",
+        "khotwa.task=ph06-test",
+        "khotwa-ph06-e6cf7a47fe23"
+      ],
+      "exitCode": 0,
+      "seconds": 0.2,
+      "stdout": "769147f29adf67216c903703c4557140b526e6d591bc9959b22c992dfbbd2a76\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "khotwa-ph06-e6cf7a47fe23-db",
+        "--label",
+        "khotwa.task=ph06-test",
+        "--network",
+        "khotwa-ph06-e6cf7a47fe23",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph06-e6cf7a47fe23-db.env",
+        "--memory",
+        "512m",
+        "--pids-limit",
+        "64",
+        "--tmpfs",
+        "/var/lib/postgresql/data:rw,noexec,nosuid,size=128m",
+        "postgres:17.6-alpine3.22"
+      ],
+      "exitCode": 0,
+      "seconds": 0.7,
+      "stdout": "1431e40256dae06c2d77209a5e353720bab9702df1915671d372c7f6b48dbe2c\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "khotwa-ph06-e6cf7a47fe23-math",
+        "--label",
+        "khotwa.task=ph06-test",
+        "--network",
+        "khotwa-ph06-e6cf7a47fe23",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph06-e6cf7a47fe23-math.env",
+        "--memory",
+        "256m",
+        "--cpus",
+        "1",
+        "--pids-limit",
+        "64",
+        "--read-only",
+        "--tmpfs",
+        "/tmp",
+        "khotwa-ph06-math"
+      ],
+      "exitCode": 0,
+      "seconds": 0.6,
+      "stdout": "ce590273788042ea75f148750cfd16752ddb2b2781fe9992a435aacf3d424362\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "exec",
+        "khotwa-ph06-e6cf7a47fe23-math",
+        "python",
+        "-c",
+        "import os; assert 'DATABASE_URL' not in os.environ; assert 'GUEST_DIGEST_KEY' not in os.environ; print('Math environment isolated from DB and guest-signing credentials')"
+      ],
+      "exitCode": 0,
+      "seconds": 0.5,
+      "stdout": "Math environment isolated from DB and guest-signing credentials\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "--name",
+        "khotwa-ph06-e6cf7a47fe23-tests",
+        "--label",
+        "khotwa.task=ph06-test",
+        "--network",
+        "khotwa-ph06-e6cf7a47fe23",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph06-e6cf7a47fe23.env",
+        "--memory",
+        "768m",
+        "--pids-limit",
+        "128",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\qa,target=/app/qa,readonly",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\apps\\api\\tests,target=/app/apps/api/tests,readonly",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\apps\\api\\prisma,target=/app/apps/api/prisma,readonly",
+        "khotwa-ph06-test"
+      ],
+      "exitCode": 1,
+      "seconds": 21.8,
+      "stdout": "PH06_DB_RESULT {\"checks\":[{\"command\":\"prisma migrate deploy\",\"exitCode\":0},{\"name\":\"PH06_delta_down_preserves_PH05_tables\",\"passed\":true},{\"command\":\"prisma migrate reset --force\",\"exitCode\":0}],\"postgres\":\"17.6\",\"tables\":22,\"scope\":\"isolated tmpfs; PH06 delta rollback and full replay\"}\n✖ PH-06 conservative diagnosis on real NestJS PostgreSQL Python (419.757734ms)\n✖ exact conformance to every draft GOLD-DIAG state and pattern (no exemptions) (2.959789ms)\nℹ tests 2\nℹ suites 0\nℹ pass 0\nℹ fail 2\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 11273.409522\n\n✖ failing tests:\n\ntest at apps/api/tests/diagnosis-live.test.mjs:15:1\n✖ PH-06 conservative diagnosis on real NestJS PostgreSQL Python (419.757734ms)\n  error: published membership immutable\n      at /app/node_modules/pg/lib/client.js:545:17\n      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n      at async seedDiagnosticDrafts (file:///app/qa/ph06-fixtures.mjs:161:7)\n      at async seedIntegration (file:///app/qa/ph06-fixtures.mjs:77:5)\n      at async TestContext.<anonymous> (file:///app/apps/api/tests/diagnosis-live.test.mjs:23:22)\n      at async Test.run (node:internal/test_runner/test:1113:7)\n      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {\n    length: 157,\n    severity: 'ERROR',\n    code: 'P0001',\n    detail: undefined,\n    hint: undefined,\n    position: undefined,\n    internalPosition: undefined,\n    internalQuery: undefined,\n    where: 'PL/pgSQL function protect_content_membership() line 22 at RAISE',\n    schema: undefined,\n    table: undefined,\n    column: undefined,\n    dataType: undefined,\n    constraint: undefined,\n    file: 'pl_exec.c',\n    line: '3911',\n    routine: 'exec_stmt_raise'\n  }\n\ntest at apps/api/tests/diagnosis-live.test.mjs:673:1\n✖ exact conformance to every draft GOLD-DIAG state and pattern (no exemptions) (2.959789ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  \n  0 !== 18\n  \n      at TestContext.<anonymous> (file:///app/apps/api/tests/diagnosis-live.test.mjs:677:12)\n      at Test.runInAsyncScope (node:async_hooks:214:14)\n      at Test.run (node:internal/test_runner/test:1106:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)\n      at Test.postRun (node:internal/test_runner/test:1235:19)\n      at Test.run (node:internal/test_runner/test:1163:12)\n      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: 0,\n    expected: 18,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n \n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph06-e6cf7a47fe23-tests"
+      ],
+      "exitCode": 0,
+      "seconds": 0.2,
+      "stdout": "khotwa-ph06-e6cf7a47fe23-tests\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph06-e6cf7a47fe23-math"
+      ],
+      "exitCode": 0,
+      "seconds": 0.6,
+      "stdout": "khotwa-ph06-e6cf7a47fe23-math\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph06-e6cf7a47fe23-db"
+      ],
+      "exitCode": 0,
+      "seconds": 0.6,
+      "stdout": "khotwa-ph06-e6cf7a47fe23-db\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "network",
+        "rm",
+        "khotwa-ph06-e6cf7a47fe23"
+      ],
+      "exitCode": 0,
+      "seconds": 0.6,
+      "stdout": "khotwa-ph06-e6cf7a47fe23\n",
+      "stderr": ""
+    }
+  ],
+  "dbProof": {
+    "checks": [
+      {
+        "command": "prisma migrate deploy",
+        "exitCode": 0
+      },
+      {
+        "name": "PH06_delta_down_preserves_PH05_tables",
+        "passed": true
+      },
+      {
+        "command": "prisma migrate reset --force",
+        "exitCode": 0
+      }
+    ],
+    "postgres": "17.6",
+    "tables": 22,
+    "scope": "isolated tmpfs; PH06 delta rollback and full replay"
+  },
+  "liveProof": null
+}

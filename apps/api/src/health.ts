@@ -56,6 +56,10 @@ export class HealthService implements OnModuleDestroy {
       await this.pool.query("SELECT 1");
       if (process.env.PH04_API_ENABLED === "true")
         await this.pool.query("SELECT id FROM verification_reports LIMIT 0");
+      if (process.env.PH06_API_ENABLED === "true")
+        await this.pool.query("SELECT id FROM current_diagnoses LIMIT 0");
+      if (process.env.PH07_API_ENABLED === "true")
+        await this.pool.query("SELECT id FROM tutoring_events LIMIT 0");
       return true;
     };
     const math = async () => {

@@ -25,6 +25,9 @@ import { GuestAuth, guestDto, MutationResult, Store } from "./store";
 import { MathGateway } from "./math-gateway";
 import { DisabledAiAdapter } from "./ai-port";
 import { VerificationService } from "./verification";
+import { DiagnosisService } from "./diagnosis";
+import { TutoringService, TutoringLimits } from "./tutoring";
+import { NoExternalAi } from "./ai-tutor";
 
 type AccessMode = "bootstrap" | "createGuest" | "current" | "logout";
 const Access = (mode: AccessMode) => SetMetadata("access", mode);
@@ -200,6 +203,8 @@ export class BusinessController {
     private readonly store: Store,
     private readonly security: Security,
     private readonly verification: VerificationService,
+    private readonly diagnosis: DiagnosisService,
+    private readonly tutoring: TutoringService,
   ) {}
   @Get("bootstrap")
   @Access("bootstrap")
@@ -432,6 +437,67 @@ export class BusinessController {
       ),
     );
   }
+  @Post("attempts/:id/hints")
+  @HttpCode(200)
+  async requestHint(
+    @Req() request: SessionRequest,
+    @Param("id") id: string,
+    @Body() raw: unknown,
+  ) {
+    if (process.env.PH07_API_ENABLED !== "true")
+      throw new ApiFault(404, "not_found", "المسار غير متاح في هذه النسخة.");
+    return envelope(
+      request,
+      await this.tutoring.request(
+        auth(request),
+        uuid(id),
+        key(request),
+        input("HintInput", raw),
+      ),
+    );
+  }
+  @Post("attempts/:id/probes")
+  async createProbe(
+    @Req() request: SessionRequest,
+    @Res({ passthrough: true }) response: ResponseContext,
+    @Param("id") id: string,
+    @Body() raw: unknown,
+  ) {
+    if (process.env.PH06_API_ENABLED !== "true")
+      throw new ApiFault(404, "not_found", "المسار غير متاح في هذه النسخة.");
+    return mutation(
+      request,
+      response,
+      await this.diagnosis.createProbe(
+        auth(request),
+        uuid(id),
+        key(request),
+        input("RequestProbeInput", raw),
+      ),
+    );
+  }
+  @Post("attempts/:id/probes/:probeId/responses")
+  async answerProbe(
+    @Req() request: SessionRequest,
+    @Res({ passthrough: true }) response: ResponseContext,
+    @Param("id") id: string,
+    @Param("probeId") probeId: string,
+    @Body() raw: unknown,
+  ) {
+    if (process.env.PH06_API_ENABLED !== "true")
+      throw new ApiFault(404, "not_found", "المسار غير متاح في هذه النسخة.");
+    return mutation(
+      request,
+      response,
+      await this.diagnosis.answerProbe(
+        auth(request),
+        uuid(id),
+        uuid(probeId),
+        key(request),
+        input("AnswerProbeInput", raw),
+      ),
+    );
+  }
   @Get("attempts/:id/verifications/:resultId")
   async verificationDetail(
     @Req() request: SessionRequest,
@@ -522,19 +588,63 @@ export class BusinessController {
     },
     DisabledAiAdapter,
     {
+      provide: DiagnosisService,
+      useFactory: (store: Store) =>
+        new DiagnosisService(store, process.env.PH06_API_ENABLED === "true"),
+      inject: [Store],
+    },
+    NoExternalAi,
+    {
+      provide: TutoringService,
+      useFactory: (store: Store, math: MathGateway, ai: NoExternalAi) => {
+        if (process.env.AI_ENABLED === "true")
+          throw new Error(
+            "No external AI provider is approved; AI_ENABLED must remain false",
+          );
+        const active = process.env.PH07_API_ENABLED === "true";
+        const limit = (name: string, fallback: number) =>
+          active ? numberSetting(process.env[name]) : fallback;
+        const limits: TutoringLimits = {
+          requestTimeoutMs: limit("PH07_REQUEST_TIMEOUT_MS", 20000),
+          aiTimeoutMs: limit("PH07_AI_TIMEOUT_MS", 500),
+          maxInputBytes: limit("PH07_MAX_INPUT_BYTES", 4096),
+          maxOutputTokens: limit("PH07_MAX_OUTPUT_TOKENS", 256),
+          guestCalls: limit("PH07_GUEST_CALLS", 10),
+          globalCalls: limit("PH07_GLOBAL_CALLS", 100),
+          guestCostUnits: limit("PH07_GUEST_COST_UNITS", 100),
+          globalCostUnits: limit("PH07_GLOBAL_COST_UNITS", 1000),
+          maxParallel: limit("PH07_MAX_PARALLEL", 2),
+        };
+        return new TutoringService(store, math, ai, limits, active);
+      },
+      inject: [Store, MathGateway, NoExternalAi],
+    },
+    {
       provide: VerificationService,
-      useFactory: (store: Store, math: MathGateway) =>
+      useFactory: (
+        store: Store,
+        math: MathGateway,
+        diagnosis: DiagnosisService,
+      ) =>
         new VerificationService(
           store,
           math,
           process.env.PH05_API_ENABLED === "true"
             ? numberSetting(process.env.PH05_VERIFY_TIMEOUT_MS)
             : 20000,
+          diagnosis,
         ),
-      inject: [Store, MathGateway],
+      inject: [Store, MathGateway, DiagnosisService],
     },
     SessionGuard,
   ],
-  exports: [Store, MathGateway, DisabledAiAdapter, VerificationService],
+  exports: [
+    TutoringService,
+    Store,
+    MathGateway,
+    DisabledAiAdapter,
+    VerificationService,
+    DiagnosisService,
+  ],
 })
 export class BusinessModule {}

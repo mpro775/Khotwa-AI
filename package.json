@@ -39,7 +39,15 @@
     "test:workspace": "node tools/test-workspace.mjs",
     "verify:ph05": "node tools/verify-ph05.mjs",
     "verify:ph05:container": "node tools/verify-ph05-container.mjs",
-    "dev:ph05": "node tools/serve-ph05.mjs"
+    "dev:ph05": "node tools/serve-ph05.mjs",
+    "test:diagnosis": "node --test apps/api/tests/diagnosis.test.mjs",
+    "verify:ph06": "node tools/verify-ph06.mjs",
+    "verify:ph06:container": "node tools/verify-ph06-container.mjs",
+    "dev:ph06": "node tools/serve-ph06.mjs",
+    "test:tutoring": "node --test apps/api/tests/tutoring.test.mjs",
+    "verify:ph07": "node tools/verify-ph07.mjs",
+    "verify:ph07:container": "node tools/verify-ph07-container.mjs",
+    "dev:ph07": "node tools/serve-ph07.mjs"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

@@ -10,22 +10,29 @@ datasource db {
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model attempts {
-  id                   String                 @id @db.Uuid
-  learning_session_id  String                 @db.Uuid
-  problem_revision_id  String                 @db.Uuid
-  attempt_kind         String
-  revision             BigInt                 @default(0)
-  status               String
-  completion_verdict   String?
-  opened_at            DateTime               @default(now()) @db.Timestamptz(6)
-  closed_at            DateTime?              @db.Timestamptz(6)
-  updated_at           DateTime               @default(now()) @db.Timestamptz(6)
-  notation_profile     String                 @db.VarChar(80)
-  learning_sessions    learning_sessions      @relation(fields: [learning_session_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  problem_revisions    problem_revisions      @relation(fields: [problem_revision_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  step_slots           step_slots[]
-  verification_runs    verification_runs[]
-  verification_reports verification_reports[]
+  id                            String                 @id @db.Uuid
+  learning_session_id           String                 @db.Uuid
+  problem_revision_id           String                 @db.Uuid
+  attempt_kind                  String
+  revision                      BigInt                 @default(0)
+  status                        String
+  completion_verdict            String?
+  opened_at                     DateTime               @default(now()) @db.Timestamptz(6)
+  closed_at                     DateTime?              @db.Timestamptz(6)
+  updated_at                    DateTime               @default(now()) @db.Timestamptz(6)
+  notation_profile              String                 @db.VarChar(80)
+  learning_sessions             learning_sessions      @relation(fields: [learning_session_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  problem_revisions             problem_revisions      @relation(fields: [problem_revision_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  step_slots                    step_slots[]
+  verification_runs             verification_runs[]
+  verification_reports          verification_reports[]
+  diagnoses                     diagnoses[]
+  highest_hint_level_seen       Int                    @default(0) @db.SmallInt
+  independent_evidence_eligible Boolean                @default(true)
+  full_solution_seen            Boolean                @default(false)
+  assistance_revision           Int                    @default(0)
+  hint_requests                 hint_requests[]
+  tutoring_events               tutoring_events[]
 
   @@index([learning_session_id, id], map: "attempt_learning")
 }
@@ -42,19 +49,23 @@ model audit_events {
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model content_releases {
-  id                  String              @id @db.Uuid
-  release_code        String              @unique @db.VarChar(80)
-  subject_code        String              @db.VarChar(40)
-  notation_profile    String              @db.VarChar(80)
-  curriculum_label_ar String
-  status              String
-  reviewed_by_role    String?
-  reviewed_at         DateTime?           @db.Timestamptz(6)
-  published_at        DateTime?           @db.Timestamptz(6)
-  created_at          DateTime            @default(now()) @db.Timestamptz(6)
-  learning_sessions   learning_sessions[]
-  problem_revisions   problem_revisions[]
-  skills              skills[]
+  id                     String                   @id @db.Uuid
+  release_code           String                   @unique @db.VarChar(80)
+  subject_code           String                   @db.VarChar(40)
+  notation_profile       String                   @db.VarChar(80)
+  curriculum_label_ar    String
+  status                 String
+  reviewed_by_role       String?
+  reviewed_at            DateTime?                @db.Timestamptz(6)
+  published_at           DateTime?                @db.Timestamptz(6)
+  created_at             DateTime                 @default(now()) @db.Timestamptz(6)
+  learning_sessions      learning_sessions[]
+  problem_revisions      problem_revisions[]
+  skills                 skills[]
+  misconception_catalog  misconception_catalog[]
+  diagnostic_templates   diagnostic_templates[]
+  diagnoses              diagnoses[]
+  intervention_templates intervention_templates[]
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -87,6 +98,7 @@ model idempotency_records {
   expires_at           DateTime               @db.Timestamptz(6)
   guest_sessions       guest_sessions         @relation(fields: [guest_session_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   verification_reports verification_reports[]
+  hint_requests        hint_requests[]
 
   @@unique([guest_session_id, operation, key_digest])
 }
@@ -129,28 +141,31 @@ model parse_results {
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model problem_revisions {
-  id                    String                 @id @db.Uuid
-  problem_id            String                 @db.Uuid
-  version_number        Int
-  release_id            String                 @db.Uuid
-  item_kind             String
-  statement_ar          String
-  original_equation_raw String?
-  original_equation_ast Json?
-  answer_spec           Json
-  difficulty_band       Int                    @db.SmallInt
-  notation_profile      String                 @db.VarChar(80)
-  review_status         String
-  reviewed_at           DateTime?              @db.Timestamptz(6)
-  published_at          DateTime?              @db.Timestamptz(6)
-  created_at            DateTime               @default(now()) @db.Timestamptz(6)
-  content_hash          String
-  attempts              attempts[]
-  problems              problems               @relation(fields: [problem_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  content_releases      content_releases       @relation(fields: [release_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  problem_skills        problem_skills?
-  verification_runs     verification_runs[]
-  verification_reports  verification_reports[]
+  id                     String                   @id @db.Uuid
+  problem_id             String                   @db.Uuid
+  version_number         Int
+  release_id             String                   @db.Uuid
+  item_kind              String
+  statement_ar           String
+  original_equation_raw  String?
+  original_equation_ast  Json?
+  answer_spec            Json
+  difficulty_band        Int                      @db.SmallInt
+  notation_profile       String                   @db.VarChar(80)
+  review_status          String
+  reviewed_at            DateTime?                @db.Timestamptz(6)
+  published_at           DateTime?                @db.Timestamptz(6)
+  created_at             DateTime                 @default(now()) @db.Timestamptz(6)
+  content_hash           String
+  attempts               attempts[]
+  problems               problems                 @relation(fields: [problem_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  content_releases       content_releases         @relation(fields: [release_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  problem_skills         problem_skills?
+  verification_runs      verification_runs[]
+  verification_reports   verification_reports[]
+  intervention_templates intervention_templates[]
+  hint_requests          hint_requests[]
+  tutoring_events        tutoring_events[]
 
   @@unique([id, release_id])
   @@unique([problem_id, version_number])
@@ -189,18 +204,19 @@ model skill_prerequisites {
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model skills {
-  id                                                                    String                @id @db.Uuid
-  release_id                                                            String                @db.Uuid
-  skill_code                                                            String                @db.VarChar(80)
+  id                                                                    String                  @id @db.Uuid
+  release_id                                                            String                  @db.Uuid
+  skill_code                                                            String                  @db.VarChar(80)
   name_ar                                                               String
   learning_objective_ar                                                 String
   sort_order                                                            Int
   status                                                                String
-  created_at                                                            DateTime              @default(now()) @db.Timestamptz(6)
+  created_at                                                            DateTime                @default(now()) @db.Timestamptz(6)
   problem_skills                                                        problem_skills[]
-  skill_prerequisites_skill_prerequisites_prerequisite_skill_idToskills skill_prerequisites[] @relation("skill_prerequisites_prerequisite_skill_idToskills")
-  skill_prerequisites_skill_prerequisites_skill_idToskills              skill_prerequisites[] @relation("skill_prerequisites_skill_idToskills")
-  content_releases                                                      content_releases      @relation(fields: [release_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  skill_prerequisites_skill_prerequisites_prerequisite_skill_idToskills skill_prerequisites[]   @relation("skill_prerequisites_prerequisite_skill_idToskills")
+  skill_prerequisites_skill_prerequisites_skill_idToskills              skill_prerequisites[]   @relation("skill_prerequisites_skill_idToskills")
+  content_releases                                                      content_releases        @relation(fields: [release_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  misconception_catalog                                                 misconception_catalog[]
 
   @@unique([release_id, skill_code])
 }
@@ -240,6 +256,8 @@ model step_versions {
   other_step_versions                                                     step_versions[]     @relation("step_versionsTostep_versions")
   verification_runs_verification_runs_from_step_version_idTostep_versions verification_runs[] @relation("verification_runs_from_step_version_idTostep_versions")
   verification_runs_verification_runs_to_step_version_idTostep_versions   verification_runs[] @relation("verification_runs_to_step_version_idTostep_versions")
+  hint_requests                                                           hint_requests[]
+  tutoring_events                                                         tutoring_events[]
 
   @@unique([step_slot_id, id])
   @@unique([step_slot_id, version_number])
@@ -259,6 +277,9 @@ model verification_results {
   validated_at             DateTime          @db.Timestamptz(6)
   received_at              DateTime          @default(now()) @db.Timestamptz(6)
   verification_runs        verification_runs @relation(fields: [verification_run_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  diagnoses                diagnoses[]
+  hint_requests            hint_requests[]
+  tutoring_events          tutoring_events[]
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -314,4 +335,195 @@ model verification_reports {
   verification_runs     verification_runs[]
 
   @@index([attempt_id, attempt_revision, finished_at(sort: Desc)], map: "reports_by_attempt_revision")
+}
+
+model misconception_catalog {
+  id               String           @id @db.Uuid
+  release_id       String           @db.Uuid
+  error_code       String           @db.VarChar(32)
+  skill_id         String           @db.Uuid
+  catalog_version  String           @db.VarChar(80)
+  enabled          Boolean          @default(false)
+  is_synthetic     Boolean          @default(false)
+  review_status    String
+  reviewed_by_role String?
+  reviewed_at      DateTime?        @db.Timestamptz(6)
+  content_releases content_releases @relation(fields: [release_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  skills           skills           @relation(fields: [skill_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([release_id, error_code])
+}
+
+model diagnostic_templates {
+  id                String              @id @db.Uuid
+  release_id        String              @db.Uuid
+  family            String              @db.VarChar(80)
+  template_version  String              @db.VarChar(80)
+  question_ar       String
+  options_json      Json
+  rules_json        Json
+  enabled           Boolean             @default(false)
+  is_synthetic      Boolean             @default(false)
+  review_status     String
+  reviewed_by_role  String?
+  reviewed_at       DateTime?           @db.Timestamptz(6)
+  content_releases  content_releases    @relation(fields: [release_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  diagnoses         diagnoses[]
+  diagnostic_probes diagnostic_probes[]
+
+  @@unique([release_id, family, template_version])
+}
+
+model diagnoses {
+  id                       String                @id @db.Uuid
+  attempt_id               String                @db.Uuid
+  verification_result_id   String                @db.Uuid
+  attempt_revision         BigInt
+  release_id               String                @db.Uuid
+  template_id              String?               @db.Uuid
+  diagnosis_policy_version String                @db.VarChar(80)
+  candidate_json           Json
+  basis_json               Json
+  created_at               DateTime              @default(now()) @db.Timestamptz(6)
+  attempts                 attempts              @relation(fields: [attempt_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  verification_results     verification_results  @relation(fields: [verification_result_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  content_releases         content_releases      @relation(fields: [release_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  diagnostic_templates     diagnostic_templates? @relation(fields: [template_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  diagnostic_probes        diagnostic_probes?
+  hint_requests            hint_requests[]
+  tutoring_events          tutoring_events[]
+
+  @@unique([verification_result_id, diagnosis_policy_version])
+  @@unique([attempt_id, attempt_revision, diagnosis_policy_version])
+  @@index([attempt_id, attempt_revision], map: "diagnoses_attempt_revision")
+}
+
+model diagnostic_probes {
+  id                   String               @id @db.Uuid
+  diagnosis_id         String               @unique @db.Uuid
+  template_id          String               @db.Uuid
+  public_json          Json
+  private_rules_json   Json
+  template_version     String               @db.VarChar(80)
+  created_at           DateTime             @default(now()) @db.Timestamptz(6)
+  diagnoses            diagnoses            @relation(fields: [diagnosis_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  diagnostic_templates diagnostic_templates @relation(fields: [template_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  probe_responses      probe_responses?
+}
+
+model probe_responses {
+  id                       String            @id @db.Uuid
+  probe_id                 String            @unique @db.Uuid
+  response_raw             Json
+  response_evaluation      String
+  result_json              Json
+  assistance_level         String            @db.VarChar(2)
+  diagnosis_policy_version String            @db.VarChar(80)
+  created_at               DateTime          @default(now()) @db.Timestamptz(6)
+  diagnostic_probes        diagnostic_probes @relation(fields: [probe_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model intervention_templates {
+  id                  String             @id @db.Uuid
+  release_id          String             @db.Uuid
+  problem_revision_id String?            @db.Uuid
+  error_code          String?            @db.VarChar(32)
+  hint_level          Int                @db.SmallInt
+  template_version    String             @db.VarChar(80)
+  policy_version      String             @db.VarChar(80)
+  text_ar             String
+  allowed_rephrases   Json               @default("[]")
+  math_assertions     Json               @default("[]")
+  solution_steps      Json               @default("[]")
+  is_synthetic        Boolean            @default(false)
+  enabled             Boolean            @default(false)
+  review_status       String
+  reviewed_by_role    String?
+  reviewed_at         DateTime?          @db.Timestamptz(6)
+  content_releases    content_releases   @relation(fields: [release_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  problem_revisions   problem_revisions? @relation(fields: [problem_revision_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  hint_requests       hint_requests[]
+  tutoring_events     tutoring_events[]
+
+  @@index([release_id, hint_level, error_code], map: "templates_by_release_level")
+}
+
+model hint_requests {
+  id                     String                 @id @db.Uuid
+  attempt_id             String                 @db.Uuid
+  attempt_revision       BigInt
+  problem_revision_id    String                 @db.Uuid
+  idempotency_record_id  String                 @db.Uuid
+  assistance_revision    Int
+  anchor_step_version_id String?                @db.Uuid
+  verification_result_id String?                @db.Uuid
+  diagnosis_id           String?                @db.Uuid
+  template_id            String                 @db.Uuid
+  hint_level             Int                    @db.SmallInt
+  policy_version         String                 @db.VarChar(80)
+  prompt_version         String                 @db.VarChar(80)
+  content_hash           String                 @db.VarChar(64)
+  context_key            String                 @db.VarChar(64)
+  ai_reserved            Boolean                @default(false)
+  cost_units_reserved    Int                    @default(0)
+  dispatch_status        String
+  outcome_code           String?                @db.VarChar(80)
+  created_at             DateTime               @default(now()) @db.Timestamptz(6)
+  deadline_at            DateTime               @db.Timestamptz(6)
+  finished_at            DateTime?              @db.Timestamptz(6)
+  attempts               attempts               @relation(fields: [attempt_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  problem_revisions      problem_revisions      @relation(fields: [problem_revision_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  idempotency_records    idempotency_records    @relation(fields: [idempotency_record_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  step_versions          step_versions?         @relation(fields: [anchor_step_version_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  verification_results   verification_results?  @relation(fields: [verification_result_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  diagnoses              diagnoses?             @relation(fields: [diagnosis_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  intervention_templates intervention_templates @relation(fields: [template_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  tutoring_events        tutoring_events?
+
+  @@unique([attempt_id], map: "active_hint_attempt", where: raw("dispatch_status = 'running'"))
+  @@unique([idempotency_record_id], map: "active_hint_key", where: raw("dispatch_status = 'running'"))
+}
+
+model tutoring_events {
+  id                            String                 @id @db.Uuid
+  hint_request_id               String                 @unique @db.Uuid
+  attempt_id                    String                 @db.Uuid
+  attempt_revision              BigInt
+  problem_revision_id           String                 @db.Uuid
+  anchor_step_version_id        String?                @db.Uuid
+  verification_result_id        String?                @db.Uuid
+  diagnosis_id                  String?                @db.Uuid
+  template_id                   String                 @db.Uuid
+  event_type                    String
+  hint_level                    Int                    @db.SmallInt
+  policy_version                String                 @db.VarChar(80)
+  prompt_version                String                 @db.VarChar(80)
+  content_version               String                 @db.VarChar(80)
+  context_key                   String                 @db.VarChar(64)
+  rendered_text_ar              String
+  solution_steps                Json
+  generation_source             String
+  independent_evidence_eligible Boolean
+  public_json                   Json
+  math_proof_json               Json
+  audit_json                    Json
+  created_at                    DateTime               @default(now()) @db.Timestamptz(6)
+  hint_requests                 hint_requests          @relation(fields: [hint_request_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  attempts                      attempts               @relation(fields: [attempt_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  problem_revisions             problem_revisions      @relation(fields: [problem_revision_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  step_versions                 step_versions?         @relation(fields: [anchor_step_version_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  verification_results          verification_results?  @relation(fields: [verification_result_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  diagnoses                     diagnoses?             @relation(fields: [diagnosis_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  intervention_templates        intervention_templates @relation(fields: [template_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([attempt_id, attempt_revision, anchor_step_version_id, hint_level], map: "tutoring_context")
+}
+
+model ai_budget_ledgers {
+  scope               String   @db.VarChar(80)
+  day                 DateTime @db.Date
+  calls_reserved      Int      @default(0)
+  cost_units_reserved Int      @default(0)
+
+  @@id([scope, day])
 }

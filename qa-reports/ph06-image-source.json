@@ -1,0 +1,86 @@
+{
+  "phase": "PH-06",
+  "recordedAt": "2026-11-04T04:06:50.909Z",
+  "network": "none",
+  "proofs": [
+    {
+      "image": "khotwa-ph06-test",
+      "imageId": "sha256:f5603a7d6a368d0ce9ef6ba477ffb86a38b9843a5004f6c0be9c3174c02dbd10",
+      "checks": [
+        {
+          "path": "apps/api/src/diagnosis.ts",
+          "sha256": "c2a6cff542a0a1bc44f648434a0a754356d4b14b96fa9eb4d6f85b7a16a08b7f",
+          "hostSha256": "c2a6cff542a0a1bc44f648434a0a754356d4b14b96fa9eb4d6f85b7a16a08b7f"
+        },
+        {
+          "path": "apps/api/src/diagnosis-rules.ts",
+          "sha256": "85639b66249199ef98113b8dc1fb665d7eb8523ead9cf78b9e2e385d43bfb94e",
+          "hostSha256": "85639b66249199ef98113b8dc1fb665d7eb8523ead9cf78b9e2e385d43bfb94e"
+        },
+        {
+          "path": "apps/api/src/verification.ts",
+          "sha256": "fd6749a8479b321383b1975ed2fbf89eaadcddbf51022b7a834731f9f7266afe",
+          "hostSha256": "fd6749a8479b321383b1975ed2fbf89eaadcddbf51022b7a834731f9f7266afe"
+        },
+        {
+          "path": "apps/api/src/store.ts",
+          "sha256": "0e3d97a75b9f9dc7e7b66d323aba5be0a7ea6d7c44cc4d11d560659d73a298f0",
+          "hostSha256": "0e3d97a75b9f9dc7e7b66d323aba5be0a7ea6d7c44cc4d11d560659d73a298f0"
+        },
+        {
+          "path": "apps/api/src/business.ts",
+          "sha256": "350beffd4b1f2a7ebd95a7ebde8c8d9d0254a23fa86d2c72b454b33cf628d2e3",
+          "hostSha256": "350beffd4b1f2a7ebd95a7ebde8c8d9d0254a23fa86d2c72b454b33cf628d2e3"
+        },
+        {
+          "path": "apps/api/prisma/migrations/0005_conservative_diagnosis/migration.sql",
+          "sha256": "24b0b01a18b0a4a97a84e77546b5efb5b05af4b2577e85a10e9e1e58c2bbb3f3",
+          "hostSha256": "24b0b01a18b0a4a97a84e77546b5efb5b05af4b2577e85a10e9e1e58c2bbb3f3"
+        },
+        {
+          "path": "apps/api/tests/diagnosis-live.test.mjs",
+          "sha256": "04cb08441993257b7ac82e0ee47e97da918e5afa5f1fd342b453cf0a06f5a366",
+          "hostSha256": "04cb08441993257b7ac82e0ee47e97da918e5afa5f1fd342b453cf0a06f5a366"
+        }
+      ],
+      "passed": 7
+    },
+    {
+      "image": "khotwa-ph06-local-tools",
+      "imageId": "sha256:d314c74994347fdf3c6ca3d94fc9dd6445d9b7e7c882bff78846e3bef686530c",
+      "checks": [
+        {
+          "path": "apps/web/src/DiagnosticPanel.tsx",
+          "sha256": "6493ef1ed2bc63a10b144f2e766f559b4d219284905e5d497e642c67232bc982",
+          "hostSha256": "6493ef1ed2bc63a10b144f2e766f559b4d219284905e5d497e642c67232bc982"
+        },
+        {
+          "path": "apps/web/src/StudentWorkspace.tsx",
+          "sha256": "4a73b81ea2ef54bdc4ec87cce594b9f3d7f5930aa06b3b9d6e3d535f51787988",
+          "hostSha256": "4a73b81ea2ef54bdc4ec87cce594b9f3d7f5930aa06b3b9d6e3d535f51787988"
+        },
+        {
+          "path": "apps/web/src/workspace-model.ts",
+          "sha256": "ef27597fa3c43479f095b0f3c989765388f255fde370f95772df353eb19a7963",
+          "hostSha256": "ef27597fa3c43479f095b0f3c989765388f255fde370f95772df353eb19a7963"
+        },
+        {
+          "path": "apps/web/src/api-client.ts",
+          "sha256": "403f4796892653392bc61879f30e627ba9ebea79c47a602ee8a40fde92ca07d5",
+          "hostSha256": "403f4796892653392bc61879f30e627ba9ebea79c47a602ee8a40fde92ca07d5"
+        },
+        {
+          "path": "packages/contracts/src/generated/api-validators.cjs",
+          "sha256": "2283d1e184b1e717efa9c87bd656faead6dad3f58e47cd6d1256509876088bef",
+          "hostSha256": "2283d1e184b1e717efa9c87bd656faead6dad3f58e47cd6d1256509876088bef"
+        },
+        {
+          "path": "package-lock.json",
+          "sha256": "75d454ac1f17daa1922c089b9fe5168f53ca2b72678b2c53817ad4a6563c2de6",
+          "hostSha256": "75d454ac1f17daa1922c089b9fe5168f53ca2b72678b2c53817ad4a6563c2de6"
+        }
+      ],
+      "passed": 6
+    }
+  ]
+}

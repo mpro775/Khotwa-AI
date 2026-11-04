@@ -2,6 +2,9 @@ import { useRef, useState } from "react";
 import { ApiClient, ClientFault } from "./api-client";
 import type { Schema } from "./api-client";
 import { MathInput } from "./MathInput";
+import { DiagnosticPanel } from "./DiagnosticPanel";
+import { HintPanel } from "./HintPanel";
+import { canAdoptHint } from "./workspace-model";
 import {
   canAdoptVerification,
   statusLabels,
@@ -20,6 +23,8 @@ interface PendingMutation {
   epoch: number;
 }
 export function StudentWorkspace() {
+  const [probeOpen, setProbeOpen] = useState(false),
+    [assistedSeen, setAssistedSeen] = useState(false);
   const api = useRef(new ApiClient()).current;
   const [started, setStarted] = useState(false),
     [busy, setBusy] = useState(false),
@@ -195,6 +200,7 @@ export function StudentWorkspace() {
       const preserveDraft = dirty || epoch.current !== openingEpoch;
       invalidate();
       setProblem(detail);
+      setAssistedSeen(false);
       adopt(created);
       if (!preserveDraft) setRaw("");
       setDirty(preserveDraft);
@@ -588,6 +594,24 @@ export function StudentWorkspace() {
               )}
             </section>
           </div>
+          {(assistedSeen || attempt.status === "assisted_completed") && (
+            <p className="assistance-badge" role="note">
+              سُجلت مساعدة لهذه المحاولة؛ اكتمالها لا يُعد حلًا مستقلًا.
+            </p>
+          )}
+          {!dirty && (
+            <HintPanel
+              key={`${attempt.id}:${attempt.revision}:${report?.id ?? "original"}:${epoch.current}`}
+              api={api}
+              attempt={attempt}
+              report={report}
+              probeOpen={probeOpen}
+              onServed={(event) => {
+                if (canAdoptHint(attemptRef.current, event))
+                  setAssistedSeen(true);
+              }}
+            />
+          )}
           {report && !dirty && (
             <section
               className="verification-card"
@@ -663,6 +687,27 @@ export function StudentWorkspace() {
                   )}
                 </article>
               ))}
+              <DiagnosticPanel
+                onProbeOpenChange={setProbeOpen}
+                canRequestProbe={
+                  !assistedSeen && attempt.status !== "assisted_completed"
+                }
+                key={report.id}
+                api={api}
+                report={report}
+                onAnswer={(result) => {
+                  if (
+                    attemptRef.current?.id === result.attemptId &&
+                    attemptRef.current.revision === result.attemptRevision &&
+                    !dirty
+                  )
+                    setReport((current) =>
+                      current?.id === report.id
+                        ? { ...current, diagnosisCandidate: result.diagnosis }
+                        : current,
+                    );
+                }}
+              />
               <div
                 className={
                   "completion " +

@@ -15,6 +15,12 @@ CMD ["node", "qa/ph04-container.mjs"]
 FROM node-build AS ph05-test
 CMD ["node", "qa/ph05-container.mjs"]
 
+FROM node-build AS ph06-test
+CMD ["node", "qa/ph06-container.mjs"]
+
+FROM node-build AS ph07-test
+CMD ["node", "qa/ph07-container.mjs"]
+
 FROM node-build AS node-production
 RUN npm prune --omit=dev --no-audit --no-fund
 

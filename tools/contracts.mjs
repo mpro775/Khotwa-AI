@@ -65,6 +65,9 @@ const pending = [
   "StepMutationEnvelope",
   "VerificationEnvelope",
   "VerificationDetailEnvelope",
+  "ProbeEnvelope",
+  "ProbeAnswerEnvelope",
+  "HintEnvelope",
   "ErrorEnvelope",
 ];
 const selected = {};

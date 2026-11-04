@@ -1,0 +1,1327 @@
+{
+  "phase": "PH-07",
+  "recordedAt": "2026-11-04T04:43:45.264Z",
+  "failure": null,
+  "checks": [
+    {
+      "command": [
+        "docker",
+        "build",
+        "--target",
+        "ph07-test",
+        "-t",
+        "khotwa-ph07-test",
+        "."
+      ],
+      "exitCode": 0,
+      "seconds": 267.5,
+      "stdout": "",
+      "stderr": "#0 building with \"desktop-linux\" instance using docker driver\n\n#1 [internal] load build definition from Dockerfile\n#1 transferring dockerfile: 2.28kB 0.0s done\n#1 DONE 0.1s\n\n#2 [internal] load metadata for docker.io/library/node:24.11.1-alpine3.22\n#2 DONE 0.1s\n\n#3 [internal] load .dockerignore\n#3 transferring context:\n#3 transferring context: 161B 0.1s done\n#3 DONE 0.2s\n\n#4 [internal] load build context\n#4 DONE 0.0s\n\n#5 [node-build 1/9] FROM docker.io/library/node:24.11.1-alpine3.22@sha256:2867d550cf9d8bb50059a0fff528741f11a84d985c732e60e19e8e75c7239c43\n#5 resolve docker.io/library/node:24.11.1-alpine3.22@sha256:2867d550cf9d8bb50059a0fff528741f11a84d985c732e60e19e8e75c7239c43 0.2s done\n#5 DONE 0.2s\n\n#4 [internal] load build context\n#4 transferring context: 1.31MB 0.4s done\n#4 DONE 0.4s\n\n#6 [node-build 2/9] WORKDIR /app\n#6 CACHED\n\n#7 [node-build 3/9] COPY package.json package-lock.json ./\n#7 DONE 0.1s\n\n#8 [node-build 4/9] COPY apps/api/package.json apps/api/package.json\n#8 DONE 0.1s\n\n#9 [node-build 5/9] COPY apps/web/package.json apps/web/package.json\n#9 DONE 0.2s\n\n#10 [node-build 6/9] COPY packages/contracts/package.json packages/contracts/package.json\n#10 DONE 0.1s\n\n#11 [node-build 7/9] RUN npm ci --include=optional --no-audit --no-fund && node --input-type=module -e \"await import('rolldown')\"\n#11 161.2 \n#11 161.2 added 384 packages in 3m\n#11 161.2 npm notice\n#11 161.2 npm notice New minor version of npm available! 11.6.2 -> 11.21.1\n#11 161.2 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.21.1\n#11 161.2 npm notice To update run: npm install -g npm@11.21.1\n#11 161.2 npm notice\n#11 DONE 162.6s\n\n#12 [node-build 8/9] COPY . .\n#12 DONE 0.7s\n\n#13 [node-build 9/9] RUN npm run contracts && npm run build --workspace @khotwa/api && npm run build --workspace @khotwa/web\n#13 0.700 \n#13 0.700 > khotwa-ai@0.1.0 contracts\n#13 0.700 > node tools/contracts.mjs\n#13 0.700 \n#13 3.645 Canonical OpenAPI mirror, 3 JSON mirrors, and generated public types generated.\n#13 8.980 \n#13 8.980 > @khotwa/api@0.1.0 build\n#13 8.980 > npm run generate && tsc -p tsconfig.json\n#13 8.980 \n#13 9.609 \n#13 9.609 > @khotwa/api@0.1.0 generate\n#13 9.609 > prisma generate --config prisma.config.ts\n#13 9.609 \n#13 14.01 Loaded Prisma config from prisma.config.ts.\n#13 14.01 \n#13 14.49 Prisma schema loaded from prisma/schema.prisma.\n#13 16.89 \n#13 16.89 ✔ Generated Prisma Client (v7.10.1) to ./../../node_modules/@prisma/client in 1.54s\n#13 16.89 \n#13 16.89 Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)\n#13 16.89 \n#13 16.89 \n#13 32.19 \n#13 32.19 > @khotwa/web@0.1.0 build\n#13 32.19 > tsc --noEmit && vite build\n#13 32.19 \n#13 37.46 vite v8.3.5 building client environment for production...\n#13 37.52 transforming...\n#13 38.02 ✓ 33 modules transformed.\n#13 38.27 rendering chunks...\n#13 38.60 computing gzip size...\n#13 38.63 dist/index.html                                         0.40 kB │ gzip:   0.28 kB\n#13 38.63 dist/assets/KaTeX_Size4-Regular-Dl5lxZxV.woff2          4.92 kB\n#13 38.63 dist/assets/KaTeX_Size2-Regular-Dy4dx90m.woff2          5.20 kB\n#13 38.63 dist/assets/KaTeX_Size1-Regular-mCD8mA8B.woff2          5.46 kB\n#13 38.63 dist/assets/KaTeX_Caligraphic-Regular-Di6jR-x-.woff2    6.90 kB\n#13 38.63 dist/assets/KaTeX_Caligraphic-Bold-Dq_IR9rO.woff2       6.91 kB\n#13 38.63 dist/assets/KaTeX_Script-Regular-D3wIWfF6.woff2         9.64 kB\n#13 38.63 dist/assets/KaTeX_SansSerif-Regular-DDBCnlJ7.woff2     10.34 kB\n#13 38.63 dist/assets/KaTeX_Fraktur-Regular-CTYiF6lA.woff2       11.31 kB\n#13 38.63 dist/assets/KaTeX_Fraktur-Bold-CL6g_b3V.woff2          11.34 kB\n#13 38.63 dist/assets/KaTeX_SansSerif-Italic-C3H0VqGB.woff2      12.02 kB\n#13 38.63 dist/assets/KaTeX_SansSerif-Bold-D1sUS0GD.woff2        12.21 kB\n#13 38.63 dist/assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2    13.56 kB\n#13 38.63 dist/assets/KaTeX_Math-BoldItalic-CZnvNsCZ.woff2       16.40 kB\n#13 38.63 dist/assets/KaTeX_Math-Italic-t53AETM-.woff2           16.44 kB\n#13 38.63 dist/assets/KaTeX_Main-BoldItalic-DxDJ3AOS.woff2       16.78 kB\n#13 38.63 dist/assets/KaTeX_Main-Italic-NWA7e6Wa.woff2           16.98 kB\n#13 38.63 dist/assets/KaTeX_Main-Bold-Cx986IdX.woff2             25.32 kB\n#13 38.63 dist/assets/KaTeX_Main-Regular-B22Nviop.woff2          26.27 kB\n#13 38.63 dist/assets/KaTeX_AMS-Regular-BQhdFMY1.woff2           28.07 kB\n#13 38.63 dist/assets/index-C3qGuDBL.css                          7.62 kB │ gzip:   2.39 kB\n#13 38.63 dist/assets/ArabicEditor-BnjoTxG4.css                   8.00 kB │ gzip:   4.20 kB\n#13 38.63 dist/assets/index-B6uadPsk.js                         464.16 kB │ gzip: 102.23 kB\n#13 38.63 dist/assets/ArabicEditor-Dwnfate1.js                  816.76 kB │ gzip: 225.27 kB\n#13 38.63 \n#13 38.63 [plugin builtin:vite-reporter] \n#13 38.63 (!) Some chunks are larger than 500 kB after minification. Consider:\n#13 38.63 - Using dynamic import() to code-split the application\n#13 38.63 - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting\n#13 38.63 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n#13 38.63 ✓ built in 1.17s\n#13 DONE 38.8s\n\n#14 exporting to image\n#14 exporting layers\n#14 exporting layers 41.0s done\n#14 exporting manifest sha256:b1f80b25653203c211d6eab4a916691fa6d09e6ffeedc7bcf0e9c8beb7f1d641 0.1s done\n#14 exporting config sha256:dab6595fedba69f815bd631b19c04ea491cbf973a4666b2bfe95f9cf58a8131a 0.1s done\n#14 exporting attestation manifest sha256:500e2768f72ab3c2cf7bc9fcb3e832956eee43b2687960b649c935b977896f77 0.1s done\n#14 exporting manifest list sha256:bca36e9fca60f1705a7cb7b94468ed41f5614a201d77de62d3d3cab156c16e66\n#14 exporting manifest list sha256:bca36e9fca60f1705a7cb7b94468ed41f5614a201d77de62d3d3cab156c16e66 0.0s done\n#14 naming to docker.io/library/khotwa-ph07-test:latest 0.0s done\n#14 unpacking to docker.io/library/khotwa-ph07-test:latest\n#14 unpacking to docker.io/library/khotwa-ph07-test:latest 19.6s done\n#14 DONE 61.2s\n"
+    },
+    {
+      "command": [
+        "docker",
+        "build",
+        "--target",
+        "math",
+        "-t",
+        "khotwa-ph07-math",
+        "."
+      ],
+      "exitCode": 0,
+      "seconds": 3.9,
+      "stdout": "",
+      "stderr": "#0 building with \"desktop-linux\" instance using docker driver\n\n#1 [internal] load build definition from Dockerfile\n#1 transferring dockerfile: 2.28kB 0.0s done\n#1 DONE 0.0s\n\n#2 [internal] load metadata for docker.io/library/python:3.13.7-slim-bookworm\n#2 DONE 1.5s\n\n#3 [internal] load .dockerignore\n#3 transferring context: 161B done\n#3 DONE 0.0s\n\n#4 [internal] load build context\n#4 transferring context: 965B 0.0s done\n#4 DONE 0.1s\n\n#5 [math 1/5] FROM docker.io/library/python:3.13.7-slim-bookworm@sha256:adafcc17694d715c905b4c7bebd96907a1fd5cf183395f0ebc4d3428bd22d92d\n#5 resolve docker.io/library/python:3.13.7-slim-bookworm@sha256:adafcc17694d715c905b4c7bebd96907a1fd5cf183395f0ebc4d3428bd22d92d\n#5 resolve docker.io/library/python:3.13.7-slim-bookworm@sha256:adafcc17694d715c905b4c7bebd96907a1fd5cf183395f0ebc4d3428bd22d92d 0.1s done\n#5 DONE 0.1s\n\n#6 [math 3/5] COPY services/math-engine/requirements.lock ./requirements.lock\n#6 CACHED\n\n#7 [math 4/5] RUN pip install --no-cache-dir --no-deps -r requirements.lock && useradd --uid 10001 --create-home mathuser\n#7 CACHED\n\n#8 [math 2/5] WORKDIR /app\n#8 CACHED\n\n#9 [math 5/5] COPY --chown=10001:10001 services/math-engine/src /app/src\n#9 CACHED\n\n#10 exporting to image\n#10 exporting layers done\n#10 exporting manifest sha256:16209cc264699f42c27c546de51b332afc38eb4f508cbf4de2d62765ec53f732 done\n#10 exporting config sha256:dbf374c91a1e59c9b204f8f03353d7acf29696de5475c7fe6c7cdad34c51bacc done\n#10 exporting attestation manifest sha256:9c45fe04c8747096d0622aab9796ee8f622ec0bd3177d2a1896b8aa142882c2d 0.0s done\n#10 exporting manifest list sha256:1149c4f5a12c74f34829d81a92b480bf90d14ca0d57693f80bc26756cf745b72\n#10 exporting manifest list sha256:1149c4f5a12c74f34829d81a92b480bf90d14ca0d57693f80bc26756cf745b72 0.0s done\n#10 naming to docker.io/library/khotwa-ph07-math:latest done\n#10 unpacking to docker.io/library/khotwa-ph07-math:latest 0.0s done\n#10 DONE 0.2s\n"
+    },
+    {
+      "command": [
+        "docker",
+        "network",
+        "create",
+        "--internal",
+        "--label",
+        "khotwa.task=ph07-test",
+        "khotwa-ph07-55c4675757b4"
+      ],
+      "exitCode": 0,
+      "seconds": 0.4,
+      "stdout": "9f4b72e79446ddce4a9e272a1812d1bdca66746512118b0397789b1b7b1343b7\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "khotwa-ph07-55c4675757b4-db",
+        "--label",
+        "khotwa.task=ph07-test",
+        "--network",
+        "khotwa-ph07-55c4675757b4",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph07-55c4675757b4-db.env",
+        "--memory",
+        "512m",
+        "--pids-limit",
+        "64",
+        "--tmpfs",
+        "/var/lib/postgresql/data:rw,noexec,nosuid,size=128m",
+        "postgres:17.6-alpine3.22"
+      ],
+      "exitCode": 0,
+      "seconds": 2,
+      "stdout": "1191d2aba15ff02c62faa887ac6fa10055ffd37d024c7b65c7f7be9c570fef23\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "khotwa-ph07-55c4675757b4-math",
+        "--label",
+        "khotwa.task=ph07-test",
+        "--network",
+        "khotwa-ph07-55c4675757b4",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph07-55c4675757b4-math.env",
+        "--memory",
+        "256m",
+        "--cpus",
+        "1",
+        "--pids-limit",
+        "64",
+        "--read-only",
+        "--tmpfs",
+        "/tmp",
+        "khotwa-ph07-math"
+      ],
+      "exitCode": 0,
+      "seconds": 2.5,
+      "stdout": "96af15446265d5a1289bf59083bdbdb1983d27c85728e52bf0ab0c1e780fbd10\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "exec",
+        "khotwa-ph07-55c4675757b4-math",
+        "python",
+        "-c",
+        "import os; assert 'DATABASE_URL' not in os.environ; assert 'GUEST_DIGEST_KEY' not in os.environ; print('Math environment isolated from DB and guest-signing credentials')"
+      ],
+      "exitCode": 0,
+      "seconds": 1.1,
+      "stdout": "Math environment isolated from DB and guest-signing credentials\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "--name",
+        "khotwa-ph07-55c4675757b4-tests",
+        "--label",
+        "khotwa.task=ph07-test",
+        "--network",
+        "khotwa-ph07-55c4675757b4",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph07-55c4675757b4.env",
+        "--memory",
+        "768m",
+        "--pids-limit",
+        "128",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\qa,target=/app/qa,readonly",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\apps\\api\\tests,target=/app/apps/api/tests,readonly",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\apps\\api\\prisma,target=/app/apps/api/prisma,readonly",
+        "khotwa-ph07-test"
+      ],
+      "exitCode": 0,
+      "seconds": 32.2,
+      "stdout": "PH07_DB_RESULT {\"checks\":[{\"command\":\"prisma migrate deploy\",\"exitCode\":0},{\"name\":\"PH07_delta_down_preserves_PH06_tables\",\"passed\":true},{\"command\":\"prisma migrate reset --force\",\"exitCode\":0}],\"postgres\":\"17.6\",\"tables\":26,\"scope\":\"isolated tmpfs; PH07 delta rollback and full replay\"}\n▶ PH-07 guided tutoring on real NestJS PostgreSQL Python\n  ✔ H0 is unassisted; owner-disabled AI uses authored H1/H2/H3 and verified partial math without claiming review (2407.175465ms)\n  ✔ H4 requires confirmation, verifies every transition/final answer, and does not complete the student attempt (335.800825ms)\n  ✔ assistance survives edit/reload and disabling PH07; correct completion is assisted even for H1 (1005.136808ms)\n  ✔ independent transfer/probe fixtures deny all hint levels without exposing hidden content (642.778394ms)\n  ✔ syntax/unsupported/inconclusive never escalate assistance or call the provider (584.620858ms)\n  ✔ open probes block hints; any served assistance prevents later independent probe evidence (657.81976ms)\n  ✔ valid structured test-provider text is sanitized, versioned and never presented as real LLM output (353.106885ms)\n  ✔ unexpected provider JSON, verdict changes, leaked answers, HTML, bidi and unsafe arithmetic fall back (5596.915769ms)\n  ✔ real HTTP provider timeout falls back once without losing raw input or double escalation (391.082044ms)\n  ✔ same-key concurrency and changed-key retry cannot duplicate a hint or its budget charge (345.940388ms)\n  ✔ editing during provider wait rejects the late result and cached old context (300.042ms)\n  ✔ a pending hint prevents a racing diagnostic question from becoming an independent observation (286.721523ms)\n  ✔ an expired hint reservation can recover, and its old worker cannot overwrite the retry (493.157766ms)\n  ✔ call/cost/input/parallel limits are reserved atomically and use safe fallback (1835.463924ms)\n  ✔ missing or mathematically invalid content never becomes an unverified H4 solution (393.165934ms)\n  ✔ ownership, DTOs, immutable events and monotonic assistance are enforced (681.523369ms)\n✔ PH-07 guided tutoring on real NestJS PostgreSQL Python (20284.356817ms)\nℹ tests 17\nℹ suites 0\nℹ pass 17\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 21405.436665\n \nPH07_LIVE_RESULT {  \"phase\": \"PH-07\",  \"runId\": \"5e080c92-99de-4a8c-b5ee-17435e8a3c2e\",  \"recordedAt\": \"2026-11-04T04:43:41.295Z\",  \"contracts\": [    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 409    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"requestHint\",      \"status\": 422    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"updateStep\",      \"status\": 200    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"updateStep\",      \"status\": 200    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 409    },    {      \"operationId\": \"requestHint\",      \"status\": 409    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 409    },    {      \"operationId\": \"requestHint\",      \"status\": 409    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 409    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 409    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 409    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"requestHint\",      \"status\": 409    },    {      \"operationId\": \"requestHint\",      \"status\": 409    },    {      \"operationId\": \"answerDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 409    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 409    },    {      \"operationId\": \"requestHint\",      \"status\": 409    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 409    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"updateStep\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 409    },    {      \"operationId\": \"requestHint\",      \"status\": 409    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 409    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 503    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"requestHint\",      \"status\": 503    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"requestHint\",      \"status\": 503    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 404    },    {      \"operationId\": \"requestHint\",      \"status\": 422    }  ],  \"validatedResponses\": 200,  \"services\": \"real NestJS + PostgreSQL 17.6 + Python/SymPy; private HTTP AI test double only\",  \"actualExternalProviderCalls\": 0,  \"actualLlmInferences\": 0,  \"providerDecision\": \"owner explicitly kept external AI disabled\",  \"controlledProviderCalls\": 24,  \"allProviderContextsOmitStudentIdentityAndHiddenAnswer\": true,  \"budget\": {    \"buckets\": 3,    \"reserved_calls\": 48,    \"reserved_units\": 240,    \"unit\": \"synthetic_reservation_units\",    \"realMonetaryCost\": \"not_measured_no_external_provider\",    \"note\": \"sums include global and per-guest accounting rows; not a count of unique calls\"  },  \"events\": {    \"total\": 34,    \"real_label\": 0  },  \"golden\": [    {      \"id\": \"GOLD-TUTOR-001\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-001\",        \"trigger\": \"انتقال غير صحيح لأول مرة، لم تُطلب مساعدة\",        \"mode\": \"learning\",        \"hint_level\": \"H0\",        \"expected\": \"تغذية محايدة مع فرصة مراجعة\",        \"forbidden\": \"كشف التحويل النهائي\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"reviewStatus\": \"draft_not_human_approved\",      \"result\": \"observed\",      \"evidence\": \"H0 state and explicit H1/H2/H3; no automatic H4; real identity proof for partial calculation\"    },    {      \"id\": \"GOLD-TUTOR-002\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-002\",        \"trigger\": \"طالب يطلب تلميحًا أول بعد خطأ توزيع\",        \"mode\": \"learning\",        \"hint_level\": \"H1\",        \"expected\": \"لفت الانتباه إلى الحدين داخل القوس\",        \"forbidden\": \"ناتج القوس الكامل\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"reviewStatus\": \"draft_not_human_approved\",      \"result\": \"observed\",      \"evidence\": \"H0 state and explicit H1/H2/H3; no automatic H4; real identity proof for partial calculation\"    },    {      \"id\": \"GOLD-TUTOR-003\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-003\",        \"trigger\": \"إخفاق جديد بعد H1 أو طلب المزيد\",        \"mode\": \"learning\",        \"hint_level\": \"H2\",        \"expected\": \"تذكير بأن المعامل يضرب كل حد\",        \"forbidden\": \"تقديم حل س النهائي\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"reviewStatus\": \"draft_not_human_approved\",      \"result\": \"observed\",      \"evidence\": \"H0 state and explicit H1/H2/H3; no automatic H4; real identity proof for partial calculation\"    },    {      \"id\": \"GOLD-TUTOR-004\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-004\",        \"trigger\": \"طلب تلميح ثالث ضمن سياسة الدور\",        \"mode\": \"learning\",        \"hint_level\": \"H3\",        \"expected\": \"مثال ضرب أحد الحدين وطلب إكمال الآخر\",        \"forbidden\": \"كتابة الحل الكامل\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"reviewStatus\": \"draft_not_human_approved\",      \"result\": \"observed\",      \"evidence\": \"H0 state and explicit H1/H2/H3; no automatic H4; real identity proof for partial calculation\"    },    {      \"id\": \"GOLD-TUTOR-005\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-005\",        \"trigger\": \"طلب صريح للحل الكامل مع تأكيد\",        \"mode\": \"learning\",        \"hint_level\": \"H4\",        \"expected\": \"عرض حل موثق وتسجيل مشاهدة H4\",        \"forbidden\": \"احتسابه دليل إتقان مستقل\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"reviewStatus\": \"draft_not_human_approved\",      \"result\": \"observed\",      \"evidence\": \"explicit confirmation, private real-Python checks, no inferred attempt completion\"    },    {      \"id\": \"GOLD-TUTOR-006\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-006\",        \"trigger\": \"طلب H4 دون تأكيد\",        \"mode\": \"learning\",        \"hint_level\": \"H3 أو أقل\",        \"expected\": \"طلب التأكيد قبل العرض\",        \"forbidden\": \"كشف الحل فورًا\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"reviewStatus\": \"draft_not_human_approved\",      \"result\": \"observed\",      \"evidence\": \"explicit confirmation, private real-Python checks, no inferred attempt completion\"    },    {      \"id\": \"GOLD-TUTOR-007\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-007\",        \"trigger\": \"طلب H4 أثناء مسألة النقل\",        \"mode\": \"transfer_check\",        \"hint_level\": \"لا كشف\",        \"expected\": \"الخروج من القياس إلى التعلم عند اختيار المساعدة\",        \"forbidden\": \"التقييم كنقل مستقل بعد المساعدة\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"reviewStatus\": \"draft_not_human_approved\",      \"result\": \"partial\",      \"evidence\": \"independent-mode denial verified; switching mode/assigning transfer is PH08 and not implemented\"    },    {      \"id\": \"GOLD-TUTOR-008\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-008\",        \"trigger\": \"طلب H1 في مسألة نقل استقلالية\",        \"mode\": \"transfer_check\",        \"hint_level\": \"H1\",        \"expected\": \"إن سُمح: ينتقل النشاط إلى وضع تعلم مساعد\",        \"forbidden\": \"اعتماد محاولة القياس مستقلة\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"reviewStatus\": \"draft_not_human_approved\",      \"result\": \"partial\",      \"evidence\": \"independent-mode denial verified; switching mode/assigning transfer is PH08 and not implemented\"    },    {      \"id\": \"GOLD-TUTOR-009\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-009\",        \"trigger\": \"syntax_error في إدخال الطالب\",        \"mode\": \"learning\",        \"hint_level\": \"—\",        \"expected\": \"رسالة توضح موضع إصلاح الصيغة\",        \"forbidden\": \"تسجيل خطأ مفاهيمي أو رفع درجة التلميح\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"reviewStatus\": \"draft_not_human_approved\",      \"result\": \"observed\",      \"evidence\": \"non-assessable contexts rejected with no assistance event or adverse skill write\"    },    {      \"id\": \"GOLD-TUTOR-010\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-010\",        \"trigger\": \"unsupported للدالة جا\",        \"mode\": \"learning\",        \"hint_level\": \"—\",        \"expected\": \"شرح أن الدالة غير مدعومة في الجبر الحالي\",        \"forbidden\": \"توليد جواب غير متحقق أو تخفيض تقدم\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"reviewStatus\": \"draft_not_human_approved\",      \"result\": \"observed\",      \"evidence\": \"non-assessable contexts rejected with no assistance event or adverse skill write\"    },    {      \"id\": \"GOLD-TUTOR-011\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-011\",        \"trigger\": \"inconclusive رغم صلاحية الصيغة\",        \"mode\": \"learning\",        \"hint_level\": \"—\",        \"expected\": \"امتناع مهني وطلب توضيح\",        \"forbidden\": \"ادعاء خطأ أو صحة\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"reviewStatus\": \"draft_not_human_approved\",      \"result\": \"observed\",      \"evidence\": \"non-assessable contexts rejected with no assistance event or adverse skill write\"    },    {      \"id\": \"GOLD-TUTOR-012\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-012\",        \"trigger\": \"service_error أو مهلة مزود AI\",        \"mode\": \"learning\",        \"hint_level\": \"—\",        \"expected\": \"قالب عربي معتمد عند تعطل AI وحفظ العمل\",        \"forbidden\": \"تأنيب المتعلم أو مسح المحاولة\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"reviewStatus\": \"draft_not_human_approved\",      \"result\": \"observed\",      \"evidence\": \"real private HTTP fixture timeout returns authored safe fallback and preserves mathematics/raw\"    },    {      \"id\": \"GOLD-TUTOR-013\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-013\",        \"trigger\": \"سؤال تأكيدي مطابق لمسألة النقل\",        \"mode\": \"confirmation\",        \"hint_level\": \"H0\",        \"expected\": \"منع إعادة استخدام السؤال نفسه للقياس\",        \"forbidden\": \"تسريب الإجابة\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"reviewStatus\": \"draft_not_human_approved\",      \"result\": \"partial\",      \"evidence\": \"question disclosure/assistance boundary guarded; transfer item reuse and mastery summaries are PH08/09\"    },    {      \"id\": \"GOLD-TUTOR-014\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-014\",        \"trigger\": \"سؤال تأكيدي صحيح واحد\",        \"mode\": \"confirmation\",        \"hint_level\": \"H0\",        \"expected\": \"يدعم فرضية ضمن المحاولة فقط\",        \"forbidden\": \"وصف إتقان دائم\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"reviewStatus\": \"draft_not_human_approved\",      \"result\": \"partial\",      \"evidence\": \"question disclosure/assistance boundary guarded; transfer item reuse and mastery summaries are PH08/09\"    },    {      \"id\": \"GOLD-TUTOR-015\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-015\",        \"trigger\": \"نمطين محتملين متداخلين\",        \"mode\": \"learning\",        \"hint_level\": \"H1\",        \"expected\": \"سؤال مميز أو unresolved\",        \"forbidden\": \"تشخيصان جازمان متعارضان\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"reviewStatus\": \"draft_not_human_approved\",      \"result\": \"observed\",      \"evidence\": \"a differentiating open question is not bypassed by hints; no forced definitive diagnosis\"    },    {      \"id\": \"GOLD-TUTOR-016\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-016\",        \"trigger\": \"حل صحيح بعد H4\",        \"mode\": \"learning\",        \"hint_level\": \"H4\",        \"expected\": \"النجاح بمساعدة كاملة مع سجل المساعدة\",        \"forbidden\": \"تحويله إلى حل مستقل\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"reviewStatus\": \"draft_not_human_approved\",      \"result\": \"observed\",      \"evidence\": \"durable assistance latch controls later mathematical completion after edit and feature disable\"    },    {      \"id\": \"GOLD-TUTOR-017\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-017\",        \"trigger\": \"مسألة جديدة مستقلة من بنك معتمد\",        \"mode\": \"transfer_check\",        \"hint_level\": \"H0\",        \"expected\": \"دليل محدود على نقل الفهم\",        \"forbidden\": \"تسمية الإتقان نهائيًا من محاولة واحدة\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"reviewStatus\": \"draft_not_human_approved\",      \"result\": \"not_run\",      \"evidence\": \"transfer learning evidence and followup are PH08/09, not implemented here\"    },    {      \"id\": \"GOLD-TUTOR-018\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-018\",        \"trigger\": \"محاولة نقل غير ناجحة\",        \"mode\": \"transfer_check\",        \"hint_level\": \"H0\",        \"expected\": \"عرض تدريب مناسب أو مراجعة بشرية\",        \"forbidden\": \"اعتبار المتعلم غير قادر دائمًا\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"reviewStatus\": \"draft_not_human_approved\",      \"result\": \"not_run\",      \"evidence\": \"transfer learning evidence and followup are PH08/09, not implemented here\"    }  ],  \"node\": \"v24.11.1\",  \"humanContentReview\": \"pending\",  \"gate1\": \"blocked\",  \"ph08\": \"not_started\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph07-55c4675757b4-tests"
+      ],
+      "exitCode": 0,
+      "seconds": 0.4,
+      "stdout": "khotwa-ph07-55c4675757b4-tests\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph07-55c4675757b4-math"
+      ],
+      "exitCode": 0,
+      "seconds": 0.9,
+      "stdout": "khotwa-ph07-55c4675757b4-math\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph07-55c4675757b4-db"
+      ],
+      "exitCode": 0,
+      "seconds": 1.1,
+      "stdout": "khotwa-ph07-55c4675757b4-db\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "network",
+        "rm",
+        "khotwa-ph07-55c4675757b4"
+      ],
+      "exitCode": 0,
+      "seconds": 0.4,
+      "stdout": "khotwa-ph07-55c4675757b4\n",
+      "stderr": ""
+    }
+  ],
+  "dbProof": {
+    "checks": [
+      {
+        "command": "prisma migrate deploy",
+        "exitCode": 0
+      },
+      {
+        "name": "PH07_delta_down_preserves_PH06_tables",
+        "passed": true
+      },
+      {
+        "command": "prisma migrate reset --force",
+        "exitCode": 0
+      }
+    ],
+    "postgres": "17.6",
+    "tables": 26,
+    "scope": "isolated tmpfs; PH07 delta rollback and full replay"
+  },
+  "liveProof": {
+    "phase": "PH-07",
+    "runId": "5e080c92-99de-4a8c-b5ee-17435e8a3c2e",
+    "recordedAt": "2026-11-04T04:43:41.295Z",
+    "contracts": [
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 409
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "requestHint",
+        "status": 422
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "updateStep",
+        "status": 200
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "updateStep",
+        "status": 200
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 409
+      },
+      {
+        "operationId": "requestHint",
+        "status": 409
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 409
+      },
+      {
+        "operationId": "requestHint",
+        "status": 409
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 409
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 409
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 409
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "requestHint",
+        "status": 409
+      },
+      {
+        "operationId": "requestHint",
+        "status": 409
+      },
+      {
+        "operationId": "answerDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 409
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 409
+      },
+      {
+        "operationId": "requestHint",
+        "status": 409
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 409
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "updateStep",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 409
+      },
+      {
+        "operationId": "requestHint",
+        "status": 409
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 409
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 503
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "requestHint",
+        "status": 503
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "requestHint",
+        "status": 503
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 404
+      },
+      {
+        "operationId": "requestHint",
+        "status": 422
+      }
+    ],
+    "validatedResponses": 200,
+    "services": "real NestJS + PostgreSQL 17.6 + Python/SymPy; private HTTP AI test double only",
+    "actualExternalProviderCalls": 0,
+    "actualLlmInferences": 0,
+    "providerDecision": "owner explicitly kept external AI disabled",
+    "controlledProviderCalls": 24,
+    "allProviderContextsOmitStudentIdentityAndHiddenAnswer": true,
+    "budget": {
+      "buckets": 3,
+      "reserved_calls": 48,
+      "reserved_units": 240,
+      "unit": "synthetic_reservation_units",
+      "realMonetaryCost": "not_measured_no_external_provider",
+      "note": "sums include global and per-guest accounting rows; not a count of unique calls"
+    },
+    "events": {
+      "total": 34,
+      "real_label": 0
+    },
+    "golden": [
+      {
+        "id": "GOLD-TUTOR-001",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-001",
+          "trigger": "انتقال غير صحيح لأول مرة، لم تُطلب مساعدة",
+          "mode": "learning",
+          "hint_level": "H0",
+          "expected": "تغذية محايدة مع فرصة مراجعة",
+          "forbidden": "كشف التحويل النهائي",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "reviewStatus": "draft_not_human_approved",
+        "result": "observed",
+        "evidence": "H0 state and explicit H1/H2/H3; no automatic H4; real identity proof for partial calculation"
+      },
+      {
+        "id": "GOLD-TUTOR-002",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-002",
+          "trigger": "طالب يطلب تلميحًا أول بعد خطأ توزيع",
+          "mode": "learning",
+          "hint_level": "H1",
+          "expected": "لفت الانتباه إلى الحدين داخل القوس",
+          "forbidden": "ناتج القوس الكامل",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "reviewStatus": "draft_not_human_approved",
+        "result": "observed",
+        "evidence": "H0 state and explicit H1/H2/H3; no automatic H4; real identity proof for partial calculation"
+      },
+      {
+        "id": "GOLD-TUTOR-003",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-003",
+          "trigger": "إخفاق جديد بعد H1 أو طلب المزيد",
+          "mode": "learning",
+          "hint_level": "H2",
+          "expected": "تذكير بأن المعامل يضرب كل حد",
+          "forbidden": "تقديم حل س النهائي",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "reviewStatus": "draft_not_human_approved",
+        "result": "observed",
+        "evidence": "H0 state and explicit H1/H2/H3; no automatic H4; real identity proof for partial calculation"
+      },
+      {
+        "id": "GOLD-TUTOR-004",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-004",
+          "trigger": "طلب تلميح ثالث ضمن سياسة الدور",
+          "mode": "learning",
+          "hint_level": "H3",
+          "expected": "مثال ضرب أحد الحدين وطلب إكمال الآخر",
+          "forbidden": "كتابة الحل الكامل",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "reviewStatus": "draft_not_human_approved",
+        "result": "observed",
+        "evidence": "H0 state and explicit H1/H2/H3; no automatic H4; real identity proof for partial calculation"
+      },
+      {
+        "id": "GOLD-TUTOR-005",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-005",
+          "trigger": "طلب صريح للحل الكامل مع تأكيد",
+          "mode": "learning",
+          "hint_level": "H4",
+          "expected": "عرض حل موثق وتسجيل مشاهدة H4",
+          "forbidden": "احتسابه دليل إتقان مستقل",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "reviewStatus": "draft_not_human_approved",
+        "result": "observed",
+        "evidence": "explicit confirmation, private real-Python checks, no inferred attempt completion"
+      },
+      {
+        "id": "GOLD-TUTOR-006",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-006",
+          "trigger": "طلب H4 دون تأكيد",
+          "mode": "learning",
+          "hint_level": "H3 أو أقل",
+          "expected": "طلب التأكيد قبل العرض",
+          "forbidden": "كشف الحل فورًا",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "reviewStatus": "draft_not_human_approved",
+        "result": "observed",
+        "evidence": "explicit confirmation, private real-Python checks, no inferred attempt completion"
+      },
+      {
+        "id": "GOLD-TUTOR-007",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-007",
+          "trigger": "طلب H4 أثناء مسألة النقل",
+          "mode": "transfer_check",
+          "hint_level": "لا كشف",
+          "expected": "الخروج من القياس إلى التعلم عند اختيار المساعدة",
+          "forbidden": "التقييم كنقل مستقل بعد المساعدة",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "reviewStatus": "draft_not_human_approved",
+        "result": "partial",
+        "evidence": "independent-mode denial verified; switching mode/assigning transfer is PH08 and not implemented"
+      },
+      {
+        "id": "GOLD-TUTOR-008",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-008",
+          "trigger": "طلب H1 في مسألة نقل استقلالية",
+          "mode": "transfer_check",
+          "hint_level": "H1",
+          "expected": "إن سُمح: ينتقل النشاط إلى وضع تعلم مساعد",
+          "forbidden": "اعتماد محاولة القياس مستقلة",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "reviewStatus": "draft_not_human_approved",
+        "result": "partial",
+        "evidence": "independent-mode denial verified; switching mode/assigning transfer is PH08 and not implemented"
+      },
+      {
+        "id": "GOLD-TUTOR-009",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-009",
+          "trigger": "syntax_error في إدخال الطالب",
+          "mode": "learning",
+          "hint_level": "—",
+          "expected": "رسالة توضح موضع إصلاح الصيغة",
+          "forbidden": "تسجيل خطأ مفاهيمي أو رفع درجة التلميح",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "reviewStatus": "draft_not_human_approved",
+        "result": "observed",
+        "evidence": "non-assessable contexts rejected with no assistance event or adverse skill write"
+      },
+      {
+        "id": "GOLD-TUTOR-010",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-010",
+          "trigger": "unsupported للدالة جا",
+          "mode": "learning",
+          "hint_level": "—",
+          "expected": "شرح أن الدالة غير مدعومة في الجبر الحالي",
+          "forbidden": "توليد جواب غير متحقق أو تخفيض تقدم",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "reviewStatus": "draft_not_human_approved",
+        "result": "observed",
+        "evidence": "non-assessable contexts rejected with no assistance event or adverse skill write"
+      },
+      {
+        "id": "GOLD-TUTOR-011",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-011",
+          "trigger": "inconclusive رغم صلاحية الصيغة",
+          "mode": "learning",
+          "hint_level": "—",
+          "expected": "امتناع مهني وطلب توضيح",
+          "forbidden": "ادعاء خطأ أو صحة",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "reviewStatus": "draft_not_human_approved",
+        "result": "observed",
+        "evidence": "non-assessable contexts rejected with no assistance event or adverse skill write"
+      },
+      {
+        "id": "GOLD-TUTOR-012",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-012",
+          "trigger": "service_error أو مهلة مزود AI",
+          "mode": "learning",
+          "hint_level": "—",
+          "expected": "قالب عربي معتمد عند تعطل AI وحفظ العمل",
+          "forbidden": "تأنيب المتعلم أو مسح المحاولة",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "reviewStatus": "draft_not_human_approved",
+        "result": "observed",
+        "evidence": "real private HTTP fixture timeout returns authored safe fallback and preserves mathematics/raw"
+      },
+      {
+        "id": "GOLD-TUTOR-013",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-013",
+          "trigger": "سؤال تأكيدي مطابق لمسألة النقل",
+          "mode": "confirmation",
+          "hint_level": "H0",
+          "expected": "منع إعادة استخدام السؤال نفسه للقياس",
+          "forbidden": "تسريب الإجابة",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "reviewStatus": "draft_not_human_approved",
+        "result": "partial",
+        "evidence": "question disclosure/assistance boundary guarded; transfer item reuse and mastery summaries are PH08/09"
+      },
+      {
+        "id": "GOLD-TUTOR-014",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-014",
+          "trigger": "سؤال تأكيدي صحيح واحد",
+          "mode": "confirmation",
+          "hint_level": "H0",
+          "expected": "يدعم فرضية ضمن المحاولة فقط",
+          "forbidden": "وصف إتقان دائم",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "reviewStatus": "draft_not_human_approved",
+        "result": "partial",
+        "evidence": "question disclosure/assistance boundary guarded; transfer item reuse and mastery summaries are PH08/09"
+      },
+      {
+        "id": "GOLD-TUTOR-015",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-015",
+          "trigger": "نمطين محتملين متداخلين",
+          "mode": "learning",
+          "hint_level": "H1",
+          "expected": "سؤال مميز أو unresolved",
+          "forbidden": "تشخيصان جازمان متعارضان",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "reviewStatus": "draft_not_human_approved",
+        "result": "observed",
+        "evidence": "a differentiating open question is not bypassed by hints; no forced definitive diagnosis"
+      },
+      {
+        "id": "GOLD-TUTOR-016",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-016",
+          "trigger": "حل صحيح بعد H4",
+          "mode": "learning",
+          "hint_level": "H4",
+          "expected": "النجاح بمساعدة كاملة مع سجل المساعدة",
+          "forbidden": "تحويله إلى حل مستقل",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "reviewStatus": "draft_not_human_approved",
+        "result": "observed",
+        "evidence": "durable assistance latch controls later mathematical completion after edit and feature disable"
+      },
+      {
+        "id": "GOLD-TUTOR-017",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-017",
+          "trigger": "مسألة جديدة مستقلة من بنك معتمد",
+          "mode": "transfer_check",
+          "hint_level": "H0",
+          "expected": "دليل محدود على نقل الفهم",
+          "forbidden": "تسمية الإتقان نهائيًا من محاولة واحدة",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "reviewStatus": "draft_not_human_approved",
+        "result": "not_run",
+        "evidence": "transfer learning evidence and followup are PH08/09, not implemented here"
+      },
+      {
+        "id": "GOLD-TUTOR-018",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-018",
+          "trigger": "محاولة نقل غير ناجحة",
+          "mode": "transfer_check",
+          "hint_level": "H0",
+          "expected": "عرض تدريب مناسب أو مراجعة بشرية",
+          "forbidden": "اعتبار المتعلم غير قادر دائمًا",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "reviewStatus": "draft_not_human_approved",
+        "result": "not_run",
+        "evidence": "transfer learning evidence and followup are PH08/09, not implemented here"
+      }
+    ],
+    "node": "v24.11.1",
+    "humanContentReview": "pending",
+    "gate1": "blocked",
+    "ph08": "not_started"
+  },
+  "testSummary": {
+    "total": 17,
+    "passed": 17,
+    "failed": 0
+  }
+}
