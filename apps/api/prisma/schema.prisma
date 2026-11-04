@@ -1,0 +1,317 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["partialIndexes"]
+  engineType      = "client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model attempts {
+  id                   String                 @id @db.Uuid
+  learning_session_id  String                 @db.Uuid
+  problem_revision_id  String                 @db.Uuid
+  attempt_kind         String
+  revision             BigInt                 @default(0)
+  status               String
+  completion_verdict   String?
+  opened_at            DateTime               @default(now()) @db.Timestamptz(6)
+  closed_at            DateTime?              @db.Timestamptz(6)
+  updated_at           DateTime               @default(now()) @db.Timestamptz(6)
+  notation_profile     String                 @db.VarChar(80)
+  learning_sessions    learning_sessions      @relation(fields: [learning_session_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  problem_revisions    problem_revisions      @relation(fields: [problem_revision_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  step_slots           step_slots[]
+  verification_runs    verification_runs[]
+  verification_reports verification_reports[]
+
+  @@index([learning_session_id, id], map: "attempt_learning")
+}
+
+model audit_events {
+  id               String   @id @db.Uuid
+  correlation_id   String   @db.Uuid
+  entity_kind      String   @db.VarChar(80)
+  entity_id        String?  @db.Uuid
+  event_code       String   @db.VarChar(80)
+  limited_metadata Json     @default("{}")
+  created_at       DateTime @default(now()) @db.Timestamptz(6)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model content_releases {
+  id                  String              @id @db.Uuid
+  release_code        String              @unique @db.VarChar(80)
+  subject_code        String              @db.VarChar(40)
+  notation_profile    String              @db.VarChar(80)
+  curriculum_label_ar String
+  status              String
+  reviewed_by_role    String?
+  reviewed_at         DateTime?           @db.Timestamptz(6)
+  published_at        DateTime?           @db.Timestamptz(6)
+  created_at          DateTime            @default(now()) @db.Timestamptz(6)
+  learning_sessions   learning_sessions[]
+  problem_revisions   problem_revisions[]
+  skills              skills[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model guest_sessions {
+  id                  String                @id @db.Uuid
+  token_digest        Bytes                 @unique
+  status              String
+  expires_at          DateTime              @db.Timestamptz(6)
+  created_at          DateTime              @default(now()) @db.Timestamptz(6)
+  last_seen_at        DateTime              @default(now()) @db.Timestamptz(6)
+  revoked_at          DateTime?             @db.Timestamptz(6)
+  consent_snapshot    Json?
+  idempotency_records idempotency_records[]
+  learning_sessions   learning_sessions[]
+
+  @@index([expires_at], map: "guest_expiry")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model idempotency_records {
+  id                   String                 @id @db.Uuid
+  guest_session_id     String                 @db.Uuid
+  operation            String                 @db.VarChar(200)
+  key_digest           Bytes
+  fingerprint          Bytes
+  state                String
+  response_code        Int?                   @db.SmallInt
+  response_cache       Json?
+  created_at           DateTime               @default(now()) @db.Timestamptz(6)
+  expires_at           DateTime               @db.Timestamptz(6)
+  guest_sessions       guest_sessions         @relation(fields: [guest_session_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  verification_reports verification_reports[]
+
+  @@unique([guest_session_id, operation, key_digest])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model learning_sessions {
+  id                     String           @id @db.Uuid
+  guest_session_id       String           @db.Uuid
+  release_id             String           @db.Uuid
+  status                 String
+  started_at             DateTime         @default(now()) @db.Timestamptz(6)
+  ended_at               DateTime?        @db.Timestamptz(6)
+  is_synthetic           Boolean          @default(false)
+  session_policy_version String           @db.VarChar(80)
+  attempts               attempts[]
+  guest_sessions         guest_sessions   @relation(fields: [guest_session_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  content_releases       content_releases @relation(fields: [release_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([id, release_id])
+  @@index([guest_session_id, id], map: "learning_owner")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model parse_results {
+  id                       String        @id @db.Uuid
+  step_version_id          String        @db.Uuid
+  engine_version           String        @db.VarChar(80)
+  notation_profile_version String        @db.VarChar(80)
+  parse_status             String
+  normalized_text          String?
+  display_text             String?
+  ast                      Json?
+  reason_code              String?
+  issue_span               Json?
+  created_at               DateTime      @default(now()) @db.Timestamptz(6)
+  step_versions            step_versions @relation(fields: [step_version_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([step_version_id, engine_version, notation_profile_version, created_at(sort: Desc)], map: "parses_by_version")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model problem_revisions {
+  id                    String                 @id @db.Uuid
+  problem_id            String                 @db.Uuid
+  version_number        Int
+  release_id            String                 @db.Uuid
+  item_kind             String
+  statement_ar          String
+  original_equation_raw String?
+  original_equation_ast Json?
+  answer_spec           Json
+  difficulty_band       Int                    @db.SmallInt
+  notation_profile      String                 @db.VarChar(80)
+  review_status         String
+  reviewed_at           DateTime?              @db.Timestamptz(6)
+  published_at          DateTime?              @db.Timestamptz(6)
+  created_at            DateTime               @default(now()) @db.Timestamptz(6)
+  content_hash          String
+  attempts              attempts[]
+  problems              problems               @relation(fields: [problem_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  content_releases      content_releases       @relation(fields: [release_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  problem_skills        problem_skills?
+  verification_runs     verification_runs[]
+  verification_reports  verification_reports[]
+
+  @@unique([id, release_id])
+  @@unique([problem_id, version_number])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model problem_skills {
+  problem_revision_id String            @unique(map: "one_primary_skill", where: raw("(coverage_kind = 'primary'::text)")) @db.Uuid
+  skill_id            String            @db.Uuid
+  coverage_kind       String
+  problem_revisions   problem_revisions @relation(fields: [problem_revision_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  skills              skills            @relation(fields: [skill_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([problem_revision_id, skill_id])
+}
+
+model problems {
+  id                String              @id @db.Uuid
+  problem_code      String              @unique @db.VarChar(80)
+  created_at        DateTime            @default(now()) @db.Timestamptz(6)
+  archived_at       DateTime?           @db.Timestamptz(6)
+  problem_revisions problem_revisions[]
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model skill_prerequisites {
+  skill_id                                                 String  @db.Uuid
+  prerequisite_skill_id                                    String  @db.Uuid
+  relation_kind                                            String
+  rationale_ar                                             String?
+  skills_skill_prerequisites_prerequisite_skill_idToskills skills  @relation("skill_prerequisites_prerequisite_skill_idToskills", fields: [prerequisite_skill_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  skills_skill_prerequisites_skill_idToskills              skills  @relation("skill_prerequisites_skill_idToskills", fields: [skill_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([skill_id, prerequisite_skill_id])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model skills {
+  id                                                                    String                @id @db.Uuid
+  release_id                                                            String                @db.Uuid
+  skill_code                                                            String                @db.VarChar(80)
+  name_ar                                                               String
+  learning_objective_ar                                                 String
+  sort_order                                                            Int
+  status                                                                String
+  created_at                                                            DateTime              @default(now()) @db.Timestamptz(6)
+  problem_skills                                                        problem_skills[]
+  skill_prerequisites_skill_prerequisites_prerequisite_skill_idToskills skill_prerequisites[] @relation("skill_prerequisites_prerequisite_skill_idToskills")
+  skill_prerequisites_skill_prerequisites_skill_idToskills              skill_prerequisites[] @relation("skill_prerequisites_skill_idToskills")
+  content_releases                                                      content_releases      @relation(fields: [release_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([release_id, skill_code])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model has constraints using non-default deferring rules and requires additional setup for migrations. Visit https://pris.ly/d/constraint-deferring for more info.
+model step_slots {
+  id                                                         String                 @id @db.Uuid
+  attempt_id                                                 String                 @db.Uuid
+  position                                                   Int
+  is_active                                                  Boolean                @default(true)
+  current_version                                            Int
+  created_at                                                 DateTime               @default(now()) @db.Timestamptz(6)
+  updated_at                                                 DateTime               @default(now()) @db.Timestamptz(6)
+  step_versions_step_slots_id_current_versionTostep_versions step_versions          @relation("step_slots_id_current_versionTostep_versions", fields: [id, current_version], references: [step_slot_id, version_number], onDelete: NoAction, onUpdate: NoAction, map: "current_version_exists")
+  attempts                                                   attempts               @relation(fields: [attempt_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  step_versions_step_versions_step_slot_idTostep_slots       step_versions[]        @relation("step_versions_step_slot_idTostep_slots")
+  verification_reports                                       verification_reports[]
+
+  @@unique([attempt_id, position], map: "active_step_position", where: raw("is_active"))
+  @@unique([id, current_version], map: "slot_current_version_key")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model step_versions {
+  id                                                                      String              @id @db.Uuid
+  step_slot_id                                                            String              @db.Uuid
+  version_number                                                          Int
+  source_raw                                                              String
+  input_origin                                                            String
+  created_at                                                              DateTime            @default(now()) @db.Timestamptz(6)
+  supersedes_step_version_id                                              String?             @db.Uuid
+  parse_results                                                           parse_results[]
+  step_slots_step_slots_id_current_versionTostep_versions                 step_slots?         @relation("step_slots_id_current_versionTostep_versions")
+  step_slots_step_versions_step_slot_idTostep_slots                       step_slots          @relation("step_versions_step_slot_idTostep_slots", fields: [step_slot_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  step_versions                                                           step_versions?      @relation("step_versionsTostep_versions", fields: [step_slot_id, supersedes_step_version_id], references: [step_slot_id, id], onDelete: NoAction, onUpdate: NoAction)
+  other_step_versions                                                     step_versions[]     @relation("step_versionsTostep_versions")
+  verification_runs_verification_runs_from_step_version_idTostep_versions verification_runs[] @relation("verification_runs_from_step_version_idTostep_versions")
+  verification_runs_verification_runs_to_step_version_idTostep_versions   verification_runs[] @relation("verification_runs_to_step_version_idTostep_versions")
+
+  @@unique([step_slot_id, id])
+  @@unique([step_slot_id, version_number])
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model verification_results {
+  id                       String            @id @db.Uuid
+  verification_run_id      String            @unique @db.Uuid
+  math_status              String
+  reason_code              String?
+  evidence_kind            String?
+  evidence_json            Json?
+  engine_version_actual    String            @db.VarChar(80)
+  schema_version           String            @db.VarChar(80)
+  notation_profile_version String            @db.VarChar(80)
+  validated_at             DateTime          @db.Timestamptz(6)
+  received_at              DateTime          @default(now()) @db.Timestamptz(6)
+  verification_runs        verification_runs @relation(fields: [verification_run_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model verification_runs {
+  id                                                                  String                @id @db.Uuid
+  attempt_id                                                          String                @db.Uuid
+  request_key_hash                                                    Bytes
+  attempt_revision_requested                                          BigInt
+  problem_revision_id                                                 String                @db.Uuid
+  from_kind                                                           String
+  from_step_version_id                                                String?               @db.Uuid
+  to_step_version_id                                                  String                @db.Uuid
+  notation_profile_version                                            String                @db.VarChar(80)
+  engine_version_requested                                            String                @db.VarChar(80)
+  dispatch_status                                                     String
+  created_at                                                          DateTime              @default(now()) @db.Timestamptz(6)
+  finished_at                                                         DateTime?             @db.Timestamptz(6)
+  verification_results                                                verification_results?
+  attempts                                                            attempts              @relation(fields: [attempt_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  step_versions_verification_runs_from_step_version_idTostep_versions step_versions?        @relation("verification_runs_from_step_version_idTostep_versions", fields: [from_step_version_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  problem_revisions                                                   problem_revisions     @relation(fields: [problem_revision_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  step_versions_verification_runs_to_step_version_idTostep_versions   step_versions         @relation("verification_runs_to_step_version_idTostep_versions", fields: [to_step_version_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  report_id                                                           String?               @db.Uuid
+  verification_reports                                                verification_reports? @relation(fields: [report_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([attempt_id, request_key_hash, from_step_version_id, to_step_version_id])
+  @@unique([attempt_id, request_key_hash, to_step_version_id], map: "problem_edge_request_key", where: raw("(from_kind = 'problem'::text)"))
+  @@index([attempt_id, attempt_revision_requested], map: "runs_revision")
+  @@index([report_id], map: "edges_by_report")
+}
+
+model verification_reports {
+  id                    String              @id @db.Uuid
+  attempt_id            String              @db.Uuid
+  idempotency_record_id String              @db.Uuid
+  attempt_revision      BigInt
+  problem_revision_id   String              @db.Uuid
+  notation_profile      String              @db.VarChar(80)
+  engine_version        String              @db.VarChar(80)
+  scope                 String
+  target_step_id        String?             @db.Uuid
+  step_version_ids      String[]            @db.Uuid
+  dispatch_status       String
+  report_json           Json?
+  final_result_json     Json?
+  created_at            DateTime            @default(now()) @db.Timestamptz(6)
+  deadline_at           DateTime            @db.Timestamptz(6)
+  finished_at           DateTime?           @db.Timestamptz(6)
+  attempts              attempts            @relation(fields: [attempt_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  idempotency_records   idempotency_records @relation(fields: [idempotency_record_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  problem_revisions     problem_revisions   @relation(fields: [problem_revision_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  step_slots            step_slots?         @relation(fields: [target_step_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  verification_runs     verification_runs[]
+
+  @@index([attempt_id, attempt_revision, finished_at(sort: Desc)], map: "reports_by_attempt_revision")
+}

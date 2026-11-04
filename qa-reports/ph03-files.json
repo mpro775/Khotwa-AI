@@ -1,0 +1,223 @@
+{
+  "phase": "PH-03",
+  "branch": "codex/ph03-math-engine",
+  "baseCommit": "70c946cf8881ed3c8d110bc409dbc8bf42a540a6",
+  "workingTreeOnly": true,
+  "includesPriorPhaseSharedFiles": true,
+  "excludesOtherUncommittedPh02Files": true,
+  "selfHashOmitted": true,
+  "files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "80c43a7dbec5633fdbb5376e7489e2096c5395ac2bfa6eb93075892fbf4b942f"
+    },
+    {
+      "path": "README.md",
+      "sha256": "4341851d00b1e1192f7012b0bda0a75eecd673a9823df2d270e09eda1dc30a7b"
+    },
+    {
+      "path": "agent-reports/TASK-031.md",
+      "sha256": "67111b8dfcb3d8040576c6f835b0880d40ae861af4ae91a9a5f455f3785dd5e1"
+    },
+    {
+      "path": "agent-reports/TASK-032.md",
+      "sha256": "2c2e40af6fafbd67a1b81f85d11b0d441c0925b9c894f5285fa4c389677ff88c"
+    },
+    {
+      "path": "agent-reports/TASK-033.md",
+      "sha256": "5fccdae2933f3a7cb0b69ab9e1346d2e85d36fface5077b3a4156c40c2bc4bbc"
+    },
+    {
+      "path": "agent-reports/TASK-034.md",
+      "sha256": "c9e0c1ef685814c0731e5cadd42175518e10dd44495299f51292d367aa4a6ea9"
+    },
+    {
+      "path": "agent-reports/TASK-035.md",
+      "sha256": "19386fc72217f27ed6bbe908a8cab8219ee62806d4e09522350715e436231eae"
+    },
+    {
+      "path": "agent-reports/TASK-036.md",
+      "sha256": "27423bace0c64c23d1a494165f97c1321e35f3c244b2a17571efbbac56dd6d90"
+    },
+    {
+      "path": "agent-reports/TASK-037.md",
+      "sha256": "15d58ef15aeb6b56ea222f147b36237b4ca258e75d0b6958629fd172a2213463"
+    },
+    {
+      "path": "agent-reports/TASK-038.md",
+      "sha256": "226781b583b3d4e65d34a93a5c4fa960fa153f007a7111320b9fbf52392cc84c"
+    },
+    {
+      "path": "agent-reports/TASK-039.md",
+      "sha256": "2f2436c8498cc93c95868fd2233db80d46642ad513e011cdeba4fd635c38c2ee"
+    },
+    {
+      "path": "compose.yaml",
+      "sha256": "828b146d287287c48c59010cf36644682de3a383cb6d6426d4707af64597a7bb"
+    },
+    {
+      "path": "package.json",
+      "sha256": "f58c51faef48c233e1fbe86010fcbe3e983d9a7d75e12835967dfa5a21fc09ad"
+    },
+    {
+      "path": "planning/ph03-plan.md",
+      "sha256": "877206206307bb52534a3682dc561443201bf1bda30f247478ec9b2108dd3d9a"
+    },
+    {
+      "path": "planning/ph03-resource-decision.md",
+      "sha256": "7d59044339538e89958b1304dbbdc374fc1606618b244040aec88b1e70f27282"
+    },
+    {
+      "path": "planning/ph03-status.json",
+      "sha256": "99f3712dd6975718ab850c3e3849563132d4db48964c081266d984d9eceaa6a6"
+    },
+    {
+      "path": "planning/technical-decisions.md",
+      "sha256": "a480518861704de69e6c4c94d1d15f51cb0413cb1930417d553b154739436e96"
+    },
+    {
+      "path": "qa-reports/README.md",
+      "sha256": "698b898ffb64ee65acf07eb5206bb1240e0b987ff556637148dc3f347947988a"
+    },
+    {
+      "path": "qa-reports/ph03-checks.json",
+      "sha256": "30a3b31b4ce6b0f61ff425ca1e026e75cd71fb4fad4942b35097eb298e5b7450"
+    },
+    {
+      "path": "qa-reports/ph03-compose-checks.json",
+      "sha256": "7e85d90135c74ed49eb35ea744cdcfa23c1f878e611706c95ab26bba579069af"
+    },
+    {
+      "path": "qa-reports/ph03-container-checks.json",
+      "sha256": "73fdaa863fece59595632972cad5dca619d57be4b6d908fd97450199516d437b"
+    },
+    {
+      "path": "qa-reports/ph03-container-commands.json",
+      "sha256": "7c5faa8958c12af8408abbccabb3fec34ddb38a611907bddc1e9e3b3efd674e9"
+    },
+    {
+      "path": "qa-reports/ph03-contract-fixtures.json",
+      "sha256": "dd1ef910e354a2ee6fe806e15139057cbb552c029be18bb78fcd2204c03b200f"
+    },
+    {
+      "path": "qa-reports/ph03-contract-results.json",
+      "sha256": "7f0cfc4e434806209646e34ce235f79d2f4684ef1d9f40a4d8969d5ed9350d32"
+    },
+    {
+      "path": "qa-reports/ph03-delivery.md",
+      "sha256": "d503abaa01d9ee4f897052ef7deb5a77b7eaba19ccec5018229976b39dde41b7"
+    },
+    {
+      "path": "qa-reports/ph03-golden-results.json",
+      "sha256": "e4b2ebcbd9ada5860e7a7711bee333e14c86462b70d6d4ca2a26f523977fca66"
+    },
+    {
+      "path": "qa-reports/ph03-integrity.json",
+      "sha256": "e44e001ee61322d81b66d16c240c81412319c5d261f29b1eab1cc76af5dd336f"
+    },
+    {
+      "path": "qa-reports/ph03-preflight.json",
+      "sha256": "31b9fc1cadc4ab10185eecc8ab6e661f4d9f666b66fd59dbaeeef81f2a6d11d1"
+    },
+    {
+      "path": "qa/ph03_container_smoke.py",
+      "sha256": "d84c0d3cfe4b083a490797b3388974e5b95d13ddccdbdbc9b09a688bef3959eb"
+    },
+    {
+      "path": "qa/run_ph03_golden.py",
+      "sha256": "e1b24340e88504cabcf8d80245afef6eb1746f6b927cc8fb0e3deaa814163231"
+    },
+    {
+      "path": "services/math-engine/pyproject.toml",
+      "sha256": "81ecc35e54e72a55b28cc7126a8026655c81e3e9a464a70f7cf3d9bf2629ed60"
+    },
+    {
+      "path": "services/math-engine/src/khotwa_math/__init__.py",
+      "sha256": "480aa02d47bc0d55839ae31b95d076839ebe845f4c9eb5700226b87060af511a"
+    },
+    {
+      "path": "services/math-engine/src/khotwa_math/__main__.py",
+      "sha256": "3b3ec0aeeb69f9406dc7740679b372ce5907acf300b6168eae0e7e07f8cdaad0"
+    },
+    {
+      "path": "services/math-engine/src/khotwa_math/engine.py",
+      "sha256": "ee534c839614c4cd05b0e0d7f627e8e34339eec2cc2134bb3ac796e4df61f61d"
+    },
+    {
+      "path": "services/math-engine/src/khotwa_math/lexer.py",
+      "sha256": "3f2b77f964eb5b865b94885837f8b8adc95a3115113f256ec4614425924bb173"
+    },
+    {
+      "path": "services/math-engine/src/khotwa_math/linear.py",
+      "sha256": "c8013e93eb5e6f23a84c1e50954d91d3d8e637d7c97728bd22818cc815ed265b"
+    },
+    {
+      "path": "services/math-engine/src/khotwa_math/model.py",
+      "sha256": "9577917a1aa95a512ac937a256239201c4648dcc19982b4e8a833c9ce115c7cb"
+    },
+    {
+      "path": "services/math-engine/src/khotwa_math/parser.py",
+      "sha256": "a3c612ff11bc0832167331ffc239048b25fd3d5b188e36904ada0c368ca0afbc"
+    },
+    {
+      "path": "services/math-engine/src/khotwa_math/protocol.py",
+      "sha256": "b9603436f557b1fea35756e8691baf2baad4a07579d15da5d33760c33d1ed109"
+    },
+    {
+      "path": "services/math-engine/src/khotwa_math/render.py",
+      "sha256": "236f35b0b8ee604aa9232ec0ee129d243a9984928cdba9f189d12a1375e09a7c"
+    },
+    {
+      "path": "services/math-engine/src/khotwa_math/worker.py",
+      "sha256": "7cfaf655ff4880e515bfb861b47629d269076692918475c9dbde7730ae8d8215"
+    },
+    {
+      "path": "services/math-engine/src/khotwa_math/worker_manager.py",
+      "sha256": "a6462c626542609a1103dda7069778f01b32677b3c9a0b013e255a6896bd0c22"
+    },
+    {
+      "path": "services/math-engine/tests/helpers.py",
+      "sha256": "207b01cf643c8b2533d39f32249d6693652b0c94aee5c474b8d97fdbc4fa08fc"
+    },
+    {
+      "path": "services/math-engine/tests/test_math_engine.py",
+      "sha256": "cd1b0304d26477c291b50fe8912c88dad7e5508a6b6460b89387fc7189ebaf9f"
+    },
+    {
+      "path": "services/math-engine/tests/test_protocol.py",
+      "sha256": "8c9019d2be1a6f4a91132118d0d14acde7bae77aea2ee6bea8c12a79039db370"
+    },
+    {
+      "path": "services/math-engine/tests/test_worker.py",
+      "sha256": "9502f0dab90dbe12bbedc2b226ea4448580a1f7c6ff1560c2bf7566b05465687"
+    },
+    {
+      "path": "services/math-engine/tests/worker_fixture.py",
+      "sha256": "7339a34bc14a19aaf9b86b7d55ffd540f504c72b93a6fe50df02711ea60fb4d1"
+    },
+    {
+      "path": "tools/compose-smoke.mjs",
+      "sha256": "c4d25d4e91c7924ebf5123cea01bd29b80558a88ea501e536fe18c404f10399f"
+    },
+    {
+      "path": "tools/smoke.mjs",
+      "sha256": "2df0d1b154c204d2c0b54b8be83ba9ef8d33a81e62be8677287235a517e51de8"
+    },
+    {
+      "path": "tools/test-math.mjs",
+      "sha256": "ed024e9895f75b2142b20570d0798a2859c1eac17f05bb8d99be48257feb2e29"
+    },
+    {
+      "path": "tools/verify-ph03-container.mjs",
+      "sha256": "b1acb21357deb408a4dc2af18b2b15b69d36fb365f788eef061665d2a4552710"
+    },
+    {
+      "path": "tools/verify-ph03-contracts.mjs",
+      "sha256": "6de109d02335c2066eb99bac2936c2f5d3b5fb0f742c9a35e082ef8078d1d860"
+    },
+    {
+      "path": "tools/verify-ph03.mjs",
+      "sha256": "cf9541a5a81ce6133bc1661e0ae41df89577c15e34b2d8f9d1064f21cd7c1be6"
+    }
+  ]
+}

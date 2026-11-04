@@ -1,0 +1,2462 @@
+{
+  "phase": "PH-05",
+  "recordedAt": "2026-11-04T02:46:40.491Z",
+  "failure": "Real integration checks failed: ",
+  "checks": [
+    {
+      "command": [
+        "docker",
+        "build",
+        "--target",
+        "ph05-test",
+        "-t",
+        "khotwa-ph05-test",
+        "."
+      ],
+      "exitCode": 0,
+      "seconds": 20.3,
+      "stdout": "",
+      "stderr": "#0 building with \"desktop-linux\" instance using docker driver\n\n#1 [internal] load build definition from Dockerfile\n#1 transferring dockerfile: 1.98kB done\n#1 DONE 0.0s\n\n#2 [internal] load metadata for docker.io/library/node:24.11.1-alpine3.22\n#2 DONE 0.1s\n\n#3 [internal] load .dockerignore\n#3 transferring context: 161B done\n#3 DONE 0.0s\n\n#4 [node-build 1/9] FROM docker.io/library/node:24.11.1-alpine3.22@sha256:2867d550cf9d8bb50059a0fff528741f11a84d985c732e60e19e8e75c7239c43\n#4 resolve docker.io/library/node:24.11.1-alpine3.22@sha256:2867d550cf9d8bb50059a0fff528741f11a84d985c732e60e19e8e75c7239c43 0.0s done\n#4 DONE 0.0s\n\n#5 [internal] load build context\n#5 transferring context: 3.05MB 0.2s done\n#5 DONE 0.2s\n\n#6 [node-build 4/9] COPY apps/api/package.json apps/api/package.json\n#6 CACHED\n\n#7 [node-build 6/9] COPY packages/contracts/package.json packages/contracts/package.json\n#7 CACHED\n\n#8 [node-build 2/9] WORKDIR /app\n#8 CACHED\n\n#9 [node-build 3/9] COPY package.json package-lock.json ./\n#9 CACHED\n\n#10 [node-build 5/9] COPY apps/web/package.json apps/web/package.json\n#10 CACHED\n\n#11 [node-build 7/9] RUN npm ci --no-audit --no-fund\n#11 CACHED\n\n#12 [node-build 8/9] COPY . .\n#12 DONE 0.1s\n\n#13 [node-build 9/9] RUN npm run contracts && npm run build --workspace @khotwa/api && npm run build --workspace @khotwa/web\n#13 0.589 \n#13 0.589 > khotwa-ai@0.1.0 contracts\n#13 0.589 > node tools/contracts.mjs\n#13 0.589 \n#13 1.970 Canonical OpenAPI mirror, 3 JSON mirrors, and generated public types generated.\n#13 3.726 \n#13 3.726 > @khotwa/api@0.1.0 build\n#13 3.726 > npm run generate && tsc -p tsconfig.json\n#13 3.726 \n#13 4.055 \n#13 4.055 > @khotwa/api@0.1.0 generate\n#13 4.055 > prisma generate --config prisma.config.ts\n#13 4.055 \n#13 5.637 Loaded Prisma config from prisma.config.ts.\n#13 5.637 \n#13 5.916 Prisma schema loaded from prisma/schema.prisma.\n#13 6.560 \n#13 6.560 ✔ Generated Prisma Client (v7.10.1) to ./../../node_modules/@prisma/client in 425ms\n#13 6.560 \n#13 6.560 Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)\n#13 6.560 \n#13 6.560 \n#13 12.24 \n#13 12.24 > @khotwa/web@0.1.0 build\n#13 12.24 > tsc --noEmit && vite build\n#13 12.24 \n#13 15.93 vite v8.3.5 building client environment for production...\n#13 15.96 transforming...\n#13 16.80 ✓ 31 modules transformed.\n#13 16.92 rendering chunks...\n#13 17.09 computing gzip size...\n#13 17.11 dist/index.html                                         0.40 kB │ gzip:   0.28 kB\n#13 17.11 dist/assets/KaTeX_Size4-Regular-Dl5lxZxV.woff2          4.92 kB\n#13 17.11 dist/assets/KaTeX_Size2-Regular-Dy4dx90m.woff2          5.20 kB\n#13 17.11 dist/assets/KaTeX_Size1-Regular-mCD8mA8B.woff2          5.46 kB\n#13 17.11 dist/assets/KaTeX_Caligraphic-Regular-Di6jR-x-.woff2    6.90 kB\n#13 17.11 dist/assets/KaTeX_Caligraphic-Bold-Dq_IR9rO.woff2       6.91 kB\n#13 17.11 dist/assets/KaTeX_Script-Regular-D3wIWfF6.woff2         9.64 kB\n#13 17.11 dist/assets/KaTeX_SansSerif-Regular-DDBCnlJ7.woff2     10.34 kB\n#13 17.11 dist/assets/KaTeX_Fraktur-Regular-CTYiF6lA.woff2       11.31 kB\n#13 17.11 dist/assets/KaTeX_Fraktur-Bold-CL6g_b3V.woff2          11.34 kB\n#13 17.11 dist/assets/KaTeX_SansSerif-Italic-C3H0VqGB.woff2      12.02 kB\n#13 17.11 dist/assets/KaTeX_SansSerif-Bold-D1sUS0GD.woff2        12.21 kB\n#13 17.11 dist/assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2    13.56 kB\n#13 17.11 dist/assets/KaTeX_Math-BoldItalic-CZnvNsCZ.woff2       16.40 kB\n#13 17.11 dist/assets/KaTeX_Math-Italic-t53AETM-.woff2           16.44 kB\n#13 17.11 dist/assets/KaTeX_Main-BoldItalic-DxDJ3AOS.woff2       16.78 kB\n#13 17.11 dist/assets/KaTeX_Main-Italic-NWA7e6Wa.woff2           16.98 kB\n#13 17.11 dist/assets/KaTeX_Main-Bold-Cx986IdX.woff2             25.32 kB\n#13 17.11 dist/assets/KaTeX_Main-Regular-B22Nviop.woff2          26.27 kB\n#13 17.11 dist/assets/KaTeX_AMS-Regular-BQhdFMY1.woff2           28.07 kB\n#13 17.11 dist/assets/index-BPKxi1p3.css                          7.01 kB │ gzip:   2.26 kB\n#13 17.11 dist/assets/ArabicEditor-BnjoTxG4.css                   8.00 kB │ gzip:   4.20 kB\n#13 17.11 dist/assets/index-D7F5FhkH.js                         423.78 kB │ gzip:  97.33 kB\n#13 17.11 dist/assets/ArabicEditor-BjRKKOLs.js                  816.76 kB │ gzip: 225.27 kB\n#13 17.11 \n#13 17.11 [plugin builtin:vite-reporter] \n#13 17.11 (!) Some chunks are larger than 500 kB after minification. Consider:\n#13 17.11 - Using dynamic import() to code-split the application\n#13 17.11 - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting\n#13 17.11 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n#13 17.11 ✓ built in 1.18s\n#13 DONE 17.2s\n\n#14 exporting to image\n#14 exporting layers\n#14 exporting layers 1.0s done\n#14 exporting manifest sha256:8d91270970ec24140cff327a75b44b0660ae6d7443a213433a386638a9acb37d 0.0s done\n#14 exporting config sha256:3de93690d44c3ee62566072dffc8f769a10a5976c9ae677a8d8bf0809da9613b 0.0s done\n#14 exporting attestation manifest sha256:a708e2fb3fe5044cc335be2cb774c6c6cf8c03488b23e7f8f91b852d0debfe1f 0.0s done\n#14 exporting manifest list sha256:b6844284165ad297a0887c74660841547bbf602c92fb6c7680cc7daa46672e85\n#14 exporting manifest list sha256:b6844284165ad297a0887c74660841547bbf602c92fb6c7680cc7daa46672e85 0.0s done\n#14 naming to docker.io/library/khotwa-ph05-test:latest done\n#14 unpacking to docker.io/library/khotwa-ph05-test:latest\n#14 unpacking to docker.io/library/khotwa-ph05-test:latest 0.5s done\n#14 DONE 1.8s\n"
+    },
+    {
+      "command": [
+        "docker",
+        "build",
+        "--target",
+        "math",
+        "-t",
+        "khotwa-ph05-math",
+        "."
+      ],
+      "exitCode": 0,
+      "seconds": 2,
+      "stdout": "",
+      "stderr": "#0 building with \"desktop-linux\" instance using docker driver\n\n#1 [internal] load build definition from Dockerfile\n#1 transferring dockerfile: 1.98kB done\n#1 DONE 0.0s\n\n#2 [internal] load metadata for docker.io/library/python:3.13.7-slim-bookworm\n#2 DONE 0.8s\n\n#3 [internal] load .dockerignore\n#3 transferring context: 161B done\n#3 DONE 0.0s\n\n#4 [internal] load build context\n#4 transferring context: 965B done\n#4 DONE 0.0s\n\n#5 [math 1/5] FROM docker.io/library/python:3.13.7-slim-bookworm@sha256:adafcc17694d715c905b4c7bebd96907a1fd5cf183395f0ebc4d3428bd22d92d\n#5 resolve docker.io/library/python:3.13.7-slim-bookworm@sha256:adafcc17694d715c905b4c7bebd96907a1fd5cf183395f0ebc4d3428bd22d92d 0.0s done\n#5 DONE 0.0s\n\n#6 [math 3/5] COPY services/math-engine/requirements.lock ./requirements.lock\n#6 CACHED\n\n#7 [math 4/5] RUN pip install --no-cache-dir --no-deps -r requirements.lock && useradd --uid 10001 --create-home mathuser\n#7 CACHED\n\n#8 [math 2/5] WORKDIR /app\n#8 CACHED\n\n#9 [math 5/5] COPY --chown=10001:10001 services/math-engine/src /app/src\n#9 CACHED\n\n#10 exporting to image\n#10 exporting layers done\n#10 exporting manifest sha256:16209cc264699f42c27c546de51b332afc38eb4f508cbf4de2d62765ec53f732 done\n#10 exporting config sha256:dbf374c91a1e59c9b204f8f03353d7acf29696de5475c7fe6c7cdad34c51bacc done\n#10 exporting attestation manifest sha256:e57cd71a13b4f920eef741cb83305cc63917ed593893ff953e798432e7622960\n#10 exporting attestation manifest sha256:e57cd71a13b4f920eef741cb83305cc63917ed593893ff953e798432e7622960 0.0s done\n#10 exporting manifest list sha256:5f021b2f689ce02ad8ade02e6df50420c377d4bd397642e530809461ca5efe31 0.0s done\n#10 naming to docker.io/library/khotwa-ph05-math:latest done\n#10 unpacking to docker.io/library/khotwa-ph05-math:latest done\n#10 DONE 0.1s\n"
+    },
+    {
+      "command": [
+        "docker",
+        "network",
+        "create",
+        "--internal",
+        "--label",
+        "khotwa.task=ph05-test",
+        "khotwa-ph05-2d6261abf817"
+      ],
+      "exitCode": 0,
+      "seconds": 0.1,
+      "stdout": "bc1928539391004e49114642749ccd1692280270c04e9360936227d745ecf8ee\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "khotwa-ph05-2d6261abf817-db",
+        "--label",
+        "khotwa.task=ph05-test",
+        "--network",
+        "khotwa-ph05-2d6261abf817",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph05-2d6261abf817-db.env",
+        "--memory",
+        "512m",
+        "--pids-limit",
+        "64",
+        "--tmpfs",
+        "/var/lib/postgresql/data:rw,noexec,nosuid,size=128m",
+        "postgres:17.6-alpine3.22"
+      ],
+      "exitCode": 0,
+      "seconds": 0.6,
+      "stdout": "204d207814a8ef2a52a22cfc7848ca293475fdac3714dfc182d6243b6ac8bf7f\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "khotwa-ph05-2d6261abf817-math",
+        "--label",
+        "khotwa.task=ph05-test",
+        "--network",
+        "khotwa-ph05-2d6261abf817",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph05-2d6261abf817-math.env",
+        "--memory",
+        "256m",
+        "--cpus",
+        "1",
+        "--pids-limit",
+        "64",
+        "--read-only",
+        "--tmpfs",
+        "/tmp",
+        "khotwa-ph05-math"
+      ],
+      "exitCode": 0,
+      "seconds": 0.6,
+      "stdout": "009002b647f81162d76371c0be1d2dc7a551bc83cac474c73bbc31f9686c1c22\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "--name",
+        "khotwa-ph05-2d6261abf817-tests",
+        "--label",
+        "khotwa.task=ph05-test",
+        "--network",
+        "khotwa-ph05-2d6261abf817",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph05-2d6261abf817.env",
+        "--memory",
+        "768m",
+        "--pids-limit",
+        "128",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\qa,target=/app/qa,readonly",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\apps\\api\\tests,target=/app/apps/api/tests,readonly",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\apps\\api\\prisma,target=/app/apps/api/prisma,readonly",
+        "khotwa-ph05-test"
+      ],
+      "exitCode": 1,
+      "seconds": 17,
+      "stdout": "PH05_DB_RESULT {\"checks\":[{\"command\":\"prisma migrate deploy\",\"exitCode\":0},{\"name\":\"PH05_delta_down_preserves_PH04_tables\",\"passed\":true},{\"command\":\"prisma migrate reset --force\",\"exitCode\":0}],\"postgres\":\"17.6\",\"tables\":17,\"scope\":\"isolated tmpfs; delta rollback and full replay\"}\n▶ PH-05 real NestJS PostgreSQL Python verification integration\n  ✔ equivalent chain and isolated final answer complete only the pinned revision (698.820697ms)\n  ✔ a correct final answer cannot erase an earlier invalid edge (169.457377ms)\n  ✔ target edge and a nonisolated equivalent equation cannot complete a sequence (224.860718ms)\n  ✔ fresh inputs, reversed isolation and negative coefficients use real Python (298.192196ms)\n  ✖ syntax, unsupported and resource abstention never become conceptual mistakes (336.491969ms)\n  ✖ all 40 draft Golden parser cases pass through the saved NestJS/Python path (3448.436677ms)\n  ✔ all 53 student-domain draft Golden transitions pass through real Python (4231.405083ms)\n  ✔ concurrent same-key retry, stale response, historical proof and reverify are safe (191.110576ms)\n  ✔ unavailable service preserves raw and permits the identical key to retry safely (118.192183ms)\n  ✔ verification DTO and empty/foreign target boundaries match the public contract (31.226666ms)\n✖ PH-05 real NestJS PostgreSQL Python verification integration (11143.008456ms)\nℹ tests 11\nℹ suites 0\nℹ pass 8\nℹ fail 3\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 11608.133884\n\n✖ failing tests:\n\ntest at apps/api/tests/verification-live.test.mjs:207:15\n✖ syntax, unsupported and resource abstention never become conceptual mistakes (336.491969ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  + actual - expected\n  \n  + 'unsupported'\n  - 'inconclusive'\n  \n      at TestContext.<anonymous> (file:///app/apps/api/tests/verification-live.test.mjs:224:20)\n      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n      at async Test.run (node:internal/test_runner/test:1113:7)\n      at async TestContext.<anonymous> (file:///app/apps/api/tests/verification-live.test.mjs:207:7)\n      at async Test.run (node:internal/test_runner/test:1113:7)\n      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: 'unsupported',\n    expected: 'inconclusive',\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n\ntest at apps/api/tests/verification-live.test.mjs:232:15\n✖ all 40 draft Golden parser cases pass through the saved NestJS/Python path (3448.436677ms)\n  AssertionError [ERR_ASSERTION]: GOLD-PARSE-039\n  + actual - expected\n  \n  + 'INVALID_CHARACTER'\n  - 'UNSAFE_CONTROL_CHARACTER'\n  \n      at TestContext.<anonymous> (file:///app/apps/api/tests/verification-live.test.mjs:248:22)\n      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n      at async Test.run (node:internal/test_runner/test:1113:7)\n      at async TestContext.<anonymous> (file:///app/apps/api/tests/verification-live.test.mjs:232:7)\n      at async Test.run (node:internal/test_runner/test:1113:7)\n      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: 'INVALID_CHARACTER',\n    expected: 'UNSAFE_CONTROL_CHARACTER',\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n \nPH05_LIVE_RESULT {  \"phase\": \"PH-05\",  \"runId\": \"865e4261-3f0c-4edc-86f8-dbb828868e78\",  \"contracts\": [    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"getVerificationResult\",      \"status\": 200    },    {      \"operationId\": \"getVerificationResult\",      \"status\": 404    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 404    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 409    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 409    },    {      \"operationId\": \"updateStep\",      \"status\": 200    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 409    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"getVerificationResult\",      \"status\": 200    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 409    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 503    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 422    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 422    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 422    }  ],  \"validatedResponses\": 379,  \"golden\": [    {      \"id\": \"GOLD-PARSE-001\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"parsed\",      \"actual\": \"parsed\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-002\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"parsed\",      \"actual\": \"parsed\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-003\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"parsed\",      \"actual\": \"parsed\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-004\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"parsed\",      \"actual\": \"parsed\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-005\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"parsed\",      \"actual\": \"parsed\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-006\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"parsed\",      \"actual\": \"parsed\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-007\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"parsed\",      \"actual\": \"parsed\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-008\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"parsed\",      \"actual\": \"parsed\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-009\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"parsed\",      \"actual\": \"parsed\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-010\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"parsed\",      \"actual\": \"parsed\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-011\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"parsed\",      \"actual\": \"parsed\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-012\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"parsed\",      \"actual\": \"parsed\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-013\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"parsed\",      \"actual\": \"parsed\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-014\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"parsed\",      \"actual\": \"parsed\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-015\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"parsed\",      \"actual\": \"parsed\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-016\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"parsed\",      \"actual\": \"parsed\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-017\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"parsed\",      \"actual\": \"parsed\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-018\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"parsed\",      \"actual\": \"parsed\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-019\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"parsed\",      \"actual\": \"parsed\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-020\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"parsed\",      \"actual\": \"parsed\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-021\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"syntax_error\",      \"actual\": \"syntax_error\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-022\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"syntax_error\",      \"actual\": \"syntax_error\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-023\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"syntax_error\",      \"actual\": \"syntax_error\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-024\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"syntax_error\",      \"actual\": \"syntax_error\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-025\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"syntax_error\",      \"actual\": \"syntax_error\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-026\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"syntax_error\",      \"actual\": \"syntax_error\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-027\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"syntax_error\",      \"actual\": \"syntax_error\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-028\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"unsupported\",      \"actual\": \"unsupported\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-029\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"unsupported\",      \"actual\": \"unsupported\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-030\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"unsupported\",      \"actual\": \"unsupported\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-031\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"unsupported\",      \"actual\": \"unsupported\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-032\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"unsupported\",      \"actual\": \"unsupported\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-033\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"unsupported\",      \"actual\": \"unsupported\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-034\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"unsupported\",      \"actual\": \"unsupported\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-035\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"unsupported\",      \"actual\": \"unsupported\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-036\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"unsupported\",      \"actual\": \"unsupported\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-037\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"unsupported\",      \"actual\": \"unsupported\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-PARSE-038\",      \"scope\": \"public_saved_step_parse\",      \"expected\": \"unsupported\",      \"actual\": \"unsupported\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-001\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-002\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-003\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-004\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-005\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-006\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-007\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-008\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-009\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-010\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-011\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-012\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-013\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-014\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-015\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-016\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-017\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-018\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-019\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-020\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-021\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-022\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-023\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-024\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-025\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-026\",      \"scope\": \"public_transition\",      \"expected\": \"verified_valid\",      \"actual\": \"verified_valid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-029\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-030\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-031\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-032\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-033\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-034\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-035\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-037\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-038\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-039\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-040\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-041\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-042\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-043\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-044\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-045\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-046\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-047\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-048\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-049\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-050\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-051\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-052\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-053\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-055\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-056\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    },    {      \"id\": \"GOLD-MATH-057\",      \"scope\": \"public_transition\",      \"expected\": \"verified_invalid\",      \"actual\": \"verified_invalid\",      \"passed\": true,      \"reviewStatus\": \"draft_requires_subject_and_pedagogy_review\"    }  ],  \"criticalGoldenAcceptance\": \"not_approved_draft_reference_only\",  \"services\": \"real NestJS + PostgreSQL + Python/SymPy; stale proxy forwards unmodified real verdict\",  \"node\": \"v24.11.1\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph05-2d6261abf817-tests"
+      ],
+      "exitCode": 0,
+      "seconds": 0.1,
+      "stdout": "khotwa-ph05-2d6261abf817-tests\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph05-2d6261abf817-math"
+      ],
+      "exitCode": 0,
+      "seconds": 0.3,
+      "stdout": "khotwa-ph05-2d6261abf817-math\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph05-2d6261abf817-db"
+      ],
+      "exitCode": 0,
+      "seconds": 0.3,
+      "stdout": "khotwa-ph05-2d6261abf817-db\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "network",
+        "rm",
+        "khotwa-ph05-2d6261abf817"
+      ],
+      "exitCode": 0,
+      "seconds": 0.3,
+      "stdout": "khotwa-ph05-2d6261abf817\n",
+      "stderr": ""
+    }
+  ],
+  "dbProof": {
+    "checks": [
+      {
+        "command": "prisma migrate deploy",
+        "exitCode": 0
+      },
+      {
+        "name": "PH05_delta_down_preserves_PH04_tables",
+        "passed": true
+      },
+      {
+        "command": "prisma migrate reset --force",
+        "exitCode": 0
+      }
+    ],
+    "postgres": "17.6",
+    "tables": 17,
+    "scope": "isolated tmpfs; delta rollback and full replay"
+  },
+  "liveProof": {
+    "phase": "PH-05",
+    "runId": "865e4261-3f0c-4edc-86f8-dbb828868e78",
+    "contracts": [
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getVerificationResult",
+        "status": 200
+      },
+      {
+        "operationId": "getVerificationResult",
+        "status": 404
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 404
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 409
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 409
+      },
+      {
+        "operationId": "updateStep",
+        "status": 200
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 409
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getVerificationResult",
+        "status": 200
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 409
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 503
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 422
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 422
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 422
+      }
+    ],
+    "validatedResponses": 379,
+    "golden": [
+      {
+        "id": "GOLD-PARSE-001",
+        "scope": "public_saved_step_parse",
+        "expected": "parsed",
+        "actual": "parsed",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-002",
+        "scope": "public_saved_step_parse",
+        "expected": "parsed",
+        "actual": "parsed",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-003",
+        "scope": "public_saved_step_parse",
+        "expected": "parsed",
+        "actual": "parsed",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-004",
+        "scope": "public_saved_step_parse",
+        "expected": "parsed",
+        "actual": "parsed",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-005",
+        "scope": "public_saved_step_parse",
+        "expected": "parsed",
+        "actual": "parsed",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-006",
+        "scope": "public_saved_step_parse",
+        "expected": "parsed",
+        "actual": "parsed",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-007",
+        "scope": "public_saved_step_parse",
+        "expected": "parsed",
+        "actual": "parsed",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-008",
+        "scope": "public_saved_step_parse",
+        "expected": "parsed",
+        "actual": "parsed",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-009",
+        "scope": "public_saved_step_parse",
+        "expected": "parsed",
+        "actual": "parsed",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-010",
+        "scope": "public_saved_step_parse",
+        "expected": "parsed",
+        "actual": "parsed",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-011",
+        "scope": "public_saved_step_parse",
+        "expected": "parsed",
+        "actual": "parsed",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-012",
+        "scope": "public_saved_step_parse",
+        "expected": "parsed",
+        "actual": "parsed",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-013",
+        "scope": "public_saved_step_parse",
+        "expected": "parsed",
+        "actual": "parsed",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-014",
+        "scope": "public_saved_step_parse",
+        "expected": "parsed",
+        "actual": "parsed",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-015",
+        "scope": "public_saved_step_parse",
+        "expected": "parsed",
+        "actual": "parsed",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-016",
+        "scope": "public_saved_step_parse",
+        "expected": "parsed",
+        "actual": "parsed",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-017",
+        "scope": "public_saved_step_parse",
+        "expected": "parsed",
+        "actual": "parsed",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-018",
+        "scope": "public_saved_step_parse",
+        "expected": "parsed",
+        "actual": "parsed",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-019",
+        "scope": "public_saved_step_parse",
+        "expected": "parsed",
+        "actual": "parsed",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-020",
+        "scope": "public_saved_step_parse",
+        "expected": "parsed",
+        "actual": "parsed",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-021",
+        "scope": "public_saved_step_parse",
+        "expected": "syntax_error",
+        "actual": "syntax_error",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-022",
+        "scope": "public_saved_step_parse",
+        "expected": "syntax_error",
+        "actual": "syntax_error",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-023",
+        "scope": "public_saved_step_parse",
+        "expected": "syntax_error",
+        "actual": "syntax_error",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-024",
+        "scope": "public_saved_step_parse",
+        "expected": "syntax_error",
+        "actual": "syntax_error",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-025",
+        "scope": "public_saved_step_parse",
+        "expected": "syntax_error",
+        "actual": "syntax_error",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-026",
+        "scope": "public_saved_step_parse",
+        "expected": "syntax_error",
+        "actual": "syntax_error",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-027",
+        "scope": "public_saved_step_parse",
+        "expected": "syntax_error",
+        "actual": "syntax_error",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-028",
+        "scope": "public_saved_step_parse",
+        "expected": "unsupported",
+        "actual": "unsupported",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-029",
+        "scope": "public_saved_step_parse",
+        "expected": "unsupported",
+        "actual": "unsupported",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-030",
+        "scope": "public_saved_step_parse",
+        "expected": "unsupported",
+        "actual": "unsupported",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-031",
+        "scope": "public_saved_step_parse",
+        "expected": "unsupported",
+        "actual": "unsupported",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-032",
+        "scope": "public_saved_step_parse",
+        "expected": "unsupported",
+        "actual": "unsupported",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-033",
+        "scope": "public_saved_step_parse",
+        "expected": "unsupported",
+        "actual": "unsupported",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-034",
+        "scope": "public_saved_step_parse",
+        "expected": "unsupported",
+        "actual": "unsupported",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-035",
+        "scope": "public_saved_step_parse",
+        "expected": "unsupported",
+        "actual": "unsupported",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-036",
+        "scope": "public_saved_step_parse",
+        "expected": "unsupported",
+        "actual": "unsupported",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-037",
+        "scope": "public_saved_step_parse",
+        "expected": "unsupported",
+        "actual": "unsupported",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-PARSE-038",
+        "scope": "public_saved_step_parse",
+        "expected": "unsupported",
+        "actual": "unsupported",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-001",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-002",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-003",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-004",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-005",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-006",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-007",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-008",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-009",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-010",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-011",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-012",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-013",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-014",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-015",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-016",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-017",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-018",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-019",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-020",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-021",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-022",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-023",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-024",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-025",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-026",
+        "scope": "public_transition",
+        "expected": "verified_valid",
+        "actual": "verified_valid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-029",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-030",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-031",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-032",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-033",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-034",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-035",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-037",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-038",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-039",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-040",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-041",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-042",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-043",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-044",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-045",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-046",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-047",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-048",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-049",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-050",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-051",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-052",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-053",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-055",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-056",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      },
+      {
+        "id": "GOLD-MATH-057",
+        "scope": "public_transition",
+        "expected": "verified_invalid",
+        "actual": "verified_invalid",
+        "passed": true,
+        "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+      }
+    ],
+    "criticalGoldenAcceptance": "not_approved_draft_reference_only",
+    "services": "real NestJS + PostgreSQL + Python/SymPy; stale proxy forwards unmodified real verdict",
+    "node": "v24.11.1"
+  }
+}

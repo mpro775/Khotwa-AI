@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+  engineType = "client"
+}
+datasource db {
+  provider = "postgresql"
+}
+model PocOwner {
+  id String @id @db.Uuid
+  slots PocSlot[]
+  keys PocKey[]
+  @@map("poc_owners")
+}
+model PocSlot {
+  id String @id @db.Uuid
+  ownerId String @db.Uuid
+  position Int
+  active Boolean @default(true)
+  revision BigInt @default(0)
+  owner PocOwner @relation(fields:[ownerId],references:[id])
+  versions PocVersion[]
+  @@unique([ownerId,id])
+  @@map("poc_slots")
+}
+model PocVersion {
+  id String @id @db.Uuid
+  ownerId String @db.Uuid
+  slotId String @db.Uuid
+  version Int
+  raw String
+  slot PocSlot @relation(fields:[ownerId,slotId],references:[ownerId,id])
+  @@unique([slotId,version])
+  @@map("poc_versions")
+}
+model PocKey {
+  id String @id @db.Uuid
+  ownerId String @db.Uuid
+  operation String
+  digest String
+  fingerprint String
+  owner PocOwner @relation(fields:[ownerId],references:[id])
+  @@unique([ownerId,operation,digest])
+  @@map("poc_keys")
+}

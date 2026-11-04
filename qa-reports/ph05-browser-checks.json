@@ -1,0 +1,45 @@
+{
+  "phase": "PH-05",
+  "recordedAt": "2026-11-04T03:15:52.978137+00:00",
+  "status": "deferred_by_product_owner",
+  "url": "https://localhost:8443/",
+  "desktop": {
+    "platform": "Windows",
+    "browser": "Chrome",
+    "attempted": true,
+    "navigationResult": "net::ERR_CERT_AUTHORITY_INVALID",
+    "tabId": "721865411",
+    "pageInteraction": "not_run",
+    "clipboard": "not_run",
+    "rtlMeaning": "not_run",
+    "screenshots": [],
+    "recordings": [],
+    "ownerReply": "سأكمل هذه الخطوة لاحقًا؛ وثّق المتبقي",
+    "certificateBypassPerformed": false,
+    "trustStoreChanged": false,
+    "securityDisabled": false
+  },
+  "phone": {
+    "status": "not_run",
+    "reason": "no physical phone available; explicit owner reply",
+    "ownerReply": "لا يوجد هاتف متاح حاليًا",
+    "device": null,
+    "screenshots": [],
+    "recordings": [],
+    "emulationCountedAsPhone": false
+  },
+  "automationBoundary": {
+    "rule": "Hand-Off Required for bypassing SSL certificate warnings",
+    "skill": "C:/Users/PC/.codex/plugins/cache/openai-bundled/computer-use/26.1023.51421/skills/computer-use/SKILL.md",
+    "confirmationPolicy": "C:/Users/PC/.codex/plugins/cache/openai-bundled/computer-use/26.1023.51421/docs/confirmations.md"
+  },
+  "separateEvidence": {
+    "httpsProgrammatic": "qa-reports/ph05-https-results.json",
+    "clientUnit": "qa-reports/ph05-checks.json",
+    "realBackend": "qa-reports/ph05-live-results.json",
+    "historicalEditor": "qa-reports/ph02-browser-checks.json",
+    "limitation": "None substitutes for current PH-05 interactive desktop or physical phone tests."
+  },
+  "nextSteps": "planning/ph05-local-run.md",
+  "gate1": "blocked_not_approved"
+}

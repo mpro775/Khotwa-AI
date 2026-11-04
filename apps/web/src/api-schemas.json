@@ -1,0 +1,1024 @@
+{
+  "components": {
+    "schemas": {
+      "Attempt": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "مصدر الحقيقة للحالة الحالية؛ النتائج السابقة تبقى تاريخية ولا تُعد نتائج نشطة بعد التعديل.",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "learningSessionId": { "type": "string", "format": "uuid" },
+          "problemRevisionId": { "type": "string", "format": "uuid" },
+          "kind": { "$ref": "#/components/schemas/AttemptKind" },
+          "revision": {
+            "type": "integer",
+            "format": "int32",
+            "description": "إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.",
+            "minimum": 0,
+            "maximum": 2147483647,
+            "example": 4
+          },
+          "status": { "$ref": "#/components/schemas/AttemptStatus" },
+          "completionVerdict": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": ["verified_complete", "not_complete", "unknown"]
+              },
+              { "type": "null" }
+            ]
+          },
+          "notationProfile": { "type": "string" },
+          "steps": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Step" }
+          },
+          "openedAt": { "type": "string", "format": "date-time" },
+          "updatedAt": { "type": "string", "format": "date-time" },
+          "parentEpisodeId": {
+            "anyOf": [
+              { "type": "string", "format": "uuid" },
+              { "type": "null" }
+            ]
+          },
+          "currentVerification": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/VerificationReport" },
+              { "type": "null" }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "learningSessionId",
+          "problemRevisionId",
+          "kind",
+          "revision",
+          "status",
+          "completionVerdict",
+          "notationProfile",
+          "steps",
+          "openedAt",
+          "updatedAt",
+          "parentEpisodeId",
+          "currentVerification"
+        ]
+      },
+      "AttemptEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/Attempt" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "AttemptKind": {
+        "type": "string",
+        "enum": ["main", "probe", "remediation", "transfer"]
+      },
+      "AttemptStatus": {
+        "type": "string",
+        "enum": ["in_progress", "completed", "assisted_completed", "stopped"]
+      },
+      "BootstrapData": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "csrfToken": {
+            "type": "string",
+            "description": "رمز حماية ضد تزوير الطلبات، ليس رمز جلسة دخول.",
+            "minLength": 32
+          },
+          "csrfHeaderName": { "type": "string", "enum": ["X-CSRF-Token"] },
+          "capabilities": { "$ref": "#/components/schemas/Capabilities" },
+          "hasActiveGuestSession": { "type": "boolean" }
+        },
+        "required": [
+          "csrfToken",
+          "csrfHeaderName",
+          "capabilities",
+          "hasActiveGuestSession"
+        ]
+      },
+      "BootstrapEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/BootstrapData" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "Capabilities": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "notationProfile": {
+            "type": "string",
+            "enum": ["ar-mashriq-school-v1"]
+          },
+          "subject": { "type": "string", "enum": ["algebra"] },
+          "variable": { "type": "string", "enum": ["س"] },
+          "mathModes": {
+            "type": "array",
+            "items": { "type": "string", "enum": ["linear_one_variable"] }
+          },
+          "supportsTrigonometry": { "type": "boolean", "default": false },
+          "supportsHandwriting": { "type": "boolean", "default": false },
+          "supportsFractions": {
+            "type": "boolean",
+            "description": "تفعيل الكسور يخضع لنجاح اختبارات العرض.",
+            "default": false
+          },
+          "supportsTeacherRealData": { "type": "boolean", "default": false },
+          "supportedMathStatuses": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/MathStatus" }
+          }
+        },
+        "required": [
+          "notationProfile",
+          "subject",
+          "variable",
+          "mathModes",
+          "supportsTrigonometry",
+          "supportsHandwriting",
+          "supportsFractions",
+          "supportsTeacherRealData",
+          "supportedMathStatuses"
+        ]
+      },
+      "Completion": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "state": {
+            "type": "string",
+            "enum": ["not_complete", "verified_complete", "unknown"]
+          },
+          "canMarkAttemptCompleted": { "type": "boolean" },
+          "explanationAr": { "type": "string" }
+        },
+        "required": ["state", "canMarkAttemptCompleted", "explanationAr"]
+      },
+      "Counterexample": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "variable": { "type": "string", "enum": ["س"] },
+          "value": { "$ref": "#/components/schemas/Rational" },
+          "satisfiesPrevious": { "type": "boolean" },
+          "satisfiesNext": { "type": "boolean" }
+        },
+        "required": ["variable", "value", "satisfiesPrevious", "satisfiesNext"]
+      },
+      "DiagnosisCandidate": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "diagnosisId": {
+            "anyOf": [
+              { "type": "string", "format": "uuid" },
+              { "type": "null" }
+            ]
+          },
+          "state": { "$ref": "#/components/schemas/DiagnosisState" },
+          "errorCode": {
+            "anyOf": [
+              {
+                "type": "string",
+                "description": "كود خطأ من ERR-ALG-01 إلى ERR-ALG-06.",
+                "pattern": "^ERR-ALG-0[1-6]$"
+              },
+              { "type": "null" }
+            ]
+          },
+          "skillId": {
+            "anyOf": [
+              { "type": "string", "format": "uuid" },
+              { "type": "null" }
+            ]
+          },
+          "explanationAr": {
+            "type": "string",
+            "description": "صياغة احتمالية، لا حكم قطعي."
+          },
+          "needsProbe": { "type": "boolean" }
+        },
+        "required": [
+          "diagnosisId",
+          "state",
+          "errorCode",
+          "skillId",
+          "explanationAr",
+          "needsProbe"
+        ]
+      },
+      "DiagnosisState": {
+        "type": "string",
+        "description": "حالة فرضية الخطأ، وليست حكمًا على الطالب.",
+        "enum": [
+          "tentative",
+          "needs_probe",
+          "supported_by_probe",
+          "rejected",
+          "unresolved"
+        ]
+      },
+      "ErrorDetail": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "رمز خطأ تطبيقي ثابت للمستهلك.",
+            "enum": [
+              "invalid_input",
+              "unauthenticated",
+              "forbidden",
+              "not_found",
+              "session_expired",
+              "revision_conflict",
+              "idempotency_conflict",
+              "request_in_progress",
+              "invalid_state",
+              "content_version_conflict",
+              "math_unsupported",
+              "math_inconclusive",
+              "math_unavailable",
+              "ai_unavailable",
+              "rate_limited",
+              "internal_error",
+              "csrf_invalid"
+            ]
+          },
+          "messageAr": { "type": "string" },
+          "issues": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ValidationIssue" }
+          },
+          "currentRevision": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "format": "int32",
+                "description": "آخر إصدار عند تعارض تعديل.",
+                "minimum": 0,
+                "maximum": 2147483647,
+                "example": 4
+              },
+              { "type": "null" }
+            ]
+          },
+          "retryable": { "type": "boolean" },
+          "retryAfterSeconds": {
+            "anyOf": [
+              { "type": "integer", "format": "int32", "minimum": 0 },
+              { "type": "null" }
+            ]
+          }
+        },
+        "required": [
+          "code",
+          "messageAr",
+          "issues",
+          "currentRevision",
+          "retryable",
+          "retryAfterSeconds"
+        ]
+      },
+      "ErrorEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "error": { "$ref": "#/components/schemas/ErrorDetail" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["error", "meta"]
+      },
+      "GuestCreateData": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "session": { "$ref": "#/components/schemas/GuestSession" },
+          "csrfToken": {
+            "type": "string",
+            "description": "رمز حماية جديد إن تم تدويره بعد إصدار الجلسة؛ يستبدل الرمز السابق.",
+            "minLength": 32
+          }
+        },
+        "required": ["session", "csrfToken"]
+      },
+      "GuestCurrentEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/GuestSession" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "GuestEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/GuestCreateData" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "GuestSession": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "status": {
+            "type": "string",
+            "enum": ["active", "expired", "revoked"]
+          },
+          "expiresAt": { "type": "string", "format": "date-time" },
+          "createdAt": { "type": "string", "format": "date-time" }
+        },
+        "required": ["id", "status", "expiresAt", "createdAt"]
+      },
+      "LearningSession": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "status": {
+            "type": "string",
+            "enum": ["active", "ended", "abandoned"]
+          },
+          "releaseId": { "type": "string", "format": "uuid" },
+          "startedAt": { "type": "string", "format": "date-time" },
+          "endedAt": {
+            "anyOf": [
+              { "type": "string", "format": "date-time" },
+              { "type": "null" }
+            ]
+          },
+          "isSynthetic": {
+            "type": "boolean",
+            "description": "تكون false دائمًا في جلسات الطلاب الحقيقيين."
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "releaseId",
+          "startedAt",
+          "endedAt",
+          "isSynthetic"
+        ]
+      },
+      "LearningSessionEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/LearningSession" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "ListProblems": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/ProblemSummary" }
+          },
+          "nextCursor": {
+            "anyOf": [
+              { "type": "string", "description": "مؤشر معتم لا تُفسر قيمته." },
+              { "type": "null" }
+            ]
+          }
+        },
+        "required": ["items", "nextCursor"]
+      },
+      "ListSkills": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Skill" }
+          }
+        },
+        "required": ["items"]
+      },
+      "MathEvidence": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": ["counterexample", "solution_set", "rule_violation", "none"]
+          },
+          "domain": { "type": "string", "enum": ["reals"] },
+          "previousSolution": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/SolutionSet" },
+              { "type": "null" }
+            ]
+          },
+          "nextSolution": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/SolutionSet" },
+              { "type": "null" }
+            ]
+          },
+          "witness": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/Counterexample" },
+              { "type": "null" }
+            ]
+          },
+          "summaryAr": {
+            "anyOf": [
+              {
+                "type": "string",
+                "description": "شرح الدليل بعد التحقق الرياضي، وليس توليدًا غير موثق."
+              },
+              { "type": "null" }
+            ]
+          }
+        },
+        "required": [
+          "kind",
+          "domain",
+          "previousSolution",
+          "nextSolution",
+          "witness",
+          "summaryAr"
+        ]
+      },
+      "MathIssue": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "reasonCode": {
+            "type": "string",
+            "description": "رمز ثابت مثل AMBIGUOUS_DIVISION.",
+            "maxLength": 80
+          },
+          "messageAr": {
+            "type": "string",
+            "description": "رسالة عربية قابلة للعرض دون traceback."
+          },
+          "spanStart": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "format": "int32",
+                "description": "موضع البداية بوحدات Unicode code points.",
+                "minimum": 0
+              },
+              { "type": "null" }
+            ]
+          },
+          "spanEnd": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "format": "int32",
+                "description": "نهاية المدى حصريًا.",
+                "minimum": 0
+              },
+              { "type": "null" }
+            ]
+          },
+          "spanUnit": { "type": "string", "enum": ["unicode_codepoint"] },
+          "hintKey": {
+            "anyOf": [
+              {
+                "type": "string",
+                "description": "مفتاح رسالة توجيهية.",
+                "maxLength": 80
+              },
+              { "type": "null" }
+            ]
+          }
+        },
+        "required": [
+          "reasonCode",
+          "messageAr",
+          "spanStart",
+          "spanEnd",
+          "spanUnit",
+          "hintKey"
+        ]
+      },
+      "MathSource": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "sourceRaw": {
+            "type": "string",
+            "description": "الصيغة العربية كما أدخلها الطالب دون استبدال صامت.",
+            "maxLength": 256,
+            "example": "٢س + ٦ = ١٠"
+          },
+          "displayAr": {
+            "anyOf": [
+              {
+                "type": "string",
+                "description": "العرض العربي الذي صادق عليه المحرك بعد التحليل."
+              },
+              { "type": "null" }
+            ]
+          },
+          "parseStatus": {
+            "type": "string",
+            "description": "حالة التحليل البنيوي.",
+            "enum": [
+              "not_checked",
+              "parsed",
+              "syntax_error",
+              "unsupported",
+              "inconclusive"
+            ]
+          }
+        },
+        "required": ["sourceRaw", "displayAr", "parseStatus"]
+      },
+      "MathStatus": {
+        "type": "string",
+        "description": "حكم محرك الرياضيات؛ لا يساوي تشخيصًا تربويًا.",
+        "enum": [
+          "verified_valid",
+          "verified_invalid",
+          "syntax_error",
+          "unsupported",
+          "inconclusive",
+          "service_error"
+        ]
+      },
+      "Meta": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "description": "معرّف تتبع الطلب.",
+            "format": "uuid"
+          },
+          "serverTime": {
+            "type": "string",
+            "description": "وقت الاستجابة UTC.",
+            "format": "date-time"
+          },
+          "apiVersion": {
+            "type": "string",
+            "description": "إصدار الواجهة.",
+            "example": "1"
+          }
+        },
+        "required": ["requestId", "serverTime", "apiVersion"]
+      },
+      "ProblemDetail": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "لا تتضمن الحل المرجعي أو answer_spec أو بيانات الإجابة الصحيحة للطالب.",
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "revisionId": { "type": "string", "format": "uuid" },
+          "versionNumber": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 1
+          },
+          "statementAr": {
+            "type": "string",
+            "description": "صياغة المسألة المعتمدة."
+          },
+          "originalEquation": {
+            "type": "string",
+            "description": "المعادلة العربية الأصلية الموثقة.",
+            "example": "٢(س + ٣) = ١٠"
+          },
+          "kind": { "$ref": "#/components/schemas/ProblemKind" },
+          "primarySkillId": { "type": "string", "format": "uuid" },
+          "notationProfile": { "type": "string" },
+          "difficultyBand": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "contentReleaseId": { "type": "string", "format": "uuid" }
+        },
+        "required": [
+          "id",
+          "revisionId",
+          "versionNumber",
+          "statementAr",
+          "originalEquation",
+          "kind",
+          "primarySkillId",
+          "notationProfile",
+          "difficultyBand",
+          "contentReleaseId"
+        ]
+      },
+      "ProblemEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/ProblemDetail" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "ProblemKind": {
+        "type": "string",
+        "description": "نوع المسألة من نسخة المحتوى المنشورة.",
+        "enum": ["main", "remediation", "transfer", "diagnostic"]
+      },
+      "ProblemListEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/ListProblems" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "ProblemSummary": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "هوية المسألة الأساسية.",
+            "format": "uuid"
+          },
+          "revisionId": {
+            "type": "string",
+            "description": "النسخة المنشورة المحددة.",
+            "format": "uuid"
+          },
+          "titleAr": { "type": "string" },
+          "kind": { "$ref": "#/components/schemas/ProblemKind" },
+          "skillId": { "type": "string", "format": "uuid" },
+          "difficultyBand": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "notationProfile": { "type": "string" },
+          "contentReleaseId": { "type": "string", "format": "uuid" }
+        },
+        "required": [
+          "id",
+          "revisionId",
+          "titleAr",
+          "kind",
+          "skillId",
+          "difficultyBand",
+          "notationProfile",
+          "contentReleaseId"
+        ]
+      },
+      "Rational": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "تمثيل دقيق للنسب؛ لا تستخدم float.",
+        "properties": {
+          "num": {
+            "type": "string",
+            "description": "البسط العشري كنص صحيح موقع.",
+            "pattern": "^-?(0|[1-9][0-9]*)$",
+            "example": "2"
+          },
+          "den": {
+            "type": "string",
+            "description": "المقام العشري كنص صحيح موجب، ولا يساوي صفرًا.",
+            "pattern": "^[1-9][0-9]*$",
+            "example": "1"
+          }
+        },
+        "required": ["num", "den"]
+      },
+      "Skill": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "code": {
+            "type": "string",
+            "description": "كود ثابت مثل SK-ALG-03.",
+            "pattern": "^SK-ALG-0[1-8]$"
+          },
+          "titleAr": { "type": "string" },
+          "objectiveAr": { "type": "string" },
+          "prerequisiteSkillIds": {
+            "type": "array",
+            "items": { "type": "string", "format": "uuid" }
+          },
+          "availableProblemCount": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "availability": {
+            "type": "string",
+            "enum": ["available", "unavailable"]
+          }
+        },
+        "required": [
+          "id",
+          "code",
+          "titleAr",
+          "objectiveAr",
+          "prerequisiteSkillIds",
+          "availableProblemCount",
+          "availability"
+        ]
+      },
+      "SkillListEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/ListSkills" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "SolutionSet": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "type": "string",
+            "description": "مجموعة حل المعادلة الخطية ضمن الأعداد الحقيقية.",
+            "enum": ["singleton", "all_reals", "empty"]
+          },
+          "value": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/Rational" },
+              { "type": "null" }
+            ]
+          }
+        },
+        "required": ["kind", "value"]
+      },
+      "Step": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "position": {
+            "type": "integer",
+            "format": "int32",
+            "description": "ترتيب الطالب يبدأ من 1، ولا تشمل معادلة السؤال الأصلية.",
+            "minimum": 1
+          },
+          "currentVersion": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 1
+          },
+          "source": { "$ref": "#/components/schemas/MathSource" },
+          "isActive": { "type": "boolean" },
+          "updatedAt": { "type": "string", "format": "date-time" }
+        },
+        "required": [
+          "id",
+          "position",
+          "currentVersion",
+          "source",
+          "isActive",
+          "updatedAt"
+        ]
+      },
+      "StepMutationEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/StepMutationResult" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "StepMutationResult": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "attemptId": { "type": "string", "format": "uuid" },
+          "attemptRevision": {
+            "type": "integer",
+            "format": "int32",
+            "description": "إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.",
+            "minimum": 0,
+            "maximum": 2147483647,
+            "example": 4
+          },
+          "step": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/Step" },
+              { "type": "null" }
+            ]
+          },
+          "invalidatedFromPosition": {
+            "type": "integer",
+            "format": "int32",
+            "description": "أول موقع يجب إعادة فحصه.",
+            "minimum": 1
+          },
+          "invalidatedVerificationCount": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "attemptId",
+          "attemptRevision",
+          "step",
+          "invalidatedFromPosition",
+          "invalidatedVerificationCount"
+        ]
+      },
+      "TransitionVerdict": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "verificationResultId": { "type": "string", "format": "uuid" },
+          "from": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": { "type": "string", "enum": ["problem", "step"] },
+              "stepId": {
+                "anyOf": [
+                  { "type": "string", "format": "uuid" },
+                  { "type": "null" }
+                ]
+              },
+              "stepVersion": {
+                "anyOf": [
+                  { "type": "integer", "format": "int32", "minimum": 1 },
+                  { "type": "null" }
+                ]
+              }
+            },
+            "required": ["kind", "stepId", "stepVersion"]
+          },
+          "to": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "stepId": { "type": "string", "format": "uuid" },
+              "stepVersion": {
+                "type": "integer",
+                "format": "int32",
+                "minimum": 1
+              }
+            },
+            "required": ["stepId", "stepVersion"]
+          },
+          "mathStatus": { "$ref": "#/components/schemas/MathStatus" },
+          "reasonCode": { "anyOf": [{ "type": "string" }, { "type": "null" }] },
+          "issue": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/MathIssue" },
+              { "type": "null" }
+            ]
+          },
+          "evidence": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/MathEvidence" },
+              { "type": "null" }
+            ]
+          },
+          "engineVersion": { "type": "string" },
+          "notationProfileVersion": { "type": "string" }
+        },
+        "required": [
+          "verificationResultId",
+          "from",
+          "to",
+          "mathStatus",
+          "reasonCode",
+          "issue",
+          "evidence",
+          "engineVersion",
+          "notationProfileVersion"
+        ]
+      },
+      "ValidationIssue": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "path": { "type": "string", "example": "body.expectedRevision" },
+          "rule": { "type": "string", "example": "required" },
+          "messageAr": { "type": "string" }
+        },
+        "required": ["path", "rule", "messageAr"]
+      },
+      "VerificationDetailEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/VerificationResultDetail" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "VerificationEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/VerificationReport" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "VerificationReport": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "معرّف تشغيل التحقق.",
+            "format": "uuid"
+          },
+          "attemptId": { "type": "string", "format": "uuid" },
+          "attemptRevision": {
+            "type": "integer",
+            "format": "int32",
+            "description": "إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.",
+            "minimum": 0,
+            "maximum": 2147483647,
+            "example": 4
+          },
+          "problemRevisionId": { "type": "string", "format": "uuid" },
+          "scope": { "$ref": "#/components/schemas/VerificationScope" },
+          "isCurrent": {
+            "type": "boolean",
+            "description": "يجب أن تكون true في استجابة ناجحة حديثة؛ القديمة تعاد 409."
+          },
+          "transitions": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/TransitionVerdict" },
+            "minItems": 1
+          },
+          "firstBlockingTransitionIndex": {
+            "anyOf": [
+              { "type": "integer", "format": "int32", "minimum": 0 },
+              { "type": "null" }
+            ]
+          },
+          "completion": { "$ref": "#/components/schemas/Completion" },
+          "diagnosisCandidate": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/DiagnosisCandidate" },
+              { "type": "null" }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "attemptId",
+          "attemptRevision",
+          "problemRevisionId",
+          "scope",
+          "isCurrent",
+          "transitions",
+          "firstBlockingTransitionIndex",
+          "completion",
+          "diagnosisCandidate"
+        ]
+      },
+      "VerificationResultDetail": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "الوصول إلى نتيجة تاريخية لا يعني صلاحيتها للنسخة الحالية.",
+        "properties": {
+          "attemptId": { "type": "string", "format": "uuid" },
+          "attemptRevision": {
+            "type": "integer",
+            "format": "int32",
+            "description": "إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.",
+            "minimum": 0,
+            "maximum": 2147483647,
+            "example": 4
+          },
+          "isCurrent": { "type": "boolean" },
+          "result": { "$ref": "#/components/schemas/TransitionVerdict" }
+        },
+        "required": ["attemptId", "attemptRevision", "isCurrent", "result"]
+      },
+      "VerificationScope": {
+        "type": "string",
+        "description": "التحقق من انتقال واحد أو السلسلة كاملة.",
+        "enum": ["target_edge", "current_sequence"]
+      }
+    }
+  }
+}

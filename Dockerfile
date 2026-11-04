@@ -4,17 +4,28 @@ COPY package.json package-lock.json ./
 COPY apps/api/package.json apps/api/package.json
 COPY apps/web/package.json apps/web/package.json
 COPY packages/contracts/package.json packages/contracts/package.json
-RUN npm ci --no-audit --no-fund
+# Fail this layer if npm silently skips the platform-specific bundler binding.
+RUN npm ci --include=optional --no-audit --no-fund && node --input-type=module -e "await import('rolldown')"
 COPY . .
 RUN npm run contracts && npm run build --workspace @khotwa/api && npm run build --workspace @khotwa/web
+
+FROM node-build AS api-test
+CMD ["node", "qa/ph04-container.mjs"]
+
+FROM node-build AS ph05-test
+CMD ["node", "qa/ph05-container.mjs"]
+
+FROM node-build AS node-production
 RUN npm prune --omit=dev --no-audit --no-fund
 
 FROM node:24.11.1-alpine3.22 AS api
 ENV NODE_ENV=production HOST=0.0.0.0 PORT=3000
 WORKDIR /app
-COPY --from=node-build --chown=node:node /app/node_modules ./node_modules
+COPY --from=node-production --chown=node:node /app/node_modules ./node_modules
 COPY --from=node-build --chown=node:node /app/apps/api/dist ./apps/api/dist
 COPY --from=node-build --chown=node:node /app/apps/api/package.json ./apps/api/package.json
+COPY --from=node-build --chown=node:node /app/packages/contracts/openapi.yaml ./packages/contracts/openapi.yaml
+COPY --from=node-build --chown=node:node /app/packages/contracts/schemas ./packages/contracts/schemas
 USER node
 EXPOSE 3000
 CMD ["node", "apps/api/dist/main.js"]

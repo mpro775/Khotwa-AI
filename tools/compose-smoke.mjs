@@ -68,8 +68,10 @@ record("internal_health_requires_token", () => {
   assert.equal(result.deniedStatus, 403);
   return true;
 });
-record("python_foundation_has_no_math_verdicts", () => {
-  assert.equal(result.math.verificationImplemented, false);
+record("python_math_worker_is_versioned_and_ready", () => {
+  assert.equal(result.math.verificationImplemented, true);
+  assert.equal(result.math.engineVersion, "0.3.0");
+  assert.equal(result.math.workerReady, true);
   assert.equal(result.math.sympyVersion, "1.14.0");
   return true;
 });
@@ -105,7 +107,7 @@ for (const match of html.matchAll(/(?:src|href)="(\/assets\/[^"]+)"/g)) {
   checks.push({ name: "built_asset_http_200", passed: true, path: match[1] });
 }
 const report = {
-  phase: "PH-01",
+  phase: "PH-03-foundation-regression",
   recordedAtRiyadh: new Date().toLocaleString("sv-SE", {
     timeZone: "Asia/Riyadh",
   }),
@@ -132,7 +134,7 @@ const report = {
   publicUrl: "http://127.0.0.1:8080",
 };
 writeFileSync(
-  "qa-reports/ph01-compose-checks.json",
+  "qa-reports/ph03-compose-checks.json",
   JSON.stringify(report, null, 2) + "\n",
 );
 console.log(

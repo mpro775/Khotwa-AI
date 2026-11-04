@@ -1,28 +1,11 @@
 import "reflect-metadata";
-import { randomUUID } from "node:crypto";
-import { Module } from "@nestjs/common";
-import { NestFactory } from "@nestjs/core";
-import { HealthController, HealthGuard, HealthService } from "./health";
-import { ApiErrorFilter, RequestContext, ResponseContext } from "./http";
-@Module({
-  controllers: [HealthController],
-  providers: [HealthGuard, HealthService],
-})
-class AppModule {}
+import { createApplication } from "./application";
 async function bootstrap(): Promise<void> {
   if ((process.env.INTERNAL_HEALTH_TOKEN ?? "").length < 32)
     throw new Error(
       "INTERNAL_HEALTH_TOKEN must be configured with at least 32 characters",
     );
-  const app = await NestFactory.create(AppModule, { logger: false });
-  app.use((req: RequestContext, res: ResponseContext, next: () => void) => {
-    req.requestId = randomUUID();
-    res.setHeader("X-Request-Id", req.requestId);
-    res.setHeader("Cache-Control", "private, no-store");
-    res.setHeader("X-Content-Type-Options", "nosniff");
-    next();
-  });
-  app.useGlobalFilters(new ApiErrorFilter());
+  const app = await createApplication(process.env.PH04_API_ENABLED === "true");
   app.enableShutdownHooks();
   await app.listen(
     Number(process.env.PORT ?? 3000),

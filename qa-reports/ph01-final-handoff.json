@@ -1,0 +1,24 @@
+{
+  "recordedAtRiyadh": "2026-11-04 03:19:25",
+  "sourceCommit": "70c946cf8881ed3c8d110bc409dbc8bf42a540a6",
+  "manifestFilesChecked": 152,
+  "missing": [],
+  "tasksPresentInHead": [
+    "agent-reports/TASK-011.md",
+    "agent-reports/TASK-012.md",
+    "agent-reports/TASK-013.md",
+    "agent-reports/TASK-014.md",
+    "agent-reports/TASK-015.md",
+    "agent-reports/TASK-016.md",
+    "agent-reports/TASK-017.md"
+  ],
+  "checkGroupsPassed": 7,
+  "checkGroupsFailed": 0,
+  "composePassed": 14,
+  "composeFailed": 0,
+  "composeConfigQuietExitCode": 0,
+  "containerRebuild": "not_needed_no_foundation_source_changes",
+  "userDeletionsPreserved": "D\t00-PROJECT-VISION.md\nD\t01_KHOTWA_PRODUCT_VISION_AR.md\nD\t02_KHOTWA_PRODUCT_REQUIREMENTS_AR.md\nM\tqa-reports/ph01-checks.json\nM\tqa-reports/ph01-compose-checks.json",
+  "acceptance": "owner_approved_after_final_checks",
+  "gate1": "not_approved"
+}

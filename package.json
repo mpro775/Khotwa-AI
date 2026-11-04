@@ -27,7 +27,19 @@
     "seed:demo": "node tools/python-task.mjs tools/seed_demo.py",
     "env:local": "node tools/python-task.mjs tools/dev_env.py",
     "verify": "node tools/verify-ph01.mjs",
-    "smoke:compose": "node tools/compose-smoke.mjs"
+    "smoke:compose": "node tools/compose-smoke.mjs",
+    "test:editor": "npm run test:editor --workspace @khotwa/web",
+    "verify:ph02": "node tools/verify-ph02.mjs",
+    "verify:ph03": "node tools/verify-ph03.mjs",
+    "verify:ph03:container": "node tools/verify-ph03-container.mjs",
+    "test:math": "node tools/test-math.mjs",
+    "test:api": "npm run test --workspace @khotwa/api",
+    "verify:ph04": "node tools/verify-ph04.mjs",
+    "verify:ph04:container": "node tools/verify-ph04-container.mjs",
+    "test:workspace": "node tools/test-workspace.mjs",
+    "verify:ph05": "node tools/verify-ph05.mjs",
+    "verify:ph05:container": "node tools/verify-ph05-container.mjs",
+    "dev:ph05": "node tools/serve-ph05.mjs"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

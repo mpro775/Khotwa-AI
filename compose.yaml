@@ -27,6 +27,22 @@ services:
       DATABASE_URL: postgresql://khotwa_dev:${POSTGRES_PASSWORD:?Run npm run env:local}@database:5432/khotwa_dev
       MATH_ENGINE_BASE_URL: http://math-engine:8001
       AI_ENABLED: "false"
+      # Enable only after local migrations and HTTPS origin configuration.
+      PH04_API_ENABLED: ${PH04_API_ENABLED:-false}
+      PH05_API_ENABLED: ${PH05_API_ENABLED:-false}
+      PH05_VERIFY_TIMEOUT_MS: ${PH05_VERIFY_TIMEOUT_MS:-}
+      KHOTWA_SYNTHETIC_DATA: ${KHOTWA_SYNTHETIC_DATA:-false}
+      PUBLIC_APP_ORIGIN: ${PUBLIC_APP_ORIGIN:-}
+      GUEST_DIGEST_KEY: ${GUEST_DIGEST_KEY:-}
+      BOOTSTRAP_SIGNING_KEY: ${BOOTSTRAP_SIGNING_KEY:-}
+      CSRF_SIGNING_KEY: ${CSRF_SIGNING_KEY:-}
+      GUEST_ISSUE_KEY: ${GUEST_ISSUE_KEY:-}
+      IDEMPOTENCY_DIGEST_KEY: ${IDEMPOTENCY_DIGEST_KEY:-}
+      CURSOR_SIGNING_KEY: ${CURSOR_SIGNING_KEY:-}
+      PH04_BOOTSTRAP_TTL_SECONDS: ${PH04_BOOTSTRAP_TTL_SECONDS:-}
+      PH04_RATE_LIMIT_MAX: ${PH04_RATE_LIMIT_MAX:-}
+      PH04_RATE_LIMIT_WINDOW_SECONDS: ${PH04_RATE_LIMIT_WINDOW_SECONDS:-}
+      PH04_MATH_TIMEOUT_MS: ${PH04_MATH_TIMEOUT_MS:-}
     depends_on:
       database:
         condition: service_healthy
@@ -60,6 +76,7 @@ services:
     tmpfs: [/tmp]
     security_opt: ["no-new-privileges:true"]
     mem_limit: 256m
+    cpus: 1.0
     pids_limit: 64
     healthcheck:
       test:

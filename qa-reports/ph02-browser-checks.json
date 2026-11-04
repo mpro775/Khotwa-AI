@@ -1,0 +1,182 @@
+{
+  "phase": "PH-02",
+  "dateRiyadh": "2026-11-04",
+  "environment": {
+    "os": "Windows desktop",
+    "browser": "Chrome",
+    "installedExecutableVersion": "156.0.8078.74",
+    "userAgentCaptured": false,
+    "url": "http://127.0.0.1:5173/"
+  },
+  "evidenceOrigin": "Transcribed from actual cua_repl Chrome interaction outputs in this chat; runtime reset prevented direct export. These are not generated engine results.",
+  "inputChecks": [
+    {
+      "name": "desktop_input_display",
+      "raw": "٢س",
+      "rawRetained": "٢س",
+      "mathElements": 1,
+      "passed": true
+    },
+    {
+      "name": "desktop_input_display",
+      "raw": "2س",
+      "rawRetained": "2س",
+      "mathElements": 1,
+      "passed": true
+    },
+    {
+      "name": "desktop_input_display",
+      "raw": "٢(س + ٣)",
+      "rawRetained": "٢(س + ٣)",
+      "mathElements": 1,
+      "passed": true
+    },
+    {
+      "name": "desktop_input_display",
+      "raw": "٢س + ٣ = ٧",
+      "rawRetained": "٢س + ٣ = ٧",
+      "mathElements": 1,
+      "passed": true
+    },
+    {
+      "name": "desktop_input_display",
+      "raw": "2س + 3 = 7",
+      "rawRetained": "2س + 3 = 7",
+      "mathElements": 1,
+      "passed": true
+    },
+    {
+      "name": "desktop_input_display",
+      "raw": "٢(س + ٣) = ١٠",
+      "rawRetained": "٢(س + ٣) = ١٠",
+      "mathElements": 1,
+      "passed": true
+    },
+    {
+      "name": "desktop_input_display",
+      "raw": "−٣س + ١٢ = ٠",
+      "rawRetained": "−٣س + ١٢ = ٠",
+      "mathElements": 1,
+      "passed": true
+    },
+    {
+      "name": "desktop_input_display",
+      "raw": "س = ١/٢",
+      "rawRetained": "س = ١/٢",
+      "mathElements": 1,
+      "passed": true
+    },
+    {
+      "name": "desktop_input_display",
+      "raw": "س/٢ = ٣",
+      "rawRetained": "س/٢ = ٣",
+      "mathElements": 1,
+      "passed": true
+    },
+    {
+      "name": "desktop_input_display",
+      "raw": "٢س/٣ = ٤",
+      "rawRetained": "٢س/٣ = ٤",
+      "mathElements": 1,
+      "passed": true
+    },
+    {
+      "name": "desktop_input_display",
+      "raw": "٢×س = ٤",
+      "rawRetained": "٢×س = ٤",
+      "mathElements": 1,
+      "passed": true
+    },
+    {
+      "name": "desktop_input_display",
+      "raw": "٢٣س = ٤٦",
+      "rawRetained": "٢٣س = ٤٦",
+      "mathElements": 1,
+      "passed": true
+    },
+    {
+      "name": "desktop_input_display",
+      "raw": "س = ١٢٣",
+      "rawRetained": "س = ١٢٣",
+      "mathElements": 1,
+      "passed": true
+    }
+  ],
+  "clipboardChecks": [
+    {
+      "name": "desktop_clipboard_round_trip",
+      "raw": "2س + 3 = 7",
+      "copied": "2س + 3 = 7",
+      "afterRaw": "2س + 3 = 7",
+      "sameFixtureDescription": true,
+      "passed": true
+    },
+    {
+      "name": "desktop_clipboard_round_trip",
+      "raw": "س = ١/٢",
+      "copied": "س = ١/٢",
+      "afterRaw": "س = ١/٢",
+      "sameFixtureDescription": true,
+      "passed": true
+    },
+    {
+      "name": "desktop_clipboard_round_trip",
+      "raw": "−٣س + ١٢ = ٠",
+      "copied": "−٣س + ١٢ = ٠",
+      "afterRaw": "−٣س + ١٢ = ٠",
+      "sameFixtureDescription": true,
+      "passed": true
+    },
+    {
+      "name": "desktop_clipboard_round_trip",
+      "raw": "٢(س + ٣) = ١٠",
+      "copied": "٢(س + ٣) = ١٠",
+      "afterRaw": "٢(س + ٣) = ١٠",
+      "sameFixtureDescription": true,
+      "passed": true
+    }
+  ],
+  "completedChecksPassed": 17,
+  "completedChecksFailed": 0,
+  "mathLiveProbe": {
+    "version": "0.111.4",
+    "interacted": true,
+    "inserted": "٢(س + ٣) = ١٠",
+    "pastes": [
+      "١/٢س = ٣",
+      "٢(س + ٣ = ١٠"
+    ],
+    "asciiExportOfIncompleteInput": "٢(س+٣=١٠",
+    "clipboardTextOfIncompleteInput": "$$ ٢(س + ٣ = ١٠ $$",
+    "defaultPlainArabicClipboard": "failed",
+    "finalLibraryDecision": "pending_not_proven_unadaptable"
+  },
+  "interruptedChecks": [
+    {
+      "name": "toolbar_cursor_undo_redo",
+      "result": "interrupted_no_pass_claim",
+      "detail": "First toolbar click timed out; later DOM/read/reload and new-tab recovery timed out. Native Computer Use then stopped because current browser URL could not be determined with enough confidence."
+    }
+  ],
+  "notRun": [
+    "physical_phone_browser",
+    "narrow_viewport",
+    "visual_fraction_and_multidigit_signoff",
+    "container_direction_toggle",
+    "final_ui_error_state_correction",
+    "final_source_browser_rerun_after_last_shallow_guards"
+  ],
+  "physicalPhone": {
+    "status": "not_run",
+    "source": "User explicitly answered no phone available"
+  },
+  "screenshots": [
+    "qa-reports/ph02-evidence/desktop-brackets.jpg",
+    "qa-reports/ph02-evidence/desktop-copy-paste.jpg"
+  ],
+  "limitations": [
+    "Display fixtures and descriptions only; no AST or parse equivalence claim",
+    "Browser snapshot preceded final shallow guard additions",
+    "No product Golden or GATE-1 acceptance"
+  ]
+}

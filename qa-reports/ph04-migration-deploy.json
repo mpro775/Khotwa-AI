@@ -1,0 +1,6 @@
+{
+  "exitCode": 0,
+  "stdout": "Datasource \"db\": PostgreSQL database \"ph04_test\", schema \"public\" at \"khotwa-ph04-test-db:5432\"\n\n1 migration found in prisma/migrations\n\nApplying migration `0001_ph04`\n\nThe following migration(s) have been applied:\n\nmigrations/\n  └─ 0001_ph04/\n    └─ migration.sql\n\nAll migrations have been successfully applied.\n",
+  "stderr": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\n",
+  "database": "isolated ph04_test; synthetic only"
+}

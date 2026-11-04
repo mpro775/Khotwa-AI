@@ -19,3 +19,17 @@ jobs:
       - run: .venv/bin/python -m pip install -r services/math-engine/requirements-dev.lock
       - run: npm ci --no-audit --no-fund
       - run: npm run verify
+      - run: npm run test:editor
+      - run: npm run verify:ph03
+      - run: npm run test:api
+      - run: npm run test:workspace
+  api-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24.11.1"
+      - run: node tools/verify-ph04-container.mjs
+      - run: node tools/verify-ph05-container.mjs

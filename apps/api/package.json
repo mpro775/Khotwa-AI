@@ -4,8 +4,10 @@
   "private": true,
   "type": "commonjs",
   "scripts": {
-    "typecheck": "tsc --noEmit",
-    "build": "tsc -p tsconfig.json",
+    "generate": "prisma generate --config prisma.config.ts",
+    "typecheck": "npm run generate && tsc --noEmit",
+    "build": "npm run generate && tsc -p tsconfig.json",
+    "test": "node --test tests/security.test.mjs tests/math-gateway.test.mjs",
     "start": "node dist/main.js",
     "dev": "npm run build && node --watch dist/main.js"
   },
@@ -14,8 +16,16 @@
     "@nestjs/common": "12.3.2",
     "@nestjs/core": "12.3.2",
     "@nestjs/platform-express": "12.3.2",
+    "@prisma/adapter-pg": "7.10.1",
+    "@prisma/client": "7.10.1",
+    "ajv": "8.17.1",
+    "ajv-formats": "3.0.1",
     "pg": "8.16.3",
     "reflect-metadata": "0.2.2",
-    "rxjs": "7.8.2"
+    "rxjs": "7.8.2",
+    "yaml": "2.8.1"
+  },
+  "devDependencies": {
+    "prisma": "7.10.1"
   }
 }

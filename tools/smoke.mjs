@@ -120,7 +120,9 @@ try {
   r = await get(math + "/internal/health", mathToken);
   assert.equal(r.status, 200);
   const m = await r.json();
-  assert.equal(m.verificationImplemented, false);
+  assert.equal(m.verificationImplemented, true);
+  assert.equal(m.engineVersion, "0.3.0");
+  assert.equal(m.workerReady, true);
   assert.equal(m.sympyVersion, "1.14.0");
   checks++;
   r = await get(math + "/internal/health", "caf\u00e9");
@@ -129,7 +131,7 @@ try {
   console.log(
     "Native smoke: " +
       checks +
-      " checks passed; protected health and truthful unavailable readiness; no business/math routes claimed.",
+      " checks passed; protected health, versioned math worker and truthful unavailable DB readiness; no public business routes claimed.",
   );
 } finally {
   for (const c of children) c.kill();

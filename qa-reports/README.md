@@ -1,8 +1,12 @@
-> **تسليم PH-01:** [المرحلة جاهزة للمراجعة](ph01-delivery.md)، مع [7 مجموعات محلية](ph01-checks.json) و[14 فحص حاويات](ph01-compose-checks.json). PH-02 لم يبدأ.
+> **الحالة الحالية:** [PH-05 مكتملة جزئيًا وجاهزة للمراجعة التقنية](ph05-delivery.md)، و[GATE-1 محجوبة](gate-1.md). المسار الخادمي الحقيقي وفحص HTTPS موثقان؛ فحص Chrome التفاعلي مؤجل بقرار المالك، والهاتف غير متاح. لا صور PH-05 أو توقيع مراجعة محتوى/Golden مستنتج. [حالة الأجهزة](ph05-browser-checks.json) و[المتابعة](../planning/ph05-local-run.md).
+
+> **سجل PH-04:** [التسليم](ph04-delivery.md): 7 مجموعات فحص ناجحة، 51 اختبارًا في حاويات معزولة، 91 استجابة HTTP مطابقة للعقد، و7 فحوص لصورة API النهائية وقت التسليم. [اختيار Prisma معتمد من المالك](../planning/ph04-orm-decision.md). لا تمثل الأرقام التاريخية نتيجة تشغيل PH-05 الحالية.
+
+> **سجل تسليم PH-03:** [التنفيذ](ph03-delivery.md)، [10 مجموعات مستهدفة](ph03-checks.json)، [97 حالة Golden تطويرية](ph03-golden-results.json)، [العقد/HTTP](ph03-contract-results.json)، [Linux](ph03-container-checks.json) و[Compose](ph03-compose-checks.json). [PH-01 مقبولة](ph01-delivery.md). هذه النتائج تخص وقت تسليمها ولا تحل محل أدلة PH-04 الحالية.
 
 > **الحالة الراهنة:** [GATE-0 APPROVED](gate-0.md) بتفويض مسؤول المشروع للوكيل؛ تقارير الحجب السابقة محفوظة كتاريخ. [فحوص الأساس الجديد](gate0-owner-delegation-validation.json) و[سجل الإغلاق](../planning/gate0-closure.json).
 
-> **آخر تحديث:** [نتيجة مطابقة الإغلاق النهائي](GATE0-FINAL-RECONCILIATION.md): BLOCKED_PENDING_SIGNOFF_EVIDENCE؛ إذن PH-01 مشروط ومثبت، والمحضران المباشران والتجميد غير مودعة. نتائج التصحيح أدناه تاريخية ومحفوظة.
+> **سجل تاريخي:** [محاولة مطابقة الإغلاق السابقة](GATE0-FINAL-RECONCILIATION.md) كانت BLOCKED_PENDING_SIGNOFF_EVIDENCE قبل قرار المسؤول اللاحق؛ لا تمثل الحالة الحالية. بقية تقارير PH-00 أدناه أرشيف محفوظ.
 
 # أدلة PH-00 بعد التصحيح
 

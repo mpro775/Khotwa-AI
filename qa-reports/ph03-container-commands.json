@@ -1,0 +1,99 @@
+{
+  "phase": "PH-03",
+  "recordedAtRiyadh": "2026-11-04 04:04:42",
+  "commands": [
+    {
+      "executable": "docker",
+      "args": [
+        "compose",
+        "--env-file",
+        ".local/compose.env",
+        "config",
+        "--quiet"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "docker",
+      "args": [
+        "compose",
+        "--env-file",
+        ".local/compose.env",
+        "build",
+        "math-engine"
+      ],
+      "exitCode": 0,
+      "stdout": "#1 [internal] load local bake definitions\n#1 reading from stdin 607B 0.0s done\n#1 DONE 0.0s\n\n#2 [internal] load build definition from Dockerfile\n#2 transferring dockerfile: 1.58kB 0.1s done\n#2 DONE 0.2s\n\n#3 [internal] load metadata for docker.io/library/python:3.13.7-slim-bookworm\n#3 DONE 3.1s\n\n#4 [internal] load .dockerignore\n#4 transferring context: 161B 0.0s done\n#4 DONE 0.1s\n\n#5 [internal] load build context\n#5 transferring context: 21.64kB 0.0s done\n#5 DONE 0.0s\n\n#6 [math 1/5] FROM docker.io/library/python:3.13.7-slim-bookworm@sha256:adafcc17694d715c905b4c7bebd96907a1fd5cf183395f0ebc4d3428bd22d92d\n#6 resolve docker.io/library/python:3.13.7-slim-bookworm@sha256:adafcc17694d715c905b4c7bebd96907a1fd5cf183395f0ebc4d3428bd22d92d 0.1s done\n#6 DONE 0.1s\n\n#7 [math 2/5] WORKDIR /app\n#7 CACHED\n\n#8 [math 3/5] COPY services/math-engine/requirements.lock ./requirements.lock\n#8 CACHED\n\n#9 [math 4/5] RUN pip install --no-cache-dir --no-deps -r requirements.lock && useradd --uid 10001 --create-home mathuser\n#9 CACHED\n\n#10 [math 5/5] COPY --chown=10001:10001 services/math-engine/src /app/src\n#10 DONE 0.1s\n\n#11 exporting to image\n#11 exporting layers\n#11 exporting layers 0.2s done\n#11 exporting manifest sha256:6370f4c042593d9e21709c983b9a0219f460f778a338560176193139232ebc4f 0.0s done\n#11 exporting config sha256:510f02a99c5eeca0bcd897637ed6b6461e54c45c383995406cf8ab77cb20d1d7 0.0s done\n#11 exporting attestation manifest sha256:c0adeb93a7362ca3b87ca2d4f9c612c804f10458e5b667f34bf5caee1671ae5b 0.1s done\n#11 exporting manifest list sha256:173fe988cf4db5e4d73c93634419c8dcd4419161d5cb2ee083aabe93b59876e0\n#11 exporting manifest list sha256:173fe988cf4db5e4d73c93634419c8dcd4419161d5cb2ee083aabe93b59876e0 0.1s done\n#11 naming to docker.io/library/khotwa-ph01-math-engine:latest done\n#11 unpacking to docker.io/library/khotwa-ph01-math-engine:latest 0.1s done\n#11 DONE 0.5s\n\n#12 resolving provenance for metadata file\n#12 DONE 0.0s\n",
+      "stderr": " Image khotwa-ph01-math-engine Building \n Image khotwa-ph01-math-engine Built \n"
+    },
+    {
+      "executable": "docker",
+      "args": [
+        "compose",
+        "--env-file",
+        ".local/compose.env",
+        "up",
+        "-d",
+        "--no-deps",
+        "--wait",
+        "math-engine"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": " Container khotwa-ph01-math-engine-1 Recreate \n Container khotwa-ph01-math-engine-1 Recreated \n Container khotwa-ph01-math-engine-1 Starting \n Container khotwa-ph01-math-engine-1 Started \n Container khotwa-ph01-math-engine-1 Waiting \n Container khotwa-ph01-math-engine-1 Healthy \n"
+    },
+    {
+      "executable": "node",
+      "args": [
+        "tools/compose-smoke.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "Compose smoke: 14 checks passed; real DB/math readiness and loopback-only web; no migrations.\n",
+      "stderr": ""
+    },
+    {
+      "executable": "docker",
+      "args": [
+        "image",
+        "inspect",
+        "khotwa-ph01-math-engine",
+        "--format",
+        "{{.Id}}"
+      ],
+      "exitCode": 0,
+      "stdout": "sha256:173fe988cf4db5e4d73c93634419c8dcd4419161d5cb2ee083aabe93b59876e0\n",
+      "stderr": ""
+    },
+    {
+      "executable": "docker",
+      "args": [
+        "run",
+        "--rm",
+        "--network",
+        "none",
+        "--memory",
+        "256m",
+        "--cpus",
+        "1",
+        "--pids-limit",
+        "64",
+        "--read-only",
+        "--tmpfs",
+        "/tmp",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\qa,target=/qa,readonly",
+        "khotwa-ph01-math-engine",
+        "python",
+        "-X",
+        "utf8",
+        "/qa/ph03_container_smoke.py"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"phase\": \"PH-03\",\n  \"engineVersion\": \"0.3.0\",\n  \"python\": \"3.13.7 (main, Sep 30 2025, 00:38:53) [GCC 12.2.0]\",\n  \"checks\": [\n    {\n      \"name\": \"non_root\",\n      \"passed\": true,\n      \"detail\": null\n    },\n    {\n      \"name\": \"no_external_network_interface\",\n      \"passed\": true,\n      \"detail\": null\n    },\n    {\n      \"name\": \"read_only_root\",\n      \"passed\": true,\n      \"detail\": null\n    },\n    {\n      \"name\": \"container_memory_cap_256_mib\",\n      \"passed\": true,\n      \"detail\": 268435456\n    },\n    {\n      \"name\": \"cpu_cap_one_core\",\n      \"passed\": true,\n      \"detail\": {\n        \"quota\": \"100000\",\n        \"period\": \"100000\"\n      }\n    },\n    {\n      \"name\": \"worker_rlimit_as_192_mib\",\n      \"passed\": true,\n      \"detail\": {\n        \"ready\": true,\n        \"memoryLimitBytes\": 201326592\n      }\n    },\n    {\n      \"name\": \"worker_verified_valid\",\n      \"passed\": true,\n      \"detail\": {\n        \"schemaVersion\": \"math-internal-v1\",\n        \"requestId\": \"00000000-0000-4000-8000-000000000003\",\n        \"engineVersion\": \"0.3.0\",\n        \"notationProfileVersion\": \"ar-mashriq-school-v1\",\n        \"attemptRevision\": 4,\n        \"status\": \"verified_valid\",\n        \"reasonCode\": null,\n        \"evidence\": {\n          \"type\": \"solution_set\",\n          \"domain\": \"reals\",\n          \"previousSolution\": {\n            \"kind\": \"singleton\",\n            \"value\": {\n              \"num\": \"2\",\n              \"den\": \"1\"\n            }\n          },\n          \"nextSolution\": {\n            \"kind\": \"singleton\",\n            \"value\": {\n              \"num\": \"2\",\n              \"den\": \"1\"\n            }\n          },\n          \"witness\": null\n        },\n        \"issue\": null\n      }\n    },\n    {\n      \"name\": \"worker_verified_invalid\",\n      \"passed\": true,\n      \"detail\": {\n        \"schemaVersion\": \"math-internal-v1\",\n        \"requestId\": \"00000000-0000-4000-8000-000000000003\",\n        \"engineVersion\": \"0.3.0\",\n        \"notationProfileVersion\": \"ar-mashriq-school-v1\",\n        \"attemptRevision\": 4,\n        \"status\": \"verified_invalid\",\n        \"reasonCode\": \"SOLUTION_SET_MISMATCH\",\n        \"evidence\": {\n          \"type\": \"counterexample\",\n          \"domain\": \"reals\",\n          \"previousSolution\": {\n            \"kind\": \"singleton\",\n            \"value\": {\n              \"num\": \"2\",\n              \"den\": \"1\"\n            }\n          },\n          \"nextSolution\": {\n            \"kind\": \"singleton\",\n            \"value\": {\n              \"num\": \"7\",\n              \"den\": \"2\"\n            }\n          },\n          \"witness\": {\n            \"variable\": \"س\",\n            \"value\": {\n              \"num\": \"2\",\n              \"den\": \"1\"\n            },\n            \"satisfiesPrevious\": true,\n            \"satisfiesNext\": false\n          }\n        },\n        \"issue\": null\n      }\n    },\n    {\n      \"name\": \"worker_unsupported\",\n      \"passed\": true,\n      \"detail\": {\n        \"schemaVersion\": \"math-internal-v1\",\n        \"requestId\": \"00000000-0000-4000-8000-000000000003\",\n        \"engineVersion\": \"0.3.0\",\n        \"notationProfileVersion\": \"ar-mashriq-school-v1\",\n        \"attemptRevision\": 4,\n        \"status\": \"unsupported\",\n        \"reasonCode\": \"VARIABLE_DENOMINATOR\",\n        \"evidence\": null,\n        \"issue\": {\n          \"reasonCode\": \"VARIABLE_DENOMINATOR\",\n          \"messageAr\": \"المقام الذي يحتوي متغيرًا غير مدعوم، حتى لو أمكن اختزاله.\",\n          \"spanStart\": 2,\n          \"spanEnd\": 3,\n          \"spanUnit\": \"unicode_codepoint\",\n          \"hintKey\": null\n        }\n      }\n    },\n    {\n      \"name\": \"worker_syntax_error\",\n      \"passed\": true,\n      \"detail\": {\n        \"schemaVersion\": \"math-internal-v1\",\n        \"requestId\": \"00000000-0000-4000-8000-000000000003\",\n        \"engineVersion\": \"0.3.0\",\n        \"notationProfileVersion\": \"ar-mashriq-school-v1\",\n        \"attemptRevision\": 4,\n        \"status\": \"syntax_error\",\n        \"reasonCode\": \"DIVISION_BY_ZERO\",\n        \"evidence\": null,\n        \"issue\": {\n          \"reasonCode\": \"DIVISION_BY_ZERO\",\n          \"messageAr\": \"لا يمكن القسمة على صفر. راجع المقام.\",\n          \"spanStart\": 2,\n          \"spanEnd\": 3,\n          \"spanUnit\": \"unicode_codepoint\",\n          \"hintKey\": null\n        }\n      }\n    },\n    {\n      \"name\": \"worker_inconclusive\",\n      \"passed\": true,\n      \"detail\": {\n        \"schemaVersion\": \"math-internal-v1\",\n        \"requestId\": \"00000000-0000-4000-8000-000000000003\",\n        \"engineVersion\": \"0.3.0\",\n        \"notationProfileVersion\": \"ar-mashriq-school-v1\",\n        \"attemptRevision\": 4,\n        \"status\": \"inconclusive\",\n        \"reasonCode\": \"RESOURCE_RATIONAL_LIMIT\",\n        \"evidence\": null,\n        \"issue\": {\n          \"reasonCode\": \"RESOURCE_RATIONAL_LIMIT\",\n          \"messageAr\": \"تجاوز الحساب حد الأعداد النسبية التجريبي؛ لم نصدر حكمًا.\",\n          \"spanStart\": null,\n          \"spanEnd\": null,\n          \"spanUnit\": \"unicode_codepoint\",\n          \"hintKey\": null\n        }\n      }\n    },\n    {\n      \"name\": \"linux_address_space_limit_applied\",\n      \"passed\": true,\n      \"detail\": \"Max address space         201326592            201326592            bytes     \"\n    },\n    {\n      \"name\": \"linux_per_request_cpu_soft_limit\",\n      \"passed\": true,\n      \"detail\": \"Max cpu time              3                    unlimited            seconds   \"\n    }\n  ],\n  \"passed\": 13,\n  \"failed\": 0,\n  \"scope\": \"Local synthetic Linux resource/worker checks; no public port, DB, NestJS adapter, load test or gate acceptance\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "scope": "Local math image and existing private Compose regression only; no public deployment or migration"
+}

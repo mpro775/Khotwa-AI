@@ -1,6 +1,6 @@
 {
   "phase": "PH-01",
-  "status": "ready_for_review",
+  "status": "accepted_by_product_owner_after_final_checks",
   "implementationCommit": "bf1acf23d9fde59aad969eaf3f43f90272b8c950",
   "branch": "codex/ph01-foundation",
   "gate0": "APPROVED",
@@ -23,6 +23,9 @@
   "productMathGoldenCasesRun": 0,
   "remoteCiExecuted": false,
   "publicDeployment": false,
-  "ph02Started": false,
-  "nextAction": "Owner/team review of PH-01 delivery; do not start PH-02 automatically"
+  "ph02Started": true,
+  "acceptanceDate": "2026-11-04",
+  "acceptanceSource": "Explicit product-owner instruction in this chat, conditional on final checks; condition satisfied in ph01-final-handoff.json",
+  "gate1": "not_approved",
+  "nextAction": "Authorized PH-02 TASK-021 through TASK-025 only; stop for review. No PH-03 or PH-04."
 }

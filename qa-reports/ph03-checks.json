@@ -1,0 +1,113 @@
+{
+  "phase": "PH-03",
+  "recordedAtRiyadh": "2026-11-04 04:04:47",
+  "node": "v26.7.0",
+  "platform": "win32",
+  "checks": [
+    {
+      "name": "format_python",
+      "command": "node tools/python-task.mjs -X utf8 -m black --check services/math-engine/src services/math-engine/tests qa/run_ph03_golden.py qa/ph03_container_smoke.py",
+      "exitCode": 0,
+      "seconds": 1.2,
+      "stdout": "",
+      "stderr": "All done! ✨ 🍰 ✨\r\n18 files would be left unchanged.\r\n"
+    },
+    {
+      "name": "format_js_config",
+      "command": "node C:\\Users\\PC\\CONFIG~1\\herd\\bin\\nvm\\v26.7.0\\node_modules\\npm\\bin\\npm-cli.js exec -- prettier --check package.json compose.yaml .github/workflows/ci.yml tools/verify-ph03.mjs tools/verify-ph03-contracts.mjs tools/verify-ph03-container.mjs tools/test-math.mjs tools/smoke.mjs tools/compose-smoke.mjs",
+      "exitCode": 0,
+      "seconds": 1.8,
+      "stdout": "Checking formatting...\nAll matched files use Prettier code style!\n",
+      "stderr": ""
+    },
+    {
+      "name": "lint_python",
+      "command": "node tools/python-task.mjs -X utf8 -m pycodestyle --max-line-length=88 --ignore=E203,W503 services/math-engine/src services/math-engine/tests qa/run_ph03_golden.py qa/ph03_container_smoke.py",
+      "exitCode": 0,
+      "seconds": 1.1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "lint_js",
+      "command": "node C:\\Users\\PC\\CONFIG~1\\herd\\bin\\nvm\\v26.7.0\\node_modules\\npm\\bin\\npm-cli.js exec -- eslint tools/verify-ph03.mjs tools/verify-ph03-contracts.mjs tools/verify-ph03-container.mjs tools/test-math.mjs tools/smoke.mjs tools/compose-smoke.mjs",
+      "exitCode": 0,
+      "seconds": 5,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "typecheck",
+      "command": "node C:\\Users\\PC\\CONFIG~1\\herd\\bin\\nvm\\v26.7.0\\node_modules\\npm\\bin\\npm-cli.js exec -- pyright services/math-engine/src",
+      "exitCode": 0,
+      "seconds": 9.4,
+      "stdout": "0 errors, 0 warnings, 0 informations\n",
+      "stderr": ""
+    },
+    {
+      "name": "build",
+      "command": "node tools/python-task.mjs -X utf8 -m compileall -q services/math-engine/src",
+      "exitCode": 0,
+      "seconds": 0.5,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "unit_security_worker",
+      "command": "node tools/python-task.mjs -X utf8 -m unittest discover -s services/math-engine/tests -v",
+      "exitCode": 0,
+      "seconds": 8.3,
+      "stdout": "",
+      "stderr": "test_adjacency_issue_points_to_offending_term (test_math_engine.MathTests.test_adjacency_issue_points_to_offending_term) ... ok\r\ntest_all_empty_singleton_and_witnesses (test_math_engine.MathTests.test_all_empty_singleton_and_witnesses) ... ok\r\ntest_ambiguous_adjacency_and_incomplete_equations (test_math_engine.MathTests.test_ambiguous_adjacency_and_incomplete_equations) ... ok\r\ntest_bad_witness_abstains (test_math_engine.MathTests.test_bad_witness_abstains) ... ok\r\ntest_code_payloads_do_not_execute (test_math_engine.MathTests.test_code_payloads_do_not_execute) ... ok\r\ntest_control_spans_are_code_points (test_math_engine.MathTests.test_control_spans_are_code_points) ... ok\r\ntest_division_by_zero_in_arithmetic_denominator (test_math_engine.MathTests.test_division_by_zero_in_arithmetic_denominator) ... ok\r\ntest_functions_and_powers_abstain (test_math_engine.MathTests.test_functions_and_powers_abstain) ... ok\r\ntest_generated_equations_and_mutations (test_math_engine.MathTests.test_generated_equations_and_mutations) ... ok\r\ntest_internal_failure_is_not_student_error (test_math_engine.MathTests.test_internal_failure_is_not_student_error) ... ok\r\ntest_isolation_is_separate_from_equivalence (test_math_engine.MathTests.test_isolation_is_separate_from_equivalence) ... ok\r\ntest_multiple_valid_routes_and_signs (test_math_engine.MathTests.test_multiple_valid_routes_and_signs) ... ok\r\ntest_no_silent_aliases (test_math_engine.MathTests.test_no_silent_aliases) ... ok\r\ntest_nonlinearity_before_zero_or_cancellation (test_math_engine.MathTests.test_nonlinearity_before_zero_or_cancellation) ... ok\r\ntest_rational_arithmetic_and_precedence (test_math_engine.MathTests.test_rational_arithmetic_and_precedence) ... ok\r\ntest_rational_limit_is_inconclusive (test_math_engine.MathTests.test_rational_limit_is_inconclusive) ... ok\r\ntest_raw_and_display_are_independent (test_math_engine.MathTests.test_raw_and_display_are_independent) ... ok\r\ntest_real_difference_not_one_sample_or_text (test_math_engine.MathTests.test_real_difference_not_one_sample_or_text) ... ok\r\ntest_reference_disagreement_abstains (test_math_engine.MathTests.test_reference_disagreement_abstains) ... ok\r\ntest_round_trip_and_source_structure (test_math_engine.MathTests.test_round_trip_and_source_structure) ... ok\r\ntest_soft_deadline_has_no_math_verdict (test_math_engine.MathTests.test_soft_deadline_has_no_math_verdict) ... ok\r\ntest_source_has_no_unsafe_parsing_calls (test_math_engine.MathTests.test_source_has_no_unsafe_parsing_calls) ... ok\r\ntest_source_spans_and_groups (test_math_engine.MathTests.test_source_spans_and_groups) ... ok\r\ntest_structural_limits (test_math_engine.MathTests.test_structural_limits) ... ok\r\ntest_unicode_digits_signs_and_multi_digit_token (test_math_engine.MathTests.test_unicode_digits_signs_and_multi_digit_token) ... ok\r\ntest_variable_denominator_before_cancellation (test_math_engine.MathTests.test_variable_denominator_before_cancellation) ... ok\r\ntest_abstentions_have_no_partial_success_fields (test_protocol.ProtocolTests.test_abstentions_have_no_partial_success_fields) ... ok\r\ntest_check_final_does_not_decide_completion (test_protocol.ProtocolTests.test_check_final_does_not_decide_completion) ... ok\r\ntest_client_ast_extra_fields_and_unknown_schema_rejected (test_protocol.ProtocolTests.test_client_ast_extra_fields_and_unknown_schema_rejected) ... ok\r\ntest_echoes_versions_context_source_and_revision (test_protocol.ProtocolTests.test_echoes_versions_context_source_and_revision) ... ok\r\ntest_json_duplicate_keys_floats_constants_and_invalid_utf8_rejected (test_protocol.ProtocolTests.test_json_duplicate_keys_floats_constants_and_invalid_utf8_rejected) ... ok\r\ntest_technical_failure_is_sanitized (test_protocol.ProtocolTests.test_technical_failure_is_sanitized) ... ok\r\ntest_unknown_profile_fails_closed_with_original_context (test_protocol.ProtocolTests.test_unknown_profile_fails_closed_with_original_context) ... ok\r\ntest_wrong_types_bounds_uuid_and_source_consistency (test_protocol.ProtocolTests.test_wrong_types_bounds_uuid_and_source_consistency) ... ok\r\ntest_actual_hard_timeout_kills_worker (test_worker.WorkerTests.test_actual_hard_timeout_kills_worker) ... ok\r\ntest_busy_is_bounded_and_not_a_student_failure (test_worker.WorkerTests.test_busy_is_bounded_and_not_a_student_failure) ... ok\r\ntest_crashed_worker_does_not_issue_invalid_math (test_worker.WorkerTests.test_crashed_worker_does_not_issue_invalid_math) ... ok\r\ntest_escaped_surrogate_is_rejected_without_crashing_worker (test_worker.WorkerTests.test_escaped_surrogate_is_rejected_without_crashing_worker) ... ok\r\ntest_start_is_idempotent (test_worker.WorkerTests.test_start_is_idempotent) ... ok\r\ntest_warm_worker_serves_all_three_operations (test_worker.WorkerTests.test_warm_worker_serves_all_three_operations) ... ok\r\ntest_worker_does_not_inherit_service_secrets (test_worker.WorkerTests.test_worker_does_not_inherit_service_secrets) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 41 tests in 5.333s\r\n\r\nOK\r\n"
+    },
+    {
+      "name": "draft_golden",
+      "command": "node tools/python-task.mjs -X utf8 qa/run_ph03_golden.py",
+      "exitCode": 0,
+      "seconds": 3.7,
+      "stdout": "Draft Golden: 97/97 passed; 0 failed; no review status changed\r\n",
+      "stderr": ""
+    },
+    {
+      "name": "internal_schema_http",
+      "command": "node tools/verify-ph03-contracts.mjs",
+      "exitCode": 0,
+      "seconds": 2.9,
+      "stdout": "Internal contract: 109 schema pairs and 20 HTTP checks passed; no public backend routes added.\n",
+      "stderr": ""
+    },
+    {
+      "name": "foundation_smoke",
+      "command": "node tools/smoke.mjs",
+      "exitCode": 0,
+      "seconds": 3,
+      "stdout": "Native smoke: 7 checks passed; protected health, versioned math worker and truthful unavailable DB readiness; no public business routes claimed.\n",
+      "stderr": ""
+    }
+  ],
+  "passed": 10,
+  "failed": 0,
+  "sourceSha256": {
+    "services/math-engine/src/khotwa_math/engine.py": "ee534c839614c4cd05b0e0d7f627e8e34339eec2cc2134bb3ac796e4df61f61d",
+    "services/math-engine/src/khotwa_math/lexer.py": "3f2b77f964eb5b865b94885837f8b8adc95a3115113f256ec4614425924bb173",
+    "services/math-engine/src/khotwa_math/linear.py": "c8013e93eb5e6f23a84c1e50954d91d3d8e637d7c97728bd22818cc815ed265b",
+    "services/math-engine/src/khotwa_math/model.py": "9577917a1aa95a512ac937a256239201c4648dcc19982b4e8a833c9ce115c7cb",
+    "services/math-engine/src/khotwa_math/parser.py": "a3c612ff11bc0832167331ffc239048b25fd3d5b188e36904ada0c368ca0afbc",
+    "services/math-engine/src/khotwa_math/protocol.py": "b9603436f557b1fea35756e8691baf2baad4a07579d15da5d33760c33d1ed109",
+    "services/math-engine/src/khotwa_math/render.py": "236f35b0b8ee604aa9232ec0ee129d243a9984928cdba9f189d12a1375e09a7c",
+    "services/math-engine/src/khotwa_math/worker.py": "7cfaf655ff4880e515bfb861b47629d269076692918475c9dbde7730ae8d8215",
+    "services/math-engine/src/khotwa_math/worker_manager.py": "a6462c626542609a1103dda7069778f01b32677b3c9a0b013e255a6896bd0c22",
+    "services/math-engine/src/khotwa_math/__init__.py": "480aa02d47bc0d55839ae31b95d076839ebe845f4c9eb5700226b87060af511a",
+    "services/math-engine/src/khotwa_math/__main__.py": "3b3ec0aeeb69f9406dc7740679b372ce5907acf300b6168eae0e7e07f8cdaad0",
+    "services/math-engine/tests/helpers.py": "207b01cf643c8b2533d39f32249d6693652b0c94aee5c474b8d97fdbc4fa08fc",
+    "services/math-engine/tests/test_math_engine.py": "cd1b0304d26477c291b50fe8912c88dad7e5508a6b6460b89387fc7189ebaf9f",
+    "services/math-engine/tests/test_protocol.py": "8c9019d2be1a6f4a91132118d0d14acde7bae77aea2ee6bea8c12a79039db370",
+    "services/math-engine/tests/test_worker.py": "9502f0dab90dbe12bbedc2b226ea4448580a1f7c6ff1560c2bf7566b05465687",
+    "services/math-engine/tests/worker_fixture.py": "7339a34bc14a19aaf9b86b7d55ffd540f504c72b93a6fe50df02711ea60fb4d1",
+    "qa/run_ph03_golden.py": "e1b24340e88504cabcf8d80245afef6eb1746f6b927cc8fb0e3deaa814163231",
+    "qa/ph03_container_smoke.py": "d84c0d3cfe4b083a490797b3388974e5b95d13ddccdbdbc9b09a688bef3959eb",
+    "services/math-engine/pyproject.toml": "81ecc35e54e72a55b28cc7126a8026655c81e3e9a464a70f7cf3d9bf2629ed60"
+  },
+  "scope": "Math engine targeted checks and foundational smoke; not PH-04/05, live DB integration or GATE-1",
+  "gate1": "not_approved"
+}
