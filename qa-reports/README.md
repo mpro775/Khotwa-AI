@@ -1,3 +1,5 @@
+> **تسليم PH-01:** [المرحلة جاهزة للمراجعة](ph01-delivery.md)، مع [7 مجموعات محلية](ph01-checks.json) و[14 فحص حاويات](ph01-compose-checks.json). PH-02 لم يبدأ.
+
 > **الحالة الراهنة:** [GATE-0 APPROVED](gate-0.md) بتفويض مسؤول المشروع للوكيل؛ تقارير الحجب السابقة محفوظة كتاريخ. [فحوص الأساس الجديد](gate0-owner-delegation-validation.json) و[سجل الإغلاق](../planning/gate0-closure.json).
 
 > **آخر تحديث:** [نتيجة مطابقة الإغلاق النهائي](GATE0-FINAL-RECONCILIATION.md): BLOCKED_PENDING_SIGNOFF_EVIDENCE؛ إذن PH-01 مشروط ومثبت، والمحضران المباشران والتجميد غير مودعة. نتائج التصحيح أدناه تاريخية ومحفوظة.
