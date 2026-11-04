@@ -38,7 +38,7 @@ export class GeminiQuota {
     if (
       !isAbsolute(config.ledgerPath) ||
       !Number.isSafeInteger(config.roundLimit) ||
-      config.roundLimit < 10 ||
+      config.roundLimit < 1 ||
       config.roundLimit > 15 ||
       (config.dailyRemaining !== null &&
         (!Number.isSafeInteger(config.dailyRemaining) ||

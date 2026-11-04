@@ -1,6 +1,6 @@
 import type { DraftResult, HintContext } from "./ai-tutor";
 
-export const PH08_GENERATION_VERSION = "ph08-generative-draft-v1";
+export const PH08_GENERATION_VERSION = "ph08-generative-draft-v2";
 export interface GenerationProfile {
   skillCode: string;
   errorCode: string | null;
@@ -65,13 +65,16 @@ function conceptFor(p: GenerationProfile): Concept | null {
     (p.errorCode !== null && !/^ERR-ALG-0[1-6]$/.test(p.errorCode))
   )
     return null;
+  // Owner-approved temporary PH08 gate while the curriculum mapping is pending.
+  // Never remap the diagnosis or let an unresolved flag bypass this combination.
+  if (p.skillCode === "SK-ALG-06" && p.errorCode === "ERR-ALG-05") return null;
   if (p.diagnosisMode === "unresolved") return "balance";
   const expected: Record<string, string[]> = {
     "ERR-ALG-01": ["SK-ALG-04"],
     "ERR-ALG-02": ["SK-ALG-02", "SK-ALG-05"],
     "ERR-ALG-03": ["SK-ALG-01", "SK-ALG-05"],
     "ERR-ALG-04": ["SK-ALG-05", "SK-ALG-06"],
-    "ERR-ALG-05": ["SK-ALG-02", "SK-ALG-03", "SK-ALG-06"],
+    "ERR-ALG-05": ["SK-ALG-02", "SK-ALG-03"],
     "ERR-ALG-06": ["SK-ALG-02", "SK-ALG-04"],
   };
   if (!p.errorCode || !expected[p.errorCode]?.includes(p.skillCode))

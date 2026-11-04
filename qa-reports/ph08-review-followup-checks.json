@@ -1,0 +1,95 @@
+{
+  "at": "2026-11-04T23:52:58.701Z",
+  "node": "v26.7.0",
+  "actualGeminiCalls": 0,
+  "checks": [
+    {
+      "name": "lint",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "node_modules/eslint/bin/eslint.js",
+        "apps/api/src/gemini-quota.ts",
+        "apps/api/src/ph08-generative.ts",
+        "tools/prepare-ph08-review.mjs",
+        "tools/check-ph08-review.mjs",
+        "apps/api/tests/ph08-review-followup.test.mjs"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 1123,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "format",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "node_modules/prettier/bin/prettier.cjs",
+        "--check",
+        "apps/api/src/gemini-quota.ts",
+        "apps/api/src/ph08-generative.ts",
+        "tools/prepare-ph08-review.mjs",
+        "tools/check-ph08-review.mjs",
+        "apps/api/tests/ph08-review-followup.test.mjs"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 439,
+      "stdout": "Checking formatting...\nAll matched files use Prettier code style!\n",
+      "stderr": ""
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "typecheck",
+        "--workspace",
+        "@khotwa/api"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 6469,
+      "stdout": "\n> @khotwa/api@0.1.0 typecheck\n> npm run generate && tsc --noEmit\n\n\n> @khotwa/api@0.1.0 generate\n> prisma generate --config prisma.config.ts\n\n\n✔ Generated Prisma Client (v7.10.1) to .\\..\\..\\node_modules\\@prisma\\client in 448ms\n\nStart by importing your Prisma Client (See: https://pris.ly/d/importing-client)\n\n\n",
+      "stderr": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma\\schema.prisma.\n"
+    },
+    {
+      "name": "build",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "build",
+        "--workspace",
+        "@khotwa/api"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 6885,
+      "stdout": "\n> @khotwa/api@0.1.0 build\n> npm run generate && tsc -p tsconfig.json\n\n\n> @khotwa/api@0.1.0 generate\n> prisma generate --config prisma.config.ts\n\n\n✔ Generated Prisma Client (v7.10.1) to .\\..\\..\\node_modules\\@prisma\\client in 447ms\n\nStart by importing your Prisma Client (See: https://pris.ly/d/importing-client)\n\n\n",
+      "stderr": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma\\schema.prisma.\n"
+    },
+    {
+      "name": "prepare-review-pack",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "tools/prepare-ph08-review.mjs"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 404,
+      "stdout": "{\"draftCandidates\":21,\"blockedFractionCandidates\":3,\"packSha256\":\"c9ba4a4b5538339bbe8f0660bcb875eabdce7e83970f39b44436888e335ffe7c\",\"actualGeminiCalls\":0}\n",
+      "stderr": ""
+    },
+    {
+      "name": "targeted-tests",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--test",
+        "apps/api/tests/ph08-review-followup.test.mjs",
+        "apps/api/tests/gemini.test.mjs",
+        "apps/api/tests/ph08-generative.test.mjs"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 1227,
+      "stdout": "✔ rolling quota persists reservations, counts failures and respects the exact 60s boundary (32.7613ms)\n✔ actual remaining daily allowance and reset time fail closed (10.6049ms)\n✔ exclusive lock prevents a second process/adapter from bypassing the ledger (4.5641ms)\n✔ corrupt ledger and changed round configuration cannot replenish a round (17.5569ms)\n✔ structured request uses configurable model/minimal, secret header and local schema validation (56.0813ms)\n✔ local rejection: extra schema fields (7.0215ms)\n✔ local rejection: invented math verdict (5.5282ms)\n✔ local rejection: early answer despite false no-leak flag (5.4438ms)\n✔ local rejection: new unreviewed teaching meaning (6.888ms)\n✔ local rejection: wrong template (7.0187ms)\n✔ local rejection: abstention (5.8276ms)\n✔ provider finish/JSON: AI_INVALID_JSON (7.0392ms)\n✔ provider finish/JSON: AI_TRUNCATED (22.6077ms)\n✔ provider finish/JSON: AI_REFUSED (5.4757ms)\n✔ 429 spends one reservation without retry or logging the response body (6.0797ms)\n✔ out-of-scope and pre-aborted calls never contact provider or reserve quota (4.1349ms)\n✔ second concurrent call is rejected without dispatch or reservation (6.4843ms)\n✔ environment factory keeps disabled behavior and rejects PH09/non-synthetic activation (2.0622ms)\n✔ new compositional H1 is accepted and the old PH07 policy still rejects it (3.7012ms)\n✔ new compositional H2 is accepted and the old PH07 policy still rejects it (0.5975ms)\n✔ new compositional H3 is accepted and the old PH07 policy still rejects it (0.4381ms)\n✔ semantic rejection: numeric answer (0.3201ms)\n✔ semantic rejection: answer in words (0.2799ms)\n✔ semantic rejection: unverified equation (0.1707ms)\n✔ semantic rejection: invented verdict (0.1745ms)\n✔ semantic rejection: incorrect abstract math (0.1536ms)\n✔ semantic rejection: certain diagnosis (0.1899ms)\n✔ semantic rejection: polite certain diagnosis (0.3147ms)\n✔ semantic rejection: out of skill (0.1855ms)\n✔ semantic rejection: H2 disclosed in H1 (0.1895ms)\n✔ semantic rejection: unparsed suffix (0.2359ms)\n✔ semantic rejection: negated attention (0.2624ms)\n✔ semantic rejection: prompt injection (1.4093ms)\n✔ semantic rejection: HTML (0.221ms)\n✔ semantic rejection: bidi (0.1101ms)\n✔ semantic rejection: literal old template (0.1177ms)\n✔ unresolved diagnosis permits only neutral balance guidance without inventing a cause (0.3637ms)\n✔ a profile outside the server skill mapping or independent transfer cannot authorize text (0.2375ms)\n✔ schema validation and the model's safety flag never bypass the semantic parser (0.4224ms)\n✔ server mappings cover the six patterns at H1-H3 and cannot authorize H4 (0.471ms)\n✔ Gemini response supplies the exact novel display text; changing its response changes the accepted hint (50.9639ms)\n✔ provider failure and deadline return no raw text and cannot manufacture a generated source (28.7474ms)\n✔ unknown quota/unlimited or absent new-round authorization cannot activate a live factory or alter the old ledger (4.1245ms)\n✔ the division example is an existing tentative arithmetic observation, not new PH08 math policy (3.3108ms)\n✔ owner-approved SK06 arithmetic generation gate leaves the domain mapping unresolved (0.6896ms)\n✔ temporary SK06/ERR05 gate possible H1 cannot contact Gemini (6.8798ms)\n✔ temporary SK06/ERR05 gate possible H2 cannot contact Gemini (4.84ms)\n✔ temporary SK06/ERR05 gate possible H3 cannot contact Gemini (3.2695ms)\n✔ temporary SK06/ERR05 gate unresolved H1 cannot contact Gemini (5.2803ms)\n✔ temporary SK06/ERR05 gate unresolved H2 cannot contact Gemini (4.1178ms)\n✔ temporary SK06/ERR05 gate unresolved H3 cannot contact Gemini (4.3854ms)\n✔ SK08 possible H1 cannot dispatch or reserve Gemini quota (7.802ms)\n✔ SK08 possible H2 cannot dispatch or reserve Gemini quota (3.9533ms)\n✔ SK08 possible H3 cannot dispatch or reserve Gemini quota (4.2649ms)\n✔ SK08 unresolved H1 cannot dispatch or reserve Gemini quota (3.8828ms)\n✔ SK08 unresolved H2 cannot dispatch or reserve Gemini quota (2.969ms)\n✔ SK08 unresolved H3 cannot dispatch or reserve Gemini quota (2.8634ms)\n✔ fraction transfer remains blocked from generation before and after measurement exit (0.4388ms)\n✔ the review pack carries draft status, no signature and hashes bound to source and content (6.8193ms)\n✔ a future small four-attempt ceiling persists across restart without changing the previous ten-attempt ledger (49.6103ms)\nℹ tests 60\nℹ suites 0\nℹ pass 60\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1161.6487\n",
+      "stderr": ""
+    }
+  ]
+}
