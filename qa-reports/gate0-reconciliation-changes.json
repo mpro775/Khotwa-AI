@@ -1,0 +1,193 @@
+{
+  "scope": "This gate-finalization attempt only, not cumulative PH-00 changes",
+  "files": [
+    {
+      "path": "README-GATE0-FINAL.md",
+      "change": "added",
+      "sha256": "a46548e33a32055024f9207f3e5e73e944644eb2d94edd4ceb80d74138475502",
+      "self_index": false
+    },
+    {
+      "path": "docs/17-IMPLEMENTATION-PLAN-GATE0-ADDENDUM.md",
+      "change": "added",
+      "sha256": "3e68a13de5341b153f6cccba70e60b577daf1dc1fe3319d507f6ea9ef935a59b",
+      "self_index": false
+    },
+    {
+      "path": "instructions/AGENT-FINALIZE-GATE0-THEN-PH01.md",
+      "change": "added",
+      "sha256": "3453ff56982d9bb0815736b3627f5384f03aac99657a9d8dfb885ab0cab43d9d",
+      "self_index": false
+    },
+    {
+      "path": "instructions/PH01-START-ORDER.md",
+      "change": "added",
+      "sha256": "c7241275bea383c09eb3ba9a87333f6e083864326b0632ee44f204355e5f6360",
+      "self_index": false
+    },
+    {
+      "path": "package-manifest.json",
+      "change": "added",
+      "sha256": "42d411fc1606d2fa4cfda4f8a6e703e4fa5ef1f23a21efc408f70a60f186e575",
+      "self_index": false
+    },
+    {
+      "path": "planning/GATE0-CONTRACT-FREEZE.md",
+      "change": "added",
+      "sha256": "9fd741283a46504c136bd0655de6741fc27e7fa071eed4dc9242458dda9277d2",
+      "self_index": false
+    },
+    {
+      "path": "planning/GATE0-HUMAN-SIGNOFF-REGISTER.md",
+      "change": "added",
+      "sha256": "715da7807ccfcc3bc4021fa661cd89ee7ad1a27d8d4b7890103ac56cdb9e2dd8",
+      "self_index": false
+    },
+    {
+      "path": "planning/GATE0-OWNER-EVIDENCE-CLARIFICATION.md",
+      "change": "added",
+      "sha256": "fc98aff2c6826aaff620986ca11116f555f380c2e9ad94f930617b2c09b21480",
+      "self_index": false
+    },
+    {
+      "path": "planning/GATE0-OWNER-FINAL-DECISION.md",
+      "change": "added",
+      "sha256": "543fef45d2a772d1f87ff0ed18e31457953458a39a7eceb36037a021e55afdee",
+      "self_index": false
+    },
+    {
+      "path": "planning/approval-evidence.md",
+      "change": "modified",
+      "sha256": "9ba09bd10327f79f528c478bc8be366583c61f046a45c47ee7ed49b489642901",
+      "self_index": false
+    },
+    {
+      "path": "planning/approvals/incoming/MATH-CURRICULUM-REVIEW-GATE0-UPDATED.md",
+      "change": "added",
+      "sha256": "75f0f5bb56b2eabddeba7faefce50395e45ffda3a0f4cc3c3a54167a169b5716",
+      "self_index": false
+    },
+    {
+      "path": "planning/approvals/incoming/MATH-CURRICULUM-REVIEW-GATE0.md",
+      "change": "added",
+      "sha256": "94fda7e720c7f7db44a51942fff0e0f0ef2622b552abd9c3372beba0ddf68368",
+      "self_index": false
+    },
+    {
+      "path": "planning/approvals/incoming/MATH-TEACHER-APPROVAL-GATE0.md",
+      "change": "added",
+      "sha256": "5637003833384a8445f59a10c1fa0160c67ef23124d1449f19633aab79c38a18",
+      "self_index": false
+    },
+    {
+      "path": "planning/approvals/incoming/PH00-FINAL-CONTRACT-QA-SECURITY-REVIEW.md",
+      "change": "added",
+      "sha256": "097e334245d70f82d799537fc0af4d3319df7badb8733e99ddc9a0e4770f3d3a",
+      "self_index": false
+    },
+    {
+      "path": "planning/approvals/incoming/PH00-MOHAMMAD-MURAD-INDEPENDENT-AUDIT.json",
+      "change": "added",
+      "sha256": "c5b9ff24597fc2a2e70f8846839780d243b17e3b38314b75d6cffc8ac08b3026",
+      "self_index": false
+    },
+    {
+      "path": "planning/approvals/incoming/PH00-MOHAMMAD-MURAD-SIGNOFF-FORM.md",
+      "change": "added",
+      "sha256": "033cff5e4f4d8d5a3f897cb7cc3b0edb47b15c98bb822817600ff077c4a1ebf8",
+      "self_index": false
+    },
+    {
+      "path": "planning/contract-baseline.md",
+      "change": "modified",
+      "sha256": "e2de9be80bdacaf255ed06d6ae8d16b5583c35a0854c17e90df8569afe5caf51",
+      "self_index": false
+    },
+    {
+      "path": "planning/decisions.md",
+      "change": "modified",
+      "sha256": "e0b585666754a299973cd3da9346a23e6c1448876c636c383d9e5615779d5f4a",
+      "self_index": false
+    },
+    {
+      "path": "planning/gate0-current-contract-inventory.json",
+      "change": "added",
+      "sha256": "caeee52fcee03e84f2cc8330983cdfcb0df95b55922159219a9469ff724123dd",
+      "self_index": false
+    },
+    {
+      "path": "planning/gate0-freeze-manifest.template.json",
+      "change": "added",
+      "sha256": "cbc789d21e3937af356dfb0476a55f34f75cfc5241f26f68eb9bec08843fe081",
+      "self_index": false
+    },
+    {
+      "path": "planning/owners-and-gates.md",
+      "change": "modified",
+      "sha256": "e9445c30e4faff7ebf7a4c8d9af382adacd5ec900382d972ec2ebec0dd7bfc05",
+      "self_index": false
+    },
+    {
+      "path": "qa-reports/GATE0-FINAL-RECONCILIATION.md",
+      "change": "added",
+      "sha256": "af534e0978cfe744f054e73dbc9bf4d510d90b126150a1f1a2d6c31a66808136",
+      "self_index": false
+    },
+    {
+      "path": "qa-reports/README.md",
+      "change": "modified",
+      "sha256": "15b3dee412be3f490af1798127ccbfe3875adf1e3d9ba5dc9cefbef86a3e316b",
+      "self_index": false
+    },
+    {
+      "path": "qa-reports/gate-0.md",
+      "change": "modified",
+      "sha256": "2d628a247be4ed004b859349317bc7f8ec4922d015ebcd1b7fcc3be1a0b39d14",
+      "self_index": false
+    },
+    {
+      "path": "qa-reports/gate0-evidence-preflight.json",
+      "change": "added",
+      "sha256": "c6afbbd5279b62de753650eae825dba081345ade5c07ac8d247b06939138740a",
+      "self_index": false
+    },
+    {
+      "path": "qa-reports/gate0-final-reconciliation-before.json",
+      "change": "added",
+      "sha256": "3aafbda21f2d33261f112f67ebcec12553b2f993324f6921752f4e131b56dea0",
+      "self_index": false
+    },
+    {
+      "path": "qa-reports/gate0-overlay-import.json",
+      "change": "added",
+      "sha256": "21e5b0a60e03c35d9a068258129f35fafc779d5a796c3a42ffbae70fcda9000f",
+      "self_index": false
+    },
+    {
+      "path": "qa-reports/gate0-reconciliation-changes.json",
+      "change": "added",
+      "sha256": null,
+      "self_index": true
+    },
+    {
+      "path": "qa-reports/gate0-reconciliation-checks.json",
+      "change": "added",
+      "sha256": "23fb43104f50aa5a541675b9bfb0e24e72e1db24b0042efb4b9c15c51d1ed40b",
+      "self_index": false
+    },
+    {
+      "path": "qa-reports/gate0-reconciliation-integrity.json",
+      "change": "added",
+      "sha256": "7fac059c0d2b058ca46c3f2665980c841871ca28e8ff835007c756fc97258cc3",
+      "self_index": false
+    },
+    {
+      "path": "tools/verify_gate0_evidence.py",
+      "change": "added",
+      "sha256": "37b624b60593fcf61d4ce541e1e9d86cf236a359d870f4038595f540332814cf",
+      "self_index": false
+    }
+  ],
+  "file_count": 31,
+  "preexisting_git_deletions_preserved": true
+}

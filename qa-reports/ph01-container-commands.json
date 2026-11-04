@@ -1,0 +1,33 @@
+{
+  "phase": "PH-01",
+  "recordedAtRiyadh": "2026-11-04T03:05:41.165994+03:00",
+  "commands": [
+    {
+      "name": "compose_config",
+      "command": [
+        "docker",
+        "compose",
+        "--env-file",
+        ".local/compose.env",
+        "config",
+        "--quiet"
+      ],
+      "exit_code": 0,
+      "seconds": 0.2,
+      "local_log": ".local\\compose_config.log"
+    },
+    {
+      "name": "compose_build",
+      "command": [
+        "docker",
+        "compose",
+        "--env-file",
+        ".local/compose.env",
+        "build"
+      ],
+      "exit_code": 0,
+      "seconds": 93.9,
+      "local_log": ".local\\compose_build.log"
+    }
+  ]
+}

@@ -1,0 +1,450 @@
+{
+  "scope": "Explicit owner governance exception verification; no human signature authentication or runtime gate waiver",
+  "owner_basis_checks": [
+    {
+      "name": "owner_delegation_valid",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "passed": true,
+      "detail": {
+        "structural_pass": true,
+        "errors": [],
+        "report": "C:\\Users\\PC\\AppData\\Local\\Temp\\khotwa-gate0-waiver-bvvfwd20\\owner_delegation_valid.json"
+      }
+    },
+    {
+      "name": "reject_humanReviewerSignaturesClaimed",
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "passed": true,
+      "detail": {
+        "structural_pass": false,
+        "errors": [
+          "owner delegation has invalid or missing restriction: humanReviewerSignaturesClaimed"
+        ],
+        "report": "C:\\Users\\PC\\AppData\\Local\\Temp\\khotwa-gate0-waiver-bvvfwd20\\reject_humanReviewerSignaturesClaimed.json"
+      }
+    },
+    {
+      "name": "reject_runtimeTestsWaived",
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "passed": true,
+      "detail": {
+        "structural_pass": false,
+        "errors": [
+          "owner delegation has invalid or missing restriction: runtimeTestsWaived"
+        ],
+        "report": "C:\\Users\\PC\\AppData\\Local\\Temp\\khotwa-gate0-waiver-bvvfwd20\\reject_runtimeTestsWaived.json"
+      }
+    },
+    {
+      "name": "reject_allowedNextPhase",
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "passed": true,
+      "detail": {
+        "structural_pass": false,
+        "errors": [
+          "owner delegation has invalid or missing restriction: allowedNextPhase"
+        ],
+        "report": "C:\\Users\\PC\\AppData\\Local\\Temp\\khotwa-gate0-waiver-bvvfwd20\\reject_allowedNextPhase.json"
+      }
+    },
+    {
+      "name": "reject_mathApprovalEvidenceSha256",
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "passed": true,
+      "detail": {
+        "structural_pass": false,
+        "errors": [
+          "delegated approval evidence hash mismatch: mathApprovalEvidence"
+        ],
+        "report": "C:\\Users\\PC\\AppData\\Local\\Temp\\khotwa-gate0-waiver-bvvfwd20\\reject_mathApprovalEvidenceSha256.json"
+      }
+    },
+    {
+      "name": "reject_directReviewerSignaturesRequiredForGate0",
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "passed": true,
+      "detail": {
+        "structural_pass": false,
+        "errors": [
+          "owner delegation has invalid or missing restriction: directReviewerSignaturesRequiredForGate0"
+        ],
+        "report": "C:\\Users\\PC\\AppData\\Local\\Temp\\khotwa-gate0-waiver-bvvfwd20\\reject_directReviewerSignaturesRequiredForGate0.json"
+      }
+    },
+    {
+      "name": "reject_missing_owner_record",
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "passed": true,
+      "detail": {
+        "structural_pass": false,
+        "errors": [
+          "owner-delegated mode requires the explicit owner-delegation record",
+          "explicit owner delegation absent"
+        ],
+        "report": "C:\\Users\\PC\\AppData\\Local\\Temp\\khotwa-gate0-waiver-bvvfwd20\\reject_missing_owner_record.json"
+      }
+    },
+    {
+      "name": "direct_mode_still_rejects_unsigned_forms",
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "passed": true,
+      "detail": {
+        "structural_pass": false,
+        "errors": [
+          "math_approval points to an unsigned template/owner attestation, not direct evidence",
+          "engineering_approval points to an unsigned template/owner attestation, not direct evidence",
+          "freeze manifest absent"
+        ],
+        "report": "C:\\Users\\PC\\AppData\\Local\\Temp\\khotwa-gate0-waiver-bvvfwd20\\direct_mode_still_rejects_unsigned_forms.json"
+      }
+    }
+  ],
+  "passed": 8,
+  "failed": 0,
+  "static_contract_checks": {
+    "date_riyadh": "2026-11-04T02:47:32+03:00",
+    "scope": "PH-00 static contracts, schema and QA adapter only; no application/service/DB execution",
+    "command": "python -X utf8 qa/validate_ph00_correction.py --deps \"$env:TEMP\\khotwa-ph00-correction-deps\"",
+    "tools": {
+      "PyYAML": "6.0.3",
+      "jsonschema": "4.25.1",
+      "openapi-spec-validator": "0.7.2"
+    },
+    "checks": [
+      {
+        "name": "OpenAPI_3.1_standard_validation_and_public_contract_preservation",
+        "passed": true,
+        "detail": {
+          "validator": "OpenAPIV31SpecValidator",
+          "errors": 0,
+          "public_file_byte_identical": true,
+          "version": "1.0.0-draft",
+          "paths": 27
+        }
+      },
+      {
+        "name": "Draft2020_12_metaschema_internal",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "Draft2020_12_metaschema_golden_fixtures",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "Internal_shared_schemas_match_OpenAPI_exactly_except_local_refs",
+        "passed": true,
+        "detail": {
+          "schemas_compared": 9,
+          "names": [
+            "InternalMathContext",
+            "InternalMathTransitionRequest",
+            "InternalMathTransitionResult",
+            "MathStatus",
+            "InternalMathEvidence",
+            "SolutionSet",
+            "Rational",
+            "Counterexample",
+            "MathIssue"
+          ]
+        }
+      },
+      {
+        "name": "Illustrative_payload_1_InternalMathParseRequest",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "Illustrative_payload_2_InternalMathParseResult",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "Illustrative_payload_3_InternalMathCheckFinalRequest",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "Illustrative_payload_4_InternalMathCheckFinalResult",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "Illustrative_payload_5_InternalMathTransitionRequest",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "Illustrative_payload_6_InternalMathTransitionResult",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "Illustrative_payload_7_InternalMathTransitionResult",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "Illustrative_payload_8_AstDocument",
+        "passed": true,
+        "detail": null
+      },
+      {
+        "name": "Math_document_examples_schema_and_JSON_parity",
+        "passed": true,
+        "detail": {
+          "examples_checked": 4
+        }
+      },
+      {
+        "name": "Reject_parse_schemaVersion",
+        "passed": true,
+        "detail": {
+          "invalid_payload_rejected": true,
+          "reason": "'math-internal-v1' was expected\n\nFailed validating 'const' in schema['properties']['schemaVersion']:\n    {'const': 'math-internal-v1'}\n\nOn instance['schemaVersion']:\n    'math-internal-v99'"
+        }
+      },
+      {
+        "name": "Reject_parse_requestId",
+        "passed": true,
+        "detail": {
+          "invalid_payload_rejected": true,
+          "reason": "'not-a-uuid' is not a 'uuid'\n\nFailed validating 'format' in schema['properties']['requestId']:\n    {'type': 'string', 'format': 'uuid'}\n\nOn instance['requestId']:\n    'not-a-uuid'"
+        }
+      },
+      {
+        "name": "Reject_parse_trustedAst",
+        "passed": true,
+        "detail": {
+          "invalid_payload_rejected": true,
+          "reason": "Additional properties are not allowed ('trustedAst' was unexpected)\n\nFailed validating 'additionalProperties' in schema:\n    {'type': 'object',\n     'additionalProperties': False,\n     'properties': {'schemaVersion': {'c"
+        }
+      },
+      {
+        "name": "Reject_revision_over_Int32",
+        "passed": true,
+        "detail": {
+          "invalid_payload_rejected": true,
+          "reason": "2147483648 is greater than the maximum of 2147483647\n\nFailed validating 'maximum' in schema['properties']['context']['properties']['attemptRevision']:\n    {'type': 'integer',\n     'format': 'int32',\n     'description': '"
+        }
+      },
+      {
+        "name": "Reject_problem_source_with_step_version",
+        "passed": true,
+        "detail": {
+          "invalid_payload_rejected": true,
+          "reason": "'00000000-0000-4000-8000-000000000004' is not of type 'null'\n\nFailed validating 'type' in schema['properties']['source']['allOf'][0]['then']['properties']['stepVersionId']:\n    {'type': 'null'}\n\nOn instance['source']['st"
+        }
+      },
+      {
+        "name": "Reject_failed_parse_with_AST",
+        "passed": true,
+        "detail": {
+          "invalid_payload_rejected": true,
+          "reason": "'س = ٢' is not of type 'null'\n\nFailed validating 'type' in schema['allOf'][0]['else']['properties']['normalizedText']:\n    {'type': 'null'}\n\nOn instance['normalizedText']:\n    'س = ٢'"
+        }
+      },
+      {
+        "name": "Reject_unknown_AST_version",
+        "passed": true,
+        "detail": {
+          "invalid_payload_rejected": true,
+          "reason": "{'schemaVersion': 'math-ast-v99', 'notationProfileVersion': 'ar-mashriq-school-v1', 'sourceRaw': 'س = ٢', 'root': {'type': 'Equation', 'sourceSpan': {'start': 0, 'end': 5, 'unit': 'unicode_codepoint'}, 'left': {'type': '"
+        }
+      },
+      {
+        "name": "Reject_AST_out_of_bounds_span",
+        "passed": true,
+        "detail": {
+          "invalid_payload_rejected": true,
+          "reason": "Invalid code point span"
+        }
+      },
+      {
+        "name": "Reject_completed_from_Python",
+        "passed": true,
+        "detail": {
+          "invalid_payload_rejected": true,
+          "reason": "Additional properties are not allowed ('completed' was unexpected)\n\nFailed validating 'additionalProperties' in schema:\n    {'type': 'object',\n     'additionalProperties': False,\n     'properties': {'schemaVersion': {'co"
+        }
+      },
+      {
+        "name": "Reject_service_error_with_success_data",
+        "passed": true,
+        "detail": {
+          "invalid_payload_rejected": true,
+          "reason": "True is not of type 'null'\n\nFailed validating 'type' in schema['allOf'][0]['then']['properties']['isIsolated']:\n    {'type': 'null'}\n\nOn instance['isIsolated']:\n    True"
+        }
+      },
+      {
+        "name": "Reject_not_isolated_with_solution",
+        "passed": true,
+        "detail": {
+          "invalid_payload_rejected": true,
+          "reason": "{'num': '2', 'den': '1'} is not of type 'null'\n\nFailed validating 'type' in schema['allOf'][3]['then']['properties']['solution']:\n    {'type': 'null'}\n\nOn instance['solution']:\n    {'num': '2', 'den': '1'}"
+        }
+      },
+      {
+        "name": "Reject_AST_Multiply_semantic_guard",
+        "passed": true,
+        "detail": {
+          "invalid_payload_rejected": true,
+          "reason": "Nonlinear variable product"
+        }
+      },
+      {
+        "name": "Reject_AST_Divide_semantic_guard",
+        "passed": true,
+        "detail": {
+          "invalid_payload_rejected": true,
+          "reason": "Variable denominator"
+        }
+      },
+      {
+        "name": "Accept_equivalent_but_not_isolated_final_result",
+        "passed": true,
+        "detail": {
+          "equivalent_does_not_mean_completed": true
+        }
+      },
+      {
+        "name": "Request_response_version_correlation_specification_check",
+        "passed": true,
+        "detail": {
+          "current_exchange_accepted_stale_exchange_rejected": true,
+          "live_NestJS_guard_tested": false
+        }
+      },
+      {
+        "name": "Golden_schema_mapping_and_lossless_source_preservation",
+        "passed": true,
+        "detail": {
+          "records_schema_validated_and_adapted": 151,
+          "seed_problems": 18,
+          "expectations_preserved": true,
+          "source_bytes_unchanged": true,
+          "product_tests_run": 0
+        }
+      },
+      {
+        "name": "Reject_Golden_unknown_status",
+        "passed": true,
+        "detail": {
+          "invalid_fixture_rejected": true
+        }
+      },
+      {
+        "name": "Reject_Golden_duplicate_id",
+        "passed": true,
+        "detail": {
+          "invalid_fixture_rejected": true
+        }
+      },
+      {
+        "name": "Reject_Golden_dangling_diagnosis",
+        "passed": true,
+        "detail": {
+          "invalid_fixture_rejected": true
+        }
+      },
+      {
+        "name": "Reject_Golden_missing_expected_status",
+        "passed": true,
+        "detail": {
+          "invalid_fixture_rejected": true
+        }
+      },
+      {
+        "name": "Reject_Golden_extra_property",
+        "passed": true,
+        "detail": {
+          "invalid_fixture_rejected": true
+        }
+      },
+      {
+        "name": "Reject_Golden_unknown_hint",
+        "passed": true,
+        "detail": {
+          "invalid_fixture_rejected": true
+        }
+      },
+      {
+        "name": "Python_Node_JSON_Int32_Unicode_compatibility",
+        "passed": true,
+        "detail": {
+          "node": "v26.7.0",
+          "JSON_roundtrip": true,
+          "unicode_codepoint_not_UTF16": true,
+          "NestJS_runtime_test": false
+        }
+      },
+      {
+        "name": "Data_model_field_mapping_presence",
+        "passed": true,
+        "detail": {
+          "documented_fields_checked": [
+            "attempt_revision_requested",
+            "problem_revision_id",
+            "from_kind",
+            "from_step_version_id",
+            "to_step_version_id",
+            "engine_version",
+            "notation_profile_version",
+            "schema_version",
+            "parse_status",
+            "evidence_json"
+          ],
+          "table_types_compared": {
+            "attempt_revision_requested": "bigint",
+            "problem_revision_id": "uuid",
+            "from_step_version_id": "uuid",
+            "to_step_version_id": "uuid",
+            "ast": "jsonb",
+            "evidence_json": "jsonb",
+            "schema_version": "varchar"
+          },
+          "Int32_wire_fits_bigint_storage": true,
+          "database_or_migrations_run": false
+        }
+      },
+      {
+        "name": "Root_AGENTS_content_and_single_operational_authority",
+        "passed": true,
+        "detail": {
+          "original_operational_sections_preserved": 21,
+          "full_operational_body_preserved": true,
+          "editorial_metadata_lines_changed": 3,
+          "canonical": "AGENTS.md",
+          "docs_copy": "forwarding_only"
+        }
+      },
+      {
+        "name": "Teacher_demo_and_retention_policy_document_consistency",
+        "passed": true,
+        "detail": {
+          "obsolete_policy_phrases_found": 0,
+          "owner_policy_preserved_security_execution_pending": true
+        }
+      }
+    ],
+    "passed": 39,
+    "failed": 0,
+    "illustrative_payloads": 8,
+    "negative_internal_payloads": 13,
+    "negative_fixture_checks": 6,
+    "product_golden_cases_run": 0,
+    "live_component_integration_tested": false,
+    "human_approval": "pending"
+  },
+  "human_reviewer_signatures_claimed": false,
+  "signed_freeze_claimed": false
+}

@@ -1,0 +1,25 @@
+{
+  "scope": "PH-00 documentation delivery integrity, not product acceptance",
+  "source_files_checked": 27,
+  "changed_source_files": [],
+  "missing_deliverables": [],
+  "local_markdown_links_checked": 238,
+  "broken_local_links": [],
+  "trailing_whitespace": [],
+  "all_generated_json_decoded": true,
+  "individual_task_reports": 8,
+  "task_ids": [
+    "TASK-001",
+    "TASK-002",
+    "TASK-003",
+    "TASK-004",
+    "TASK-005",
+    "TASK-006",
+    "TASK-007",
+    "TASK-008"
+  ],
+  "application_directories_created": [],
+  "yaml_audit_executed": true,
+  "product_tests_run": 0,
+  "integrity_passed": true
+}

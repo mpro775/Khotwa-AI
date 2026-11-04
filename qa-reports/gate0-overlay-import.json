@@ -1,0 +1,115 @@
+{
+  "imported_at_riyadh": "2026-11-04T02:36:47+03:00",
+  "archive": "C:\\Users\\PC\\Downloads\\KHOTWA-GATE0-FINAL-CLOSURE-OVERLAY.zip",
+  "archive_sha256": "c2b86a816bfbf6f5d4943ed2188a961cb448f16222c3975757f3bfd865920aae",
+  "crc_passed": true,
+  "packaged_fingerprints_validated": 10,
+  "overlay_files": 11,
+  "entries": [
+    {
+      "path": "README-GATE0-FINAL.md",
+      "action": "added",
+      "import_sha256": "a46548e33a32055024f9207f3e5e73e944644eb2d94edd4ceb80d74138475502"
+    },
+    {
+      "path": "docs/17-IMPLEMENTATION-PLAN-GATE0-ADDENDUM.md",
+      "action": "added",
+      "import_sha256": "3e68a13de5341b153f6cccba70e60b577daf1dc1fe3319d507f6ea9ef935a59b"
+    },
+    {
+      "path": "instructions/AGENT-FINALIZE-GATE0-THEN-PH01.md",
+      "action": "added",
+      "import_sha256": "3453ff56982d9bb0815736b3627f5384f03aac99657a9d8dfb885ab0cab43d9d"
+    },
+    {
+      "path": "instructions/PH01-START-ORDER.md",
+      "action": "added",
+      "import_sha256": "c7241275bea383c09eb3ba9a87333f6e083864326b0632ee44f204355e5f6360"
+    },
+    {
+      "path": "package-manifest.json",
+      "action": "added",
+      "import_sha256": "42d411fc1606d2fa4cfda4f8a6e703e4fa5ef1f23a21efc408f70a60f186e575"
+    },
+    {
+      "path": "planning/GATE0-CONTRACT-FREEZE.md",
+      "action": "added",
+      "import_sha256": "b39d04e86e1af98296de290ca97122f885a43f809d8765b832fe97b114f06a71"
+    },
+    {
+      "path": "planning/GATE0-HUMAN-SIGNOFF-REGISTER.md",
+      "action": "added",
+      "import_sha256": "50938adb6adafa4cf91e625b0b5cbad8f351726d4f5e320aeeb2c5ffe6077c52"
+    },
+    {
+      "path": "planning/GATE0-OWNER-FINAL-DECISION.md",
+      "action": "added",
+      "import_sha256": "543fef45d2a772d1f87ff0ed18e31457953458a39a7eceb36037a021e55afdee"
+    },
+    {
+      "path": "planning/gate0-freeze-manifest.template.json",
+      "action": "added",
+      "import_sha256": "cbc789d21e3937af356dfb0476a55f34f75cfc5241f26f68eb9bec08843fe081"
+    },
+    {
+      "path": "qa-reports/GATE0-FINAL-RECONCILIATION.md",
+      "action": "added",
+      "import_sha256": "debbd22c240ca189d15bbe32390c4c19cec44cd6bfc9581a87e5af6ecd24e138"
+    },
+    {
+      "path": "tools/verify_gate0_evidence.py",
+      "action": "added",
+      "import_sha256": "37b624b60593fcf61d4ce541e1e9d86cf236a359d870f4038595f540332814cf"
+    },
+    {
+      "path": "planning/approvals/incoming/MATH-CURRICULUM-REVIEW-GATE0.md",
+      "source": "C:\\Users\\PC\\Downloads\\MATH-CURRICULUM-REVIEW-GATE0.md",
+      "action": "added_reference_evidence_not_direct_signoff",
+      "sha256": "94fda7e720c7f7db44a51942fff0e0f0ef2622b552abd9c3372beba0ddf68368"
+    },
+    {
+      "path": "planning/approvals/incoming/MATH-CURRICULUM-REVIEW-GATE0-UPDATED.md",
+      "source": "C:\\Users\\PC\\Downloads\\MATH-CURRICULUM-REVIEW-GATE0-UPDATED.md",
+      "action": "added_reference_evidence_not_direct_signoff",
+      "sha256": "75f0f5bb56b2eabddeba7faefce50395e45ffda3a0f4cc3c3a54167a169b5716"
+    },
+    {
+      "path": "planning/approvals/incoming/MATH-TEACHER-APPROVAL-GATE0.md",
+      "source": "C:\\Users\\PC\\Downloads\\MATH-TEACHER-APPROVAL-GATE0.md",
+      "action": "added_reference_evidence_not_direct_signoff",
+      "sha256": "5637003833384a8445f59a10c1fa0160c67ef23124d1449f19633aab79c38a18"
+    },
+    {
+      "path": "planning/approvals/incoming/PH00-FINAL-CONTRACT-QA-SECURITY-REVIEW.md",
+      "source": "C:\\Users\\PC\\Downloads\\PH00-FINAL-CONTRACT-QA-SECURITY-REVIEW.md",
+      "action": "added_reference_evidence_not_direct_signoff",
+      "sha256": "097e334245d70f82d799537fc0af4d3319df7badb8733e99ddc9a0e4770f3d3a"
+    },
+    {
+      "path": "planning/approvals/incoming/PH00-MOHAMMAD-MURAD-INDEPENDENT-AUDIT.json",
+      "source": "C:\\Users\\PC\\Downloads\\PH00-MOHAMMAD-MURAD-INDEPENDENT-AUDIT.json",
+      "action": "added_reference_evidence_not_direct_signoff",
+      "sha256": "c5b9ff24597fc2a2e70f8846839780d243b17e3b38314b75d6cffc8ac08b3026"
+    },
+    {
+      "path": "planning/approvals/incoming/PH00-MOHAMMAD-MURAD-SIGNOFF-FORM.md",
+      "source": "C:\\Users\\PC\\Downloads\\PH00-MOHAMMAD-MURAD-SIGNOFF-FORM.md",
+      "action": "added_reference_evidence_not_direct_signoff",
+      "sha256": "033cff5e4f4d8d5a3f897cb7cc3b0edb47b15c98bb822817600ff077c4a1ebf8"
+    }
+  ],
+  "existing_files_replaced": 0,
+  "contracts_modified": false,
+  "direct_signatures_authenticated": false,
+  "reconciled_paths_changed_after_import": [
+    "planning/GATE0-HUMAN-SIGNOFF-REGISTER.md",
+    "planning/GATE0-CONTRACT-FREEZE.md",
+    "qa-reports/GATE0-FINAL-RECONCILIATION.md"
+  ],
+  "package_manifest_scope": "Fingerprints validate original ZIP payloads at import; the listed reconciliation working copies were subsequently updated with actual findings.",
+  "duplicate_download_verified": {
+    "path": "C:/Users/PC/Downloads/KHOTWA-GATE0-FINAL-CLOSURE-OVERLAY (1).zip",
+    "byte_identical": true,
+    "sha256": "c2b86a816bfbf6f5d4943ed2188a961cb448f16222c3975757f3bfd865920aae"
+  }
+}

@@ -1,0 +1,1345 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:khotwa:math-internal:v1",
+  "title": "PH-00 internal contract proposal, subject to human review",
+  "x-status": "proposed-not-approved",
+  "x-ast-version": "math-ast-v1",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/InternalMathTransitionRequest"
+    },
+    {
+      "$ref": "#/$defs/InternalMathTransitionResult"
+    },
+    {
+      "$ref": "#/$defs/InternalMathParseRequest"
+    },
+    {
+      "$ref": "#/$defs/InternalMathParseResult"
+    },
+    {
+      "$ref": "#/$defs/InternalMathCheckFinalRequest"
+    },
+    {
+      "$ref": "#/$defs/InternalMathCheckFinalResult"
+    }
+  ],
+  "$defs": {
+    "InternalMathContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "attemptId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "attemptRevision": {
+          "type": "integer",
+          "format": "int32",
+          "description": "إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.",
+          "minimum": 0,
+          "maximum": 2147483647,
+          "example": 4
+        },
+        "problemRevisionId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "notationProfile": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string",
+          "enum": [
+            "reals"
+          ]
+        }
+      },
+      "required": [
+        "attemptId",
+        "attemptRevision",
+        "problemRevisionId",
+        "notationProfile",
+        "domain"
+      ]
+    },
+    "InternalMathTransitionRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "type": "string",
+          "enum": [
+            "math-internal-v1"
+          ]
+        },
+        "requestId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "context": {
+          "$ref": "#/$defs/InternalMathContext"
+        },
+        "transition": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "fromKind": {
+              "type": "string",
+              "enum": [
+                "problem",
+                "step"
+              ]
+            },
+            "fromStepVersionId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "toStepVersionId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "fromRaw": {
+              "type": "string",
+              "maxLength": 256
+            },
+            "toRaw": {
+              "type": "string",
+              "maxLength": 256
+            }
+          },
+          "required": [
+            "fromKind",
+            "fromStepVersionId",
+            "toStepVersionId",
+            "fromRaw",
+            "toRaw"
+          ]
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "requestId",
+        "context",
+        "transition"
+      ]
+    },
+    "InternalMathTransitionResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "type": "string",
+          "enum": [
+            "math-internal-v1"
+          ]
+        },
+        "requestId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "engineVersion": {
+          "type": "string"
+        },
+        "notationProfileVersion": {
+          "type": "string"
+        },
+        "attemptRevision": {
+          "type": "integer",
+          "format": "int32",
+          "description": "إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.",
+          "minimum": 0,
+          "maximum": 2147483647,
+          "example": 4
+        },
+        "status": {
+          "$ref": "#/$defs/MathStatus"
+        },
+        "reasonCode": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/InternalMathEvidence"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "issue": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MathIssue"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "requestId",
+        "engineVersion",
+        "notationProfileVersion",
+        "attemptRevision",
+        "status",
+        "reasonCode",
+        "evidence",
+        "issue"
+      ]
+    },
+    "MathStatus": {
+      "type": "string",
+      "description": "حكم محرك الرياضيات؛ لا يساوي تشخيصًا تربويًا.",
+      "enum": [
+        "verified_valid",
+        "verified_invalid",
+        "syntax_error",
+        "unsupported",
+        "inconclusive",
+        "service_error"
+      ]
+    },
+    "InternalMathEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "نتيجة إثبات داخلية دون نصوص تعليمية مولدة.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "counterexample",
+            "solution_set",
+            "rule_violation",
+            "none"
+          ]
+        },
+        "domain": {
+          "type": "string",
+          "enum": [
+            "reals"
+          ]
+        },
+        "previousSolution": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SolutionSet"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "nextSolution": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SolutionSet"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "witness": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Counterexample"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "domain",
+        "previousSolution",
+        "nextSolution",
+        "witness"
+      ]
+    },
+    "SolutionSet": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "مجموعة حل المعادلة الخطية ضمن الأعداد الحقيقية.",
+          "enum": [
+            "singleton",
+            "all_reals",
+            "empty"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Rational"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "value"
+      ]
+    },
+    "Rational": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "تمثيل دقيق للنسب؛ لا تستخدم float.",
+      "properties": {
+        "num": {
+          "type": "string",
+          "description": "البسط العشري كنص صحيح موقع.",
+          "pattern": "^-?(0|[1-9][0-9]*)$",
+          "example": "2"
+        },
+        "den": {
+          "type": "string",
+          "description": "المقام العشري كنص صحيح موجب، ولا يساوي صفرًا.",
+          "pattern": "^[1-9][0-9]*$",
+          "example": "1"
+        }
+      },
+      "required": [
+        "num",
+        "den"
+      ]
+    },
+    "Counterexample": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "variable": {
+          "type": "string",
+          "enum": [
+            "س"
+          ]
+        },
+        "value": {
+          "$ref": "#/$defs/Rational"
+        },
+        "satisfiesPrevious": {
+          "type": "boolean"
+        },
+        "satisfiesNext": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "variable",
+        "value",
+        "satisfiesPrevious",
+        "satisfiesNext"
+      ]
+    },
+    "MathIssue": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reasonCode": {
+          "type": "string",
+          "description": "رمز ثابت مثل AMBIGUOUS_DIVISION.",
+          "maxLength": 80
+        },
+        "messageAr": {
+          "type": "string",
+          "description": "رسالة عربية قابلة للعرض دون traceback."
+        },
+        "spanStart": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "format": "int32",
+              "description": "موضع البداية بوحدات Unicode code points.",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "spanEnd": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "format": "int32",
+              "description": "نهاية المدى حصريًا.",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "spanUnit": {
+          "type": "string",
+          "enum": [
+            "unicode_codepoint"
+          ]
+        },
+        "hintKey": {
+          "anyOf": [
+            {
+              "type": "string",
+              "description": "مفتاح رسالة توجيهية.",
+              "maxLength": 80
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "reasonCode",
+        "messageAr",
+        "spanStart",
+        "spanEnd",
+        "spanUnit",
+        "hintKey"
+      ]
+    },
+    "SourceSpan": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 256
+        },
+        "end": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 256
+        },
+        "unit": {
+          "const": "unicode_codepoint"
+        }
+      },
+      "required": [
+        "start",
+        "end",
+        "unit"
+      ]
+    },
+    "Integer": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "Integer"
+        },
+        "sourceSpan": {
+          "$ref": "#/$defs/SourceSpan"
+        },
+        "groupSpans": {
+          "type": "array",
+          "maxItems": 16,
+          "items": {
+            "$ref": "#/$defs/SourceSpan"
+          }
+        },
+        "value": {
+          "type": "string",
+          "pattern": "^(0|-?[1-9][0-9]{0,17})$"
+        }
+      },
+      "required": [
+        "type",
+        "sourceSpan",
+        "value"
+      ]
+    },
+    "Variable": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "Variable"
+        },
+        "sourceSpan": {
+          "$ref": "#/$defs/SourceSpan"
+        },
+        "groupSpans": {
+          "type": "array",
+          "maxItems": 16,
+          "items": {
+            "$ref": "#/$defs/SourceSpan"
+          }
+        },
+        "name": {
+          "const": "س"
+        }
+      },
+      "required": [
+        "type",
+        "sourceSpan",
+        "name"
+      ]
+    },
+    "Negate": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "Negate"
+        },
+        "sourceSpan": {
+          "$ref": "#/$defs/SourceSpan"
+        },
+        "groupSpans": {
+          "type": "array",
+          "maxItems": 16,
+          "items": {
+            "$ref": "#/$defs/SourceSpan"
+          }
+        },
+        "operand": {
+          "$ref": "#/$defs/Expression"
+        }
+      },
+      "required": [
+        "type",
+        "sourceSpan",
+        "operand"
+      ]
+    },
+    "Add": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "Add"
+        },
+        "sourceSpan": {
+          "$ref": "#/$defs/SourceSpan"
+        },
+        "groupSpans": {
+          "type": "array",
+          "maxItems": 16,
+          "items": {
+            "$ref": "#/$defs/SourceSpan"
+          }
+        },
+        "left": {
+          "$ref": "#/$defs/Expression"
+        },
+        "right": {
+          "$ref": "#/$defs/Expression"
+        }
+      },
+      "required": [
+        "type",
+        "sourceSpan",
+        "left",
+        "right"
+      ]
+    },
+    "Subtract": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "Subtract"
+        },
+        "sourceSpan": {
+          "$ref": "#/$defs/SourceSpan"
+        },
+        "groupSpans": {
+          "type": "array",
+          "maxItems": 16,
+          "items": {
+            "$ref": "#/$defs/SourceSpan"
+          }
+        },
+        "left": {
+          "$ref": "#/$defs/Expression"
+        },
+        "right": {
+          "$ref": "#/$defs/Expression"
+        }
+      },
+      "required": [
+        "type",
+        "sourceSpan",
+        "left",
+        "right"
+      ]
+    },
+    "Multiply": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "Multiply"
+        },
+        "sourceSpan": {
+          "$ref": "#/$defs/SourceSpan"
+        },
+        "groupSpans": {
+          "type": "array",
+          "maxItems": 16,
+          "items": {
+            "$ref": "#/$defs/SourceSpan"
+          }
+        },
+        "left": {
+          "$ref": "#/$defs/Expression"
+        },
+        "right": {
+          "$ref": "#/$defs/Expression"
+        },
+        "implicit": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "sourceSpan",
+        "left",
+        "right",
+        "implicit"
+      ]
+    },
+    "Divide": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "Divide"
+        },
+        "sourceSpan": {
+          "$ref": "#/$defs/SourceSpan"
+        },
+        "groupSpans": {
+          "type": "array",
+          "maxItems": 16,
+          "items": {
+            "$ref": "#/$defs/SourceSpan"
+          }
+        },
+        "left": {
+          "$ref": "#/$defs/Expression"
+        },
+        "right": {
+          "$ref": "#/$defs/Expression"
+        }
+      },
+      "required": [
+        "type",
+        "sourceSpan",
+        "left",
+        "right"
+      ]
+    },
+    "Expression": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/Integer"
+        },
+        {
+          "$ref": "#/$defs/Variable"
+        },
+        {
+          "$ref": "#/$defs/Negate"
+        },
+        {
+          "$ref": "#/$defs/Add"
+        },
+        {
+          "$ref": "#/$defs/Subtract"
+        },
+        {
+          "$ref": "#/$defs/Multiply"
+        },
+        {
+          "$ref": "#/$defs/Divide"
+        }
+      ]
+    },
+    "Equation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "Equation"
+        },
+        "sourceSpan": {
+          "$ref": "#/$defs/SourceSpan"
+        },
+        "groupSpans": {
+          "type": "array",
+          "maxItems": 16,
+          "items": {
+            "$ref": "#/$defs/SourceSpan"
+          }
+        },
+        "left": {
+          "$ref": "#/$defs/Expression"
+        },
+        "right": {
+          "$ref": "#/$defs/Expression"
+        }
+      },
+      "required": [
+        "type",
+        "sourceSpan",
+        "left",
+        "right"
+      ]
+    },
+    "AstDocument": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": "math-ast-v1"
+        },
+        "notationProfileVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceRaw": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "root": {
+          "$ref": "#/$defs/Equation"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "notationProfileVersion",
+        "sourceRaw",
+        "root"
+      ]
+    },
+    "SourceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "problem",
+            "step"
+          ]
+        },
+        "stepVersionId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "uuid"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "stepVersionId"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "problem"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "stepVersionId": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "stepVersionId": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "InternalMathParseRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": "math-internal-v1"
+        },
+        "requestId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "context": {
+          "$ref": "#/$defs/InternalMathContext"
+        },
+        "operation": {
+          "const": "parse"
+        },
+        "source": {
+          "$ref": "#/$defs/SourceRef"
+        },
+        "raw": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "requestId",
+        "context",
+        "operation",
+        "source",
+        "raw"
+      ]
+    },
+    "InternalMathParseResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": "math-internal-v1"
+        },
+        "requestId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "context": {
+          "$ref": "#/$defs/InternalMathContext"
+        },
+        "engineVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notationProfileVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "operation": {
+          "const": "parse"
+        },
+        "source": {
+          "$ref": "#/$defs/SourceRef"
+        },
+        "astSchemaVersion": {
+          "const": "math-ast-v1"
+        },
+        "parseStatus": {
+          "type": "string",
+          "enum": [
+            "parsed",
+            "syntax_error",
+            "unsupported",
+            "inconclusive",
+            "service_error"
+          ]
+        },
+        "normalizedText": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "displayAr": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ast": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AstDocument"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reasonCode": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "issue": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MathIssue"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "requestId",
+        "context",
+        "engineVersion",
+        "notationProfileVersion",
+        "operation",
+        "source",
+        "astSchemaVersion",
+        "parseStatus",
+        "normalizedText",
+        "displayAr",
+        "ast",
+        "reasonCode",
+        "issue"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "parseStatus": {
+                "const": "parsed"
+              }
+            },
+            "required": [
+              "parseStatus"
+            ]
+          },
+          "then": {
+            "properties": {
+              "normalizedText": {
+                "type": "string",
+                "minLength": 1
+              },
+              "displayAr": {
+                "type": "string",
+                "minLength": 1
+              },
+              "ast": {
+                "$ref": "#/$defs/AstDocument"
+              },
+              "reasonCode": {
+                "type": "null"
+              },
+              "issue": {
+                "type": "null"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "normalizedText": {
+                "type": "null"
+              },
+              "displayAr": {
+                "type": "null"
+              },
+              "ast": {
+                "type": "null"
+              },
+              "reasonCode": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "parseStatus": {
+                "enum": [
+                  "syntax_error",
+                  "unsupported"
+                ]
+              }
+            },
+            "required": [
+              "parseStatus"
+            ]
+          },
+          "then": {
+            "properties": {
+              "issue": {
+                "$ref": "#/$defs/MathIssue"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "InternalMathCheckFinalRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": "math-internal-v1"
+        },
+        "requestId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "context": {
+          "$ref": "#/$defs/InternalMathContext"
+        },
+        "operation": {
+          "const": "check-final"
+        },
+        "originalRaw": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "finalStep": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "stepVersionId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "raw": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256
+            }
+          },
+          "required": [
+            "stepVersionId",
+            "raw"
+          ]
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "requestId",
+        "context",
+        "operation",
+        "originalRaw",
+        "finalStep"
+      ]
+    },
+    "InternalMathCheckFinalResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": "math-internal-v1"
+        },
+        "requestId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "context": {
+          "$ref": "#/$defs/InternalMathContext"
+        },
+        "engineVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notationProfileVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "operation": {
+          "const": "check-final"
+        },
+        "finalStepVersionId": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "status": {
+          "$ref": "#/$defs/MathStatus"
+        },
+        "isIsolated": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "substitutionValid": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "solution": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Rational"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "originalSolution": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SolutionSet"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "finalSolution": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SolutionSet"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reasonCode": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/InternalMathEvidence"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "issue": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/MathIssue"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "requestId",
+        "context",
+        "engineVersion",
+        "notationProfileVersion",
+        "operation",
+        "finalStepVersionId",
+        "status",
+        "isIsolated",
+        "substitutionValid",
+        "solution",
+        "originalSolution",
+        "finalSolution",
+        "reasonCode",
+        "evidence",
+        "issue"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "syntax_error",
+                  "unsupported",
+                  "inconclusive",
+                  "service_error"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "isIsolated": {
+                "type": "null"
+              },
+              "substitutionValid": {
+                "type": "null"
+              },
+              "solution": {
+                "type": "null"
+              },
+              "originalSolution": {
+                "type": "null"
+              },
+              "finalSolution": {
+                "type": "null"
+              },
+              "evidence": {
+                "type": "null"
+              },
+              "reasonCode": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "verified_valid",
+                  "verified_invalid"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "isIsolated": {
+                "type": "boolean"
+              },
+              "originalSolution": {
+                "$ref": "#/$defs/SolutionSet"
+              },
+              "finalSolution": {
+                "$ref": "#/$defs/SolutionSet"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "isIsolated": {
+                "const": true
+              }
+            },
+            "required": [
+              "isIsolated"
+            ]
+          },
+          "then": {
+            "properties": {
+              "solution": {
+                "$ref": "#/$defs/Rational"
+              },
+              "substitutionValid": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "isIsolated": {
+                "const": false
+              }
+            },
+            "required": [
+              "isIsolated"
+            ]
+          },
+          "then": {
+            "properties": {
+              "solution": {
+                "type": "null"
+              },
+              "substitutionValid": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "verified_invalid"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence": {
+                "$ref": "#/$defs/InternalMathEvidence"
+              },
+              "reasonCode": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

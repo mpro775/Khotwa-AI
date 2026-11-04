@@ -1,0 +1,43 @@
+:root {
+  font-family: Tahoma, Arial, sans-serif;
+  color: #183b36;
+  background: #f4f7f3;
+  font-synthesis: none;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+main {
+  width: min(680px, calc(100% - 48px));
+  margin: 64px auto;
+}
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #246558;
+}
+h1 {
+  font-size: clamp(2rem, 7vw, 3.5rem);
+  line-height: 1.4;
+  margin-block: 28px 12px;
+}
+p {
+  font-size: 1.1rem;
+  line-height: 1.9;
+}
+section {
+  background: #fff;
+  border: 1px solid #dce5dc;
+  border-radius: 20px;
+  padding: 24px;
+  margin-block: 32px;
+}
+h2 {
+  font-size: 1.2rem;
+}
+small {
+  color: #526f66;
+}

@@ -1,0 +1,17 @@
+*.md whitespace=-blank-at-eol
+*.ts text eol=lf
+*.tsx text eol=lf
+*.mjs text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+# Preserve canonical contract and evidence bytes across Windows/Linux checkouts.
+docs/** -text whitespace=cr-at-eol,-blank-at-eol
+planning/** -text whitespace=cr-at-eol,-blank-at-eol
+qa-reports/** -text whitespace=cr-at-eol,-blank-at-eol
+packages/contracts/openapi.yaml -text whitespace=cr-at-eol
+packages/contracts/schemas/** -text whitespace=cr-at-eol
+instructions/** -text whitespace=cr-at-eol,-blank-at-eol
+README-GATE0-FINAL.md -text whitespace=cr-at-eol,-blank-at-eol

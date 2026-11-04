@@ -1,0 +1,89 @@
+{
+  "gate": "GATE-0",
+  "scope": "structural-only; manual review of identity/scope still required",
+  "structural_pass": false,
+  "errors": [
+    "math_approval points to an unsigned template/owner attestation, not direct evidence",
+    "engineering_approval points to an unsigned template/owner attestation, not direct evidence",
+    "freeze manifest absent"
+  ],
+  "checks": [
+    {
+      "check": "required_file",
+      "file": "AGENTS.md",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "docs/PROJECT-DECISIONS.md",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "docs/17-IMPLEMENTATION-PLAN.md",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "docs/12-API-CONTRACT.yaml",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "docs/contracts/math-internal-v1.schema.json",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "docs/contracts/math-internal-v1.md",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "docs/contracts/math-internal-v1.examples.json",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "docs/contracts/golden-fixtures-v1.schema.json",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "docs/contracts/golden-adapter-v1.md",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "docs/14-GOLDEN-DATASET.cases.json",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "planning/decisions.md",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "planning/owners-and-gates.md",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "qa-reports/gate-0.md",
+      "passed": true
+    },
+    {
+      "check": "math_approval",
+      "passed": true,
+      "sha256": "5637003833384a8445f59a10c1fa0160c67ef23124d1449f19633aab79c38a18"
+    },
+    {
+      "check": "engineering_approval",
+      "passed": true,
+      "sha256": "033cff5e4f4d8d5a3f897cb7cc3b0edb47b15c98bb822817600ff077c4a1ebf8"
+    }
+  ],
+  "gate_approved_by_this_script": false,
+  "ph01_authorized_by_this_script": false
+}

@@ -1,0 +1,50 @@
+{
+  "package": "Khotwa AI - Gate0 Final Governance Overlay",
+  "generated_date": "2026-11-04",
+  "base_uploaded_zip_sha256": "ed69503dfeb2d76cf7a2c131b020c07188a84fcf82993eb51e925929027ab2c7",
+  "latest_repository_evidence_verified": false,
+  "owner_assertion": "Muhammad Murad documented eng/QA/security signoffs and froze contracts; Murad Saif approved math.",
+  "closure_mode": "owner-approves-transition-after-latest-repo-human-evidence-reconciliation",
+  "packaged_files": [
+    {
+      "path": "README-GATE0-FINAL.md",
+      "sha256": "a46548e33a32055024f9207f3e5e73e944644eb2d94edd4ceb80d74138475502"
+    },
+    {
+      "path": "docs/17-IMPLEMENTATION-PLAN-GATE0-ADDENDUM.md",
+      "sha256": "3e68a13de5341b153f6cccba70e60b577daf1dc1fe3319d507f6ea9ef935a59b"
+    },
+    {
+      "path": "instructions/AGENT-FINALIZE-GATE0-THEN-PH01.md",
+      "sha256": "3453ff56982d9bb0815736b3627f5384f03aac99657a9d8dfb885ab0cab43d9d"
+    },
+    {
+      "path": "instructions/PH01-START-ORDER.md",
+      "sha256": "c7241275bea383c09eb3ba9a87333f6e083864326b0632ee44f204355e5f6360"
+    },
+    {
+      "path": "planning/GATE0-CONTRACT-FREEZE.md",
+      "sha256": "b39d04e86e1af98296de290ca97122f885a43f809d8765b832fe97b114f06a71"
+    },
+    {
+      "path": "planning/GATE0-HUMAN-SIGNOFF-REGISTER.md",
+      "sha256": "50938adb6adafa4cf91e625b0b5cbad8f351726d4f5e320aeeb2c5ffe6077c52"
+    },
+    {
+      "path": "planning/GATE0-OWNER-FINAL-DECISION.md",
+      "sha256": "543fef45d2a772d1f87ff0ed18e31457953458a39a7eceb36037a021e55afdee"
+    },
+    {
+      "path": "planning/gate0-freeze-manifest.template.json",
+      "sha256": "cbc789d21e3937af356dfb0476a55f34f75cfc5241f26f68eb9bec08843fe081"
+    },
+    {
+      "path": "qa-reports/GATE0-FINAL-RECONCILIATION.md",
+      "sha256": "debbd22c240ca189d15bbe32390c4c19cec44cd6bfc9581a87e5af6ecd24e138"
+    },
+    {
+      "path": "tools/verify_gate0_evidence.py",
+      "sha256": "37b624b60593fcf61d4ce541e1e9d86cf236a359d870f4038595f540332814cf"
+    }
+  ]
+}

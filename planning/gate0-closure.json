@@ -1,0 +1,30 @@
+{
+  "gate": "GATE-0",
+  "decision": "APPROVED",
+  "approvalBasis": "OWNER_DELEGATED_AGENT_DESIGN_APPROVAL",
+  "approvedAt": "2026-11-04T02:48:12+03:00",
+  "approvedBy": "مسؤول المشروع بتفويضه الصريح للوكيل في المحادثة",
+  "recordedBy": "Codex integration agent",
+  "authorityEvidence": "planning/gate0-owner-delegation.json",
+  "mathApproval": "planning/approvals/MATH-SCOPE-OWNER-DELEGATED-APPROVAL.md",
+  "engineeringApproval": "planning/approvals/ENGINEERING-QA-SECURITY-OWNER-DELEGATED-APPROVAL.md",
+  "contractInventory": "planning/gate0-current-contract-inventory.json",
+  "directReviewerSignaturesClaimed": false,
+  "signedFreezeClaimed": false,
+  "directReviewerAndLinkedFreezeConditionsWaivedByOwner": true,
+  "checks": "qa-reports/gate0-owner-delegation-validation.json",
+  "staticChecksPassed": 39,
+  "governanceChecksPassed": 8,
+  "ph01Authorized": true,
+  "allowedTasks": [
+    "TASK-011",
+    "TASK-012",
+    "TASK-013",
+    "TASK-014",
+    "TASK-015",
+    "TASK-016",
+    "TASK-017"
+  ],
+  "ph02Authorized": false,
+  "runtimeGatesApproved": false
+}
