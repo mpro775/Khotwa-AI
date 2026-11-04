@@ -590,6 +590,7 @@ export class TutoringService {
           maxOutputTokens: this.limits.maxOutputTokens,
           reportedInputTokens: usage?.inputTokens ?? null,
           reportedOutputTokens: usage?.outputTokens ?? null,
+          ...this.ai.invocationAudit?.(),
         };
         await tx.$executeRaw`INSERT INTO tutoring_events(id,hint_request_id,attempt_id,attempt_revision,problem_revision_id,anchor_step_version_id,verification_result_id,diagnosis_id,template_id,event_type,hint_level,policy_version,prompt_version,content_version,context_key,rendered_text_ar,solution_steps,generation_source,independent_evidence_eligible,public_json,math_proof_json,audit_json)
       VALUES(${event.id}::uuid,${s.id}::uuid,${current.a.id}::uuid,${current.a.revision},${current.a.problem_revision_id}::uuid,${s.current.anchor}::uuid,${s.current.verification}::uuid,${s.current.diagnosisId}::uuid,${s.template.id}::uuid,${event.eventType},${s.level},${TUTORING_POLICY},${HINT_PROMPT_VERSION},${s.template.template_version},${s.current.contextKey},${text},${JSON.stringify(event.solutionStepsAr)}::jsonb,${source},false,${JSON.stringify(event)}::jsonb,${JSON.stringify(proof)}::jsonb,${JSON.stringify(audit)}::jsonb)`;

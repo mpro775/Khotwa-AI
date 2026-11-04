@@ -25,9 +25,12 @@ export interface AiReply {
   outputTokens: number | null;
 }
 export interface AiTutorPort {
-  readonly kind: "disabled" | "test_double";
+  readonly kind: "disabled" | "test_double" | "gemini";
   readonly enabled: boolean;
   readonly maximumCostUnits: number;
+  invocationAudit?(): Readonly<
+    Record<string, string | number | boolean | null>
+  >;
   adaptHint(context: HintContext, signal: AbortSignal): Promise<AiReply>;
 }
 /** No external provider is approved in this delivery. A real adapter is not activated. */
@@ -67,7 +70,7 @@ export function buildHintContext(input: {
     maxOutputTokens: input.maxOutputTokens,
   };
 }
-const schema = {
+export const HINT_REPLY_SCHEMA = {
   type: "object",
   additionalProperties: false,
   required: [
@@ -89,7 +92,9 @@ const schema = {
     isAnswerRevealed: { type: "boolean" },
   },
 };
-const validate = new Ajv({ allErrors: false, strict: true }).compile(schema);
+const validate = new Ajv({ allErrors: false, strict: true }).compile(
+  HINT_REPLY_SCHEMA,
+);
 const unsafe =
   /[<>`A-Za-z0-9\u061c\u200b-\u200f\u202a-\u202e\u2066-\u2069\ufeff]|https?:|www\.|(?:ضعيف|لا تفهم|لا تعرف|متقن نهائي|أتقنت نهائي|نسبة|ذكاء)|[%٪]/u;
 export function safeTeachingText(text: string): boolean {

@@ -1,0 +1,199 @@
+{
+  "at": "2026-11-04T22:42:32.965Z",
+  "realProvider": true,
+  "actualExternalCalls": 2,
+  "samples": [
+    {
+      "case": "transfer-explicit-exit-H1",
+      "hint": {
+        "id": "6809c157-c265-4229-9bc8-97dca8759291",
+        "attemptId": "1c778a14-add3-40bf-86bf-c10b45bf3b29",
+        "attemptRevision": 1,
+        "eventType": "hint",
+        "hintLevel": "H1",
+        "textAr": "راجع ما تغير في طرفي المساواة.",
+        "solutionStepsAr": [],
+        "generationSource": "manual",
+        "independentEvidenceEligible": false,
+        "createdAt": "2026-11-04T22:43:05.355Z"
+      },
+      "metric": {
+        "event": "ph08_gemini_call",
+        "at": "2026-11-04T22:42:59.114Z",
+        "requestedModel": "gemini-3.5-flash-lite",
+        "actualModel": "gemini-3.5-flash-lite",
+        "thinkingLevel": "minimal",
+        "latencyMs": 6212.593,
+        "httpStatus": 200,
+        "providerErrorCode": null,
+        "inputTokens": 279,
+        "outputTokens": 119,
+        "totalTokens": 398,
+        "thinkingTokens": null,
+        "outcome": "AI_VALIDATED",
+        "transport": "real"
+      }
+    },
+    {
+      "case": "transfer-explicit-exit-H2",
+      "hint": {
+        "id": "45e51d9c-42d7-4314-afde-3cbdf56a994d",
+        "attemptId": "1c778a14-add3-40bf-86bf-c10b45bf3b29",
+        "attemptRevision": 1,
+        "eventType": "hint",
+        "hintLevel": "H2",
+        "textAr": "حدد العملية التي طبقتها وحافظ على تكافؤ الطرفين.",
+        "solutionStepsAr": [],
+        "generationSource": "manual",
+        "independentEvidenceEligible": false,
+        "createdAt": "2026-11-04T22:43:06.924Z"
+      },
+      "metric": {
+        "event": "ph08_gemini_call",
+        "at": "2026-11-04T22:43:05.459Z",
+        "requestedModel": "gemini-3.5-flash-lite",
+        "actualModel": "gemini-3.5-flash-lite",
+        "thinkingLevel": "minimal",
+        "latencyMs": 1379.665,
+        "httpStatus": 200,
+        "providerErrorCode": null,
+        "inputTokens": 285,
+        "outputTokens": 98,
+        "totalTokens": 383,
+        "thinkingTokens": null,
+        "outcome": "AI_VALIDATED",
+        "transport": "real"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "PH07 root hint is local; only PH08 assigned attempts may call Gemini",
+      "passed": true
+    },
+    {
+      "name": "controlled Gemini 503: fallback preserves steps, revision and SymPy verdict",
+      "passed": true
+    },
+    {
+      "name": "controlled Gemini timeout: fallback preserves steps, revision and SymPy verdict",
+      "passed": true
+    },
+    {
+      "name": "controlled Gemini unsafe: fallback preserves steps, revision and SymPy verdict",
+      "passed": true
+    },
+    {
+      "name": "late Gemini result is rejected after concurrent step edit",
+      "passed": true
+    },
+    {
+      "name": "transfer assistance explicitly exits independent measurement before Gemini",
+      "passed": true
+    },
+    {
+      "name": "eleventh request uses fallback without upstream dispatch",
+      "passed": true
+    }
+  ],
+  "metrics": [
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:42:38.025Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": null,
+      "thinkingLevel": "minimal",
+      "latencyMs": 2.19,
+      "httpStatus": 503,
+      "providerErrorCode": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "totalTokens": null,
+      "thinkingTokens": null,
+      "outcome": "GEMINI_HTTP_503",
+      "transport": "controlled"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:42:39.241Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": null,
+      "thinkingLevel": "minimal",
+      "latencyMs": 14998.024,
+      "httpStatus": null,
+      "providerErrorCode": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "totalTokens": null,
+      "thinkingTokens": null,
+      "outcome": "GEMINI_ABORTED",
+      "transport": "controlled"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:42:56.089Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 2.123,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "totalTokens": null,
+      "thinkingTokens": null,
+      "outcome": "AI_UNAPPROVED_MEANING",
+      "transport": "controlled"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:42:57.416Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 122.934,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 120,
+      "outputTokens": 70,
+      "totalTokens": 190,
+      "thinkingTokens": null,
+      "outcome": "AI_VALIDATED",
+      "transport": "controlled"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:42:59.114Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 6212.593,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 279,
+      "outputTokens": 119,
+      "totalTokens": 398,
+      "thinkingTokens": null,
+      "outcome": "AI_VALIDATED",
+      "transport": "real"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:43:05.459Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 1379.665,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 285,
+      "outputTokens": 98,
+      "totalTokens": 383,
+      "thinkingTokens": null,
+      "outcome": "AI_VALIDATED",
+      "transport": "real"
+    }
+  ],
+  "error": null,
+  "contractResponseCount": 76
+}

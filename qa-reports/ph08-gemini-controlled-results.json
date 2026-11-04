@@ -1,0 +1,705 @@
+{
+  "at": "2026-11-04T22:39:29.091Z",
+  "realProvider": false,
+  "actualExternalCalls": 0,
+  "samples": [
+    {
+      "case": 1,
+      "root": "٢(س + ٣) = ١٠",
+      "rootDiagnosis": {
+        "diagnosisId": "be0ec0dd-490f-4cfd-8813-217831024faa",
+        "state": "needs_probe",
+        "errorCode": "ERR-ALG-01",
+        "skillId": "9383644c-4e67-4250-8616-356852206cef",
+        "explanationAr": "تغير الحد الذي يحوي س بضرب المعامل، بينما بقي الحد الثابت داخل القوس دون الضرب نفسه؛ قد يكون ذلك سهوًا أو توزيعًا غير مكتمل. هذا تفسير محتمل في هذه المحاولة، وليس تشخيصًا دائمًا. السؤال الإضافي قد يدعمه أو يناقضه.",
+        "needsProbe": true
+      },
+      "remediation": "٢(س + ١) = ٨",
+      "remediationDiagnosis": {
+        "diagnosisId": "304691c0-b558-4bd6-a2c6-60cc6981a84f",
+        "state": "needs_probe",
+        "errorCode": "ERR-ALG-01",
+        "skillId": "9383644c-4e67-4250-8616-356852206cef",
+        "explanationAr": "تغير الحد الذي يحوي س بضرب المعامل، بينما بقي الحد الثابت داخل القوس دون الضرب نفسه؛ قد يكون ذلك سهوًا أو توزيعًا غير مكتمل. هذا تفسير محتمل في هذه المحاولة، وليس تشخيصًا دائمًا. السؤال الإضافي قد يدعمه أو يناقضه.",
+        "needsProbe": true
+      },
+      "mathStatuses": [
+        "verified_invalid"
+      ],
+      "hint": {
+        "id": "d01718ac-6223-403c-ac39-79f65f2ac0f2",
+        "attemptId": "1c6ff572-c149-446a-896d-aa5758333936",
+        "attemptRevision": 1,
+        "eventType": "hint",
+        "hintLevel": "H1",
+        "textAr": "انظر إلى الحدين داخل القوس: هل تأثر كل منهما بالمعامل؟",
+        "solutionStepsAr": [],
+        "generationSource": "manual",
+        "independentEvidenceEligible": false,
+        "createdAt": "2026-11-04T22:39:46.954Z"
+      },
+      "metric": {
+        "event": "ph08_gemini_call",
+        "at": "2026-11-04T22:39:46.889Z",
+        "requestedModel": "gemini-3.5-flash-lite",
+        "actualModel": "gemini-3.5-flash-lite",
+        "thinkingLevel": "minimal",
+        "latencyMs": 1.075,
+        "httpStatus": 200,
+        "providerErrorCode": null,
+        "inputTokens": 120,
+        "outputTokens": 70,
+        "totalTokens": 190,
+        "thinkingTokens": null,
+        "outcome": "AI_VALIDATED",
+        "transport": "controlled"
+      }
+    },
+    {
+      "case": "distribution-H2",
+      "hint": {
+        "id": "17a28a9a-0d1e-4740-bacf-e7cb215d3e39",
+        "attemptId": "1c6ff572-c149-446a-896d-aa5758333936",
+        "attemptRevision": 1,
+        "eventType": "hint",
+        "hintLevel": "H2",
+        "textAr": "المعامل خارج القوس يضرب كل حد داخله.",
+        "solutionStepsAr": [],
+        "generationSource": "manual",
+        "independentEvidenceEligible": false,
+        "createdAt": "2026-11-04T22:39:47.155Z"
+      },
+      "metric": {
+        "event": "ph08_gemini_call",
+        "at": "2026-11-04T22:39:47.115Z",
+        "requestedModel": "gemini-3.5-flash-lite",
+        "actualModel": "gemini-3.5-flash-lite",
+        "thinkingLevel": "minimal",
+        "latencyMs": 1.264,
+        "httpStatus": 200,
+        "providerErrorCode": null,
+        "inputTokens": 120,
+        "outputTokens": 70,
+        "totalTokens": 190,
+        "thinkingTokens": null,
+        "outcome": "AI_VALIDATED",
+        "transport": "controlled"
+      }
+    },
+    {
+      "case": "distribution-H3",
+      "hint": {
+        "id": "352c20f2-17ef-4333-bd5e-b51082227ee1",
+        "attemptId": "1c6ff572-c149-446a-896d-aa5758333936",
+        "attemptRevision": 1,
+        "eventType": "hint",
+        "hintLevel": "H3",
+        "textAr": "ابدأ بضرب المعامل في حد س، ثم أكمل الحد الثابت بنفسك.",
+        "solutionStepsAr": [],
+        "generationSource": "manual",
+        "independentEvidenceEligible": false,
+        "createdAt": "2026-11-04T22:39:47.337Z"
+      },
+      "metric": {
+        "event": "ph08_gemini_call",
+        "at": "2026-11-04T22:39:47.283Z",
+        "requestedModel": "gemini-3.5-flash-lite",
+        "actualModel": "gemini-3.5-flash-lite",
+        "thinkingLevel": "minimal",
+        "latencyMs": 0.845,
+        "httpStatus": 200,
+        "providerErrorCode": null,
+        "inputTokens": 120,
+        "outputTokens": 70,
+        "totalTokens": 190,
+        "thinkingTokens": null,
+        "outcome": "AI_VALIDATED",
+        "transport": "controlled"
+      }
+    },
+    {
+      "case": 2,
+      "root": "س − ٣ = ٥",
+      "rootDiagnosis": {
+        "diagnosisId": "222292ef-3519-47a6-831e-699d1f533376",
+        "state": "unresolved",
+        "errorCode": null,
+        "skillId": null,
+        "explanationAr": "ثبت عدم تكافؤ الانتقال، لكن بنيته لا تكفي لتحديد سبب محتمل ضمن الأنماط المتاحة. هذا تفسير محتمل في هذه المحاولة، وليس تشخيصًا دائمًا. السؤال الإضافي قد يدعمه أو يناقضه.",
+        "needsProbe": false
+      },
+      "remediation": "س − ١ = ٢",
+      "remediationDiagnosis": {
+        "diagnosisId": "a7ef31ba-902b-4a07-86cb-a1767045bed6",
+        "state": "unresolved",
+        "errorCode": null,
+        "skillId": null,
+        "explanationAr": "ثبت عدم تكافؤ الانتقال، لكن بنيته لا تكفي لتحديد سبب محتمل ضمن الأنماط المتاحة. هذا تفسير محتمل في هذه المحاولة، وليس تشخيصًا دائمًا. السؤال الإضافي قد يدعمه أو يناقضه.",
+        "needsProbe": false
+      },
+      "mathStatuses": [
+        "verified_invalid"
+      ],
+      "hint": {
+        "id": "53ea1793-bce7-4152-b223-00675072e4a7",
+        "attemptId": "cddcd810-823d-4e86-8d54-8978c683ec42",
+        "attemptRevision": 1,
+        "eventType": "hint",
+        "hintLevel": "H1",
+        "textAr": "راجع ما تغير في طرفي المساواة.",
+        "solutionStepsAr": [],
+        "generationSource": "manual",
+        "independentEvidenceEligible": false,
+        "createdAt": "2026-11-04T22:39:49.033Z"
+      },
+      "metric": {
+        "event": "ph08_gemini_call",
+        "at": "2026-11-04T22:39:48.986Z",
+        "requestedModel": "gemini-3.5-flash-lite",
+        "actualModel": "gemini-3.5-flash-lite",
+        "thinkingLevel": "minimal",
+        "latencyMs": 1.171,
+        "httpStatus": 200,
+        "providerErrorCode": null,
+        "inputTokens": 120,
+        "outputTokens": 70,
+        "totalTokens": 190,
+        "thinkingTokens": null,
+        "outcome": "AI_VALIDATED",
+        "transport": "controlled"
+      }
+    },
+    {
+      "case": 3,
+      "root": "س + ٣ = ٧",
+      "rootDiagnosis": {
+        "diagnosisId": "c2cf6f04-5a6c-46b6-ac74-5f90945b3bc9",
+        "state": "tentative",
+        "errorCode": "ERR-ALG-03",
+        "skillId": "83a960f7-5edc-4957-bdec-17dc6d8603f5",
+        "explanationAr": "تغير طرف من المساواة دون أثر مقابل ظاهر في الطرف الآخر؛ ربما حُذفت كتابة أو نُفذت عملية على طرف واحد. هذا تفسير محتمل في هذه المحاولة، وليس تشخيصًا دائمًا. السؤال الإضافي قد يدعمه أو يناقضه.",
+        "needsProbe": true
+      },
+      "remediation": "س + ٢ = ٦",
+      "remediationDiagnosis": {
+        "diagnosisId": "3f2b8957-f0d4-4fec-add5-954c4863c278",
+        "state": "unresolved",
+        "errorCode": null,
+        "skillId": null,
+        "explanationAr": "ثبت عدم تكافؤ الانتقال، لكن بنيته لا تكفي لتحديد سبب محتمل ضمن الأنماط المتاحة. هذا تفسير محتمل في هذه المحاولة، وليس تشخيصًا دائمًا. السؤال الإضافي قد يدعمه أو يناقضه.",
+        "needsProbe": false
+      },
+      "mathStatuses": [
+        "verified_invalid"
+      ],
+      "hint": {
+        "id": "9744301c-b578-469a-926f-15cd28ebbce2",
+        "attemptId": "89c22aa8-cef2-410c-95c1-76f1ca1fbeff",
+        "attemptRevision": 1,
+        "eventType": "hint",
+        "hintLevel": "H1",
+        "textAr": "راجع ما تغير في طرفي المساواة.",
+        "solutionStepsAr": [],
+        "generationSource": "manual",
+        "independentEvidenceEligible": false,
+        "createdAt": "2026-11-04T22:39:49.748Z"
+      },
+      "metric": {
+        "event": "ph08_gemini_call",
+        "at": "2026-11-04T22:39:49.701Z",
+        "requestedModel": "gemini-3.5-flash-lite",
+        "actualModel": "gemini-3.5-flash-lite",
+        "thinkingLevel": "minimal",
+        "latencyMs": 0.822,
+        "httpStatus": 200,
+        "providerErrorCode": null,
+        "inputTokens": 120,
+        "outputTokens": 70,
+        "totalTokens": 190,
+        "thinkingTokens": null,
+        "outcome": "AI_VALIDATED",
+        "transport": "controlled"
+      }
+    },
+    {
+      "case": 4,
+      "root": "٣س = ١٢",
+      "rootDiagnosis": {
+        "diagnosisId": "15e3e934-3777-442e-b12f-915b58e6da90",
+        "state": "unresolved",
+        "errorCode": null,
+        "skillId": null,
+        "explanationAr": "ثبت عدم تكافؤ الانتقال، لكن بنيته لا تكفي لتحديد سبب محتمل ضمن الأنماط المتاحة. هذا تفسير محتمل في هذه المحاولة، وليس تشخيصًا دائمًا. السؤال الإضافي قد يدعمه أو يناقضه.",
+        "needsProbe": false
+      },
+      "remediation": "٤س = ٨",
+      "remediationDiagnosis": {
+        "diagnosisId": "7d967bbb-3e6d-496d-a709-959b7505b8fd",
+        "state": "unresolved",
+        "errorCode": null,
+        "skillId": null,
+        "explanationAr": "ثبت عدم تكافؤ الانتقال، لكن بنيته لا تكفي لتحديد سبب محتمل ضمن الأنماط المتاحة. هذا تفسير محتمل في هذه المحاولة، وليس تشخيصًا دائمًا. السؤال الإضافي قد يدعمه أو يناقضه.",
+        "needsProbe": false
+      },
+      "mathStatuses": [
+        "verified_invalid"
+      ],
+      "hint": {
+        "id": "c9df27fe-630d-4a24-8062-f2046ba9b811",
+        "attemptId": "9cee88d0-9afe-4c5c-813a-00a6b0b3ee42",
+        "attemptRevision": 1,
+        "eventType": "hint",
+        "hintLevel": "H1",
+        "textAr": "راجع ما تغير في طرفي المساواة.",
+        "solutionStepsAr": [],
+        "generationSource": "manual",
+        "independentEvidenceEligible": false,
+        "createdAt": "2026-11-04T22:39:50.547Z"
+      },
+      "metric": {
+        "event": "ph08_gemini_call",
+        "at": "2026-11-04T22:39:50.455Z",
+        "requestedModel": "gemini-3.5-flash-lite",
+        "actualModel": "gemini-3.5-flash-lite",
+        "thinkingLevel": "minimal",
+        "latencyMs": 1.105,
+        "httpStatus": 200,
+        "providerErrorCode": null,
+        "inputTokens": 120,
+        "outputTokens": 70,
+        "totalTokens": 190,
+        "thinkingTokens": null,
+        "outcome": "AI_VALIDATED",
+        "transport": "controlled"
+      }
+    },
+    {
+      "case": 5,
+      "root": "س + ٥ = ١٢",
+      "rootDiagnosis": {
+        "diagnosisId": "4a3bb2e3-e4f0-48ed-8771-30db8b4ec31f",
+        "state": "unresolved",
+        "errorCode": null,
+        "skillId": null,
+        "explanationAr": "ثبت عدم تكافؤ الانتقال، لكن بنيته لا تكفي لتحديد سبب محتمل ضمن الأنماط المتاحة. هذا تفسير محتمل في هذه المحاولة، وليس تشخيصًا دائمًا. السؤال الإضافي قد يدعمه أو يناقضه.",
+        "needsProbe": false
+      },
+      "remediation": "س + ٤ = ١٠",
+      "remediationDiagnosis": {
+        "diagnosisId": "b55e8911-5ac7-4d1d-904b-0cf2340cf654",
+        "state": "unresolved",
+        "errorCode": null,
+        "skillId": null,
+        "explanationAr": "ثبت عدم تكافؤ الانتقال، لكن بنيته لا تكفي لتحديد سبب محتمل ضمن الأنماط المتاحة. هذا تفسير محتمل في هذه المحاولة، وليس تشخيصًا دائمًا. السؤال الإضافي قد يدعمه أو يناقضه.",
+        "needsProbe": false
+      },
+      "mathStatuses": [
+        "verified_invalid"
+      ],
+      "hint": {
+        "id": "467bff31-e4c6-4024-a555-fd11e76e4325",
+        "attemptId": "5f138f03-95c7-4926-aae2-c0d5666bdfb7",
+        "attemptRevision": 1,
+        "eventType": "hint",
+        "hintLevel": "H1",
+        "textAr": "راجع ما تغير في طرفي المساواة.",
+        "solutionStepsAr": [],
+        "generationSource": "manual",
+        "independentEvidenceEligible": false,
+        "createdAt": "2026-11-04T22:39:51.931Z"
+      },
+      "metric": {
+        "event": "ph08_gemini_call",
+        "at": "2026-11-04T22:39:51.885Z",
+        "requestedModel": "gemini-3.5-flash-lite",
+        "actualModel": "gemini-3.5-flash-lite",
+        "thinkingLevel": "minimal",
+        "latencyMs": 0.944,
+        "httpStatus": 200,
+        "providerErrorCode": null,
+        "inputTokens": 120,
+        "outputTokens": 70,
+        "totalTokens": 190,
+        "thinkingTokens": null,
+        "outcome": "AI_VALIDATED",
+        "transport": "controlled"
+      }
+    },
+    {
+      "case": 6,
+      "root": "−٢(س − ٣) = ١٠",
+      "rootDiagnosis": {
+        "diagnosisId": "f0941f54-46ef-42d0-971b-6308c7f25a9f",
+        "state": "needs_probe",
+        "errorCode": "ERR-ALG-06",
+        "skillId": "9383644c-4e67-4250-8616-356852206cef",
+        "explanationAr": "ظهر توزيع بمعامل سالب، لكن الحد الثابت لا يحمل أثر الإشارة المتوقع؛ قد يتعلق الأمر بالإشارة أو بالتوزيع. هذا تفسير محتمل في هذه المحاولة، وليس تشخيصًا دائمًا. السؤال الإضافي قد يدعمه أو يناقضه.",
+        "needsProbe": true
+      },
+      "remediation": "−٢(س − ١) = ٤",
+      "remediationDiagnosis": {
+        "diagnosisId": "7e17728f-ff26-4f47-aee4-aee6d2f1c495",
+        "state": "needs_probe",
+        "errorCode": "ERR-ALG-06",
+        "skillId": "9383644c-4e67-4250-8616-356852206cef",
+        "explanationAr": "ظهر توزيع بمعامل سالب، لكن الحد الثابت لا يحمل أثر الإشارة المتوقع؛ قد يتعلق الأمر بالإشارة أو بالتوزيع. هذا تفسير محتمل في هذه المحاولة، وليس تشخيصًا دائمًا. السؤال الإضافي قد يدعمه أو يناقضه.",
+        "needsProbe": true
+      },
+      "mathStatuses": [
+        "verified_invalid"
+      ],
+      "hint": {
+        "id": "22da4502-d60a-4331-8bc2-1405d11ed8cc",
+        "attemptId": "f75b0f53-e0f3-4563-be0d-f8c9af1e3d57",
+        "attemptRevision": 1,
+        "eventType": "hint",
+        "hintLevel": "H1",
+        "textAr": "تأمل أثر المعامل السالب على الحدين.",
+        "solutionStepsAr": [],
+        "generationSource": "manual",
+        "independentEvidenceEligible": false,
+        "createdAt": "2026-11-04T22:39:53.128Z"
+      },
+      "metric": {
+        "event": "ph08_gemini_call",
+        "at": "2026-11-04T22:39:53.024Z",
+        "requestedModel": "gemini-3.5-flash-lite",
+        "actualModel": "gemini-3.5-flash-lite",
+        "thinkingLevel": "minimal",
+        "latencyMs": 0.899,
+        "httpStatus": 200,
+        "providerErrorCode": null,
+        "inputTokens": 120,
+        "outputTokens": 70,
+        "totalTokens": 190,
+        "thinkingTokens": null,
+        "outcome": "AI_VALIDATED",
+        "transport": "controlled"
+      }
+    },
+    {
+      "case": "transfer-explicit-exit-H1",
+      "hint": {
+        "id": "8e88289d-ea12-476a-a476-682adee9a802",
+        "attemptId": "ea291c36-e389-4f6b-b7b0-88f906ffa0f9",
+        "attemptRevision": 1,
+        "eventType": "hint",
+        "hintLevel": "H1",
+        "textAr": "راجع ما تغير في طرفي المساواة.",
+        "solutionStepsAr": [],
+        "generationSource": "manual",
+        "independentEvidenceEligible": false,
+        "createdAt": "2026-11-04T22:39:55.308Z"
+      },
+      "metric": {
+        "event": "ph08_gemini_call",
+        "at": "2026-11-04T22:39:55.272Z",
+        "requestedModel": "gemini-3.5-flash-lite",
+        "actualModel": "gemini-3.5-flash-lite",
+        "thinkingLevel": "minimal",
+        "latencyMs": 1.07,
+        "httpStatus": 200,
+        "providerErrorCode": null,
+        "inputTokens": 120,
+        "outputTokens": 70,
+        "totalTokens": 190,
+        "thinkingTokens": null,
+        "outcome": "AI_VALIDATED",
+        "transport": "controlled"
+      }
+    },
+    {
+      "case": "transfer-explicit-exit-H2",
+      "hint": {
+        "id": "0c68da92-7e55-46ba-9d13-c063eddffc91",
+        "attemptId": "ea291c36-e389-4f6b-b7b0-88f906ffa0f9",
+        "attemptRevision": 1,
+        "eventType": "hint",
+        "hintLevel": "H2",
+        "textAr": "حدد العملية التي طبقتها وحافظ على تكافؤ الطرفين.",
+        "solutionStepsAr": [],
+        "generationSource": "manual",
+        "independentEvidenceEligible": false,
+        "createdAt": "2026-11-04T22:39:55.439Z"
+      },
+      "metric": {
+        "event": "ph08_gemini_call",
+        "at": "2026-11-04T22:39:55.405Z",
+        "requestedModel": "gemini-3.5-flash-lite",
+        "actualModel": "gemini-3.5-flash-lite",
+        "thinkingLevel": "minimal",
+        "latencyMs": 0.812,
+        "httpStatus": 200,
+        "providerErrorCode": null,
+        "inputTokens": 120,
+        "outputTokens": 70,
+        "totalTokens": 190,
+        "thinkingTokens": null,
+        "outcome": "AI_VALIDATED",
+        "transport": "controlled"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "PH07 root hint is local; only PH08 assigned attempts may call Gemini",
+      "passed": true
+    },
+    {
+      "name": "controlled Gemini 503: fallback preserves steps, revision and SymPy verdict",
+      "passed": true
+    },
+    {
+      "name": "controlled Gemini timeout: fallback preserves steps, revision and SymPy verdict",
+      "passed": true
+    },
+    {
+      "name": "controlled Gemini unsafe: fallback preserves steps, revision and SymPy verdict",
+      "passed": true
+    },
+    {
+      "name": "late Gemini result is rejected after concurrent step edit",
+      "passed": true
+    },
+    {
+      "name": "completed remediation and fresh independent transfer without answer leakage or provider call",
+      "passed": true
+    },
+    {
+      "name": "transfer assistance explicitly exits independent measurement before Gemini",
+      "passed": true
+    },
+    {
+      "name": "eleventh request uses fallback without upstream dispatch",
+      "passed": true
+    }
+  ],
+  "metrics": [
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:39:34.705Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": null,
+      "thinkingLevel": "minimal",
+      "latencyMs": 4.059,
+      "httpStatus": 503,
+      "providerErrorCode": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "totalTokens": null,
+      "thinkingTokens": null,
+      "outcome": "GEMINI_HTTP_503",
+      "transport": "controlled"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:39:35.958Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": null,
+      "thinkingLevel": "minimal",
+      "latencyMs": 7999.543,
+      "httpStatus": null,
+      "providerErrorCode": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "totalTokens": null,
+      "thinkingTokens": null,
+      "outcome": "GEMINI_ABORTED",
+      "transport": "controlled"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:39:44.792Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 1.842,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "totalTokens": null,
+      "thinkingTokens": null,
+      "outcome": "AI_UNAPPROVED_MEANING",
+      "transport": "controlled"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:39:45.876Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 92.171,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 120,
+      "outputTokens": 70,
+      "totalTokens": 190,
+      "thinkingTokens": null,
+      "outcome": "AI_VALIDATED",
+      "transport": "controlled"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:39:46.889Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 1.075,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 120,
+      "outputTokens": 70,
+      "totalTokens": 190,
+      "thinkingTokens": null,
+      "outcome": "AI_VALIDATED",
+      "transport": "controlled"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:39:47.115Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 1.264,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 120,
+      "outputTokens": 70,
+      "totalTokens": 190,
+      "thinkingTokens": null,
+      "outcome": "AI_VALIDATED",
+      "transport": "controlled"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:39:47.283Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 0.845,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 120,
+      "outputTokens": 70,
+      "totalTokens": 190,
+      "thinkingTokens": null,
+      "outcome": "AI_VALIDATED",
+      "transport": "controlled"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:39:48.986Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 1.171,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 120,
+      "outputTokens": 70,
+      "totalTokens": 190,
+      "thinkingTokens": null,
+      "outcome": "AI_VALIDATED",
+      "transport": "controlled"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:39:49.701Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 0.822,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 120,
+      "outputTokens": 70,
+      "totalTokens": 190,
+      "thinkingTokens": null,
+      "outcome": "AI_VALIDATED",
+      "transport": "controlled"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:39:50.455Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 1.105,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 120,
+      "outputTokens": 70,
+      "totalTokens": 190,
+      "thinkingTokens": null,
+      "outcome": "AI_VALIDATED",
+      "transport": "controlled"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:39:51.885Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 0.944,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 120,
+      "outputTokens": 70,
+      "totalTokens": 190,
+      "thinkingTokens": null,
+      "outcome": "AI_VALIDATED",
+      "transport": "controlled"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:39:53.024Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 0.899,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 120,
+      "outputTokens": 70,
+      "totalTokens": 190,
+      "thinkingTokens": null,
+      "outcome": "AI_VALIDATED",
+      "transport": "controlled"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:39:55.272Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 1.07,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 120,
+      "outputTokens": 70,
+      "totalTokens": 190,
+      "thinkingTokens": null,
+      "outcome": "AI_VALIDATED",
+      "transport": "controlled"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:39:55.405Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 0.812,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 120,
+      "outputTokens": 70,
+      "totalTokens": 190,
+      "thinkingTokens": null,
+      "outcome": "AI_VALIDATED",
+      "transport": "controlled"
+    }
+  ],
+  "error": null,
+  "contractResponseCount": 157
+}

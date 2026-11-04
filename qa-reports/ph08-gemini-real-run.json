@@ -1,0 +1,167 @@
+{
+  "at": "2026-11-04T22:42:11.110Z",
+  "realProvider": true,
+  "checks": [
+    {
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "khotwa-ph09-test",
+        "sha256sum",
+        "/app/package-lock.json"
+      ],
+      "exitCode": 0,
+      "stdout": "75d454ac1f17daa1922c089b9fe5168f53ca2b72678b2c53817ad4a6563c2de6  /app/package-lock.json\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "network",
+        "create",
+        "--label",
+        "khotwa.task=ph08-gemini",
+        "khotwa-ph08-708e38d72950"
+      ],
+      "exitCode": 0,
+      "stdout": "63ffcc03d4ccb7696a1b3e1fea991fe66e27fcc973816926dd79c2fabe4aebd2\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "khotwa-ph08-708e38d72950-db",
+        "--label",
+        "khotwa.task=ph08-gemini",
+        "--network",
+        "khotwa-ph08-708e38d72950",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph08-708e38d72950-db.env",
+        "--tmpfs",
+        "/var/lib/postgresql/data",
+        "postgres:17.6-alpine3.22"
+      ],
+      "exitCode": 0,
+      "stdout": "d078bc4dedcd9c8ee754659dd123ab6bc9547ad5dd71025121af5da9ffff54d1\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "khotwa-ph08-708e38d72950-math",
+        "--label",
+        "khotwa.task=ph08-gemini",
+        "--network",
+        "khotwa-ph08-708e38d72950",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph08-708e38d72950-math.env",
+        "--read-only",
+        "--tmpfs",
+        "/tmp",
+        "--memory",
+        "256m",
+        "--cpus",
+        "1",
+        "--pids-limit",
+        "64",
+        "khotwa-ph08-math"
+      ],
+      "exitCode": 0,
+      "stdout": "1ec77225ad2002cd8d1ad0ade3a6020567892b5f6add805c3adcaacbe1b4d23e\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "--name",
+        "khotwa-ph08-708e38d72950-gemini",
+        "--label",
+        "khotwa.task=ph08-gemini",
+        "--network",
+        "khotwa-ph08-708e38d72950",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph08-708e38d72950.env",
+        "-e",
+        "GEMINI_API_KEY",
+        "--memory",
+        "768m",
+        "--pids-limit",
+        "128",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\apps\\api\\src,target=/app/apps/api/src,readonly",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\apps\\api\\tests,target=/app/apps/api/tests,readonly",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\apps\\api\\prisma,target=/app/apps/api/prisma,readonly",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\qa,target=/app/qa,readonly",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local,target=/quota",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\qa-reports,target=/evidence",
+        "khotwa-ph09-test",
+        "node",
+        "qa/ph08-gemini-container.mjs"
+      ],
+      "exitCode": 0,
+      "stdout": "Datasource \"db\": PostgreSQL database \"ph08_test\", schema \"public\" at \"khotwa-ph08-708e38d72950-db:5432\"\n\n9 migrations found in prisma/migrations\n\nApplying migration `0001_ph04`\nApplying migration `0002_current_version_key`\nApplying migration `0003_content_integrity`\nApplying migration `0004_verification_reports`\nApplying migration `0005_conservative_diagnosis`\nApplying migration `0006_guided_tutoring`\nApplying migration `0007_preserve_legacy_assistance`\nApplying migration `0008_learning_episodes`\nApplying migration `0009_current_progress`\n\nThe following migration(s) have been applied:\n\nmigrations/\n  └─ 0001_ph04/\n    └─ migration.sql\n  └─ 0002_current_version_key/\n    └─ migration.sql\n  └─ 0003_content_integrity/\n    └─ migration.sql\n  └─ 0004_verification_reports/\n    └─ migration.sql\n  └─ 0005_conservative_diagnosis/\n    └─ migration.sql\n  └─ 0006_guided_tutoring/\n    └─ migration.sql\n  └─ 0007_preserve_legacy_assistance/\n    └─ migration.sql\n  └─ 0008_learning_episodes/\n    └─ migration.sql\n  └─ 0009_current_progress/\n    └─ migration.sql\n\nAll migrations have been successfully applied.\n▶ PH08 Gemini through real NestJS/PG/SymPy\n  ✔ PH07 root hint is local; only PH08 assigned attempts may call Gemini (1337.778937ms)\n{\"event\":\"ph08_gemini_call\",\"at\":\"2026-11-04T22:42:38.025Z\",\"requestedModel\":\"gemini-3.5-flash-lite\",\"actualModel\":null,\"thinkingLevel\":\"minimal\",\"latencyMs\":2.19,\"httpStatus\":503,\"providerErrorCode\":null,\"inputTokens\":null,\"outputTokens\":null,\"totalTokens\":null,\"thinkingTokens\":null,\"outcome\":\"GEMINI_HTTP_503\"}\n  ✔ controlled Gemini 503: fallback preserves steps, revision and SymPy verdict (1044.59558ms)\n{\"event\":\"ph08_gemini_call\",\"at\":\"2026-11-04T22:42:39.241Z\",\"requestedModel\":\"gemini-3.5-flash-lite\",\"actualModel\":null,\"thinkingLevel\":\"minimal\",\"latencyMs\":14998.024,\"httpStatus\":null,\"providerErrorCode\":null,\"inputTokens\":null,\"outputTokens\":null,\"totalTokens\":null,\"thinkingTokens\":null,\"outcome\":\"GEMINI_ABORTED\"}\n  ✔ controlled Gemini timeout: fallback preserves steps, revision and SymPy verdict (16909.462422ms)\n{\"event\":\"ph08_gemini_call\",\"at\":\"2026-11-04T22:42:56.089Z\",\"requestedModel\":\"gemini-3.5-flash-lite\",\"actualModel\":\"gemini-3.5-flash-lite\",\"thinkingLevel\":\"minimal\",\"latencyMs\":2.123,\"httpStatus\":200,\"providerErrorCode\":null,\"inputTokens\":null,\"outputTokens\":null,\"totalTokens\":null,\"thinkingTokens\":null,\"outcome\":\"AI_UNAPPROVED_MEANING\"}\n  ✔ controlled Gemini unsafe: fallback preserves steps, revision and SymPy verdict (1287.614946ms)\n{\"event\":\"ph08_gemini_call\",\"at\":\"2026-11-04T22:42:57.416Z\",\"requestedModel\":\"gemini-3.5-flash-lite\",\"actualModel\":\"gemini-3.5-flash-lite\",\"thinkingLevel\":\"minimal\",\"latencyMs\":122.934,\"httpStatus\":200,\"providerErrorCode\":null,\"inputTokens\":120,\"outputTokens\":70,\"totalTokens\":190,\"thinkingTokens\":null,\"outcome\":\"AI_VALIDATED\"}\n  ✔ late Gemini result is rejected after concurrent step edit (1300.78148ms)\n{\"event\":\"ph08_gemini_call\",\"at\":\"2026-11-04T22:42:59.114Z\",\"requestedModel\":\"gemini-3.5-flash-lite\",\"actualModel\":\"gemini-3.5-flash-lite\",\"thinkingLevel\":\"minimal\",\"latencyMs\":6212.593,\"httpStatus\":200,\"providerErrorCode\":null,\"inputTokens\":279,\"outputTokens\":119,\"totalTokens\":398,\"thinkingTokens\":null,\"outcome\":\"AI_VALIDATED\"}\n{\"event\":\"ph08_gemini_call\",\"at\":\"2026-11-04T22:43:05.459Z\",\"requestedModel\":\"gemini-3.5-flash-lite\",\"actualModel\":\"gemini-3.5-flash-lite\",\"thinkingLevel\":\"minimal\",\"latencyMs\":1379.665,\"httpStatus\":200,\"providerErrorCode\":null,\"inputTokens\":285,\"outputTokens\":98,\"totalTokens\":383,\"thinkingTokens\":null,\"outcome\":\"AI_VALIDATED\"}\n✔ PH08 Gemini through real NestJS/PG/SymPy (34245.711745ms)\nℹ tests 6\nℹ suites 0\nℹ pass 6\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 35427.129784\n",
+      "stderr": "Loaded Prisma config from apps/api/prisma.config.ts.\n\nPrisma schema loaded from apps/api/prisma/schema.prisma.\n"
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph08-708e38d72950-gemini"
+      ],
+      "exitCode": 0,
+      "stdout": "khotwa-ph08-708e38d72950-gemini\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph08-708e38d72950-math"
+      ],
+      "exitCode": 0,
+      "stdout": "khotwa-ph08-708e38d72950-math\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph08-708e38d72950-db"
+      ],
+      "exitCode": 0,
+      "stdout": "khotwa-ph08-708e38d72950-db\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "network",
+        "rm",
+        "khotwa-ph08-708e38d72950"
+      ],
+      "exitCode": 0,
+      "stdout": "khotwa-ph08-708e38d72950\n",
+      "stderr": ""
+    }
+  ],
+  "error": null
+}

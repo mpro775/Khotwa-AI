@@ -28,6 +28,7 @@ import { VerificationService } from "./verification";
 import { DiagnosisService } from "./diagnosis";
 import { TutoringService, TutoringLimits } from "./tutoring";
 import { NoExternalAi } from "./ai-tutor";
+import { ph08TutoringFromEnvironment } from "./ph08-gemini";
 import { LearningService } from "./learning";
 import { ProgressService } from "./progress";
 import { TeacherDemoService } from "./teacher-demo";
@@ -745,10 +746,6 @@ export class BusinessController {
     {
       provide: TutoringService,
       useFactory: (store: Store, math: MathGateway, ai: NoExternalAi) => {
-        if (process.env.AI_ENABLED === "true")
-          throw new Error(
-            "No external AI provider is approved; AI_ENABLED must remain false",
-          );
         const active = process.env.PH07_API_ENABLED === "true";
         const limit = (name: string, fallback: number) =>
           active ? numberSetting(process.env[name]) : fallback;
@@ -763,7 +760,7 @@ export class BusinessController {
           globalCostUnits: limit("PH07_GLOBAL_COST_UNITS", 1000),
           maxParallel: limit("PH07_MAX_PARALLEL", 2),
         };
-        return new TutoringService(store, math, ai, limits, active);
+        return ph08TutoringFromEnvironment(store, math, ai, limits, active);
       },
       inject: [Store, MathGateway, NoExternalAi],
     },
