@@ -1,0 +1,149 @@
+name: ${PH08_PREFIX:?Run node tools/serve-ph08.mjs}
+services:
+  database:
+    image: postgres:17.6-alpine3.22
+    container_name: ${PH08_PREFIX}-db
+    environment:
+      POSTGRES_USER: ph08
+      POSTGRES_DB: ph08_test
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?}
+    networks:
+      backend:
+        aliases: ["${PH08_PREFIX}-db"]
+    tmpfs: ["/var/lib/postgresql/data:rw,noexec,nosuid,size=128m"]
+    mem_limit: 512m
+    pids_limit: 64
+    healthcheck:
+      test: [CMD, pg_isready, -U, ph08, -d, ph08_test]
+      interval: 2s
+      timeout: 2s
+      retries: 20
+  math:
+    build: { context: ., target: math }
+    image: khotwa-ph08-local-math
+    container_name: ${PH08_PREFIX}-math
+    environment:
+      MATH_INTERNAL_TOKEN: ${MATH_INTERNAL_TOKEN:?}
+    networks:
+      backend:
+        aliases: ["${PH08_PREFIX}-math"]
+    read_only: true
+    tmpfs: [/tmp]
+    mem_limit: 256m
+    cpus: 1.0
+    pids_limit: 64
+    security_opt: ["no-new-privileges:true"]
+    healthcheck:
+      test:
+        [
+          CMD,
+          python,
+          -c,
+          "import os,urllib.request; r=urllib.request.Request('http://127.0.0.1:8001/internal/health',headers={'Authorization':'Bearer '+os.environ['MATH_INTERNAL_TOKEN']}); urllib.request.urlopen(r,timeout=2)",
+        ]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  seed:
+    build: { context: ., target: ph08-test }
+    image: khotwa-ph08-local-tools
+    command: [node, qa/ph08-local-seed.mjs]
+    environment:
+      DATABASE_URL: ${DATABASE_URL:?}
+      MATH_ENGINE_BASE_URL: http://${PH08_PREFIX}-math:8001
+      MATH_INTERNAL_TOKEN: ${MATH_INTERNAL_TOKEN:?}
+    networks: [backend]
+    depends_on:
+      database: { condition: service_healthy }
+      math: { condition: service_healthy }
+  math-proxy:
+    image: khotwa-ph08-local-tools
+    command: [node, qa/ph08-math-proxy.mjs]
+    environment:
+      REAL_MATH_BASE_URL: http://${PH08_PREFIX}-math:8001
+      MATH_INTERNAL_TOKEN: ${MATH_INTERNAL_TOKEN:?}
+    networks: [backend]
+    depends_on:
+      math: { condition: service_healthy }
+      seed: { condition: service_completed_successfully }
+    read_only: true
+    tmpfs: [/tmp]
+    mem_limit: 128m
+    pids_limit: 64
+    security_opt: ["no-new-privileges:true"]
+  api:
+    build: { context: ., target: api }
+    image: khotwa-ph08-local-api
+    environment:
+      HOST: 0.0.0.0
+      PORT: "3000"
+      PH04_API_ENABLED: "true"
+      PH05_API_ENABLED: "true"
+      PH06_API_ENABLED: "true"
+      PH07_API_ENABLED: "true"
+      PH08_API_ENABLED: "true"
+      PH08_MAX_REMEDIATION_ASSIGNMENTS: "2"
+      PH08_MAX_TRANSFER_ASSIGNMENTS: "3"
+      PH07_REQUEST_TIMEOUT_MS: "20000"
+      PH07_AI_TIMEOUT_MS: "500"
+      PH07_MAX_INPUT_BYTES: "8192"
+      PH07_MAX_OUTPUT_TOKENS: "256"
+      PH07_GUEST_CALLS: "100"
+      PH07_GLOBAL_CALLS: "1000"
+      PH07_GUEST_COST_UNITS: "1000"
+      PH07_GLOBAL_COST_UNITS: "10000"
+      PH07_MAX_PARALLEL: "2"
+      KHOTWA_SYNTHETIC_DATA: "true"
+      AI_ENABLED: "false"
+      PH04_BOOTSTRAP_TTL_SECONDS: "120"
+      PH04_RATE_LIMIT_MAX: "1000"
+      PH04_RATE_LIMIT_WINDOW_SECONDS: "60"
+      PH04_MATH_TIMEOUT_MS: "15000"
+      PH05_VERIFY_TIMEOUT_MS: "20000"
+      MATH_ENGINE_BASE_URL: http://math-proxy:8002
+      DATABASE_URL: ${DATABASE_URL:?}
+      PUBLIC_APP_ORIGIN: ${PUBLIC_APP_ORIGIN:?}
+      INTERNAL_HEALTH_TOKEN: ${INTERNAL_HEALTH_TOKEN:?}
+      MATH_INTERNAL_TOKEN: ${MATH_INTERNAL_TOKEN:?}
+      GUEST_DIGEST_KEY: ${GUEST_DIGEST_KEY:?}
+      GUEST_ISSUE_KEY: ${GUEST_ISSUE_KEY:?}
+      BOOTSTRAP_SIGNING_KEY: ${BOOTSTRAP_SIGNING_KEY:?}
+      CSRF_SIGNING_KEY: ${CSRF_SIGNING_KEY:?}
+      IDEMPOTENCY_DIGEST_KEY: ${IDEMPOTENCY_DIGEST_KEY:?}
+      CURSOR_SIGNING_KEY: ${CURSOR_SIGNING_KEY:?}
+    networks: [frontend, backend]
+    depends_on:
+      seed: { condition: service_completed_successfully }
+      math-proxy: { condition: service_started }
+    read_only: true
+    tmpfs: [/tmp]
+    mem_limit: 512m
+    pids_limit: 128
+    security_opt: ["no-new-privileges:true"]
+    healthcheck:
+      test:
+        [
+          CMD,
+          node,
+          -e,
+          "fetch('http://127.0.0.1:3000/internal/health/ready',{headers:{authorization:'Bearer '+process.env.INTERNAL_HEALTH_TOKEN}}).then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 3s
+      timeout: 4s
+      retries: 20
+  web:
+    build: { context: ., target: web }
+    image: khotwa-ph08-local-web
+    ports: ["127.0.0.1:${PH08_PORT}:8443"]
+    volumes:
+      - ./qa/ph08-nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./.local/ph08-tls:/etc/nginx/ph08-tls:ro
+    networks: [frontend]
+    depends_on:
+      api: { condition: service_healthy }
+    mem_limit: 128m
+    pids_limit: 64
+    security_opt: ["no-new-privileges:true"]
+networks:
+  frontend: {}
+  backend: { internal: true }

@@ -1,3 +1,9 @@
+import { publicMathReport } from "./learning-policy";
+import {
+  ph08Active,
+  requireAssignmentCurrent,
+  recordLearningEvidence,
+} from "./learning";
 import { randomUUID } from "node:crypto";
 import { ApiFault } from "./http";
 import { output, Schema } from "./contracts";
@@ -75,6 +81,7 @@ export class VerificationService {
     return this.store.db.$transaction(async (tx) => {
       await this.store.authorizeInTransaction(tx, auth);
       const a = await this.store.readAttemptInTransaction(tx, auth, attemptId);
+      if (ph08Active()) await requireAssignmentCurrent(tx, a.id);
       const keyHash = bytes(this.store.security.keyDigest(key));
       const fingerprint = bytes(
         this.store.security.fingerprint({ attemptId, body }),
@@ -102,7 +109,12 @@ export class VerificationService {
             report.problemRevisionId !== a.problem_revision_id
           )
             throw conflict(Number(a.revision));
-          return { cached: await projectDiagnosis(tx, report, false) };
+          return {
+            cached: publicMathReport(
+              a.attempt_kind,
+              await projectDiagnosis(tx, report, false),
+            ),
+          };
         }
         const [running] = await tx.$queryRaw<
           { id: string; deadline_at: Date }[]
@@ -289,6 +301,7 @@ export class VerificationService {
           { id: string }[]
         >`SELECT v.id FROM verification_reports v JOIN idempotency_records i ON i.id=v.idempotency_record_id WHERE v.id=${s.id}::uuid AND v.dispatch_status='running' AND v.deadline_at>now() AND i.state='processing' AND i.response_cache->>'runningReportId'=${s.id} FOR UPDATE OF v,i`;
         if (!job) throw unavailable();
+        if (ph08Active()) await requireAssignmentCurrent(tx, a.id);
         const currentSteps = await this.store.readStepsInTransaction(tx, a.id);
         const current =
           Number(a.revision) === s.context.attemptRevision &&
@@ -384,8 +397,12 @@ export class VerificationService {
         if (current && s.scope === "current_sequence") {
           const complete = c.completion.canMarkAttemptCompleted;
           await tx.$executeRaw`UPDATE attempts SET completion_verdict=${c.completion.state},status=${complete ? (hasAssistance(a) ? "assisted_completed" : "completed") : "in_progress"},closed_at=${complete ? new Date() : null},updated_at=now() WHERE id=${a.id}::uuid`;
+          await recordLearningEvidence(tx, a, report);
         }
-        return { report, revision: Number(a.revision) };
+        return {
+          report: publicMathReport(a.attempt_kind, report),
+          revision: Number(a.revision),
+        };
       },
       { maxWait: 5000, timeout: 10000 },
     );
@@ -431,11 +448,15 @@ export class VerificationService {
     return this.store.db.$transaction(async (tx) => {
       await this.store.authorizeInTransaction(tx, auth);
       const a = await this.store.readAttemptInTransaction(tx, auth, attemptId);
+      if (ph08Active()) await requireAssignmentCurrent(tx, a.id);
       const [row] = await tx.$queryRaw<
         { report_json: unknown; current: boolean }[]
       >`SELECT p.report_json,EXISTS(SELECT 1 FROM current_verification_runs c WHERE c.id=r.id) AS current FROM verification_results v JOIN verification_runs r ON r.id=v.verification_run_id JOIN verification_reports p ON p.id=r.report_id WHERE v.id=${resultId}::uuid AND r.attempt_id=${a.id}::uuid AND p.dispatch_status='finished' AND r.engine_version_requested=${ENGINE}`;
       if (!row) throw new ApiFault(404, "not_found", "المورد غير متاح.");
-      const report = output("VerificationReport", row.report_json),
+      const report = publicMathReport(
+          a.attempt_kind,
+          output("VerificationReport", row.report_json),
+        ),
         result = report.transitions.find(
           (v) => v.verificationResultId === resultId.toLowerCase(),
         );

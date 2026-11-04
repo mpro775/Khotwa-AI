@@ -1,3 +1,18 @@
+DROP VIEW current_skill_evidence;
+
+DROP FUNCTION transfer_content_unexposed(uuid);
+DROP TRIGGER learning_revision_changed ON attempts;
+DROP FUNCTION invalidate_learning_revision();
+DROP TABLE skill_evidence;
+DROP FUNCTION validate_skill_evidence();
+DROP TABLE content_exposures;
+DROP TABLE learning_assignments;
+DROP TABLE learning_episodes;
+DROP FUNCTION validate_learning_scope();
+DROP TABLE content_pairings;
+DROP FUNCTION validate_learning_pairing();
+ALTER TABLE problem_revisions DROP COLUMN learning_family;
+
 -- PH-07 delta rollback, isolated test database only.
 DROP TABLE IF EXISTS tutoring_events;
 DROP TABLE IF EXISTS hint_requests;

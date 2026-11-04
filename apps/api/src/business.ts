@@ -28,6 +28,9 @@ import { VerificationService } from "./verification";
 import { DiagnosisService } from "./diagnosis";
 import { TutoringService, TutoringLimits } from "./tutoring";
 import { NoExternalAi } from "./ai-tutor";
+import { LearningService } from "./learning";
+import { ProgressService } from "./progress";
+import { TeacherDemoService } from "./teacher-demo";
 
 type AccessMode = "bootstrap" | "createGuest" | "current" | "logout";
 const Access = (mode: AccessMode) => SetMetadata("access", mode);
@@ -205,6 +208,9 @@ export class BusinessController {
     private readonly verification: VerificationService,
     private readonly diagnosis: DiagnosisService,
     private readonly tutoring: TutoringService,
+    private readonly learningService: LearningService,
+    private readonly progressService: ProgressService,
+    private readonly teacherDemo: TeacherDemoService,
   ) {}
   @Get("bootstrap")
   @Access("bootstrap")
@@ -352,7 +358,10 @@ export class BusinessController {
   @Get("problems/:id")
   async problem(@Req() request: SessionRequest, @Param("id") id: string) {
     auth(request);
-    return envelope(request, await this.store.getProblem(uuid(id)));
+    return envelope(
+      request,
+      await this.store.getProblem(uuid(id), auth(request)),
+    );
   }
   @Post("attempts")
   async createAttempt(
@@ -455,6 +464,119 @@ export class BusinessController {
         input("HintInput", raw),
       ),
     );
+  }
+  @Post("attempts/:id/remediation")
+  async remediation(
+    @Req() request: SessionRequest,
+    @Res({ passthrough: true }) response: ResponseContext,
+    @Param("id") id: string,
+    @Body() raw: unknown,
+  ) {
+    return mutation(
+      request,
+      response,
+      await this.learningService.startRemediation(
+        auth(request),
+        uuid(id),
+        key(request),
+        input("StartRemediationInput", raw),
+      ),
+    );
+  }
+  @Post("attempts/:id/transfer")
+  async transfer(
+    @Req() request: SessionRequest,
+    @Res({ passthrough: true }) response: ResponseContext,
+    @Param("id") id: string,
+    @Body() raw: unknown,
+  ) {
+    return mutation(
+      request,
+      response,
+      await this.learningService.startTransfer(
+        auth(request),
+        uuid(id),
+        key(request),
+        input("StartTransferInput", raw),
+      ),
+    );
+  }
+  @Get("learning-episodes/:id")
+  async episode(@Req() request: SessionRequest, @Param("id") id: string) {
+    return envelope(
+      request,
+      await this.learningService.get(auth(request), uuid(id)),
+    );
+  }
+  @Get("progress")
+  async progress(
+    @Req() request: SessionRequest,
+    @Query() query: Record<string, unknown>,
+  ) {
+    if (
+      Object.keys(query).some((k) => k !== "learningSessionId") ||
+      Object.values(query).some((v) => typeof v !== "string")
+    )
+      throw new ApiFault(
+        400,
+        "invalid_input",
+        "حقول استعلام التقدم غير صالحة.",
+      );
+    return envelope(
+      request,
+      await (
+        process.env.PH09_API_ENABLED === "true"
+          ? this.progressService
+          : this.learningService
+      ).progress(auth(request), queryId(query.learningSessionId)),
+    );
+  }
+  @Get("progress/skills/:id")
+  async skillProgress(
+    @Req() request: SessionRequest,
+    @Param("id") id: string,
+    @Query() query: Record<string, unknown>,
+  ) {
+    if (
+      Object.keys(query).some((k) => k !== "learningSessionId") ||
+      Object.values(query).some((v) => typeof v !== "string")
+    )
+      throw new ApiFault(
+        400,
+        "invalid_input",
+        "حقول استعلام التقدم غير صالحة.",
+      );
+    return envelope(
+      request,
+      (
+        await (
+          process.env.PH09_API_ENABLED === "true"
+            ? this.progressService
+            : this.learningService
+        ).progress(auth(request), queryId(query.learningSessionId), uuid(id))
+      ).skills[0],
+    );
+  }
+  @Get("teacher-demo/summary")
+  async teacherSummary(
+    @Req() request: SessionRequest,
+    @Query() query: Record<string, unknown>,
+  ) {
+    auth(request);
+    if (Object.keys(query).length)
+      throw new ApiFault(404, "not_found", "المورد غير متاح.");
+    return envelope(request, this.teacherDemo.summary());
+  }
+  @Get("teacher-demo/examples/:id")
+  async teacherExample(
+    @Req() request: SessionRequest,
+    @Param("id") id: string,
+    @Query() query: Record<string, unknown>,
+  ) {
+    auth(request);
+    if (Object.keys(query).length)
+      throw new ApiFault(404, "not_found", "المورد غير متاح.");
+    return envelope(request, this.teacherDemo.example(id));
   }
   @Post("attempts/:id/probes")
   async createProbe(
@@ -593,6 +715,32 @@ export class BusinessController {
         new DiagnosisService(store, process.env.PH06_API_ENABLED === "true"),
       inject: [Store],
     },
+    {
+      provide: LearningService,
+      useFactory: (store: Store) => {
+        const active = process.env.PH08_API_ENABLED === "true";
+        return new LearningService(
+          store,
+          active,
+          active
+            ? numberSetting(process.env.PH08_MAX_REMEDIATION_ASSIGNMENTS)
+            : 2,
+          active ? numberSetting(process.env.PH08_MAX_TRANSFER_ASSIGNMENTS) : 2,
+        );
+      },
+      inject: [Store],
+    },
+    {
+      provide: ProgressService,
+      useFactory: (store: Store) =>
+        new ProgressService(store, process.env.PH09_API_ENABLED === "true"),
+      inject: [Store],
+    },
+    {
+      provide: TeacherDemoService,
+      useFactory: () =>
+        new TeacherDemoService(process.env.PH09_API_ENABLED === "true"),
+    },
     NoExternalAi,
     {
       provide: TutoringService,
@@ -639,6 +787,9 @@ export class BusinessController {
     SessionGuard,
   ],
   exports: [
+    ProgressService,
+    TeacherDemoService,
+    LearningService,
     TutoringService,
     Store,
     MathGateway,

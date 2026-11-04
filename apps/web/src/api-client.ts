@@ -16,7 +16,13 @@ type EnvelopeName =
   | "VerificationDetailEnvelope"
   | "ProbeEnvelope"
   | "ProbeAnswerEnvelope"
-  | "HintEnvelope";
+  | "HintEnvelope"
+  | "EpisodeEnvelope"
+  | "ProgressEnvelope"
+  | "SkillProgressEnvelope"
+  | "TeacherSummaryEnvelope"
+  | "TeacherExampleEnvelope"
+  | "AttemptListEnvelope";
 function validate<K extends keyof components["schemas"]>(
   name: K,
   value: unknown,

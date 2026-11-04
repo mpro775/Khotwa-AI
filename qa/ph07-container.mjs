@@ -26,7 +26,9 @@ try {
   const tables = await pool.query(
     "SELECT count(*)::int AS n FROM information_schema.tables WHERE table_schema='public' AND table_type='BASE TABLE' AND table_name<>'_prisma_migrations'",
   );
-  assert.equal(tables.rows[0].n, 26);
+  assert.equal(tables.rows[0].n, 31);
+  await pool.query(readFileSync("qa/ph09-down.sql", "utf8"));
+  await pool.query(readFileSync("qa/ph08-down.sql", "utf8"));
   await pool.query(readFileSync("qa/ph07-down.sql", "utf8"));
   const down = await pool.query(
     "SELECT to_regclass('tutoring_events')::text AS report,to_regclass('diagnoses')::text AS attempt",
@@ -42,13 +44,13 @@ try {
   const migrations = await pool.query(
     "SELECT count(*)::int AS n FROM _prisma_migrations WHERE finished_at IS NOT NULL AND rolled_back_at IS NULL",
   );
-  assert.equal(migrations.rows[0].n, 7);
+  assert.equal(migrations.rows[0].n, 9);
   console.log(
     "PH07_DB_RESULT " +
       JSON.stringify({
         checks,
         postgres: version.rows[0].version,
-        tables: 26,
+        tables: 31,
         migrations: migrations.rows[0].n,
         scope: "isolated tmpfs; PH07 delta rollback and full replay",
       }),

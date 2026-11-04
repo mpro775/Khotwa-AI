@@ -4,6 +4,8 @@ import type { Schema } from "./api-client";
 import { MathInput } from "./MathInput";
 import { DiagnosticPanel } from "./DiagnosticPanel";
 import { HintPanel } from "./HintPanel";
+import { StudentProgress } from "./StudentProgress";
+import { EpisodePanel } from "./EpisodePanel";
 import { canAdoptHint } from "./workspace-model";
 import {
   canAdoptVerification,
@@ -25,6 +27,7 @@ interface PendingMutation {
 export function StudentWorkspace() {
   const [probeOpen, setProbeOpen] = useState(false),
     [assistedSeen, setAssistedSeen] = useState(false);
+  const [helpEpoch, setHelpEpoch] = useState(0);
   const api = useRef(new ApiClient()).current;
   const [started, setStarted] = useState(false),
     [busy, setBusy] = useState(false),
@@ -389,6 +392,9 @@ export function StudentWorkspace() {
         </span>
         <a href="/editor-lab">مختبر المحرر</a>
       </header>
+      <nav aria-label="التنقل">
+        <a href="/demo/teacher">عرض المعلم — بيانات اصطناعية</a>
+      </nav>
       <div className="intro">
         <span className="eyebrow">الجبر الخطي بمجهول واحد: س</span>
         <h1>حلّك، خطوة بخطوة.</h1>
@@ -436,6 +442,13 @@ export function StudentWorkspace() {
       <p role="status" aria-live="polite" className="workspace-notice">
         {notice}
       </p>
+      {started && learning && !dirty && !busy && !verifying && (
+        <StudentProgress
+          key={`${learning.id}:${attempt?.id ?? "none"}:${attempt?.revision ?? 0}:${report?.id ?? "none"}:${helpEpoch}:${epoch.current}`}
+          api={api}
+          learningId={learning.id}
+        />
+      )}
       {started && (
         <section className="catalog-card" aria-label="كتالوج الجبر">
           <h2>اختر مهارة ومسألة</h2>
@@ -599,6 +612,43 @@ export function StudentWorkspace() {
               سُجلت مساعدة لهذه المحاولة؛ اكتمالها لا يُعد حلًا مستقلًا.
             </p>
           )}
+          {!dirty && !busy && !verifying && (
+            <EpisodePanel
+              key={`episode:${attempt.id}:${attempt.revision}:${report?.id ?? "none"}:${epoch.current}:${helpEpoch}`}
+              api={api}
+              attempt={attempt}
+              report={report}
+              onOpen={(next, question) => {
+                invalidate();
+                setProblem(question);
+                adopt(next);
+                setRaw("");
+                setDirty(false);
+                setEditing(null);
+                setRetry(false);
+                pending.current = null;
+                setReport(next.currentVerification);
+                setAssistedSeen(next.status === "assisted_completed");
+                setProbeOpen(false);
+                try {
+                  sessionStorage.setItem(
+                    "khotwa-active-attempt",
+                    JSON.stringify({
+                      attemptId: next.id,
+                      problemId: question.id,
+                    }),
+                  );
+                } catch {
+                  /* Optional IDs only. */
+                }
+                setNotice(
+                  next.kind === "transfer"
+                    ? "هذه مسألة مختلفة؛ اكتب الحل دون مساعدة إن أردت دليلًا مستقلًا."
+                    : "اكتب حل التدريب؛ يمكنك طلب مساعدة مع تسجيلها.",
+                );
+              }}
+            />
+          )}
           {!dirty && (
             <HintPanel
               key={`${attempt.id}:${attempt.revision}:${report?.id ?? "original"}:${epoch.current}`}
@@ -607,8 +657,10 @@ export function StudentWorkspace() {
               report={report}
               probeOpen={probeOpen}
               onServed={(event) => {
-                if (canAdoptHint(attemptRef.current, event))
+                if (canAdoptHint(attemptRef.current, event)) {
                   setAssistedSeen(true);
+                  setHelpEpoch((n) => n + 1);
+                }
               }}
             />
           )}

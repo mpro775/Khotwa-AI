@@ -1,0 +1,39 @@
+{
+  "phase": "PH-09",
+  "recordedAt": "2026-11-04T15:50:45.073Z",
+  "reason": "Initial npm ci ECONNRESET; the follow-up build was interrupted after a prolonged wait. Its npm-ci layer had completed; the final standard Dockerfile build subsequently passed.",
+  "sourceImage": "khotwa-ph08-test",
+  "sourceImageId": "sha256:a50877f0efbe19845c25f0917f5404644dc8efb31324e3a352aae337f1027e6d",
+  "node": "v24.11.1",
+  "lockAndWorkspaceManifestsMatch": true,
+  "rootDependenciesMatch": true,
+  "checks": [
+    {
+      "path": "package-lock.json",
+      "sha256": "75d454ac1f17daa1922c089b9fe5168f53ca2b72678b2c53817ad4a6563c2de6",
+      "hostSha256": "75d454ac1f17daa1922c089b9fe5168f53ca2b72678b2c53817ad4a6563c2de6"
+    },
+    {
+      "path": "apps/api/package.json",
+      "sha256": "a2b549450491c93131328adcbc9a082d7aa482661fe172646a176e973977dbe1",
+      "hostSha256": "a2b549450491c93131328adcbc9a082d7aa482661fe172646a176e973977dbe1"
+    },
+    {
+      "path": "apps/web/package.json",
+      "sha256": "04dde55ae267acf379b2ae24fa0409335dad0e84da4d1ed67c16b0592c220942",
+      "hostSha256": "04dde55ae267acf379b2ae24fa0409335dad0e84da4d1ed67c16b0592c220942"
+    },
+    {
+      "path": "packages/contracts/package.json",
+      "sha256": "653dc2d3fee9720360428e9f12cc6798f7d16e3c1e7660d5a46ffb62efdd8013",
+      "hostSha256": "653dc2d3fee9720360428e9f12cc6798f7d16e3c1e7660d5a46ffb62efdd8013"
+    }
+  ],
+  "method": "recompile current source using verified matching Linux dependencies; normal Dockerfile and CI retain npm ci; no package versions or tests changed",
+  "cachedDockerfile": ".local/ph09-cached-deps.Dockerfile",
+  "initialFreshNetworkAttemptCompleted": false,
+  "retryNpmCiLayerCompleted": true,
+  "finalStandardDockerfileBuildCompleted": true,
+  "finalStandardRun": "qa-reports/ph09-container.json",
+  "cachedImageWasDevelopmentOnly": true
+}

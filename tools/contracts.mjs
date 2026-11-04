@@ -68,6 +68,12 @@ const pending = [
   "ProbeEnvelope",
   "ProbeAnswerEnvelope",
   "HintEnvelope",
+  "EpisodeEnvelope",
+  "ProgressEnvelope",
+  "SkillProgressEnvelope",
+  "TeacherSummaryEnvelope",
+  "TeacherExampleEnvelope",
+  "AttemptListEnvelope",
   "ErrorEnvelope",
 ];
 const selected = {};

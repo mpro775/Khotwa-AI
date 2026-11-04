@@ -15,6 +15,7 @@ export function HintPanel({
   onServed: (event: Schema<"TutoringEvent">) => void;
 }) {
   const [event, setEvent] = useState<Schema<"TutoringEvent"> | null>(null);
+  const [leaveMeasurement, setLeaveMeasurement] = useState(false);
   const [confirmed, setConfirmed] = useState(false),
     [busy, setBusy] = useState(false),
     [error, setError] = useState("");
@@ -29,7 +30,10 @@ export function HintPanel({
       alive.current = false;
     };
   }, []);
-  const independent = attempt.kind === "transfer" || attempt.kind === "probe";
+  const independent =
+    attempt.kind === "probe" ||
+    (attempt.kind === "transfer" && !attempt.parentEpisodeId);
+  const transfer = attempt.kind === "transfer" && !!attempt.parentEpisodeId;
   const canNext =
     !!report &&
     report.isCurrent &&
@@ -37,6 +41,7 @@ export function HintPanel({
     !["H3", "H4"].includes(event?.hintLevel ?? "H0");
   async function request(action: "next_hint" | "show_full_solution") {
     if (action === "show_full_solution" && !confirmed) return;
+    if (transfer && !leaveMeasurement) return;
     if (pending.current?.action !== action)
       pending.current = { action, key: crypto.randomUUID() };
     setBusy(true);
@@ -90,11 +95,25 @@ export function HintPanel({
         <p>لا تُكشف التلميحات أو الحل أثناء هذه المحاولة المستقلة.</p>
       ) : (
         <>
+          {transfer && (
+            <label className="measurement-exit">
+              <input
+                type="checkbox"
+                checked={leaveMeasurement}
+                disabled={busy}
+                onChange={(e) => setLeaveMeasurement(e.target.checked)}
+              />{" "}
+              أحتاج مساعدة وأوافق على مغادرة القياس المستقل؛ لن تُحسب هذه
+              المسألة نقلًا مستقلًا بعد الطلب.
+            </label>
+          )}
           {probeOpen && (
             <p role="status">أجب عن السؤال التأكيدي المفتوح أولًا.</p>
           )}
           <button
-            disabled={busy || !canNext || probeOpen}
+            disabled={
+              busy || !canNext || probeOpen || (transfer && !leaveMeasurement)
+            }
             onClick={() => void request("next_hint")}
           >
             {busy ? "جارٍ طلب المساعدة…" : "أعطني التلميح التالي"}
@@ -116,7 +135,11 @@ export function HintPanel({
             </label>
             <button
               disabled={
-                busy || !confirmed || probeOpen || event?.hintLevel === "H4"
+                busy ||
+                !confirmed ||
+                probeOpen ||
+                (transfer && !leaveMeasurement) ||
+                event?.hintLevel === "H4"
               }
               onClick={() => void request("show_full_solution")}
             >

@@ -1,0 +1,102 @@
+{
+  "phase": "PH-09",
+  "recordedAt": "2026-11-04T15:44:03.777Z",
+  "node": "v26.7.0",
+  "platform": "win32",
+  "checks": [
+    {
+      "command": "npm run contracts:check",
+      "exitCode": 0,
+      "seconds": 7,
+      "stdout": "\n> khotwa-ai@0.1.0 contracts:check\n> node tools/contracts.mjs --check\n\nCanonical OpenAPI mirror, 3 JSON mirrors, and generated public types verified.\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run format:check",
+      "exitCode": 0,
+      "seconds": 8.5,
+      "stdout": "\n> khotwa-ai@0.1.0 format:check\n> prettier --check package.json tsconfig.base.json eslint.config.mjs pyrightconfig.json compose.yaml Dockerfile .github/workflows/ci.yml \"apps/**/*.{ts,tsx,json,css,html}\" \"packages/contracts/src/index.ts\" \"tools/*.mjs\" && node tools/python-task.mjs -m black --check services/math-engine/src tools/dev_env.py tools/seed_demo.py\n\nChecking formatting...\nAll matched files use Prettier code style!\n",
+      "stderr": "All done! \\u2728 \\U0001f370 \\u2728\r\n13 files would be left unchanged.\r\n"
+    },
+    {
+      "command": "npm run lint",
+      "exitCode": 0,
+      "seconds": 9.4,
+      "stdout": "\n> khotwa-ai@0.1.0 lint\n> eslint apps packages/contracts/src tools/*.mjs && node tools/python-task.mjs -m pycodestyle --max-line-length=88 --ignore=E203,W503 services/math-engine/src tools/dev_env.py tools/seed_demo.py\n\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "seconds": 42.3,
+      "stdout": "\n> khotwa-ai@0.1.0 typecheck\n> npm run typecheck --workspaces --if-present && pyright\n\n\n> @khotwa/api@0.1.0 typecheck\n> npm run generate && tsc --noEmit\n\n\n> @khotwa/api@0.1.0 generate\n> prisma generate --config prisma.config.ts\n\n\n✔ Generated Prisma Client (v7.10.1) to .\\..\\..\\node_modules\\@prisma\\client in 1.41s\n\nStart by importing your Prisma Client (See: https://pris.ly/d/importing-client)\n\n\n\n> @khotwa/web@0.1.0 typecheck\n> tsc --noEmit\n\n\n> @khotwa/contracts@0.1.0 typecheck\n> tsc --noEmit\n\n0 errors, 0 warnings, 0 informations\n",
+      "stderr": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma\\schema.prisma.\n┌─────────────────────────────────────────────────────────┐\n│  Update available 7.10.1 -> 8.0.0-rc.30                 │\n│                                                         │\n│  This is a major update - please follow the guide at    │\n│  https://pris.ly/d/major-version-upgrade                │\n│                                                         │\n│  Run the following to update                            │\n│    npm i --save-dev prisma@latest                       │\n│    npm i @prisma/client@latest                          │\n└─────────────────────────────────────────────────────────┘\n"
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "seconds": 36.2,
+      "stdout": "\n> khotwa-ai@0.1.0 build\n> npm run build --workspaces --if-present && node tools/python-task.mjs -m compileall -q services/math-engine/src\n\n\n> @khotwa/api@0.1.0 build\n> npm run generate && tsc -p tsconfig.json\n\n\n> @khotwa/api@0.1.0 generate\n> prisma generate --config prisma.config.ts\n\n\n✔ Generated Prisma Client (v7.10.1) to .\\..\\..\\node_modules\\@prisma\\client in 1.12s\n\nStart by importing your Prisma Client (See: https://pris.ly/d/importing-client)\n\n\n\n> @khotwa/web@0.1.0 build\n> tsc --noEmit && vite build\n\nvite v8.3.5 building client environment for production...\ntransforming...\n✓ 36 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                                         0.40 kB │ gzip:   0.28 kB\ndist/assets/KaTeX_Size4-Regular-Dl5lxZxV.woff2          4.92 kB\ndist/assets/KaTeX_Size2-Regular-Dy4dx90m.woff2          5.20 kB\ndist/assets/KaTeX_Size1-Regular-mCD8mA8B.woff2          5.46 kB\ndist/assets/KaTeX_Caligraphic-Regular-Di6jR-x-.woff2    6.90 kB\ndist/assets/KaTeX_Caligraphic-Bold-Dq_IR9rO.woff2       6.91 kB\ndist/assets/KaTeX_Script-Regular-D3wIWfF6.woff2         9.64 kB\ndist/assets/KaTeX_SansSerif-Regular-DDBCnlJ7.woff2     10.34 kB\ndist/assets/KaTeX_Fraktur-Regular-CTYiF6lA.woff2       11.31 kB\ndist/assets/KaTeX_Fraktur-Bold-CL6g_b3V.woff2          11.34 kB\ndist/assets/KaTeX_SansSerif-Italic-C3H0VqGB.woff2      12.02 kB\ndist/assets/KaTeX_SansSerif-Bold-D1sUS0GD.woff2        12.21 kB\ndist/assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2    13.56 kB\ndist/assets/KaTeX_Math-BoldItalic-CZnvNsCZ.woff2       16.40 kB\ndist/assets/KaTeX_Math-Italic-t53AETM-.woff2           16.44 kB\ndist/assets/KaTeX_Main-BoldItalic-DxDJ3AOS.woff2       16.78 kB\ndist/assets/KaTeX_Main-Italic-NWA7e6Wa.woff2           16.98 kB\ndist/assets/KaTeX_Main-Bold-Cx986IdX.woff2             25.32 kB\ndist/assets/KaTeX_Main-Regular-B22Nviop.woff2          26.27 kB\ndist/assets/KaTeX_AMS-Regular-BQhdFMY1.woff2           28.07 kB\ndist/assets/ArabicEditor-BnjoTxG4.css                   8.00 kB │ gzip:   4.20 kB\ndist/assets/index-EDiDGZvJ.css                          8.57 kB │ gzip:   2.63 kB\ndist/assets/TeacherDemo-BefzYEzA.js                     5.05 kB │ gzip:   1.97 kB\ndist/assets/index-Bee-dDbg.js                         537.12 kB │ gzip: 109.90 kB\ndist/assets/ArabicEditor-DSZXABE3.js                  816.77 kB │ gzip: 225.26 kB\n\n✓ built in 928ms\n\n> @khotwa/contracts@0.1.0 build\n> tsc --noEmit\n\n",
+      "stderr": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma\\schema.prisma.\n[plugin builtin:vite-reporter] \n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n"
+    },
+    {
+      "command": "npm run test:api",
+      "exitCode": 0,
+      "seconds": 15.4,
+      "stdout": "\n> khotwa-ai@0.1.0 test:api\n> npm run test --workspace @khotwa/api\n\n\n> @khotwa/api@0.1.0 test\n> node --test tests/security.test.mjs tests/math-gateway.test.mjs\n\n▶ private math adapter validates schemas, bounded responses, versions and request context\n  ✔ parse preserves raw and context without judging correctness (384.3824ms)\n  ✔ unsupported input remains a nonconceptual status (16.2602ms)\n  ✔ rejects http500 (17.8559ms)\n  ✔ rejects html (15.8358ms)\n  ✔ rejects invalid_json (10.131ms)\n  ✔ rejects oversized (10.8973ms)\n  ✔ rejects wrong_version (6.9207ms)\n  ✔ rejects wrong_notation (6.2215ms)\n  ✔ rejects wrong_request (6.0837ms)\n  ✔ rejects wrong_context (7.7694ms)\n  ✔ rejects wrong_source (7.6479ms)\n  ✔ rejects wrong_raw (6.6898ms)\n  ✔ rejects extra (8.3669ms)\n  ✔ actual aborted HTTP deadline returns operational unavailability (42.0844ms)\n  ✔ transition accepts verified proof and preserves service failure (75.7618ms)\n  ✔ transition rejects wrong_revision (11.6504ms)\n  ✔ transition rejects invalid_without_proof (4.6985ms)\n  ✔ source-kind mismatch is rejected before a network call (0.7594ms)\n  ✔ check-final validates pinned final version (83.4917ms)\n✔ private math adapter validates schemas, bounded responses, versions and request context (777.0825ms)\n✔ bootstrap signature, expiry, Origin and CSRF form one binding (10.6874ms)\n✔ opaque guest digest and CSRF use distinct keys and contexts (1.882ms)\n✔ cookies retain mandatory security flags and reject duplicates (0.9475ms)\n✔ security fails closed for insecure origin or reused/weak keys (2.3921ms)\n✔ signed cursors cannot cross an owner/filter boundary (4.4062ms)\n✔ fingerprints ignore JSON key order while retaining scope and raw meaning (1.6539ms)\n✔ OpenAPI DTO rejects browser AST, unexpected fields, invalid revisions and long raw input (122.2023ms)\n✔ AI boundary cannot invent a verdict or disclose provider output (0.7859ms)\n✔ experimental limiter separates guests and resets its bounded time window (1.0047ms)\nℹ tests 29\nℹ suites 0\nℹ pass 29\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 13235.6291\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run test:diagnosis",
+      "exitCode": 0,
+      "seconds": 2.6,
+      "stdout": "\n> khotwa-ai@0.1.0 test:diagnosis\n> node --test apps/api/tests/diagnosis.test.mjs\n\n✔ six distinct structural observations remain hypotheses, including overlaps (8.1075ms)\n✔ valid, abstention, technical failure, missing witness and broken prior path cannot diagnose (1.1014ms)\n✔ a wrong isolated numeric answer does not reveal the procedure or a misconception (0.7603ms)\n✔ same structural one-sided change receives the same tentative policy for different numbers (0.6791ms)\n✔ reversed equation sides and harmless grouping do not require text matching (0.4958ms)\n✔ only owned bounded ASTs are eligible, and a zero division never becomes an arithmetic diagnosis (0.5315ms)\n✔ PH06 activation fails closed outside explicit synthetic review (1.3456ms)\nℹ tests 7\nℹ suites 0\nℹ pass 7\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1709.5472\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run test:tutoring",
+      "exitCode": 0,
+      "seconds": 2.3,
+      "stdout": "\n> khotwa-ai@0.1.0 test:tutoring\n> node --test apps/api/tests/tutoring.test.mjs\n\n✔ explicit next requests progress from H0 through H3, never implicitly to H4 (3.8367ms)\n✔ H4 requires explicit confirmation and independent/probe modes cannot reveal any level (0.9928ms)\n✔ unassessable math and open confirmation questions never escalate hints (0.6508ms)\n✔ assistance eligibility survives legacy status and feature disabling (0.9351ms)\n✔ provider context allowlist omits identity, raw input, secrets, history and hidden transfer answers (0.9244ms)\n✔ structured usable output must match the exact version and approved level/template phrase (2.2577ms)\n✔ invalid JSON, excess fields, refusal, truncation and oversized/token-invalid outputs are rejected (1.1208ms)\n✔ no-leak self-report cannot authorize a solution, injection, wrong math, Latin x, HTML or bidi control (0.9586ms)\n✔ a hard deadline rejects an adapter that ignores cancellation without retrying (17.0898ms)\n✔ owner-disabled AI never calls a provider (1.2396ms)\nℹ tests 10\nℹ suites 0\nℹ pass 10\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1505.5022\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run test:learning",
+      "exitCode": 0,
+      "seconds": 2.7,
+      "stdout": "\n> khotwa-ai@0.1.0 test:learning\n> node --test apps/api/tests/learning.test.mjs\n\n✔ only a current verified complete chain supports a positive independent observation (3.5227ms)\n✔ syntax_error never creates negative or positive conceptual evidence (0.5628ms)\n✔ unsupported never creates negative or positive conceptual evidence (0.3096ms)\n✔ inconclusive never creates negative or positive conceptual evidence (0.2634ms)\n✔ service_error never creates negative or positive conceptual evidence (0.3054ms)\n✔ an invalid edge before a correct final answer cannot count as independent transfer (0.3629ms)\n✔ non-assessable attempts do not erase valid prior evidence; guided activity is never a transfer count (0.3842ms)\n✔ activation is restricted to synthetic stores and explicitly bounded finite loops (1.3898ms)\n✔ public transfer reports hide solution-bearing proofs on copies, without changing math truth (0.7653ms)\n✔ an unresolved verified difficulty remains follow-up after guided practice, while valid transfer evidence is retained (0.6062ms)\nℹ tests 10\nℹ suites 0\nℹ pass 10\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 1722.6329\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run test:progress",
+      "exitCode": 0,
+      "seconds": 2.9,
+      "stdout": "\n> khotwa-ai@0.1.0 test:progress\n> node --test apps/api/tests/progress.test.mjs\n\n✔ not_assessed never becomes a percentage or a negative score (5.9766ms)\n✔ non-assessable and foreign-skill events do not create conceptual difficulty (1.0648ms)\n✔ guided completion and H4 context are separate from new independent transfer evidence (0.7633ms)\n✔ unresolved verified difficulty remains followup and failure does not erase a different valid transfer (0.4817ms)\n✔ teacher artifact is pinned, independently synthetic, and all numbers trace to rows (156.8664ms)\n✔ real-data flags, PII/extra fields, contradictory assistance, duplicate keys and cross-dataset examples fail closed (3.9203ms)\n✔ teacher reader has no configurable database source and cannot resolve a real attempt id (4.3877ms)\n✔ PH09 progress cannot activate on a non-synthetic store (0.537ms)\n✔ owner retention eligibility is seven days after actual absolute expiry, not last activity (0.9111ms)\n✔ idle expiry and logout start a limited retention window without claiming immediate deletion (0.9526ms)\nℹ tests 10\nℹ suites 0\nℹ pass 10\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 2067.4155\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run test:editor",
+      "exitCode": 0,
+      "seconds": 2.5,
+      "stdout": "\n> khotwa-ai@0.1.0 test:editor\n> npm run test:editor --workspace @khotwa/web\n\n\n> @khotwa/web@0.1.0 test:editor\n> node --test tests/editor-model.test.mjs\n\n✔ AN-002: original ASCII digits stay distinct from a known Arabic display (4.5919ms)\n✔ AN-011: fraction recipe explicitly keeps numerator 1 and denominator 2 (3.3447ms)\n✔ known examples and aliases retain their own source without a parser claim (1.1264ms)\n✔ AN-013/018/020: ambiguous or unsupported samples never acquire a display meaning (0.529ms)\n✔ AN-030: directional and other hidden controls are reported and kept visible in audit (1.208ms)\n✔ a 257 code point paste is retained and flagged rather than silently truncated (0.7275ms)\n✔ new edits immediately invalidate the previous fixture meaning and local issue (0.7839ms)\n✔ unknown text, including x, is never aliased to س or treated as a successful parse (0.4505ms)\n✔ selection replacement preserves source order and exact punctuation (0.6013ms)\n✔ issue selection translates Unicode code points into textarea UTF-16 offsets (0.742ms)\n✔ shallow editor guards flag foreign characters and unbalanced brackets but never assert math validity (1.5786ms)\n✔ deleting a pasted supplementary character does not split a UTF-16 surrogate pair (0.6445ms)\nℹ tests 12\nℹ suites 0\nℹ pass 12\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 427.1756\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run test:workspace",
+      "exitCode": 0,
+      "seconds": 5.6,
+      "stdout": "\n> khotwa-ai@0.1.0 test:workspace\n> node tools/test-workspace.mjs\n\n✔ hint responses cannot restore another attempt or an edited revision (4.5934ms)\n✔ probe responses are bound to the same current attempt, revision, hypothesis and probe (0.9859ms)\n✔ UI rejects late results after local edits, server revisions, resource changes or replaced step versions (0.895ms)\n✔ all six statuses have distinct Arabic labels and abstention is not called wrong (0.5589ms)\n✔ client preserves explicit retry key, revision and raw while enforcing same-origin credentials (73.6044ms)\n✔ malformed or extra API fields cannot become frontend state (4.5298ms)\n✔ 503 and 409 remain typed operational failures rather than mathematical verdicts (4.8471ms)\n✔ browser validators run with dynamic code generation disabled (strict CSP) (39.5731ms)\n✔ progress cannot be adopted from a different session and teacher examples cannot cross dataset boundaries (1.0655ms)\n✔ teacher response validation rejects non-synthetic flags before rendering (6.7199ms)\nℹ tests 10\nℹ suites 0\nℹ pass 10\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 639.3156\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run smoke",
+      "exitCode": 0,
+      "seconds": 7.6,
+      "stdout": "\n> khotwa-ai@0.1.0 smoke\n> node tools/smoke.mjs\n\nNative smoke: 7 checks passed; protected health, versioned math worker and truthful unavailable DB readiness; no public business routes claimed.\n",
+      "stderr": ""
+    }
+  ],
+  "passed": 13,
+  "failed": 0,
+  "scope": "targeted PH09 static, unit, client and state checks; real integration and draft Golden coverage reported separately; no heavy load, external provider, or PH10"
+}

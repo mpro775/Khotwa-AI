@@ -1,0 +1,49 @@
+{
+  "phase": "PH-09",
+  "recordedAt": "2026-11-04T16:05:22.089Z",
+  "allChecksPassed": true,
+  "inventory": {
+    "path": "qa-reports/ph09-files.json",
+    "sha256": "b9dc9f7e2273c7db148bc9f2e5cb05cf6638e7b70459d0b690ecc10df2f07135",
+    "count": 74,
+    "added": 47,
+    "modified": 27
+  },
+  "baseline": {
+    "files": 452,
+    "missing": []
+  },
+  "canonical": {
+    "checked": 42,
+    "changed": [],
+    "note": "All owner specs/contracts/Golden and math-engine source preserved; PROJECT-DECISIONS is appended owner log"
+  },
+  "historicalReports": {
+    "checked": 126,
+    "changed": [],
+    "scope": "pre-PH09 reports excluding QA index and appended device checklist"
+  },
+  "markdownLinks": {
+    "missing": []
+  },
+  "secrets": {
+    "envFilesChecked": 8,
+    "leakedFiles": [],
+    "valuesPrinted": false
+  },
+  "webBundle": {
+    "checked": 6,
+    "privateMarkers": []
+  },
+  "gitDiffCheck": {
+    "exitCode": 0
+  },
+  "userRootDeletionsPreserved": true,
+  "externalAi": "disabled_by_owner",
+  "realBrowser": "not_run",
+  "realPhone": "not_run",
+  "ph10": "not_started",
+  "gatesApproved": [],
+  "commitCreated": false,
+  "pushed": false
+}

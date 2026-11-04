@@ -47,7 +47,15 @@
     "test:tutoring": "node --test apps/api/tests/tutoring.test.mjs",
     "verify:ph07": "node tools/verify-ph07.mjs",
     "verify:ph07:container": "node tools/verify-ph07-container.mjs",
-    "dev:ph07": "node tools/serve-ph07.mjs"
+    "dev:ph07": "node tools/serve-ph07.mjs",
+    "test:learning": "node --test apps/api/tests/learning.test.mjs",
+    "verify:ph08": "node tools/verify-ph08.mjs",
+    "verify:ph08:container": "node tools/verify-ph08-container.mjs",
+    "dev:ph08": "node tools/serve-ph08.mjs",
+    "test:progress": "node --test apps/api/tests/progress.test.mjs",
+    "verify:ph09": "node tools/verify-ph09.mjs",
+    "verify:ph09:container": "node tools/verify-ph09-container.mjs",
+    "dev:ph09": "node tools/serve-ph09.mjs"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

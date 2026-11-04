@@ -1,3 +1,4 @@
+import { publicMathReport } from "./learning-policy";
 import { randomUUID } from "node:crypto";
 import { PrismaClient, Prisma } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
@@ -7,6 +8,11 @@ import { ApiFault, RequestContext } from "./http";
 import { Security, cookieValue } from "./security";
 import { TransitionResult } from "./math-gateway";
 import { projectDiagnosis } from "./diagnosis";
+import {
+  ph08Active,
+  recordExposure,
+  requireAssignmentCurrent,
+} from "./learning";
 
 type Tx = Prisma.TransactionClient;
 type GuestRow = {
@@ -365,12 +371,26 @@ export class Store implements OnModuleDestroy {
       contentReleaseId: p.release_id,
     };
   }
-  async getProblem(id: string): Promise<Schema<"ProblemDetail">> {
+  async getProblem(
+    id: string,
+    auth?: GuestAuth,
+  ): Promise<Schema<"ProblemDetail">> {
     const rows = await this.problemRows(
       this.db,
       Prisma.sql`r.problem_id=${id}::uuid ORDER BY r.version_number DESC LIMIT 1`,
     );
+    if (!rows[0] && ph08Active() && auth) {
+      const assigned = await this.db.$queryRaw<
+        ProblemRow[]
+      >`SELECT r.*,ps.skill_id FROM problem_revisions r JOIN learning_assignments x ON x.problem_revision_id=r.id JOIN learning_episodes e ON e.id=x.episode_id JOIN attempts a ON a.id=e.root_attempt_id JOIN learning_sessions l ON l.id=a.learning_session_id JOIN problem_skills ps ON ps.problem_revision_id=r.id AND ps.coverage_kind='primary' JOIN content_pairings p ON p.id=x.pairing_id JOIN content_releases c ON c.id=r.release_id WHERE r.problem_id=${id}::uuid AND l.guest_session_id=${auth.row.id}::uuid AND l.is_synthetic AND e.root_revision=a.revision AND e.state<>'cancelled' AND x.invalidated_at IS NULL AND p.enabled AND c.status='published' AND r.review_status='published' ORDER BY x.assigned_at DESC LIMIT 1`;
+      if (assigned[0]) return this.problemDto(assigned[0]);
+    }
     if (!rows[0]) throw missing();
+    if (ph08Active() && auth)
+      await this.db.$transaction(async (tx) => {
+        await this.authorizeInTransaction(tx, auth);
+        await recordExposure(tx, auth.row.id, rows[0]!.id, "catalog_read");
+      });
     return this.problemDto(rows[0]);
   }
   async listProblems(
@@ -479,11 +499,20 @@ export class Store implements OnModuleDestroy {
       steps: (await this.steps(tx, a.id)).map(stepDto),
       openedAt: a.opened_at.toISOString(),
       updatedAt: a.updated_at.toISOString(),
-      parentEpisodeId: null,
+      parentEpisodeId: ph08Active()
+        ? ((
+            await tx.$queryRaw<
+              { episode_id: string }[]
+            >`SELECT episode_id FROM learning_assignments WHERE attempt_id=${a.id}::uuid`
+          )[0]?.episode_id ?? null)
+        : null,
       currentVerification: current
-        ? await projectDiagnosis(
-            tx,
-            output("VerificationReport", current.report_json),
+        ? publicMathReport(
+            a.attempt_kind,
+            await projectDiagnosis(
+              tx,
+              output("VerificationReport", current.report_json),
+            ),
           )
         : null,
     };
@@ -496,8 +525,37 @@ export class Store implements OnModuleDestroy {
     return this.mutate(auth, "attempt.create", key, body, async (tx) => {
       const learning = await this.learning(tx, auth, body.learningSessionId);
       if (learning.status !== "active") throw invalidState();
-      // Assignment creation belongs to PH-08; no unassigned hidden item is resolvable.
-      if (body.source.kind !== "catalog") throw missing();
+      if (body.source.kind === "assignment") {
+        if (!ph08Active() || !learning.is_synthetic) throw missing();
+        const [x] = await tx.$queryRaw<
+          {
+            id: string;
+            problem_revision_id: string;
+            phase: "remediation" | "transfer";
+            attempt_id: string | null;
+            episode_id: string;
+          }[]
+        >`SELECT x.* FROM learning_assignments x JOIN learning_episodes e ON e.id=x.episode_id JOIN attempts root ON root.id=e.root_attempt_id JOIN content_pairings p ON p.id=x.pairing_id WHERE x.id=${body.source.assignmentId}::uuid AND root.learning_session_id=${learning.id}::uuid AND root.revision=e.root_revision AND e.state<>'cancelled' AND x.invalidated_at IS NULL AND p.enabled FOR UPDATE OF x`;
+        if (!x) throw missing();
+        if (x.attempt_id)
+          return {
+            status: 201,
+            data: await this.attemptDto(
+              tx,
+              await this.attempt(tx, auth, x.attempt_id, true),
+            ),
+          };
+        const [p] = await tx.$queryRaw<
+          { notation_profile: "ar-mashriq-school-v1" }[]
+        >`SELECT notation_profile FROM problem_revisions WHERE id=${x.problem_revision_id}::uuid AND review_status='published'`;
+        if (!p) throw missing();
+        const [a] = await tx.$queryRaw<
+          AttemptRow[]
+        >`INSERT INTO attempts(id,learning_session_id,problem_revision_id,attempt_kind,status,notation_profile) VALUES(${randomUUID()}::uuid,${learning.id}::uuid,${x.problem_revision_id}::uuid,${x.phase},'in_progress',${p.notation_profile}) RETURNING *`;
+        if (!a) throw invalidState();
+        await tx.$executeRaw`UPDATE learning_assignments SET attempt_id=${a.id}::uuid WHERE id=${x.id}::uuid`;
+        return { status: 201, data: await this.attemptDto(tx, a) };
+      }
       const [problem] = await this.problemRows(
         tx,
         Prisma.sql`r.id=${body.source.problemRevisionId}::uuid AND r.release_id=${learning.release_id}::uuid FOR SHARE OF r,c,p,s`,
@@ -507,6 +565,8 @@ export class Store implements OnModuleDestroy {
         AttemptRow[]
       >`INSERT INTO attempts(id,learning_session_id,problem_revision_id,attempt_kind,status,notation_profile) VALUES(${randomUUID()}::uuid,${learning.id}::uuid,${problem.id}::uuid,'main','in_progress',${problem.notation_profile}) RETURNING *`;
       if (!a) throw invalidState();
+      if (ph08Active())
+        await recordExposure(tx, auth.row.id, problem.id, "catalog_attempt");
       return { status: 201, data: await this.attemptDto(tx, a) };
     });
   }
@@ -562,6 +622,7 @@ export class Store implements OnModuleDestroy {
       { attemptId, stepId: stepId ?? null, body },
       async (tx) => {
         const a = await this.attempt(tx, auth, attemptId, true);
+        if (ph08Active()) await requireAssignmentCurrent(tx, a.id);
         if (a.revision !== BigInt(body.expectedRevision))
           throw new ApiFault(
             409,

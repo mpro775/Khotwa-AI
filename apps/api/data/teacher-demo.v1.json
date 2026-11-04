@@ -1,0 +1,265 @@
+{
+  "datasetCode": "ph09-authored-synthetic-v1",
+  "isSynthetic": true,
+  "sourceKind": "authored_static_synthetic",
+  "generatedAt": "2026-11-04T00:00:00.000Z",
+  "rows": [
+    {
+      "key": "synthetic-attempt-01",
+      "studentKey": "synthetic-student-01",
+      "isSynthetic": true,
+      "mathStatus": "verified_invalid",
+      "hintLevel": "H0",
+      "phase": "main",
+      "errorCode": "ERR-ALG-01",
+      "exampleId": "d9090000-0000-4000-8000-000000000001",
+      "independentTransfer": false
+    },
+    {
+      "key": "synthetic-attempt-02",
+      "studentKey": "synthetic-student-01",
+      "isSynthetic": true,
+      "mathStatus": "verified_valid",
+      "hintLevel": "H2",
+      "phase": "remediation",
+      "errorCode": null,
+      "exampleId": null,
+      "independentTransfer": false
+    },
+    {
+      "key": "synthetic-attempt-03",
+      "studentKey": "synthetic-student-02",
+      "isSynthetic": true,
+      "mathStatus": "verified_invalid",
+      "hintLevel": "H0",
+      "phase": "main",
+      "errorCode": "ERR-ALG-06",
+      "exampleId": "d9090000-0000-4000-8000-000000000003",
+      "independentTransfer": false
+    },
+    {
+      "key": "synthetic-attempt-04",
+      "studentKey": "synthetic-student-02",
+      "isSynthetic": true,
+      "mathStatus": "verified_valid",
+      "hintLevel": "H0",
+      "phase": "transfer",
+      "errorCode": null,
+      "exampleId": null,
+      "independentTransfer": true
+    },
+    {
+      "key": "synthetic-attempt-05",
+      "studentKey": "synthetic-student-03",
+      "isSynthetic": true,
+      "mathStatus": "syntax_error",
+      "hintLevel": "H0",
+      "phase": "main",
+      "errorCode": null,
+      "exampleId": null,
+      "independentTransfer": false
+    },
+    {
+      "key": "synthetic-attempt-06",
+      "studentKey": "synthetic-student-03",
+      "isSynthetic": true,
+      "mathStatus": "verified_valid",
+      "hintLevel": "H0",
+      "phase": "main",
+      "errorCode": null,
+      "exampleId": null,
+      "independentTransfer": false
+    },
+    {
+      "key": "synthetic-attempt-07",
+      "studentKey": "synthetic-student-04",
+      "isSynthetic": true,
+      "mathStatus": "verified_invalid",
+      "hintLevel": "H0",
+      "phase": "main",
+      "errorCode": "ERR-ALG-03",
+      "exampleId": "d9090000-0000-4000-8000-000000000002",
+      "independentTransfer": false
+    },
+    {
+      "key": "synthetic-attempt-08",
+      "studentKey": "synthetic-student-04",
+      "isSynthetic": true,
+      "mathStatus": "verified_valid",
+      "hintLevel": "H4",
+      "phase": "remediation",
+      "errorCode": null,
+      "exampleId": null,
+      "independentTransfer": false
+    },
+    {
+      "key": "synthetic-attempt-09",
+      "studentKey": "synthetic-student-05",
+      "isSynthetic": true,
+      "mathStatus": "unsupported",
+      "hintLevel": "H0",
+      "phase": "main",
+      "errorCode": null,
+      "exampleId": null,
+      "independentTransfer": false
+    },
+    {
+      "key": "synthetic-attempt-10",
+      "studentKey": "synthetic-student-06",
+      "isSynthetic": true,
+      "mathStatus": "service_error",
+      "hintLevel": "H0",
+      "phase": "main",
+      "errorCode": null,
+      "exampleId": null,
+      "independentTransfer": false
+    },
+    {
+      "key": "synthetic-attempt-11",
+      "studentKey": "synthetic-student-07",
+      "isSynthetic": true,
+      "mathStatus": "verified_valid",
+      "hintLevel": "H0",
+      "phase": "transfer",
+      "errorCode": null,
+      "exampleId": null,
+      "independentTransfer": true
+    },
+    {
+      "key": "synthetic-attempt-12",
+      "studentKey": "synthetic-student-08",
+      "isSynthetic": true,
+      "mathStatus": "inconclusive",
+      "hintLevel": "H0",
+      "phase": "main",
+      "errorCode": null,
+      "exampleId": null,
+      "independentTransfer": false
+    }
+  ],
+  "examples": [
+    {
+      "id": "d9090000-0000-4000-8000-000000000001",
+      "isSynthetic": true,
+      "datasetCode": "ph09-authored-synthetic-v1",
+      "problem": {
+        "id": "d9090000-0000-4000-8000-000000000100",
+        "revisionId": "d9090000-0000-4000-8000-000000000200",
+        "versionNumber": 1,
+        "statementAr": "مثال توضيحي اصطناعي: خاصية التوزيع",
+        "originalEquation": "٥(س + ٤) = ٤٥",
+        "kind": "main",
+        "primarySkillId": "d9090000-0000-4000-8000-000000000300",
+        "notationProfile": "ar-mashriq-school-v1",
+        "difficultyBand": 2,
+        "contentReleaseId": "d9090000-0000-4000-8000-000000000400"
+      },
+      "steps": [
+        {
+          "id": "d9090000-0000-4000-8000-000000000500",
+          "position": 1,
+          "currentVersion": 1,
+          "source": {
+            "sourceRaw": "٥س + ٤ = ٤٥",
+            "displayAr": null,
+            "parseStatus": "not_checked"
+          },
+          "isActive": true,
+          "updatedAt": "2026-11-04T00:00:00.000Z"
+        }
+      ],
+      "mathStatus": "verified_invalid",
+      "diagnosis": {
+        "diagnosisId": null,
+        "state": "tentative",
+        "errorCode": "ERR-ALG-01",
+        "skillId": "d9090000-0000-4000-8000-000000000300",
+        "explanationAr": "قد يكون السبب إغفال ضرب الحد الثابت. هذه فرضية مؤلفة في مثال اصطناعي، ولا تثبت ضعفًا لدى طالب.",
+        "needsProbe": true
+      },
+      "reviewNoteAr": "بيانات توضيحية اصطناعية، دون هوية أو محاولة ضيف. المعامل يجب أن يضرب الحدين؛ الخطوة المعروضة أبقت الحد الثابت دون ضرب. نوع المساعدة المقترح: توجيه الانتباه إلى العملية؛ لم يُسجَّل تلميح لمتعلم حقيقي. مراجعة المحتوى البشرية معلقة؛ تحقق الرياضيات موثق في تقرير QA."
+    },
+    {
+      "id": "d9090000-0000-4000-8000-000000000002",
+      "isSynthetic": true,
+      "datasetCode": "ph09-authored-synthetic-v1",
+      "problem": {
+        "id": "d9090000-0000-4000-8000-000000000101",
+        "revisionId": "d9090000-0000-4000-8000-000000000201",
+        "versionNumber": 1,
+        "statementAr": "مثال توضيحي اصطناعي: معنى المساواة",
+        "originalEquation": "س + ٨ = ١٣",
+        "kind": "main",
+        "primarySkillId": "d9090000-0000-4000-8000-000000000301",
+        "notationProfile": "ar-mashriq-school-v1",
+        "difficultyBand": 2,
+        "contentReleaseId": "d9090000-0000-4000-8000-000000000400"
+      },
+      "steps": [
+        {
+          "id": "d9090000-0000-4000-8000-000000000501",
+          "position": 1,
+          "currentVersion": 1,
+          "source": {
+            "sourceRaw": "س = ١٣",
+            "displayAr": null,
+            "parseStatus": "not_checked"
+          },
+          "isActive": true,
+          "updatedAt": "2026-11-04T00:00:00.000Z"
+        }
+      ],
+      "mathStatus": "verified_invalid",
+      "diagnosis": {
+        "diagnosisId": null,
+        "state": "tentative",
+        "errorCode": "ERR-ALG-03",
+        "skillId": "d9090000-0000-4000-8000-000000000301",
+        "explanationAr": "قد يكون السبب تغيير طرف واحد دون العملية المكافئة. هذه فرضية مؤلفة في مثال اصطناعي، ولا تثبت ضعفًا لدى طالب.",
+        "needsProbe": true
+      },
+      "reviewNoteAr": "بيانات توضيحية اصطناعية، دون هوية أو محاولة ضيف. الخطوة حذفت حدًا من طرف واحد؛ مجموعتا الحل مختلفتان. نوع المساعدة المقترح: توجيه الانتباه إلى العملية؛ لم يُسجَّل تلميح لمتعلم حقيقي. مراجعة المحتوى البشرية معلقة؛ تحقق الرياضيات موثق في تقرير QA."
+    },
+    {
+      "id": "d9090000-0000-4000-8000-000000000003",
+      "isSynthetic": true,
+      "datasetCode": "ph09-authored-synthetic-v1",
+      "problem": {
+        "id": "d9090000-0000-4000-8000-000000000102",
+        "revisionId": "d9090000-0000-4000-8000-000000000202",
+        "versionNumber": 1,
+        "statementAr": "مثال توضيحي اصطناعي: التوزيع والإشارات",
+        "originalEquation": "−٤(س − ٢) = ٨",
+        "kind": "main",
+        "primarySkillId": "d9090000-0000-4000-8000-000000000302",
+        "notationProfile": "ar-mashriq-school-v1",
+        "difficultyBand": 2,
+        "contentReleaseId": "d9090000-0000-4000-8000-000000000400"
+      },
+      "steps": [
+        {
+          "id": "d9090000-0000-4000-8000-000000000502",
+          "position": 1,
+          "currentVersion": 1,
+          "source": {
+            "sourceRaw": "−٤س − ٨ = ٨",
+            "displayAr": null,
+            "parseStatus": "not_checked"
+          },
+          "isActive": true,
+          "updatedAt": "2026-11-04T00:00:00.000Z"
+        }
+      ],
+      "mathStatus": "verified_invalid",
+      "diagnosis": {
+        "diagnosisId": null,
+        "state": "tentative",
+        "errorCode": "ERR-ALG-06",
+        "skillId": "d9090000-0000-4000-8000-000000000302",
+        "explanationAr": "قد يكون السبب إشارة حاصل ضرب سالبين. هذه فرضية مؤلفة في مثال اصطناعي، ولا تثبت ضعفًا لدى طالب.",
+        "needsProbe": true
+      },
+      "reviewNoteAr": "بيانات توضيحية اصطناعية، دون هوية أو محاولة ضيف. عند توزيع المعامل السالب يجب مراعاة إشارة كل حاصل ضرب. نوع المساعدة المقترح: توجيه الانتباه إلى العملية؛ لم يُسجَّل تلميح لمتعلم حقيقي. مراجعة المحتوى البشرية معلقة؛ تحقق الرياضيات موثق في تقرير QA."
+    }
+  ]
+}

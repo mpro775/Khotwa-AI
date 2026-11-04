@@ -33,6 +33,9 @@ model attempts {
   assistance_revision           Int                    @default(0)
   hint_requests                 hint_requests[]
   tutoring_events               tutoring_events[]
+  episodes                      learning_episodes[]
+  assignment                    learning_assignments?
+  skill_evidence                skill_evidence[]
 
   @@index([learning_session_id, id], map: "attempt_learning")
 }
@@ -66,6 +69,9 @@ model content_releases {
   diagnostic_templates   diagnostic_templates[]
   diagnoses              diagnoses[]
   intervention_templates intervention_templates[]
+  content_pairings       content_pairings[]
+  learning_episodes      learning_episodes[]
+  skill_evidence         skill_evidence[]
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -80,6 +86,7 @@ model guest_sessions {
   consent_snapshot    Json?
   idempotency_records idempotency_records[]
   learning_sessions   learning_sessions[]
+  content_exposures   content_exposures[]
 
   @@index([expires_at], map: "guest_expiry")
 }
@@ -116,6 +123,7 @@ model learning_sessions {
   attempts               attempts[]
   guest_sessions         guest_sessions   @relation(fields: [guest_session_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   content_releases       content_releases @relation(fields: [release_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  skill_evidence         skill_evidence[]
 
   @@unique([id, release_id])
   @@index([guest_session_id, id], map: "learning_owner")
@@ -166,6 +174,13 @@ model problem_revisions {
   intervention_templates intervention_templates[]
   hint_requests          hint_requests[]
   tutoring_events        tutoring_events[]
+  learning_family        String?                  @db.VarChar(100)
+  pair_roots             content_pairings[]       @relation("pair_root")
+  pair_remediations      content_pairings[]       @relation("pair_remediation")
+  pair_transfers         content_pairings[]       @relation("pair_transfer")
+  learning_assignments   learning_assignments[]
+  content_exposures      content_exposures[]
+  skill_evidence         skill_evidence[]
 
   @@unique([id, release_id])
   @@unique([problem_id, version_number])
@@ -217,6 +232,9 @@ model skills {
   skill_prerequisites_skill_prerequisites_skill_idToskills              skill_prerequisites[]   @relation("skill_prerequisites_skill_idToskills")
   content_releases                                                      content_releases        @relation(fields: [release_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   misconception_catalog                                                 misconception_catalog[]
+  content_pairings                                                      content_pairings[]
+  learning_episodes                                                     learning_episodes[]
+  skill_evidence                                                        skill_evidence[]
 
   @@unique([release_id, skill_code])
 }
@@ -333,6 +351,7 @@ model verification_reports {
   problem_revisions     problem_revisions   @relation(fields: [problem_revision_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   step_slots            step_slots?         @relation(fields: [target_step_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   verification_runs     verification_runs[]
+  skill_evidence        skill_evidence[]
 
   @@index([attempt_id, attempt_revision, finished_at(sort: Desc)], map: "reports_by_attempt_revision")
 }
@@ -526,4 +545,115 @@ model ai_budget_ledgers {
   cost_units_reserved Int      @default(0)
 
   @@id([scope, day])
+}
+
+model content_pairings {
+  id                       String                 @id @db.Uuid
+  release_id               String                 @db.Uuid
+  skill_id                 String                 @db.Uuid
+  root_problem_revision_id String                 @db.Uuid
+  remediation_revision_id  String                 @db.Uuid
+  transfer_revision_id     String                 @db.Uuid
+  version                  String                 @db.VarChar(80)
+  transfer_contrast        String                 @db.VarChar(200)
+  math_checks              Json
+  review_status            String
+  reviewed_by_role         String?
+  reviewed_at              DateTime?              @db.Timestamptz(6)
+  enabled                  Boolean                @default(false)
+  is_synthetic             Boolean                @default(false)
+  release                  content_releases       @relation(fields: [release_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  skill                    skills                 @relation(fields: [skill_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  root                     problem_revisions      @relation("pair_root", fields: [root_problem_revision_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  remediation              problem_revisions      @relation("pair_remediation", fields: [remediation_revision_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  transfer                 problem_revisions      @relation("pair_transfer", fields: [transfer_revision_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  assignments              learning_assignments[]
+
+  @@unique([root_problem_revision_id, remediation_revision_id, transfer_revision_id, version])
+}
+
+model learning_episodes {
+  id              String                 @id @db.Uuid
+  root_attempt_id String                 @db.Uuid
+  root_revision   BigInt
+  skill_id        String                 @db.Uuid
+  release_id      String                 @db.Uuid
+  policy_version  String                 @db.VarChar(80)
+  state           String
+  created_at      DateTime               @default(now()) @db.Timestamptz(6)
+  ended_at        DateTime?              @db.Timestamptz(6)
+  is_synthetic    Boolean                @default(false)
+  root            attempts               @relation(fields: [root_attempt_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  skill           skills                 @relation(fields: [skill_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  release         content_releases       @relation(fields: [release_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  assignments     learning_assignments[]
+
+  @@unique([root_attempt_id], map: "one_active_episode", where: raw("state NOT IN ('finished','cancelled')"))
+}
+
+model learning_assignments {
+  id                    String            @id @db.Uuid
+  episode_id            String            @db.Uuid
+  pairing_id            String            @db.Uuid
+  phase                 String
+  problem_revision_id   String            @db.Uuid
+  attempt_id            String?           @unique @db.Uuid
+  assignment_order      Int
+  assistance_policy     String
+  measurement_exited_at DateTime?         @db.Timestamptz(6)
+  invalidated_at        DateTime?         @db.Timestamptz(6)
+  assigned_at           DateTime          @default(now()) @db.Timestamptz(6)
+  completed_at          DateTime?         @db.Timestamptz(6)
+  episode               learning_episodes @relation(fields: [episode_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  pairing               content_pairings  @relation(fields: [pairing_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  problem               problem_revisions @relation(fields: [problem_revision_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  attempt               attempts?         @relation(fields: [attempt_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  evidence              skill_evidence[]
+
+  @@unique([episode_id, phase, assignment_order])
+  @@unique([episode_id, problem_revision_id])
+}
+
+model content_exposures {
+  id                  String            @id @db.Uuid
+  guest_session_id    String            @db.Uuid
+  problem_revision_id String            @db.Uuid
+  learning_family     String            @db.VarChar(100)
+  equation_hash       String            @db.VarChar(64)
+  exposure_kind       String            @db.VarChar(40)
+  first_seen_at       DateTime          @default(now()) @db.Timestamptz(6)
+  guest               guest_sessions    @relation(fields: [guest_session_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  problem             problem_revisions @relation(fields: [problem_revision_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([guest_session_id, problem_revision_id])
+  @@index([guest_session_id, learning_family], map: "exposure_family")
+  @@index([guest_session_id, equation_hash], map: "exposure_equation")
+}
+
+model skill_evidence {
+  id                  String               @id @db.Uuid
+  learning_session_id String               @db.Uuid
+  skill_id            String               @db.Uuid
+  attempt_id          String               @db.Uuid
+  attempt_revision    BigInt
+  problem_revision_id String               @db.Uuid
+  report_id           String               @db.Uuid
+  assignment_id       String               @db.Uuid
+  event_kind          String
+  observation         String
+  assistance_snapshot Json
+  assistance_revision Int
+  policy_version      String               @db.VarChar(80)
+  content_release_id  String               @db.Uuid
+  dedup_key           String               @db.VarChar(200)
+  created_at          DateTime             @default(now()) @db.Timestamptz(6)
+  learning            learning_sessions    @relation(fields: [learning_session_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  skill               skills               @relation(fields: [skill_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  attempt             attempts             @relation(fields: [attempt_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  problem             problem_revisions    @relation(fields: [problem_revision_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  report              verification_reports @relation(fields: [report_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  assignment          learning_assignments @relation(fields: [assignment_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  release             content_releases     @relation(fields: [content_release_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([learning_session_id, dedup_key])
 }

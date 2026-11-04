@@ -1,0 +1,132 @@
+{
+  "phase": "PH-08",
+  "recordedAt": "2026-11-04T05:27:50.593Z",
+  "branch": "codex/ph08-remediation-transfer",
+  "baseCommit": "6e40ed8",
+  "baseline": "clean working tree before PH08; .local/ph08-before.json",
+  "status": "partially_complete_ready_for_technical_review",
+  "authorization": "نفذ الآن PH-08 كاملاً، وهذا أمر مني.",
+  "tasks": [
+    {
+      "id": "TASK-081",
+      "implementation": "implemented_in_synthetic_environment",
+      "acceptance": "pending_human_content_device_and_gate_review"
+    },
+    {
+      "id": "TASK-082",
+      "implementation": "implemented_in_synthetic_environment",
+      "acceptance": "pending_human_content_device_and_gate_review"
+    },
+    {
+      "id": "TASK-083",
+      "implementation": "implemented_in_synthetic_environment",
+      "acceptance": "pending_human_content_device_and_gate_review"
+    },
+    {
+      "id": "TASK-084",
+      "implementation": "implemented_in_synthetic_environment",
+      "acceptance": "pending_human_content_device_and_gate_review"
+    },
+    {
+      "id": "TASK-085",
+      "implementation": "implemented_in_synthetic_environment",
+      "acceptance": "pending_human_content_device_and_gate_review"
+    }
+  ],
+  "externalAiEnabled": false,
+  "actualExternalProviderCalls": 0,
+  "actualLlmInferences": 0,
+  "controlledProviderCalls": 1,
+  "content": {
+    "problems": 36,
+    "pairings": 36,
+    "hintTemplates": 58,
+    "review": "draft_not_human_approved",
+    "referenceChecks": 36,
+    "serverOnlyAnswerSpecs": true
+  },
+  "live": {
+    "total": 22,
+    "passed": 22,
+    "failed": 0,
+    "validatedResponses": 390,
+    "runId": "7c8fbe70-71be-4cb6-9a8f-c1aa75e3f4ed",
+    "counts": {
+      "episodes": 24,
+      "assignments": 41,
+      "evidence": 34,
+      "exposures": 72
+    }
+  },
+  "staticReport": "qa-reports/ph08-checks.json",
+  "httpsReport": "qa-reports/ph08-https-results.json",
+  "regressionReport": "qa-reports/ph08-regression-summary.json",
+  "schema": {
+    "businessTables": 31,
+    "migrations": 8,
+    "addedTables": 5,
+    "publicApiChanged": false,
+    "astChanged": false,
+    "canonicalGoldenChanged": false
+  },
+  "deviceReport": "qa-reports/ph08-browser-checks.json",
+  "gate1": "blocked",
+  "gate2": "not_approved",
+  "inheritedIssue": "DATASET-ISSUE-PH06-01 / GOLD-DIAG-015 pending",
+  "ph09": "not_started",
+  "newCommit": false,
+  "pushed": false,
+  "deployedPublicly": false,
+  "static": {
+    "passed": 12,
+    "failed": 0,
+    "learningUnitTests": 10,
+    "apiUnitTests": 29,
+    "diagnosisUnitTests": 7,
+    "tutoringUnitTests": 10,
+    "editorUnitTests": 12,
+    "workspaceUnitTests": 8,
+    "smokeChecks": 7
+  },
+  "https": {
+    "passed": 20,
+    "runId": "58c9d67d-3f4d-4009-8eaf-b7fdd75ec1b5",
+    "url": "https://localhost:8446",
+    "certificateValidation": true
+  },
+  "regression": {
+    "phase": "PH-08",
+    "recordedAt": "2026-11-04T05:24:40.723Z",
+    "mode": "PH08 disabled; prior reports restored byte-for-byte",
+    "results": [
+      {
+        "phase": "07",
+        "exitCode": 0,
+        "expectedInheritedReferenceFailure": false,
+        "testSummary": {
+          "total": 18,
+          "passed": 18,
+          "failed": 0
+        }
+      },
+      {
+        "phase": "06",
+        "exitCode": 1,
+        "expectedInheritedReferenceFailure": true,
+        "testSummary": {
+          "total": 14,
+          "passed": 13,
+          "failed": 1,
+          "coreIntegrationPassed": true,
+          "exactGoldenConformance": "not_passed_pending_reference_review"
+        }
+      }
+    ],
+    "unexpectedFailure": false
+  },
+  "imageSource": {
+    "files": 18,
+    "images": 2,
+    "allMatched": true
+  }
+}

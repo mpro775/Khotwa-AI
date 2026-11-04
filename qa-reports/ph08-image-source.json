@@ -1,0 +1,237 @@
+{
+  "phase": "PH-08",
+  "recordedAt": "2026-11-04T05:28:58.948Z",
+  "scope": "selected current source, SQL, fixtures, tests and browser validators; read-only no-network image probes",
+  "results": [
+    {
+      "image": "khotwa-ph08-test",
+      "id": "sha256:a50877f0efbe19845c25f0917f5404644dc8efb31324e3a352aae337f1027e6d",
+      "allMatched": true,
+      "files": [
+        {
+          "path": "apps/api/src/learning.ts",
+          "sha256": "271b8d4bf4e9b9b9ce401fd570baefaedc3e5ce96a32c23f28313bb5f684e2fc",
+          "imageSha256": "271b8d4bf4e9b9b9ce401fd570baefaedc3e5ce96a32c23f28313bb5f684e2fc",
+          "matched": true
+        },
+        {
+          "path": "apps/api/src/learning-policy.ts",
+          "sha256": "17c9f076e6f10e446d421c22ba29105ff1623af7fc48a6b8d43e801fc0cb307a",
+          "imageSha256": "17c9f076e6f10e446d421c22ba29105ff1623af7fc48a6b8d43e801fc0cb307a",
+          "matched": true
+        },
+        {
+          "path": "apps/api/src/store.ts",
+          "sha256": "fa122cb7ce10baf1c9466b5f3a3a85721e5d8a633fbbbb66848b16b57527bb66",
+          "imageSha256": "fa122cb7ce10baf1c9466b5f3a3a85721e5d8a633fbbbb66848b16b57527bb66",
+          "matched": true
+        },
+        {
+          "path": "apps/api/src/verification.ts",
+          "sha256": "152fbb7a7bad1f1a2079774584ca36c915e413f8984234c62835f743da7bb269",
+          "imageSha256": "152fbb7a7bad1f1a2079774584ca36c915e413f8984234c62835f743da7bb269",
+          "matched": true
+        },
+        {
+          "path": "apps/api/src/tutoring.ts",
+          "sha256": "e44f2e6bea9a2e8ca2e3557172335c6de8d3b51b567715597bbe5e436fdf4de5",
+          "imageSha256": "e44f2e6bea9a2e8ca2e3557172335c6de8d3b51b567715597bbe5e436fdf4de5",
+          "matched": true
+        },
+        {
+          "path": "apps/api/src/diagnosis.ts",
+          "sha256": "b2d081b83c89f15ed64daa4f1bc026a12aa8750108d5eaf9eecc09105601f83c",
+          "imageSha256": "b2d081b83c89f15ed64daa4f1bc026a12aa8750108d5eaf9eecc09105601f83c",
+          "matched": true
+        },
+        {
+          "path": "apps/api/src/assistance.ts",
+          "sha256": "7b273eab7ea5a1127e89e1ac645d8bce1f097a8d4ad687a57c98c829c6dc5b14",
+          "imageSha256": "7b273eab7ea5a1127e89e1ac645d8bce1f097a8d4ad687a57c98c829c6dc5b14",
+          "matched": true
+        },
+        {
+          "path": "apps/api/src/business.ts",
+          "sha256": "2a24d25336612f5bbbcfc4436e21e0d34b1527bc1666471ddb504678dc60b7c0",
+          "imageSha256": "2a24d25336612f5bbbcfc4436e21e0d34b1527bc1666471ddb504678dc60b7c0",
+          "matched": true
+        },
+        {
+          "path": "apps/api/prisma/schema.prisma",
+          "sha256": "ed21c630e376f1567edf8c5aed2d6e1a9a5fd026ab960b471c5df6d62eddd37d",
+          "imageSha256": "ed21c630e376f1567edf8c5aed2d6e1a9a5fd026ab960b471c5df6d62eddd37d",
+          "matched": true
+        },
+        {
+          "path": "apps/api/prisma/migrations/0008_learning_episodes/migration.sql",
+          "sha256": "e8660cb232985c8e8b700df4ae554701a49a7df1a006c0eafe12c3e0316ec703",
+          "imageSha256": "e8660cb232985c8e8b700df4ae554701a49a7df1a006c0eafe12c3e0316ec703",
+          "matched": true
+        },
+        {
+          "path": "apps/api/tests/learning-live.test.mjs",
+          "sha256": "98860d81523d46ebf69a7bbd1895aa7212f05525b07086b0a666cb208e850500",
+          "imageSha256": "98860d81523d46ebf69a7bbd1895aa7212f05525b07086b0a666cb208e850500",
+          "matched": true
+        },
+        {
+          "path": "apps/api/tests/learning.test.mjs",
+          "sha256": "d1acae3feaf8a1dcf94e2a615ab51d9b1eb0e2c59a3f39095eea2f1ee304cee5",
+          "imageSha256": "d1acae3feaf8a1dcf94e2a615ab51d9b1eb0e2c59a3f39095eea2f1ee304cee5",
+          "matched": true
+        },
+        {
+          "path": "apps/web/src/EpisodePanel.tsx",
+          "sha256": "fa129a342b7e3b18a771b4e4901ff83fd1018370741997d4762e32b4a0c982bb",
+          "imageSha256": "fa129a342b7e3b18a771b4e4901ff83fd1018370741997d4762e32b4a0c982bb",
+          "matched": true
+        },
+        {
+          "path": "apps/web/src/StudentWorkspace.tsx",
+          "sha256": "54dd20e96158e421cad80cd750f52081315df1d91ca540f308598d1ecb520b4e",
+          "imageSha256": "54dd20e96158e421cad80cd750f52081315df1d91ca540f308598d1ecb520b4e",
+          "matched": true
+        },
+        {
+          "path": "apps/web/src/HintPanel.tsx",
+          "sha256": "12de34e62f78ad467e39ccd3b87188e4b80c0ccca960acb0194aa54b8825196a",
+          "imageSha256": "12de34e62f78ad467e39ccd3b87188e4b80c0ccca960acb0194aa54b8825196a",
+          "matched": true
+        },
+        {
+          "path": "apps/web/src/api-schemas.json",
+          "sha256": "ac711d0194b203bd58b0f89466c1d6bf865c17afaf7b1e3537f7dd7521835098",
+          "imageSha256": "ac711d0194b203bd58b0f89466c1d6bf865c17afaf7b1e3537f7dd7521835098",
+          "matched": true
+        },
+        {
+          "path": "qa/ph08-fixtures.mjs",
+          "sha256": "f4c455617da2bdd4c1a346632eb13f1c98820de44bcf450116d7b01924873c80",
+          "imageSha256": "f4c455617da2bdd4c1a346632eb13f1c98820de44bcf450116d7b01924873c80",
+          "matched": true
+        },
+        {
+          "path": "packages/contracts/src/generated/api-validators.cjs",
+          "sha256": "505d9df8631419a86b28ea6eda1c58fa7212dbdd9a9e66e190f94d98aa716417",
+          "imageSha256": "505d9df8631419a86b28ea6eda1c58fa7212dbdd9a9e66e190f94d98aa716417",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "image": "khotwa-ph08-local-tools",
+      "id": "sha256:35b49ff2235dccb420f2320fd28a5875d016a1e0c233e749c518d4f1eb1d8c72",
+      "allMatched": true,
+      "files": [
+        {
+          "path": "apps/api/src/learning.ts",
+          "sha256": "271b8d4bf4e9b9b9ce401fd570baefaedc3e5ce96a32c23f28313bb5f684e2fc",
+          "imageSha256": "271b8d4bf4e9b9b9ce401fd570baefaedc3e5ce96a32c23f28313bb5f684e2fc",
+          "matched": true
+        },
+        {
+          "path": "apps/api/src/learning-policy.ts",
+          "sha256": "17c9f076e6f10e446d421c22ba29105ff1623af7fc48a6b8d43e801fc0cb307a",
+          "imageSha256": "17c9f076e6f10e446d421c22ba29105ff1623af7fc48a6b8d43e801fc0cb307a",
+          "matched": true
+        },
+        {
+          "path": "apps/api/src/store.ts",
+          "sha256": "fa122cb7ce10baf1c9466b5f3a3a85721e5d8a633fbbbb66848b16b57527bb66",
+          "imageSha256": "fa122cb7ce10baf1c9466b5f3a3a85721e5d8a633fbbbb66848b16b57527bb66",
+          "matched": true
+        },
+        {
+          "path": "apps/api/src/verification.ts",
+          "sha256": "152fbb7a7bad1f1a2079774584ca36c915e413f8984234c62835f743da7bb269",
+          "imageSha256": "152fbb7a7bad1f1a2079774584ca36c915e413f8984234c62835f743da7bb269",
+          "matched": true
+        },
+        {
+          "path": "apps/api/src/tutoring.ts",
+          "sha256": "e44f2e6bea9a2e8ca2e3557172335c6de8d3b51b567715597bbe5e436fdf4de5",
+          "imageSha256": "e44f2e6bea9a2e8ca2e3557172335c6de8d3b51b567715597bbe5e436fdf4de5",
+          "matched": true
+        },
+        {
+          "path": "apps/api/src/diagnosis.ts",
+          "sha256": "b2d081b83c89f15ed64daa4f1bc026a12aa8750108d5eaf9eecc09105601f83c",
+          "imageSha256": "b2d081b83c89f15ed64daa4f1bc026a12aa8750108d5eaf9eecc09105601f83c",
+          "matched": true
+        },
+        {
+          "path": "apps/api/src/assistance.ts",
+          "sha256": "7b273eab7ea5a1127e89e1ac645d8bce1f097a8d4ad687a57c98c829c6dc5b14",
+          "imageSha256": "7b273eab7ea5a1127e89e1ac645d8bce1f097a8d4ad687a57c98c829c6dc5b14",
+          "matched": true
+        },
+        {
+          "path": "apps/api/src/business.ts",
+          "sha256": "2a24d25336612f5bbbcfc4436e21e0d34b1527bc1666471ddb504678dc60b7c0",
+          "imageSha256": "2a24d25336612f5bbbcfc4436e21e0d34b1527bc1666471ddb504678dc60b7c0",
+          "matched": true
+        },
+        {
+          "path": "apps/api/prisma/schema.prisma",
+          "sha256": "ed21c630e376f1567edf8c5aed2d6e1a9a5fd026ab960b471c5df6d62eddd37d",
+          "imageSha256": "ed21c630e376f1567edf8c5aed2d6e1a9a5fd026ab960b471c5df6d62eddd37d",
+          "matched": true
+        },
+        {
+          "path": "apps/api/prisma/migrations/0008_learning_episodes/migration.sql",
+          "sha256": "e8660cb232985c8e8b700df4ae554701a49a7df1a006c0eafe12c3e0316ec703",
+          "imageSha256": "e8660cb232985c8e8b700df4ae554701a49a7df1a006c0eafe12c3e0316ec703",
+          "matched": true
+        },
+        {
+          "path": "apps/api/tests/learning-live.test.mjs",
+          "sha256": "98860d81523d46ebf69a7bbd1895aa7212f05525b07086b0a666cb208e850500",
+          "imageSha256": "98860d81523d46ebf69a7bbd1895aa7212f05525b07086b0a666cb208e850500",
+          "matched": true
+        },
+        {
+          "path": "apps/api/tests/learning.test.mjs",
+          "sha256": "d1acae3feaf8a1dcf94e2a615ab51d9b1eb0e2c59a3f39095eea2f1ee304cee5",
+          "imageSha256": "d1acae3feaf8a1dcf94e2a615ab51d9b1eb0e2c59a3f39095eea2f1ee304cee5",
+          "matched": true
+        },
+        {
+          "path": "apps/web/src/EpisodePanel.tsx",
+          "sha256": "fa129a342b7e3b18a771b4e4901ff83fd1018370741997d4762e32b4a0c982bb",
+          "imageSha256": "fa129a342b7e3b18a771b4e4901ff83fd1018370741997d4762e32b4a0c982bb",
+          "matched": true
+        },
+        {
+          "path": "apps/web/src/StudentWorkspace.tsx",
+          "sha256": "54dd20e96158e421cad80cd750f52081315df1d91ca540f308598d1ecb520b4e",
+          "imageSha256": "54dd20e96158e421cad80cd750f52081315df1d91ca540f308598d1ecb520b4e",
+          "matched": true
+        },
+        {
+          "path": "apps/web/src/HintPanel.tsx",
+          "sha256": "12de34e62f78ad467e39ccd3b87188e4b80c0ccca960acb0194aa54b8825196a",
+          "imageSha256": "12de34e62f78ad467e39ccd3b87188e4b80c0ccca960acb0194aa54b8825196a",
+          "matched": true
+        },
+        {
+          "path": "apps/web/src/api-schemas.json",
+          "sha256": "ac711d0194b203bd58b0f89466c1d6bf865c17afaf7b1e3537f7dd7521835098",
+          "imageSha256": "ac711d0194b203bd58b0f89466c1d6bf865c17afaf7b1e3537f7dd7521835098",
+          "matched": true
+        },
+        {
+          "path": "qa/ph08-fixtures.mjs",
+          "sha256": "f4c455617da2bdd4c1a346632eb13f1c98820de44bcf450116d7b01924873c80",
+          "imageSha256": "f4c455617da2bdd4c1a346632eb13f1c98820de44bcf450116d7b01924873c80",
+          "matched": true
+        },
+        {
+          "path": "packages/contracts/src/generated/api-validators.cjs",
+          "sha256": "505d9df8631419a86b28ea6eda1c58fa7212dbdd9a9e66e190f94d98aa716417",
+          "imageSha256": "505d9df8631419a86b28ea6eda1c58fa7212dbdd9a9e66e190f94d98aa716417",
+          "matched": true
+        }
+      ]
+    }
+  ]
+}

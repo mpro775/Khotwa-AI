@@ -21,6 +21,12 @@ CMD ["node", "qa/ph06-container.mjs"]
 FROM node-build AS ph07-test
 CMD ["node", "qa/ph07-container.mjs"]
 
+FROM node-build AS ph08-test
+CMD ["node", "qa/ph08-container.mjs"]
+
+FROM node-build AS ph09-test
+CMD ["node", "qa/ph09-container.mjs"]
+
 FROM node-build AS node-production
 RUN npm prune --omit=dev --no-audit --no-fund
 
@@ -29,6 +35,7 @@ ENV NODE_ENV=production HOST=0.0.0.0 PORT=3000
 WORKDIR /app
 COPY --from=node-production --chown=node:node /app/node_modules ./node_modules
 COPY --from=node-build --chown=node:node /app/apps/api/dist ./apps/api/dist
+COPY --from=node-build --chown=node:node /app/apps/api/data ./apps/api/data
 COPY --from=node-build --chown=node:node /app/apps/api/package.json ./apps/api/package.json
 COPY --from=node-build --chown=node:node /app/packages/contracts/openapi.yaml ./packages/contracts/openapi.yaml
 COPY --from=node-build --chown=node:node /app/packages/contracts/schemas ./packages/contracts/schemas

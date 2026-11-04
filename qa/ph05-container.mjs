@@ -26,7 +26,9 @@ try {
   const tables = await pool.query(
     "SELECT count(*)::int AS n FROM information_schema.tables WHERE table_schema='public' AND table_type='BASE TABLE' AND table_name<>'_prisma_migrations'",
   );
-  assert.equal(tables.rows[0].n, 26);
+  assert.equal(tables.rows[0].n, 31);
+  await pool.query(readFileSync("qa/ph09-down.sql", "utf8"));
+  await pool.query(readFileSync("qa/ph08-down.sql", "utf8"));
   await pool.query(readFileSync("qa/ph07-down.sql", "utf8"));
   await pool.query(readFileSync("qa/ph06-down.sql", "utf8"));
   await pool.query(
@@ -48,7 +50,7 @@ try {
       JSON.stringify({
         checks,
         postgres: version.rows[0].version,
-        tables: 26,
+        tables: 31,
         scope: "isolated tmpfs; delta rollback and full replay",
       }),
   );

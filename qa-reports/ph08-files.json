@@ -1,0 +1,520 @@
+{
+  "phase": "PH-08",
+  "recordedAt": "2026-11-04T05:30:00.131Z",
+  "baseCommit": "6e40ed8ed351a62c7f7d6b3a874f117ef6e36cf1",
+  "branch": "codex/ph08-remediation-transfer",
+  "baseline": "SHA256 of pre-PH08 nonignored working tree, clean at commit 6e40ed8; .local/ph08-before.json",
+  "count": 72,
+  "added": 41,
+  "modified": 31,
+  "excludedFromSelfHash": [
+    "qa-reports/ph08-files.json",
+    "qa-reports/ph08-integrity.json"
+  ],
+  "files": [
+    {
+      "path": ".env.example",
+      "change": "modified",
+      "beforeSha256": "10d4a264130de25504e044651533c404193513f01a1a3c42b819137e642d49b1",
+      "sha256": "e917901ef23a24a50a97679a039be81ac10504b30804936e7eff0ea0721af09e",
+      "reason": "إعداد وتشغيل اختياري وفحص CI وحاويات مع AI خارجي معطل"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "change": "modified",
+      "beforeSha256": "9133bc36dd7160161b51b49aab95a56ac84a23eaf0f61739fd4df1c22190656c",
+      "sha256": "1e7014eeda7e41cbb4b93c1bf24938c70868f4889bb5cca69a1891762bb8c201",
+      "reason": "إعداد وتشغيل اختياري وفحص CI وحاويات مع AI خارجي معطل"
+    },
+    {
+      "path": "Dockerfile",
+      "change": "modified",
+      "beforeSha256": "e3e86c0972d49bb3054782a3e5af12c16f2e5211fc37c3803104aa73fd3a1e82",
+      "sha256": "d93c654fb976696750796e4ed70aaa71c7e367c7ec18922f0687ac6f8f41ceaa",
+      "reason": "إعداد وتشغيل اختياري وفحص CI وحاويات مع AI خارجي معطل"
+    },
+    {
+      "path": "README.md",
+      "change": "modified",
+      "beforeSha256": "47f1aa39b2985dc49f52cf00f2bb10fa83fa330fe9b35d09c878ea9a277c10c2",
+      "sha256": "e17416872d03d09032f5a16187f256dd4d45d980c52e537de0dc6ae7ec2f102d",
+      "reason": "تفويض المرحلة وحالة القرار وحدود القبول والتشغيل"
+    },
+    {
+      "path": "agent-reports/TASK-081.md",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "7b26baf137a6dfc40756eb4c9cf11343e33b3f030193723a07b59c396031a091",
+      "reason": "تقرير المهمة وحدود الدليل والمراجعة"
+    },
+    {
+      "path": "agent-reports/TASK-082.md",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "225265f00b8de06d0ff0ab70edafb842b61b27756c38186a2a52e0cbd24d5716",
+      "reason": "تقرير المهمة وحدود الدليل والمراجعة"
+    },
+    {
+      "path": "agent-reports/TASK-083.md",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "583f6cde2d0918b0ea2eae05c04ef184d926cf46173c5e5fb08c1447f8fb1b87",
+      "reason": "تقرير المهمة وحدود الدليل والمراجعة"
+    },
+    {
+      "path": "agent-reports/TASK-084.md",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "d14fd07a2fb73447f716af8a16f0f18e91278d19810db348e9f682a0e3fc3940",
+      "reason": "تقرير المهمة وحدود الدليل والمراجعة"
+    },
+    {
+      "path": "agent-reports/TASK-085.md",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "5f0a63cb9b78065787b68af19392dede2edcf948e482c25bc3e6792fb8494f83",
+      "reason": "تقرير المهمة وحدود الدليل والمراجعة"
+    },
+    {
+      "path": "apps/api/prisma/migrations/0008_learning_episodes/migration.sql",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "e8660cb232985c8e8b700df4ae554701a49a7df1a006c0eafe12c3e0316ec703",
+      "reason": "قيود وحفظ أثر المساعدة وترحيل داخلي اختبر اصطناعيًا"
+    },
+    {
+      "path": "apps/api/prisma/schema.prisma",
+      "change": "modified",
+      "beforeSha256": "b8d4dd72fb459236c574b433141710079e327422e45aad13bc34c418a5f04098",
+      "sha256": "ed21c630e376f1567edf8c5aed2d6e1a9a5fd026ab960b471c5df6d62eddd37d",
+      "reason": "نماذج داخلية وحقول المساعدة المطابقة لـSQL"
+    },
+    {
+      "path": "apps/api/src/assistance.ts",
+      "change": "modified",
+      "beforeSha256": "cf0fcd13345bedcb0a9762b904f8233cdbaf5228c653158b01bae5b43f452e60",
+      "sha256": "7b273eab7ea5a1127e89e1ac645d8bce1f097a8d4ad687a57c98c829c6dc5b14",
+      "reason": "سياسة التلميحات والتحقق والحجز والحفظ والربط الخادمي"
+    },
+    {
+      "path": "apps/api/src/business.ts",
+      "change": "modified",
+      "beforeSha256": "1e813b32fd9386c51ee97a9adb8ab63693dfedfdc2f0c84ab8c70c465dc21d9b",
+      "sha256": "2a24d25336612f5bbbcfc4436e21e0d34b1527bc1666471ddb504678dc60b7c0",
+      "reason": "سياسة التلميحات والتحقق والحجز والحفظ والربط الخادمي"
+    },
+    {
+      "path": "apps/api/src/diagnosis.ts",
+      "change": "modified",
+      "beforeSha256": "d1235917ff3b01de12d453f204b7aea8fa9c92970f1624e8a8467aa6f8014ee7",
+      "sha256": "b2d081b83c89f15ed64daa4f1bc026a12aa8750108d5eaf9eecc09105601f83c",
+      "reason": "سياسة التلميحات والتحقق والحجز والحفظ والربط الخادمي"
+    },
+    {
+      "path": "apps/api/src/health.ts",
+      "change": "modified",
+      "beforeSha256": "73a66ae65f24e6288d7f5cfb16379c16c426f0160dcd37518623c5dcbccb13d7",
+      "sha256": "b27c29d1538e64328ba257253d024911b061fa623ab3c744a277862e59d078b4",
+      "reason": "سياسة التلميحات والتحقق والحجز والحفظ والربط الخادمي"
+    },
+    {
+      "path": "apps/api/src/learning-policy.ts",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "17c9f076e6f10e446d421c22ba29105ff1623af7fc48a6b8d43e801fc0cb307a",
+      "reason": "سياسة التلميحات والتحقق والحجز والحفظ والربط الخادمي"
+    },
+    {
+      "path": "apps/api/src/learning.ts",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "271b8d4bf4e9b9b9ce401fd570baefaedc3e5ce96a32c23f28313bb5f684e2fc",
+      "reason": "سياسة التلميحات والتحقق والحجز والحفظ والربط الخادمي"
+    },
+    {
+      "path": "apps/api/src/store.ts",
+      "change": "modified",
+      "beforeSha256": "c76e12378cd68668dfcb32fd05cf5dd2a053d12316aa665c707cf422bc19c7a2",
+      "sha256": "fa122cb7ce10baf1c9466b5f3a3a85721e5d8a633fbbbb66848b16b57527bb66",
+      "reason": "سياسة التلميحات والتحقق والحجز والحفظ والربط الخادمي"
+    },
+    {
+      "path": "apps/api/src/tutoring.ts",
+      "change": "modified",
+      "beforeSha256": "3f5b9c8f40c8f4a43abf9b4c346f53186c0889ec066cc2028e4762a8044447dd",
+      "sha256": "e44f2e6bea9a2e8ca2e3557172335c6de8d3b51b567715597bbe5e436fdf4de5",
+      "reason": "سياسة التلميحات والتحقق والحجز والحفظ والربط الخادمي"
+    },
+    {
+      "path": "apps/api/src/verification.ts",
+      "change": "modified",
+      "beforeSha256": "f57d3db922f1ceb7ee617ba518a8419444c27391308477cb3486446a0d7390e2",
+      "sha256": "152fbb7a7bad1f1a2079774584ca36c915e413f8984234c62835f743da7bb269",
+      "reason": "سياسة التلميحات والتحقق والحجز والحفظ والربط الخادمي"
+    },
+    {
+      "path": "apps/api/tests/learning-live.test.mjs",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "98860d81523d46ebf69a7bbd1895aa7212f05525b07086b0a666cb208e850500",
+      "reason": "إعداد وتشغيل اختياري وفحص CI وحاويات مع AI خارجي معطل"
+    },
+    {
+      "path": "apps/api/tests/learning.test.mjs",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "d1acae3feaf8a1dcf94e2a615ab51d9b1eb0e2c59a3f39095eea2f1ee304cee5",
+      "reason": "إعداد وتشغيل اختياري وفحص CI وحاويات مع AI خارجي معطل"
+    },
+    {
+      "path": "apps/web/src/EpisodePanel.tsx",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "fa129a342b7e3b18a771b4e4901ff83fd1018370741997d4762e32b4a0c982bb",
+      "reason": "واجهة التلميحات والتأكيد وربط العرض بالسياق واختبارات العميل"
+    },
+    {
+      "path": "apps/web/src/HintPanel.tsx",
+      "change": "modified",
+      "beforeSha256": "b4c0474fdd88437f7b1d464b152eadafafc8198a278de7eb69d6dfb5f54c65a1",
+      "sha256": "12de34e62f78ad467e39ccd3b87188e4b80c0ccca960acb0194aa54b8825196a",
+      "reason": "واجهة التلميحات والتأكيد وربط العرض بالسياق واختبارات العميل"
+    },
+    {
+      "path": "apps/web/src/StudentWorkspace.tsx",
+      "change": "modified",
+      "beforeSha256": "fa772fe739ee007c53dc16016d68be431f0e4d8b31b418408e6e57620a0e6347",
+      "sha256": "54dd20e96158e421cad80cd750f52081315df1d91ca540f308598d1ecb520b4e",
+      "reason": "واجهة التلميحات والتأكيد وربط العرض بالسياق واختبارات العميل"
+    },
+    {
+      "path": "apps/web/src/api-client.ts",
+      "change": "modified",
+      "beforeSha256": "41b63b8bb201aaded0c6407674754f5c8e90f69e11196d9e8954d362b5ab2d9c",
+      "sha256": "31e310c8f85b81deaa0c5f93a25922e252da272a357281db2267775dd4ea06fd",
+      "reason": "واجهة التلميحات والتأكيد وربط العرض بالسياق واختبارات العميل"
+    },
+    {
+      "path": "apps/web/src/api-schemas.json",
+      "change": "modified",
+      "beforeSha256": "0079800afe06ca9b00b1708f9dc1e22284565acbf59cec57622671077b16e127",
+      "sha256": "ac711d0194b203bd58b0f89466c1d6bf865c17afaf7b1e3537f7dd7521835098",
+      "reason": "واجهة التلميحات والتأكيد وربط العرض بالسياق واختبارات العميل"
+    },
+    {
+      "path": "apps/web/src/workspace.css",
+      "change": "modified",
+      "beforeSha256": "fe2e46f7d67a551d9dfaf2568cacdfea01d6e3bea8ffcaa000583fe3385ce089",
+      "sha256": "ac8fb80d710c38c2e8cb73b32e94b13c81a64fb9d7bbd5c02c64b5682c3023c3",
+      "reason": "واجهة التلميحات والتأكيد وربط العرض بالسياق واختبارات العميل"
+    },
+    {
+      "path": "compose.ph08.yaml",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "16fc172539174848630a496c9674201d774931636877875f695cddba368c0b6e",
+      "reason": "إعداد وتشغيل اختياري وفحص CI وحاويات مع AI خارجي معطل"
+    },
+    {
+      "path": "compose.yaml",
+      "change": "modified",
+      "beforeSha256": "c50930e32e9df50990dccc109643e694440c85bab137b32d778b02e9815c8768",
+      "sha256": "4e3e2d028f26ca243aa799a6331b2349924feb09f3496f9891c5417dc4ea5c76",
+      "reason": "إعداد وتشغيل اختياري وفحص CI وحاويات مع AI خارجي معطل"
+    },
+    {
+      "path": "docs/PROJECT-DECISIONS.md",
+      "change": "modified",
+      "beforeSha256": "faef9f7ff6b03276d5868b5ba8c262d4955d58b392e3523dad3eab454be8141f",
+      "sha256": "d0fa2ad12265e303258d6debe79e55dfb93c6f5604fa2172fb7a5776fbf4e88a",
+      "reason": "تفويض المرحلة وحالة القرار وحدود القبول والتشغيل"
+    },
+    {
+      "path": "package.json",
+      "change": "modified",
+      "beforeSha256": "5e2c4dd458b6f20ddcbc811d1b06e6d038eefe57f5eccd05f7d4884a82d3f550",
+      "sha256": "66ae05db4e16022e2f402250815b6ce2df7be7f16adc81b4561502e165eefab8",
+      "reason": "إعداد وتشغيل اختياري وفحص CI وحاويات مع AI خارجي معطل"
+    },
+    {
+      "path": "packages/contracts/src/generated/api-validators.cjs",
+      "change": "modified",
+      "beforeSha256": "749b2326f90f48154d4fe6089d201085742bb8eb3be3b3d8a44ca6ea2bbb38bc",
+      "sha256": "505d9df8631419a86b28ea6eda1c58fa7212dbdd9a9e66e190f94d98aa716417",
+      "reason": "اشتقاق HintEnvelope من OpenAPI القائم دون تغيير المصدر"
+    },
+    {
+      "path": "planning/decisions.md",
+      "change": "modified",
+      "beforeSha256": "3722442956e3d8f130a1e226d8c1367ed3f65c519c7f85ed25a80c76d909997d",
+      "sha256": "4530dd8716df4fa9bef90229239bb9f19fb454baf0eef47f3e613a7180e3f09b",
+      "reason": "تفويض المرحلة وحالة القرار وحدود القبول والتشغيل"
+    },
+    {
+      "path": "planning/ph08-local-run.md",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "6490afd8a3d311b52e00118ee103b0a88f8c7e5363a40b0b8fa94bc47b349928",
+      "reason": "تفويض المرحلة وحالة القرار وحدود القبول والتشغيل"
+    },
+    {
+      "path": "planning/ph08-plan.md",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "9ac49b890b66b00c5ef22b596b9bd2b4cb6917420ecb8e18fda52d7a29069933",
+      "reason": "تفويض المرحلة وحالة القرار وحدود القبول والتشغيل"
+    },
+    {
+      "path": "planning/ph08-status.json",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "6978817ebbc720c5c0c70223ea17a05cea349a5e7128e3c966e0d7445c0001b2",
+      "reason": "تفويض المرحلة وحالة القرار وحدود القبول والتشغيل"
+    },
+    {
+      "path": "planning/technical-decisions.md",
+      "change": "modified",
+      "beforeSha256": "c97d889ce215605deaba8e1c66ab02250665b063f19b6ebfa4e83ecf7c75bf57",
+      "sha256": "7d9e41b4edd147839e2228121e41d91237d1b81f4ee0eb19cf89a64f9cca683f",
+      "reason": "تفويض المرحلة وحالة القرار وحدود القبول والتشغيل"
+    },
+    {
+      "path": "qa-reports/README.md",
+      "change": "modified",
+      "beforeSha256": "a22c3f72f8d1c58ba24d5076bd981077adcea6f69ea10b989c7519ba01584d5b",
+      "sha256": "6b775265cf41c3bb22eec7495e55db5384adaf0455c9761330c430dffdb24875",
+      "reason": "تفويض المرحلة وحالة القرار وحدود القبول والتشغيل"
+    },
+    {
+      "path": "qa-reports/gate-2.md",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "030b4a39d4d3d08c418fd78cb4f7fd1389e4e503c8ca172f04fe1359b5a24487",
+      "reason": "أدلة تشغيل PH-08 أو انحدار المراحل السابقة؛ لا إعادة كتابة نتائجها الأصلية"
+    },
+    {
+      "path": "qa-reports/ph08-browser-checks.json",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "38aa9f6e8d5cff1eca3344ea795392065c7ff3c564a1002568718ec047d47e3c",
+      "reason": "أدلة تشغيل PH-08 أو انحدار المراحل السابقة؛ لا إعادة كتابة نتائجها الأصلية"
+    },
+    {
+      "path": "qa-reports/ph08-checks.json",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "18d44eaecf9d3d9751d3931dd1238722862338a0d1e3a14416e48dca97ab09e5",
+      "reason": "أدلة تشغيل PH-08 أو انحدار المراحل السابقة؛ لا إعادة كتابة نتائجها الأصلية"
+    },
+    {
+      "path": "qa-reports/ph08-container-first-passing-run.json",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "a98029decc38fcbca4458f3184782c7bcd24dfa5319b01a2fb3357fa64012bbb",
+      "reason": "أدلة تشغيل PH-08 أو انحدار المراحل السابقة؛ لا إعادة كتابة نتائجها الأصلية"
+    },
+    {
+      "path": "qa-reports/ph08-container-initial-run.json",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "7094d726b5af62da20efa9fea9521620dc6f79e72b3cce2f8327141f07408b1a",
+      "reason": "أدلة تشغيل PH-08 أو انحدار المراحل السابقة؛ لا إعادة كتابة نتائجها الأصلية"
+    },
+    {
+      "path": "qa-reports/ph08-container.json",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "faf42b58008e59b31c5e02e38edd804bf99e416fd5a72dfb83560083b575ea6b",
+      "reason": "أدلة تشغيل PH-08 أو انحدار المراحل السابقة؛ لا إعادة كتابة نتائجها الأصلية"
+    },
+    {
+      "path": "qa-reports/ph08-delivery.md",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "433ca5c719e871b06e075b7cdfc17184cdb4d692533575b7f64c9990f0999368",
+      "reason": "أدلة تشغيل PH-08 أو انحدار المراحل السابقة؛ لا إعادة كتابة نتائجها الأصلية"
+    },
+    {
+      "path": "qa-reports/ph08-https-results.json",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "e5cac67ece0b10fa58a5cf17b0d4c103e441ac42cc482aa8bb2480af579c6d76",
+      "reason": "أدلة تشغيل PH-08 أو انحدار المراحل السابقة؛ لا إعادة كتابة نتائجها الأصلية"
+    },
+    {
+      "path": "qa-reports/ph08-image-source.json",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "d78d91fad511b336c1c3e551b1bfa077d8b223914c8989de0b0dbf2c71619c40",
+      "reason": "أدلة تشغيل PH-08 أو انحدار المراحل السابقة؛ لا إعادة كتابة نتائجها الأصلية"
+    },
+    {
+      "path": "qa-reports/ph08-live-results.json",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "ff68ff08648522fd93c102776c9abc21cd63098862b405a35fcb92c93dee73ec",
+      "reason": "أدلة تشغيل PH-08 أو انحدار المراحل السابقة؛ لا إعادة كتابة نتائجها الأصلية"
+    },
+    {
+      "path": "qa-reports/ph08-local-run.json",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "11df7ea7dbc5deea925a10a90fc5551a5c746b66424d9b2a5ff1cb22026a088c",
+      "reason": "أدلة تشغيل PH-08 أو انحدار المراحل السابقة؛ لا إعادة كتابة نتائجها الأصلية"
+    },
+    {
+      "path": "qa-reports/ph08-regression-ph06-container.json",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "5803994feb6c5457c5d85899abf0061a1ddc67090d942e7daccf2153bb7cda01",
+      "reason": "أدلة تشغيل PH-08 أو انحدار المراحل السابقة؛ لا إعادة كتابة نتائجها الأصلية"
+    },
+    {
+      "path": "qa-reports/ph08-regression-ph06-live-results.json",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "5f2bfa66a9a206a7ccd015f867eed70855f107bb90541edd8b48a5655fdc2878",
+      "reason": "أدلة تشغيل PH-08 أو انحدار المراحل السابقة؛ لا إعادة كتابة نتائجها الأصلية"
+    },
+    {
+      "path": "qa-reports/ph08-regression-ph07-container.json",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "2507913d14b7d9e2dd42ac71c8cb8e656c673270426df600a4645a00bbe8aa2b",
+      "reason": "أدلة تشغيل PH-08 أو انحدار المراحل السابقة؛ لا إعادة كتابة نتائجها الأصلية"
+    },
+    {
+      "path": "qa-reports/ph08-regression-ph07-live-results.json",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "3bd0c27026e331503772ce1a6e24d90264d79d0027fd6db56f46991cb0f85e6e",
+      "reason": "أدلة تشغيل PH-08 أو انحدار المراحل السابقة؛ لا إعادة كتابة نتائجها الأصلية"
+    },
+    {
+      "path": "qa-reports/ph08-regression-summary.json",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "0807fbc9e2dc22a6ccf3cec465b935af8e6ba4cdc017fa0a838b6487121e532b",
+      "reason": "أدلة تشغيل PH-08 أو انحدار المراحل السابقة؛ لا إعادة كتابة نتائجها الأصلية"
+    },
+    {
+      "path": "qa-reports/rtl-device-checklist.md",
+      "change": "modified",
+      "beforeSha256": "3d2d879864b8b051d29d8bf035ad9c2c78bdc89505b9f1d4ba5a8c8c7efda0cf",
+      "sha256": "01330140c28981557ec12d4763522b01b9e796a1196804623218f9f6fbfd75be",
+      "reason": "تفويض المرحلة وحالة القرار وحدود القبول والتشغيل"
+    },
+    {
+      "path": "qa/ph04-container.mjs",
+      "change": "modified",
+      "beforeSha256": "95399f61b126dbb3ed617c11335ee4cfbb643480f6966a53e9bab279997014b2",
+      "sha256": "94f85af39f96a4881608f3ac52a51cc8cfcc2f9f75f4d8fec36efb1c9b2fa5e1",
+      "reason": "اختبار أو fixtures أو rollback معزول؛ تحديث عد الجداول ودلتا التراجع للمراحل السابقة"
+    },
+    {
+      "path": "qa/ph04-down.sql",
+      "change": "modified",
+      "beforeSha256": "3d8733306b6b60da6d2e1b1e3448407cceebdf5e2609572bb242b47efb3f8e54",
+      "sha256": "ac12f99a0f850a5a55ba0d6b63c25dac49d6aec6ef3e5511189d625c5d2f3591",
+      "reason": "اختبار أو fixtures أو rollback معزول؛ تحديث عد الجداول ودلتا التراجع للمراحل السابقة"
+    },
+    {
+      "path": "qa/ph05-container.mjs",
+      "change": "modified",
+      "beforeSha256": "912757c11e1b01d8815308523279d7b1718523e804a31a961d2a445144effe2d",
+      "sha256": "ce56f5f4b3720d939f130e99ea9739f73d561dffcbd5079d80d41f9b8efc46ce",
+      "reason": "اختبار أو fixtures أو rollback معزول؛ تحديث عد الجداول ودلتا التراجع للمراحل السابقة"
+    },
+    {
+      "path": "qa/ph06-container.mjs",
+      "change": "modified",
+      "beforeSha256": "1e9ebb49d45d239d15696f6f9622291901a67734a05cdd73d4969c4f43e4c385",
+      "sha256": "11676adf83985ead05b8b0831c01b662771b30259430218e08e80a03106e1f44",
+      "reason": "اختبار أو fixtures أو rollback معزول؛ تحديث عد الجداول ودلتا التراجع للمراحل السابقة"
+    },
+    {
+      "path": "qa/ph07-container.mjs",
+      "change": "modified",
+      "beforeSha256": "290b302b15724a9d937ea2d56ca3f6b494d684970d08295fee9399f4287c5f3d",
+      "sha256": "2c3080d995ca63ea9ea09ce13c66e2d70d1ca4579d6b4b5034ab73099c4b2ee7",
+      "reason": "اختبار أو fixtures أو rollback معزول؛ تحديث عد الجداول ودلتا التراجع للمراحل السابقة"
+    },
+    {
+      "path": "qa/ph08-container.mjs",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "5a988f80a790af5a56fbd4425b36a80c600e8707ea4a33ebd589b9fbdc5eb319",
+      "reason": "اختبار أو fixtures أو rollback معزول؛ تحديث عد الجداول ودلتا التراجع للمراحل السابقة"
+    },
+    {
+      "path": "qa/ph08-down.sql",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "f20bb856827ad4298864f42c9f2d13e0ed8aded4636f47ed172defce2b1a334e",
+      "reason": "اختبار أو fixtures أو rollback معزول؛ تحديث عد الجداول ودلتا التراجع للمراحل السابقة"
+    },
+    {
+      "path": "qa/ph08-fixtures.mjs",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "f4c455617da2bdd4c1a346632eb13f1c98820de44bcf450116d7b01924873c80",
+      "reason": "اختبار أو fixtures أو rollback معزول؛ تحديث عد الجداول ودلتا التراجع للمراحل السابقة"
+    },
+    {
+      "path": "qa/ph08-https-probe.mjs",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "55ca3b8ede9e462a3daf3b64cc3d92116a0f0838f294c5bf580f40c141929705",
+      "reason": "اختبار أو fixtures أو rollback معزول؛ تحديث عد الجداول ودلتا التراجع للمراحل السابقة"
+    },
+    {
+      "path": "qa/ph08-local-seed.mjs",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "f14b289187c76170725e47d699b67155e5e049d6a6c679ddf329b097bc21ee93",
+      "reason": "اختبار أو fixtures أو rollback معزول؛ تحديث عد الجداول ودلتا التراجع للمراحل السابقة"
+    },
+    {
+      "path": "qa/ph08-math-proxy.mjs",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "9e19713579487d3759ae190f73e95abb868db841e331f3776b787d26c5c32424",
+      "reason": "اختبار أو fixtures أو rollback معزول؛ تحديث عد الجداول ودلتا التراجع للمراحل السابقة"
+    },
+    {
+      "path": "qa/ph08-nginx.conf",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "80c484620025aa26cc77e1729efd8319e9af3b61115f8ff58aa74aa70237b47f",
+      "reason": "اختبار أو fixtures أو rollback معزول؛ تحديث عد الجداول ودلتا التراجع للمراحل السابقة"
+    },
+    {
+      "path": "tools/contracts.mjs",
+      "change": "modified",
+      "beforeSha256": "4aef7c82e1881a7d9f80f997ad45a4b666f82429d9aa2765b832809fffc12ded",
+      "sha256": "408e15dccf1dde3d45b58e0763d414f50ee5e4be6cd2f93c36588611d483b392",
+      "reason": "اشتقاق HintEnvelope من OpenAPI القائم دون تغيير المصدر"
+    },
+    {
+      "path": "tools/serve-ph08.mjs",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "32171e65315df3051b7e337e34cec97f5dae6d8bead1df8b785944541e0f4b84",
+      "reason": "أوامر فحص وتشغيل PH-08 المحلية"
+    },
+    {
+      "path": "tools/verify-ph08-container.mjs",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "541880165e924effe91888084b083797d0c1354533e9e7a67f91a3f059a7103f",
+      "reason": "أوامر فحص وتشغيل PH-08 المحلية"
+    },
+    {
+      "path": "tools/verify-ph08.mjs",
+      "change": "added",
+      "beforeSha256": null,
+      "sha256": "855f469ed2ae75b29f787f005a3a277a1c795820777f0c454cb83277f55d1237",
+      "reason": "أوامر فحص وتشغيل PH-08 المحلية"
+    }
+  ]
+}

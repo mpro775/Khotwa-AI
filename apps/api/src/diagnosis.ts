@@ -131,7 +131,7 @@ export class DiagnosisService {
     before: Record<string, unknown> | null,
     after: Record<string, unknown> | null,
   ): Promise<Candidate | null> {
-    if (!this.active) return null;
+    if (!this.active || a.attempt_kind === "transfer") return null;
     const index = verdicts.findIndex((v) => v.mathStatus !== "verified_valid"),
       verdict = verdicts[index];
     if (!verdict) return null;

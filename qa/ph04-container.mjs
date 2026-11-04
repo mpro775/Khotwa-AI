@@ -39,9 +39,9 @@ try {
   const tables = await pool.query(
     "SELECT count(*)::int AS n FROM information_schema.tables WHERE table_schema='public' AND table_type='BASE TABLE' AND table_name<>'_prisma_migrations'",
   );
-  assert.equal(tables.rows[0].n, 26);
+  assert.equal(tables.rows[0].n, 31);
   checks.push({
-    name: "business_migrations_16_PH04_plus_1_PH05_plus_5_PH06_plus_4_PH07_tables",
+    name: "business_migrations_16_PH04_plus_1_PH05_plus_5_PH06_plus_4_PH07_plus_5_PH08_tables",
     passed: true,
   });
   await pool.query(readFileSync("qa/ph04-down.sql", "utf8"));

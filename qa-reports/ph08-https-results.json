@@ -1,0 +1,38 @@
+{
+  "phase": "PH-08",
+  "runId": "58c9d67d-3f4d-4009-8eaf-b7fdd75ec1b5",
+  "url": "https://localhost:8446",
+  "recordedAt": "2026-11-04T05:26:20.524Z",
+  "passed": 20,
+  "checks": [
+    "HTTPS page and strict CSP with pinned local CA; verification remains enabled",
+    "real TLS guest bootstrap, CSRF and secured host-only cookie",
+    "live published synthetic catalog, no answer specification",
+    "HTTPS → nginx → NestJS → PostgreSQL → real Python → verified chain completion",
+    "HTTPS verification retry reuses the same result",
+    "HTTPS pinned invalid-edge hypothesis and private-key-free diagnostic probe",
+    "HTTPS uncertain answer remains unresolved and idempotent",
+    "HTTPS stale probe-answer replay rejected after revision change",
+    "HTTPS authored H1/H2/H3, real partial-math checks and idempotency; no external AI claimed",
+    "HTTPS explicit H4 confirmation and verified solution",
+    "HTTPS durable assisted completion and rejection of old hint replay after edit",
+    "HTTPS single-skill remediation assignment without premature transfer disclosure",
+    "HTTPS real authored H4 on remediation and verified assisted completion",
+    "HTTPS structurally different unseen transfer with solution-bearing public proofs withheld",
+    "HTTPS limited current evidence distinguishes assisted training from independent transfer",
+    "HTTPS explicit transfer help leaves measurement and immediately revokes independent evidence",
+    "HTTPS replacement measurement uses fresh content after assisted transfer",
+    "HTTPS root editing invalidates current episode assignments and derived evidence",
+    "cross-origin HTTPS mutation rejected",
+    "private paths blocked by public proxy"
+  ],
+  "tls": {
+    "certificateValidation": true,
+    "explicitTestCa": true,
+    "globalTrustStoreChanged": false,
+    "browserAcceptance": "separate manual certificate handoff required"
+  },
+  "syntheticOnly": true,
+  "externalAiEnabled": false,
+  "actualLlmInferences": 0
+}

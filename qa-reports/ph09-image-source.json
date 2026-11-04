@@ -1,0 +1,249 @@
+{
+  "phase": "PH-09",
+  "recordedAt": "2026-11-04T16:02:38.111Z",
+  "scope": "selected source, artifact, SQL, tests and validators in final standard-Dockerfile test and local-tools images; read-only no-network probes",
+  "results": [
+    {
+      "image": "khotwa-ph09-test",
+      "id": "sha256:e63bb564e77e9cb83714df24be58f20f84f598b1e41f85bad53541297669a85b",
+      "allMatched": true,
+      "files": [
+        {
+          "path": "apps/api/src/progress.ts",
+          "sha256": "fb946281258c6b013c2a867a871654f4039d99bed54c7fd3afe7aa6368852d5f",
+          "imageSha256": "fb946281258c6b013c2a867a871654f4039d99bed54c7fd3afe7aa6368852d5f",
+          "matched": true
+        },
+        {
+          "path": "apps/api/src/teacher-demo.ts",
+          "sha256": "92df30d37f9cd7d587d87f68d6aa88736c7aa465e0196ee0a0babaeff9758514",
+          "imageSha256": "92df30d37f9cd7d587d87f68d6aa88736c7aa465e0196ee0a0babaeff9758514",
+          "matched": true
+        },
+        {
+          "path": "apps/api/src/retention-review.ts",
+          "sha256": "45572a9e63f522440e09aaa3fc748f2dddaded69953f84e6af0256011be4be58",
+          "imageSha256": "45572a9e63f522440e09aaa3fc748f2dddaded69953f84e6af0256011be4be58",
+          "matched": true
+        },
+        {
+          "path": "apps/api/src/business.ts",
+          "sha256": "a16e5226a2130c492813a1d66823eacdc92b7b3d2aea351111e5d98cc3773554",
+          "imageSha256": "a16e5226a2130c492813a1d66823eacdc92b7b3d2aea351111e5d98cc3773554",
+          "matched": true
+        },
+        {
+          "path": "apps/api/src/health.ts",
+          "sha256": "e112dcc22312d9a4c6bc95d22d37473557a4486a2e95bbdb78c1148a7dcab87b",
+          "imageSha256": "e112dcc22312d9a4c6bc95d22d37473557a4486a2e95bbdb78c1148a7dcab87b",
+          "matched": true
+        },
+        {
+          "path": "apps/api/prisma/migrations/0009_current_progress/migration.sql",
+          "sha256": "72a2ae218c0c19b8659250708275fe371c00ef93fccd95c92236df682afe862e",
+          "imageSha256": "72a2ae218c0c19b8659250708275fe371c00ef93fccd95c92236df682afe862e",
+          "matched": true
+        },
+        {
+          "path": "apps/api/data/teacher-demo.v1.json",
+          "sha256": "b56888b58552250bcba9ff89f42044def285039bdd03bb3b5a5f4db2655a0fd5",
+          "imageSha256": "b56888b58552250bcba9ff89f42044def285039bdd03bb3b5a5f4db2655a0fd5",
+          "matched": true
+        },
+        {
+          "path": "apps/api/tests/progress-live.test.mjs",
+          "sha256": "a23a865d5381dc97927e6eecf350ab08f4cd6e9775eed948e499b9d6b5ea8ba2",
+          "imageSha256": "a23a865d5381dc97927e6eecf350ab08f4cd6e9775eed948e499b9d6b5ea8ba2",
+          "matched": true
+        },
+        {
+          "path": "apps/api/tests/progress.test.mjs",
+          "sha256": "c12e52f618e2ced8aa320713de5bdad1b141466037ca2aad65217a879236fb47",
+          "imageSha256": "c12e52f618e2ced8aa320713de5bdad1b141466037ca2aad65217a879236fb47",
+          "matched": true
+        },
+        {
+          "path": "apps/web/src/StudentProgress.tsx",
+          "sha256": "c447936ab90cb62c246e263ae51678ffd7a921ecd980ff289edf3c9dd821f1ac",
+          "imageSha256": "c447936ab90cb62c246e263ae51678ffd7a921ecd980ff289edf3c9dd821f1ac",
+          "matched": true
+        },
+        {
+          "path": "apps/web/src/TeacherDemo.tsx",
+          "sha256": "d0856900aee4c6e390aa142b81f8b927820c070c1581d37c73dcf5645faac442",
+          "imageSha256": "d0856900aee4c6e390aa142b81f8b927820c070c1581d37c73dcf5645faac442",
+          "matched": true
+        },
+        {
+          "path": "apps/web/src/StudentWorkspace.tsx",
+          "sha256": "2fadd49b2f394a3ad6146d2e81a84327e4bc74deea9b0dfbfb260864cad03906",
+          "imageSha256": "2fadd49b2f394a3ad6146d2e81a84327e4bc74deea9b0dfbfb260864cad03906",
+          "matched": true
+        },
+        {
+          "path": "apps/web/src/main.tsx",
+          "sha256": "f85b3bd537290b53768807831a370bec988984c34f7b598d465077fa1d745b5f",
+          "imageSha256": "f85b3bd537290b53768807831a370bec988984c34f7b598d465077fa1d745b5f",
+          "matched": true
+        },
+        {
+          "path": "apps/web/src/workspace-model.ts",
+          "sha256": "cb6f4dafa0438c46033ae389969ddcd8bed398604f44b286edf7510d3ffa0bf9",
+          "imageSha256": "cb6f4dafa0438c46033ae389969ddcd8bed398604f44b286edf7510d3ffa0bf9",
+          "matched": true
+        },
+        {
+          "path": "apps/web/src/api-client.ts",
+          "sha256": "e749a81bfe946ec0da10d0249da727b305888283df35c4bba9ef5983fba668ee",
+          "imageSha256": "e749a81bfe946ec0da10d0249da727b305888283df35c4bba9ef5983fba668ee",
+          "matched": true
+        },
+        {
+          "path": "apps/web/src/api-schemas.json",
+          "sha256": "ee7c155690509625abcf2dd007d8005f249565ee419321ee4341d55e96836db6",
+          "imageSha256": "ee7c155690509625abcf2dd007d8005f249565ee419321ee4341d55e96836db6",
+          "matched": true
+        },
+        {
+          "path": "packages/contracts/src/generated/api-validators.cjs",
+          "sha256": "c75a7179134d1b194f4a50028fd112a733556a58b5588bb1af1b1d86a1201275",
+          "imageSha256": "c75a7179134d1b194f4a50028fd112a733556a58b5588bb1af1b1d86a1201275",
+          "matched": true
+        },
+        {
+          "path": "qa/ph09-fault-proxy.mjs",
+          "sha256": "5e80c9e1fb8343eae0ae7772f1702cdd63e54eb303656d479b683b6939eb4224",
+          "imageSha256": "5e80c9e1fb8343eae0ae7772f1702cdd63e54eb303656d479b683b6939eb4224",
+          "matched": true
+        },
+        {
+          "path": "qa/ph09-fixtures.mjs",
+          "sha256": "1c0ee27aa47986f9d1ca5994730ec67d2cf23ff529b5cbf8fd49cf50d12181c0",
+          "imageSha256": "1c0ee27aa47986f9d1ca5994730ec67d2cf23ff529b5cbf8fd49cf50d12181c0",
+          "matched": true
+        }
+      ]
+    },
+    {
+      "image": "khotwa-ph09-local-tools",
+      "id": "sha256:0e48aa44fd68eb037770b96211f6338c372ad5c6cc6ee0b7f5d260f298d2f7ad",
+      "allMatched": true,
+      "files": [
+        {
+          "path": "apps/api/src/progress.ts",
+          "sha256": "fb946281258c6b013c2a867a871654f4039d99bed54c7fd3afe7aa6368852d5f",
+          "imageSha256": "fb946281258c6b013c2a867a871654f4039d99bed54c7fd3afe7aa6368852d5f",
+          "matched": true
+        },
+        {
+          "path": "apps/api/src/teacher-demo.ts",
+          "sha256": "92df30d37f9cd7d587d87f68d6aa88736c7aa465e0196ee0a0babaeff9758514",
+          "imageSha256": "92df30d37f9cd7d587d87f68d6aa88736c7aa465e0196ee0a0babaeff9758514",
+          "matched": true
+        },
+        {
+          "path": "apps/api/src/retention-review.ts",
+          "sha256": "45572a9e63f522440e09aaa3fc748f2dddaded69953f84e6af0256011be4be58",
+          "imageSha256": "45572a9e63f522440e09aaa3fc748f2dddaded69953f84e6af0256011be4be58",
+          "matched": true
+        },
+        {
+          "path": "apps/api/src/business.ts",
+          "sha256": "a16e5226a2130c492813a1d66823eacdc92b7b3d2aea351111e5d98cc3773554",
+          "imageSha256": "a16e5226a2130c492813a1d66823eacdc92b7b3d2aea351111e5d98cc3773554",
+          "matched": true
+        },
+        {
+          "path": "apps/api/src/health.ts",
+          "sha256": "e112dcc22312d9a4c6bc95d22d37473557a4486a2e95bbdb78c1148a7dcab87b",
+          "imageSha256": "e112dcc22312d9a4c6bc95d22d37473557a4486a2e95bbdb78c1148a7dcab87b",
+          "matched": true
+        },
+        {
+          "path": "apps/api/prisma/migrations/0009_current_progress/migration.sql",
+          "sha256": "72a2ae218c0c19b8659250708275fe371c00ef93fccd95c92236df682afe862e",
+          "imageSha256": "72a2ae218c0c19b8659250708275fe371c00ef93fccd95c92236df682afe862e",
+          "matched": true
+        },
+        {
+          "path": "apps/api/data/teacher-demo.v1.json",
+          "sha256": "b56888b58552250bcba9ff89f42044def285039bdd03bb3b5a5f4db2655a0fd5",
+          "imageSha256": "b56888b58552250bcba9ff89f42044def285039bdd03bb3b5a5f4db2655a0fd5",
+          "matched": true
+        },
+        {
+          "path": "apps/api/tests/progress-live.test.mjs",
+          "sha256": "a23a865d5381dc97927e6eecf350ab08f4cd6e9775eed948e499b9d6b5ea8ba2",
+          "imageSha256": "a23a865d5381dc97927e6eecf350ab08f4cd6e9775eed948e499b9d6b5ea8ba2",
+          "matched": true
+        },
+        {
+          "path": "apps/api/tests/progress.test.mjs",
+          "sha256": "c12e52f618e2ced8aa320713de5bdad1b141466037ca2aad65217a879236fb47",
+          "imageSha256": "c12e52f618e2ced8aa320713de5bdad1b141466037ca2aad65217a879236fb47",
+          "matched": true
+        },
+        {
+          "path": "apps/web/src/StudentProgress.tsx",
+          "sha256": "c447936ab90cb62c246e263ae51678ffd7a921ecd980ff289edf3c9dd821f1ac",
+          "imageSha256": "c447936ab90cb62c246e263ae51678ffd7a921ecd980ff289edf3c9dd821f1ac",
+          "matched": true
+        },
+        {
+          "path": "apps/web/src/TeacherDemo.tsx",
+          "sha256": "d0856900aee4c6e390aa142b81f8b927820c070c1581d37c73dcf5645faac442",
+          "imageSha256": "d0856900aee4c6e390aa142b81f8b927820c070c1581d37c73dcf5645faac442",
+          "matched": true
+        },
+        {
+          "path": "apps/web/src/StudentWorkspace.tsx",
+          "sha256": "2fadd49b2f394a3ad6146d2e81a84327e4bc74deea9b0dfbfb260864cad03906",
+          "imageSha256": "2fadd49b2f394a3ad6146d2e81a84327e4bc74deea9b0dfbfb260864cad03906",
+          "matched": true
+        },
+        {
+          "path": "apps/web/src/main.tsx",
+          "sha256": "f85b3bd537290b53768807831a370bec988984c34f7b598d465077fa1d745b5f",
+          "imageSha256": "f85b3bd537290b53768807831a370bec988984c34f7b598d465077fa1d745b5f",
+          "matched": true
+        },
+        {
+          "path": "apps/web/src/workspace-model.ts",
+          "sha256": "cb6f4dafa0438c46033ae389969ddcd8bed398604f44b286edf7510d3ffa0bf9",
+          "imageSha256": "cb6f4dafa0438c46033ae389969ddcd8bed398604f44b286edf7510d3ffa0bf9",
+          "matched": true
+        },
+        {
+          "path": "apps/web/src/api-client.ts",
+          "sha256": "e749a81bfe946ec0da10d0249da727b305888283df35c4bba9ef5983fba668ee",
+          "imageSha256": "e749a81bfe946ec0da10d0249da727b305888283df35c4bba9ef5983fba668ee",
+          "matched": true
+        },
+        {
+          "path": "apps/web/src/api-schemas.json",
+          "sha256": "ee7c155690509625abcf2dd007d8005f249565ee419321ee4341d55e96836db6",
+          "imageSha256": "ee7c155690509625abcf2dd007d8005f249565ee419321ee4341d55e96836db6",
+          "matched": true
+        },
+        {
+          "path": "packages/contracts/src/generated/api-validators.cjs",
+          "sha256": "c75a7179134d1b194f4a50028fd112a733556a58b5588bb1af1b1d86a1201275",
+          "imageSha256": "c75a7179134d1b194f4a50028fd112a733556a58b5588bb1af1b1d86a1201275",
+          "matched": true
+        },
+        {
+          "path": "qa/ph09-fault-proxy.mjs",
+          "sha256": "5e80c9e1fb8343eae0ae7772f1702cdd63e54eb303656d479b683b6939eb4224",
+          "imageSha256": "5e80c9e1fb8343eae0ae7772f1702cdd63e54eb303656d479b683b6939eb4224",
+          "matched": true
+        },
+        {
+          "path": "qa/ph09-fixtures.mjs",
+          "sha256": "1c0ee27aa47986f9d1ca5994730ec67d2cf23ff529b5cbf8fd49cf50d12181c0",
+          "imageSha256": "1c0ee27aa47986f9d1ca5994730ec67d2cf23ff529b5cbf8fd49cf50d12181c0",
+          "matched": true
+        }
+      ]
+    }
+  ]
+}

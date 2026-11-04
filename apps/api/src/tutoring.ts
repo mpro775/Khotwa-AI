@@ -1,3 +1,8 @@
+import {
+  ph08Active,
+  requireAssignmentCurrent,
+  transferLearningKind,
+} from "./learning";
 import { createHash, randomUUID } from "node:crypto";
 import type { Prisma } from "@prisma/client";
 import { ApiFault } from "./http";
@@ -147,6 +152,7 @@ export class TutoringService {
   }
   private async current(tx: Tx, auth: GuestAuth, id: string): Promise<Current> {
     const a = await this.store.readAttemptInTransaction(tx, auth, id);
+    if (ph08Active()) await requireAssignmentCurrent(tx, a.id);
     const [p] = await tx.$queryRaw<
       {
         original_equation_raw: string;
@@ -350,9 +356,10 @@ export class TutoringService {
         const [last] = await tx.$queryRaw<
           { level: number | null }[]
         >`SELECT max(hint_level)::int AS level FROM tutoring_events WHERE attempt_id=${a.id}::uuid AND context_key=${current.contextKey} AND policy_version=${TUTORING_POLICY}`;
+        const effectiveKind = await transferLearningKind(tx, current.a, body);
         const level = nextHintLevel(
           body,
-          a.attempt_kind,
+          effectiveKind,
           Number(last?.level ?? 0),
           current.assessable &&
             (!!current.report || body.action === "show_full_solution"),
@@ -395,7 +402,7 @@ export class TutoringService {
           : { reserved: false, cost: 0, reason: "H4_VERIFIED_CONTENT_ONLY" };
         const hash = digest(template);
         await tx.$executeRaw`INSERT INTO hint_requests(id,attempt_id,attempt_revision,problem_revision_id,idempotency_record_id,assistance_revision,anchor_step_version_id,verification_result_id,diagnosis_id,template_id,hint_level,policy_version,prompt_version,content_hash,context_key,ai_reserved,cost_units_reserved,dispatch_status,deadline_at)
-      VALUES(${id}::uuid,${a.id}::uuid,${a.revision},${a.problem_revision_id}::uuid,${recordId}::uuid,${a.assistance_revision ?? 0},${current.anchor}::uuid,${current.verification}::uuid,${current.diagnosisId}::uuid,${template.id}::uuid,${level},${TUTORING_POLICY},${HINT_PROMPT_VERSION},${hash},${current.contextKey},${reservation.reserved},${reservation.cost},'running',${deadline})`;
+      VALUES(${id}::uuid,${a.id}::uuid,${a.revision},${a.problem_revision_id}::uuid,${recordId}::uuid,${current.a.assistance_revision ?? 0},${current.anchor}::uuid,${current.verification}::uuid,${current.diagnosisId}::uuid,${template.id}::uuid,${level},${TUTORING_POLICY},${HINT_PROMPT_VERSION},${hash},${current.contextKey},${reservation.reserved},${reservation.cost},'running',${deadline})`;
         return {
           snapshot: {
             id,

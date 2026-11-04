@@ -8,6 +8,8 @@ const {
   canAdoptVerification,
   canAdoptProbe,
   canAdoptHint,
+  canAdoptProgress,
+  canAdoptTeacherExample,
   statusLabels,
 } = require("../../../.local/ph05-web-tests/apps/web/src/workspace-model.js");
 const {
@@ -285,5 +287,73 @@ test("browser validators run with dynamic code generation disabled (strict CSP)"
       data: { ...question.data, correctOptionId: question.data.options[0].id },
     }),
     false,
+  );
+});
+
+test("progress cannot be adopted from a different session and teacher examples cannot cross dataset boundaries", () => {
+  const id = randomUUID(),
+    exampleId = randomUUID();
+  assert.equal(
+    canAdoptProgress(id, { learningSessionId: id, isSynthetic: true }),
+    true,
+  );
+  assert.equal(
+    canAdoptProgress(id, {
+      learningSessionId: randomUUID(),
+      isSynthetic: true,
+    }),
+    false,
+  );
+  assert.equal(
+    canAdoptProgress(id, { learningSessionId: id, isSynthetic: false }),
+    false,
+  );
+  assert.equal(
+    canAdoptTeacherExample("dataset", exampleId, {
+      id: exampleId,
+      datasetCode: "dataset",
+      isSynthetic: true,
+    }),
+    true,
+  );
+  assert.equal(
+    canAdoptTeacherExample("dataset", exampleId, {
+      id: exampleId,
+      datasetCode: "foreign",
+      isSynthetic: true,
+    }),
+    false,
+  );
+  assert.equal(
+    canAdoptTeacherExample("dataset", exampleId, {
+      id: randomUUID(),
+      datasetCode: "dataset",
+      isSynthetic: true,
+    }),
+    false,
+  );
+});
+test("teacher response validation rejects non-synthetic flags before rendering", async () => {
+  const data = {
+    isSynthetic: false,
+    datasetCode: "bad",
+    generatedAt: new Date().toISOString(),
+    sampleStudentCount: 0,
+    sampleAttemptCount: 0,
+    metrics: [],
+    topMisconceptions: [],
+    exampleIds: [],
+    disclaimerAr: "test",
+  };
+  const api = new ApiClient(
+    async () =>
+      new Response(JSON.stringify({ data, meta: meta() }), {
+        status: 200,
+        headers: { "content-type": "application/json" },
+      }),
+  );
+  await assert.rejects(
+    () => api.request("/teacher-demo/summary", "TeacherSummaryEnvelope"),
+    (e) => e instanceof ClientFault && e.code === "invalid_response",
   );
 });

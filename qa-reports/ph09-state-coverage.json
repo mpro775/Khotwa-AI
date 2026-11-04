@@ -1,0 +1,226 @@
+{
+  "phase": "PH-09",
+  "runId": "52e1a7b9-76af-4266-82c5-0ce772c3c6d6",
+  "recordedAt": "2026-11-04T16:04:13.629Z",
+  "scope": "behavior trace only; not independent Golden acceptance",
+  "humanReview": "pending",
+  "canonicalSourceChanged": false,
+  "cases": [
+    {
+      "id": "GOLD-STATE-001",
+      "sourceRecord": {
+        "id": "GOLD-STATE-001",
+        "event": "تعديل خطوة رقم ٢ بعد حكم ناجح للخطوة ٣",
+        "expected": "زيادة attemptRevision وإبطال الأحكام التابعة وإعادة التحقق",
+        "forbidden": "إبقاء verified_valid القديم فعالًا",
+        "reference": "11 §15.4 / 12 expectedRevision"
+      },
+      "coverage": "partial",
+      "evidence": "one-step source edits and progress invalidation; exact step2→step3 scenario not repeated"
+    },
+    {
+      "id": "GOLD-STATE-002",
+      "sourceRecord": {
+        "id": "GOLD-STATE-002",
+        "event": "طلب تحقق قديم يصل بعد تعديل الخطوة",
+        "expected": "isCurrent=false أو رفض الدمج، دون تغيير سجل الإتقان",
+        "forbidden": "اعتماد النتيجة المتأخرة",
+        "reference": "09 / 10 §13"
+      },
+      "coverage": "observed_rule",
+      "evidence": "held HTTP response from real Python rejected after a current revision edit"
+    },
+    {
+      "id": "GOLD-STATE-003",
+      "sourceRecord": {
+        "id": "GOLD-STATE-003",
+        "event": "طلبا تعديل بنفس expectedRevision",
+        "expected": "ينجح واحد فقط ويُرد الآخر 409 بتعارض المراجعة",
+        "forbidden": "فقدان تحديث أو كتابة صامتة",
+        "reference": "12 API"
+      },
+      "coverage": "partial",
+      "evidence": "parallel creations with expectedRevision; exact simultaneous edits not repeated"
+    },
+    {
+      "id": "GOLD-STATE-004",
+      "sourceRecord": {
+        "id": "GOLD-STATE-004",
+        "event": "تكرار الطلب نفسه بنفس Idempotency-Key ونفس الحمولة",
+        "expected": "نفس النتيجة أو نفس مرجع العملية دون أثر مكرر",
+        "forbidden": "خطوتان أو سجلان متطابقان",
+        "reference": "11 §13 / 12 API"
+      },
+      "coverage": "observed_rule",
+      "evidence": "same key and payload returns one step reference"
+    },
+    {
+      "id": "GOLD-STATE-005",
+      "sourceRecord": {
+        "id": "GOLD-STATE-005",
+        "event": "المفتاح نفسه مع حمولة مختلفة",
+        "expected": "رفض تعارض Idempotency",
+        "forbidden": "تنفيذ الحمولة المختلفة كأنها إعادة آمنة",
+        "reference": "12 API"
+      },
+      "coverage": "observed_rule",
+      "evidence": "different payload with the same key rejected"
+    },
+    {
+      "id": "GOLD-STATE-006",
+      "sourceRecord": {
+        "id": "GOLD-STATE-006",
+        "event": "محاولة ضيف أ يحاول قراءة جلسة ضيف ب",
+        "expected": "رفض صلاحيات دون تسريب بيانات",
+        "forbidden": "إرجاع محتوى المسألة/الأدلة الخاصة بب",
+        "reference": "16 SECURITY-PRIVACY"
+      },
+      "coverage": "observed_rule",
+      "evidence": "foreign learning progress and resources return 404"
+    },
+    {
+      "id": "GOLD-STATE-007",
+      "sourceRecord": {
+        "id": "GOLD-STATE-007",
+        "event": "استجابة AI غير مطابقة للمخطط",
+        "expected": "رفض المخرج والعودة لقالب معتمد",
+        "forbidden": "عرض JSON خام أو تغيير mathStatus",
+        "reference": "13 §9,§16"
+      },
+      "coverage": "partial",
+      "evidence": "invalid AI JSON is rejected and draft manual fallback served; human-reviewed fallback missing"
+    },
+    {
+      "id": "GOLD-STATE-008",
+      "sourceRecord": {
+        "id": "GOLD-STATE-008",
+        "event": "نص يحاول إقناع AI بتغيير math_status",
+        "expected": "اعتبار النص غير موثوق وحماية الحكم",
+        "forbidden": "تحويل verified_invalid إلى verified_valid",
+        "reference": "13 §8,§17"
+      },
+      "coverage": "covered_by_targeted_unit",
+      "evidence": "test:tutoring rejects instruction/verdict mutation; no external model evaluated"
+    },
+    {
+      "id": "GOLD-STATE-009",
+      "sourceRecord": {
+        "id": "GOLD-STATE-009",
+        "event": "انقطاع خدمة Python أثناء التحقق",
+        "expected": "service_error مع حفظ العمل وإعادة المحاولة",
+        "forbidden": "اعتبار فشل الخدمة خطأ الطالب",
+        "reference": "10 §16"
+      },
+      "coverage": "observed_rule",
+      "evidence": "HTTP503/timeout/bad JSON return math_unavailable and preserve raw/current prior facts"
+    },
+    {
+      "id": "GOLD-STATE-010",
+      "sourceRecord": {
+        "id": "GOLD-STATE-010",
+        "event": "تعذر LLM مع محرك رياضي سليم",
+        "expected": "إبقاء الحكم الرياضي وتقديم شرح مراجَع عند توفره",
+        "forbidden": "حذف أو تغيير الدليل الرياضي",
+        "reference": "13 §16"
+      },
+      "coverage": "partial",
+      "evidence": "AI HTTP timeout preserves math and uses draft manual fallback; human review missing"
+    },
+    {
+      "id": "GOLD-STATE-011",
+      "sourceRecord": {
+        "id": "GOLD-STATE-011",
+        "event": "إعادة إصدار مسألة محتوى محدث",
+        "expected": "ربط كل محاولة بإصدار المسألة الذي بدأ به الطالب",
+        "forbidden": "إعادة تفسير محاولات قديمة بإصدار جديد",
+        "reference": "11 §5,§7"
+      },
+      "coverage": "not_run",
+      "evidence": "new content edition and old-attempt binding not rerun; source-withdrawal behavior tested separately"
+    },
+    {
+      "id": "GOLD-STATE-012",
+      "sourceRecord": {
+        "id": "GOLD-STATE-012",
+        "event": "إظهار H4 على المهمة الأصلية",
+        "expected": "تسجيل أعلى مساعدة وحظر نسب استقلالية للمهمة",
+        "forbidden": "احتسابها محاولة مستقلة",
+        "reference": "07 §7 / 11 §11"
+      },
+      "coverage": "covered_in_PH08",
+      "evidence": "H4 on the original task was tested in PH08, not counted as a fresh PH09 Golden run"
+    },
+    {
+      "id": "GOLD-STATE-013",
+      "sourceRecord": {
+        "id": "GOLD-STATE-013",
+        "event": "مقارنة مسألة نقل بنفس سؤال التشخيص",
+        "expected": "رفض تطابق المحتوى واختيار نسخة مختلفة",
+        "forbidden": "إعادة نشر جواب كدليل نقل",
+        "reference": "05 §8 / 07 §9"
+      },
+      "coverage": "covered_in_PH08",
+      "evidence": "probe/transfer content exclusion was tested in PH08, not counted as fresh PH09 Golden run"
+    },
+    {
+      "id": "GOLD-STATE-014",
+      "sourceRecord": {
+        "id": "GOLD-STATE-014",
+        "event": "معلم يفتح لوحة بيانات العرض",
+        "expected": "isSynthetic=true ووسم ظاهر للبيانات",
+        "forbidden": "إيهام ببيانات طلاب حقيقيين",
+        "reference": "11 §12 / 12 TeacherDemo"
+      },
+      "coverage": "partial",
+      "evidence": "API synthetic flags and fixed source verified; visible badge implemented but interactive UI not run"
+    },
+    {
+      "id": "GOLD-STATE-015",
+      "sourceRecord": {
+        "id": "GOLD-STATE-015",
+        "event": "معلم يفتح سجلات ضيف فعلية دون إذن",
+        "expected": "رفض الوصول أو إظهار تجميع مأذون فقط",
+        "forbidden": "الوصول بمجرد معرفة رابط",
+        "reference": "11 §20 / 16 SECURITY"
+      },
+      "coverage": "observed_rule",
+      "evidence": "P0 has no real teacher role; a valid demo guest cannot resolve another guest resources"
+    },
+    {
+      "id": "GOLD-STATE-016",
+      "sourceRecord": {
+        "id": "GOLD-STATE-016",
+        "event": "فشل رفع/حذف بيانات غير مؤثرة في التحقق",
+        "expected": "تسجيل خطأ تقني وآلية استرجاع دون تغيير mathStatus",
+        "forbidden": "تأويل فشل التخزين كضعف مفاهيمي",
+        "reference": "11 §15 / 16 SECURITY"
+      },
+      "coverage": "not_applicable_existing_P0_API",
+      "evidence": "no upload/full deletion operation in the current P0 API; logout is not deletion"
+    },
+    {
+      "id": "GOLD-STATE-017",
+      "sourceRecord": {
+        "id": "GOLD-STATE-017",
+        "event": "طلب تحليل بعد حذف جلسة أو انتهاء صلاحيتها",
+        "expected": "رفض التفويض أو session expired دون تفعيل سجل جديد تلقائيًا",
+        "forbidden": "إحياء جلسة منتهية",
+        "reference": "11 §6 / 12 API"
+      },
+      "coverage": "observed_rule",
+      "evidence": "absolute/idle expiry and revoked guest cannot regain read permission"
+    },
+    {
+      "id": "GOLD-STATE-018",
+      "sourceRecord": {
+        "id": "GOLD-STATE-018",
+        "event": "ضغط المستخدم زر التحقق مرتين بسرعة",
+        "expected": "التحقق من النسخة والتكرار، عدم تكرار دليل الإتقان",
+        "forbidden": "استدعاء مضاعف يغير العدادات",
+        "reference": "11 §13 / 12 API"
+      },
+      "coverage": "partial",
+      "evidence": "duplicate mutations and repeated verification do not double-count; exact concurrent verify clicks not repeated"
+    }
+  ]
+}

@@ -10,6 +10,12 @@ export async function requireUnassistedProbe(
   tx: Prisma.TransactionClient,
   attempt: AttemptRow,
 ): Promise<void> {
+  if (attempt.attempt_kind === "transfer")
+    throw new ApiFault(
+      409,
+      "invalid_state",
+      "لا يقدم سؤال تأكيدي تعليمي أثناء قياس النقل المستقل.",
+    );
   if (hasAssistance(attempt))
     throw new ApiFault(
       409,

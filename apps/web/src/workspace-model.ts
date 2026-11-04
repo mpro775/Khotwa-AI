@@ -88,3 +88,23 @@ export function canAdoptHint(
     attempt.revision === event.attemptRevision
   );
 }
+
+export function canAdoptProgress(
+  learningId: string,
+  summary: Schema<"ProgressSummary">,
+): boolean {
+  return (
+    summary.learningSessionId === learningId && summary.isSynthetic === true
+  );
+}
+export function canAdoptTeacherExample(
+  dataset: string,
+  id: string,
+  example: Schema<"TeacherDemoExample">,
+): boolean {
+  return (
+    example.isSynthetic === true &&
+    example.datasetCode === dataset &&
+    example.id === id
+  );
+}

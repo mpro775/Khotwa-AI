@@ -1,6 +1,41 @@
 {
   "components": {
     "schemas": {
+      "Assignment": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "episodeId": { "type": "string", "format": "uuid" },
+          "phase": {
+            "type": "string",
+            "enum": ["probe", "remediation", "transfer"]
+          },
+          "problemRevisionId": { "type": "string", "format": "uuid" },
+          "problem": { "$ref": "#/components/schemas/ProblemDetail" },
+          "assistancePolicy": {
+            "type": "string",
+            "enum": ["guided", "limited", "independent"]
+          },
+          "attemptId": {
+            "anyOf": [
+              { "type": "string", "format": "uuid" },
+              { "type": "null" }
+            ]
+          },
+          "assignedAt": { "type": "string", "format": "date-time" }
+        },
+        "required": [
+          "id",
+          "episodeId",
+          "phase",
+          "problemRevisionId",
+          "problem",
+          "assistancePolicy",
+          "attemptId",
+          "assignedAt"
+        ]
+      },
       "Attempt": {
         "type": "object",
         "additionalProperties": false,
@@ -76,6 +111,15 @@
       "AttemptKind": {
         "type": "string",
         "enum": ["main", "probe", "remediation", "transfer"]
+      },
+      "AttemptListEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/ListAttempts" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
       },
       "AttemptStatus": {
         "type": "string",
@@ -226,6 +270,15 @@
           "unresolved"
         ]
       },
+      "EpisodeEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/LearningEpisode" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
       "ErrorDetail": {
         "type": "object",
         "additionalProperties": false,
@@ -356,6 +409,59 @@
         "description": "المساعدة من دون تلميح إلى الحل الكامل.",
         "enum": ["H0", "H1", "H2", "H3", "H4"]
       },
+      "LearningEpisode": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "rootAttemptId": { "type": "string", "format": "uuid" },
+          "skillId": { "type": "string", "format": "uuid" },
+          "state": { "$ref": "#/components/schemas/LearningEpisodeState" },
+          "assignments": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Assignment" }
+          },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "endedAt": {
+            "anyOf": [
+              { "type": "string", "format": "date-time" },
+              { "type": "null" }
+            ]
+          },
+          "nextAction": {
+            "type": "string",
+            "enum": [
+              "answer_probe",
+              "start_remediation",
+              "complete_remediation",
+              "start_transfer",
+              "review_progress",
+              "none"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "rootAttemptId",
+          "skillId",
+          "state",
+          "assignments",
+          "createdAt",
+          "endedAt",
+          "nextAction"
+        ]
+      },
+      "LearningEpisodeState": {
+        "type": "string",
+        "enum": [
+          "proposed",
+          "probing",
+          "remediating",
+          "awaiting_transfer",
+          "finished",
+          "cancelled"
+        ]
+      },
       "LearningSession": {
         "type": "object",
         "additionalProperties": false,
@@ -395,6 +501,18 @@
           "meta": { "$ref": "#/components/schemas/Meta" }
         },
         "required": ["data", "meta"]
+      },
+      "ListAttempts": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Attempt" }
+          },
+          "nextCursor": { "anyOf": [{ "type": "string" }, { "type": "null" }] }
+        },
+        "required": ["items", "nextCursor"]
       },
       "ListProblems": {
         "type": "object",
@@ -808,6 +926,48 @@
           "contentReleaseId"
         ]
       },
+      "ProgressEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/ProgressSummary" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "ProgressState": {
+        "type": "string",
+        "enum": [
+          "not_assessed",
+          "needs_followup",
+          "practice_with_support",
+          "new_evidence_of_understanding"
+        ]
+      },
+      "ProgressSummary": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "learningSessionId": { "type": "string", "format": "uuid" },
+          "isSynthetic": { "type": "boolean" },
+          "skills": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/SkillProgress" }
+          },
+          "updatedAt": { "type": "string", "format": "date-time" },
+          "noteAr": {
+            "type": "string",
+            "description": "نتائج دليل محدود، ليست شهادة إتقان نهائي."
+          }
+        },
+        "required": [
+          "learningSessionId",
+          "isSynthetic",
+          "skills",
+          "updatedAt",
+          "noteAr"
+        ]
+      },
       "Rational": {
         "type": "object",
         "additionalProperties": false,
@@ -869,6 +1029,56 @@
         "additionalProperties": false,
         "properties": {
           "data": { "$ref": "#/components/schemas/ListSkills" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "SkillProgress": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "skillId": { "type": "string", "format": "uuid" },
+          "skillCode": { "type": "string" },
+          "titleAr": { "type": "string" },
+          "state": { "$ref": "#/components/schemas/ProgressState" },
+          "evidenceCount": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "independentTransferCount": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "assistedPracticeCount": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "updatedAt": {
+            "anyOf": [
+              { "type": "string", "format": "date-time" },
+              { "type": "null" }
+            ]
+          }
+        },
+        "required": [
+          "skillId",
+          "skillCode",
+          "titleAr",
+          "state",
+          "evidenceCount",
+          "independentTransferCount",
+          "assistedPracticeCount",
+          "updatedAt"
+        ]
+      },
+      "SkillProgressEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/SkillProgress" },
           "meta": { "$ref": "#/components/schemas/Meta" }
         },
         "required": ["data", "meta"]
@@ -967,6 +1177,127 @@
           "invalidatedFromPosition",
           "invalidatedVerificationCount"
         ]
+      },
+      "TeacherDemoExample": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "isSynthetic": {
+            "type": "boolean",
+            "const": true,
+            "description": "بيانات تركيبية فقط"
+          },
+          "datasetCode": { "type": "string" },
+          "problem": { "$ref": "#/components/schemas/ProblemDetail" },
+          "steps": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Step" }
+          },
+          "mathStatus": { "$ref": "#/components/schemas/MathStatus" },
+          "diagnosis": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/DiagnosisCandidate" },
+              { "type": "null" }
+            ]
+          },
+          "reviewNoteAr": { "type": "string" }
+        },
+        "required": [
+          "id",
+          "isSynthetic",
+          "datasetCode",
+          "problem",
+          "steps",
+          "mathStatus",
+          "diagnosis",
+          "reviewNoteAr"
+        ]
+      },
+      "TeacherDemoMetric": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": { "type": "string" },
+          "titleAr": { "type": "string" },
+          "count": { "type": "integer", "format": "int32", "minimum": 0 }
+        },
+        "required": ["code", "titleAr", "count"]
+      },
+      "TeacherDemoSummary": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "isSynthetic": {
+            "type": "boolean",
+            "const": true,
+            "description": "ثابت true؛ ممنوع خلط بيانات الطلاب الحقيقية.",
+            "example": true
+          },
+          "datasetCode": { "type": "string" },
+          "generatedAt": { "type": "string", "format": "date-time" },
+          "sampleStudentCount": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "sampleAttemptCount": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0
+          },
+          "metrics": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/TeacherDemoMetric" }
+          },
+          "topMisconceptions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "errorCode": { "type": "string" },
+                "nameAr": { "type": "string" },
+                "count": { "type": "integer", "format": "int32", "minimum": 0 }
+              },
+              "required": ["errorCode", "nameAr", "count"]
+            }
+          },
+          "exampleIds": {
+            "type": "array",
+            "items": { "type": "string", "format": "uuid" }
+          },
+          "disclaimerAr": { "type": "string" }
+        },
+        "required": [
+          "isSynthetic",
+          "datasetCode",
+          "generatedAt",
+          "sampleStudentCount",
+          "sampleAttemptCount",
+          "metrics",
+          "topMisconceptions",
+          "exampleIds",
+          "disclaimerAr"
+        ]
+      },
+      "TeacherExampleEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/TeacherDemoExample" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "TeacherSummaryEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/TeacherDemoSummary" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
       },
       "TransitionVerdict": {
         "type": "object",

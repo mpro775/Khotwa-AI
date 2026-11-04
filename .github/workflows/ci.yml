@@ -25,6 +25,8 @@ jobs:
       - run: npm run test:workspace
       - run: npm run test:diagnosis
       - run: npm run test:tutoring
+      - run: npm run test:learning
+      - run: npm run test:progress
   api-data:
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -45,3 +47,21 @@ jobs:
         with:
           node-version: "24.11.1"
       - run: node tools/verify-ph07-container.mjs
+  learning:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24.11.1"
+      - run: node tools/verify-ph08-container.mjs
+  progress-security:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24.11.1"
+      - run: node tools/verify-ph09-container.mjs

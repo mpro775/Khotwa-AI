@@ -1,0 +1,20 @@
+{
+  "phase": "PH-08",
+  "recordedAt": "2026-11-04T05:27:50.596Z",
+  "desktop": {
+    "status": "not_run",
+    "reason": "Prior owner deferred manual handling of local TLS certificate warning; no PH08 browser interaction performed"
+  },
+  "realPhone": {
+    "status": "not_run",
+    "reason": "Owner said no real phone available"
+  },
+  "screenshots": [],
+  "recordings": [],
+  "borrowedEvidence": false,
+  "httpsProbeIsBrowserTest": false,
+  "tlsVerificationDisabled": false,
+  "globalTrustStoreChanged": false,
+  "nextSteps": "planning/ph08-local-run.md",
+  "gate2": "not_approved"
+}

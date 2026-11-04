@@ -1,0 +1,12 @@
+{
+  "phase": "PH-09",
+  "recordedAt": "2026-11-04T15:59:14.863Z",
+  "mode": "PH09 disabled; prior PH08 reports restored byte-for-byte",
+  "exitCode": 0,
+  "testSummary": {
+    "total": 22,
+    "passed": 22,
+    "failed": 0
+  },
+  "unexpectedFailure": false
+}
