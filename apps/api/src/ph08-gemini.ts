@@ -6,7 +6,19 @@ import type { MathPort } from "./math-gateway";
 import { TutoringService, type TutoringLimits } from "./tutoring";
 import { GeminiAdapter, type GeminiMetric } from "./gemini-adapter";
 import { GeminiQuota } from "./gemini-quota";
-type GeminiScope = { allowed: boolean; metric?: GeminiMetric };
+import {
+  validateGeneratedMeaning,
+  type GenerationProfile,
+} from "./ph08-generative";
+import type { HintContext } from "./ai-tutor";
+type GeminiScope = {
+  allowed: boolean;
+  metric?: GeminiMetric;
+  attemptId: string;
+  auth: GuestAuth;
+  profile?: GenerationProfile;
+  templateId?: string;
+};
 
 /** Context-local gate prevents concurrent PH07 requests from inheriting PH08 AI.
  * Transfer policy still commits measurement exit inside the existing service
@@ -38,6 +50,8 @@ export class Ph08GeminiTutoring extends TutoringService {
     });
     return this.scope.run(
       {
+        attemptId,
+        auth,
         allowed:
           assigned &&
           process.env.PH08_API_ENABLED === "true" &&
@@ -80,8 +94,21 @@ export function ph08TutoringFromEnvironment(
     timeoutMs >= limits.requestTimeoutMs
   )
     throw Error("PH08 Gemini timeout must fit whole-request deadline");
+  const offline = env.PH08_GEMINI_OFFLINE === "true";
+  // No inference is authorized by an old key, unknown daily quota or a new
+  // filename. A future live round requires its own explicit authorization ID,
+  // ceiling and known positive remaining daily allowance. Never edit old ledgers.
+  if (!offline) {
+    required(env, "GEMINI_LIVE_AUTHORIZATION_ID");
+    const remaining = Number(required(env, "GEMINI_DAILY_REMAINING"));
+    if (!Number.isSafeInteger(remaining) || remaining < 1)
+      throw Error("GEMINI_DAILY_QUOTA_UNKNOWN");
+    required(env, "GEMINI_ROUND_CALL_LIMIT");
+  }
   const settings = {
-    apiKey: required(env, "GEMINI_API_KEY"),
+    apiKey: offline
+      ? "offline-synthetic-no-key"
+      : required(env, "GEMINI_API_KEY"),
     model: env.GEMINI_MODEL ?? "gemini-3.5-flash-lite",
     thinkingLevel: env.GEMINI_THINKING_LEVEL ?? "minimal",
   };
@@ -89,14 +116,58 @@ export function ph08TutoringFromEnvironment(
   const quota = new GeminiQuota({
     ledgerPath: required(env, "GEMINI_QUOTA_LEDGER_PATH"),
     roundLimit: Number(env.GEMINI_ROUND_CALL_LIMIT ?? "10"),
-    dailyRemaining:
-      required(env, "GEMINI_DAILY_REMAINING") === "unlimited"
-        ? null
-        : Number(env.GEMINI_DAILY_REMAINING),
+    dailyRemaining: offline
+      ? Number(env.GEMINI_ROUND_CALL_LIMIT ?? "10")
+      : Number(env.GEMINI_DAILY_REMAINING),
     validUntil: Date.parse(required(env, "GEMINI_QUOTA_VALID_UNTIL")),
     model: settings.model,
   });
   try {
+    const generative = env.PH08_GEMINI_GENERATIVE_ENABLED === "true";
+    const prepare = async (
+      context: HintContext,
+    ): Promise<GenerationProfile> => {
+      const current = scope.getStore();
+      if (!current?.allowed) throw Error("PH08_GENERATION_OUT_OF_SCOPE");
+      const profile = await store.db.$transaction(async (tx) => {
+        await store.authorizeInTransaction(tx, current.auth);
+        await store.readAttemptInTransaction(
+          tx,
+          current.auth,
+          current.attemptId,
+        );
+        const [row] = await tx.$queryRaw<
+          {
+            skill_code: string;
+            error_code: string | null;
+            phase: "remediation" | "transfer";
+            measurement_exited_at: Date | null;
+            assistance_policy: string;
+            hint_level: number;
+          }[]
+        >`SELECT s.skill_code,t.error_code,x.phase,x.measurement_exited_at,x.assistance_policy,t.hint_level FROM learning_assignments x JOIN learning_episodes e ON e.id=x.episode_id JOIN skills s ON s.id=e.skill_id JOIN intervention_templates t ON t.id=${context.sourceTemplateId}::uuid AND t.release_id=e.release_id AND t.enabled AND t.is_synthetic WHERE x.attempt_id=${current.attemptId}::uuid AND x.invalidated_at IS NULL`;
+        if (
+          !row ||
+          `H${row.hint_level}` !== context.targetHintLevel ||
+          (row.phase === "transfer" &&
+            (!row.measurement_exited_at ||
+              row.assistance_policy === "independent"))
+        )
+          throw Error("PH08_GENERATION_PROFILE_INVALID");
+        return {
+          skillCode: row.skill_code,
+          errorCode: row.error_code,
+          diagnosisMode: row.error_code
+            ? ("possible" as const)
+            : ("unresolved" as const),
+          phase: row.phase,
+          transferExited: !!row.measurement_exited_at,
+        };
+      });
+      current.profile = profile;
+      current.templateId = context.sourceTemplateId;
+      return profile;
+    };
     const adapter = new GeminiAdapter(
       settings,
       quota,
@@ -106,6 +177,24 @@ export function ph08TutoringFromEnvironment(
         if (current) current.metric = metric;
         console.info(JSON.stringify(metric));
       },
+      offline
+        ? async () => {
+            throw Error("PH08_OFFLINE_TRANSPORT_NOT_CONFIGURED");
+          }
+        : fetch,
+      generative
+        ? {
+            prepare,
+            meaning: (text, context) => {
+              const current = scope.getStore();
+              return current?.allowed &&
+                current.profile &&
+                current.templateId === context.sourceTemplateId
+                ? validateGeneratedMeaning(text, context, current.profile)
+                : { text: null, reason: "PH08_GENERATION_OUT_OF_SCOPE" };
+            },
+          }
+        : undefined,
     );
     adapter.invocationAudit = (): Readonly<
       Record<string, string | number | boolean | null>
@@ -125,6 +214,13 @@ export function ph08TutoringFromEnvironment(
             reportedInputTokens: metric.inputTokens,
             reportedOutputTokens: metric.outputTokens,
             reportedTotalTokens: metric.totalTokens,
+            textOrigin: metric.textOrigin,
+            generationVersion: metric.generationVersion,
+            ...(metric.textOrigin === "gemini_generated"
+              ? { generatedContentStatus: "draft_pending_human_review" }
+              : {}),
+            transportMode: offline ? "offline_simulated" : "live",
+            ...(offline ? { actualLlmUsed: false } : {}),
           }
         : {};
     };

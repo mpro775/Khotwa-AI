@@ -5,6 +5,18 @@ import {
 } from "./ai-tutor";
 import type { AiTutorPort, AiReply, HintContext } from "./ai-tutor";
 import { GeminiQuota } from "./gemini-quota";
+import {
+  generationRules,
+  PH08_GENERATION_VERSION,
+  PH08_GENERATIVE_PROMPT,
+  type GenerationProfile,
+} from "./ph08-generative";
+import type { DraftResult } from "./ai-tutor";
+
+export interface GenerativeMode {
+  prepare(context: HintContext): Promise<GenerationProfile>;
+  meaning(text: string, context: HintContext): DraftResult | null;
+}
 
 export interface GeminiMetric {
   event: "ph08_gemini_call";
@@ -20,6 +32,8 @@ export interface GeminiMetric {
   totalTokens: number | null;
   thinkingTokens: number | null;
   outcome: string;
+  textOrigin: "none" | "gemini_literal" | "gemini_generated";
+  generationVersion: string | null;
 }
 export interface GeminiSettings {
   apiKey: string;
@@ -61,6 +75,10 @@ export class GeminiAdapter implements AiTutorPort {
   invocationAudit: () => Readonly<
     Record<string, string | number | boolean | null>
   > = () => ({});
+  ph08Meaning = (text: string, context: HintContext): DraftResult | null =>
+    this.generation?.meaning(text, context) ?? null;
+  requiresReviewedFallback = () =>
+    this.generation !== undefined && this.enabled;
   constructor(
     private readonly settings: GeminiSettings,
     readonly quota: GeminiQuota,
@@ -68,6 +86,7 @@ export class GeminiAdapter implements AiTutorPort {
     private readonly audit: (metric: GeminiMetric) => void = (metric) =>
       console.info(JSON.stringify(metric)),
     private readonly transport: typeof fetch = fetch,
+    private readonly generation?: GenerativeMode,
   ) {
     if (
       !settings.apiKey ||
@@ -90,8 +109,16 @@ export class GeminiAdapter implements AiTutorPort {
       context.maxOutputTokens > 256
     )
       throw Error("GEMINI_CONTEXT_LIMIT");
-    // Select from the same reviewed/draft test variants that the existing local
-    // semantic validator accepts. Never relax it to trust a model no-leak flag.
+    const profile = this.generation
+      ? await this.generation.prepare(context)
+      : null;
+    const rules = profile
+      ? generationRules(profile, context.targetHintLevel)
+      : null;
+    if (this.generation && !rules)
+      throw Error("PH08_GENERATION_PROFILE_REQUIRED");
+    if (signal.aborted || this.inFlight)
+      throw Error("GEMINI_SCOPE_OR_SERIAL_LIMIT");
     const schema = {
       ...HINT_REPLY_SCHEMA,
       properties: {
@@ -106,7 +133,14 @@ export class GeminiAdapter implements AiTutorPort {
         },
         messageAr: {
           type: "string",
-          enum: [context.reviewedHintTextAr, ...context.approvedRephrasesAr],
+          ...(rules
+            ? { minLength: 1, maxLength: 360 }
+            : {
+                enum: [
+                  context.reviewedHintTextAr,
+                  ...context.approvedRephrasesAr,
+                ],
+              }),
         },
       },
     };
@@ -114,13 +148,27 @@ export class GeminiAdapter implements AiTutorPort {
       systemInstruction: {
         parts: [
           {
-            text:
-              HINT_SYSTEM_PROMPT +
-              " اختر نصًا حرفيًا من الصيغ المسموح بها؛ لا تضف صياغة جديدة. عند الامتناع استخدم أيضًا نص القالب مع decision=abstain.",
+            text: rules
+              ? PH08_GENERATIVE_PROMPT
+              : HINT_SYSTEM_PROMPT +
+                " اختر نصًا حرفيًا من الصيغ المسموح بها؛ لا تضف صياغة جديدة. عند الامتناع استخدم أيضًا نص القالب مع decision=abstain.",
           },
         ],
       },
-      contents: [{ role: "user", parts: [{ text: JSON.stringify(context) }] }],
+      contents: [
+        {
+          role: "user",
+          parts: [
+            {
+              text: JSON.stringify(
+                rules
+                  ? { ...context, generation: { profile, rules } }
+                  : context,
+              ),
+            },
+          ],
+        },
+      ],
       generationConfig: {
         candidateCount: 1,
         maxOutputTokens: context.maxOutputTokens,
@@ -147,6 +195,8 @@ export class GeminiAdapter implements AiTutorPort {
       totalTokens: null,
       thinkingTokens: null,
       outcome: "GEMINI_PROVIDER_ERROR",
+      textOrigin: "none",
+      generationVersion: rules ? PH08_GENERATION_VERSION : null,
     };
     try {
       const response = await this.transport(
@@ -228,8 +278,14 @@ export class GeminiAdapter implements AiTutorPort {
         reply,
         context,
         context.maxOutputTokens,
+        this.generation ? this.ph08Meaning : undefined,
       );
       metric.outcome = verdict.reason;
+      metric.textOrigin = verdict.text
+        ? verdict.reason === "PH08_GENERATED_VALIDATED"
+          ? "gemini_generated"
+          : "gemini_literal"
+        : "none";
       if (!verdict.text) throw Error("GEMINI_LOCAL_VALIDATION_REJECTED");
       return reply;
     } catch {

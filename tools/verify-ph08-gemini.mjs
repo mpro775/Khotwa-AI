@@ -12,7 +12,16 @@ const real = process.env.PH08_GEMINI_LIVE === "true";
 if (real && !process.env.GEMINI_API_KEY)
   throw Error("Inject GEMINI_API_KEY in the secret process environment");
 if (real && !process.env.GEMINI_DAILY_REMAINING)
-  throw Error("Explicit daily remaining/unlimited confirmation required");
+  throw Error("Known daily remaining allowance required");
+if (
+  real &&
+  (!process.env.GEMINI_LIVE_AUTHORIZATION_ID ||
+    !Number.isSafeInteger(Number(process.env.GEMINI_DAILY_REMAINING)) ||
+    Number(process.env.GEMINI_DAILY_REMAINING) < 1)
+)
+  throw Error(
+    "A separately authorized round and known daily quota are required; previous round remains spent",
+  );
 const prefix = "khotwa-ph08-" + randomBytes(6).toString("hex"),
   db = prefix + "-db",
   math = prefix + "-math",
@@ -131,11 +140,13 @@ const appEnv = envFile("", {
   GEMINI_THINKING_LEVEL: process.env.GEMINI_THINKING_LEVEL ?? "minimal",
   PH08_GEMINI_TIMEOUT_MS: process.env.PH08_GEMINI_TIMEOUT_MS ?? "8000",
   GEMINI_ROUND_CALL_LIMIT: "10",
-  GEMINI_DAILY_REMAINING: process.env.GEMINI_DAILY_REMAINING ?? "unlimited",
+  GEMINI_DAILY_REMAINING: real ? process.env.GEMINI_DAILY_REMAINING : "10",
   GEMINI_QUOTA_VALID_UNTIL: expires,
   GEMINI_QUOTA_LEDGER_PATH: "/quota/" + ledger,
   PH08_GEMINI_INTEGRATION: "true",
   PH08_GEMINI_LIVE: String(real),
+  PH08_GEMINI_OFFLINE: String(!real),
+  GEMINI_LIVE_AUTHORIZATION_ID: process.env.GEMINI_LIVE_AUTHORIZATION_ID ?? "",
   PH08_GEMINI_RESUME_TRANSFER_ONLY:
     process.env.PH08_GEMINI_RESUME_TRANSFER_ONLY ?? "false",
 });

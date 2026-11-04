@@ -1,0 +1,75 @@
+--- a/apps/api/src/ai-tutor.ts
++++ b/apps/api/src/ai-tutor.ts
+@@ -31,6 +31,8 @@
+   invocationAudit?(): Readonly<
+     Record<string, string | number | boolean | null>
+   >;
++  ph08Meaning?(text: string, context: HintContext): DraftResult | null;
++  requiresReviewedFallback?(): boolean;
+   adaptHint(context: HintContext, signal: AbortSignal): Promise<AiReply>;
+ }
+ /** No external provider is approved in this delivery. A real adapter is not activated. */
+@@ -112,6 +114,7 @@
+   reply: AiReply,
+   context: HintContext,
+   maxOutputTokens: number,
++  ph08Meaning?: (text: string, context: HintContext) => DraftResult | null,
+ ): DraftResult {
+   if (reply.finish !== "complete")
+     return {
+@@ -158,6 +161,8 @@
+     return { text: null, reason: "AI_TEMPLATE_MISMATCH" };
+   if (draft.isAnswerRevealed || !safeTeachingText(draft.messageAr))
+     return { text: null, reason: "AI_UNSAFE_CONTENT" };
++  const generated = ph08Meaning?.(draft.messageAr, context);
++  if (generated) return generated;
+   // Semantic acceptance is deliberately limited to reviewed variants of the
+   // exact level/template. The model's no-leak flag is never the permission gate.
+   if (
+@@ -192,7 +197,10 @@
+       timeout,
+     ]);
+     if (signal.aborted) return { text: null, reason: "AI_TIMEOUT" };
+-    const result = validateTutorReply(reply, context, maxOutputTokens);
++    const result = validateTutorReply(
++      reply, context, maxOutputTokens,
++      port.kind === "gemini" && port.enabled ? port.ph08Meaning : undefined,
++    );
+     const bounded = (n: number | null) =>
+       n !== null && Number.isSafeInteger(n) && n >= 0 && n <= 2147483647
+         ? n
+--- a/apps/api/src/tutoring.ts
++++ b/apps/api/src/tutoring.ts
+@@ -554,11 +554,12 @@
+         )
+           throw stale(Number(current.a.revision));
+         const source: Event["generationSource"] =
++          reason === "PH08_GENERATED_VALIDATED" ? "llm_validated" :
+           s.template.review_status === "reviewed"
+             ? "reviewed_template"
+             : "manual";
+         const fallback =
+-          s.aiContext !== null && this.ai.enabled && reason !== "AI_VALIDATED";
++          s.aiContext !== null && this.ai.enabled && reason !== "AI_VALIDATED" && reason !== "PH08_GENERATED_VALIDATED";
+         const now = new Date(),
+           event = output("TutoringEvent", {
+             id: randomUUID(),
+@@ -577,7 +578,7 @@
+           outcome: reason,
+           providerKind: s.aiContext ? this.ai.kind : "not_used",
+           actualLlmUsed: false,
+-          validatorAccepted: reason === "AI_VALIDATED",
++          validatorAccepted: reason === "AI_VALIDATED" || reason === "PH08_GENERATED_VALIDATED",
+           callReserved: s.aiReserved,
+           reservedCostUnits: s.cost,
+           costUnit: "synthetic_reservation_units",
+@@ -631,6 +632,9 @@
+             )
+           : { text: null, reason: s.providerReason };
+       if (controller.signal.aborted) throw unavailable();
++      if (result.text === null && this.ai.kind === "gemini" &&
++        this.ai.requiresReviewedFallback?.() && s.template.review_status !== "reviewed")
++        throw unavailable();
+       return await this.commit(
+         auth,
+         s,

@@ -554,11 +554,16 @@ export class TutoringService {
         )
           throw stale(Number(current.a.revision));
         const source: Event["generationSource"] =
-          s.template.review_status === "reviewed"
-            ? "reviewed_template"
-            : "manual";
+          reason === "PH08_GENERATED_VALIDATED"
+            ? "llm_validated"
+            : s.template.review_status === "reviewed"
+              ? "reviewed_template"
+              : "manual";
         const fallback =
-          s.aiContext !== null && this.ai.enabled && reason !== "AI_VALIDATED";
+          s.aiContext !== null &&
+          this.ai.enabled &&
+          reason !== "AI_VALIDATED" &&
+          reason !== "PH08_GENERATED_VALIDATED";
         const now = new Date(),
           event = output("TutoringEvent", {
             id: randomUUID(),
@@ -577,7 +582,8 @@ export class TutoringService {
           outcome: reason,
           providerKind: s.aiContext ? this.ai.kind : "not_used",
           actualLlmUsed: false,
-          validatorAccepted: reason === "AI_VALIDATED",
+          validatorAccepted:
+            reason === "AI_VALIDATED" || reason === "PH08_GENERATED_VALIDATED",
           callReserved: s.aiReserved,
           reservedCostUnits: s.cost,
           costUnit: "synthetic_reservation_units",
@@ -631,6 +637,14 @@ export class TutoringService {
             )
           : { text: null, reason: s.providerReason };
       if (controller.signal.aborted) throw unavailable();
+      if (
+        result.text === null &&
+        s.aiContext !== null &&
+        this.ai.kind === "gemini" &&
+        this.ai.requiresReviewedFallback?.() &&
+        s.template.review_status !== "reviewed"
+      )
+        throw unavailable();
       return await this.commit(
         auth,
         s,

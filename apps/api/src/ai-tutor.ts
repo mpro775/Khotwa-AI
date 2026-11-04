@@ -31,6 +31,8 @@ export interface AiTutorPort {
   invocationAudit?(): Readonly<
     Record<string, string | number | boolean | null>
   >;
+  ph08Meaning?(text: string, context: HintContext): DraftResult | null;
+  requiresReviewedFallback?(): boolean;
   adaptHint(context: HintContext, signal: AbortSignal): Promise<AiReply>;
 }
 /** No external provider is approved in this delivery. A real adapter is not activated. */
@@ -112,6 +114,7 @@ export function validateTutorReply(
   reply: AiReply,
   context: HintContext,
   maxOutputTokens: number,
+  ph08Meaning?: (text: string, context: HintContext) => DraftResult | null,
 ): DraftResult {
   if (reply.finish !== "complete")
     return {
@@ -158,6 +161,8 @@ export function validateTutorReply(
     return { text: null, reason: "AI_TEMPLATE_MISMATCH" };
   if (draft.isAnswerRevealed || !safeTeachingText(draft.messageAr))
     return { text: null, reason: "AI_UNSAFE_CONTENT" };
+  const generated = ph08Meaning?.(draft.messageAr, context);
+  if (generated) return generated;
   // Semantic acceptance is deliberately limited to reviewed variants of the
   // exact level/template. The model's no-leak flag is never the permission gate.
   if (
@@ -192,7 +197,12 @@ export async function composeWithDeadline(
       timeout,
     ]);
     if (signal.aborted) return { text: null, reason: "AI_TIMEOUT" };
-    const result = validateTutorReply(reply, context, maxOutputTokens);
+    const result = validateTutorReply(
+      reply,
+      context,
+      maxOutputTokens,
+      port.kind === "gemini" && port.enabled ? port.ph08Meaning : undefined,
+    );
     const bounded = (n: number | null) =>
       n !== null && Number.isSafeInteger(n) && n >= 0 && n <= 2147483647
         ? n
