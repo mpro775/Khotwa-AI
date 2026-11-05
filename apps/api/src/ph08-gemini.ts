@@ -11,6 +11,14 @@ import {
   type GenerationProfile,
 } from "./ph08-generative";
 import type { HintContext } from "./ai-tutor";
+import { basename } from "node:path";
+import { ApiFault } from "./http";
+import {
+  PH08_CONTENT_AUTHORIZATION,
+  reviewedCards,
+  assertReviewedTemplate,
+  type ReviewedCard,
+} from "./ph08-reviewed-content";
 type GeminiScope = {
   allowed: boolean;
   metric?: GeminiMetric;
@@ -18,6 +26,7 @@ type GeminiScope = {
   auth: GuestAuth;
   profile?: GenerationProfile;
   templateId?: string;
+  reviewedCard?: ReviewedCard;
 };
 
 /** Context-local gate prevents concurrent PH07 requests from inheriting PH08 AI.
@@ -31,6 +40,7 @@ export class Ph08GeminiTutoring extends TutoringService {
     readonly gemini: GeminiAdapter,
     limits: TutoringLimits,
     private readonly scope: AsyncLocalStorage<GeminiScope>,
+    private readonly approvedCards?: ReviewedCard[],
   ) {
     super(store, math, gemini, limits, true);
   }
@@ -46,6 +56,29 @@ export class Ph08GeminiTutoring extends TutoringService {
       const rows = await tx.$queryRaw<
         { id: string }[]
       >`SELECT id FROM learning_assignments WHERE attempt_id=${attemptId}::uuid AND invalidated_at IS NULL`;
+      if (rows.length === 1 && this.approvedCards) {
+        const templates = await tx.$queryRaw<
+          {
+            template_version: string;
+            text_ar: string;
+            hint_level: number;
+            error_code: string | null;
+            review_status: string;
+            skill_code: string;
+          }[]
+        >`SELECT t.*,s.skill_code FROM intervention_templates t JOIN attempts a ON a.problem_revision_id=t.problem_revision_id JOIN problem_skills p ON p.problem_revision_id=a.problem_revision_id AND p.coverage_kind='primary' JOIN skills s ON s.id=p.skill_id WHERE a.id=${attemptId}::uuid AND t.enabled AND t.hint_level<4`;
+        try {
+          if (!templates.length) throw Error("missing content");
+          for (const template of templates)
+            assertReviewedTemplate(this.approvedCards, template);
+        } catch {
+          throw new ApiFault(
+            503,
+            "ai_unavailable",
+            "تعذرت المساعدة الآمنة مؤقتًا.",
+          );
+        }
+      }
       return rows.length === 1;
     });
     return this.scope.run(
@@ -95,13 +128,31 @@ export function ph08TutoringFromEnvironment(
   )
     throw Error("PH08 Gemini timeout must fit whole-request deadline");
   const offline = env.PH08_GEMINI_OFFLINE === "true";
-  // No inference is authorized by an old key, unknown daily quota or a new
-  // filename. A future live round requires its own explicit authorization ID,
-  // ceiling and known positive remaining daily allowance. Never edit old ledgers.
+  const approved =
+    env.PH08_REVIEWED_CONTENT_ENABLED === "true"
+      ? reviewedCards(required(env, "PH08_REVIEWED_CONTENT_PATH"))
+      : undefined;
+  const ownerUnknownQuotaRound =
+    env.GEMINI_LIVE_AUTHORIZATION_ID === PH08_CONTENT_AUTHORIZATION &&
+    env.GEMINI_DAILY_QUOTA_POLICY === "owner_authorized_unknown_rpd_live4" &&
+    env.GEMINI_ROUND_CALL_LIMIT === "4" &&
+    env.GEMINI_DAILY_REMAINING === "unknown" &&
+    env.GEMINI_MODEL === "gemini-3.5-flash-lite" &&
+    env.GEMINI_THINKING_LEVEL === "minimal" &&
+    env.PH08_GEMINI_GENERATIVE_ENABLED === "true" &&
+    !!approved &&
+    basename(required(env, "GEMINI_QUOTA_LEDGER_PATH")) ===
+      "ph08-generative-owner-20261106-live4.json";
+  // The 2026-11-06 owner order permits one bounded four-call exception with
+  // unknown RPD, pinned content and a dedicated ledger. Other live rounds still
+  // require known positive remaining allowance. Never edit old ledgers.
   if (!offline) {
     required(env, "GEMINI_LIVE_AUTHORIZATION_ID");
     const remaining = Number(required(env, "GEMINI_DAILY_REMAINING"));
-    if (!Number.isSafeInteger(remaining) || remaining < 1)
+    if (
+      !ownerUnknownQuotaRound &&
+      (!Number.isSafeInteger(remaining) || remaining < 1)
+    )
       throw Error("GEMINI_DAILY_QUOTA_UNKNOWN");
     required(env, "GEMINI_ROUND_CALL_LIMIT");
   }
@@ -118,7 +169,9 @@ export function ph08TutoringFromEnvironment(
     roundLimit: Number(env.GEMINI_ROUND_CALL_LIMIT ?? "10"),
     dailyRemaining: offline
       ? Number(env.GEMINI_ROUND_CALL_LIMIT ?? "10")
-      : Number(env.GEMINI_DAILY_REMAINING),
+      : ownerUnknownQuotaRound
+        ? null
+        : Number(env.GEMINI_DAILY_REMAINING),
     validUntil: Date.parse(required(env, "GEMINI_QUOTA_VALID_UNTIL")),
     model: settings.model,
   });
@@ -144,8 +197,11 @@ export function ph08TutoringFromEnvironment(
             measurement_exited_at: Date | null;
             assistance_policy: string;
             hint_level: number;
+            template_version: string;
+            text_ar: string;
+            review_status: string;
           }[]
-        >`SELECT s.skill_code,t.error_code,x.phase,x.measurement_exited_at,x.assistance_policy,t.hint_level FROM learning_assignments x JOIN learning_episodes e ON e.id=x.episode_id JOIN skills s ON s.id=e.skill_id JOIN intervention_templates t ON t.id=${context.sourceTemplateId}::uuid AND t.release_id=e.release_id AND t.enabled AND t.is_synthetic WHERE x.attempt_id=${current.attemptId}::uuid AND x.invalidated_at IS NULL`;
+        >`SELECT s.skill_code,t.error_code,x.phase,x.measurement_exited_at,x.assistance_policy,t.hint_level,t.template_version,t.text_ar,t.review_status FROM learning_assignments x JOIN learning_episodes e ON e.id=x.episode_id JOIN skills s ON s.id=e.skill_id JOIN intervention_templates t ON t.id=${context.sourceTemplateId}::uuid AND t.release_id=e.release_id AND t.enabled AND t.is_synthetic WHERE x.attempt_id=${current.attemptId}::uuid AND x.invalidated_at IS NULL`;
         if (
           !row ||
           `H${row.hint_level}` !== context.targetHintLevel ||
@@ -154,6 +210,8 @@ export function ph08TutoringFromEnvironment(
               row.assistance_policy === "independent"))
         )
           throw Error("PH08_GENERATION_PROFILE_INVALID");
+        if (approved)
+          current.reviewedCard = assertReviewedTemplate(approved, row);
         return {
           skillCode: row.skill_code,
           errorCode: row.error_code,
@@ -199,9 +257,21 @@ export function ph08TutoringFromEnvironment(
     adapter.invocationAudit = (): Readonly<
       Record<string, string | number | boolean | null>
     > => {
-      const metric = scope.getStore()?.metric;
+      const current = scope.getStore();
+      const metric = current?.metric;
+      const contentAudit: Record<string, string | number | boolean | null> =
+        current?.reviewedCard
+          ? {
+              contentApproval: "APPROVED_BY_OWNER_ATTESTATION",
+              contentCardId: current.reviewedCard.id,
+              approvedContentSha256: current.reviewedCard.contentSha256,
+              contentApprovalReference:
+                "PH08-CONTENT-OWNER-ATTESTATION-2026-11-06",
+            }
+          : {};
       return metric
         ? {
+            ...contentAudit,
             actualLlmUsed: metric.actualModel !== null,
             providerAttempted: true,
             modelRequested: metric.requestedModel,
@@ -217,12 +287,16 @@ export function ph08TutoringFromEnvironment(
             textOrigin: metric.textOrigin,
             generationVersion: metric.generationVersion,
             ...(metric.textOrigin === "gemini_generated"
-              ? { generatedContentStatus: "draft_pending_human_review" }
+              ? {
+                  generatedContentStatus: approved
+                    ? "validated_under_owner_attested_rules"
+                    : "draft_pending_human_review",
+                }
               : {}),
             transportMode: offline ? "offline_simulated" : "live",
             ...(offline ? { actualLlmUsed: false } : {}),
           }
-        : {};
+        : contentAudit;
     };
     return new Ph08GeminiTutoring(
       store,
@@ -230,6 +304,7 @@ export function ph08TutoringFromEnvironment(
       adapter,
       { ...limits, aiTimeoutMs: timeoutMs, maxParallel: 1 },
       scope,
+      approved,
     );
   } catch (e) {
     quota.close();

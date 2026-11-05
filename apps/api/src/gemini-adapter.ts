@@ -231,6 +231,12 @@ export class GeminiAdapter implements AiTutorPort {
           /* Never log raw upstream errors or echoed credentials. */
         }
         metric.outcome = `GEMINI_HTTP_${response.status}`;
+        if (
+          response.status === 429 ||
+          metric.providerErrorCode === "RESOURCE_EXHAUSTED" ||
+          metric.providerErrorCode === "QUOTA_EXCEEDED"
+        )
+          this.quota.stopForQuota();
         throw Error("GEMINI_HTTP_FAILURE");
       }
       const value = obj(await boundedJson(response)),
@@ -245,6 +251,10 @@ export class GeminiAdapter implements AiTutorPort {
       metric.totalTokens = tokens(usage.totalTokenCount);
       metric.thinkingTokens = tokens(usage.thoughtsTokenCount);
       if (!metric.actualModel) throw Error("GEMINI_MODEL_METADATA_MISSING");
+      if (metric.actualModel.replace(/^models\//, "") !== this.settings.model) {
+        metric.outcome = "GEMINI_MODEL_MISMATCH";
+        throw Error("GEMINI_MODEL_MISMATCH");
+      }
       const candidates = value.candidates;
       const candidate = obj(
         Array.isArray(candidates) && candidates.length === 1

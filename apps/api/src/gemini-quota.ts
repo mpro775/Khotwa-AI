@@ -1,5 +1,6 @@
 import {
   closeSync,
+  existsSync,
   openSync,
   readFileSync,
   renameSync,
@@ -102,6 +103,8 @@ export class GeminiQuota {
     renameSync(this.config.ledgerPath + ".tmp", this.config.ledgerPath);
   }
   reserve(): void {
+    if (existsSync(this.config.ledgerPath + ".quota-stop"))
+      throw Error("GEMINI_QUOTA_STOPPED");
     const now = this.now(),
       calls = this.ledger.calls;
     if (
@@ -126,6 +129,13 @@ export class GeminiQuota {
   }
   get spent() {
     return this.ledger.calls.length;
+  }
+  /** Sticky across restarts; never clear automatically after upstream quota. */
+  stopForQuota(): void {
+    writeFileSync(this.config.ledgerPath + ".quota-stop", "UPSTREAM_QUOTA\n", {
+      mode: 0o600,
+      flag: "wx",
+    });
   }
   close() {
     if (this.closed) return;
