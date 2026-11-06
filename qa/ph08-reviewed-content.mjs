@@ -9,16 +9,28 @@ const {
 /** Append only. The executable entry point is deliberately test-DB-only. */
 export async function installReviewedContent(pool, fixtures) {
   const url = new URL(process.env.DATABASE_URL);
-  if (
-    !/^khotwa-ph08-[a-f0-9]{12}-db$/.test(url.hostname) ||
-    url.pathname !== "/ph08_test"
-  )
+  const isolatedTest =
+    /^khotwa-ph08-[a-f0-9]{12}-db$/.test(url.hostname) &&
+    url.pathname === "/ph08_test";
+  const ownerAuthorizedDemo =
+    process.env.MVP_CLOSURE_DEMO === "true" &&
+    /^khotwa-ph09-[a-f0-9]{12}-db$/.test(url.hostname) &&
+    url.pathname === "/ph09_test";
+  if (!isolatedTest && !ownerAuthorizedDemo)
     throw Error("PH08_ISOLATED_SYNTHETIC_DATABASE_REQUIRED");
   const cards = reviewedCards(process.env.PH08_REVIEWED_CONTENT_PATH);
   const client = await pool.connect();
   const inserted = [];
   try {
     await client.query("BEGIN");
+    if (ownerAuthorizedDemo) {
+      const release = await client.query(
+        "SELECT id FROM content_releases WHERE id=$1 AND release_code LIKE 'ph09-test-%'",
+        [fixtures.releaseId],
+      );
+      if (release.rowCount !== 1)
+        throw Error("SYNTHETIC_DEMO_RELEASE_REQUIRED");
+    }
     await client.query("SELECT pg_advisory_xact_lock(hashtext($1))", [
       fixtures.releaseId,
     ]);
