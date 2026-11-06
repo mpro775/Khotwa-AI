@@ -1,0 +1,2344 @@
+{
+  "at": "2026-11-06T00:40:46.100Z",
+  "actualGeminiCalls": 0,
+  "blockedExternalAttempts": 0,
+  "checks": [
+    {
+      "name": "generated H1-H3 are fresh provider response bytes, not a cached template, with owner-attested rules audit and unchanged math",
+      "status": "PASS",
+      "passed": true
+    },
+    {
+      "name": "H4 remains explicit, verified stored content and does not call Gemini",
+      "status": "PASS",
+      "passed": true
+    },
+    {
+      "name": "failure uses owner-attested reviewed fallback and retains student evidence",
+      "status": "PASS",
+      "passed": true
+    },
+    {
+      "name": "503 uses owner-attested reviewed fallback and retains student evidence",
+      "status": "PASS",
+      "passed": true
+    },
+    {
+      "name": "timeout uses owner-attested reviewed fallback and retains student evidence",
+      "status": "PASS",
+      "passed": true
+    },
+    {
+      "name": "invalid_json uses owner-attested reviewed fallback and retains student evidence",
+      "status": "PASS",
+      "passed": true
+    },
+    {
+      "name": "unsafe uses owner-attested reviewed fallback and retains student evidence",
+      "status": "PASS",
+      "passed": true
+    },
+    {
+      "name": "literal uses owner-attested reviewed fallback and retains student evidence",
+      "status": "PASS",
+      "passed": true
+    },
+    {
+      "name": "429 uses owner-attested reviewed fallback and retains student evidence",
+      "status": "PASS",
+      "passed": true
+    },
+    {
+      "name": "root PH07 requests stay local; foreign UUID cannot call the adapter",
+      "status": "PASS",
+      "passed": true
+    },
+    {
+      "name": "a late generated response cannot overwrite evidence after a step edit",
+      "status": "PASS",
+      "passed": true
+    },
+    {
+      "name": "transfer generation occurs only after explicit exit from independent measurement",
+      "status": "PASS",
+      "passed": true
+    },
+    {
+      "name": "history, H4 and fractional publication remain unchanged",
+      "status": "PASS",
+      "passed": true
+    },
+    {
+      "name": "idempotency conflict and concurrent duplicate commit one event",
+      "status": "PASS",
+      "passed": true
+    },
+    {
+      "name": "absent session and invalid CSRF cannot dispatch Gemini",
+      "status": "PASS",
+      "passed": true
+    },
+    {
+      "name": "ERR05/SK06 uses attested mapping fallback at H1-H3 with no provider call",
+      "status": "PASS",
+      "passed": true
+    },
+    {
+      "name": "unapproved draft cannot be displayed even when a provider would succeed",
+      "status": "PASS",
+      "passed": true
+    }
+  ],
+  "examples": [
+    {
+      "level": "H1",
+      "textAr": "خذ وقتك، تأمل الحدين داخل القوس. يمكنك تدوين ملاحظتك قبل المتابعة.",
+      "source": "simulated_provider_response",
+      "reviewStatus": "validated_under_owner_attested_rules"
+    },
+    {
+      "level": "H2",
+      "textAr": "لنراجع بهدوء، تساءل كيف يتأثر كل حد بالمعامل؟ إن لم تتضح الفكرة، اطلب مراجعة إضافية.",
+      "source": "simulated_provider_response",
+      "reviewStatus": "validated_under_owner_attested_rules"
+    },
+    {
+      "level": "H3",
+      "textAr": "قبل أن تتابع، ابدأ بمراجعة أثر المعامل على حد واحد، ثم راجع الحد الآخر بنفسك. يمكنك تدوين ملاحظتك قبل المتابعة.",
+      "source": "simulated_provider_response",
+      "reviewStatus": "validated_under_owner_attested_rules"
+    }
+  ],
+  "metrics": [
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-06T00:40:50.389Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 3.287,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 200,
+      "outputTokens": 110,
+      "totalTokens": 310,
+      "thinkingTokens": null,
+      "outcome": "PH08_GENERATED_VALIDATED",
+      "textOrigin": "gemini_generated",
+      "generationVersion": "ph08-generative-draft-v2",
+      "transport": "offline_simulated"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-06T00:40:50.634Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 0.714,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 200,
+      "outputTokens": 110,
+      "totalTokens": 310,
+      "thinkingTokens": null,
+      "outcome": "PH08_GENERATED_VALIDATED",
+      "textOrigin": "gemini_generated",
+      "generationVersion": "ph08-generative-draft-v2",
+      "transport": "offline_simulated"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-06T00:40:50.919Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 0.923,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 200,
+      "outputTokens": 110,
+      "totalTokens": 310,
+      "thinkingTokens": null,
+      "outcome": "PH08_GENERATED_VALIDATED",
+      "textOrigin": "gemini_generated",
+      "generationVersion": "ph08-generative-draft-v2",
+      "transport": "offline_simulated"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-06T00:40:52.424Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": null,
+      "thinkingLevel": "minimal",
+      "latencyMs": 0.227,
+      "httpStatus": null,
+      "providerErrorCode": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "totalTokens": null,
+      "thinkingTokens": null,
+      "outcome": "GEMINI_PROVIDER_ERROR",
+      "textOrigin": "none",
+      "generationVersion": "ph08-generative-draft-v2",
+      "transport": "offline_simulated"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-06T00:40:53.252Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": null,
+      "thinkingLevel": "minimal",
+      "latencyMs": 0.455,
+      "httpStatus": 503,
+      "providerErrorCode": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "totalTokens": null,
+      "thinkingTokens": null,
+      "outcome": "GEMINI_HTTP_503",
+      "textOrigin": "none",
+      "generationVersion": "ph08-generative-draft-v2",
+      "transport": "offline_simulated"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-06T00:40:53.920Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": null,
+      "thinkingLevel": "minimal",
+      "latencyMs": 992.236,
+      "httpStatus": null,
+      "providerErrorCode": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "totalTokens": null,
+      "thinkingTokens": null,
+      "outcome": "GEMINI_ABORTED",
+      "textOrigin": "none",
+      "generationVersion": "ph08-generative-draft-v2",
+      "transport": "offline_simulated"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-06T00:40:55.423Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 0.545,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "totalTokens": null,
+      "thinkingTokens": null,
+      "outcome": "AI_INVALID_JSON",
+      "textOrigin": "none",
+      "generationVersion": "ph08-generative-draft-v2",
+      "transport": "offline_simulated"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-06T00:40:56.066Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 0.921,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 200,
+      "outputTokens": 110,
+      "totalTokens": 310,
+      "thinkingTokens": null,
+      "outcome": "PH08_LEVEL_OR_SPEECH_ACT",
+      "textOrigin": "none",
+      "generationVersion": "ph08-generative-draft-v2",
+      "transport": "offline_simulated"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-06T00:40:56.858Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 0.523,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 200,
+      "outputTokens": 110,
+      "totalTokens": 310,
+      "thinkingTokens": null,
+      "outcome": "PH08_LITERAL_TEMPLATE",
+      "textOrigin": "none",
+      "generationVersion": "ph08-generative-draft-v2",
+      "transport": "offline_simulated"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-06T00:40:57.491Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": null,
+      "thinkingLevel": "minimal",
+      "latencyMs": 0.918,
+      "httpStatus": 429,
+      "providerErrorCode": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "totalTokens": null,
+      "thinkingTokens": null,
+      "outcome": "GEMINI_HTTP_429",
+      "textOrigin": "none",
+      "generationVersion": "ph08-generative-draft-v2",
+      "transport": "offline_simulated"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-06T00:40:58.741Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 33.221,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 200,
+      "outputTokens": 110,
+      "totalTokens": 310,
+      "thinkingTokens": null,
+      "outcome": "PH08_GENERATED_VALIDATED",
+      "textOrigin": "gemini_generated",
+      "generationVersion": "ph08-generative-draft-v2",
+      "transport": "offline_simulated"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-06T00:40:59.907Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 1.176,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 200,
+      "outputTokens": 110,
+      "totalTokens": 310,
+      "thinkingTokens": null,
+      "outcome": "PH08_GENERATED_VALIDATED",
+      "textOrigin": "gemini_generated",
+      "generationVersion": "ph08-generative-draft-v2",
+      "transport": "offline_simulated"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-06T00:41:00.524Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 0.564,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 200,
+      "outputTokens": 110,
+      "totalTokens": 310,
+      "thinkingTokens": null,
+      "outcome": "PH08_GENERATED_VALIDATED",
+      "textOrigin": "gemini_generated",
+      "generationVersion": "ph08-generative-draft-v2",
+      "transport": "offline_simulated"
+    }
+  ],
+  "error": null,
+  "installed": [
+    {
+      "templateId": "e328a504-42df-4a6a-99f3-47d9bf02f7c7",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-ERR-ALG-01-H1",
+      "contentSha256": "9bbeca9a1fc63500b027a017ea4d62eee531c92bca4e361ade71b7c8602a4982",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H1",
+      "enabled": false
+    },
+    {
+      "templateId": "e9787bad-04d4-421b-9762-68fd50de7b67",
+      "problemRevisionId": "0a81dccf-06d7-46ab-8cf7-6cdc3a4be102",
+      "cardId": "PH08-FB-ERR-ALG-01-H1",
+      "contentSha256": "9bbeca9a1fc63500b027a017ea4d62eee531c92bca4e361ade71b7c8602a4982",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "fe16233a-6941-4710-8bd1-3198e0647410",
+      "problemRevisionId": "6d1f6ec4-0576-4c96-af19-896f0559c969",
+      "cardId": "PH08-FB-ERR-ALG-01-H1",
+      "contentSha256": "9bbeca9a1fc63500b027a017ea4d62eee531c92bca4e361ade71b7c8602a4982",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "a83b6367-11de-492a-9b72-054b323485e3",
+      "problemRevisionId": "153ed8dc-3afc-412e-8cc6-162c93c4c34d",
+      "cardId": "PH08-FB-ERR-ALG-01-H1",
+      "contentSha256": "9bbeca9a1fc63500b027a017ea4d62eee531c92bca4e361ade71b7c8602a4982",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "a3331bbb-6135-43fb-ab73-2c98ac701231",
+      "problemRevisionId": "3806bfea-9e88-4238-8984-7abbe26c8472",
+      "cardId": "PH08-FB-ERR-ALG-01-H1",
+      "contentSha256": "9bbeca9a1fc63500b027a017ea4d62eee531c92bca4e361ade71b7c8602a4982",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "d1dbd81a-96dc-4691-afb9-94eca0f77deb",
+      "problemRevisionId": "3671f909-9b63-4bde-bd56-90141d456356",
+      "cardId": "PH08-FB-ERR-ALG-01-H1",
+      "contentSha256": "9bbeca9a1fc63500b027a017ea4d62eee531c92bca4e361ade71b7c8602a4982",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "765e593e-437d-4401-b78d-7a78faabfde4",
+      "problemRevisionId": "12d78697-cc9c-4ebf-9c86-71c622b67fbf",
+      "cardId": "PH08-FB-ERR-ALG-01-H1",
+      "contentSha256": "9bbeca9a1fc63500b027a017ea4d62eee531c92bca4e361ade71b7c8602a4982",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "b7491c5c-feaf-4030-b960-d0238aefae2c",
+      "problemRevisionId": "89a37bd0-a958-4896-9dc3-d119fd55c377",
+      "cardId": "PH08-FB-ERR-ALG-01-H1",
+      "contentSha256": "9bbeca9a1fc63500b027a017ea4d62eee531c92bca4e361ade71b7c8602a4982",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "b362a2a7-5270-4c67-8520-13a0ac29783f",
+      "problemRevisionId": "98e57e98-d3c5-4709-95a4-9b7193718238",
+      "cardId": "PH08-FB-ERR-ALG-01-H1",
+      "contentSha256": "9bbeca9a1fc63500b027a017ea4d62eee531c92bca4e361ade71b7c8602a4982",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "4e5be708-c572-4c31-a9d6-0cef27c9b221",
+      "problemRevisionId": "a06af985-d37e-4ff0-bb2e-25e68292eacb",
+      "cardId": "PH08-FB-ERR-ALG-01-H1",
+      "contentSha256": "9bbeca9a1fc63500b027a017ea4d62eee531c92bca4e361ade71b7c8602a4982",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "62c1b016-9485-4f3f-a9a0-74e15cefb017",
+      "problemRevisionId": "3e8101f7-1f65-4f3e-8a10-87f18a9de019",
+      "cardId": "PH08-FB-ERR-ALG-01-H1",
+      "contentSha256": "9bbeca9a1fc63500b027a017ea4d62eee531c92bca4e361ade71b7c8602a4982",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "f54f77d3-9040-4465-bcdc-2b1726949b0f",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-ERR-ALG-01-H2",
+      "contentSha256": "6b4f98d1f980158e4e0598db0918b96b556b34efa29c543ab6cd3db0770a42a8",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H2",
+      "enabled": false
+    },
+    {
+      "templateId": "52352906-10fb-4b7a-9faa-198de45f0dd0",
+      "problemRevisionId": "0a81dccf-06d7-46ab-8cf7-6cdc3a4be102",
+      "cardId": "PH08-FB-ERR-ALG-01-H2",
+      "contentSha256": "6b4f98d1f980158e4e0598db0918b96b556b34efa29c543ab6cd3db0770a42a8",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "9f329848-27be-403c-9010-8eaebffe4f27",
+      "problemRevisionId": "6d1f6ec4-0576-4c96-af19-896f0559c969",
+      "cardId": "PH08-FB-ERR-ALG-01-H2",
+      "contentSha256": "6b4f98d1f980158e4e0598db0918b96b556b34efa29c543ab6cd3db0770a42a8",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "926938bd-dcfb-47bb-86bd-26897f5a7ae7",
+      "problemRevisionId": "153ed8dc-3afc-412e-8cc6-162c93c4c34d",
+      "cardId": "PH08-FB-ERR-ALG-01-H2",
+      "contentSha256": "6b4f98d1f980158e4e0598db0918b96b556b34efa29c543ab6cd3db0770a42a8",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "041826df-55dc-469b-b002-b3ba8a920c54",
+      "problemRevisionId": "3806bfea-9e88-4238-8984-7abbe26c8472",
+      "cardId": "PH08-FB-ERR-ALG-01-H2",
+      "contentSha256": "6b4f98d1f980158e4e0598db0918b96b556b34efa29c543ab6cd3db0770a42a8",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "5a996623-0fd8-4fcb-991f-43aa3fbd167c",
+      "problemRevisionId": "3671f909-9b63-4bde-bd56-90141d456356",
+      "cardId": "PH08-FB-ERR-ALG-01-H2",
+      "contentSha256": "6b4f98d1f980158e4e0598db0918b96b556b34efa29c543ab6cd3db0770a42a8",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "840692a8-1a89-4df8-971a-71a9c5f8a125",
+      "problemRevisionId": "12d78697-cc9c-4ebf-9c86-71c622b67fbf",
+      "cardId": "PH08-FB-ERR-ALG-01-H2",
+      "contentSha256": "6b4f98d1f980158e4e0598db0918b96b556b34efa29c543ab6cd3db0770a42a8",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "d9442e6a-11a8-4507-a19a-15af3744200b",
+      "problemRevisionId": "89a37bd0-a958-4896-9dc3-d119fd55c377",
+      "cardId": "PH08-FB-ERR-ALG-01-H2",
+      "contentSha256": "6b4f98d1f980158e4e0598db0918b96b556b34efa29c543ab6cd3db0770a42a8",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "3f87cabe-4c86-4901-a239-1e2d110330b1",
+      "problemRevisionId": "98e57e98-d3c5-4709-95a4-9b7193718238",
+      "cardId": "PH08-FB-ERR-ALG-01-H2",
+      "contentSha256": "6b4f98d1f980158e4e0598db0918b96b556b34efa29c543ab6cd3db0770a42a8",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "1940b012-343f-441d-a2fd-b05dc51d12df",
+      "problemRevisionId": "a06af985-d37e-4ff0-bb2e-25e68292eacb",
+      "cardId": "PH08-FB-ERR-ALG-01-H2",
+      "contentSha256": "6b4f98d1f980158e4e0598db0918b96b556b34efa29c543ab6cd3db0770a42a8",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "5d5433cb-5958-4d3a-a0fe-88d991efa451",
+      "problemRevisionId": "3e8101f7-1f65-4f3e-8a10-87f18a9de019",
+      "cardId": "PH08-FB-ERR-ALG-01-H2",
+      "contentSha256": "6b4f98d1f980158e4e0598db0918b96b556b34efa29c543ab6cd3db0770a42a8",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "bc19d0e6-e7c6-4e05-a499-cc8ec6cd9191",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-ERR-ALG-01-H3",
+      "contentSha256": "022760e91cd50f8516d022912e3dbf34965a534406def7c13f21fc0cd0c04c6c",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H3",
+      "enabled": false
+    },
+    {
+      "templateId": "a8a498af-518a-4f62-ae08-1a28f62cabb3",
+      "problemRevisionId": "0a81dccf-06d7-46ab-8cf7-6cdc3a4be102",
+      "cardId": "PH08-FB-ERR-ALG-01-H3",
+      "contentSha256": "022760e91cd50f8516d022912e3dbf34965a534406def7c13f21fc0cd0c04c6c",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "6a52a431-a444-465f-b2f7-651bd09fc496",
+      "problemRevisionId": "6d1f6ec4-0576-4c96-af19-896f0559c969",
+      "cardId": "PH08-FB-ERR-ALG-01-H3",
+      "contentSha256": "022760e91cd50f8516d022912e3dbf34965a534406def7c13f21fc0cd0c04c6c",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "3ad4d8a5-9abd-4c9f-ae36-d2163b309f86",
+      "problemRevisionId": "153ed8dc-3afc-412e-8cc6-162c93c4c34d",
+      "cardId": "PH08-FB-ERR-ALG-01-H3",
+      "contentSha256": "022760e91cd50f8516d022912e3dbf34965a534406def7c13f21fc0cd0c04c6c",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "0c27f3c8-4e73-4d41-8a45-1f02704e63b7",
+      "problemRevisionId": "3806bfea-9e88-4238-8984-7abbe26c8472",
+      "cardId": "PH08-FB-ERR-ALG-01-H3",
+      "contentSha256": "022760e91cd50f8516d022912e3dbf34965a534406def7c13f21fc0cd0c04c6c",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "91d201a9-8ac7-4d53-ad44-c0cbce41a33c",
+      "problemRevisionId": "3671f909-9b63-4bde-bd56-90141d456356",
+      "cardId": "PH08-FB-ERR-ALG-01-H3",
+      "contentSha256": "022760e91cd50f8516d022912e3dbf34965a534406def7c13f21fc0cd0c04c6c",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "9051a5a6-fbba-4d2c-911e-a54c15f66e52",
+      "problemRevisionId": "12d78697-cc9c-4ebf-9c86-71c622b67fbf",
+      "cardId": "PH08-FB-ERR-ALG-01-H3",
+      "contentSha256": "022760e91cd50f8516d022912e3dbf34965a534406def7c13f21fc0cd0c04c6c",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "e00468d7-4975-4d6a-b01a-5a11d2a5612c",
+      "problemRevisionId": "89a37bd0-a958-4896-9dc3-d119fd55c377",
+      "cardId": "PH08-FB-ERR-ALG-01-H3",
+      "contentSha256": "022760e91cd50f8516d022912e3dbf34965a534406def7c13f21fc0cd0c04c6c",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "21b98134-60dd-48e7-b0e3-a45c7cc86684",
+      "problemRevisionId": "98e57e98-d3c5-4709-95a4-9b7193718238",
+      "cardId": "PH08-FB-ERR-ALG-01-H3",
+      "contentSha256": "022760e91cd50f8516d022912e3dbf34965a534406def7c13f21fc0cd0c04c6c",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "78cb802c-ec53-4740-8e56-596d4e8ffcb7",
+      "problemRevisionId": "a06af985-d37e-4ff0-bb2e-25e68292eacb",
+      "cardId": "PH08-FB-ERR-ALG-01-H3",
+      "contentSha256": "022760e91cd50f8516d022912e3dbf34965a534406def7c13f21fc0cd0c04c6c",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "e5643a93-4bfb-418b-b764-934210645870",
+      "problemRevisionId": "3e8101f7-1f65-4f3e-8a10-87f18a9de019",
+      "cardId": "PH08-FB-ERR-ALG-01-H3",
+      "contentSha256": "022760e91cd50f8516d022912e3dbf34965a534406def7c13f21fc0cd0c04c6c",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-01-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "d9f08f4b-802f-4c6d-9d85-7a8c2ce7f585",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-ERR-ALG-02-H1",
+      "contentSha256": "6211cf37a5190e09c2926b507203ded28978ae334a2d7406367590d131335fe0",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-02-H1",
+      "enabled": false
+    },
+    {
+      "templateId": "7f7406bc-4b7c-4fce-95e3-0ac73bf2dc41",
+      "problemRevisionId": "b49b2da3-9739-476e-84df-73adc43b6aee",
+      "cardId": "PH08-FB-ERR-ALG-02-H1",
+      "contentSha256": "6211cf37a5190e09c2926b507203ded28978ae334a2d7406367590d131335fe0",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-02-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "67243c59-2028-42fa-93e2-54189b47a1d4",
+      "problemRevisionId": "b4987d6f-8ed2-4351-9321-ec7bcd02c53a",
+      "cardId": "PH08-FB-ERR-ALG-02-H1",
+      "contentSha256": "6211cf37a5190e09c2926b507203ded28978ae334a2d7406367590d131335fe0",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-02-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "bf207a3f-9864-4e46-b644-b69c7fd622ef",
+      "problemRevisionId": "e1b26c02-fda1-4fa5-b286-5ba57160036f",
+      "cardId": "PH08-FB-ERR-ALG-02-H1",
+      "contentSha256": "6211cf37a5190e09c2926b507203ded28978ae334a2d7406367590d131335fe0",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-02-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "e387aa16-ccca-4cd4-b79b-09bcbacbe6b3",
+      "problemRevisionId": "838b6642-3f06-49c5-b711-aa9e96e81cdb",
+      "cardId": "PH08-FB-ERR-ALG-02-H1",
+      "contentSha256": "6211cf37a5190e09c2926b507203ded28978ae334a2d7406367590d131335fe0",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-02-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "04ef7e6b-b54e-4e46-9b1d-a4e9d24bb170",
+      "problemRevisionId": "843e1f74-a974-4357-bdf4-650664f2e4f6",
+      "cardId": "PH08-FB-ERR-ALG-02-H1",
+      "contentSha256": "6211cf37a5190e09c2926b507203ded28978ae334a2d7406367590d131335fe0",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-02-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "c94c373e-e2d6-4c70-ac00-c9aad67d969b",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-ERR-ALG-02-H2",
+      "contentSha256": "b02bb39b293178102d528cd0a2214e878b3c9a512813a4931b160eb7c0ab1dd8",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-02-H2",
+      "enabled": false
+    },
+    {
+      "templateId": "72fb5274-9dfb-4d22-b769-7bdaf146eec2",
+      "problemRevisionId": "b49b2da3-9739-476e-84df-73adc43b6aee",
+      "cardId": "PH08-FB-ERR-ALG-02-H2",
+      "contentSha256": "b02bb39b293178102d528cd0a2214e878b3c9a512813a4931b160eb7c0ab1dd8",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-02-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "9b55a391-2679-4e08-8206-460913b3eb00",
+      "problemRevisionId": "b4987d6f-8ed2-4351-9321-ec7bcd02c53a",
+      "cardId": "PH08-FB-ERR-ALG-02-H2",
+      "contentSha256": "b02bb39b293178102d528cd0a2214e878b3c9a512813a4931b160eb7c0ab1dd8",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-02-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "89f8af47-6628-4db5-98a0-535f0c48c34b",
+      "problemRevisionId": "e1b26c02-fda1-4fa5-b286-5ba57160036f",
+      "cardId": "PH08-FB-ERR-ALG-02-H2",
+      "contentSha256": "b02bb39b293178102d528cd0a2214e878b3c9a512813a4931b160eb7c0ab1dd8",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-02-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "ac7bce0c-e65f-4f0c-b9aa-a170c9b3eddf",
+      "problemRevisionId": "838b6642-3f06-49c5-b711-aa9e96e81cdb",
+      "cardId": "PH08-FB-ERR-ALG-02-H2",
+      "contentSha256": "b02bb39b293178102d528cd0a2214e878b3c9a512813a4931b160eb7c0ab1dd8",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-02-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "7f435566-bd49-4208-b645-a2726f3205e7",
+      "problemRevisionId": "843e1f74-a974-4357-bdf4-650664f2e4f6",
+      "cardId": "PH08-FB-ERR-ALG-02-H2",
+      "contentSha256": "b02bb39b293178102d528cd0a2214e878b3c9a512813a4931b160eb7c0ab1dd8",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-02-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "e4317178-49e2-40a3-888c-bab08c31228b",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-ERR-ALG-02-H3",
+      "contentSha256": "361e1fa56bf219e7768b6aaf4a879ab1fd796896601f0e9f16556e205db6e022",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-02-H3",
+      "enabled": false
+    },
+    {
+      "templateId": "e2a1cfa9-9548-475b-8d8e-505cf93f17a9",
+      "problemRevisionId": "b49b2da3-9739-476e-84df-73adc43b6aee",
+      "cardId": "PH08-FB-ERR-ALG-02-H3",
+      "contentSha256": "361e1fa56bf219e7768b6aaf4a879ab1fd796896601f0e9f16556e205db6e022",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-02-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "a8b539f3-c374-42b3-811c-085883e6548c",
+      "problemRevisionId": "b4987d6f-8ed2-4351-9321-ec7bcd02c53a",
+      "cardId": "PH08-FB-ERR-ALG-02-H3",
+      "contentSha256": "361e1fa56bf219e7768b6aaf4a879ab1fd796896601f0e9f16556e205db6e022",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-02-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "4182f2ab-35e0-430b-b07d-99645c4a2d59",
+      "problemRevisionId": "e1b26c02-fda1-4fa5-b286-5ba57160036f",
+      "cardId": "PH08-FB-ERR-ALG-02-H3",
+      "contentSha256": "361e1fa56bf219e7768b6aaf4a879ab1fd796896601f0e9f16556e205db6e022",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-02-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "23b8b597-cd16-410a-8b61-721a88217056",
+      "problemRevisionId": "838b6642-3f06-49c5-b711-aa9e96e81cdb",
+      "cardId": "PH08-FB-ERR-ALG-02-H3",
+      "contentSha256": "361e1fa56bf219e7768b6aaf4a879ab1fd796896601f0e9f16556e205db6e022",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-02-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "6bef9ac7-776d-410e-b88e-7f941f440b97",
+      "problemRevisionId": "843e1f74-a974-4357-bdf4-650664f2e4f6",
+      "cardId": "PH08-FB-ERR-ALG-02-H3",
+      "contentSha256": "361e1fa56bf219e7768b6aaf4a879ab1fd796896601f0e9f16556e205db6e022",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-02-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "4e0355fa-0e0a-429d-9d3c-ce9adbbe49d8",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-ERR-ALG-03-H1",
+      "contentSha256": "2a46596deb003e0b75d08cf32e0375beaba1b2f40550fa0fdf6fbaa7f783f55f",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-03-H1",
+      "enabled": false
+    },
+    {
+      "templateId": "fb0dd88e-2839-4e45-86ad-1db0bbb83b9b",
+      "problemRevisionId": "3e39e3d5-5fe1-4603-882a-00e4bc79eb1f",
+      "cardId": "PH08-FB-ERR-ALG-03-H1",
+      "contentSha256": "2a46596deb003e0b75d08cf32e0375beaba1b2f40550fa0fdf6fbaa7f783f55f",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-03-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "a7b466c6-60e1-4ca4-952f-17a2281dfad2",
+      "problemRevisionId": "83ceee8e-7db4-4172-a1f0-2c18e2ec9c9a",
+      "cardId": "PH08-FB-ERR-ALG-03-H1",
+      "contentSha256": "2a46596deb003e0b75d08cf32e0375beaba1b2f40550fa0fdf6fbaa7f783f55f",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-03-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "61d13fb6-3739-4c85-aa12-59bd464f24d8",
+      "problemRevisionId": "f028d221-e358-4515-82b1-cce89ee0dcf0",
+      "cardId": "PH08-FB-ERR-ALG-03-H1",
+      "contentSha256": "2a46596deb003e0b75d08cf32e0375beaba1b2f40550fa0fdf6fbaa7f783f55f",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-03-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "35951322-d684-47e3-8ab3-014144b21976",
+      "problemRevisionId": "e8b3e67d-e1b5-40c1-b56d-b0ad1db83af3",
+      "cardId": "PH08-FB-ERR-ALG-03-H1",
+      "contentSha256": "2a46596deb003e0b75d08cf32e0375beaba1b2f40550fa0fdf6fbaa7f783f55f",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-03-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "dd4c82c2-a8cf-4da6-b507-eb86bd031b61",
+      "problemRevisionId": "5bd79cb2-3c7a-4989-9400-a0120387a9bf",
+      "cardId": "PH08-FB-ERR-ALG-03-H1",
+      "contentSha256": "2a46596deb003e0b75d08cf32e0375beaba1b2f40550fa0fdf6fbaa7f783f55f",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-03-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "85b1b41d-c147-43dc-a779-02875ebfd2ae",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-ERR-ALG-03-H2",
+      "contentSha256": "1a1cd4b56edd84759eead99ade4bab77030473bab34f63134014f2971e65749f",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-03-H2",
+      "enabled": false
+    },
+    {
+      "templateId": "9e49664d-ccac-4802-b7df-d5ec2ca5b4e5",
+      "problemRevisionId": "3e39e3d5-5fe1-4603-882a-00e4bc79eb1f",
+      "cardId": "PH08-FB-ERR-ALG-03-H2",
+      "contentSha256": "1a1cd4b56edd84759eead99ade4bab77030473bab34f63134014f2971e65749f",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-03-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "3231ef5c-de3c-40cb-8878-16ae1b4f1b53",
+      "problemRevisionId": "83ceee8e-7db4-4172-a1f0-2c18e2ec9c9a",
+      "cardId": "PH08-FB-ERR-ALG-03-H2",
+      "contentSha256": "1a1cd4b56edd84759eead99ade4bab77030473bab34f63134014f2971e65749f",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-03-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "0dd8e759-fe58-4149-b114-b228e81be105",
+      "problemRevisionId": "f028d221-e358-4515-82b1-cce89ee0dcf0",
+      "cardId": "PH08-FB-ERR-ALG-03-H2",
+      "contentSha256": "1a1cd4b56edd84759eead99ade4bab77030473bab34f63134014f2971e65749f",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-03-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "a25b7801-cbc7-4c7a-b969-9930b197cb6f",
+      "problemRevisionId": "e8b3e67d-e1b5-40c1-b56d-b0ad1db83af3",
+      "cardId": "PH08-FB-ERR-ALG-03-H2",
+      "contentSha256": "1a1cd4b56edd84759eead99ade4bab77030473bab34f63134014f2971e65749f",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-03-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "82d9eaff-6585-4e5c-a232-995ec9da2d74",
+      "problemRevisionId": "5bd79cb2-3c7a-4989-9400-a0120387a9bf",
+      "cardId": "PH08-FB-ERR-ALG-03-H2",
+      "contentSha256": "1a1cd4b56edd84759eead99ade4bab77030473bab34f63134014f2971e65749f",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-03-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "0200d0f8-e863-4468-bbb3-d811dd71ab60",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-ERR-ALG-03-H3",
+      "contentSha256": "1df97cdc91d7eee3f9ed6c281c056b0734fc406a7674c900d7e476bb64178d37",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-03-H3",
+      "enabled": false
+    },
+    {
+      "templateId": "4a88c795-dcb0-45f8-9840-77057149f21e",
+      "problemRevisionId": "3e39e3d5-5fe1-4603-882a-00e4bc79eb1f",
+      "cardId": "PH08-FB-ERR-ALG-03-H3",
+      "contentSha256": "1df97cdc91d7eee3f9ed6c281c056b0734fc406a7674c900d7e476bb64178d37",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-03-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "27f687c9-2ea9-4875-a03e-6f5f232d6934",
+      "problemRevisionId": "83ceee8e-7db4-4172-a1f0-2c18e2ec9c9a",
+      "cardId": "PH08-FB-ERR-ALG-03-H3",
+      "contentSha256": "1df97cdc91d7eee3f9ed6c281c056b0734fc406a7674c900d7e476bb64178d37",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-03-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "b33bebad-705f-4c05-90c1-2e4ac896a5c8",
+      "problemRevisionId": "f028d221-e358-4515-82b1-cce89ee0dcf0",
+      "cardId": "PH08-FB-ERR-ALG-03-H3",
+      "contentSha256": "1df97cdc91d7eee3f9ed6c281c056b0734fc406a7674c900d7e476bb64178d37",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-03-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "e33c1c67-dccf-4e09-9ab6-1896988b4f2e",
+      "problemRevisionId": "e8b3e67d-e1b5-40c1-b56d-b0ad1db83af3",
+      "cardId": "PH08-FB-ERR-ALG-03-H3",
+      "contentSha256": "1df97cdc91d7eee3f9ed6c281c056b0734fc406a7674c900d7e476bb64178d37",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-03-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "5da249a0-ce61-40b5-9c01-60c572df5fb7",
+      "problemRevisionId": "5bd79cb2-3c7a-4989-9400-a0120387a9bf",
+      "cardId": "PH08-FB-ERR-ALG-03-H3",
+      "contentSha256": "1df97cdc91d7eee3f9ed6c281c056b0734fc406a7674c900d7e476bb64178d37",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-03-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "3e876ee8-3d7f-4aba-b017-f445a14de8fb",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-ERR-ALG-04-H1",
+      "contentSha256": "79f9c19286b057024ae1cb7f107754969c67925a30c1d7c60aca781fc95415f0",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-04-H1",
+      "enabled": false
+    },
+    {
+      "templateId": "f89cbcf2-07f3-4076-8e57-e109a2184c31",
+      "problemRevisionId": "fd479174-3c6f-44c0-8d7a-fb98dbac4a4f",
+      "cardId": "PH08-FB-ERR-ALG-04-H1",
+      "contentSha256": "79f9c19286b057024ae1cb7f107754969c67925a30c1d7c60aca781fc95415f0",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-04-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "cc559687-2b9d-4ebb-8dc4-010176ca3673",
+      "problemRevisionId": "a19e9e01-8082-4604-a1d4-fa24c58bd380",
+      "cardId": "PH08-FB-ERR-ALG-04-H1",
+      "contentSha256": "79f9c19286b057024ae1cb7f107754969c67925a30c1d7c60aca781fc95415f0",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-04-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "fefa28b9-34e7-46e1-9afc-ccc55b352d27",
+      "problemRevisionId": "e723df19-9fab-4d66-9678-98eba1b2ced8",
+      "cardId": "PH08-FB-ERR-ALG-04-H1",
+      "contentSha256": "79f9c19286b057024ae1cb7f107754969c67925a30c1d7c60aca781fc95415f0",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-04-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "bb3f2ec6-cb91-4f94-846f-01df8814b137",
+      "problemRevisionId": "9fa3f935-38bd-4636-bf8c-90da8e84fe92",
+      "cardId": "PH08-FB-ERR-ALG-04-H1",
+      "contentSha256": "79f9c19286b057024ae1cb7f107754969c67925a30c1d7c60aca781fc95415f0",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-04-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "44852c37-7d46-45ec-8aa7-4e84f99c21b3",
+      "problemRevisionId": "47fb8055-07c2-40c5-aeff-04f3036a5446",
+      "cardId": "PH08-FB-ERR-ALG-04-H1",
+      "contentSha256": "79f9c19286b057024ae1cb7f107754969c67925a30c1d7c60aca781fc95415f0",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-04-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "016fbd55-5742-496c-b400-c0ce41f8aacd",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-ERR-ALG-04-H2",
+      "contentSha256": "985313425ccb1c19c7ea012156ce0c80bf8f464887a70bed0a51590435a74bcd",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-04-H2",
+      "enabled": false
+    },
+    {
+      "templateId": "81a60259-92a5-4e10-acf9-3ff65db03fef",
+      "problemRevisionId": "fd479174-3c6f-44c0-8d7a-fb98dbac4a4f",
+      "cardId": "PH08-FB-ERR-ALG-04-H2",
+      "contentSha256": "985313425ccb1c19c7ea012156ce0c80bf8f464887a70bed0a51590435a74bcd",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-04-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "3b50d716-b365-46e4-a212-a36e8d12760b",
+      "problemRevisionId": "a19e9e01-8082-4604-a1d4-fa24c58bd380",
+      "cardId": "PH08-FB-ERR-ALG-04-H2",
+      "contentSha256": "985313425ccb1c19c7ea012156ce0c80bf8f464887a70bed0a51590435a74bcd",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-04-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "79fef6da-9a1d-494a-b666-fac3ffb142db",
+      "problemRevisionId": "e723df19-9fab-4d66-9678-98eba1b2ced8",
+      "cardId": "PH08-FB-ERR-ALG-04-H2",
+      "contentSha256": "985313425ccb1c19c7ea012156ce0c80bf8f464887a70bed0a51590435a74bcd",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-04-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "d2342e8e-7d25-42da-a297-78786d0c362e",
+      "problemRevisionId": "9fa3f935-38bd-4636-bf8c-90da8e84fe92",
+      "cardId": "PH08-FB-ERR-ALG-04-H2",
+      "contentSha256": "985313425ccb1c19c7ea012156ce0c80bf8f464887a70bed0a51590435a74bcd",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-04-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "9887f2fb-8b87-4a84-9a5e-37a74fac2238",
+      "problemRevisionId": "47fb8055-07c2-40c5-aeff-04f3036a5446",
+      "cardId": "PH08-FB-ERR-ALG-04-H2",
+      "contentSha256": "985313425ccb1c19c7ea012156ce0c80bf8f464887a70bed0a51590435a74bcd",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-04-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "ef3e2488-109f-46ce-be38-afcd7f8b1289",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-ERR-ALG-04-H3",
+      "contentSha256": "9da14e45838a6bb5b3c50f2e011fe0f5bb0b6de744d49b76528a7a1ce1c75259",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-04-H3",
+      "enabled": false
+    },
+    {
+      "templateId": "0abacf11-dc8a-4787-ba96-b3cd83b5e20d",
+      "problemRevisionId": "fd479174-3c6f-44c0-8d7a-fb98dbac4a4f",
+      "cardId": "PH08-FB-ERR-ALG-04-H3",
+      "contentSha256": "9da14e45838a6bb5b3c50f2e011fe0f5bb0b6de744d49b76528a7a1ce1c75259",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-04-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "332ecd3e-4948-4b2f-b0b9-61bea74ebec8",
+      "problemRevisionId": "a19e9e01-8082-4604-a1d4-fa24c58bd380",
+      "cardId": "PH08-FB-ERR-ALG-04-H3",
+      "contentSha256": "9da14e45838a6bb5b3c50f2e011fe0f5bb0b6de744d49b76528a7a1ce1c75259",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-04-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "dbf2f069-02a8-4de1-88d3-9a70319be0bd",
+      "problemRevisionId": "e723df19-9fab-4d66-9678-98eba1b2ced8",
+      "cardId": "PH08-FB-ERR-ALG-04-H3",
+      "contentSha256": "9da14e45838a6bb5b3c50f2e011fe0f5bb0b6de744d49b76528a7a1ce1c75259",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-04-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "64a51e28-d560-4ebe-8d78-53a68fa92365",
+      "problemRevisionId": "9fa3f935-38bd-4636-bf8c-90da8e84fe92",
+      "cardId": "PH08-FB-ERR-ALG-04-H3",
+      "contentSha256": "9da14e45838a6bb5b3c50f2e011fe0f5bb0b6de744d49b76528a7a1ce1c75259",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-04-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "da72d7b8-c068-4f24-9f76-339e17f0903d",
+      "problemRevisionId": "47fb8055-07c2-40c5-aeff-04f3036a5446",
+      "cardId": "PH08-FB-ERR-ALG-04-H3",
+      "contentSha256": "9da14e45838a6bb5b3c50f2e011fe0f5bb0b6de744d49b76528a7a1ce1c75259",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-04-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "ecea84ef-658e-4103-8646-1ef9b69323f8",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-ERR-ALG-05-H1",
+      "contentSha256": "6718d3e347adaa76efbed9443ee82ce6bb3a9ee6e07657f1fba793e5cd0df7e0",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-05-H1",
+      "enabled": false
+    },
+    {
+      "templateId": "5852ad9f-0caa-4350-9467-efd24fc1c2e8",
+      "problemRevisionId": "30118745-16bd-4097-b7cc-638400cb77f6",
+      "cardId": "PH08-FB-ERR-ALG-05-H1",
+      "contentSha256": "6718d3e347adaa76efbed9443ee82ce6bb3a9ee6e07657f1fba793e5cd0df7e0",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-05-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "14129fdd-2a41-4226-892e-d1d93b31263a",
+      "problemRevisionId": "19e9a133-9dcd-4b0f-b624-f19bde2d6ab5",
+      "cardId": "PH08-FB-ERR-ALG-05-H1",
+      "contentSha256": "6718d3e347adaa76efbed9443ee82ce6bb3a9ee6e07657f1fba793e5cd0df7e0",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-05-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "3c086928-9604-40c4-9c8b-6f97fd6fef02",
+      "problemRevisionId": "be76da01-979b-4384-8efe-0e892e91e0eb",
+      "cardId": "PH08-FB-ERR-ALG-05-H1",
+      "contentSha256": "6718d3e347adaa76efbed9443ee82ce6bb3a9ee6e07657f1fba793e5cd0df7e0",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-05-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "4cbd39ed-c199-45ec-8d24-2bbd38166b56",
+      "problemRevisionId": "b9d93fbe-a000-41aa-8eb7-c26237dc1d7e",
+      "cardId": "PH08-FB-ERR-ALG-05-H1",
+      "contentSha256": "6718d3e347adaa76efbed9443ee82ce6bb3a9ee6e07657f1fba793e5cd0df7e0",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-05-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "928563a6-602c-40eb-950b-2f5fb32c3834",
+      "problemRevisionId": "048434a3-3e6d-4a72-949c-26c41d1b3eb1",
+      "cardId": "PH08-FB-ERR-ALG-05-H1",
+      "contentSha256": "6718d3e347adaa76efbed9443ee82ce6bb3a9ee6e07657f1fba793e5cd0df7e0",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-05-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "62f01eed-c9c8-4e32-92d0-2baacc5b03c6",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-ERR-ALG-05-H2",
+      "contentSha256": "cc435a06b0418c3a739f7a452db4563d2204fbd55d90a2a86d746b60cfc037e5",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-05-H2",
+      "enabled": false
+    },
+    {
+      "templateId": "2fd0f8dd-989a-4c32-bed6-f5b0d9d20742",
+      "problemRevisionId": "30118745-16bd-4097-b7cc-638400cb77f6",
+      "cardId": "PH08-FB-ERR-ALG-05-H2",
+      "contentSha256": "cc435a06b0418c3a739f7a452db4563d2204fbd55d90a2a86d746b60cfc037e5",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-05-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "569c9285-0f55-4023-97a5-1a9edfbff140",
+      "problemRevisionId": "19e9a133-9dcd-4b0f-b624-f19bde2d6ab5",
+      "cardId": "PH08-FB-ERR-ALG-05-H2",
+      "contentSha256": "cc435a06b0418c3a739f7a452db4563d2204fbd55d90a2a86d746b60cfc037e5",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-05-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "98997519-8abd-448a-92ac-1a14aed5d021",
+      "problemRevisionId": "be76da01-979b-4384-8efe-0e892e91e0eb",
+      "cardId": "PH08-FB-ERR-ALG-05-H2",
+      "contentSha256": "cc435a06b0418c3a739f7a452db4563d2204fbd55d90a2a86d746b60cfc037e5",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-05-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "3d630c41-512d-4842-8974-ee0b76ed695d",
+      "problemRevisionId": "b9d93fbe-a000-41aa-8eb7-c26237dc1d7e",
+      "cardId": "PH08-FB-ERR-ALG-05-H2",
+      "contentSha256": "cc435a06b0418c3a739f7a452db4563d2204fbd55d90a2a86d746b60cfc037e5",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-05-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "bb91ca02-00bc-4f2f-be82-e8d339f5f204",
+      "problemRevisionId": "048434a3-3e6d-4a72-949c-26c41d1b3eb1",
+      "cardId": "PH08-FB-ERR-ALG-05-H2",
+      "contentSha256": "cc435a06b0418c3a739f7a452db4563d2204fbd55d90a2a86d746b60cfc037e5",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-05-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "c5cb1251-8c58-426c-930a-f02c4c5061c5",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-ERR-ALG-05-H3",
+      "contentSha256": "49f5375c18b106a305279f6315399cb56640cf52b98e59541e54aa9316a4dea9",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-05-H3",
+      "enabled": false
+    },
+    {
+      "templateId": "bd5b0cf3-36f4-4e97-ac88-821d830beadc",
+      "problemRevisionId": "30118745-16bd-4097-b7cc-638400cb77f6",
+      "cardId": "PH08-FB-ERR-ALG-05-H3",
+      "contentSha256": "49f5375c18b106a305279f6315399cb56640cf52b98e59541e54aa9316a4dea9",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-05-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "c0a90faf-3947-489b-8a5f-0ef1b5c0ad0f",
+      "problemRevisionId": "19e9a133-9dcd-4b0f-b624-f19bde2d6ab5",
+      "cardId": "PH08-FB-ERR-ALG-05-H3",
+      "contentSha256": "49f5375c18b106a305279f6315399cb56640cf52b98e59541e54aa9316a4dea9",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-05-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "a133b759-7978-45b7-8d1a-5e808636de3f",
+      "problemRevisionId": "be76da01-979b-4384-8efe-0e892e91e0eb",
+      "cardId": "PH08-FB-ERR-ALG-05-H3",
+      "contentSha256": "49f5375c18b106a305279f6315399cb56640cf52b98e59541e54aa9316a4dea9",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-05-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "d7ca383c-75eb-423a-8793-0fe7e487cc0c",
+      "problemRevisionId": "b9d93fbe-a000-41aa-8eb7-c26237dc1d7e",
+      "cardId": "PH08-FB-ERR-ALG-05-H3",
+      "contentSha256": "49f5375c18b106a305279f6315399cb56640cf52b98e59541e54aa9316a4dea9",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-05-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "3b6da046-3ec3-46b8-b8ac-a535856794fc",
+      "problemRevisionId": "048434a3-3e6d-4a72-949c-26c41d1b3eb1",
+      "cardId": "PH08-FB-ERR-ALG-05-H3",
+      "contentSha256": "49f5375c18b106a305279f6315399cb56640cf52b98e59541e54aa9316a4dea9",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-05-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "0ff440a2-275d-43fa-804d-6eaf505bdc4e",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-ERR-ALG-06-H1",
+      "contentSha256": "bc6338a5f504e66fffb857d10f5cd9ab8a67e8daddc0300d65bb5df88ac3217e",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H1",
+      "enabled": false
+    },
+    {
+      "templateId": "16b85691-1cf1-487b-ba3e-383aeb7c0b19",
+      "problemRevisionId": "0a81dccf-06d7-46ab-8cf7-6cdc3a4be102",
+      "cardId": "PH08-FB-ERR-ALG-06-H1",
+      "contentSha256": "bc6338a5f504e66fffb857d10f5cd9ab8a67e8daddc0300d65bb5df88ac3217e",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "ab6c63f7-ad0a-492b-b6f1-e7ec031e8a4d",
+      "problemRevisionId": "6d1f6ec4-0576-4c96-af19-896f0559c969",
+      "cardId": "PH08-FB-ERR-ALG-06-H1",
+      "contentSha256": "bc6338a5f504e66fffb857d10f5cd9ab8a67e8daddc0300d65bb5df88ac3217e",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "68ce0fbd-fcc5-4051-b2e6-94ce43a10411",
+      "problemRevisionId": "153ed8dc-3afc-412e-8cc6-162c93c4c34d",
+      "cardId": "PH08-FB-ERR-ALG-06-H1",
+      "contentSha256": "bc6338a5f504e66fffb857d10f5cd9ab8a67e8daddc0300d65bb5df88ac3217e",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "1e4ce7a6-d560-4233-ae49-4d6020296a57",
+      "problemRevisionId": "3806bfea-9e88-4238-8984-7abbe26c8472",
+      "cardId": "PH08-FB-ERR-ALG-06-H1",
+      "contentSha256": "bc6338a5f504e66fffb857d10f5cd9ab8a67e8daddc0300d65bb5df88ac3217e",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "c71e7dc8-f559-4292-804a-b60d236438df",
+      "problemRevisionId": "3671f909-9b63-4bde-bd56-90141d456356",
+      "cardId": "PH08-FB-ERR-ALG-06-H1",
+      "contentSha256": "bc6338a5f504e66fffb857d10f5cd9ab8a67e8daddc0300d65bb5df88ac3217e",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "3f10a728-050f-4027-801f-725646d54452",
+      "problemRevisionId": "12d78697-cc9c-4ebf-9c86-71c622b67fbf",
+      "cardId": "PH08-FB-ERR-ALG-06-H1",
+      "contentSha256": "bc6338a5f504e66fffb857d10f5cd9ab8a67e8daddc0300d65bb5df88ac3217e",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "a2ed4661-0584-4428-a73a-777406cd660a",
+      "problemRevisionId": "89a37bd0-a958-4896-9dc3-d119fd55c377",
+      "cardId": "PH08-FB-ERR-ALG-06-H1",
+      "contentSha256": "bc6338a5f504e66fffb857d10f5cd9ab8a67e8daddc0300d65bb5df88ac3217e",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "51bff4c4-eaca-46df-8e03-bcc656a40779",
+      "problemRevisionId": "98e57e98-d3c5-4709-95a4-9b7193718238",
+      "cardId": "PH08-FB-ERR-ALG-06-H1",
+      "contentSha256": "bc6338a5f504e66fffb857d10f5cd9ab8a67e8daddc0300d65bb5df88ac3217e",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "a07a16a7-4270-42a3-bba9-e592cdd7aa86",
+      "problemRevisionId": "a06af985-d37e-4ff0-bb2e-25e68292eacb",
+      "cardId": "PH08-FB-ERR-ALG-06-H1",
+      "contentSha256": "bc6338a5f504e66fffb857d10f5cd9ab8a67e8daddc0300d65bb5df88ac3217e",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "66422ae3-89ba-4788-a988-9a507f142053",
+      "problemRevisionId": "3e8101f7-1f65-4f3e-8a10-87f18a9de019",
+      "cardId": "PH08-FB-ERR-ALG-06-H1",
+      "contentSha256": "bc6338a5f504e66fffb857d10f5cd9ab8a67e8daddc0300d65bb5df88ac3217e",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "69d7d721-747d-4ea4-bcb2-8217371c0e88",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-ERR-ALG-06-H2",
+      "contentSha256": "a996dd612a701548c6dd21f5bfd376bc76a79cff3583503f72c7022577449b6c",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H2",
+      "enabled": false
+    },
+    {
+      "templateId": "0285456e-b7e3-48e3-85f9-704690b87903",
+      "problemRevisionId": "0a81dccf-06d7-46ab-8cf7-6cdc3a4be102",
+      "cardId": "PH08-FB-ERR-ALG-06-H2",
+      "contentSha256": "a996dd612a701548c6dd21f5bfd376bc76a79cff3583503f72c7022577449b6c",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "0b4b483c-2271-4d90-b67d-42b069fa6f31",
+      "problemRevisionId": "6d1f6ec4-0576-4c96-af19-896f0559c969",
+      "cardId": "PH08-FB-ERR-ALG-06-H2",
+      "contentSha256": "a996dd612a701548c6dd21f5bfd376bc76a79cff3583503f72c7022577449b6c",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "3fe2ae36-2674-4685-8bed-5305be686d8a",
+      "problemRevisionId": "153ed8dc-3afc-412e-8cc6-162c93c4c34d",
+      "cardId": "PH08-FB-ERR-ALG-06-H2",
+      "contentSha256": "a996dd612a701548c6dd21f5bfd376bc76a79cff3583503f72c7022577449b6c",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "f679e605-48a0-4b10-a557-9eaa10fa2e5a",
+      "problemRevisionId": "3806bfea-9e88-4238-8984-7abbe26c8472",
+      "cardId": "PH08-FB-ERR-ALG-06-H2",
+      "contentSha256": "a996dd612a701548c6dd21f5bfd376bc76a79cff3583503f72c7022577449b6c",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "b04db7e1-d66e-4976-b3d1-aa45ba3e053e",
+      "problemRevisionId": "3671f909-9b63-4bde-bd56-90141d456356",
+      "cardId": "PH08-FB-ERR-ALG-06-H2",
+      "contentSha256": "a996dd612a701548c6dd21f5bfd376bc76a79cff3583503f72c7022577449b6c",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "cb9fb2f7-43ab-431d-add7-672eed44a9d6",
+      "problemRevisionId": "12d78697-cc9c-4ebf-9c86-71c622b67fbf",
+      "cardId": "PH08-FB-ERR-ALG-06-H2",
+      "contentSha256": "a996dd612a701548c6dd21f5bfd376bc76a79cff3583503f72c7022577449b6c",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "89699837-86f8-47c3-8acb-768988966c18",
+      "problemRevisionId": "89a37bd0-a958-4896-9dc3-d119fd55c377",
+      "cardId": "PH08-FB-ERR-ALG-06-H2",
+      "contentSha256": "a996dd612a701548c6dd21f5bfd376bc76a79cff3583503f72c7022577449b6c",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "b52bf257-ace4-4625-a512-0163b84fdd70",
+      "problemRevisionId": "98e57e98-d3c5-4709-95a4-9b7193718238",
+      "cardId": "PH08-FB-ERR-ALG-06-H2",
+      "contentSha256": "a996dd612a701548c6dd21f5bfd376bc76a79cff3583503f72c7022577449b6c",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "b02a2443-4eea-4283-bb59-6b064b60896b",
+      "problemRevisionId": "a06af985-d37e-4ff0-bb2e-25e68292eacb",
+      "cardId": "PH08-FB-ERR-ALG-06-H2",
+      "contentSha256": "a996dd612a701548c6dd21f5bfd376bc76a79cff3583503f72c7022577449b6c",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "c84ccde3-247d-494a-b110-07acb4db1c4c",
+      "problemRevisionId": "3e8101f7-1f65-4f3e-8a10-87f18a9de019",
+      "cardId": "PH08-FB-ERR-ALG-06-H2",
+      "contentSha256": "a996dd612a701548c6dd21f5bfd376bc76a79cff3583503f72c7022577449b6c",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "49a7e073-c454-4117-b524-7ba233879a53",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-ERR-ALG-06-H3",
+      "contentSha256": "7740ca6b3636ea05d73f145ebc519697b48b084dc0a81920604d465e12822dfe",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H3",
+      "enabled": false
+    },
+    {
+      "templateId": "b72c2ff0-3ff0-476c-b0b2-8a18e901e52e",
+      "problemRevisionId": "0a81dccf-06d7-46ab-8cf7-6cdc3a4be102",
+      "cardId": "PH08-FB-ERR-ALG-06-H3",
+      "contentSha256": "7740ca6b3636ea05d73f145ebc519697b48b084dc0a81920604d465e12822dfe",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "3ed19fce-eb56-4c73-935b-a134481ab2a6",
+      "problemRevisionId": "6d1f6ec4-0576-4c96-af19-896f0559c969",
+      "cardId": "PH08-FB-ERR-ALG-06-H3",
+      "contentSha256": "7740ca6b3636ea05d73f145ebc519697b48b084dc0a81920604d465e12822dfe",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "5fec9e3f-a887-4941-97ac-f451fa910f7b",
+      "problemRevisionId": "153ed8dc-3afc-412e-8cc6-162c93c4c34d",
+      "cardId": "PH08-FB-ERR-ALG-06-H3",
+      "contentSha256": "7740ca6b3636ea05d73f145ebc519697b48b084dc0a81920604d465e12822dfe",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "9a99c0da-b5a8-4956-91fc-c134f296f4a4",
+      "problemRevisionId": "3806bfea-9e88-4238-8984-7abbe26c8472",
+      "cardId": "PH08-FB-ERR-ALG-06-H3",
+      "contentSha256": "7740ca6b3636ea05d73f145ebc519697b48b084dc0a81920604d465e12822dfe",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "51880f68-8b54-4480-8b8e-e1767e39a5bd",
+      "problemRevisionId": "3671f909-9b63-4bde-bd56-90141d456356",
+      "cardId": "PH08-FB-ERR-ALG-06-H3",
+      "contentSha256": "7740ca6b3636ea05d73f145ebc519697b48b084dc0a81920604d465e12822dfe",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "6293ccdc-1fbc-49e6-816c-d92cc0b2591c",
+      "problemRevisionId": "12d78697-cc9c-4ebf-9c86-71c622b67fbf",
+      "cardId": "PH08-FB-ERR-ALG-06-H3",
+      "contentSha256": "7740ca6b3636ea05d73f145ebc519697b48b084dc0a81920604d465e12822dfe",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "2b56176d-4294-4b38-ba12-843591033e37",
+      "problemRevisionId": "89a37bd0-a958-4896-9dc3-d119fd55c377",
+      "cardId": "PH08-FB-ERR-ALG-06-H3",
+      "contentSha256": "7740ca6b3636ea05d73f145ebc519697b48b084dc0a81920604d465e12822dfe",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "e66e33a3-d84c-45c7-b67f-3b5161bc2977",
+      "problemRevisionId": "98e57e98-d3c5-4709-95a4-9b7193718238",
+      "cardId": "PH08-FB-ERR-ALG-06-H3",
+      "contentSha256": "7740ca6b3636ea05d73f145ebc519697b48b084dc0a81920604d465e12822dfe",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "d25601b7-958d-47c2-8e1e-3d22c89e62f2",
+      "problemRevisionId": "a06af985-d37e-4ff0-bb2e-25e68292eacb",
+      "cardId": "PH08-FB-ERR-ALG-06-H3",
+      "contentSha256": "7740ca6b3636ea05d73f145ebc519697b48b084dc0a81920604d465e12822dfe",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "79f84b09-1876-4996-9c22-e7f9772c587f",
+      "problemRevisionId": "3e8101f7-1f65-4f3e-8a10-87f18a9de019",
+      "cardId": "PH08-FB-ERR-ALG-06-H3",
+      "contentSha256": "7740ca6b3636ea05d73f145ebc519697b48b084dc0a81920604d465e12822dfe",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-ERR-ALG-06-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "e140a4da-5bed-42b7-bcb7-5ae5073c16b0",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": false
+    },
+    {
+      "templateId": "cd58c404-dd1e-4010-a648-cfa6e6080e67",
+      "problemRevisionId": "0a81dccf-06d7-46ab-8cf7-6cdc3a4be102",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "d0c02856-3cdf-460d-b39f-4c8ab3ab68d4",
+      "problemRevisionId": "6d1f6ec4-0576-4c96-af19-896f0559c969",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "5fc4152c-10c1-4dee-abe1-114642bf0f52",
+      "problemRevisionId": "153ed8dc-3afc-412e-8cc6-162c93c4c34d",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "580d4d71-dd86-4108-a73c-17acdb55c9ce",
+      "problemRevisionId": "3806bfea-9e88-4238-8984-7abbe26c8472",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "10721dc9-99aa-46a7-90f1-76618949ad72",
+      "problemRevisionId": "3671f909-9b63-4bde-bd56-90141d456356",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "9a6ffb86-ce46-4c8e-9f30-0bffa2fb6bdd",
+      "problemRevisionId": "b49b2da3-9739-476e-84df-73adc43b6aee",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "49ebb94d-bc12-4bd1-bf59-5d515412255c",
+      "problemRevisionId": "b4987d6f-8ed2-4351-9321-ec7bcd02c53a",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "f0880a48-3359-4ad0-ba51-18791cc22e5b",
+      "problemRevisionId": "e1b26c02-fda1-4fa5-b286-5ba57160036f",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "170d0346-75e2-4eeb-8365-ab8f8584656b",
+      "problemRevisionId": "838b6642-3f06-49c5-b711-aa9e96e81cdb",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "f32a10d1-9490-4c88-88be-06c4ff00642e",
+      "problemRevisionId": "843e1f74-a974-4357-bdf4-650664f2e4f6",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "54cd573f-878b-46d7-b6a2-9e7ae38bedee",
+      "problemRevisionId": "3e39e3d5-5fe1-4603-882a-00e4bc79eb1f",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "6bd02c4c-db78-4334-9952-a2566b1624a5",
+      "problemRevisionId": "83ceee8e-7db4-4172-a1f0-2c18e2ec9c9a",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "f20daabf-d848-4541-b55a-96267fba2e56",
+      "problemRevisionId": "f028d221-e358-4515-82b1-cce89ee0dcf0",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "52e7545a-cec8-4df9-b135-2dff36178d7b",
+      "problemRevisionId": "e8b3e67d-e1b5-40c1-b56d-b0ad1db83af3",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "58b3167c-3d6f-447b-ac35-76007e6a0a73",
+      "problemRevisionId": "5bd79cb2-3c7a-4989-9400-a0120387a9bf",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "2112db18-6bab-45e2-a0a7-6c02569f59f9",
+      "problemRevisionId": "fd479174-3c6f-44c0-8d7a-fb98dbac4a4f",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "e5d2e0b5-294f-48b5-b2c2-29df73f2c6fe",
+      "problemRevisionId": "a19e9e01-8082-4604-a1d4-fa24c58bd380",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "ad4a0ee1-f65f-4e37-bbed-7b2e3d4a9623",
+      "problemRevisionId": "e723df19-9fab-4d66-9678-98eba1b2ced8",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "a407e862-f611-41ec-ac5f-a3d0572b1553",
+      "problemRevisionId": "9fa3f935-38bd-4636-bf8c-90da8e84fe92",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "e13aa247-1337-4e28-8688-c3be6093d6a1",
+      "problemRevisionId": "47fb8055-07c2-40c5-aeff-04f3036a5446",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "c72a6e9d-7e9e-405f-aca0-6ec00beeb6fc",
+      "problemRevisionId": "30118745-16bd-4097-b7cc-638400cb77f6",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "56e01357-33e5-4752-a97c-2e576edfa380",
+      "problemRevisionId": "19e9a133-9dcd-4b0f-b624-f19bde2d6ab5",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "4d9445f3-83da-4e7b-bd67-5ffb612b5e8b",
+      "problemRevisionId": "be76da01-979b-4384-8efe-0e892e91e0eb",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "800529c7-b243-4270-9389-330c75e8bca6",
+      "problemRevisionId": "b9d93fbe-a000-41aa-8eb7-c26237dc1d7e",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "34e4381f-327d-46b5-8820-f5c8123a781c",
+      "problemRevisionId": "048434a3-3e6d-4a72-949c-26c41d1b3eb1",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "994b50d8-7a58-45f8-a2f2-43df23b708ac",
+      "problemRevisionId": "12d78697-cc9c-4ebf-9c86-71c622b67fbf",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "8d7fbf39-61d7-4919-9d84-8253ad15e49f",
+      "problemRevisionId": "89a37bd0-a958-4896-9dc3-d119fd55c377",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "d3011c20-6e30-4818-aa8f-94cd42acf2fc",
+      "problemRevisionId": "98e57e98-d3c5-4709-95a4-9b7193718238",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "ab59fbe0-b186-440b-af90-f2293f116100",
+      "problemRevisionId": "a06af985-d37e-4ff0-bb2e-25e68292eacb",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "71d14c32-a246-4680-a847-cd33f5394f6b",
+      "problemRevisionId": "3e8101f7-1f65-4f3e-8a10-87f18a9de019",
+      "cardId": "PH08-FB-UNRESOLVED-H1",
+      "contentSha256": "2b5e317982d3770a127553a34ca33f7a600e0d1ba6090ce6ab58f36d0ec2d7ef",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "10d1b014-399e-44f1-bcd7-35972631388d",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": false
+    },
+    {
+      "templateId": "9edf409d-111f-478c-95a2-540da7a392e1",
+      "problemRevisionId": "0a81dccf-06d7-46ab-8cf7-6cdc3a4be102",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "170f4825-1811-4aef-b6e2-b521f32e307b",
+      "problemRevisionId": "6d1f6ec4-0576-4c96-af19-896f0559c969",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "09901ef2-77b2-4267-bdb0-5146f97b76dc",
+      "problemRevisionId": "153ed8dc-3afc-412e-8cc6-162c93c4c34d",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "a7b4fd16-7a4d-4734-aaf3-20387607713c",
+      "problemRevisionId": "3806bfea-9e88-4238-8984-7abbe26c8472",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "c91b4602-0010-4970-80f2-c0915faaa261",
+      "problemRevisionId": "3671f909-9b63-4bde-bd56-90141d456356",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "7b9d24c1-c4f7-48a9-8a89-5c199b757820",
+      "problemRevisionId": "b49b2da3-9739-476e-84df-73adc43b6aee",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "fd725d84-d3f8-4ff7-adfa-7bc2c26b9d30",
+      "problemRevisionId": "b4987d6f-8ed2-4351-9321-ec7bcd02c53a",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "5a00d4fa-e06e-4625-b1b5-d74f7f3f415a",
+      "problemRevisionId": "e1b26c02-fda1-4fa5-b286-5ba57160036f",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "ade18a63-fc7b-4fa3-a227-c6bb4562338b",
+      "problemRevisionId": "838b6642-3f06-49c5-b711-aa9e96e81cdb",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "21b4361b-0fed-4d58-8aa4-acde7e4df5b9",
+      "problemRevisionId": "843e1f74-a974-4357-bdf4-650664f2e4f6",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "e2fbaec2-f8f6-4c96-822d-ef6313b00654",
+      "problemRevisionId": "3e39e3d5-5fe1-4603-882a-00e4bc79eb1f",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "496308c3-9555-414b-a9ea-5c0bcc31c87e",
+      "problemRevisionId": "83ceee8e-7db4-4172-a1f0-2c18e2ec9c9a",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "28419f70-6731-4fb5-997a-a981b487fc4f",
+      "problemRevisionId": "f028d221-e358-4515-82b1-cce89ee0dcf0",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "49f5fb73-4c05-47e2-a18f-0382d6461349",
+      "problemRevisionId": "e8b3e67d-e1b5-40c1-b56d-b0ad1db83af3",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "bf63e3d0-0f81-413a-a463-66a965ba4c44",
+      "problemRevisionId": "5bd79cb2-3c7a-4989-9400-a0120387a9bf",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "7e73fe0f-29fa-4c7e-8efe-3072e20f3d0f",
+      "problemRevisionId": "fd479174-3c6f-44c0-8d7a-fb98dbac4a4f",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "265a5e4b-9a33-4d28-8736-bc1e8a8a252c",
+      "problemRevisionId": "a19e9e01-8082-4604-a1d4-fa24c58bd380",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "1c94a537-6a76-488c-9dbb-eb4786d6714c",
+      "problemRevisionId": "e723df19-9fab-4d66-9678-98eba1b2ced8",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "7eb308c4-865d-49ef-aa9f-1147e83623e7",
+      "problemRevisionId": "9fa3f935-38bd-4636-bf8c-90da8e84fe92",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "e8dc99b8-aed7-4358-981c-9cc52600cddc",
+      "problemRevisionId": "47fb8055-07c2-40c5-aeff-04f3036a5446",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "aca5f297-4369-4a9d-af3c-ff35ee4f8d0c",
+      "problemRevisionId": "30118745-16bd-4097-b7cc-638400cb77f6",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "aee1beae-fefe-45be-b696-2836b414d0e0",
+      "problemRevisionId": "19e9a133-9dcd-4b0f-b624-f19bde2d6ab5",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "5a7cb598-b71a-4875-8748-1fe1eae96013",
+      "problemRevisionId": "be76da01-979b-4384-8efe-0e892e91e0eb",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "b9573e10-59f4-4b33-88b0-9364ec5849b7",
+      "problemRevisionId": "b9d93fbe-a000-41aa-8eb7-c26237dc1d7e",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "8ee2d687-5c61-47a0-b9a8-393a2946b52c",
+      "problemRevisionId": "048434a3-3e6d-4a72-949c-26c41d1b3eb1",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "3243b206-d7b3-439b-9830-3c1af77c1e01",
+      "problemRevisionId": "12d78697-cc9c-4ebf-9c86-71c622b67fbf",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "34520b77-7376-4c28-90fa-a3f8b6477c6e",
+      "problemRevisionId": "89a37bd0-a958-4896-9dc3-d119fd55c377",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "9082892d-22ff-42cf-b9f8-f57ad23d370f",
+      "problemRevisionId": "98e57e98-d3c5-4709-95a4-9b7193718238",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "f5e9b2f7-1c19-4595-83f3-b74938103ebe",
+      "problemRevisionId": "a06af985-d37e-4ff0-bb2e-25e68292eacb",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "8c056b08-393f-434d-a87c-a088abd82ad3",
+      "problemRevisionId": "3e8101f7-1f65-4f3e-8a10-87f18a9de019",
+      "cardId": "PH08-FB-UNRESOLVED-H2",
+      "contentSha256": "a9dfa64ce1c3d86660f72a8ed495533bc30646b659e6e96cfc8091667d40c487",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "a82d5f2f-f1eb-4812-ae1b-c237d9a6561f",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": false
+    },
+    {
+      "templateId": "b3874de4-fcd5-46c1-8671-0883c5a9d5f8",
+      "problemRevisionId": "0a81dccf-06d7-46ab-8cf7-6cdc3a4be102",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "364a370e-a1ff-4015-9f46-d686394c32b4",
+      "problemRevisionId": "6d1f6ec4-0576-4c96-af19-896f0559c969",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "ff7f55a0-3d3a-47ae-a2ae-4963514dd8ae",
+      "problemRevisionId": "153ed8dc-3afc-412e-8cc6-162c93c4c34d",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "ad6a03ea-43af-460a-b455-3725585a0f5c",
+      "problemRevisionId": "3806bfea-9e88-4238-8984-7abbe26c8472",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "daf34d6b-ed83-4031-87d2-5128cef2f4c7",
+      "problemRevisionId": "3671f909-9b63-4bde-bd56-90141d456356",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "a6bb944c-3b47-42d4-baa2-6073d990b5c4",
+      "problemRevisionId": "b49b2da3-9739-476e-84df-73adc43b6aee",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "7134b66f-64dc-4299-ade3-cb27b23e8b14",
+      "problemRevisionId": "b4987d6f-8ed2-4351-9321-ec7bcd02c53a",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "01d8839d-ee5a-4ef5-8478-b78b70b3de91",
+      "problemRevisionId": "e1b26c02-fda1-4fa5-b286-5ba57160036f",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "0a3bc135-340e-4338-8f09-5f2dbde9367c",
+      "problemRevisionId": "838b6642-3f06-49c5-b711-aa9e96e81cdb",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "bb3e2649-46f5-4695-bcd7-42f2b0e71c4e",
+      "problemRevisionId": "843e1f74-a974-4357-bdf4-650664f2e4f6",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "97a772ac-9d60-4350-9ab7-acfe266e774f",
+      "problemRevisionId": "3e39e3d5-5fe1-4603-882a-00e4bc79eb1f",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "36f42af7-9fee-4174-b243-eef376c5da31",
+      "problemRevisionId": "83ceee8e-7db4-4172-a1f0-2c18e2ec9c9a",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "8086c390-d399-46bb-af29-91eac347a00b",
+      "problemRevisionId": "f028d221-e358-4515-82b1-cce89ee0dcf0",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "189caa23-3fd9-4c2d-9447-2c7f889e6543",
+      "problemRevisionId": "e8b3e67d-e1b5-40c1-b56d-b0ad1db83af3",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "e35e0c28-87d2-4cde-bff1-a9f556a61c58",
+      "problemRevisionId": "5bd79cb2-3c7a-4989-9400-a0120387a9bf",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "9c352bbb-2e82-42b4-a9c4-9072b7b9e5d5",
+      "problemRevisionId": "fd479174-3c6f-44c0-8d7a-fb98dbac4a4f",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "7c5c547b-7eb0-4492-abdd-7bfff3031998",
+      "problemRevisionId": "a19e9e01-8082-4604-a1d4-fa24c58bd380",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "cb40d5f3-4efa-4832-a44f-8e1384d18c27",
+      "problemRevisionId": "e723df19-9fab-4d66-9678-98eba1b2ced8",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "56231393-b955-4fdc-8855-f21ccb6cd088",
+      "problemRevisionId": "9fa3f935-38bd-4636-bf8c-90da8e84fe92",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "a28d040d-abe5-4891-9522-8076d1c5002a",
+      "problemRevisionId": "47fb8055-07c2-40c5-aeff-04f3036a5446",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "cec400a0-d1f3-4774-a897-02f34d2dffd8",
+      "problemRevisionId": "30118745-16bd-4097-b7cc-638400cb77f6",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "6f7afab5-626f-4bf8-8591-96f29f09c596",
+      "problemRevisionId": "19e9a133-9dcd-4b0f-b624-f19bde2d6ab5",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "573dbc53-4eb0-4e38-baee-a508c4a36fd3",
+      "problemRevisionId": "be76da01-979b-4384-8efe-0e892e91e0eb",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "5cac16cc-ad4f-45ba-9f6d-73046bcd0e6e",
+      "problemRevisionId": "b9d93fbe-a000-41aa-8eb7-c26237dc1d7e",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "ef52b6fd-298a-4fc5-803a-17185300c5e4",
+      "problemRevisionId": "048434a3-3e6d-4a72-949c-26c41d1b3eb1",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "be4a106c-e397-484a-913e-e9a7666699ac",
+      "problemRevisionId": "12d78697-cc9c-4ebf-9c86-71c622b67fbf",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "0711a4fa-a4ce-482f-83f3-4b2e269ccb2a",
+      "problemRevisionId": "89a37bd0-a958-4896-9dc3-d119fd55c377",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "df461167-6c5e-4890-83b6-9b5d99d815f8",
+      "problemRevisionId": "98e57e98-d3c5-4709-95a4-9b7193718238",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "560d9ccf-d552-40f2-95d3-afd33ee53b06",
+      "problemRevisionId": "a06af985-d37e-4ff0-bb2e-25e68292eacb",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "e0421ad0-8c92-41ce-868c-e08bdc996c1c",
+      "problemRevisionId": "3e8101f7-1f65-4f3e-8a10-87f18a9de019",
+      "cardId": "PH08-FB-UNRESOLVED-H3",
+      "contentSha256": "b72a6e0d9f4d6e1d7ef91c40080f06bad0cae0e8bee7483af9843b0f3ea7c732",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-UNRESOLVED-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "73b99066-f291-4d92-bc1c-5a2a769ea390",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-MAPPING-PENDING-H1",
+      "contentSha256": "4979c6e028514df7b6360d8b6b1c6cdfb71168915a7cfa9fd9e7f357cb606334",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-MAPPING-PENDING-H1",
+      "enabled": false
+    },
+    {
+      "templateId": "0f80c3cc-60f8-46e7-be82-3fe171a19c73",
+      "problemRevisionId": "fd479174-3c6f-44c0-8d7a-fb98dbac4a4f",
+      "cardId": "PH08-FB-MAPPING-PENDING-H1",
+      "contentSha256": "4979c6e028514df7b6360d8b6b1c6cdfb71168915a7cfa9fd9e7f357cb606334",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-MAPPING-PENDING-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "c8787d6b-0b3c-45e5-9c0c-b7cf21435609",
+      "problemRevisionId": "a19e9e01-8082-4604-a1d4-fa24c58bd380",
+      "cardId": "PH08-FB-MAPPING-PENDING-H1",
+      "contentSha256": "4979c6e028514df7b6360d8b6b1c6cdfb71168915a7cfa9fd9e7f357cb606334",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-MAPPING-PENDING-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "e8e012f5-d992-41b0-ad32-fed5fdc39dfc",
+      "problemRevisionId": "e723df19-9fab-4d66-9678-98eba1b2ced8",
+      "cardId": "PH08-FB-MAPPING-PENDING-H1",
+      "contentSha256": "4979c6e028514df7b6360d8b6b1c6cdfb71168915a7cfa9fd9e7f357cb606334",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-MAPPING-PENDING-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "dde8f093-7e18-4e59-8a88-46be81b369fc",
+      "problemRevisionId": "9fa3f935-38bd-4636-bf8c-90da8e84fe92",
+      "cardId": "PH08-FB-MAPPING-PENDING-H1",
+      "contentSha256": "4979c6e028514df7b6360d8b6b1c6cdfb71168915a7cfa9fd9e7f357cb606334",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-MAPPING-PENDING-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "2cdf74eb-d3db-420a-9168-f7fb69905edf",
+      "problemRevisionId": "47fb8055-07c2-40c5-aeff-04f3036a5446",
+      "cardId": "PH08-FB-MAPPING-PENDING-H1",
+      "contentSha256": "4979c6e028514df7b6360d8b6b1c6cdfb71168915a7cfa9fd9e7f357cb606334",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-MAPPING-PENDING-H1",
+      "enabled": true
+    },
+    {
+      "templateId": "71ba3d4d-0973-42e3-9895-d242bfc632b6",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-MAPPING-PENDING-H2",
+      "contentSha256": "86d9853c176c4179cf316cee5d135304f59fac3db8a7641a2a39960fb4f4f6dd",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-MAPPING-PENDING-H2",
+      "enabled": false
+    },
+    {
+      "templateId": "d6055783-534b-4499-8727-4d1ab7e02140",
+      "problemRevisionId": "fd479174-3c6f-44c0-8d7a-fb98dbac4a4f",
+      "cardId": "PH08-FB-MAPPING-PENDING-H2",
+      "contentSha256": "86d9853c176c4179cf316cee5d135304f59fac3db8a7641a2a39960fb4f4f6dd",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-MAPPING-PENDING-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "83aee7b9-a687-43f0-8fc1-fc5af04c9dd6",
+      "problemRevisionId": "a19e9e01-8082-4604-a1d4-fa24c58bd380",
+      "cardId": "PH08-FB-MAPPING-PENDING-H2",
+      "contentSha256": "86d9853c176c4179cf316cee5d135304f59fac3db8a7641a2a39960fb4f4f6dd",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-MAPPING-PENDING-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "115c91a1-62b1-4c07-9edf-aaacb00e311d",
+      "problemRevisionId": "e723df19-9fab-4d66-9678-98eba1b2ced8",
+      "cardId": "PH08-FB-MAPPING-PENDING-H2",
+      "contentSha256": "86d9853c176c4179cf316cee5d135304f59fac3db8a7641a2a39960fb4f4f6dd",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-MAPPING-PENDING-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "5c1a884b-3892-4411-9065-9999049b71d8",
+      "problemRevisionId": "9fa3f935-38bd-4636-bf8c-90da8e84fe92",
+      "cardId": "PH08-FB-MAPPING-PENDING-H2",
+      "contentSha256": "86d9853c176c4179cf316cee5d135304f59fac3db8a7641a2a39960fb4f4f6dd",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-MAPPING-PENDING-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "091475d7-2883-461b-baf8-ee329a41ae93",
+      "problemRevisionId": "47fb8055-07c2-40c5-aeff-04f3036a5446",
+      "cardId": "PH08-FB-MAPPING-PENDING-H2",
+      "contentSha256": "86d9853c176c4179cf316cee5d135304f59fac3db8a7641a2a39960fb4f4f6dd",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-MAPPING-PENDING-H2",
+      "enabled": true
+    },
+    {
+      "templateId": "452e958a-1948-4f36-8d39-6372a483598c",
+      "problemRevisionId": null,
+      "cardId": "PH08-FB-MAPPING-PENDING-H3",
+      "contentSha256": "c64b627a3ecc06aa1cb7555eac35f2f346764cf19f6a16cf01071dc18cdd9fa5",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-MAPPING-PENDING-H3",
+      "enabled": false
+    },
+    {
+      "templateId": "e77bf964-643b-40be-b789-09fd1423d552",
+      "problemRevisionId": "fd479174-3c6f-44c0-8d7a-fb98dbac4a4f",
+      "cardId": "PH08-FB-MAPPING-PENDING-H3",
+      "contentSha256": "c64b627a3ecc06aa1cb7555eac35f2f346764cf19f6a16cf01071dc18cdd9fa5",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-MAPPING-PENDING-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "c11e1b03-6da8-4bec-ab43-162ed9f7913e",
+      "problemRevisionId": "a19e9e01-8082-4604-a1d4-fa24c58bd380",
+      "cardId": "PH08-FB-MAPPING-PENDING-H3",
+      "contentSha256": "c64b627a3ecc06aa1cb7555eac35f2f346764cf19f6a16cf01071dc18cdd9fa5",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-MAPPING-PENDING-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "d20d0786-9538-4051-8e38-2f2513ad6efc",
+      "problemRevisionId": "e723df19-9fab-4d66-9678-98eba1b2ced8",
+      "cardId": "PH08-FB-MAPPING-PENDING-H3",
+      "contentSha256": "c64b627a3ecc06aa1cb7555eac35f2f346764cf19f6a16cf01071dc18cdd9fa5",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-MAPPING-PENDING-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "6d27dc00-36b7-4810-b73b-27c348023063",
+      "problemRevisionId": "9fa3f935-38bd-4636-bf8c-90da8e84fe92",
+      "cardId": "PH08-FB-MAPPING-PENDING-H3",
+      "contentSha256": "c64b627a3ecc06aa1cb7555eac35f2f346764cf19f6a16cf01071dc18cdd9fa5",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-MAPPING-PENDING-H3",
+      "enabled": true
+    },
+    {
+      "templateId": "11143301-ede2-49c9-ae87-0e3bb5898fb5",
+      "problemRevisionId": "47fb8055-07c2-40c5-aeff-04f3036a5446",
+      "cardId": "PH08-FB-MAPPING-PENDING-H3",
+      "contentSha256": "c64b627a3ecc06aa1cb7555eac35f2f346764cf19f6a16cf01071dc18cdd9fa5",
+      "templateVersion": "zz-ph08-reviewed-20261106:PH08-FB-MAPPING-PENDING-H3",
+      "enabled": true
+    }
+  ],
+  "validatedContractResponses": 225
+}

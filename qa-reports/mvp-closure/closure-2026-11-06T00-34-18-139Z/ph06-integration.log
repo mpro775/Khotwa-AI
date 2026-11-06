@@ -1,0 +1,66 @@
+▶ PH-06 conservative diagnosis on real NestJS PostgreSQL Python
+  ✔ six patterns retain distinct observations, pinned evidence, skills and policy (1008.621291ms)
+  ✔ reviewed expectations are not invented: execute all draft Golden diagnosis cases and record exact mismatches (1388.015738ms)
+  ✔ questions are private-key-free, shuffled, idempotent, and single per revision even after reverify (384.609388ms)
+  ✔ a correct probe answer contradicts the error hypothesis, and overlap probes distinguish causes (387.066747ms)
+  ✔ unclear choices and unverified text never become a confirmed weakness (255.651276ms)
+  ✔ valid and abstaining cases cannot create hypotheses or probes; target edges and later invalid edges are ineligible (539.576095ms)
+  ✔ an unrecognized wrong final answer abstains from a cause (97.257344ms)
+  ✔ editing invalidates open questions and cached operations without deleting historical evidence (161.920561ms)
+  ✔ a real Python response held across an edit never persists a diagnosis (82.417076ms)
+  ✔ disabled patterns/templates and non-synthetic sessions fail closed; guest isolation and DTOs are enforced (294.249793ms)
+  ✔ real private-service failure creates neither a diagnosis nor a negative learning observation (52.74604ms)
+  ✔ diagnosis and probe history are immutable and template changes require a new version (131.207758ms)
+✔ PH-06 conservative diagnosis on real NestJS PostgreSQL Python (6175.321104ms)
+✖ exact conformance to every draft GOLD-DIAG state and pattern (no exemptions) (2.955093ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 13
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6663.023216
+
+✖ failing tests:
+
+test at apps/api/tests/diagnosis-live.test.mjs:686:1
+✖ exact conformance to every draft GOLD-DIAG state and pattern (no exemptions) (2.955093ms)
+  AssertionError [ERR_ASSERTION]: Reference mismatches require content/QA review; no expected values were changed
+  + actual - expected
+  
+  + [
+  +   {
+  +     actual: {
+  +       pattern: 'ERR-ALG-03',
+  +       state: 'tentative'
+  +     },
+  +     expected: {
+  +       pattern: 'ERR-ALG-03',
+  +       state: 'needs_probe'
+  +     },
+  +     id: 'GOLD-DIAG-015',
+  +     issue: 'DATASET-ISSUE-PH06-01',
+  +     matched: false,
+  +     mathCase: 'GOLD-MATH-046',
+  +     reviewStatus: 'draft_not_human_approved',
+  +     scope: 'public_saved_attempt'
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///app/apps/api/tests/diagnosis-live.test.mjs:691:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ { id: 'GOLD-DIAG-015', mathCase: 'GOLD-MATH-046', scope: 'public_saved_attempt', expected: [Object], actual: [Object], matched: false, reviewStatus: 'draft_not_human_approved', issue: 'DATASET-ISSUE-PH06-01' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

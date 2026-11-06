@@ -1,0 +1,4819 @@
+{
+  "runId": "closure-2026-11-06T00-38-48-525Z",
+  "commit": "defddb077c94073653dbfe8ef4244c287a05d7f0",
+  "at": "2026-11-06T00:39:51.105Z",
+  "datasetSha256": "1c3e5fec509a8fad930a3d05e9f5b764b6b060281ec7277a32575511095b7f12",
+  "reviewStatus": "draft_requires_subject_and_pedagogy_review",
+  "cases": [
+    {
+      "id": "GOLD-PARSE-001",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "371f8916-9d6f-4c97-9f72-e432e555619a",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "f12d699e-6b2c-46ac-b48e-c853b1943dae",
+          "attemptRevision": 1,
+          "problemRevisionId": "c349e1aa-cffa-45c1-8482-33b695947547",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": null,
+        "issue": null,
+        "source": {
+          "kind": "step",
+          "stepVersionId": "97d642c2-79d1-4a5f-ba76-f89b32bd83c9"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "parsed",
+        "normalizedText": "2 * س + 3 = 7",
+        "displayAr": "٢س + ٣ = ٧",
+        "ast": {
+          "schemaVersion": "math-ast-v1",
+          "notationProfileVersion": "ar-mashriq-school-v1",
+          "sourceRaw": "٢س + ٣ = ٧",
+          "root": {
+            "type": "Equation",
+            "sourceSpan": {
+              "start": 0,
+              "end": 10,
+              "unit": "unicode_codepoint"
+            },
+            "left": {
+              "type": "Add",
+              "sourceSpan": {
+                "start": 0,
+                "end": 6,
+                "unit": "unicode_codepoint"
+              },
+              "left": {
+                "type": "Multiply",
+                "sourceSpan": {
+                  "start": 0,
+                  "end": 2,
+                  "unit": "unicode_codepoint"
+                },
+                "left": {
+                  "type": "Integer",
+                  "sourceSpan": {
+                    "start": 0,
+                    "end": 1,
+                    "unit": "unicode_codepoint"
+                  },
+                  "value": "2"
+                },
+                "right": {
+                  "type": "Variable",
+                  "sourceSpan": {
+                    "start": 1,
+                    "end": 2,
+                    "unit": "unicode_codepoint"
+                  },
+                  "name": "س"
+                },
+                "implicit": true
+              },
+              "right": {
+                "type": "Integer",
+                "sourceSpan": {
+                  "start": 5,
+                  "end": 6,
+                  "unit": "unicode_codepoint"
+                },
+                "value": "3"
+              }
+            },
+            "right": {
+              "type": "Integer",
+              "sourceSpan": {
+                "start": 9,
+                "end": 10,
+                "unit": "unicode_codepoint"
+              },
+              "value": "7"
+            }
+          }
+        }
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-002",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "8654a659-9fe2-476c-b901-3f2b550cc6b5",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "bc75f76e-94a2-4ca1-b38f-682181634884",
+          "attemptRevision": 1,
+          "problemRevisionId": "f6cca3a0-6988-471c-b193-daafd943e4c0",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": null,
+        "issue": null,
+        "source": {
+          "kind": "step",
+          "stepVersionId": "d6cb85ec-1631-4973-97c5-7f09e9178216"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "parsed",
+        "normalizedText": "2 * س + 3 = 7",
+        "displayAr": "٢س + ٣ = ٧",
+        "ast": {
+          "schemaVersion": "math-ast-v1",
+          "notationProfileVersion": "ar-mashriq-school-v1",
+          "sourceRaw": "2س + 3 = 7",
+          "root": {
+            "type": "Equation",
+            "sourceSpan": {
+              "start": 0,
+              "end": 10,
+              "unit": "unicode_codepoint"
+            },
+            "left": {
+              "type": "Add",
+              "sourceSpan": {
+                "start": 0,
+                "end": 6,
+                "unit": "unicode_codepoint"
+              },
+              "left": {
+                "type": "Multiply",
+                "sourceSpan": {
+                  "start": 0,
+                  "end": 2,
+                  "unit": "unicode_codepoint"
+                },
+                "left": {
+                  "type": "Integer",
+                  "sourceSpan": {
+                    "start": 0,
+                    "end": 1,
+                    "unit": "unicode_codepoint"
+                  },
+                  "value": "2"
+                },
+                "right": {
+                  "type": "Variable",
+                  "sourceSpan": {
+                    "start": 1,
+                    "end": 2,
+                    "unit": "unicode_codepoint"
+                  },
+                  "name": "س"
+                },
+                "implicit": true
+              },
+              "right": {
+                "type": "Integer",
+                "sourceSpan": {
+                  "start": 5,
+                  "end": 6,
+                  "unit": "unicode_codepoint"
+                },
+                "value": "3"
+              }
+            },
+            "right": {
+              "type": "Integer",
+              "sourceSpan": {
+                "start": 9,
+                "end": 10,
+                "unit": "unicode_codepoint"
+              },
+              "value": "7"
+            }
+          }
+        }
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-003",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "738c9fdc-76a5-4bae-a48f-5f7f2de919cf",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "981acbd0-e207-4993-aa0d-ea53a30873d4",
+          "attemptRevision": 1,
+          "problemRevisionId": "10c8ce2e-0bf7-43c7-8674-cfb20b4d8c68",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": null,
+        "issue": null,
+        "source": {
+          "kind": "step",
+          "stepVersionId": "189fd4a3-db27-410d-9236-287e35c4b5e8"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "parsed",
+        "normalizedText": "2 * س + 3 = 7",
+        "displayAr": "٢س + ٣ = ٧",
+        "ast": {
+          "schemaVersion": "math-ast-v1",
+          "notationProfileVersion": "ar-mashriq-school-v1",
+          "sourceRaw": "٢ س + ٣ = ٧",
+          "root": {
+            "type": "Equation",
+            "sourceSpan": {
+              "start": 0,
+              "end": 11,
+              "unit": "unicode_codepoint"
+            },
+            "left": {
+              "type": "Add",
+              "sourceSpan": {
+                "start": 0,
+                "end": 7,
+                "unit": "unicode_codepoint"
+              },
+              "left": {
+                "type": "Multiply",
+                "sourceSpan": {
+                  "start": 0,
+                  "end": 3,
+                  "unit": "unicode_codepoint"
+                },
+                "left": {
+                  "type": "Integer",
+                  "sourceSpan": {
+                    "start": 0,
+                    "end": 1,
+                    "unit": "unicode_codepoint"
+                  },
+                  "value": "2"
+                },
+                "right": {
+                  "type": "Variable",
+                  "sourceSpan": {
+                    "start": 2,
+                    "end": 3,
+                    "unit": "unicode_codepoint"
+                  },
+                  "name": "س"
+                },
+                "implicit": true
+              },
+              "right": {
+                "type": "Integer",
+                "sourceSpan": {
+                  "start": 6,
+                  "end": 7,
+                  "unit": "unicode_codepoint"
+                },
+                "value": "3"
+              }
+            },
+            "right": {
+              "type": "Integer",
+              "sourceSpan": {
+                "start": 10,
+                "end": 11,
+                "unit": "unicode_codepoint"
+              },
+              "value": "7"
+            }
+          }
+        }
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-004",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "fc484f13-8561-4a5b-9caf-e37f06bcb81b",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "13e31951-faee-493d-bec0-54b94072b639",
+          "attemptRevision": 1,
+          "problemRevisionId": "ff4b7665-420a-4e42-92ea-d9605d4e9d6f",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": null,
+        "issue": null,
+        "source": {
+          "kind": "step",
+          "stepVersionId": "cb2a62ea-b489-45f2-ba47-e2f02e5a3755"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "parsed",
+        "normalizedText": "2 * (س + 3) = 10",
+        "displayAr": "٢(س + ٣) = ١٠",
+        "ast": {
+          "schemaVersion": "math-ast-v1",
+          "notationProfileVersion": "ar-mashriq-school-v1",
+          "sourceRaw": "٢(س + ٣) = ١٠",
+          "root": {
+            "type": "Equation",
+            "sourceSpan": {
+              "start": 0,
+              "end": 13,
+              "unit": "unicode_codepoint"
+            },
+            "left": {
+              "type": "Multiply",
+              "sourceSpan": {
+                "start": 0,
+                "end": 8,
+                "unit": "unicode_codepoint"
+              },
+              "left": {
+                "type": "Integer",
+                "sourceSpan": {
+                  "start": 0,
+                  "end": 1,
+                  "unit": "unicode_codepoint"
+                },
+                "value": "2"
+              },
+              "right": {
+                "type": "Add",
+                "sourceSpan": {
+                  "start": 2,
+                  "end": 7,
+                  "unit": "unicode_codepoint"
+                },
+                "groupSpans": [
+                  {
+                    "start": 1,
+                    "end": 8,
+                    "unit": "unicode_codepoint"
+                  }
+                ],
+                "left": {
+                  "type": "Variable",
+                  "sourceSpan": {
+                    "start": 2,
+                    "end": 3,
+                    "unit": "unicode_codepoint"
+                  },
+                  "name": "س"
+                },
+                "right": {
+                  "type": "Integer",
+                  "sourceSpan": {
+                    "start": 6,
+                    "end": 7,
+                    "unit": "unicode_codepoint"
+                  },
+                  "value": "3"
+                }
+              },
+              "implicit": true
+            },
+            "right": {
+              "type": "Integer",
+              "sourceSpan": {
+                "start": 11,
+                "end": 13,
+                "unit": "unicode_codepoint"
+              },
+              "value": "10"
+            }
+          }
+        }
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-005",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "df158a67-0471-4461-a5a3-d9b97ec3d79c",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "87e2c201-066e-40d0-9cb3-aa5c91a1ad3f",
+          "attemptRevision": 1,
+          "problemRevisionId": "66b41167-9a40-49ff-a64d-74878dc7e12e",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": null,
+        "issue": null,
+        "source": {
+          "kind": "step",
+          "stepVersionId": "0d17bf3d-6130-409a-a540-88b1b4f574db"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "parsed",
+        "normalizedText": "-3 * س + 12 = 0",
+        "displayAr": "−٣س + ١٢ = ٠",
+        "ast": {
+          "schemaVersion": "math-ast-v1",
+          "notationProfileVersion": "ar-mashriq-school-v1",
+          "sourceRaw": "−٣س + ١٢ = ٠",
+          "root": {
+            "type": "Equation",
+            "sourceSpan": {
+              "start": 0,
+              "end": 12,
+              "unit": "unicode_codepoint"
+            },
+            "left": {
+              "type": "Add",
+              "sourceSpan": {
+                "start": 0,
+                "end": 8,
+                "unit": "unicode_codepoint"
+              },
+              "left": {
+                "type": "Multiply",
+                "sourceSpan": {
+                  "start": 0,
+                  "end": 3,
+                  "unit": "unicode_codepoint"
+                },
+                "left": {
+                  "type": "Negate",
+                  "sourceSpan": {
+                    "start": 0,
+                    "end": 2,
+                    "unit": "unicode_codepoint"
+                  },
+                  "operand": {
+                    "type": "Integer",
+                    "sourceSpan": {
+                      "start": 1,
+                      "end": 2,
+                      "unit": "unicode_codepoint"
+                    },
+                    "value": "3"
+                  }
+                },
+                "right": {
+                  "type": "Variable",
+                  "sourceSpan": {
+                    "start": 2,
+                    "end": 3,
+                    "unit": "unicode_codepoint"
+                  },
+                  "name": "س"
+                },
+                "implicit": true
+              },
+              "right": {
+                "type": "Integer",
+                "sourceSpan": {
+                  "start": 6,
+                  "end": 8,
+                  "unit": "unicode_codepoint"
+                },
+                "value": "12"
+              }
+            },
+            "right": {
+              "type": "Integer",
+              "sourceSpan": {
+                "start": 11,
+                "end": 12,
+                "unit": "unicode_codepoint"
+              },
+              "value": "0"
+            }
+          }
+        }
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-006",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "f758e6d7-a0b1-44cb-9051-3fffd03da98a",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "c01ae381-792b-4b13-8b4c-89a52c887ed0",
+          "attemptRevision": 1,
+          "problemRevisionId": "49692aec-aafa-4de6-9fa3-f024d43b94c0",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": null,
+        "issue": null,
+        "source": {
+          "kind": "step",
+          "stepVersionId": "4a6df622-cf8b-46b8-9558-76659c3eecfb"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "parsed",
+        "normalizedText": "-3 * س + 12 = 0",
+        "displayAr": "−٣س + ١٢ = ٠",
+        "ast": {
+          "schemaVersion": "math-ast-v1",
+          "notationProfileVersion": "ar-mashriq-school-v1",
+          "sourceRaw": "-3س + 12 = 0",
+          "root": {
+            "type": "Equation",
+            "sourceSpan": {
+              "start": 0,
+              "end": 12,
+              "unit": "unicode_codepoint"
+            },
+            "left": {
+              "type": "Add",
+              "sourceSpan": {
+                "start": 0,
+                "end": 8,
+                "unit": "unicode_codepoint"
+              },
+              "left": {
+                "type": "Multiply",
+                "sourceSpan": {
+                  "start": 0,
+                  "end": 3,
+                  "unit": "unicode_codepoint"
+                },
+                "left": {
+                  "type": "Negate",
+                  "sourceSpan": {
+                    "start": 0,
+                    "end": 2,
+                    "unit": "unicode_codepoint"
+                  },
+                  "operand": {
+                    "type": "Integer",
+                    "sourceSpan": {
+                      "start": 1,
+                      "end": 2,
+                      "unit": "unicode_codepoint"
+                    },
+                    "value": "3"
+                  }
+                },
+                "right": {
+                  "type": "Variable",
+                  "sourceSpan": {
+                    "start": 2,
+                    "end": 3,
+                    "unit": "unicode_codepoint"
+                  },
+                  "name": "س"
+                },
+                "implicit": true
+              },
+              "right": {
+                "type": "Integer",
+                "sourceSpan": {
+                  "start": 6,
+                  "end": 8,
+                  "unit": "unicode_codepoint"
+                },
+                "value": "12"
+              }
+            },
+            "right": {
+              "type": "Integer",
+              "sourceSpan": {
+                "start": 11,
+                "end": 12,
+                "unit": "unicode_codepoint"
+              },
+              "value": "0"
+            }
+          }
+        }
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-007",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "192f12be-2d84-4107-897a-19e364d0560a",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "c56a157e-3876-4995-9469-d32e0292941e",
+          "attemptRevision": 1,
+          "problemRevisionId": "eb1027d7-4312-4f0f-9901-c89d2c1f5672",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": null,
+        "issue": null,
+        "source": {
+          "kind": "step",
+          "stepVersionId": "aa8b645c-f477-461c-8fb8-daae6f2421d3"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "parsed",
+        "normalizedText": "س/2 = 3",
+        "displayAr": "س/٢ = ٣",
+        "ast": {
+          "schemaVersion": "math-ast-v1",
+          "notationProfileVersion": "ar-mashriq-school-v1",
+          "sourceRaw": "س/٢ = ٣",
+          "root": {
+            "type": "Equation",
+            "sourceSpan": {
+              "start": 0,
+              "end": 7,
+              "unit": "unicode_codepoint"
+            },
+            "left": {
+              "type": "Divide",
+              "sourceSpan": {
+                "start": 0,
+                "end": 3,
+                "unit": "unicode_codepoint"
+              },
+              "left": {
+                "type": "Variable",
+                "sourceSpan": {
+                  "start": 0,
+                  "end": 1,
+                  "unit": "unicode_codepoint"
+                },
+                "name": "س"
+              },
+              "right": {
+                "type": "Integer",
+                "sourceSpan": {
+                  "start": 2,
+                  "end": 3,
+                  "unit": "unicode_codepoint"
+                },
+                "value": "2"
+              }
+            },
+            "right": {
+              "type": "Integer",
+              "sourceSpan": {
+                "start": 6,
+                "end": 7,
+                "unit": "unicode_codepoint"
+              },
+              "value": "3"
+            }
+          }
+        }
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-008",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "1b8d7d87-1062-42cf-8631-ffdaa0d110ec",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "5e17633a-4a4d-44d1-8533-76064e0ddc6d",
+          "attemptRevision": 1,
+          "problemRevisionId": "89a0fa3c-5ca5-4fb1-936f-e5cab3d45211",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": null,
+        "issue": null,
+        "source": {
+          "kind": "step",
+          "stepVersionId": "040b349f-fe84-4e60-8b99-824b4576aec8"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "parsed",
+        "normalizedText": "س = 1/2",
+        "displayAr": "س = ١/٢",
+        "ast": {
+          "schemaVersion": "math-ast-v1",
+          "notationProfileVersion": "ar-mashriq-school-v1",
+          "sourceRaw": "س = ١/٢",
+          "root": {
+            "type": "Equation",
+            "sourceSpan": {
+              "start": 0,
+              "end": 7,
+              "unit": "unicode_codepoint"
+            },
+            "left": {
+              "type": "Variable",
+              "sourceSpan": {
+                "start": 0,
+                "end": 1,
+                "unit": "unicode_codepoint"
+              },
+              "name": "س"
+            },
+            "right": {
+              "type": "Divide",
+              "sourceSpan": {
+                "start": 4,
+                "end": 7,
+                "unit": "unicode_codepoint"
+              },
+              "left": {
+                "type": "Integer",
+                "sourceSpan": {
+                  "start": 4,
+                  "end": 5,
+                  "unit": "unicode_codepoint"
+                },
+                "value": "1"
+              },
+              "right": {
+                "type": "Integer",
+                "sourceSpan": {
+                  "start": 6,
+                  "end": 7,
+                  "unit": "unicode_codepoint"
+                },
+                "value": "2"
+              }
+            }
+          }
+        }
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-009",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "c3709a8a-6664-492b-833e-5b322ea05440",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "a16ba542-0c20-4ac7-aee4-4d078f4fa9e7",
+          "attemptRevision": 1,
+          "problemRevisionId": "de3840b9-3b9f-4ac1-9c92-c0a0337c1c99",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": null,
+        "issue": null,
+        "source": {
+          "kind": "step",
+          "stepVersionId": "66431a38-6fa6-446a-98b8-8243c853b2d8"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "parsed",
+        "normalizedText": "(2 * س)/3 = 4",
+        "displayAr": "(٢س)/٣ = ٤",
+        "ast": {
+          "schemaVersion": "math-ast-v1",
+          "notationProfileVersion": "ar-mashriq-school-v1",
+          "sourceRaw": "٢س/٣ = ٤",
+          "root": {
+            "type": "Equation",
+            "sourceSpan": {
+              "start": 0,
+              "end": 8,
+              "unit": "unicode_codepoint"
+            },
+            "left": {
+              "type": "Divide",
+              "sourceSpan": {
+                "start": 0,
+                "end": 4,
+                "unit": "unicode_codepoint"
+              },
+              "left": {
+                "type": "Multiply",
+                "sourceSpan": {
+                  "start": 0,
+                  "end": 2,
+                  "unit": "unicode_codepoint"
+                },
+                "left": {
+                  "type": "Integer",
+                  "sourceSpan": {
+                    "start": 0,
+                    "end": 1,
+                    "unit": "unicode_codepoint"
+                  },
+                  "value": "2"
+                },
+                "right": {
+                  "type": "Variable",
+                  "sourceSpan": {
+                    "start": 1,
+                    "end": 2,
+                    "unit": "unicode_codepoint"
+                  },
+                  "name": "س"
+                },
+                "implicit": true
+              },
+              "right": {
+                "type": "Integer",
+                "sourceSpan": {
+                  "start": 3,
+                  "end": 4,
+                  "unit": "unicode_codepoint"
+                },
+                "value": "3"
+              }
+            },
+            "right": {
+              "type": "Integer",
+              "sourceSpan": {
+                "start": 7,
+                "end": 8,
+                "unit": "unicode_codepoint"
+              },
+              "value": "4"
+            }
+          }
+        }
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-010",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "af820e57-c302-46b9-8ae9-0f315f9a5257",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "8900fae4-1e26-49cd-80df-dacd810eacc8",
+          "attemptRevision": 1,
+          "problemRevisionId": "de2a5f8b-18dd-4f06-8dde-666460631249",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": null,
+        "issue": null,
+        "source": {
+          "kind": "step",
+          "stepVersionId": "b0d50e2e-0f28-44d8-a132-103a94f0a6ca"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "parsed",
+        "normalizedText": "2 * س = 4",
+        "displayAr": "٢ × س = ٤",
+        "ast": {
+          "schemaVersion": "math-ast-v1",
+          "notationProfileVersion": "ar-mashriq-school-v1",
+          "sourceRaw": "٢×س = ٤",
+          "root": {
+            "type": "Equation",
+            "sourceSpan": {
+              "start": 0,
+              "end": 7,
+              "unit": "unicode_codepoint"
+            },
+            "left": {
+              "type": "Multiply",
+              "sourceSpan": {
+                "start": 0,
+                "end": 3,
+                "unit": "unicode_codepoint"
+              },
+              "left": {
+                "type": "Integer",
+                "sourceSpan": {
+                  "start": 0,
+                  "end": 1,
+                  "unit": "unicode_codepoint"
+                },
+                "value": "2"
+              },
+              "right": {
+                "type": "Variable",
+                "sourceSpan": {
+                  "start": 2,
+                  "end": 3,
+                  "unit": "unicode_codepoint"
+                },
+                "name": "س"
+              },
+              "implicit": false
+            },
+            "right": {
+              "type": "Integer",
+              "sourceSpan": {
+                "start": 6,
+                "end": 7,
+                "unit": "unicode_codepoint"
+              },
+              "value": "4"
+            }
+          }
+        }
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-011",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "cd9b7168-4cb9-4631-b588-6efa77d96bff",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "787a204d-c7a7-4cfa-8fe5-7b44e827ed0a",
+          "attemptRevision": 1,
+          "problemRevisionId": "c92b3f39-633a-44c9-b4a1-f458bba5d7f7",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": null,
+        "issue": null,
+        "source": {
+          "kind": "step",
+          "stepVersionId": "e315c217-9498-4934-8813-f1952c82333b"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "parsed",
+        "normalizedText": "2 * س = 4",
+        "displayAr": "٢ × س = ٤",
+        "ast": {
+          "schemaVersion": "math-ast-v1",
+          "notationProfileVersion": "ar-mashriq-school-v1",
+          "sourceRaw": "٢*س = ٤",
+          "root": {
+            "type": "Equation",
+            "sourceSpan": {
+              "start": 0,
+              "end": 7,
+              "unit": "unicode_codepoint"
+            },
+            "left": {
+              "type": "Multiply",
+              "sourceSpan": {
+                "start": 0,
+                "end": 3,
+                "unit": "unicode_codepoint"
+              },
+              "left": {
+                "type": "Integer",
+                "sourceSpan": {
+                  "start": 0,
+                  "end": 1,
+                  "unit": "unicode_codepoint"
+                },
+                "value": "2"
+              },
+              "right": {
+                "type": "Variable",
+                "sourceSpan": {
+                  "start": 2,
+                  "end": 3,
+                  "unit": "unicode_codepoint"
+                },
+                "name": "س"
+              },
+              "implicit": false
+            },
+            "right": {
+              "type": "Integer",
+              "sourceSpan": {
+                "start": 6,
+                "end": 7,
+                "unit": "unicode_codepoint"
+              },
+              "value": "4"
+            }
+          }
+        }
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-012",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "81f8d605-0e25-4958-a611-cd9de18e84d2",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "af01e17e-8259-4939-a286-2b081ab07f2d",
+          "attemptRevision": 1,
+          "problemRevisionId": "45d58288-adb1-4fb6-ad5a-1e7a952bc949",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": null,
+        "issue": null,
+        "source": {
+          "kind": "step",
+          "stepVersionId": "aebab7bd-a024-41f8-9500-e33d096cb3b5"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "parsed",
+        "normalizedText": "23 * س = 46",
+        "displayAr": "٢٣س = ٤٦",
+        "ast": {
+          "schemaVersion": "math-ast-v1",
+          "notationProfileVersion": "ar-mashriq-school-v1",
+          "sourceRaw": "٢٣س = ٤٦",
+          "root": {
+            "type": "Equation",
+            "sourceSpan": {
+              "start": 0,
+              "end": 8,
+              "unit": "unicode_codepoint"
+            },
+            "left": {
+              "type": "Multiply",
+              "sourceSpan": {
+                "start": 0,
+                "end": 3,
+                "unit": "unicode_codepoint"
+              },
+              "left": {
+                "type": "Integer",
+                "sourceSpan": {
+                  "start": 0,
+                  "end": 2,
+                  "unit": "unicode_codepoint"
+                },
+                "value": "23"
+              },
+              "right": {
+                "type": "Variable",
+                "sourceSpan": {
+                  "start": 2,
+                  "end": 3,
+                  "unit": "unicode_codepoint"
+                },
+                "name": "س"
+              },
+              "implicit": true
+            },
+            "right": {
+              "type": "Integer",
+              "sourceSpan": {
+                "start": 6,
+                "end": 8,
+                "unit": "unicode_codepoint"
+              },
+              "value": "46"
+            }
+          }
+        }
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-013",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "4096b2dd-ff07-4bfd-9fa0-d7d9ee3e8a41",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "05fef0e9-2267-4b5b-bbbc-4ba6f4a17b6c",
+          "attemptRevision": 1,
+          "problemRevisionId": "b0838caa-4ce9-4ce4-9a2f-40d62a6b33cb",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": null,
+        "issue": null,
+        "source": {
+          "kind": "step",
+          "stepVersionId": "a36fc05b-bf66-41fb-8645-1a8ececdf3e7"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "parsed",
+        "normalizedText": "0 * س + 2 = 2",
+        "displayAr": "٠س + ٢ = ٢",
+        "ast": {
+          "schemaVersion": "math-ast-v1",
+          "notationProfileVersion": "ar-mashriq-school-v1",
+          "sourceRaw": "٠س + ٢ = ٢",
+          "root": {
+            "type": "Equation",
+            "sourceSpan": {
+              "start": 0,
+              "end": 10,
+              "unit": "unicode_codepoint"
+            },
+            "left": {
+              "type": "Add",
+              "sourceSpan": {
+                "start": 0,
+                "end": 6,
+                "unit": "unicode_codepoint"
+              },
+              "left": {
+                "type": "Multiply",
+                "sourceSpan": {
+                  "start": 0,
+                  "end": 2,
+                  "unit": "unicode_codepoint"
+                },
+                "left": {
+                  "type": "Integer",
+                  "sourceSpan": {
+                    "start": 0,
+                    "end": 1,
+                    "unit": "unicode_codepoint"
+                  },
+                  "value": "0"
+                },
+                "right": {
+                  "type": "Variable",
+                  "sourceSpan": {
+                    "start": 1,
+                    "end": 2,
+                    "unit": "unicode_codepoint"
+                  },
+                  "name": "س"
+                },
+                "implicit": true
+              },
+              "right": {
+                "type": "Integer",
+                "sourceSpan": {
+                  "start": 5,
+                  "end": 6,
+                  "unit": "unicode_codepoint"
+                },
+                "value": "2"
+              }
+            },
+            "right": {
+              "type": "Integer",
+              "sourceSpan": {
+                "start": 9,
+                "end": 10,
+                "unit": "unicode_codepoint"
+              },
+              "value": "2"
+            }
+          }
+        }
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-014",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "2baa1194-f10b-471a-bc7a-defae2568cd2",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "e052ef34-84dd-4c67-9b20-b9f728a31adf",
+          "attemptRevision": 1,
+          "problemRevisionId": "a39084ad-ebd8-4f3f-9802-ed90cdc597a7",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": null,
+        "issue": null,
+        "source": {
+          "kind": "step",
+          "stepVersionId": "2e6ab17a-cea6-4fd9-a3c6-699c067d2655"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "parsed",
+        "normalizedText": "3 * (س - 2) = -3",
+        "displayAr": "٣(س − ٢) = −٣",
+        "ast": {
+          "schemaVersion": "math-ast-v1",
+          "notationProfileVersion": "ar-mashriq-school-v1",
+          "sourceRaw": "٣(س − ٢) = −٣",
+          "root": {
+            "type": "Equation",
+            "sourceSpan": {
+              "start": 0,
+              "end": 13,
+              "unit": "unicode_codepoint"
+            },
+            "left": {
+              "type": "Multiply",
+              "sourceSpan": {
+                "start": 0,
+                "end": 8,
+                "unit": "unicode_codepoint"
+              },
+              "left": {
+                "type": "Integer",
+                "sourceSpan": {
+                  "start": 0,
+                  "end": 1,
+                  "unit": "unicode_codepoint"
+                },
+                "value": "3"
+              },
+              "right": {
+                "type": "Subtract",
+                "sourceSpan": {
+                  "start": 2,
+                  "end": 7,
+                  "unit": "unicode_codepoint"
+                },
+                "groupSpans": [
+                  {
+                    "start": 1,
+                    "end": 8,
+                    "unit": "unicode_codepoint"
+                  }
+                ],
+                "left": {
+                  "type": "Variable",
+                  "sourceSpan": {
+                    "start": 2,
+                    "end": 3,
+                    "unit": "unicode_codepoint"
+                  },
+                  "name": "س"
+                },
+                "right": {
+                  "type": "Integer",
+                  "sourceSpan": {
+                    "start": 6,
+                    "end": 7,
+                    "unit": "unicode_codepoint"
+                  },
+                  "value": "2"
+                }
+              },
+              "implicit": true
+            },
+            "right": {
+              "type": "Negate",
+              "sourceSpan": {
+                "start": 11,
+                "end": 13,
+                "unit": "unicode_codepoint"
+              },
+              "operand": {
+                "type": "Integer",
+                "sourceSpan": {
+                  "start": 12,
+                  "end": 13,
+                  "unit": "unicode_codepoint"
+                },
+                "value": "3"
+              }
+            }
+          }
+        }
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-015",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "9a49db37-4013-44ce-bac2-fd2a1501bd9e",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "bcaab767-b4b4-46d0-9058-3e9717fd333d",
+          "attemptRevision": 1,
+          "problemRevisionId": "fadb92cd-95de-487d-81e1-d21c82cbed02",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": null,
+        "issue": null,
+        "source": {
+          "kind": "step",
+          "stepVersionId": "f0f0a0ef-1761-43e0-a12e-e62976b0931b"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "parsed",
+        "normalizedText": "س = -2",
+        "displayAr": "س = −٢",
+        "ast": {
+          "schemaVersion": "math-ast-v1",
+          "notationProfileVersion": "ar-mashriq-school-v1",
+          "sourceRaw": "س = −٢",
+          "root": {
+            "type": "Equation",
+            "sourceSpan": {
+              "start": 0,
+              "end": 6,
+              "unit": "unicode_codepoint"
+            },
+            "left": {
+              "type": "Variable",
+              "sourceSpan": {
+                "start": 0,
+                "end": 1,
+                "unit": "unicode_codepoint"
+              },
+              "name": "س"
+            },
+            "right": {
+              "type": "Negate",
+              "sourceSpan": {
+                "start": 4,
+                "end": 6,
+                "unit": "unicode_codepoint"
+              },
+              "operand": {
+                "type": "Integer",
+                "sourceSpan": {
+                  "start": 5,
+                  "end": 6,
+                  "unit": "unicode_codepoint"
+                },
+                "value": "2"
+              }
+            }
+          }
+        }
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-016",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "e525702a-9ac2-4d5f-918a-b454823b21fe",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "6057cdac-c084-4f71-b843-60e0b84a8dc1",
+          "attemptRevision": 1,
+          "problemRevisionId": "777beb8d-339d-4ff1-b3a5-91d28ada0c62",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": null,
+        "issue": null,
+        "source": {
+          "kind": "step",
+          "stepVersionId": "2d8017a0-98f2-4bdf-bdb3-b1b4ef2a3975"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "parsed",
+        "normalizedText": "س + 0 = 2",
+        "displayAr": "س + ٠ = ٢",
+        "ast": {
+          "schemaVersion": "math-ast-v1",
+          "notationProfileVersion": "ar-mashriq-school-v1",
+          "sourceRaw": "س + ٠ = ٢",
+          "root": {
+            "type": "Equation",
+            "sourceSpan": {
+              "start": 0,
+              "end": 9,
+              "unit": "unicode_codepoint"
+            },
+            "left": {
+              "type": "Add",
+              "sourceSpan": {
+                "start": 0,
+                "end": 5,
+                "unit": "unicode_codepoint"
+              },
+              "left": {
+                "type": "Variable",
+                "sourceSpan": {
+                  "start": 0,
+                  "end": 1,
+                  "unit": "unicode_codepoint"
+                },
+                "name": "س"
+              },
+              "right": {
+                "type": "Integer",
+                "sourceSpan": {
+                  "start": 4,
+                  "end": 5,
+                  "unit": "unicode_codepoint"
+                },
+                "value": "0"
+              }
+            },
+            "right": {
+              "type": "Integer",
+              "sourceSpan": {
+                "start": 8,
+                "end": 9,
+                "unit": "unicode_codepoint"
+              },
+              "value": "2"
+            }
+          }
+        }
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-017",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "e39e934f-45fa-4299-abca-83912fdf94f6",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "94c2de21-57b7-480b-8a6f-0888136894cd",
+          "attemptRevision": 1,
+          "problemRevisionId": "9a81cfbc-5308-4ea6-88de-adddaaff03fd",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": null,
+        "issue": null,
+        "source": {
+          "kind": "step",
+          "stepVersionId": "55ff8380-00ae-4d7d-8591-7023846a6a26"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "parsed",
+        "normalizedText": "3 * س = 7",
+        "displayAr": "٣س = ٧",
+        "ast": {
+          "schemaVersion": "math-ast-v1",
+          "notationProfileVersion": "ar-mashriq-school-v1",
+          "sourceRaw": "٣س = ٧",
+          "root": {
+            "type": "Equation",
+            "sourceSpan": {
+              "start": 0,
+              "end": 6,
+              "unit": "unicode_codepoint"
+            },
+            "left": {
+              "type": "Multiply",
+              "sourceSpan": {
+                "start": 0,
+                "end": 2,
+                "unit": "unicode_codepoint"
+              },
+              "left": {
+                "type": "Integer",
+                "sourceSpan": {
+                  "start": 0,
+                  "end": 1,
+                  "unit": "unicode_codepoint"
+                },
+                "value": "3"
+              },
+              "right": {
+                "type": "Variable",
+                "sourceSpan": {
+                  "start": 1,
+                  "end": 2,
+                  "unit": "unicode_codepoint"
+                },
+                "name": "س"
+              },
+              "implicit": true
+            },
+            "right": {
+              "type": "Integer",
+              "sourceSpan": {
+                "start": 5,
+                "end": 6,
+                "unit": "unicode_codepoint"
+              },
+              "value": "7"
+            }
+          }
+        }
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-018",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "66f35c58-9e50-4645-928a-c6ec3753dd5b",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "0b101912-3efc-4166-ace2-fa2c6b9a1571",
+          "attemptRevision": 1,
+          "problemRevisionId": "4c013748-b8a5-4b47-923b-73985a0e5d19",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": null,
+        "issue": null,
+        "source": {
+          "kind": "step",
+          "stepVersionId": "f710a64e-22ce-4a83-ba1d-0cfa262e5fe4"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "parsed",
+        "normalizedText": "(س + 3) = 8",
+        "displayAr": "(س + ٣) = ٨",
+        "ast": {
+          "schemaVersion": "math-ast-v1",
+          "notationProfileVersion": "ar-mashriq-school-v1",
+          "sourceRaw": "(س + ٣) = ٨",
+          "root": {
+            "type": "Equation",
+            "sourceSpan": {
+              "start": 0,
+              "end": 11,
+              "unit": "unicode_codepoint"
+            },
+            "left": {
+              "type": "Add",
+              "sourceSpan": {
+                "start": 1,
+                "end": 6,
+                "unit": "unicode_codepoint"
+              },
+              "groupSpans": [
+                {
+                  "start": 0,
+                  "end": 7,
+                  "unit": "unicode_codepoint"
+                }
+              ],
+              "left": {
+                "type": "Variable",
+                "sourceSpan": {
+                  "start": 1,
+                  "end": 2,
+                  "unit": "unicode_codepoint"
+                },
+                "name": "س"
+              },
+              "right": {
+                "type": "Integer",
+                "sourceSpan": {
+                  "start": 5,
+                  "end": 6,
+                  "unit": "unicode_codepoint"
+                },
+                "value": "3"
+              }
+            },
+            "right": {
+              "type": "Integer",
+              "sourceSpan": {
+                "start": 10,
+                "end": 11,
+                "unit": "unicode_codepoint"
+              },
+              "value": "8"
+            }
+          }
+        }
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-019",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "dcc1ad46-b88b-45ea-9594-5e6c0a42afea",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "7859cb49-741c-40e5-9b99-08fd4cbfa8e8",
+          "attemptRevision": 1,
+          "problemRevisionId": "b3f1d73d-6796-41e6-8856-c18e2124d059",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": null,
+        "issue": null,
+        "source": {
+          "kind": "step",
+          "stepVersionId": "215b1dc7-630f-4fd5-afdc-acc0d33c607b"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "parsed",
+        "normalizedText": "-2 * (س + 3) = -10",
+        "displayAr": "−٢(س + ٣) = −١٠",
+        "ast": {
+          "schemaVersion": "math-ast-v1",
+          "notationProfileVersion": "ar-mashriq-school-v1",
+          "sourceRaw": "−٢(س + ٣) = −١٠",
+          "root": {
+            "type": "Equation",
+            "sourceSpan": {
+              "start": 0,
+              "end": 15,
+              "unit": "unicode_codepoint"
+            },
+            "left": {
+              "type": "Multiply",
+              "sourceSpan": {
+                "start": 0,
+                "end": 9,
+                "unit": "unicode_codepoint"
+              },
+              "left": {
+                "type": "Negate",
+                "sourceSpan": {
+                  "start": 0,
+                  "end": 2,
+                  "unit": "unicode_codepoint"
+                },
+                "operand": {
+                  "type": "Integer",
+                  "sourceSpan": {
+                    "start": 1,
+                    "end": 2,
+                    "unit": "unicode_codepoint"
+                  },
+                  "value": "2"
+                }
+              },
+              "right": {
+                "type": "Add",
+                "sourceSpan": {
+                  "start": 3,
+                  "end": 8,
+                  "unit": "unicode_codepoint"
+                },
+                "groupSpans": [
+                  {
+                    "start": 2,
+                    "end": 9,
+                    "unit": "unicode_codepoint"
+                  }
+                ],
+                "left": {
+                  "type": "Variable",
+                  "sourceSpan": {
+                    "start": 3,
+                    "end": 4,
+                    "unit": "unicode_codepoint"
+                  },
+                  "name": "س"
+                },
+                "right": {
+                  "type": "Integer",
+                  "sourceSpan": {
+                    "start": 7,
+                    "end": 8,
+                    "unit": "unicode_codepoint"
+                  },
+                  "value": "3"
+                }
+              },
+              "implicit": true
+            },
+            "right": {
+              "type": "Negate",
+              "sourceSpan": {
+                "start": 12,
+                "end": 15,
+                "unit": "unicode_codepoint"
+              },
+              "operand": {
+                "type": "Integer",
+                "sourceSpan": {
+                  "start": 13,
+                  "end": 15,
+                  "unit": "unicode_codepoint"
+                },
+                "value": "10"
+              }
+            }
+          }
+        }
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-020",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "60d82428-f0c3-4bb2-b5ac-a892080091d0",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "fc74d893-b50c-438d-8099-bb5209a27b7c",
+          "attemptRevision": 1,
+          "problemRevisionId": "cb299588-1be7-4fca-9ebb-1b1a7837550c",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": null,
+        "issue": null,
+        "source": {
+          "kind": "step",
+          "stepVersionId": "7aff2d6d-c395-4ddb-b3a4-1602cfc8bde9"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "parsed",
+        "normalizedText": "2 * س + 6 = 10",
+        "displayAr": "٢س + ٦ = ١٠",
+        "ast": {
+          "schemaVersion": "math-ast-v1",
+          "notationProfileVersion": "ar-mashriq-school-v1",
+          "sourceRaw": "٢س + ٦ = ١٠",
+          "root": {
+            "type": "Equation",
+            "sourceSpan": {
+              "start": 0,
+              "end": 11,
+              "unit": "unicode_codepoint"
+            },
+            "left": {
+              "type": "Add",
+              "sourceSpan": {
+                "start": 0,
+                "end": 6,
+                "unit": "unicode_codepoint"
+              },
+              "left": {
+                "type": "Multiply",
+                "sourceSpan": {
+                  "start": 0,
+                  "end": 2,
+                  "unit": "unicode_codepoint"
+                },
+                "left": {
+                  "type": "Integer",
+                  "sourceSpan": {
+                    "start": 0,
+                    "end": 1,
+                    "unit": "unicode_codepoint"
+                  },
+                  "value": "2"
+                },
+                "right": {
+                  "type": "Variable",
+                  "sourceSpan": {
+                    "start": 1,
+                    "end": 2,
+                    "unit": "unicode_codepoint"
+                  },
+                  "name": "س"
+                },
+                "implicit": true
+              },
+              "right": {
+                "type": "Integer",
+                "sourceSpan": {
+                  "start": 5,
+                  "end": 6,
+                  "unit": "unicode_codepoint"
+                },
+                "value": "6"
+              }
+            },
+            "right": {
+              "type": "Integer",
+              "sourceSpan": {
+                "start": 9,
+                "end": 11,
+                "unit": "unicode_codepoint"
+              },
+              "value": "10"
+            }
+          }
+        }
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-021",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "935da14d-7613-4934-9716-99d29ec6a5e9",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "f26d9da2-d7ad-46ec-a1de-5d1650e2583a",
+          "attemptRevision": 1,
+          "problemRevisionId": "3a500e9b-fc6f-4296-8a60-6319944e7a49",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": "AMBIGUOUS_DIVISION",
+        "issue": {
+          "reasonCode": "AMBIGUOUS_DIVISION",
+          "messageAr": "أضف أقواسًا لتحديد البسط والمقام.",
+          "spanStart": 3,
+          "spanEnd": 4,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": null
+        },
+        "source": {
+          "kind": "step",
+          "stepVersionId": "087f16f1-4b66-4078-8cbe-522ac0f97cd1"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "syntax_error",
+        "normalizedText": null,
+        "displayAr": null,
+        "ast": null
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-022",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "b678669d-296d-46fa-a940-9c3f931f939d",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "69316860-08fe-4013-b66e-d2e8ee8e5bc3",
+          "attemptRevision": 1,
+          "problemRevisionId": "f0ae79b6-512c-4462-9a84-624ba2839629",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": "UNEXPECTED_ADJACENCY",
+        "issue": {
+          "reasonCode": "UNEXPECTED_ADJACENCY",
+          "messageAr": "استخدم علامة ضرب صريحة؛ لن نخمن التجاور.",
+          "spanStart": 2,
+          "spanEnd": 3,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": null
+        },
+        "source": {
+          "kind": "step",
+          "stepVersionId": "302772c4-2f86-49ae-aa30-311619b13095"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "syntax_error",
+        "normalizedText": null,
+        "displayAr": null,
+        "ast": null
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-023",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "7964128a-d49b-4054-b8bd-594ad30cf2b1",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "e9cf4a56-d2c9-4ec3-a4b0-691777fc0f02",
+          "attemptRevision": 1,
+          "problemRevisionId": "bf51e519-69d1-402b-8088-af16712e1efc",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": "UNEXPECTED_ADJACENCY",
+        "issue": {
+          "reasonCode": "UNEXPECTED_ADJACENCY",
+          "messageAr": "استخدم علامة ضرب صريحة؛ لن نخمن التجاور.",
+          "spanStart": 1,
+          "spanEnd": 4,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": null
+        },
+        "source": {
+          "kind": "step",
+          "stepVersionId": "a1805ccc-8b9e-4a11-a84f-ecf3fa76ec96"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "syntax_error",
+        "normalizedText": null,
+        "displayAr": null,
+        "ast": null
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-024",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "61fe020a-6630-40bf-928f-e04e483beb20",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "b7c91860-07cd-4015-8b7e-a73b82618867",
+          "attemptRevision": 1,
+          "problemRevisionId": "aae8d9e4-038b-4faa-a34f-dffda6ae1c7c",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": "MULTIPLE_EQUAL_SIGNS",
+        "issue": {
+          "reasonCode": "MULTIPLE_EQUAL_SIGNS",
+          "messageAr": "اكتب معادلة واحدة بعلامة مساواة واحدة.",
+          "spanStart": 3,
+          "spanEnd": 4,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": null
+        },
+        "source": {
+          "kind": "step",
+          "stepVersionId": "2facbd95-394c-424f-bf9d-a210a3518f7e"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "syntax_error",
+        "normalizedText": null,
+        "displayAr": null,
+        "ast": null
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-025",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "5b5a21b2-42ee-4ee2-ab18-5a4c2bc48b63",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "d99621c5-3dea-46a4-a964-99fa4509623e",
+          "attemptRevision": 1,
+          "problemRevisionId": "a6f70dcc-1416-4ed7-8e47-96eb54ceff19",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": "UNBALANCED_PARENTHESIS",
+        "issue": {
+          "reasonCode": "UNBALANCED_PARENTHESIS",
+          "messageAr": "أكمل القوس المفتوح.",
+          "spanStart": 1,
+          "spanEnd": 2,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": null
+        },
+        "source": {
+          "kind": "step",
+          "stepVersionId": "2bbbb0f1-865e-45b1-864e-701f45dab2d0"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "syntax_error",
+        "normalizedText": null,
+        "displayAr": null,
+        "ast": null
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-026",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "ccd9d156-2bef-4951-bc1d-9ccd8524a131",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "db3e6ca9-1ae6-466d-97f2-cd8f21bec7fc",
+          "attemptRevision": 1,
+          "problemRevisionId": "ba3c635c-d919-4988-8211-a2c1616687e9",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": "MISSING_EQUAL_SIGN",
+        "issue": {
+          "reasonCode": "MISSING_EQUAL_SIGN",
+          "messageAr": "أكمل سطر المعادلة بعلامة مساواة.",
+          "spanStart": 0,
+          "spanEnd": 1,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": null
+        },
+        "source": {
+          "kind": "step",
+          "stepVersionId": "608b048b-61ae-4c54-bc2a-11a8e0661b0b"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "syntax_error",
+        "normalizedText": null,
+        "displayAr": null,
+        "ast": null
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-027",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "a18c5ea4-f218-40f2-ba24-ae9bb95de2a0",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "9d954ad0-71ae-41a3-a261-81ae5e3a504b",
+          "attemptRevision": 1,
+          "problemRevisionId": "725f25e5-5cc5-4ee3-b7fe-02c82e3e4650",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": "DIVISION_BY_ZERO",
+        "issue": {
+          "reasonCode": "DIVISION_BY_ZERO",
+          "messageAr": "لا يمكن القسمة على صفر. راجع المقام.",
+          "spanStart": 2,
+          "spanEnd": 3,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": null
+        },
+        "source": {
+          "kind": "step",
+          "stepVersionId": "8b8c90d7-ed59-41a8-afc6-d884d879f1d9"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "syntax_error",
+        "normalizedText": null,
+        "displayAr": null,
+        "ast": null
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-028",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "d5ba95c3-130b-47d5-836f-ee7099a816f9",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "e4a3769c-cc3e-441d-be5b-68cbc99b370f",
+          "attemptRevision": 1,
+          "problemRevisionId": "1299464f-9f8c-472d-a9fa-6c9819e6c145",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": "UNSUPPORTED_FUNCTION",
+        "issue": {
+          "reasonCode": "UNSUPPORTED_FUNCTION",
+          "messageAr": "الدوال غير مدعومة في مسار الجبر الخطي الحالي.",
+          "spanStart": 0,
+          "spanEnd": 2,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": null
+        },
+        "source": {
+          "kind": "step",
+          "stepVersionId": "d977291e-692c-4f52-8920-6f1821276bd5"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "unsupported",
+        "normalizedText": null,
+        "displayAr": null,
+        "ast": null
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-029",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "75aeb55b-b9cc-401d-a58e-191bc9b3a33e",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "99fd3e4e-0c21-443d-bdc9-07d1815c571c",
+          "attemptRevision": 1,
+          "problemRevisionId": "43dd8f05-8e83-4eca-8bc4-746f98675566",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": "UNSUPPORTED_FUNCTION",
+        "issue": {
+          "reasonCode": "UNSUPPORTED_FUNCTION",
+          "messageAr": "الدوال غير مدعومة في مسار الجبر الخطي الحالي.",
+          "spanStart": 0,
+          "spanEnd": 3,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": null
+        },
+        "source": {
+          "kind": "step",
+          "stepVersionId": "ed6a9bc0-b6f7-4d47-ae68-fbdf266bf9e7"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "unsupported",
+        "normalizedText": null,
+        "displayAr": null,
+        "ast": null
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-030",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "561ee9e2-91ba-4647-be4a-810d8a6c761a",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "289304c6-9074-4d5d-bf96-d40c84906fca",
+          "attemptRevision": 1,
+          "problemRevisionId": "3858b893-7d2f-49e8-abbf-75441c78b858",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": "UNSUPPORTED_POWER",
+        "issue": {
+          "reasonCode": "UNSUPPORTED_POWER",
+          "messageAr": "الأسس خارج نطاق هذا المسار.",
+          "spanStart": 1,
+          "spanEnd": 2,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": null
+        },
+        "source": {
+          "kind": "step",
+          "stepVersionId": "300f4071-5aaf-43d0-aa80-0b2e616fbdf0"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "unsupported",
+        "normalizedText": null,
+        "displayAr": null,
+        "ast": null
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-031",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "a88038a2-9017-4193-8421-eb41ac7daa60",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "ec94f72b-95dc-4b89-a479-a77e09bae15d",
+          "attemptRevision": 1,
+          "problemRevisionId": "4bf2e12a-b3ca-4e72-8791-1d707c275974",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": "NONLINEAR_EXPRESSION",
+        "issue": {
+          "reasonCode": "NONLINEAR_EXPRESSION",
+          "messageAr": "ضرب تعبيرين يحتويان س خارج نطاق المسار.",
+          "spanStart": 0,
+          "spanEnd": 3,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": null
+        },
+        "source": {
+          "kind": "step",
+          "stepVersionId": "ca07ed55-9445-4bcc-a882-15f036f054f9"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "unsupported",
+        "normalizedText": null,
+        "displayAr": null,
+        "ast": null
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-032",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "95499373-c0c8-4e89-800e-f90850f2d15a",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "e4057e85-8d14-46c7-af9e-4217e9507e19",
+          "attemptRevision": 1,
+          "problemRevisionId": "db1dc10a-9f10-412e-89bb-6325922af343",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": "VARIABLE_DENOMINATOR",
+        "issue": {
+          "reasonCode": "VARIABLE_DENOMINATOR",
+          "messageAr": "المقام الذي يحتوي متغيرًا غير مدعوم، حتى لو أمكن اختزاله.",
+          "spanStart": 2,
+          "spanEnd": 3,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": null
+        },
+        "source": {
+          "kind": "step",
+          "stepVersionId": "a75ab7cb-febf-4ac2-9cb0-ad57f2e131ba"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "unsupported",
+        "normalizedText": null,
+        "displayAr": null,
+        "ast": null
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-033",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "f23eb8be-3ea0-4b84-bbb9-9b5228160e9a",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "67633ecc-39e2-48ff-b502-cddbddef1ca6",
+          "attemptRevision": 1,
+          "problemRevisionId": "70670ab5-9e19-4429-8738-2e7c24cf23a2",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": "UNSUPPORTED_VARIABLE",
+        "issue": {
+          "reasonCode": "UNSUPPORTED_VARIABLE",
+          "messageAr": "المتغير المتاح هو س فقط.",
+          "spanStart": 0,
+          "spanEnd": 1,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": null
+        },
+        "source": {
+          "kind": "step",
+          "stepVersionId": "6f28d814-67c3-4546-b8de-e8c5203c7088"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "unsupported",
+        "normalizedText": null,
+        "displayAr": null,
+        "ast": null
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-034",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "243243fc-b875-4790-9ad9-6569d1eb51cb",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "51f7c3e8-183a-4cb6-815f-b6d4dba54c37",
+          "attemptRevision": 1,
+          "problemRevisionId": "6266395f-a659-4033-b9d9-264ea977602a",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": "UNSUPPORTED_VARIABLE",
+        "issue": {
+          "reasonCode": "UNSUPPORTED_VARIABLE",
+          "messageAr": "المتغير المتاح هو س فقط.",
+          "spanStart": 0,
+          "spanEnd": 1,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": null
+        },
+        "source": {
+          "kind": "step",
+          "stepVersionId": "14c9de1c-7316-4a56-9e63-95fa6f279e34"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "unsupported",
+        "normalizedText": null,
+        "displayAr": null,
+        "ast": null
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-035",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "7e93dcb1-81ac-48cd-b61f-a29085ca8ee8",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "3a06ad8b-4d89-4db1-8da7-6acd55720bef",
+          "attemptRevision": 1,
+          "problemRevisionId": "b8a15f00-4fcf-4746-892e-6290d5eb53a1",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": "UNSUPPORTED_DECIMAL",
+        "issue": {
+          "reasonCode": "UNSUPPORTED_DECIMAL",
+          "messageAr": "صيغة العدد غير مدعومة؛ لم نحذف فاصلة أو نغير الرقم.",
+          "spanStart": 1,
+          "spanEnd": 2,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": null
+        },
+        "source": {
+          "kind": "step",
+          "stepVersionId": "50194f9d-fcb2-4ac5-b878-c893ced0cd54"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "unsupported",
+        "normalizedText": null,
+        "displayAr": null,
+        "ast": null
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-036",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "07b9147b-fb81-44cb-b354-8de0ab80326e",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "6c395fcc-28e8-4ac5-8894-6d2c21ff20b8",
+          "attemptRevision": 1,
+          "problemRevisionId": "ebe09c2c-2a79-46ac-90de-7da9859dd510",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": "UNSUPPORTED_DECIMAL",
+        "issue": {
+          "reasonCode": "UNSUPPORTED_DECIMAL",
+          "messageAr": "صيغة العدد غير مدعومة؛ لم نحذف فاصلة أو نغير الرقم.",
+          "spanStart": 1,
+          "spanEnd": 2,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": null
+        },
+        "source": {
+          "kind": "step",
+          "stepVersionId": "656fd726-8eda-48ff-869f-a3f9e2aab886"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "unsupported",
+        "normalizedText": null,
+        "displayAr": null,
+        "ast": null
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-037",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "0522c54f-58b5-4999-945c-147d82ab133c",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "30e92a59-5c77-4f43-86be-09f32746ef18",
+          "attemptRevision": 1,
+          "problemRevisionId": "a713eff8-12df-4029-ba2d-43a56ff96946",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": "NONLINEAR_EXPRESSION",
+        "issue": {
+          "reasonCode": "NONLINEAR_EXPRESSION",
+          "messageAr": "ضرب تعبيرين متغيرين خارج النطاق.",
+          "spanStart": 0,
+          "spanEnd": 14,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": null
+        },
+        "source": {
+          "kind": "step",
+          "stepVersionId": "74ae9912-c213-4979-8fd1-91f253f65b1f"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "unsupported",
+        "normalizedText": null,
+        "displayAr": null,
+        "ast": null
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-038",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "05a4400d-8bbd-4848-b270-6cf05579df2b",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "46969126-3b01-4f2b-9f6a-7956b72f0eff",
+          "attemptRevision": 1,
+          "problemRevisionId": "ac00e25a-970a-4038-b751-197b6adc157c",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": "VARIABLE_DENOMINATOR",
+        "issue": {
+          "reasonCode": "VARIABLE_DENOMINATOR",
+          "messageAr": "المقام الذي يحتوي متغيرًا غير مدعوم، حتى لو أمكن اختزاله.",
+          "spanStart": 6,
+          "spanEnd": 7,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": null
+        },
+        "source": {
+          "kind": "step",
+          "stepVersionId": "aba1b95b-d66d-44cf-be63-6ced9e6e9564"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "unsupported",
+        "normalizedText": null,
+        "displayAr": null,
+        "ast": null
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-039",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "c6ecbda9-482d-4d59-bf29-cde5aed55d44",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "26daf706-ca0f-402d-905f-f1ed7017f217",
+          "attemptRevision": 1,
+          "problemRevisionId": "d9aca449-491f-4643-abcf-d3f09f8bb50f",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": "UNSAFE_CONTROL_CHARACTER",
+        "issue": {
+          "reasonCode": "UNSAFE_CONTROL_CHARACTER",
+          "messageAr": "يوجد محرف تحكم خفي أو غير صالح. راجع الموضع دون تغيير خفي للنص.",
+          "spanStart": 10,
+          "spanEnd": 11,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": null
+        },
+        "source": {
+          "kind": "step",
+          "stepVersionId": "91b8cf71-b39a-4933-bbe4-af9e84f93f2e"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "syntax_error",
+        "normalizedText": null,
+        "displayAr": null,
+        "ast": null
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-PARSE-040",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "4fa5cb74-332c-42b5-ba92-0489e5a421f5",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "context": {
+          "attemptId": "77c42ef0-e1ce-428a-b9df-7ca16e477e06",
+          "attemptRevision": 1,
+          "problemRevisionId": "e7e05a3b-18fe-4a17-9751-987d8879c393",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "reasonCode": "UNSAFE_CONTROL_CHARACTER",
+        "issue": {
+          "reasonCode": "UNSAFE_CONTROL_CHARACTER",
+          "messageAr": "يوجد محرف تحكم خفي أو غير صالح. راجع الموضع دون تغيير خفي للنص.",
+          "spanStart": 10,
+          "spanEnd": 11,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": null
+        },
+        "source": {
+          "kind": "step",
+          "stepVersionId": "76fa2d01-fcc7-49d9-9473-c4ed7b388da9"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "syntax_error",
+        "normalizedText": null,
+        "displayAr": null,
+        "ast": null
+      },
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-001",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "4e82ccbb-7f9e-4ffa-9eba-a88c5de2f569",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-002",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "2c8ab128-dfc1-4e7a-8e58-cf64d2229b6c",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-003",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "997fab1f-520d-42a5-8326-94ef9e209969",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-004",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "8d2b83b2-95ed-44b1-86fd-4f39a08c292a",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-005",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "7f528029-7e16-450a-a863-0c965ee97168",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "5",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "5",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-006",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "a7c94d43-275d-45d2-afac-677a4b2c33cd",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "3",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "3",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-007",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "56f7ce06-5af3-463f-b9cc-862e1026e2c8",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "3",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "3",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-008",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "49493035-a702-4f76-81b9-bcb89ad5bc2f",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "-2",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "-2",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-009",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "4a7a0e72-f674-4f80-9527-6e2c76e85cfe",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-010",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "e6a190d2-fb36-4a85-a134-d7a995020532",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-011",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "16cae3fc-7568-477b-920b-1b60e2e76290",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-012",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "a359802f-0358-45a4-ba28-58ec7ec94fab",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "7",
+              "den": "3"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "7",
+              "den": "3"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-013",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "1b2997e8-992e-49a6-9f19-56eadffd3a51",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "1",
+              "den": "2"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "1",
+              "den": "2"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-014",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "047873d1-172f-44be-9f26-3cf737904d88",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-015",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "8b767192-857d-4f34-9ebf-6eb2c183919a",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "4",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "4",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-016",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "f4263f7a-c289-454d-a308-969dfc1e2c5c",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "4",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "4",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-017",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "2e2454c0-3d6d-4ce4-8604-cd3157a6ee8b",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "3",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "3",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-018",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "cd15bc9c-14fd-4237-8007-fc3498e46efd",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-019",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "9c9992ed-a342-489d-baf0-72a3ad68847f",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "7",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "7",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-020",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "6a4b2b1b-5c4c-4366-8dcf-6a656ec280cd",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "3",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "3",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-021",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "ebfdadbd-9919-489d-adc3-6ca3e99476f8",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "4",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "4",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-022",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "299ea4cd-e454-4fe8-8ff0-a20759f6b19c",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "-1",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "-1",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-023",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "0e538593-57c0-49a3-9a4d-70c3c0c0dad8",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "6",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "6",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-024",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "cd44ca74-a152-4ab6-bd8c-fc84f249f575",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "6",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "6",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-025",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "6fa5023e-59c9-4aa1-9330-5d73be283836",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-026",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "4dd82850-c415-4a44-803d-0f938e25b362",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "5",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "5",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-027",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "23380873-ed88-4fbc-8ceb-78f14bbfdb47",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "all_reals",
+            "value": null
+          },
+          "nextSolution": {
+            "kind": "all_reals",
+            "value": null
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "guard",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-028",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "92671cad-5064-4f96-9223-365904bb113f",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "empty",
+            "value": null
+          },
+          "nextSolution": {
+            "kind": "empty",
+            "value": null
+          },
+          "witness": null
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "guard",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-029",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "79e70752-a376-4477-af2f-e44b165863bf",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "7",
+              "den": "2"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "2",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-030",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "98c6aa32-6a2a-44f5-ac09-02463b4a6cc9",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "3",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "-7",
+              "den": "1"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "3",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-031",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "acbdb8e9-de12-48fe-b9f4-f2fbed5d0d4e",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "5",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "5",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-032",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "92df51a6-b2d3-4333-84eb-211feeefd99c",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "3",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "48",
+              "den": "1"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "3",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-033",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "16b63a95-496b-48b4-a85e-02d8697328f0",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "5",
+              "den": "1"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "2",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-034",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "d2b10e14-e467-4f5b-b489-74bc88dbee7d",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "8",
+              "den": "1"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "2",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-035",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "5a03e6fa-204b-4723-8a63-26a06d8b0aca",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "4",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "16",
+              "den": "3"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "4",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-036",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "f589b612-089d-4c4e-aec6-1c342ddac6bb",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "all_reals",
+            "value": null
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "0",
+              "den": "1"
+            },
+            "satisfiesPrevious": false,
+            "satisfiesNext": true
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "guard",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-037",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "f5518454-ef52-4a29-9930-32ef19ba01c9",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "3",
+              "den": "1"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "2",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-038",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "6613ddd8-7927-415c-a449-6346b0f3c758",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "7",
+              "den": "3"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "3",
+              "den": "7"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "7",
+              "den": "3"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-039",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "10bf2ba3-795a-4ea6-a658-db3a5cac6618",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "5",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "11",
+              "den": "1"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "5",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-040",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "7d2d2ee4-c487-4959-abd8-680ffd967a47",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "3",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "1",
+              "den": "2"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "3",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-041",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "dc8991f6-e3ef-42a1-9f55-665fe809f630",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "3",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "4",
+              "den": "1"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "3",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-042",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "5f64a851-977f-49f7-b734-98828efc8bad",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "3",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "-5",
+              "den": "1"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "3",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-043",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "479c74ce-4ec2-4532-8577-b3858f11e659",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "4",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "36",
+              "den": "1"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "4",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-044",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "5e0f8f3f-9d70-45a7-947c-d09129d82bf8",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "4",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "10",
+              "den": "3"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "4",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-045",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "d8b70107-b32b-4e68-a5fe-4f5fe66ed5ee",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "4",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "0",
+              "den": "1"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "4",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-046",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "acdfbdff-4f68-4bb8-90e8-dd177d662e66",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "3",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "-2",
+              "den": "1"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "3",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-047",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "360723ad-5da3-4882-b74c-c3a1ced7ee4f",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "3",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "4",
+              "den": "1"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "3",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-048",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "4ced36f0-a6fa-4545-86d5-cebccc0f1065",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "6",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "3",
+              "den": "2"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "6",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-049",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "30bb2363-29db-447f-8299-2e1c04ebf351",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "4",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "7",
+              "den": "1"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "4",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-050",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "2e9eef17-5ac3-4c0a-bcae-6c3b47e34856",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "-3",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "3",
+              "den": "1"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "-3",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-051",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "595cf438-df85-4f01-8e8b-ee8c4c066125",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "1",
+              "den": "2"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "1",
+              "den": "2"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-052",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "e45ee3e7-1947-4d6e-906b-cfb9e0686d18",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "-3",
+              "den": "1"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "2",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-053",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "8edd2844-1bc8-41c7-8c9d-a355f6cdec43",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "-2",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "-2",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-054",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "03c7019c-334e-40d3-aff7-e89dfdcc5e62",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "all_reals",
+            "value": null
+          },
+          "nextSolution": {
+            "kind": "empty",
+            "value": null
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "0",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "guard",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-055",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "a4de1052-5157-4181-87ef-5284512bd8b4",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "5",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "6",
+              "den": "1"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "5",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-056",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "1fe87b75-6057-4170-9354-29a0a291e914",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "4",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "5",
+              "den": "1"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "4",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    },
+    {
+      "id": "GOLD-MATH-057",
+      "status": "PASS",
+      "actual": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "f4062c58-302f-4133-9460-2f4c5d0c8bfe",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 1,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "3",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "3",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      },
+      "independentExpectedSetsAndWitnessCheck": true,
+      "kind": "student",
+      "transport": "NestJS MathGateway -> authenticated Python HTTP"
+    }
+  ],
+  "performance": {
+    "scope": "97 sequential development cases; container-local gateway HTTP, no load test",
+    "samples": 97,
+    "p50Ms": 10.091517000000067,
+    "p95Ms": 17.186950999999908
+  }
+}

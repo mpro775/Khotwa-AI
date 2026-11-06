@@ -1,0 +1,22 @@
+
+> khotwa-ai@0.1.0 test:workspace
+> node tools/test-workspace.mjs
+
+✔ hint responses cannot restore another attempt or an edited revision (3.1055ms)
+✔ probe responses are bound to the same current attempt, revision, hypothesis and probe (1.0682ms)
+✔ UI rejects late results after local edits, server revisions, resource changes or replaced step versions (0.7002ms)
+✔ all six statuses have distinct Arabic labels and abstention is not called wrong (0.4639ms)
+✔ client preserves explicit retry key, revision and raw while enforcing same-origin credentials (49.2309ms)
+✔ malformed or extra API fields cannot become frontend state (5.1894ms)
+✔ 503 and 409 remain typed operational failures rather than mathematical verdicts (3.653ms)
+✔ browser validators run with dynamic code generation disabled (strict CSP) (20.9903ms)
+✔ progress cannot be adopted from a different session and teacher examples cannot cross dataset boundaries (0.7311ms)
+✔ teacher response validation rejects non-synthetic flags before rendering (4.798ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 431.2681

@@ -1,0 +1,30 @@
+
+> khotwa-ai@0.1.0 typecheck
+> npm run typecheck --workspaces --if-present && pyright
+
+
+> @khotwa/api@0.1.0 typecheck
+> npm run generate && tsc --noEmit
+
+
+> @khotwa/api@0.1.0 generate
+> prisma generate --config prisma.config.ts
+
+
+✔ Generated Prisma Client (v7.10.1) to .\..\..\node_modules\@prisma\client in 955ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+
+
+> @khotwa/web@0.1.0 typecheck
+> tsc --noEmit
+
+
+> @khotwa/contracts@0.1.0 typecheck
+> tsc --noEmit
+
+0 errors, 0 warnings, 0 informations
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.

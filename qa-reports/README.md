@@ -54,3 +54,7 @@ python -X utf8 planning/audit_ph00.py --verify-delivery
 ## أدلة محاولة الإغلاق النهائية
 
 [نتيجة التوفيق](GATE0-FINAL-RECONCILIATION.md)، [خرج أداة الأدلة](gate0-evidence-preflight.json)، [39 فحصًا معادًا](gate0-reconciliation-checks.json)، [فحص سلامة الدمج](gate0-reconciliation-integrity.json)، و[فهرس ملفات هذه المحاولة](gate0-reconciliation-changes.json). exit code 2 للأداة يعني نقص الأدلة الثلاثة المتوقع، ولا يغير تفويض المالك المشروط أو يعيد فتح قرارات المحتوى.
+
+## دليل الإغلاق الحالي — 2026-11-06
+
+المرجع الرئيسي [MVP-CLOSURE-REPORT.md](MVP-CLOSURE-REPORT.md)، وشيفرة القبول مثبتة على `3f54abad78042a0294f158c39007ad754208ee32`. الجولة النهائية `closure-2026-11-06T00-47-37-644Z`؛ Golden149 PASS تطويري/1 FAIL/1 BLOCKED. مجلدات mvp-closure الأخرى أدلة أولية أو فحوص موجهة وليست نتائج الإصدار النهائية. لا تعتمد تقارير المراحل التاريخية بوصفها القبول الحالي؛ [PH10](ph10-delivery.md) و[RC](release-candidate.json) و[الفحص اليدوي](manual-acceptance-checklist.md) يثبتون الحالة الحالية. لا بوابة جديدة APPROVED أو نشر أو استدعاء Gemini جديد.

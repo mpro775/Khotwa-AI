@@ -1,0 +1,79 @@
+{
+  "phase": "MVP-CLOSURE",
+  "runId": "965c7cb5-13b5-4b5f-9f90-9af652eb2fba",
+  "url": "https://localhost:8448",
+  "recordedAt": "2026-11-06T00:50:33.588Z",
+  "passed": 28,
+  "checks": [
+    "HTTPS page and strict CSP with pinned local CA; verification remains enabled",
+    "real TLS guest bootstrap, CSRF and secured host-only cookie",
+    "live published synthetic catalog, no answer specification",
+    "HTTPS → nginx → NestJS → PostgreSQL → real Python → verified chain completion",
+    "HTTPS verification retry reuses the same result",
+    "HTTPS pinned invalid-edge hypothesis and private-key-free diagnostic probe",
+    "HTTPS uncertain answer remains unresolved and idempotent",
+    "HTTPS stale probe-answer replay rejected after revision change",
+    "HTTPS authored H1/H2/H3, real partial-math checks and idempotency; no external AI claimed",
+    "HTTPS explicit H4 confirmation and verified solution",
+    "HTTPS durable assisted completion and rejection of old hint replay after edit",
+    "HTTPS single-skill remediation assignment without premature transfer disclosure",
+    "HTTPS real authored H4 on remediation and verified assisted completion",
+    "HTTPS structurally different unseen transfer with solution-bearing public proofs withheld",
+    "HTTPS limited current evidence distinguishes assisted training from independent transfer",
+    "HTTPS explicit transfer help leaves measurement and immediately revokes independent evidence",
+    "HTTPS replacement measurement uses fresh content after assisted transfer",
+    "HTTPS root editing invalidates current episode assignments and derived evidence",
+    "cross-origin HTTPS mutation rejected",
+    "private paths blocked by public proxy",
+    "HTTPS teacher SPA entry serves with strict CSP; browser rendering remains a separate pending check",
+    "HTTPS teacher sample and all card counts derive from the fixed twelve-row synthetic artifact",
+    "HTTPS fixed teacher examples stay synthetic and separate from saved guest attempts and answer specifications",
+    "HTTPS teacher endpoints reject real resource identifiers and source-switching parameters",
+    "HTTPS teacher summary requires an authenticated guest",
+    "HTTPS another guest sees the same fixed demo but cannot read the prior guest progress",
+    "QA-E2E-J03: equivalent alternative route and reversed equality on actual HTTPS",
+    "QA-E2E-J04: unsupported trigonometry has no diagnosis or false verdict on actual HTTPS"
+  ],
+  "tls": {
+    "certificateValidation": true,
+    "explicitTestCa": true,
+    "globalTrustStoreChanged": false,
+    "browserAcceptance": "separate manual certificate handoff required"
+  },
+  "syntheticOnly": true,
+  "externalAiEnabled": false,
+  "actualLlmInferences": 0,
+  "performance": {
+    "scope": "sequential synthetic HTTPS journey on this desktop; no load test",
+    "samples": 72,
+    "p50Ms": 20.6563000000001,
+    "p95Ms": 74.91550000000007
+  },
+  "journeys": {
+    "J-01": {
+      "api": "PASS",
+      "reactChrome": "NOT_RUN",
+      "contentAcceptance": "pending review beyond PH08 cards"
+    },
+    "J-02": {
+      "api": "PASS",
+      "reactChrome": "NOT_RUN",
+      "contentAcceptance": "pending review beyond PH08 cards"
+    },
+    "J-03": {
+      "api": "PASS",
+      "reactChrome": "NOT_RUN",
+      "contentAcceptance": "pending review beyond PH08 cards"
+    },
+    "J-04": {
+      "api": "PASS",
+      "reactChrome": "NOT_RUN",
+      "contentAcceptance": "pending review beyond PH08 cards"
+    },
+    "J-05": {
+      "api": "PASS",
+      "reactChrome": "NOT_RUN",
+      "contentAcceptance": "pending review beyond PH08 cards"
+    }
+  }
+}

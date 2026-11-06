@@ -1,0 +1,11 @@
+{
+  "at": "2026-11-06T00:49:51.0773336Z",
+  "sourceCommit": "3f54abad78042a0294f158c39007ad754208ee32",
+  "node": "v24.11.1",
+  "postgres": "PostgreSQL 17.6 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+  "math": {
+    "python": "3.13.7",
+    "sympy": "1.14.0"
+  },
+  "scope": "existing isolated synthetic local demo"
+}

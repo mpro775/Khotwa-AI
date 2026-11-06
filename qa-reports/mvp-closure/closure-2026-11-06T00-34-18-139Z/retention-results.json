@@ -1,0 +1,50 @@
+{
+  "runId": "closure-2026-11-06T00-34-18-139Z",
+  "commit": "defddb077c94073653dbfe8ef4244c287a05d7f0",
+  "at": "2026-11-06T00:38:28.955Z",
+  "checks": [],
+  "contracts": [
+    {
+      "operationId": "getBootstrap",
+      "status": 200
+    },
+    {
+      "operationId": "createGuestSession",
+      "status": 201
+    },
+    {
+      "operationId": "createLearningSession",
+      "status": 201
+    },
+    {
+      "operationId": "getBootstrap",
+      "status": 200
+    },
+    {
+      "operationId": "createGuestSession",
+      "status": 201
+    },
+    {
+      "operationId": "createLearningSession",
+      "status": 201
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 201
+    }
+  ],
+  "syntheticOnly": true,
+  "actualGeminiCalls": 0
+}

@@ -1,0 +1,146 @@
+{
+  "at": "2026-11-06T00:49:44.545Z",
+  "commit": "3f54abad78042a0294f158c39007ad754208ee32",
+  "node": "v26.7.0",
+  "lockfileBytes": 195959,
+  "actualGeminiCalls": 0,
+  "checks": [
+    {
+      "name": "contracts:check",
+      "command": [
+        "node",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "contracts:check"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 5206
+    },
+    {
+      "name": "format:check",
+      "command": [
+        "node",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "format:check"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 6462
+    },
+    {
+      "name": "lint",
+      "command": [
+        "node",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 6951
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "node",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 32907
+    },
+    {
+      "name": "build",
+      "command": [
+        "node",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 28610
+    },
+    {
+      "name": "test:editor",
+      "command": [
+        "node",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "test:editor"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 1994
+    },
+    {
+      "name": "test:workspace",
+      "command": [
+        "node",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "test:workspace"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 3782
+    },
+    {
+      "name": "test:math",
+      "command": [
+        "node",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "test:math"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 5916
+    },
+    {
+      "name": "all-api-units",
+      "command": [
+        "node",
+        "--test",
+        "apps/api/tests/diagnosis.test.mjs",
+        "apps/api/tests/gemini.test.mjs",
+        "apps/api/tests/learning.test.mjs",
+        "apps/api/tests/math-gateway.test.mjs",
+        "apps/api/tests/ph08-final.test.mjs",
+        "apps/api/tests/ph08-generative.test.mjs",
+        "apps/api/tests/ph08-review-followup.test.mjs",
+        "apps/api/tests/progress.test.mjs",
+        "apps/api/tests/security.test.mjs",
+        "apps/api/tests/tutoring.test.mjs"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 5627
+    },
+    {
+      "name": "closure-fixture-lint",
+      "command": [
+        "node",
+        "node_modules/eslint/bin/eslint.js",
+        "qa/ph10-container.mjs",
+        "qa/ph10-golden-http.mjs",
+        "qa/mvp-local-seed.mjs",
+        "qa/ph08-reviewed-content.mjs",
+        "apps/api/tests/retention-live.test.mjs"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 2407
+    },
+    {
+      "name": "closure-fixture-format",
+      "command": [
+        "node",
+        "node_modules/prettier/bin/prettier.cjs",
+        "--check",
+        "qa/ph10-container.mjs",
+        "qa/ph10-golden-http.mjs",
+        "qa/mvp-local-seed.mjs",
+        "qa/ph08-reviewed-content.mjs",
+        "apps/api/tests/retention-live.test.mjs",
+        "compose.mvp.yaml"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 935
+    }
+  ]
+}

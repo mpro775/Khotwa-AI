@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-06T00:52:43.281Z",
+  "sourceCommit": "3f54abad78042a0294f158c39007ad754208ee32",
+  "runId": "closure-2026-11-06T00-47-37-644Z",
+  "goldenIdsValidated": 151,
+  "counts": {
+    "PASS": 149,
+    "FAIL": 1,
+    "BLOCKED": 1,
+    "NOT_RUN": 0,
+    "NOT_APPLICABLE": 0
+  },
+  "knownFailedSuite": "ph06-integration",
+  "evidenceFingerprintsValidated": 60,
+  "sourceFingerprintsValidated": 7,
+  "requiredReportsValidated": 10,
+  "brokenLinks": [],
+  "sourceAndArtifactConsistency": "PASS",
+  "releaseApproval": "pending"
+}

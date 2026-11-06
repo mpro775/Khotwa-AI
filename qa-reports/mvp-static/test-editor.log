@@ -1,0 +1,28 @@
+
+> khotwa-ai@0.1.0 test:editor
+> npm run test:editor --workspace @khotwa/web
+
+
+> @khotwa/web@0.1.0 test:editor
+> node --test tests/editor-model.test.mjs
+
+✔ AN-002: original ASCII digits stay distinct from a known Arabic display (2.9952ms)
+✔ AN-011: fraction recipe explicitly keeps numerator 1 and denominator 2 (1.339ms)
+✔ known examples and aliases retain their own source without a parser claim (1.897ms)
+✔ AN-013/018/020: ambiguous or unsupported samples never acquire a display meaning (0.596ms)
+✔ AN-030: directional and other hidden controls are reported and kept visible in audit (0.9695ms)
+✔ a 257 code point paste is retained and flagged rather than silently truncated (0.5426ms)
+✔ new edits immediately invalidate the previous fixture meaning and local issue (0.4143ms)
+✔ unknown text, including x, is never aliased to س or treated as a successful parse (0.2308ms)
+✔ selection replacement preserves source order and exact punctuation (0.4778ms)
+✔ issue selection translates Unicode code points into textarea UTF-16 offsets (0.3909ms)
+✔ shallow editor guards flag foreign characters and unbalanced brackets but never assert math validity (1.1458ms)
+✔ deleting a pasted supplementary character does not split a UTF-16 surrogate pair (0.2239ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 270.1798

@@ -1,0 +1,25 @@
+✖ PH09 current progress, isolated teacher artifact and failure/security boundaries (1855.997408ms)
+✖ apps/api/tests/progress-live.test.mjs (161459.234436ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 1
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 161497.78458
+
+✖ failing tests:
+
+test at apps/api/tests/progress-live.test.mjs:12:1
+✖ PH09 current progress, isolated teacher artifact and failure/security boundaries (1855.997408ms)
+  Error: Isolated PH09 math target required
+      at mathFaultProxy (file:///app/qa/ph09-fault-proxy.mjs:8:11)
+      at TestContext.<anonymous> (file:///app/apps/api/tests/progress-live.test.mjs:34:21)
+      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+
+test at apps/api/tests/progress-live.test.mjs:1:1
+✖ apps/api/tests/progress-live.test.mjs (161459.234436ms)
+  'Promise resolution is still pending but the event loop has already resolved'

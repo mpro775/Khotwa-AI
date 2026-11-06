@@ -1,0 +1,40 @@
+{"event":"ph08_gemini_call","at":"2026-11-06T00:35:29.523Z","requestedModel":"gemini-3.5-flash-lite","actualModel":"gemini-3.5-flash-lite","thinkingLevel":"minimal","latencyMs":2.135,"httpStatus":200,"providerErrorCode":null,"inputTokens":200,"outputTokens":110,"totalTokens":310,"thinkingTokens":null,"outcome":"PH08_GENERATED_VALIDATED","textOrigin":"gemini_generated","generationVersion":"ph08-generative-draft-v2"}
+{"event":"ph08_gemini_call","at":"2026-11-06T00:35:29.673Z","requestedModel":"gemini-3.5-flash-lite","actualModel":"gemini-3.5-flash-lite","thinkingLevel":"minimal","latencyMs":0.528,"httpStatus":200,"providerErrorCode":null,"inputTokens":200,"outputTokens":110,"totalTokens":310,"thinkingTokens":null,"outcome":"PH08_GENERATED_VALIDATED","textOrigin":"gemini_generated","generationVersion":"ph08-generative-draft-v2"}
+{"event":"ph08_gemini_call","at":"2026-11-06T00:35:29.800Z","requestedModel":"gemini-3.5-flash-lite","actualModel":"gemini-3.5-flash-lite","thinkingLevel":"minimal","latencyMs":0.51,"httpStatus":200,"providerErrorCode":null,"inputTokens":200,"outputTokens":110,"totalTokens":310,"thinkingTokens":null,"outcome":"PH08_GENERATED_VALIDATED","textOrigin":"gemini_generated","generationVersion":"ph08-generative-draft-v2"}
+▶ PH08 owner-attested content and reviewed fallback through NestJS/PG/SymPy
+  ✔ generated H1-H3 are fresh provider response bytes, not a cached template, with owner-attested rules audit and unchanged math (1380.084431ms)
+  ✔ H4 remains explicit, verified stored content and does not call Gemini (405.104701ms)
+{"event":"ph08_gemini_call","at":"2026-11-06T00:35:30.701Z","requestedModel":"gemini-3.5-flash-lite","actualModel":null,"thinkingLevel":"minimal","latencyMs":0.128,"httpStatus":null,"providerErrorCode":null,"inputTokens":null,"outputTokens":null,"totalTokens":null,"thinkingTokens":null,"outcome":"GEMINI_PROVIDER_ERROR","textOrigin":"none","generationVersion":"ph08-generative-draft-v2"}
+  ✔ failure uses owner-attested reviewed fallback and retains student evidence (417.787166ms)
+{"event":"ph08_gemini_call","at":"2026-11-06T00:35:31.112Z","requestedModel":"gemini-3.5-flash-lite","actualModel":null,"thinkingLevel":"minimal","latencyMs":0.363,"httpStatus":503,"providerErrorCode":null,"inputTokens":null,"outputTokens":null,"totalTokens":null,"thinkingTokens":null,"outcome":"GEMINI_HTTP_503","textOrigin":"none","generationVersion":"ph08-generative-draft-v2"}
+  ✔ 503 uses owner-attested reviewed fallback and retains student evidence (423.442651ms)
+{"event":"ph08_gemini_call","at":"2026-11-06T00:35:31.641Z","requestedModel":"gemini-3.5-flash-lite","actualModel":null,"thinkingLevel":"minimal","latencyMs":996.718,"httpStatus":null,"providerErrorCode":null,"inputTokens":null,"outputTokens":null,"totalTokens":null,"thinkingTokens":null,"outcome":"GEMINI_ABORTED","textOrigin":"none","generationVersion":"ph08-generative-draft-v2"}
+  ✔ timeout uses owner-attested reviewed fallback and retains student evidence (1545.879127ms)
+{"event":"ph08_gemini_call","at":"2026-11-06T00:35:33.051Z","requestedModel":"gemini-3.5-flash-lite","actualModel":"gemini-3.5-flash-lite","thinkingLevel":"minimal","latencyMs":0.351,"httpStatus":200,"providerErrorCode":null,"inputTokens":null,"outputTokens":null,"totalTokens":null,"thinkingTokens":null,"outcome":"AI_INVALID_JSON","textOrigin":"none","generationVersion":"ph08-generative-draft-v2"}
+  ✔ invalid_json uses owner-attested reviewed fallback and retains student evidence (365.118203ms)
+{"event":"ph08_gemini_call","at":"2026-11-06T00:35:33.429Z","requestedModel":"gemini-3.5-flash-lite","actualModel":"gemini-3.5-flash-lite","thinkingLevel":"minimal","latencyMs":0.464,"httpStatus":200,"providerErrorCode":null,"inputTokens":200,"outputTokens":110,"totalTokens":310,"thinkingTokens":null,"outcome":"PH08_LEVEL_OR_SPEECH_ACT","textOrigin":"none","generationVersion":"ph08-generative-draft-v2"}
+  ✔ unsafe uses owner-attested reviewed fallback and retains student evidence (381.325533ms)
+{"event":"ph08_gemini_call","at":"2026-11-06T00:35:33.825Z","requestedModel":"gemini-3.5-flash-lite","actualModel":"gemini-3.5-flash-lite","thinkingLevel":"minimal","latencyMs":0.431,"httpStatus":200,"providerErrorCode":null,"inputTokens":200,"outputTokens":110,"totalTokens":310,"thinkingTokens":null,"outcome":"PH08_LITERAL_TEMPLATE","textOrigin":"none","generationVersion":"ph08-generative-draft-v2"}
+  ✔ literal uses owner-attested reviewed fallback and retains student evidence (416.71275ms)
+{"event":"ph08_gemini_call","at":"2026-11-06T00:35:34.237Z","requestedModel":"gemini-3.5-flash-lite","actualModel":null,"thinkingLevel":"minimal","latencyMs":0.585,"httpStatus":429,"providerErrorCode":null,"inputTokens":null,"outputTokens":null,"totalTokens":null,"thinkingTokens":null,"outcome":"GEMINI_HTTP_429","textOrigin":"none","generationVersion":"ph08-generative-draft-v2"}
+  ✔ 429 uses owner-attested reviewed fallback and retains student evidence (392.858721ms)
+  ✔ root PH07 requests stay local; foreign UUID cannot call the adapter (418.164248ms)
+{"event":"ph08_gemini_call","at":"2026-11-06T00:35:35.022Z","requestedModel":"gemini-3.5-flash-lite","actualModel":"gemini-3.5-flash-lite","thinkingLevel":"minimal","latencyMs":31.878,"httpStatus":200,"providerErrorCode":null,"inputTokens":200,"outputTokens":110,"totalTokens":310,"thinkingTokens":null,"outcome":"PH08_GENERATED_VALIDATED","textOrigin":"gemini_generated","generationVersion":"ph08-generative-draft-v2"}
+  ✔ a late generated response cannot overwrite evidence after a step edit (380.409971ms)
+{"event":"ph08_gemini_call","at":"2026-11-06T00:35:35.595Z","requestedModel":"gemini-3.5-flash-lite","actualModel":"gemini-3.5-flash-lite","thinkingLevel":"minimal","latencyMs":0.408,"httpStatus":200,"providerErrorCode":null,"inputTokens":200,"outputTokens":110,"totalTokens":310,"thinkingTokens":null,"outcome":"PH08_GENERATED_VALIDATED","textOrigin":"gemini_generated","generationVersion":"ph08-generative-draft-v2"}
+  ✔ transfer generation occurs only after explicit exit from independent measurement (482.278925ms)
+  ✔ history, H4 and fractional publication remain unchanged (4.753524ms)
+{"event":"ph08_gemini_call","at":"2026-11-06T00:35:35.890Z","requestedModel":"gemini-3.5-flash-lite","actualModel":"gemini-3.5-flash-lite","thinkingLevel":"minimal","latencyMs":0.287,"httpStatus":200,"providerErrorCode":null,"inputTokens":200,"outputTokens":110,"totalTokens":310,"thinkingTokens":null,"outcome":"PH08_GENERATED_VALIDATED","textOrigin":"gemini_generated","generationVersion":"ph08-generative-draft-v2"}
+  ✔ idempotency conflict and concurrent duplicate commit one event (381.253128ms)
+  ✔ absent session and invalid CSRF cannot dispatch Gemini (260.480683ms)
+  ✔ ERR05/SK06 uses attested mapping fallback at H1-H3 with no provider call (719.518022ms)
+  ✔ unapproved draft cannot be displayed even when a provider would succeed (416.855859ms)
+✔ PH08 owner-attested content and reviewed fallback through NestJS/PG/SymPy (11123.447294ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11558.124518

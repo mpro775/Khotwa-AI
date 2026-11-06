@@ -1,0 +1,31 @@
+▶ PH-04 NestJS + isolated PostgreSQL contract and state integration
+  ✔ two guests receive opaque secured cookies and no identity fields (540.947538ms)
+  ✔ bootstrap POST replay/concurrency yields one guest and existing session resumes (67.953689ms)
+  ✔ Origin, fetch-site, CSRF, JSON and DTO protections reject requests (73.094729ms)
+  ✔ unpublished catalog stays empty and unavailable release creates no learning session (72.50019ms)
+  ✔ isolated synthetic fixtures simulate publication without human approval (45.724821ms)
+  ✔ catalog filters hidden/draft items, paginates and never returns answers (117.931391ms)
+  ✔ learning and attempt create/retry are scoped and pin content revision (277.291862ms)
+  ✔ guest B cannot discover, read or mutate guest A resources (41.636058ms)
+  ✔ step append preserves exact raw and repeat does not duplicate versions/revision (118.452145ms)
+  ✔ two different keys racing at one revision have exactly one winner (42.139591ms)
+  ✔ old-step edit invalidates proof dependencies and late responses remain historical (127.11652ms)
+  ✔ logical delete compacts positions atomically and retains immutable history (63.991238ms)
+  ✔ content relations, cycles and predecessor scope are enforced in PostgreSQL (108.10356ms)
+  ✔ unknown skill list stays within the declared response contract (14.256844ms)
+  ✔ PostgreSQL constraints, immutable records and transaction rollback are real (96.740507ms)
+  ✔ raw script/SQL-like text is inert draft data and cannot select a foreign step (111.564489ms)
+  ✔ cross-guest edit/delete and malformed UUID are isolated (31.233369ms)
+  ✔ unexpected database failure returns sanitized matching HTTP envelope (7.872921ms)
+  ✔ rate limit emits a contracted 429 with Retry-After (14.319648ms)
+  ✔ expiry, idle timeout, revocation and bootstrap replay cannot revive access (102.401082ms)
+  ✔ PH-05 and private math routes remain unexposed (11.456459ms)
+✔ PH-04 NestJS + isolated PostgreSQL contract and state integration (3426.160344ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3708.320892

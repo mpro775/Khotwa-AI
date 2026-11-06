@@ -1,0 +1,41 @@
+{
+  "at": "2026-11-06T00:51:46.6667278Z",
+  "sourceCommit": "3f54abad78042a0294f158c39007ad754208ee32",
+  "images": [
+    {
+      "service": "api",
+      "image": "sha256:275b4e663651b1126bf3693c7d0578a924bc887ed749f0b3d6f2f321242b9842",
+      "status": "running"
+    },
+    {
+      "service": "database",
+      "image": "sha256:ef257d85f76e48da1c64832459b59fcaba1a4dac97bf5d7450c77753542eee94",
+      "status": "running"
+    },
+    {
+      "service": "math",
+      "image": "sha256:f089a90c73b5312ff7d271c5be899d0e12f8373c967263caafb11d92a36b1737",
+      "status": "running"
+    },
+    {
+      "service": "math-proxy",
+      "image": "sha256:1a1cb0823332669c0c2e6e8cd18a8a8c37dda4d79bdcf3efed1c1ea2a5f15fc3",
+      "status": "running"
+    },
+    {
+      "service": "retention",
+      "image": "sha256:1a1cb0823332669c0c2e6e8cd18a8a8c37dda4d79bdcf3efed1c1ea2a5f15fc3",
+      "status": "running"
+    },
+    {
+      "service": "seed",
+      "image": "sha256:1a1cb0823332669c0c2e6e8cd18a8a8c37dda4d79bdcf3efed1c1ea2a5f15fc3",
+      "status": "exited"
+    },
+    {
+      "service": "web",
+      "image": "sha256:7b69f3d574747e3feef55c6c10c4b5c593c486b07dd262114d7ca3180a7030a0",
+      "status": "running"
+    }
+  ]
+}

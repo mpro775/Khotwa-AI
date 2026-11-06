@@ -1,0 +1,467 @@
+{
+  "phase": "PH-04",
+  "contracts": [
+    {
+      "method": "GET",
+      "path": "/api/v1/bootstrap",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/guest-sessions",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/bootstrap",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/guest-sessions",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/skills",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/guest-sessions/current",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/bootstrap",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/guest-sessions",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/guest-sessions",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/guest-sessions",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/learning-sessions",
+      "status": 403
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/learning-sessions",
+      "status": 403
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/learning-sessions",
+      "status": 403
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/learning-sessions",
+      "status": 400
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/learning-sessions",
+      "status": 400
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/learning-sessions",
+      "status": 400
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/guest-sessions",
+      "status": 422
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/learning-sessions",
+      "status": 400
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/learning-sessions",
+      "status": 400
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/bootstrap",
+      "status": 400
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/skills",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/learning-sessions",
+      "status": 409
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/skills",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/skills/{skillId}",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/problems",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/problems",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/problems",
+      "status": 400
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/problems",
+      "status": 422
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/problems",
+      "status": 400
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/problems/{problemId}",
+      "status": 404
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/problems/{problemId}",
+      "status": 404
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/problems/{problemId}",
+      "status": 404
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/problems/{problemId}",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/learning-sessions",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/learning-sessions",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/learning-sessions",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/learning-sessions/{learningSessionId}",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/attempts",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/attempts",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/attempts",
+      "status": 409
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/attempts",
+      "status": 404
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/attempts",
+      "status": 404
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/attempts",
+      "status": 404
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/attempts",
+      "status": 404
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/attempts",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/learning-sessions/{learningSessionId}",
+      "status": 404
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/attempts/{attemptId}",
+      "status": 404
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/attempts",
+      "status": 404
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/attempts/{attemptId}/steps",
+      "status": 404
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/attempts/{attemptId}",
+      "status": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/attempts/{attemptId}/steps",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/attempts/{attemptId}/steps",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/attempts/{attemptId}/steps",
+      "status": 409
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/attempts/{attemptId}/steps",
+      "status": 422
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/attempts/{attemptId}/steps",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/attempts/{attemptId}/steps",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/attempts/{attemptId}/steps",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/attempts/{attemptId}/steps",
+      "status": 409
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/attempts/{attemptId}",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/attempts/{attemptId}/steps/{stepId}",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/attempts/{attemptId}",
+      "status": 200
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/attempts/{attemptId}/steps/{stepId}",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/attempts/{attemptId}",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/attempts/{attemptId}/steps/{stepId}",
+      "status": 404
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/problems",
+      "status": 422
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/guest-sessions/current",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/attempts",
+      "status": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/attempts/{attemptId}/steps",
+      "status": 201
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/attempts/{attemptId}/steps/{stepId}",
+      "status": 404
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/attempts/{attemptId}/steps/{stepId}",
+      "status": 404
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/attempts/{attemptId}/steps/{stepId}",
+      "status": 404
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/attempts/{attemptId}",
+      "status": 400
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/skills",
+      "status": 500
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/skills",
+      "status": 429
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/guest-sessions/current",
+      "status": 400
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/bootstrap",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/guest-sessions",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/guest-sessions/current",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/guest-sessions/current",
+      "status": 410
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/skills",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/bootstrap",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/guest-sessions",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/guest-sessions/current",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/guest-sessions/current",
+      "status": 410
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/bootstrap",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/guest-sessions",
+      "status": 201
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/guest-sessions/current",
+      "status": 204
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/guest-sessions/current",
+      "status": 204
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/skills",
+      "status": 401
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/guest-sessions",
+      "status": 403
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/attempts/{attemptId}/verify",
+      "status": 404
+    }
+  ],
+  "validatedResponses": 91,
+  "environment": {
+    "node": "v24.11.1",
+    "postgres": "17.6",
+    "database": "isolated synthetic test only",
+    "transport": "local HTTP client with explicit HTTPS Origin; cookie flags checked; no browser/HTTPS deployment claim"
+  }
+}

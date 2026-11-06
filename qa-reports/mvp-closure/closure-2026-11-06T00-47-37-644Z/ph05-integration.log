@@ -1,0 +1,22 @@
+▶ PH-05 real NestJS PostgreSQL Python verification integration
+  ✔ equivalent chain and isolated final answer complete only the pinned revision (693.476893ms)
+  ✔ a correct final answer cannot erase an earlier invalid edge (198.810675ms)
+  ✔ target edge and a nonisolated equivalent equation cannot complete a sequence (178.091308ms)
+  ✔ fresh inputs, reversed isolation and negative coefficients use real Python (233.602437ms)
+  ✔ syntax, unsupported and resource abstention never become conceptual mistakes (226.520836ms)
+  ✔ all 40 draft Golden parser cases pass through the saved NestJS/Python path (3421.397115ms)
+  ✔ all 53 student-domain draft Golden transitions pass through real Python (7856.993951ms)
+  ✔ concurrent same-key retry, stale response, historical proof and reverify are safe (649.764991ms)
+  ✔ unavailable service preserves raw and permits the identical key to retry safely (370.085214ms)
+  ✔ whole-request deadline aborts real HTTP work and same-key retry recovers (701.329734ms)
+  ✔ expired reservation can be reclaimed without an old worker overwriting its retry (461.786337ms)
+  ✔ verification DTO and empty/foreign target boundaries match the public contract (137.706396ms)
+✔ PH-05 real NestJS PostgreSQL Python verification integration (16691.30801ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17224.746854

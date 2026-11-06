@@ -1,0 +1,50 @@
+
+> khotwa-ai@0.1.0 test:math
+> node tools/test-math.mjs
+
+test_adjacency_issue_points_to_offending_term (test_math_engine.MathTests.test_adjacency_issue_points_to_offending_term) ... ok
+test_all_empty_singleton_and_witnesses (test_math_engine.MathTests.test_all_empty_singleton_and_witnesses) ... ok
+test_ambiguous_adjacency_and_incomplete_equations (test_math_engine.MathTests.test_ambiguous_adjacency_and_incomplete_equations) ... ok
+test_bad_witness_abstains (test_math_engine.MathTests.test_bad_witness_abstains) ... ok
+test_code_payloads_do_not_execute (test_math_engine.MathTests.test_code_payloads_do_not_execute) ... ok
+test_control_spans_are_code_points (test_math_engine.MathTests.test_control_spans_are_code_points) ... ok
+test_division_by_zero_in_arithmetic_denominator (test_math_engine.MathTests.test_division_by_zero_in_arithmetic_denominator) ... ok
+test_functions_and_powers_abstain (test_math_engine.MathTests.test_functions_and_powers_abstain) ... ok
+test_generated_equations_and_mutations (test_math_engine.MathTests.test_generated_equations_and_mutations) ... ok
+test_internal_failure_is_not_student_error (test_math_engine.MathTests.test_internal_failure_is_not_student_error) ... ok
+test_isolation_is_separate_from_equivalence (test_math_engine.MathTests.test_isolation_is_separate_from_equivalence) ... ok
+test_multiple_valid_routes_and_signs (test_math_engine.MathTests.test_multiple_valid_routes_and_signs) ... ok
+test_no_silent_aliases (test_math_engine.MathTests.test_no_silent_aliases) ... ok
+test_nonlinearity_before_zero_or_cancellation (test_math_engine.MathTests.test_nonlinearity_before_zero_or_cancellation) ... ok
+test_rational_arithmetic_and_precedence (test_math_engine.MathTests.test_rational_arithmetic_and_precedence) ... ok
+test_rational_limit_is_inconclusive (test_math_engine.MathTests.test_rational_limit_is_inconclusive) ... ok
+test_raw_and_display_are_independent (test_math_engine.MathTests.test_raw_and_display_are_independent) ... ok
+test_real_difference_not_one_sample_or_text (test_math_engine.MathTests.test_real_difference_not_one_sample_or_text) ... ok
+test_reference_disagreement_abstains (test_math_engine.MathTests.test_reference_disagreement_abstains) ... ok
+test_round_trip_and_source_structure (test_math_engine.MathTests.test_round_trip_and_source_structure) ... ok
+test_soft_deadline_has_no_math_verdict (test_math_engine.MathTests.test_soft_deadline_has_no_math_verdict) ... ok
+test_source_has_no_unsafe_parsing_calls (test_math_engine.MathTests.test_source_has_no_unsafe_parsing_calls) ... ok
+test_source_spans_and_groups (test_math_engine.MathTests.test_source_spans_and_groups) ... ok
+test_structural_limits (test_math_engine.MathTests.test_structural_limits) ... ok
+test_unicode_digits_signs_and_multi_digit_token (test_math_engine.MathTests.test_unicode_digits_signs_and_multi_digit_token) ... ok
+test_variable_denominator_before_cancellation (test_math_engine.MathTests.test_variable_denominator_before_cancellation) ... ok
+test_abstentions_have_no_partial_success_fields (test_protocol.ProtocolTests.test_abstentions_have_no_partial_success_fields) ... ok
+test_check_final_does_not_decide_completion (test_protocol.ProtocolTests.test_check_final_does_not_decide_completion) ... ok
+test_client_ast_extra_fields_and_unknown_schema_rejected (test_protocol.ProtocolTests.test_client_ast_extra_fields_and_unknown_schema_rejected) ... ok
+test_echoes_versions_context_source_and_revision (test_protocol.ProtocolTests.test_echoes_versions_context_source_and_revision) ... ok
+test_json_duplicate_keys_floats_constants_and_invalid_utf8_rejected (test_protocol.ProtocolTests.test_json_duplicate_keys_floats_constants_and_invalid_utf8_rejected) ... ok
+test_technical_failure_is_sanitized (test_protocol.ProtocolTests.test_technical_failure_is_sanitized) ... ok
+test_unknown_profile_fails_closed_with_original_context (test_protocol.ProtocolTests.test_unknown_profile_fails_closed_with_original_context) ... ok
+test_wrong_types_bounds_uuid_and_source_consistency (test_protocol.ProtocolTests.test_wrong_types_bounds_uuid_and_source_consistency) ... ok
+test_actual_hard_timeout_kills_worker (test_worker.WorkerTests.test_actual_hard_timeout_kills_worker) ... ok
+test_busy_is_bounded_and_not_a_student_failure (test_worker.WorkerTests.test_busy_is_bounded_and_not_a_student_failure) ... ok
+test_crashed_worker_does_not_issue_invalid_math (test_worker.WorkerTests.test_crashed_worker_does_not_issue_invalid_math) ... ok
+test_escaped_surrogate_is_rejected_without_crashing_worker (test_worker.WorkerTests.test_escaped_surrogate_is_rejected_without_crashing_worker) ... ok
+test_start_is_idempotent (test_worker.WorkerTests.test_start_is_idempotent) ... ok
+test_warm_worker_serves_all_three_operations (test_worker.WorkerTests.test_warm_worker_serves_all_three_operations) ... ok
+test_worker_does_not_inherit_service_secrets (test_worker.WorkerTests.test_worker_does_not_inherit_service_secrets) ... ok
+
+----------------------------------------------------------------------
+Ran 41 tests in 2.972s
+
+OK

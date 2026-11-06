@@ -1,0 +1,25 @@
+▶ PH09 current progress, isolated teacher artifact and failure/security boundaries
+  ✔ teacher math examples are real verified counterexamples, with no hidden bank or live attempt IDs (91.033622ms)
+  ✔ three progress states and per-skill detail match actual current evidence without mastery scores (1844.804218ms)
+  ✔ duplicate source events and repeated verification do not double count a completed attempt (743.782318ms)
+  ✔ content withdrawal, assignment mode and source revisions immediately remove stale positive evidence (792.199893ms)
+  ✔ a new non-assessable transfer does not erase another current independent observation (1186.657279ms)
+  ✔ teacher cards always read the fixed synthetic source, independent of guest data and feature-source selectors (476.846359ms)
+  ✔ anonymous and foreign-session reads cannot resolve progress, examples or learning resources (680.717251ms)
+  ✔ absolute expiry and idle expiry revoke read permission including teacher demo (76.70989ms)
+  ✔ logout is repeatable revocation, not a false claim of deleting stored work (209.666484ms)
+  ✔ Origin, CSRF and secure cookies stay mandatory and errors do not disclose stacks or credentials (92.104931ms)
+  ✔ parallel duplicate keys and revision races never duplicate student work (194.24004ms)
+  ✔ real HTTP Python failure and timeout preserve saved raw, prior facts and safe same-key retry (1479.983223ms)
+  ✔ Python failure after an edit produces no negative skill event or overwritten source (1084.405429ms)
+  ✔ AI invalid JSON and HTTP timeout use a draft fallback while preserving verified math and private raw (561.249175ms)
+  ✔ a held real Python response cannot restore an old revision or its progress (776.375355ms)
+✔ PH09 current progress, isolated teacher artifact and failure/security boundaries (12968.848985ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13641.386518

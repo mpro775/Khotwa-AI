@@ -1,0 +1,47 @@
+▶ SEC-047: actual atomic retention with isolated operator and immutable API history
+  ✖ GOLD-STATE-011: a new problem revision cannot reinterpret an existing attempt (3.768993ms)
+  ✔ GOLD-STATE-016: failed storage rolls back revision and preserves the mathematical verdict (140.068466ms)
+  ✔ runtime cannot invoke purge or bypass immutable history by setting a flag (24.25244ms)
+  ✔ dry-run makes no changes; seven-day boundary uses idle/absolute/revocation expiry (90.232916ms)
+  ✔ failure rolls back every child deletion and retry is safe (96.587741ms)
+  ✔ apply deletes the full graph, preserves content/other guests and reruns without duplication (83.153554ms)
+✖ SEC-047: actual atomic retention with isolated operator and immutable API history (4421.351999ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 5
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5056.49056
+
+✖ failing tests:
+
+test at apps/api/tests/retention-live.test.mjs:158:15
+✖ GOLD-STATE-011: a new problem revision cannot reinterpret an existing attempt (3.768993ms)
+  error: published membership immutable
+      at /app/node_modules/pg-pool/index.js:45:11
+      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+      at async TestContext.<anonymous> (file:///app/apps/api/tests/retention-live.test.mjs:163:11)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async TestContext.<anonymous> (file:///app/apps/api/tests/retention-live.test.mjs:158:7)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    length: 157,
+    severity: 'ERROR',
+    code: 'P0001',
+    detail: undefined,
+    hint: undefined,
+    position: undefined,
+    internalPosition: undefined,
+    internalQuery: undefined,
+    where: 'PL/pgSQL function protect_content_membership() line 22 at RAISE',
+    schema: undefined,
+    table: undefined,
+    column: undefined,
+    dataType: undefined,
+    constraint: undefined,
+    file: 'pl_exec.c',
+    line: '3911',
+    routine: 'exec_stmt_raise'
+  }
