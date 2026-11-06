@@ -1,0 +1,3347 @@
+{
+  "schemaVersion": "golden-expectations-v1",
+  "adapterVersion": "golden-adapter-v1",
+  "sourceMetadata": {
+    "dataset_version": "1.0-draft",
+    "generated_on": "2026-11-03",
+    "review_status": "draft_requires_subject_and_pedagogy_review",
+    "fixtures_schema": "internal_test_fixtures_v1_not_public_api"
+  },
+  "subjectReview": "unreviewed",
+  "productExecution": "not_run",
+  "cases": [
+    {
+      "id": "GOLD-PARSE-001",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-001",
+        "raw": "٢س + ٣ = ٧",
+        "status": "accepted",
+        "reason": "—",
+        "note": "ضرب ضمني بمتغير عربي",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "parsed",
+        "reasonCode": null
+      }
+    },
+    {
+      "id": "GOLD-PARSE-002",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-002",
+        "raw": "2س + 3 = 7",
+        "status": "accepted",
+        "reason": "—",
+        "note": "أرقام ASCII مقبولة، وعرض عربي موحد",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "parsed",
+        "reasonCode": null
+      }
+    },
+    {
+      "id": "GOLD-PARSE-003",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-003",
+        "raw": "٢ س + ٣ = ٧",
+        "status": "accepted",
+        "reason": "—",
+        "note": "مسافة بين المعامل والمتغير",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "parsed",
+        "reasonCode": null
+      }
+    },
+    {
+      "id": "GOLD-PARSE-004",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-004",
+        "raw": "٢(س + ٣) = ١٠",
+        "status": "accepted",
+        "reason": "—",
+        "note": "معامل خارج قوس",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "parsed",
+        "reasonCode": null
+      }
+    },
+    {
+      "id": "GOLD-PARSE-005",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-005",
+        "raw": "−٣س + ١٢ = ٠",
+        "status": "accepted",
+        "reason": "—",
+        "note": "سالب أحادي U+2212",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "parsed",
+        "reasonCode": null
+      }
+    },
+    {
+      "id": "GOLD-PARSE-006",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-006",
+        "raw": "-3س + 12 = 0",
+        "status": "accepted",
+        "reason": "—",
+        "note": "سالب ASCII وأرقام ASCII",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "parsed",
+        "reasonCode": null
+      }
+    },
+    {
+      "id": "GOLD-PARSE-007",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-007",
+        "raw": "س/٢ = ٣",
+        "status": "accepted",
+        "reason": "—",
+        "note": "مقام عددي غير صفري",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "parsed",
+        "reasonCode": null
+      }
+    },
+    {
+      "id": "GOLD-PARSE-008",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-008",
+        "raw": "س = ١/٢",
+        "status": "accepted",
+        "reason": "—",
+        "note": "قيمة كسرية عددية؛ مشروط ببوابة عرض الكسور",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "parsed",
+        "reasonCode": null
+      }
+    },
+    {
+      "id": "GOLD-PARSE-009",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-009",
+        "raw": "٢س/٣ = ٤",
+        "status": "accepted",
+        "reason": "—",
+        "note": "تقسيم حد خطي على ثابت",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "parsed",
+        "reasonCode": null
+      }
+    },
+    {
+      "id": "GOLD-PARSE-010",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-010",
+        "raw": "٢×س = ٤",
+        "status": "accepted",
+        "reason": "—",
+        "note": "ضرب صريح ×",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "parsed",
+        "reasonCode": null
+      }
+    },
+    {
+      "id": "GOLD-PARSE-011",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-011",
+        "raw": "٢*س = ٤",
+        "status": "accepted",
+        "reason": "—",
+        "note": "ضرب صريح *",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "parsed",
+        "reasonCode": null
+      }
+    },
+    {
+      "id": "GOLD-PARSE-012",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-012",
+        "raw": "٢٣س = ٤٦",
+        "status": "accepted",
+        "reason": "—",
+        "note": "٢٣ عدد واحد لا ٢×٣",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "parsed",
+        "reasonCode": null
+      }
+    },
+    {
+      "id": "GOLD-PARSE-013",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-013",
+        "raw": "٠س + ٢ = ٢",
+        "status": "accepted",
+        "reason": "—",
+        "note": "منحلة رياضيًا؛ اختبار تقني وليس سؤال بنك منشور",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "parsed",
+        "reasonCode": null
+      }
+    },
+    {
+      "id": "GOLD-PARSE-014",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-014",
+        "raw": "٣(س − ٢) = −٣",
+        "status": "accepted",
+        "reason": "—",
+        "note": "أقواس وسالب صحيح",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "parsed",
+        "reasonCode": null
+      }
+    },
+    {
+      "id": "GOLD-PARSE-015",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-015",
+        "raw": "س = −٢",
+        "status": "accepted",
+        "reason": "—",
+        "note": "إشارة سالب في الطرف الأيمن",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "parsed",
+        "reasonCode": null
+      }
+    },
+    {
+      "id": "GOLD-PARSE-016",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-016",
+        "raw": "س + ٠ = ٢",
+        "status": "accepted",
+        "reason": "—",
+        "note": "الصفر والحد الصفري",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "parsed",
+        "reasonCode": null
+      }
+    },
+    {
+      "id": "GOLD-PARSE-017",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-017",
+        "raw": "٣س = ٧",
+        "status": "accepted",
+        "reason": "—",
+        "note": "حل كسري دقيق",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "parsed",
+        "reasonCode": null
+      }
+    },
+    {
+      "id": "GOLD-PARSE-018",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-018",
+        "raw": "(س + ٣) = ٨",
+        "status": "accepted",
+        "reason": "—",
+        "note": "أقواس حول تعبير كامل",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "parsed",
+        "reasonCode": null
+      }
+    },
+    {
+      "id": "GOLD-PARSE-019",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-019",
+        "raw": "−٢(س + ٣) = −١٠",
+        "status": "accepted",
+        "reason": "—",
+        "note": "توزيع معامل سالب",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "parsed",
+        "reasonCode": null
+      }
+    },
+    {
+      "id": "GOLD-PARSE-020",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-020",
+        "raw": "٢س + ٦ = ١٠",
+        "status": "accepted",
+        "reason": "—",
+        "note": "حفظ ترتيب الحدود",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "parsed",
+        "reasonCode": null
+      }
+    },
+    {
+      "id": "GOLD-PARSE-021",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-021",
+        "raw": "١/٢س = ١",
+        "status": "syntax_error",
+        "reason": "AMBIGUOUS_DIVISION",
+        "note": "لا تخمين: ١/(٢س) أو (١/٢)×س",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "syntax_error",
+        "reasonCode": "AMBIGUOUS_DIVISION"
+      }
+    },
+    {
+      "id": "GOLD-PARSE-022",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-022",
+        "raw": "٢س٣ = ٦",
+        "status": "syntax_error",
+        "reason": "UNEXPECTED_ADJACENCY",
+        "note": "سلسلة ضرب ضمني غير مصرح بها",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "syntax_error",
+        "reasonCode": "UNEXPECTED_ADJACENCY"
+      }
+    },
+    {
+      "id": "GOLD-PARSE-023",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-023",
+        "raw": "س(٢) = ٤",
+        "status": "syntax_error",
+        "reason": "UNEXPECTED_ADJACENCY",
+        "note": "يطلب ضرب صريح بدل التخمين",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "syntax_error",
+        "reasonCode": "UNEXPECTED_ADJACENCY"
+      }
+    },
+    {
+      "id": "GOLD-PARSE-024",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-024",
+        "raw": "س=٢=٣",
+        "status": "syntax_error",
+        "reason": "MULTIPLE_EQUAL_SIGNS",
+        "note": "علامتا مساواة في سطر واحد",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "syntax_error",
+        "reasonCode": "MULTIPLE_EQUAL_SIGNS"
+      }
+    },
+    {
+      "id": "GOLD-PARSE-025",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-025",
+        "raw": "٢(س + ٣ = ١٠",
+        "status": "syntax_error",
+        "reason": "UNBALANCED_PARENTHESIS",
+        "note": "قوس غير مغلق",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "syntax_error",
+        "reasonCode": "UNBALANCED_PARENTHESIS"
+      }
+    },
+    {
+      "id": "GOLD-PARSE-026",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-026",
+        "raw": "٢س + ٣",
+        "status": "syntax_error",
+        "reason": "MISSING_EQUAL_SIGN",
+        "note": "داخل سياق سطر معادلة؛ لا تصحيح مفاهيمي",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "syntax_error",
+        "reasonCode": "MISSING_EQUAL_SIGN"
+      }
+    },
+    {
+      "id": "GOLD-PARSE-027",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-027",
+        "raw": "س/٠ = ١",
+        "status": "syntax_error",
+        "reason": "DIVISION_BY_ZERO",
+        "note": "لا تعويض أو اختزال",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "syntax_error",
+        "reasonCode": "DIVISION_BY_ZERO"
+      }
+    },
+    {
+      "id": "GOLD-PARSE-028",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-028",
+        "raw": "جا(٣٠°) = ١/٢",
+        "status": "unsupported",
+        "reason": "UNSUPPORTED_FUNCTION",
+        "note": "جا معروف اصطلاحيًا لكنه غير مفعل P0",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "unsupported",
+        "reasonCode": "UNSUPPORTED_FUNCTION"
+      }
+    },
+    {
+      "id": "GOLD-PARSE-029",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-029",
+        "raw": "جتا(٦٠°) = ١/٢",
+        "status": "unsupported",
+        "reason": "UNSUPPORTED_FUNCTION",
+        "note": "دالة غير مدعومة",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "unsupported",
+        "reasonCode": "UNSUPPORTED_FUNCTION"
+      }
+    },
+    {
+      "id": "GOLD-PARSE-030",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-030",
+        "raw": "س² + ١ = ٠",
+        "status": "unsupported",
+        "reason": "UNSUPPORTED_POWER",
+        "note": "لا دعم أسس متغيرات",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "unsupported",
+        "reasonCode": "UNSUPPORTED_POWER"
+      }
+    },
+    {
+      "id": "GOLD-PARSE-031",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-031",
+        "raw": "س×س = ٤",
+        "status": "unsupported",
+        "reason": "NONLINEAR_EXPRESSION",
+        "note": "لا يختزل التربيعي إلى خطي",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "unsupported",
+        "reasonCode": "NONLINEAR_EXPRESSION"
+      }
+    },
+    {
+      "id": "GOLD-PARSE-032",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-032",
+        "raw": "١/س = ٢",
+        "status": "unsupported",
+        "reason": "VARIABLE_DENOMINATOR",
+        "note": "مجال المتغير المقام",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "unsupported",
+        "reasonCode": "VARIABLE_DENOMINATOR"
+      }
+    },
+    {
+      "id": "GOLD-PARSE-033",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-033",
+        "raw": "x + ٣ = ٧",
+        "status": "unsupported",
+        "reason": "UNSUPPORTED_VARIABLE",
+        "note": "لا يحول x إلى س بصمت",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "unsupported",
+        "reasonCode": "UNSUPPORTED_VARIABLE"
+      }
+    },
+    {
+      "id": "GOLD-PARSE-034",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-034",
+        "raw": "ص + ٣ = ٧",
+        "status": "unsupported",
+        "reason": "UNSUPPORTED_VARIABLE",
+        "note": "P0 متغير واحد س",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "unsupported",
+        "reasonCode": "UNSUPPORTED_VARIABLE"
+      }
+    },
+    {
+      "id": "GOLD-PARSE-035",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-035",
+        "raw": "٣٫٥س = ٧",
+        "status": "unsupported",
+        "reason": "UNSUPPORTED_DECIMAL",
+        "note": "لا نحول الفاصلة إلى حذف",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "unsupported",
+        "reasonCode": "UNSUPPORTED_DECIMAL"
+      }
+    },
+    {
+      "id": "GOLD-PARSE-036",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-036",
+        "raw": "٣.٥س = ٧",
+        "status": "unsupported",
+        "reason": "UNSUPPORTED_DECIMAL",
+        "note": "صيغة عشرية غير مدعومة",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "unsupported",
+        "reasonCode": "UNSUPPORTED_DECIMAL"
+      }
+    },
+    {
+      "id": "GOLD-PARSE-037",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-037",
+        "raw": "(س + ١)(س + ٢) = ٠",
+        "status": "unsupported",
+        "reason": "NONLINEAR_EXPRESSION",
+        "note": "غير خطية وضرب أقواس غير مفعل",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "unsupported",
+        "reasonCode": "NONLINEAR_EXPRESSION"
+      }
+    },
+    {
+      "id": "GOLD-PARSE-038",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-038",
+        "raw": "س = ١/س",
+        "status": "unsupported",
+        "reason": "VARIABLE_DENOMINATOR",
+        "note": "لا إلغاء مجال/حل",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "unsupported",
+        "reasonCode": "VARIABLE_DENOMINATOR"
+      }
+    },
+    {
+      "id": "GOLD-PARSE-039",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-039",
+        "raw": "س + ٣ = ٧ [U+202E]",
+        "status": "syntax_error",
+        "reason": "UNSAFE_CONTROL_CHARACTER",
+        "note": "الحالة تُنفذ بإدخال محرف الاتجاه U+202E؛ النص المعروض تمثيل توضيحي",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "syntax_error",
+        "reasonCode": "UNSAFE_CONTROL_CHARACTER"
+      }
+    },
+    {
+      "id": "GOLD-PARSE-040",
+      "group": "parse",
+      "sourceRecord": {
+        "id": "GOLD-PARSE-040",
+        "raw": "س + ٣ = ٧ [U+2066]",
+        "status": "syntax_error",
+        "reason": "UNSAFE_CONTROL_CHARACTER",
+        "note": "الحالة تُنفذ بإدخال محرف U+2066؛ لا ينسخ الوسم حرفيًا",
+        "priority": "P0"
+      },
+      "expected": {
+        "parseStatus": "syntax_error",
+        "reasonCode": "UNSAFE_CONTROL_CHARACTER"
+      }
+    },
+    {
+      "id": "GOLD-MATH-001",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-001",
+        "before": "٢(س + ٣) = ١٠",
+        "after": "٢س + ٦ = ١٠",
+        "before_semantic": "2*(x+3)=10",
+        "after_semantic": "2*x+6=10",
+        "status": "verified_valid",
+        "before_set": "{٢}",
+        "after_set": "{٢}",
+        "witness": "—",
+        "skill": "SK-ALG-04",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": "فك التوزيع"
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{٢}",
+        "afterSolutionSetText": "{٢}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-002",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-002",
+        "before": "٢(س + ٣) = ١٠",
+        "after": "س + ٣ = ٥",
+        "before_semantic": "2*(x+3)=10",
+        "after_semantic": "x+3=5",
+        "status": "verified_valid",
+        "before_set": "{٢}",
+        "after_set": "{٢}",
+        "witness": "—",
+        "skill": "SK-ALG-06",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": "حل بديل بالقسمة على ٢"
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{٢}",
+        "afterSolutionSetText": "{٢}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-003",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-003",
+        "before": "٢س + ٦ = ١٠",
+        "after": "٢س = ٤",
+        "before_semantic": "2*x+6=10",
+        "after_semantic": "2*x=4",
+        "status": "verified_valid",
+        "before_set": "{٢}",
+        "after_set": "{٢}",
+        "witness": "—",
+        "skill": "SK-ALG-05",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{٢}",
+        "afterSolutionSetText": "{٢}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-004",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-004",
+        "before": "٢س = ٤",
+        "after": "س = ٢",
+        "before_semantic": "2*x=4",
+        "after_semantic": "x=2",
+        "status": "verified_valid",
+        "before_set": "{٢}",
+        "after_set": "{٢}",
+        "witness": "—",
+        "skill": "SK-ALG-06",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{٢}",
+        "afterSolutionSetText": "{٢}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-005",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-005",
+        "before": "س + ٣ = ٨",
+        "after": "س = ٥",
+        "before_semantic": "x+3=8",
+        "after_semantic": "x=5",
+        "status": "verified_valid",
+        "before_set": "{٥}",
+        "after_set": "{٥}",
+        "witness": "—",
+        "skill": "SK-ALG-05",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{٥}",
+        "afterSolutionSetText": "{٥}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-006",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-006",
+        "before": "٤س = ١٢",
+        "after": "س = ٣",
+        "before_semantic": "4*x=12",
+        "after_semantic": "x=3",
+        "status": "verified_valid",
+        "before_set": "{٣}",
+        "after_set": "{٣}",
+        "witness": "—",
+        "skill": "SK-ALG-06",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{٣}",
+        "afterSolutionSetText": "{٣}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-007",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-007",
+        "before": "س − ٥ = −٢",
+        "after": "س = ٣",
+        "before_semantic": "x-5=-2",
+        "after_semantic": "x=3",
+        "status": "verified_valid",
+        "before_set": "{٣}",
+        "after_set": "{٣}",
+        "witness": "—",
+        "skill": "SK-ALG-02",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{٣}",
+        "afterSolutionSetText": "{٣}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-008",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-008",
+        "before": "٣س + ٦ = ٠",
+        "after": "س = −٢",
+        "before_semantic": "3*x+6=0",
+        "after_semantic": "x=-2",
+        "status": "verified_valid",
+        "before_set": "{−٢}",
+        "after_set": "{−٢}",
+        "witness": "—",
+        "skill": "SK-ALG-02",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{−٢}",
+        "afterSolutionSetText": "{−٢}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-009",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-009",
+        "before": "−٢(س + ٣) = −١٠",
+        "after": "−٢س − ٦ = −١٠",
+        "before_semantic": "-2*(x+3)=-10",
+        "after_semantic": "-2*x-6=-10",
+        "status": "verified_valid",
+        "before_set": "{٢}",
+        "after_set": "{٢}",
+        "witness": "—",
+        "skill": "SK-ALG-04",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{٢}",
+        "afterSolutionSetText": "{٢}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-010",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-010",
+        "before": "−٢(س + ٣) = −١٠",
+        "after": "س + ٣ = ٥",
+        "before_semantic": "-2*(x+3)=-10",
+        "after_semantic": "x+3=5",
+        "status": "verified_valid",
+        "before_set": "{٢}",
+        "after_set": "{٢}",
+        "witness": "—",
+        "skill": "SK-ALG-06",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{٢}",
+        "afterSolutionSetText": "{٢}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-011",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-011",
+        "before": "٢(س + ٣) = ١٠",
+        "after": "س = ٢",
+        "before_semantic": "2*(x+3)=10",
+        "after_semantic": "x=2",
+        "status": "verified_valid",
+        "before_set": "{٢}",
+        "after_set": "{٢}",
+        "witness": "—",
+        "skill": "SK-ALG-07",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": "تجاوز خطوات صحيح؛ لا تفرض طريقة واحدة"
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{٢}",
+        "afterSolutionSetText": "{٢}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-012",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-012",
+        "before": "٣س = ٧",
+        "after": "س = ٧/٣",
+        "before_semantic": "3*x=7",
+        "after_semantic": "x=7/3",
+        "status": "verified_valid",
+        "before_set": "{٧/٣}",
+        "after_set": "{٧/٣}",
+        "witness": "—",
+        "skill": "SK-ALG-08",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{٧/٣}",
+        "afterSolutionSetText": "{٧/٣}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-013",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-013",
+        "before": "٢س = ١",
+        "after": "س = ١/٢",
+        "before_semantic": "2*x=1",
+        "after_semantic": "x=1/2",
+        "status": "verified_valid",
+        "before_set": "{١/٢}",
+        "after_set": "{١/٢}",
+        "witness": "—",
+        "skill": "SK-ALG-08",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{١/٢}",
+        "afterSolutionSetText": "{١/٢}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-014",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-014",
+        "before": "٢س + ٦ = ١٠",
+        "after": "٦ + ٢س = ١٠",
+        "before_semantic": "2*x+6=10",
+        "after_semantic": "6+2*x=10",
+        "status": "verified_valid",
+        "before_set": "{٢}",
+        "after_set": "{٢}",
+        "witness": "—",
+        "skill": "SK-ALG-03",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{٢}",
+        "afterSolutionSetText": "{٢}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-015",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-015",
+        "before": "٣(س + ٢) = ١٨",
+        "after": "٣س + ٦ = ١٨",
+        "before_semantic": "3*(x+2)=18",
+        "after_semantic": "3*x+6=18",
+        "status": "verified_valid",
+        "before_set": "{٤}",
+        "after_set": "{٤}",
+        "witness": "—",
+        "skill": "SK-ALG-04",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{٤}",
+        "afterSolutionSetText": "{٤}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-016",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-016",
+        "before": "٢س + ٣ = ١١",
+        "after": "٢س = ٨",
+        "before_semantic": "2*x+3=11",
+        "after_semantic": "2*x=8",
+        "status": "verified_valid",
+        "before_set": "{٤}",
+        "after_set": "{٤}",
+        "witness": "—",
+        "skill": "SK-ALG-05",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{٤}",
+        "afterSolutionSetText": "{٤}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-017",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-017",
+        "before": "٢س − ٦ = ٠",
+        "after": "٢س = ٦",
+        "before_semantic": "2*x-6=0",
+        "after_semantic": "2*x=6",
+        "status": "verified_valid",
+        "before_set": "{٣}",
+        "after_set": "{٣}",
+        "witness": "—",
+        "skill": "SK-ALG-05",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{٣}",
+        "afterSolutionSetText": "{٣}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-018",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-018",
+        "before": "٦س = ١٢",
+        "after": "٣س = ٦",
+        "before_semantic": "6*x=12",
+        "after_semantic": "3*x=6",
+        "status": "verified_valid",
+        "before_set": "{٢}",
+        "after_set": "{٢}",
+        "witness": "—",
+        "skill": "SK-ALG-06",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{٢}",
+        "afterSolutionSetText": "{٢}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-019",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-019",
+        "before": "٢(س − ٤) = ٦",
+        "after": "س − ٤ = ٣",
+        "before_semantic": "2*(x-4)=6",
+        "after_semantic": "x-4=3",
+        "status": "verified_valid",
+        "before_set": "{٧}",
+        "after_set": "{٧}",
+        "witness": "—",
+        "skill": "SK-ALG-06",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{٧}",
+        "afterSolutionSetText": "{٧}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-020",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-020",
+        "before": "٣س − ٩ = ٠",
+        "after": "س = ٣",
+        "before_semantic": "3*x-9=0",
+        "after_semantic": "x=3",
+        "status": "verified_valid",
+        "before_set": "{٣}",
+        "after_set": "{٣}",
+        "witness": "—",
+        "skill": "SK-ALG-07",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{٣}",
+        "afterSolutionSetText": "{٣}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-021",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-021",
+        "before": "−٣س + ١٢ = ٠",
+        "after": "س = ٤",
+        "before_semantic": "-3*x+12=0",
+        "after_semantic": "x=4",
+        "status": "verified_valid",
+        "before_set": "{٤}",
+        "after_set": "{٤}",
+        "witness": "—",
+        "skill": "SK-ALG-07",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{٤}",
+        "afterSolutionSetText": "{٤}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-022",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-022",
+        "before": "٥س + ٥ = ٠",
+        "after": "س = −١",
+        "before_semantic": "5*x+5=0",
+        "after_semantic": "x=-1",
+        "status": "verified_valid",
+        "before_set": "{−١}",
+        "after_set": "{−١}",
+        "witness": "—",
+        "skill": "SK-ALG-07",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{−١}",
+        "afterSolutionSetText": "{−١}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-023",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-023",
+        "before": "س/٢ = ٣",
+        "after": "س = ٦",
+        "before_semantic": "x/2=3",
+        "after_semantic": "x=6",
+        "status": "verified_valid",
+        "before_set": "{٦}",
+        "after_set": "{٦}",
+        "witness": "—",
+        "skill": "SK-ALG-06",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{٦}",
+        "afterSolutionSetText": "{٦}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-024",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-024",
+        "before": "٢س/٣ = ٤",
+        "after": "س = ٦",
+        "before_semantic": "2*x/3=4",
+        "after_semantic": "x=6",
+        "status": "verified_valid",
+        "before_set": "{٦}",
+        "after_set": "{٦}",
+        "witness": "—",
+        "skill": "SK-ALG-06",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{٦}",
+        "afterSolutionSetText": "{٦}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-025",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-025",
+        "before": "٢س + ٦ = ١٠",
+        "after": "٢س + ١٠ = ١٤",
+        "before_semantic": "2*x+6=10",
+        "after_semantic": "2*x+10=14",
+        "status": "verified_valid",
+        "before_set": "{٢}",
+        "after_set": "{٢}",
+        "witness": "—",
+        "skill": "SK-ALG-01",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": "إضافة ٤ للطرفين"
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{٢}",
+        "afterSolutionSetText": "{٢}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-026",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-026",
+        "before": "٥(س − ١) = ٢٠",
+        "after": "س − ١ = ٤",
+        "before_semantic": "5*(x-1)=20",
+        "after_semantic": "x-1=4",
+        "status": "verified_valid",
+        "before_set": "{٥}",
+        "after_set": "{٥}",
+        "witness": "—",
+        "skill": "SK-ALG-06",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "{٥}",
+        "afterSolutionSetText": "{٥}",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-027",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-027",
+        "before": "٠س + ٢ = ٢",
+        "after": "٠ = ٠",
+        "before_semantic": "0*x+2=2",
+        "after_semantic": "0=0",
+        "status": "verified_valid",
+        "before_set": "ℝ",
+        "after_set": "ℝ",
+        "witness": "—",
+        "skill": "SK-ALG-01",
+        "misconception_candidate": null,
+        "kind": "guard",
+        "note": "حراسة all_reals خارج بنك التعليم المنشور"
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "ℝ",
+        "afterSolutionSetText": "ℝ",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "guard"
+      }
+    },
+    {
+      "id": "GOLD-MATH-028",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-028",
+        "before": "٠س + ٢ = ٣",
+        "after": "٠ = ١",
+        "before_semantic": "0*x+2=3",
+        "after_semantic": "0=1",
+        "status": "verified_valid",
+        "before_set": "∅",
+        "after_set": "∅",
+        "witness": "—",
+        "skill": "SK-ALG-01",
+        "misconception_candidate": null,
+        "kind": "guard",
+        "note": "حراسة empty خارج بنك التعليم المنشور"
+      },
+      "expected": {
+        "mathStatus": "verified_valid",
+        "beforeSolutionSetText": "∅",
+        "afterSolutionSetText": "∅",
+        "witnessText": "—",
+        "misconceptionCandidate": null,
+        "kind": "guard"
+      }
+    },
+    {
+      "id": "GOLD-MATH-029",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-029",
+        "before": "٢(س + ٣) = ١٠",
+        "after": "٢س + ٣ = ١٠",
+        "before_semantic": "2*(x+3)=10",
+        "after_semantic": "2*x+3=10",
+        "status": "verified_invalid",
+        "before_set": "{٢}",
+        "after_set": "{٧/٢}",
+        "witness": "٢",
+        "skill": "SK-ALG-04",
+        "misconception_candidate": "ERR-ALG-01",
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٢}",
+        "afterSolutionSetText": "{٧/٢}",
+        "witnessText": "٢",
+        "misconceptionCandidate": "ERR-ALG-01",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-030",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-030",
+        "before": "س − ٥ = −٢",
+        "after": "س = −٢ − ٥",
+        "before_semantic": "x-5=-2",
+        "after_semantic": "x=-2-5",
+        "status": "verified_invalid",
+        "before_set": "{٣}",
+        "after_set": "{−٧}",
+        "witness": "٣",
+        "skill": "SK-ALG-02",
+        "misconception_candidate": "ERR-ALG-02",
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٣}",
+        "afterSolutionSetText": "{−٧}",
+        "witnessText": "٣",
+        "misconceptionCandidate": "ERR-ALG-02",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-031",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-031",
+        "before": "س + ٣ = ٨",
+        "after": "س + ٣ = ٥",
+        "before_semantic": "x+3=8",
+        "after_semantic": "x+3=5",
+        "status": "verified_invalid",
+        "before_set": "{٥}",
+        "after_set": "{٢}",
+        "witness": "٥",
+        "skill": "SK-ALG-01",
+        "misconception_candidate": "ERR-ALG-03",
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٥}",
+        "afterSolutionSetText": "{٢}",
+        "witnessText": "٥",
+        "misconceptionCandidate": "ERR-ALG-03",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-032",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-032",
+        "before": "٤س = ١٢",
+        "after": "س = ٤ × ١٢",
+        "before_semantic": "4*x=12",
+        "after_semantic": "x=4*12",
+        "status": "verified_invalid",
+        "before_set": "{٣}",
+        "after_set": "{٤٨}",
+        "witness": "٣",
+        "skill": "SK-ALG-06",
+        "misconception_candidate": "ERR-ALG-04",
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٣}",
+        "afterSolutionSetText": "{٤٨}",
+        "witnessText": "٣",
+        "misconceptionCandidate": "ERR-ALG-04",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-033",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-033",
+        "before": "٢س + ٦ = ١٠",
+        "after": "٢س = ١٠",
+        "before_semantic": "2*x+6=10",
+        "after_semantic": "2*x=10",
+        "status": "verified_invalid",
+        "before_set": "{٢}",
+        "after_set": "{٥}",
+        "witness": "٢",
+        "skill": "SK-ALG-05",
+        "misconception_candidate": "ERR-ALG-03",
+        "kind": "student",
+        "note": "قد يختلط بترك ثابت دون معالجة"
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٢}",
+        "afterSolutionSetText": "{٥}",
+        "witnessText": "٢",
+        "misconceptionCandidate": "ERR-ALG-03",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-034",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-034",
+        "before": "−٢(س + ٣) = −١٠",
+        "after": "−٢س + ٦ = −١٠",
+        "before_semantic": "-2*(x+3)=-10",
+        "after_semantic": "-2*x+6=-10",
+        "status": "verified_invalid",
+        "before_set": "{٢}",
+        "after_set": "{٨}",
+        "witness": "٢",
+        "skill": "SK-ALG-04",
+        "misconception_candidate": "ERR-ALG-06",
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٢}",
+        "afterSolutionSetText": "{٨}",
+        "witnessText": "٢",
+        "misconceptionCandidate": "ERR-ALG-06",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-035",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-035",
+        "before": "٣(س + ٢) = ١٨",
+        "after": "٣س + ٢ = ١٨",
+        "before_semantic": "3*(x+2)=18",
+        "after_semantic": "3*x+2=18",
+        "status": "verified_invalid",
+        "before_set": "{٤}",
+        "after_set": "{١٦/٣}",
+        "witness": "٤",
+        "skill": "SK-ALG-04",
+        "misconception_candidate": "ERR-ALG-01",
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٤}",
+        "afterSolutionSetText": "{١٦/٣}",
+        "witnessText": "٤",
+        "misconceptionCandidate": "ERR-ALG-01",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-036",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-036",
+        "before": "٢س = ٤",
+        "after": "٠ = ٠",
+        "before_semantic": "2*x=4",
+        "after_semantic": "0=0",
+        "status": "verified_invalid",
+        "before_set": "{٢}",
+        "after_set": "ℝ",
+        "witness": "٠",
+        "skill": "SK-ALG-01",
+        "misconception_candidate": null,
+        "kind": "guard",
+        "note": "غير مكافئ رغم تحوّل المعادلة إلى صحيحة دومًا"
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٢}",
+        "afterSolutionSetText": "ℝ",
+        "witnessText": "٠",
+        "misconceptionCandidate": null,
+        "kind": "guard"
+      }
+    },
+    {
+      "id": "GOLD-MATH-037",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-037",
+        "before": "٢س = ٤",
+        "after": "س = ٣",
+        "before_semantic": "2*x=4",
+        "after_semantic": "x=3",
+        "status": "verified_invalid",
+        "before_set": "{٢}",
+        "after_set": "{٣}",
+        "witness": "٢",
+        "skill": "SK-ALG-07",
+        "misconception_candidate": null,
+        "kind": "student",
+        "note": "خطأ لا سبب مفاهيمي محدد منه وحده"
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٢}",
+        "afterSolutionSetText": "{٣}",
+        "witnessText": "٢",
+        "misconceptionCandidate": null,
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-038",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-038",
+        "before": "٣س = ٧",
+        "after": "س = ٣/٧",
+        "before_semantic": "3*x=7",
+        "after_semantic": "x=3/7",
+        "status": "verified_invalid",
+        "before_set": "{٧/٣}",
+        "after_set": "{٣/٧}",
+        "witness": "٧/٣",
+        "skill": "SK-ALG-06",
+        "misconception_candidate": "ERR-ALG-04",
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٧/٣}",
+        "afterSolutionSetText": "{٣/٧}",
+        "witnessText": "٧/٣",
+        "misconceptionCandidate": "ERR-ALG-04",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-039",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-039",
+        "before": "س + ٣ = ٨",
+        "after": "س = ٨ + ٣",
+        "before_semantic": "x+3=8",
+        "after_semantic": "x=8+3",
+        "status": "verified_invalid",
+        "before_set": "{٥}",
+        "after_set": "{١١}",
+        "witness": "٥",
+        "skill": "SK-ALG-05",
+        "misconception_candidate": "ERR-ALG-04",
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٥}",
+        "afterSolutionSetText": "{١١}",
+        "witnessText": "٥",
+        "misconceptionCandidate": "ERR-ALG-04",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-040",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-040",
+        "before": "٢س − ٥ = ١",
+        "after": "٢س = ١",
+        "before_semantic": "2*x-5=1",
+        "after_semantic": "2*x=1",
+        "status": "verified_invalid",
+        "before_set": "{٣}",
+        "after_set": "{١/٢}",
+        "witness": "٣",
+        "skill": "SK-ALG-05",
+        "misconception_candidate": "ERR-ALG-03",
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٣}",
+        "afterSolutionSetText": "{١/٢}",
+        "witnessText": "٣",
+        "misconceptionCandidate": "ERR-ALG-03",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-041",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-041",
+        "before": "٤س + ٢ = ١٤",
+        "after": "٤س = ١٦",
+        "before_semantic": "4*x+2=14",
+        "after_semantic": "4*x=16",
+        "status": "verified_invalid",
+        "before_set": "{٣}",
+        "after_set": "{٤}",
+        "witness": "٣",
+        "skill": "SK-ALG-02",
+        "misconception_candidate": "ERR-ALG-02",
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٣}",
+        "afterSolutionSetText": "{٤}",
+        "witnessText": "٣",
+        "misconceptionCandidate": "ERR-ALG-02",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-042",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-042",
+        "before": "س − ٤ = −١",
+        "after": "س = −٥",
+        "before_semantic": "x-4=-1",
+        "after_semantic": "x=-5",
+        "status": "verified_invalid",
+        "before_set": "{٣}",
+        "after_set": "{−٥}",
+        "witness": "٣",
+        "skill": "SK-ALG-02",
+        "misconception_candidate": "ERR-ALG-02",
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٣}",
+        "afterSolutionSetText": "{−٥}",
+        "witnessText": "٣",
+        "misconceptionCandidate": "ERR-ALG-02",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-043",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-043",
+        "before": "٣س = ١٢",
+        "after": "س = ٣ × ١٢",
+        "before_semantic": "3*x=12",
+        "after_semantic": "x=3*12",
+        "status": "verified_invalid",
+        "before_set": "{٤}",
+        "after_set": "{٣٦}",
+        "witness": "٤",
+        "skill": "SK-ALG-06",
+        "misconception_candidate": "ERR-ALG-04",
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٤}",
+        "afterSolutionSetText": "{٣٦}",
+        "witnessText": "٤",
+        "misconceptionCandidate": "ERR-ALG-04",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-044",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-044",
+        "before": "٣(س − ١) = ٩",
+        "after": "٣س − ١ = ٩",
+        "before_semantic": "3*(x-1)=9",
+        "after_semantic": "3*x-1=9",
+        "status": "verified_invalid",
+        "before_set": "{٤}",
+        "after_set": "{١٠/٣}",
+        "witness": "٤",
+        "skill": "SK-ALG-04",
+        "misconception_candidate": "ERR-ALG-01",
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٤}",
+        "afterSolutionSetText": "{١٠/٣}",
+        "witnessText": "٤",
+        "misconceptionCandidate": "ERR-ALG-01",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-045",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-045",
+        "before": "−٣(س − ٢) = −٦",
+        "after": "−٣س − ٦ = −٦",
+        "before_semantic": "-3*(x-2)=-6",
+        "after_semantic": "-3*x-6=-6",
+        "status": "verified_invalid",
+        "before_set": "{٤}",
+        "after_set": "{٠}",
+        "witness": "٤",
+        "skill": "SK-ALG-04",
+        "misconception_candidate": "ERR-ALG-06",
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٤}",
+        "afterSolutionSetText": "{٠}",
+        "witnessText": "٤",
+        "misconceptionCandidate": "ERR-ALG-06",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-046",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-046",
+        "before": "س + ٥ = ٨",
+        "after": "س + ٥ = ٣",
+        "before_semantic": "x+5=8",
+        "after_semantic": "x+5=3",
+        "status": "verified_invalid",
+        "before_set": "{٣}",
+        "after_set": "{−٢}",
+        "witness": "٣",
+        "skill": "SK-ALG-01",
+        "misconception_candidate": "ERR-ALG-03",
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٣}",
+        "afterSolutionSetText": "{−٢}",
+        "witnessText": "٣",
+        "misconceptionCandidate": "ERR-ALG-03",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-047",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-047",
+        "before": "٥س − ٥ = ١٠",
+        "after": "٥س − ٥ = ١٥",
+        "before_semantic": "5*x-5=10",
+        "after_semantic": "5*x-5=15",
+        "status": "verified_invalid",
+        "before_set": "{٣}",
+        "after_set": "{٤}",
+        "witness": "٣",
+        "skill": "SK-ALG-01",
+        "misconception_candidate": "ERR-ALG-03",
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٣}",
+        "afterSolutionSetText": "{٤}",
+        "witnessText": "٣",
+        "misconceptionCandidate": "ERR-ALG-03",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-048",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-048",
+        "before": "س/٢ = ٣",
+        "after": "س = ٣/٢",
+        "before_semantic": "x/2=3",
+        "after_semantic": "x=3/2",
+        "status": "verified_invalid",
+        "before_set": "{٦}",
+        "after_set": "{٣/٢}",
+        "witness": "٦",
+        "skill": "SK-ALG-06",
+        "misconception_candidate": "ERR-ALG-04",
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٦}",
+        "afterSolutionSetText": "{٣/٢}",
+        "witnessText": "٦",
+        "misconceptionCandidate": "ERR-ALG-04",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-049",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-049",
+        "before": "٢س + ٣ = ١١",
+        "after": "٢س = ١٤",
+        "before_semantic": "2*x+3=11",
+        "after_semantic": "2*x=14",
+        "status": "verified_invalid",
+        "before_set": "{٤}",
+        "after_set": "{٧}",
+        "witness": "٤",
+        "skill": "SK-ALG-02",
+        "misconception_candidate": "ERR-ALG-02",
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٤}",
+        "afterSolutionSetText": "{٧}",
+        "witnessText": "٤",
+        "misconceptionCandidate": "ERR-ALG-02",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-050",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-050",
+        "before": "٣س + ٩ = ٠",
+        "after": "٣س = ٩",
+        "before_semantic": "3*x+9=0",
+        "after_semantic": "3*x=9",
+        "status": "verified_invalid",
+        "before_set": "{−٣}",
+        "after_set": "{٣}",
+        "witness": "−٣",
+        "skill": "SK-ALG-02",
+        "misconception_candidate": "ERR-ALG-02",
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{−٣}",
+        "afterSolutionSetText": "{٣}",
+        "witnessText": "−٣",
+        "misconceptionCandidate": "ERR-ALG-02",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-051",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-051",
+        "before": "٢س = ١",
+        "after": "س = ٢",
+        "before_semantic": "2*x=1",
+        "after_semantic": "x=2",
+        "status": "verified_invalid",
+        "before_set": "{١/٢}",
+        "after_set": "{٢}",
+        "witness": "١/٢",
+        "skill": "SK-ALG-06",
+        "misconception_candidate": "ERR-ALG-04",
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{١/٢}",
+        "afterSolutionSetText": "{٢}",
+        "witnessText": "١/٢",
+        "misconceptionCandidate": "ERR-ALG-04",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-052",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-052",
+        "before": "٢(س + ٣) = ١٠",
+        "after": "٢(س + ٣) = ٠",
+        "before_semantic": "2*(x+3)=10",
+        "after_semantic": "2*(x+3)=0",
+        "status": "verified_invalid",
+        "before_set": "{٢}",
+        "after_set": "{−٣}",
+        "witness": "٢",
+        "skill": "SK-ALG-01",
+        "misconception_candidate": "ERR-ALG-03",
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٢}",
+        "afterSolutionSetText": "{−٣}",
+        "witnessText": "٢",
+        "misconceptionCandidate": "ERR-ALG-03",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-053",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-053",
+        "before": "٣س + ٦ = ٠",
+        "after": "٣س = ٦",
+        "before_semantic": "3*x+6=0",
+        "after_semantic": "3*x=6",
+        "status": "verified_invalid",
+        "before_set": "{−٢}",
+        "after_set": "{٢}",
+        "witness": "−٢",
+        "skill": "SK-ALG-02",
+        "misconception_candidate": "ERR-ALG-02",
+        "kind": "student",
+        "note": ""
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{−٢}",
+        "afterSolutionSetText": "{٢}",
+        "witnessText": "−٢",
+        "misconceptionCandidate": "ERR-ALG-02",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-054",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-054",
+        "before": "٧ + ٢ = ٩",
+        "after": "٧ + ٢ = ١٠",
+        "before_semantic": "7+2=9",
+        "after_semantic": "7+2=10",
+        "status": "verified_invalid",
+        "before_set": "ℝ",
+        "after_set": "∅",
+        "witness": "٠",
+        "skill": "SK-ALG-01",
+        "misconception_candidate": null,
+        "kind": "guard",
+        "note": "جمل ثابتة; كلاهما خارج بنك الحل ذي المتغير لكن المحرك يميز all/empty"
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "ℝ",
+        "afterSolutionSetText": "∅",
+        "witnessText": "٠",
+        "misconceptionCandidate": null,
+        "kind": "guard"
+      }
+    },
+    {
+      "id": "GOLD-MATH-055",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-055",
+        "before": "س = ٢ + ٣",
+        "after": "س = ٦",
+        "before_semantic": "x=2+3",
+        "after_semantic": "x=6",
+        "status": "verified_invalid",
+        "before_set": "{٥}",
+        "after_set": "{٦}",
+        "witness": "٥",
+        "skill": "SK-ALG-03",
+        "misconception_candidate": "ERR-ALG-05",
+        "kind": "student",
+        "note": "حساب ٢+٣ بطريقة خاطئة"
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٥}",
+        "afterSolutionSetText": "{٦}",
+        "witnessText": "٥",
+        "misconceptionCandidate": "ERR-ALG-05",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-056",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-056",
+        "before": "س = ٨/٢",
+        "after": "س = ٥",
+        "before_semantic": "x=8/2",
+        "after_semantic": "x=5",
+        "status": "verified_invalid",
+        "before_set": "{٤}",
+        "after_set": "{٥}",
+        "witness": "٤",
+        "skill": "SK-ALG-06",
+        "misconception_candidate": "ERR-ALG-05",
+        "kind": "student",
+        "note": "خطأ حسابي بعد كتابة العملية الصحيحة"
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٤}",
+        "afterSolutionSetText": "{٥}",
+        "witnessText": "٤",
+        "misconceptionCandidate": "ERR-ALG-05",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-MATH-057",
+      "group": "math",
+      "sourceRecord": {
+        "id": "GOLD-MATH-057",
+        "before": "س = −٢ + ٥",
+        "after": "س = ٢",
+        "before_semantic": "x=-2+5",
+        "after_semantic": "x=2",
+        "status": "verified_invalid",
+        "before_set": "{٣}",
+        "after_set": "{٢}",
+        "witness": "٣",
+        "skill": "SK-ALG-02",
+        "misconception_candidate": "ERR-ALG-05",
+        "kind": "student",
+        "note": "عملية عددية خاطئة في الأعداد الصحيحة"
+      },
+      "expected": {
+        "mathStatus": "verified_invalid",
+        "beforeSolutionSetText": "{٣}",
+        "afterSolutionSetText": "{٢}",
+        "witnessText": "٣",
+        "misconceptionCandidate": "ERR-ALG-05",
+        "kind": "student"
+      }
+    },
+    {
+      "id": "GOLD-DIAG-001",
+      "group": "diagnosis",
+      "sourceRecord": {
+        "id": "GOLD-DIAG-001",
+        "math": "GOLD-MATH-029",
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-01",
+        "probe": "سؤال توزيع بمعطيات جديدة",
+        "why": "خطأ توزيع مثبت؛ السبب التربوي محتمل",
+        "exclusion": "لا يجوز supported_by_probe قبل جواب صالح"
+      },
+      "expected": {
+        "diagnosisPresent": true,
+        "diagnosisState": "needs_probe",
+        "candidatePattern": "ERR-ALG-01",
+        "probeText": "سؤال توزيع بمعطيات جديدة",
+        "exclusionText": "لا يجوز supported_by_probe قبل جواب صالح"
+      }
+    },
+    {
+      "id": "GOLD-DIAG-002",
+      "group": "diagnosis",
+      "sourceRecord": {
+        "id": "GOLD-DIAG-002",
+        "math": "GOLD-MATH-035",
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-01",
+        "probe": "سؤال تفريقي عن ضرب الحدين",
+        "why": "المسار الخطأ متشابه مع سهو كتابة",
+        "exclusion": ""
+      },
+      "expected": {
+        "diagnosisPresent": true,
+        "diagnosisState": "needs_probe",
+        "candidatePattern": "ERR-ALG-01",
+        "probeText": "سؤال تفريقي عن ضرب الحدين",
+        "exclusionText": ""
+      }
+    },
+    {
+      "id": "GOLD-DIAG-003",
+      "group": "diagnosis",
+      "sourceRecord": {
+        "id": "GOLD-DIAG-003",
+        "math": "GOLD-MATH-030",
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-02",
+        "probe": "سؤال العملية العكسية وإشارة ٥",
+        "why": "التباس إشارة أو عملية عكسية",
+        "exclusion": ""
+      },
+      "expected": {
+        "diagnosisPresent": true,
+        "diagnosisState": "needs_probe",
+        "candidatePattern": "ERR-ALG-02",
+        "probeText": "سؤال العملية العكسية وإشارة ٥",
+        "exclusionText": ""
+      }
+    },
+    {
+      "id": "GOLD-DIAG-004",
+      "group": "diagnosis",
+      "sourceRecord": {
+        "id": "GOLD-DIAG-004",
+        "math": "GOLD-MATH-031",
+        "state": "tentative",
+        "pattern": "ERR-ALG-03",
+        "probe": "سؤال أثر تغيير طرف واحد",
+        "why": "تغيّر حل المساواة مع طرف لم يتغير",
+        "exclusion": ""
+      },
+      "expected": {
+        "diagnosisPresent": true,
+        "diagnosisState": "tentative",
+        "candidatePattern": "ERR-ALG-03",
+        "probeText": "سؤال أثر تغيير طرف واحد",
+        "exclusionText": ""
+      }
+    },
+    {
+      "id": "GOLD-DIAG-005",
+      "group": "diagnosis",
+      "sourceRecord": {
+        "id": "GOLD-DIAG-005",
+        "math": "GOLD-MATH-032",
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-04",
+        "probe": "سؤال ما عكس الضرب؟",
+        "why": "استخدام الضرب بدل القسمة",
+        "exclusion": ""
+      },
+      "expected": {
+        "diagnosisPresent": true,
+        "diagnosisState": "needs_probe",
+        "candidatePattern": "ERR-ALG-04",
+        "probeText": "سؤال ما عكس الضرب؟",
+        "exclusionText": ""
+      }
+    },
+    {
+      "id": "GOLD-DIAG-006",
+      "group": "diagnosis",
+      "sourceRecord": {
+        "id": "GOLD-DIAG-006",
+        "math": "GOLD-MATH-034",
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-06",
+        "probe": "متى يتحول سالب × موجب إلى سالب؟",
+        "why": "معامل سالب موزّع على ثابت بإشارة خاطئة",
+        "exclusion": ""
+      },
+      "expected": {
+        "diagnosisPresent": true,
+        "diagnosisState": "needs_probe",
+        "candidatePattern": "ERR-ALG-06",
+        "probeText": "متى يتحول سالب × موجب إلى سالب؟",
+        "exclusionText": ""
+      }
+    },
+    {
+      "id": "GOLD-DIAG-007",
+      "group": "diagnosis",
+      "sourceRecord": {
+        "id": "GOLD-DIAG-007",
+        "math": "GOLD-MATH-045",
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-06",
+        "probe": "سؤال توزيع سالب مختلف",
+        "why": "قد يكون خطأ إشارات أوسع",
+        "exclusion": ""
+      },
+      "expected": {
+        "diagnosisPresent": true,
+        "diagnosisState": "needs_probe",
+        "candidatePattern": "ERR-ALG-06",
+        "probeText": "سؤال توزيع سالب مختلف",
+        "exclusionText": ""
+      }
+    },
+    {
+      "id": "GOLD-DIAG-008",
+      "group": "diagnosis",
+      "sourceRecord": {
+        "id": "GOLD-DIAG-008",
+        "math": "GOLD-MATH-037",
+        "state": "unresolved",
+        "pattern": "—",
+        "probe": "لا تسأل قسرًا",
+        "why": "س=٣ لا يحدد آلية الخطأ",
+        "exclusion": "لا يجوز اختراع نمط من الإجابة الخطأ وحدها"
+      },
+      "expected": {
+        "diagnosisPresent": true,
+        "diagnosisState": "unresolved",
+        "candidatePattern": null,
+        "probeText": "لا تسأل قسرًا",
+        "exclusionText": "لا يجوز اختراع نمط من الإجابة الخطأ وحدها"
+      }
+    },
+    {
+      "id": "GOLD-DIAG-009",
+      "group": "diagnosis",
+      "sourceRecord": {
+        "id": "GOLD-DIAG-009",
+        "math": "GOLD-MATH-001",
+        "state": "none",
+        "pattern": "—",
+        "probe": "لا سؤال تشخيصي",
+        "why": "انتقال صحيح",
+        "exclusion": "none تعني غياب DiagnosisCandidate، وليست enum في API"
+      },
+      "expected": {
+        "diagnosisPresent": false,
+        "diagnosisState": null,
+        "candidatePattern": null,
+        "probeText": "لا سؤال تشخيصي",
+        "exclusionText": "none تعني غياب DiagnosisCandidate، وليست enum في API"
+      }
+    },
+    {
+      "id": "GOLD-DIAG-010",
+      "group": "diagnosis",
+      "sourceRecord": {
+        "id": "GOLD-DIAG-010",
+        "math": "GOLD-MATH-002",
+        "state": "none",
+        "pattern": "—",
+        "probe": "لا سؤال تشخيصي",
+        "why": "حل بديل صحيح",
+        "exclusion": ""
+      },
+      "expected": {
+        "diagnosisPresent": false,
+        "diagnosisState": null,
+        "candidatePattern": null,
+        "probeText": "لا سؤال تشخيصي",
+        "exclusionText": ""
+      }
+    },
+    {
+      "id": "GOLD-DIAG-011",
+      "group": "diagnosis",
+      "sourceRecord": {
+        "id": "GOLD-DIAG-011",
+        "math": "GOLD-MATH-027",
+        "state": "none",
+        "pattern": "—",
+        "probe": "لا سؤال تشخيصي",
+        "why": "حالة حارس صحيحة وليست تدريسًا منشورًا",
+        "exclusion": ""
+      },
+      "expected": {
+        "diagnosisPresent": false,
+        "diagnosisState": null,
+        "candidatePattern": null,
+        "probeText": "لا سؤال تشخيصي",
+        "exclusionText": ""
+      }
+    },
+    {
+      "id": "GOLD-DIAG-012",
+      "group": "diagnosis",
+      "sourceRecord": {
+        "id": "GOLD-DIAG-012",
+        "math": "GOLD-MATH-033",
+        "state": "tentative",
+        "pattern": "ERR-ALG-03",
+        "probe": "سؤال تحقق محتمل",
+        "why": "معادلة قبل/بعد غير مكافئة؛ يلزم فحص سياق الطالب",
+        "exclusion": ""
+      },
+      "expected": {
+        "diagnosisPresent": true,
+        "diagnosisState": "tentative",
+        "candidatePattern": "ERR-ALG-03",
+        "probeText": "سؤال تحقق محتمل",
+        "exclusionText": ""
+      }
+    },
+    {
+      "id": "GOLD-DIAG-013",
+      "group": "diagnosis",
+      "sourceRecord": {
+        "id": "GOLD-DIAG-013",
+        "math": "GOLD-MATH-038",
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-04",
+        "probe": "سؤال كيف تعزل س في ٣س=٧؟",
+        "why": "مقام الكسر معكوس",
+        "exclusion": ""
+      },
+      "expected": {
+        "diagnosisPresent": true,
+        "diagnosisState": "needs_probe",
+        "candidatePattern": "ERR-ALG-04",
+        "probeText": "سؤال كيف تعزل س في ٣س=٧؟",
+        "exclusionText": ""
+      }
+    },
+    {
+      "id": "GOLD-DIAG-014",
+      "group": "diagnosis",
+      "sourceRecord": {
+        "id": "GOLD-DIAG-014",
+        "math": "GOLD-MATH-039",
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-04",
+        "probe": "سؤال عكس الجمع",
+        "why": "اختير جمع بدل طرح",
+        "exclusion": ""
+      },
+      "expected": {
+        "diagnosisPresent": true,
+        "diagnosisState": "needs_probe",
+        "candidatePattern": "ERR-ALG-04",
+        "probeText": "سؤال عكس الجمع",
+        "exclusionText": ""
+      }
+    },
+    {
+      "id": "GOLD-DIAG-015",
+      "group": "diagnosis",
+      "sourceRecord": {
+        "id": "GOLD-DIAG-015",
+        "math": "GOLD-MATH-046",
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-03",
+        "probe": "سؤال طرفي المساواة",
+        "why": "تغير طرف بلا تعديل مكافئ",
+        "exclusion": ""
+      },
+      "expected": {
+        "diagnosisPresent": true,
+        "diagnosisState": "needs_probe",
+        "candidatePattern": "ERR-ALG-03",
+        "probeText": "سؤال طرفي المساواة",
+        "exclusionText": ""
+      }
+    },
+    {
+      "id": "GOLD-DIAG-016",
+      "group": "diagnosis",
+      "sourceRecord": {
+        "id": "GOLD-DIAG-016",
+        "math": "GOLD-MATH-055",
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-05",
+        "probe": "سؤال جمع ٢ + ٣ مستقل",
+        "why": "عملية حسابية غير صحيحة بعد عزل س",
+        "exclusion": ""
+      },
+      "expected": {
+        "diagnosisPresent": true,
+        "diagnosisState": "needs_probe",
+        "candidatePattern": "ERR-ALG-05",
+        "probeText": "سؤال جمع ٢ + ٣ مستقل",
+        "exclusionText": ""
+      }
+    },
+    {
+      "id": "GOLD-DIAG-017",
+      "group": "diagnosis",
+      "sourceRecord": {
+        "id": "GOLD-DIAG-017",
+        "math": "GOLD-MATH-056",
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-05",
+        "probe": "احسب ٨ ÷ ٢ دون جبر",
+        "why": "العملية المكتوبة صحيحة والنتيجة المحسوبة خاطئة",
+        "exclusion": ""
+      },
+      "expected": {
+        "diagnosisPresent": true,
+        "diagnosisState": "needs_probe",
+        "candidatePattern": "ERR-ALG-05",
+        "probeText": "احسب ٨ ÷ ٢ دون جبر",
+        "exclusionText": ""
+      }
+    },
+    {
+      "id": "GOLD-DIAG-018",
+      "group": "diagnosis",
+      "sourceRecord": {
+        "id": "GOLD-DIAG-018",
+        "math": "GOLD-MATH-057",
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-05",
+        "probe": "سؤال جمع سالب وموجب",
+        "why": "خطأ حسابي مع إشارات وقد يكون سهوًا",
+        "exclusion": ""
+      },
+      "expected": {
+        "diagnosisPresent": true,
+        "diagnosisState": "needs_probe",
+        "candidatePattern": "ERR-ALG-05",
+        "probeText": "سؤال جمع سالب وموجب",
+        "exclusionText": ""
+      }
+    },
+    {
+      "id": "GOLD-TUTOR-001",
+      "group": "tutoring",
+      "sourceRecord": {
+        "id": "GOLD-TUTOR-001",
+        "trigger": "انتقال غير صحيح لأول مرة، لم تُطلب مساعدة",
+        "mode": "learning",
+        "hint_level": "H0",
+        "expected": "تغذية محايدة مع فرصة مراجعة",
+        "forbidden": "كشف التحويل النهائي",
+        "reference": "07-TUTORING-POLICY.md"
+      },
+      "expected": {
+        "mode": "learning",
+        "hintConstraint": {
+          "kind": "exact",
+          "level": "H0"
+        },
+        "expectedText": "تغذية محايدة مع فرصة مراجعة",
+        "forbiddenText": "كشف التحويل النهائي"
+      }
+    },
+    {
+      "id": "GOLD-TUTOR-002",
+      "group": "tutoring",
+      "sourceRecord": {
+        "id": "GOLD-TUTOR-002",
+        "trigger": "طالب يطلب تلميحًا أول بعد خطأ توزيع",
+        "mode": "learning",
+        "hint_level": "H1",
+        "expected": "لفت الانتباه إلى الحدين داخل القوس",
+        "forbidden": "ناتج القوس الكامل",
+        "reference": "07-TUTORING-POLICY.md"
+      },
+      "expected": {
+        "mode": "learning",
+        "hintConstraint": {
+          "kind": "exact",
+          "level": "H1"
+        },
+        "expectedText": "لفت الانتباه إلى الحدين داخل القوس",
+        "forbiddenText": "ناتج القوس الكامل"
+      }
+    },
+    {
+      "id": "GOLD-TUTOR-003",
+      "group": "tutoring",
+      "sourceRecord": {
+        "id": "GOLD-TUTOR-003",
+        "trigger": "إخفاق جديد بعد H1 أو طلب المزيد",
+        "mode": "learning",
+        "hint_level": "H2",
+        "expected": "تذكير بأن المعامل يضرب كل حد",
+        "forbidden": "تقديم حل س النهائي",
+        "reference": "07-TUTORING-POLICY.md"
+      },
+      "expected": {
+        "mode": "learning",
+        "hintConstraint": {
+          "kind": "exact",
+          "level": "H2"
+        },
+        "expectedText": "تذكير بأن المعامل يضرب كل حد",
+        "forbiddenText": "تقديم حل س النهائي"
+      }
+    },
+    {
+      "id": "GOLD-TUTOR-004",
+      "group": "tutoring",
+      "sourceRecord": {
+        "id": "GOLD-TUTOR-004",
+        "trigger": "طلب تلميح ثالث ضمن سياسة الدور",
+        "mode": "learning",
+        "hint_level": "H3",
+        "expected": "مثال ضرب أحد الحدين وطلب إكمال الآخر",
+        "forbidden": "كتابة الحل الكامل",
+        "reference": "07-TUTORING-POLICY.md"
+      },
+      "expected": {
+        "mode": "learning",
+        "hintConstraint": {
+          "kind": "exact",
+          "level": "H3"
+        },
+        "expectedText": "مثال ضرب أحد الحدين وطلب إكمال الآخر",
+        "forbiddenText": "كتابة الحل الكامل"
+      }
+    },
+    {
+      "id": "GOLD-TUTOR-005",
+      "group": "tutoring",
+      "sourceRecord": {
+        "id": "GOLD-TUTOR-005",
+        "trigger": "طلب صريح للحل الكامل مع تأكيد",
+        "mode": "learning",
+        "hint_level": "H4",
+        "expected": "عرض حل موثق وتسجيل مشاهدة H4",
+        "forbidden": "احتسابه دليل إتقان مستقل",
+        "reference": "07-TUTORING-POLICY.md"
+      },
+      "expected": {
+        "mode": "learning",
+        "hintConstraint": {
+          "kind": "exact",
+          "level": "H4"
+        },
+        "expectedText": "عرض حل موثق وتسجيل مشاهدة H4",
+        "forbiddenText": "احتسابه دليل إتقان مستقل"
+      }
+    },
+    {
+      "id": "GOLD-TUTOR-006",
+      "group": "tutoring",
+      "sourceRecord": {
+        "id": "GOLD-TUTOR-006",
+        "trigger": "طلب H4 دون تأكيد",
+        "mode": "learning",
+        "hint_level": "H3 أو أقل",
+        "expected": "طلب التأكيد قبل العرض",
+        "forbidden": "كشف الحل فورًا",
+        "reference": "07-TUTORING-POLICY.md"
+      },
+      "expected": {
+        "mode": "learning",
+        "hintConstraint": {
+          "kind": "at_most",
+          "level": "H3"
+        },
+        "expectedText": "طلب التأكيد قبل العرض",
+        "forbiddenText": "كشف الحل فورًا"
+      }
+    },
+    {
+      "id": "GOLD-TUTOR-007",
+      "group": "tutoring",
+      "sourceRecord": {
+        "id": "GOLD-TUTOR-007",
+        "trigger": "طلب H4 أثناء مسألة النقل",
+        "mode": "transfer_check",
+        "hint_level": "لا كشف",
+        "expected": "الخروج من القياس إلى التعلم عند اختيار المساعدة",
+        "forbidden": "التقييم كنقل مستقل بعد المساعدة",
+        "reference": "07-TUTORING-POLICY.md"
+      },
+      "expected": {
+        "mode": "transfer_check",
+        "hintConstraint": {
+          "kind": "no_reveal",
+          "level": null
+        },
+        "expectedText": "الخروج من القياس إلى التعلم عند اختيار المساعدة",
+        "forbiddenText": "التقييم كنقل مستقل بعد المساعدة"
+      }
+    },
+    {
+      "id": "GOLD-TUTOR-008",
+      "group": "tutoring",
+      "sourceRecord": {
+        "id": "GOLD-TUTOR-008",
+        "trigger": "طلب H1 في مسألة نقل استقلالية",
+        "mode": "transfer_check",
+        "hint_level": "H1",
+        "expected": "إن سُمح: ينتقل النشاط إلى وضع تعلم مساعد",
+        "forbidden": "اعتماد محاولة القياس مستقلة",
+        "reference": "07-TUTORING-POLICY.md"
+      },
+      "expected": {
+        "mode": "transfer_check",
+        "hintConstraint": {
+          "kind": "exact",
+          "level": "H1"
+        },
+        "expectedText": "إن سُمح: ينتقل النشاط إلى وضع تعلم مساعد",
+        "forbiddenText": "اعتماد محاولة القياس مستقلة"
+      }
+    },
+    {
+      "id": "GOLD-TUTOR-009",
+      "group": "tutoring",
+      "sourceRecord": {
+        "id": "GOLD-TUTOR-009",
+        "trigger": "syntax_error في إدخال الطالب",
+        "mode": "learning",
+        "hint_level": "—",
+        "expected": "رسالة توضح موضع إصلاح الصيغة",
+        "forbidden": "تسجيل خطأ مفاهيمي أو رفع درجة التلميح",
+        "reference": "07-TUTORING-POLICY.md"
+      },
+      "expected": {
+        "mode": "learning",
+        "hintConstraint": {
+          "kind": "unspecified",
+          "level": null
+        },
+        "expectedText": "رسالة توضح موضع إصلاح الصيغة",
+        "forbiddenText": "تسجيل خطأ مفاهيمي أو رفع درجة التلميح"
+      }
+    },
+    {
+      "id": "GOLD-TUTOR-010",
+      "group": "tutoring",
+      "sourceRecord": {
+        "id": "GOLD-TUTOR-010",
+        "trigger": "unsupported للدالة جا",
+        "mode": "learning",
+        "hint_level": "—",
+        "expected": "شرح أن الدالة غير مدعومة في الجبر الحالي",
+        "forbidden": "توليد جواب غير متحقق أو تخفيض تقدم",
+        "reference": "07-TUTORING-POLICY.md"
+      },
+      "expected": {
+        "mode": "learning",
+        "hintConstraint": {
+          "kind": "unspecified",
+          "level": null
+        },
+        "expectedText": "شرح أن الدالة غير مدعومة في الجبر الحالي",
+        "forbiddenText": "توليد جواب غير متحقق أو تخفيض تقدم"
+      }
+    },
+    {
+      "id": "GOLD-TUTOR-011",
+      "group": "tutoring",
+      "sourceRecord": {
+        "id": "GOLD-TUTOR-011",
+        "trigger": "inconclusive رغم صلاحية الصيغة",
+        "mode": "learning",
+        "hint_level": "—",
+        "expected": "امتناع مهني وطلب توضيح",
+        "forbidden": "ادعاء خطأ أو صحة",
+        "reference": "07-TUTORING-POLICY.md"
+      },
+      "expected": {
+        "mode": "learning",
+        "hintConstraint": {
+          "kind": "unspecified",
+          "level": null
+        },
+        "expectedText": "امتناع مهني وطلب توضيح",
+        "forbiddenText": "ادعاء خطأ أو صحة"
+      }
+    },
+    {
+      "id": "GOLD-TUTOR-012",
+      "group": "tutoring",
+      "sourceRecord": {
+        "id": "GOLD-TUTOR-012",
+        "trigger": "service_error أو مهلة مزود AI",
+        "mode": "learning",
+        "hint_level": "—",
+        "expected": "قالب عربي معتمد عند تعطل AI وحفظ العمل",
+        "forbidden": "تأنيب المتعلم أو مسح المحاولة",
+        "reference": "07-TUTORING-POLICY.md"
+      },
+      "expected": {
+        "mode": "learning",
+        "hintConstraint": {
+          "kind": "unspecified",
+          "level": null
+        },
+        "expectedText": "قالب عربي معتمد عند تعطل AI وحفظ العمل",
+        "forbiddenText": "تأنيب المتعلم أو مسح المحاولة"
+      }
+    },
+    {
+      "id": "GOLD-TUTOR-013",
+      "group": "tutoring",
+      "sourceRecord": {
+        "id": "GOLD-TUTOR-013",
+        "trigger": "سؤال تأكيدي مطابق لمسألة النقل",
+        "mode": "confirmation",
+        "hint_level": "H0",
+        "expected": "منع إعادة استخدام السؤال نفسه للقياس",
+        "forbidden": "تسريب الإجابة",
+        "reference": "07-TUTORING-POLICY.md"
+      },
+      "expected": {
+        "mode": "confirmation",
+        "hintConstraint": {
+          "kind": "exact",
+          "level": "H0"
+        },
+        "expectedText": "منع إعادة استخدام السؤال نفسه للقياس",
+        "forbiddenText": "تسريب الإجابة"
+      }
+    },
+    {
+      "id": "GOLD-TUTOR-014",
+      "group": "tutoring",
+      "sourceRecord": {
+        "id": "GOLD-TUTOR-014",
+        "trigger": "سؤال تأكيدي صحيح واحد",
+        "mode": "confirmation",
+        "hint_level": "H0",
+        "expected": "يدعم فرضية ضمن المحاولة فقط",
+        "forbidden": "وصف إتقان دائم",
+        "reference": "07-TUTORING-POLICY.md"
+      },
+      "expected": {
+        "mode": "confirmation",
+        "hintConstraint": {
+          "kind": "exact",
+          "level": "H0"
+        },
+        "expectedText": "يدعم فرضية ضمن المحاولة فقط",
+        "forbiddenText": "وصف إتقان دائم"
+      }
+    },
+    {
+      "id": "GOLD-TUTOR-015",
+      "group": "tutoring",
+      "sourceRecord": {
+        "id": "GOLD-TUTOR-015",
+        "trigger": "نمطين محتملين متداخلين",
+        "mode": "learning",
+        "hint_level": "H1",
+        "expected": "سؤال مميز أو unresolved",
+        "forbidden": "تشخيصان جازمان متعارضان",
+        "reference": "07-TUTORING-POLICY.md"
+      },
+      "expected": {
+        "mode": "learning",
+        "hintConstraint": {
+          "kind": "exact",
+          "level": "H1"
+        },
+        "expectedText": "سؤال مميز أو unresolved",
+        "forbiddenText": "تشخيصان جازمان متعارضان"
+      }
+    },
+    {
+      "id": "GOLD-TUTOR-016",
+      "group": "tutoring",
+      "sourceRecord": {
+        "id": "GOLD-TUTOR-016",
+        "trigger": "حل صحيح بعد H4",
+        "mode": "learning",
+        "hint_level": "H4",
+        "expected": "النجاح بمساعدة كاملة مع سجل المساعدة",
+        "forbidden": "تحويله إلى حل مستقل",
+        "reference": "07-TUTORING-POLICY.md"
+      },
+      "expected": {
+        "mode": "learning",
+        "hintConstraint": {
+          "kind": "exact",
+          "level": "H4"
+        },
+        "expectedText": "النجاح بمساعدة كاملة مع سجل المساعدة",
+        "forbiddenText": "تحويله إلى حل مستقل"
+      }
+    },
+    {
+      "id": "GOLD-TUTOR-017",
+      "group": "tutoring",
+      "sourceRecord": {
+        "id": "GOLD-TUTOR-017",
+        "trigger": "مسألة جديدة مستقلة من بنك معتمد",
+        "mode": "transfer_check",
+        "hint_level": "H0",
+        "expected": "دليل محدود على نقل الفهم",
+        "forbidden": "تسمية الإتقان نهائيًا من محاولة واحدة",
+        "reference": "07-TUTORING-POLICY.md"
+      },
+      "expected": {
+        "mode": "transfer_check",
+        "hintConstraint": {
+          "kind": "exact",
+          "level": "H0"
+        },
+        "expectedText": "دليل محدود على نقل الفهم",
+        "forbiddenText": "تسمية الإتقان نهائيًا من محاولة واحدة"
+      }
+    },
+    {
+      "id": "GOLD-TUTOR-018",
+      "group": "tutoring",
+      "sourceRecord": {
+        "id": "GOLD-TUTOR-018",
+        "trigger": "محاولة نقل غير ناجحة",
+        "mode": "transfer_check",
+        "hint_level": "H0",
+        "expected": "عرض تدريب مناسب أو مراجعة بشرية",
+        "forbidden": "اعتبار المتعلم غير قادر دائمًا",
+        "reference": "07-TUTORING-POLICY.md"
+      },
+      "expected": {
+        "mode": "transfer_check",
+        "hintConstraint": {
+          "kind": "exact",
+          "level": "H0"
+        },
+        "expectedText": "عرض تدريب مناسب أو مراجعة بشرية",
+        "forbiddenText": "اعتبار المتعلم غير قادر دائمًا"
+      }
+    },
+    {
+      "id": "GOLD-STATE-001",
+      "group": "state",
+      "sourceRecord": {
+        "id": "GOLD-STATE-001",
+        "event": "تعديل خطوة رقم ٢ بعد حكم ناجح للخطوة ٣",
+        "expected": "زيادة attemptRevision وإبطال الأحكام التابعة وإعادة التحقق",
+        "forbidden": "إبقاء verified_valid القديم فعالًا",
+        "reference": "11 §15.4 / 12 expectedRevision"
+      },
+      "expected": {
+        "expectedText": "زيادة attemptRevision وإبطال الأحكام التابعة وإعادة التحقق",
+        "forbiddenText": "إبقاء verified_valid القديم فعالًا"
+      }
+    },
+    {
+      "id": "GOLD-STATE-002",
+      "group": "state",
+      "sourceRecord": {
+        "id": "GOLD-STATE-002",
+        "event": "طلب تحقق قديم يصل بعد تعديل الخطوة",
+        "expected": "isCurrent=false أو رفض الدمج، دون تغيير سجل الإتقان",
+        "forbidden": "اعتماد النتيجة المتأخرة",
+        "reference": "09 / 10 §13"
+      },
+      "expected": {
+        "expectedText": "isCurrent=false أو رفض الدمج، دون تغيير سجل الإتقان",
+        "forbiddenText": "اعتماد النتيجة المتأخرة"
+      }
+    },
+    {
+      "id": "GOLD-STATE-003",
+      "group": "state",
+      "sourceRecord": {
+        "id": "GOLD-STATE-003",
+        "event": "طلبا تعديل بنفس expectedRevision",
+        "expected": "ينجح واحد فقط ويُرد الآخر 409 بتعارض المراجعة",
+        "forbidden": "فقدان تحديث أو كتابة صامتة",
+        "reference": "12 API"
+      },
+      "expected": {
+        "expectedText": "ينجح واحد فقط ويُرد الآخر 409 بتعارض المراجعة",
+        "forbiddenText": "فقدان تحديث أو كتابة صامتة"
+      }
+    },
+    {
+      "id": "GOLD-STATE-004",
+      "group": "state",
+      "sourceRecord": {
+        "id": "GOLD-STATE-004",
+        "event": "تكرار الطلب نفسه بنفس Idempotency-Key ونفس الحمولة",
+        "expected": "نفس النتيجة أو نفس مرجع العملية دون أثر مكرر",
+        "forbidden": "خطوتان أو سجلان متطابقان",
+        "reference": "11 §13 / 12 API"
+      },
+      "expected": {
+        "expectedText": "نفس النتيجة أو نفس مرجع العملية دون أثر مكرر",
+        "forbiddenText": "خطوتان أو سجلان متطابقان"
+      }
+    },
+    {
+      "id": "GOLD-STATE-005",
+      "group": "state",
+      "sourceRecord": {
+        "id": "GOLD-STATE-005",
+        "event": "المفتاح نفسه مع حمولة مختلفة",
+        "expected": "رفض تعارض Idempotency",
+        "forbidden": "تنفيذ الحمولة المختلفة كأنها إعادة آمنة",
+        "reference": "12 API"
+      },
+      "expected": {
+        "expectedText": "رفض تعارض Idempotency",
+        "forbiddenText": "تنفيذ الحمولة المختلفة كأنها إعادة آمنة"
+      }
+    },
+    {
+      "id": "GOLD-STATE-006",
+      "group": "state",
+      "sourceRecord": {
+        "id": "GOLD-STATE-006",
+        "event": "محاولة ضيف أ يحاول قراءة جلسة ضيف ب",
+        "expected": "رفض صلاحيات دون تسريب بيانات",
+        "forbidden": "إرجاع محتوى المسألة/الأدلة الخاصة بب",
+        "reference": "16 SECURITY-PRIVACY"
+      },
+      "expected": {
+        "expectedText": "رفض صلاحيات دون تسريب بيانات",
+        "forbiddenText": "إرجاع محتوى المسألة/الأدلة الخاصة بب"
+      }
+    },
+    {
+      "id": "GOLD-STATE-007",
+      "group": "state",
+      "sourceRecord": {
+        "id": "GOLD-STATE-007",
+        "event": "استجابة AI غير مطابقة للمخطط",
+        "expected": "رفض المخرج والعودة لقالب معتمد",
+        "forbidden": "عرض JSON خام أو تغيير mathStatus",
+        "reference": "13 §9,§16"
+      },
+      "expected": {
+        "expectedText": "رفض المخرج والعودة لقالب معتمد",
+        "forbiddenText": "عرض JSON خام أو تغيير mathStatus"
+      }
+    },
+    {
+      "id": "GOLD-STATE-008",
+      "group": "state",
+      "sourceRecord": {
+        "id": "GOLD-STATE-008",
+        "event": "نص يحاول إقناع AI بتغيير math_status",
+        "expected": "اعتبار النص غير موثوق وحماية الحكم",
+        "forbidden": "تحويل verified_invalid إلى verified_valid",
+        "reference": "13 §8,§17"
+      },
+      "expected": {
+        "expectedText": "اعتبار النص غير موثوق وحماية الحكم",
+        "forbiddenText": "تحويل verified_invalid إلى verified_valid"
+      }
+    },
+    {
+      "id": "GOLD-STATE-009",
+      "group": "state",
+      "sourceRecord": {
+        "id": "GOLD-STATE-009",
+        "event": "انقطاع خدمة Python أثناء التحقق",
+        "expected": "service_error مع حفظ العمل وإعادة المحاولة",
+        "forbidden": "اعتبار فشل الخدمة خطأ الطالب",
+        "reference": "10 §16"
+      },
+      "expected": {
+        "expectedText": "service_error مع حفظ العمل وإعادة المحاولة",
+        "forbiddenText": "اعتبار فشل الخدمة خطأ الطالب"
+      }
+    },
+    {
+      "id": "GOLD-STATE-010",
+      "group": "state",
+      "sourceRecord": {
+        "id": "GOLD-STATE-010",
+        "event": "تعذر LLM مع محرك رياضي سليم",
+        "expected": "إبقاء الحكم الرياضي وتقديم شرح مراجَع عند توفره",
+        "forbidden": "حذف أو تغيير الدليل الرياضي",
+        "reference": "13 §16"
+      },
+      "expected": {
+        "expectedText": "إبقاء الحكم الرياضي وتقديم شرح مراجَع عند توفره",
+        "forbiddenText": "حذف أو تغيير الدليل الرياضي"
+      }
+    },
+    {
+      "id": "GOLD-STATE-011",
+      "group": "state",
+      "sourceRecord": {
+        "id": "GOLD-STATE-011",
+        "event": "إعادة إصدار مسألة محتوى محدث",
+        "expected": "ربط كل محاولة بإصدار المسألة الذي بدأ به الطالب",
+        "forbidden": "إعادة تفسير محاولات قديمة بإصدار جديد",
+        "reference": "11 §5,§7"
+      },
+      "expected": {
+        "expectedText": "ربط كل محاولة بإصدار المسألة الذي بدأ به الطالب",
+        "forbiddenText": "إعادة تفسير محاولات قديمة بإصدار جديد"
+      }
+    },
+    {
+      "id": "GOLD-STATE-012",
+      "group": "state",
+      "sourceRecord": {
+        "id": "GOLD-STATE-012",
+        "event": "إظهار H4 على المهمة الأصلية",
+        "expected": "تسجيل أعلى مساعدة وحظر نسب استقلالية للمهمة",
+        "forbidden": "احتسابها محاولة مستقلة",
+        "reference": "07 §7 / 11 §11"
+      },
+      "expected": {
+        "expectedText": "تسجيل أعلى مساعدة وحظر نسب استقلالية للمهمة",
+        "forbiddenText": "احتسابها محاولة مستقلة"
+      }
+    },
+    {
+      "id": "GOLD-STATE-013",
+      "group": "state",
+      "sourceRecord": {
+        "id": "GOLD-STATE-013",
+        "event": "مقارنة مسألة نقل بنفس سؤال التشخيص",
+        "expected": "رفض تطابق المحتوى واختيار نسخة مختلفة",
+        "forbidden": "إعادة نشر جواب كدليل نقل",
+        "reference": "05 §8 / 07 §9"
+      },
+      "expected": {
+        "expectedText": "رفض تطابق المحتوى واختيار نسخة مختلفة",
+        "forbiddenText": "إعادة نشر جواب كدليل نقل"
+      }
+    },
+    {
+      "id": "GOLD-STATE-014",
+      "group": "state",
+      "sourceRecord": {
+        "id": "GOLD-STATE-014",
+        "event": "معلم يفتح لوحة بيانات العرض",
+        "expected": "isSynthetic=true ووسم ظاهر للبيانات",
+        "forbidden": "إيهام ببيانات طلاب حقيقيين",
+        "reference": "11 §12 / 12 TeacherDemo"
+      },
+      "expected": {
+        "expectedText": "isSynthetic=true ووسم ظاهر للبيانات",
+        "forbiddenText": "إيهام ببيانات طلاب حقيقيين"
+      }
+    },
+    {
+      "id": "GOLD-STATE-015",
+      "group": "state",
+      "sourceRecord": {
+        "id": "GOLD-STATE-015",
+        "event": "معلم يفتح سجلات ضيف فعلية دون إذن",
+        "expected": "رفض الوصول أو إظهار تجميع مأذون فقط",
+        "forbidden": "الوصول بمجرد معرفة رابط",
+        "reference": "11 §20 / 16 SECURITY"
+      },
+      "expected": {
+        "expectedText": "رفض الوصول أو إظهار تجميع مأذون فقط",
+        "forbiddenText": "الوصول بمجرد معرفة رابط"
+      }
+    },
+    {
+      "id": "GOLD-STATE-016",
+      "group": "state",
+      "sourceRecord": {
+        "id": "GOLD-STATE-016",
+        "event": "فشل رفع/حذف بيانات غير مؤثرة في التحقق",
+        "expected": "تسجيل خطأ تقني وآلية استرجاع دون تغيير mathStatus",
+        "forbidden": "تأويل فشل التخزين كضعف مفاهيمي",
+        "reference": "11 §15 / 16 SECURITY"
+      },
+      "expected": {
+        "expectedText": "تسجيل خطأ تقني وآلية استرجاع دون تغيير mathStatus",
+        "forbiddenText": "تأويل فشل التخزين كضعف مفاهيمي"
+      }
+    },
+    {
+      "id": "GOLD-STATE-017",
+      "group": "state",
+      "sourceRecord": {
+        "id": "GOLD-STATE-017",
+        "event": "طلب تحليل بعد حذف جلسة أو انتهاء صلاحيتها",
+        "expected": "رفض التفويض أو session expired دون تفعيل سجل جديد تلقائيًا",
+        "forbidden": "إحياء جلسة منتهية",
+        "reference": "11 §6 / 12 API"
+      },
+      "expected": {
+        "expectedText": "رفض التفويض أو session expired دون تفعيل سجل جديد تلقائيًا",
+        "forbiddenText": "إحياء جلسة منتهية"
+      }
+    },
+    {
+      "id": "GOLD-STATE-018",
+      "group": "state",
+      "sourceRecord": {
+        "id": "GOLD-STATE-018",
+        "event": "ضغط المستخدم زر التحقق مرتين بسرعة",
+        "expected": "التحقق من النسخة والتكرار، عدم تكرار دليل الإتقان",
+        "forbidden": "استدعاء مضاعف يغير العدادات",
+        "reference": "11 §13 / 12 API"
+      },
+      "expected": {
+        "expectedText": "التحقق من النسخة والتكرار، عدم تكرار دليل الإتقان",
+        "forbiddenText": "استدعاء مضاعف يغير العدادات"
+      }
+    }
+  ],
+  "seedProblems": [
+    {
+      "id": "KH-ALG-001",
+      "kind": "main",
+      "skill": "SK-ALG-05",
+      "equation": "س + ٣ = ٨",
+      "answer": "٥"
+    },
+    {
+      "id": "KH-ALG-002",
+      "kind": "main",
+      "skill": "SK-ALG-06",
+      "equation": "٤س = ١٢",
+      "answer": "٣"
+    },
+    {
+      "id": "KH-ALG-003",
+      "kind": "main",
+      "skill": "SK-ALG-04",
+      "equation": "٢(س + ٣) = ١٠",
+      "answer": "٢"
+    },
+    {
+      "id": "KH-ALG-004",
+      "kind": "main",
+      "skill": "SK-ALG-02",
+      "equation": "س − ٥ = −٢",
+      "answer": "٣"
+    },
+    {
+      "id": "KH-ALG-005",
+      "kind": "main",
+      "skill": "SK-ALG-04",
+      "equation": "−٢(س + ٣) = −١٠",
+      "answer": "٢"
+    },
+    {
+      "id": "KH-ALG-006",
+      "kind": "main",
+      "skill": "SK-ALG-07",
+      "equation": "٢س + ٣ = ١١",
+      "answer": "٤"
+    },
+    {
+      "id": "KH-ALG-007",
+      "kind": "main",
+      "skill": "SK-ALG-06",
+      "equation": "٢(س − ٤) = ٦",
+      "answer": "٧"
+    },
+    {
+      "id": "KH-ALG-008",
+      "kind": "main",
+      "skill": "SK-ALG-08",
+      "equation": "٣س = ٧",
+      "answer": "٧/٣"
+    },
+    {
+      "id": "KH-ALG-009",
+      "kind": "diagnostic",
+      "skill": "SK-ALG-01",
+      "equation": "س + ٤ = ٩",
+      "answer": "٥"
+    },
+    {
+      "id": "KH-ALG-010",
+      "kind": "diagnostic",
+      "skill": "SK-ALG-03",
+      "equation": "٢س + س = ٩",
+      "answer": "٣"
+    },
+    {
+      "id": "KH-ALG-011",
+      "kind": "remediation",
+      "skill": "SK-ALG-04",
+      "equation": "٤(س + ١) = ٢٠",
+      "answer": "٤"
+    },
+    {
+      "id": "KH-ALG-012",
+      "kind": "remediation",
+      "skill": "SK-ALG-02",
+      "equation": "س − ٤ = −١",
+      "answer": "٣"
+    },
+    {
+      "id": "KH-ALG-013",
+      "kind": "remediation",
+      "skill": "SK-ALG-06",
+      "equation": "٦س = ١٨",
+      "answer": "٣"
+    },
+    {
+      "id": "KH-ALG-014",
+      "kind": "remediation",
+      "skill": "SK-ALG-05",
+      "equation": "٢س + ٢ = ٨",
+      "answer": "٣"
+    },
+    {
+      "id": "KH-ALG-015",
+      "kind": "transfer",
+      "skill": "SK-ALG-04",
+      "equation": "٣(س − ٢) = ٩",
+      "answer": "٥"
+    },
+    {
+      "id": "KH-ALG-016",
+      "kind": "transfer",
+      "skill": "SK-ALG-06",
+      "equation": "٥(س − ١) = ٢٠",
+      "answer": "٥"
+    },
+    {
+      "id": "KH-ALG-017",
+      "kind": "transfer",
+      "skill": "SK-ALG-05",
+      "equation": "٣س + ٦ = ٠",
+      "answer": "−٢"
+    },
+    {
+      "id": "KH-ALG-018",
+      "kind": "transfer",
+      "skill": "SK-ALG-08",
+      "equation": "٢س = ١",
+      "answer": "١/٢"
+    }
+  ]
+}

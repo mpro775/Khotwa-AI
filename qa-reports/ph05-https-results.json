@@ -1,0 +1,23 @@
+{
+  "phase": "PH-05",
+  "runId": "e493fc44-0e53-46fe-828e-37fe498af93f",
+  "url": "https://localhost:8443",
+  "recordedAt": "2026-11-04T03:21:14.391Z",
+  "passed": 7,
+  "checks": [
+    "HTTPS page and strict CSP with pinned local CA; verification remains enabled",
+    "real TLS guest bootstrap, CSRF and secured host-only cookie",
+    "live published synthetic catalog, no answer specification",
+    "HTTPS → nginx → NestJS → PostgreSQL → real Python → verified chain completion",
+    "HTTPS verification retry reuses the same result",
+    "cross-origin HTTPS mutation rejected",
+    "private paths blocked by public proxy"
+  ],
+  "tls": {
+    "certificateValidation": true,
+    "explicitTestCa": true,
+    "globalTrustStoreChanged": false,
+    "browserAcceptance": "separate manual certificate handoff required"
+  },
+  "syntheticOnly": true
+}

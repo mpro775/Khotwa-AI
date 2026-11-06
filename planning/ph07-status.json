@@ -1,0 +1,201 @@
+{
+  "phase": "PH-07",
+  "recordedAt": "2026-11-04T04:53:28.252Z",
+  "branch": "codex/ph07-guided-hints",
+  "baseCommit": "640e1976c18b798e3942b2b051b76531ee48370a",
+  "baseline": "pre-PH07 dirty working tree; prior PH06 work preserved",
+  "status": "partially_complete_ready_for_technical_review",
+  "tasks": [
+    {
+      "id": "TASK-071",
+      "implementation": "implemented_in_synthetic_environment",
+      "acceptance": "pending_review"
+    },
+    {
+      "id": "TASK-072",
+      "implementation": "implemented_in_synthetic_environment",
+      "acceptance": "pending_review",
+      "externalBinding": "blocked_by_owner_no_approved_provider"
+    },
+    {
+      "id": "TASK-073",
+      "implementation": "implemented_in_synthetic_environment",
+      "acceptance": "pending_review"
+    },
+    {
+      "id": "TASK-074",
+      "implementation": "implemented_in_synthetic_environment",
+      "acceptance": "pending_review",
+      "reviewedContent": "pending_human_review"
+    },
+    {
+      "id": "TASK-075",
+      "implementation": "implemented_in_synthetic_environment",
+      "acceptance": "pending_review"
+    },
+    {
+      "id": "TASK-076",
+      "implementation": "implemented_in_synthetic_environment",
+      "acceptance": "pending_review"
+    }
+  ],
+  "ownerDecision": "لا يوجد مزود معتمد بعد؛ أبقِ الاتصال الخارجي معطلًا",
+  "externalAiEnabled": false,
+  "actualExternalProviderCalls": 0,
+  "actualLlmInferences": 0,
+  "controlledProviderCalls": 24,
+  "content": {
+    "review": "draft_not_human_approved",
+    "generationSource": "manual",
+    "syntheticOnly": true
+  },
+  "checks": {
+    "groupsPassed": 11,
+    "groupsFailed": 0,
+    "live": {
+      "total": 18,
+      "passed": 18,
+      "failed": 0
+    },
+    "validatedHttpResponses": 206,
+    "httpsPassed": 13,
+    "db": {
+      "checks": [
+        {
+          "command": "prisma migrate deploy",
+          "exitCode": 0
+        },
+        {
+          "name": "PH07_delta_down_preserves_PH06_tables",
+          "passed": true
+        },
+        {
+          "command": "prisma migrate reset --force",
+          "exitCode": 0
+        }
+      ],
+      "postgres": "17.6",
+      "tables": 26,
+      "migrations": 7,
+      "scope": "isolated tmpfs; PH07 delta rollback and full replay"
+    }
+  },
+  "golden": [
+    {
+      "id": "GOLD-TUTOR-001",
+      "result": "observed"
+    },
+    {
+      "id": "GOLD-TUTOR-002",
+      "result": "observed"
+    },
+    {
+      "id": "GOLD-TUTOR-003",
+      "result": "observed"
+    },
+    {
+      "id": "GOLD-TUTOR-004",
+      "result": "observed"
+    },
+    {
+      "id": "GOLD-TUTOR-005",
+      "result": "observed"
+    },
+    {
+      "id": "GOLD-TUTOR-006",
+      "result": "observed"
+    },
+    {
+      "id": "GOLD-TUTOR-007",
+      "result": "partial"
+    },
+    {
+      "id": "GOLD-TUTOR-008",
+      "result": "partial"
+    },
+    {
+      "id": "GOLD-TUTOR-009",
+      "result": "observed"
+    },
+    {
+      "id": "GOLD-TUTOR-010",
+      "result": "observed"
+    },
+    {
+      "id": "GOLD-TUTOR-011",
+      "result": "observed"
+    },
+    {
+      "id": "GOLD-TUTOR-012",
+      "result": "observed"
+    },
+    {
+      "id": "GOLD-TUTOR-013",
+      "result": "partial"
+    },
+    {
+      "id": "GOLD-TUTOR-014",
+      "result": "partial"
+    },
+    {
+      "id": "GOLD-TUTOR-015",
+      "result": "observed"
+    },
+    {
+      "id": "GOLD-TUTOR-016",
+      "result": "observed"
+    },
+    {
+      "id": "GOLD-TUTOR-017",
+      "result": "not_run"
+    },
+    {
+      "id": "GOLD-TUTOR-018",
+      "result": "not_run"
+    }
+  ],
+  "regressionReport": "qa-reports/ph07-regression-summary.json",
+  "inheritedReferenceIssue": "DATASET-ISSUE-PH06-01 / GOLD-DIAG-015 pending",
+  "browser": "not_run",
+  "realPhone": "not_run",
+  "humanContentReview": "pending",
+  "providerDecision": "DR-008 pending",
+  "gate1": "blocked",
+  "gate2": "not_approved",
+  "ph08": "not_started",
+  "contractChanged": false,
+  "mathScopeChanged": false,
+  "canonicalGoldenChanged": false,
+  "commitCreated": false,
+  "pushed": false,
+  "deployedPublicly": false,
+  "regression": {
+    "phase": "PH-07",
+    "recordedAt": "2026-11-04T04:51:27.094Z",
+    "mode": "PH07 disabled; previous reports restored byte-for-byte",
+    "results": [
+      {
+        "phase": "04",
+        "exitCode": 0,
+        "expectedInheritedReferenceFailure": false
+      },
+      {
+        "phase": "05",
+        "exitCode": 0,
+        "expectedInheritedReferenceFailure": false
+      },
+      {
+        "phase": "06",
+        "exitCode": 1,
+        "expectedInheritedReferenceFailure": true
+      }
+    ],
+    "unexpectedFailure": false
+  },
+  "imageSource": {
+    "selectedFiles": 16,
+    "images": 2,
+    "allMatched": true,
+    "report": "qa-reports/ph07-image-source.json"
+  }
+}

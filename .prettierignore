@@ -1,0 +1,10 @@
+node_modules
+**/dist
+packages/contracts/src/generated
+packages/contracts/openapi.yaml
+packages/contracts/schemas
+qa-reports
+planning
+docs
+AGENTS.md
+Dockerfile

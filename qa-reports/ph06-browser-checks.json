@@ -1,0 +1,34 @@
+{
+  "phase": "PH-06",
+  "recordedAt": "2026-11-04T04:01:55.192672+00:00",
+  "url": "https://localhost:8444/",
+  "desktop": {
+    "status": "not_run",
+    "attemptedThisPhase": false,
+    "reason": "manual Chrome step was explicitly deferred by owner in PH-05; not re-requested",
+    "priorEvidence": "qa-reports/ph05-browser-checks.json",
+    "ownerPriorReply": "سأكمل هذه الخطوة لاحقًا؛ وثّق المتبقي",
+    "screenshots": [],
+    "recordings": [],
+    "rtlClipboardScreenReader": "not_run"
+  },
+  "phone": {
+    "status": "not_run",
+    "reason": "no physical phone available; owner prior reply",
+    "ownerPriorReply": "لا يوجد هاتف متاح حاليًا",
+    "screenshots": [],
+    "emulationCounted": false
+  },
+  "programmaticOnly": {
+    "https": "qa-reports/ph06-https-results.json",
+    "stateAndCsp": "qa-reports/ph06-checks.json",
+    "limitation": "These prove protocol/state behavior, not interactive rendering or device input."
+  },
+  "security": {
+    "globalTrustStoreChanged": false,
+    "certificateValidationDisabled": false,
+    "automatedCertificateWarningBypass": false
+  },
+  "nextSteps": "planning/ph06-local-run.md",
+  "gate1": "blocked_not_approved"
+}

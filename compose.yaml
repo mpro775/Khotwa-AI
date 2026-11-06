@@ -1,0 +1,116 @@
+name: khotwa-ph01
+services:
+  web:
+    build:
+      context: .
+      target: web
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      api:
+        condition: service_healthy
+    networks: [frontend]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 128m
+    pids_limit: 64
+  api:
+    build:
+      context: .
+      target: api
+    environment:
+      HOST: 0.0.0.0
+      PORT: "3000"
+      NODE_ENV: production
+      NODE_OPTIONS: --max-old-space-size=256
+      INTERNAL_HEALTH_TOKEN: ${INTERNAL_HEALTH_TOKEN:?Run npm run env:local}
+      MATH_INTERNAL_TOKEN: ${MATH_INTERNAL_TOKEN:?Run npm run env:local}
+      DATABASE_URL: postgresql://khotwa_dev:${POSTGRES_PASSWORD:?Run npm run env:local}@database:5432/khotwa_dev
+      MATH_ENGINE_BASE_URL: http://math-engine:8001
+      AI_ENABLED: "false"
+      # Enable only after local migrations and HTTPS origin configuration.
+      PH04_API_ENABLED: ${PH04_API_ENABLED:-false}
+      PH09_API_ENABLED: ${PH09_API_ENABLED:-false}
+      PH08_API_ENABLED: ${PH08_API_ENABLED:-false}
+      PH07_API_ENABLED: ${PH07_API_ENABLED:-false}
+      PH06_API_ENABLED: ${PH06_API_ENABLED:-false}
+      PH05_API_ENABLED: ${PH05_API_ENABLED:-false}
+      PH05_VERIFY_TIMEOUT_MS: ${PH05_VERIFY_TIMEOUT_MS:-}
+      KHOTWA_SYNTHETIC_DATA: ${KHOTWA_SYNTHETIC_DATA:-false}
+      PUBLIC_APP_ORIGIN: ${PUBLIC_APP_ORIGIN:-}
+      GUEST_DIGEST_KEY: ${GUEST_DIGEST_KEY:-}
+      BOOTSTRAP_SIGNING_KEY: ${BOOTSTRAP_SIGNING_KEY:-}
+      CSRF_SIGNING_KEY: ${CSRF_SIGNING_KEY:-}
+      GUEST_ISSUE_KEY: ${GUEST_ISSUE_KEY:-}
+      IDEMPOTENCY_DIGEST_KEY: ${IDEMPOTENCY_DIGEST_KEY:-}
+      CURSOR_SIGNING_KEY: ${CURSOR_SIGNING_KEY:-}
+      PH04_BOOTSTRAP_TTL_SECONDS: ${PH04_BOOTSTRAP_TTL_SECONDS:-}
+      PH04_RATE_LIMIT_MAX: ${PH04_RATE_LIMIT_MAX:-}
+      PH04_RATE_LIMIT_WINDOW_SECONDS: ${PH04_RATE_LIMIT_WINDOW_SECONDS:-}
+      PH04_MATH_TIMEOUT_MS: ${PH04_MATH_TIMEOUT_MS:-}
+    depends_on:
+      database:
+        condition: service_healthy
+      math-engine:
+        condition: service_healthy
+    networks: [frontend, backend]
+    read_only: true
+    tmpfs: [/tmp]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 512m
+    pids_limit: 128
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:3000/internal/health/ready',{headers:{authorization:'Bearer '+process.env.INTERNAL_HEALTH_TOKEN}}).then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 5s
+      timeout: 4s
+      retries: 10
+  math-engine:
+    build:
+      context: .
+      target: math
+    environment:
+      MATH_INTERNAL_TOKEN: ${MATH_INTERNAL_TOKEN:?Run npm run env:local}
+    networks: [backend]
+    read_only: true
+    tmpfs: [/tmp]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 256m
+    cpus: 1.0
+    pids_limit: 64
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import os,urllib.request; r=urllib.request.Request('http://127.0.0.1:8001/internal/health',headers={'Authorization':'Bearer '+os.environ['MATH_INTERNAL_TOKEN']}); urllib.request.urlopen(r,timeout=2)",
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  database:
+    image: postgres:17.6-alpine3.22
+    environment:
+      POSTGRES_USER: khotwa_dev
+      POSTGRES_DB: khotwa_dev
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run npm run env:local}
+    volumes: [postgres-data:/var/lib/postgresql/data]
+    networks: [backend]
+    mem_limit: 512m
+    pids_limit: 128
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U khotwa_dev -d khotwa_dev"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+networks:
+  frontend: {}
+  backend:
+    internal: true
+volumes:
+  postgres-data: {}

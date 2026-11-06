@@ -1,0 +1,80 @@
+{
+  "phase": "PH-01",
+  "staged_files_scanned": 141,
+  "actual_local_secret_matches": 0,
+  "secret_values_logged": false,
+  "canonical_and_approval_bytes_checked": [
+    {
+      "path": "docs/12-API-CONTRACT.yaml",
+      "index_matches_working_bytes": true,
+      "sha256": "c8b5027ec74ea9b960c3428a0d3f1e221320d46c320507713549f5892eb5ecf3"
+    },
+    {
+      "path": "docs/contracts/math-internal-v1.schema.json",
+      "index_matches_working_bytes": true,
+      "sha256": "d72855a399c9100c5b1e54a5cdeb884a18da1e8bf53805ee23da2c05a8d874dc"
+    },
+    {
+      "path": "docs/contracts/math-internal-v1.md",
+      "index_matches_working_bytes": true,
+      "sha256": "a960c5029389d8522317a79479e91eaf3d52e9647fa2258158f7a4af6cd88dc0"
+    },
+    {
+      "path": "docs/contracts/math-internal-v1.examples.json",
+      "index_matches_working_bytes": true,
+      "sha256": "6994a1b0723810a709a09a15a3e01959d766dd5cccb175db660577a5af0fb275"
+    },
+    {
+      "path": "docs/contracts/golden-fixtures-v1.schema.json",
+      "index_matches_working_bytes": true,
+      "sha256": "d328ee16d720ef80fb5181fec8d500fe2cc18523ab912e15a2e39d72434f72a3"
+    },
+    {
+      "path": "docs/contracts/golden-adapter-v1.md",
+      "index_matches_working_bytes": true,
+      "sha256": "d7b2d6a6f1fd065cda04c9719ad4dc7d8a38d9397ff7943a6cb662a0acd078fd"
+    },
+    {
+      "path": "docs/14-GOLDEN-DATASET.cases.json",
+      "index_matches_working_bytes": true,
+      "sha256": "1c3e5fec509a8fad930a3d05e9f5b764b6b060281ec7277a32575511095b7f12"
+    },
+    {
+      "path": "docs/10-MATH-ENGINE.md",
+      "index_matches_working_bytes": true,
+      "sha256": "dd6478d13520ac4da9d827b6ff1738edec125cd9d60da8c86a6537174cc339b0"
+    },
+    {
+      "path": "docs/04-ARABIC-NOTATION.md",
+      "index_matches_working_bytes": true,
+      "sha256": "e75fb981015d565946a32994e35f9035db1d61fc6365b6048d77c0f4ce067ca7"
+    },
+    {
+      "path": "docs/05-CURRICULUM.md",
+      "index_matches_working_bytes": true,
+      "sha256": "2c4cabb4db88f4483f42083d6500571d5f741bafe2a3b216ebeb3e047fb3076d"
+    },
+    {
+      "path": "planning/approvals/MATH-SCOPE-OWNER-DELEGATED-APPROVAL.md",
+      "index_matches_working_bytes": true,
+      "sha256": "aff569ff4178c3abf0b92e7f76753829074e4d1204ab187632ffecbef3013eed"
+    },
+    {
+      "path": "planning/approvals/ENGINEERING-QA-SECURITY-OWNER-DELEGATED-APPROVAL.md",
+      "index_matches_working_bytes": true,
+      "sha256": "dae76450cd709e9458dabf49a763c0f788b25026b5bec8119a6e342eb8abfe74"
+    },
+    {
+      "path": "planning/gate0-current-contract-inventory.json",
+      "index_matches_working_bytes": true,
+      "sha256": "caeee52fcee03e84f2cc8330983cdfcb0df95b55922159219a9469ff724123dd"
+    },
+    {
+      "path": "planning/gate0-owner-delegation.json",
+      "index_matches_working_bytes": true,
+      "sha256": "bc6863e77b3b9745c3fb645e6b0004e0788a5b2b9ee5c684959b0a19e8576276"
+    }
+  ],
+  "zip_venv_local_files_staged": false,
+  "preexisting_deletions_staged": false
+}

@@ -1,0 +1,122 @@
+{
+  "gate": "GATE-0",
+  "scope": "structural-only; manual review of identity/scope still required",
+  "approval_basis": "owner-delegated",
+  "reviewer_signatures_authenticated": false,
+  "structural_pass": true,
+  "errors": [],
+  "checks": [
+    {
+      "check": "required_file",
+      "file": "AGENTS.md",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "docs/PROJECT-DECISIONS.md",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "docs/17-IMPLEMENTATION-PLAN.md",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "docs/12-API-CONTRACT.yaml",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "docs/contracts/math-internal-v1.schema.json",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "docs/contracts/math-internal-v1.md",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "docs/contracts/math-internal-v1.examples.json",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "docs/contracts/golden-fixtures-v1.schema.json",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "docs/contracts/golden-adapter-v1.md",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "docs/14-GOLDEN-DATASET.cases.json",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "planning/decisions.md",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "planning/owners-and-gates.md",
+      "passed": true
+    },
+    {
+      "check": "required_file",
+      "file": "qa-reports/gate-0.md",
+      "passed": true
+    },
+    {
+      "check": "math_approval",
+      "passed": true,
+      "sha256": "aff569ff4178c3abf0b92e7f76753829074e4d1204ab187632ffecbef3013eed"
+    },
+    {
+      "check": "engineering_approval",
+      "passed": true,
+      "sha256": "dae76450cd709e9458dabf49a763c0f788b25026b5bec8119a6e342eb8abfe74"
+    },
+    {
+      "check": "contract_hash",
+      "file": "docs/12-API-CONTRACT.yaml",
+      "passed": true
+    },
+    {
+      "check": "contract_hash",
+      "file": "docs/contracts/math-internal-v1.schema.json",
+      "passed": true
+    },
+    {
+      "check": "contract_hash",
+      "file": "docs/contracts/math-internal-v1.md",
+      "passed": true
+    },
+    {
+      "check": "contract_hash",
+      "file": "docs/contracts/math-internal-v1.examples.json",
+      "passed": true
+    },
+    {
+      "check": "contract_hash",
+      "file": "docs/contracts/golden-fixtures-v1.schema.json",
+      "passed": true
+    },
+    {
+      "check": "contract_hash",
+      "file": "docs/contracts/golden-adapter-v1.md",
+      "passed": true
+    },
+    {
+      "check": "contract_hash",
+      "file": "docs/14-GOLDEN-DATASET.cases.json",
+      "passed": true
+    }
+  ],
+  "gate_approved_by_this_script": false,
+  "ph01_authorized_by_this_script": false
+}

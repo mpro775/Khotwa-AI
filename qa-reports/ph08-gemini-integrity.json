@@ -1,0 +1,616 @@
+{
+  "base": "e8089bb",
+  "protectedFiles": [
+    {
+      "file": "apps/api/data/teacher-demo.v1.json",
+      "unchanged": true,
+      "gitSha256": "b56888b58552250bcba9ff89f42044def285039bdd03bb3b5a5f4db2655a0fd5",
+      "workspaceSha256": "b56888b58552250bcba9ff89f42044def285039bdd03bb3b5a5f4db2655a0fd5"
+    },
+    {
+      "file": "apps/api/prisma/migrations/0001_ph04/migration.sql",
+      "unchanged": true,
+      "gitSha256": "9e0c2ded703d7e99ea0d06f6c079b7db310e34d6f168a1294d09393fb0108aa7",
+      "workspaceSha256": "9e0c2ded703d7e99ea0d06f6c079b7db310e34d6f168a1294d09393fb0108aa7"
+    },
+    {
+      "file": "apps/api/prisma/migrations/0002_current_version_key/migration.sql",
+      "unchanged": true,
+      "gitSha256": "37df0c6aa0ccca1bf37cae2d1be6f7ef98a7d5ada79978de4ca552da4d1a11fa",
+      "workspaceSha256": "37df0c6aa0ccca1bf37cae2d1be6f7ef98a7d5ada79978de4ca552da4d1a11fa"
+    },
+    {
+      "file": "apps/api/prisma/migrations/0003_content_integrity/migration.sql",
+      "unchanged": true,
+      "gitSha256": "bdb360a9f7b79db7bc48fd595d7afa18ce36a1b40b048a5e2f6cd98b84ba882a",
+      "workspaceSha256": "bdb360a9f7b79db7bc48fd595d7afa18ce36a1b40b048a5e2f6cd98b84ba882a"
+    },
+    {
+      "file": "apps/api/prisma/migrations/0004_verification_reports/migration.sql",
+      "unchanged": true,
+      "gitSha256": "3e7ff653456034f3720724f850ca22e2fa2d4f15561dbe2577ffcdccbda28b87",
+      "workspaceSha256": "3e7ff653456034f3720724f850ca22e2fa2d4f15561dbe2577ffcdccbda28b87"
+    },
+    {
+      "file": "apps/api/prisma/migrations/0005_conservative_diagnosis/migration.sql",
+      "unchanged": true,
+      "gitSha256": "cade84922ffdb4115da012d00fdb3cb9849596cc755100db9a4418dd8648f026",
+      "workspaceSha256": "24b0b01a18b0a4a97a84e77546b5efb5b05af4b2577e85a10e9e1e58c2bbb3f3"
+    },
+    {
+      "file": "apps/api/prisma/migrations/0006_guided_tutoring/migration.sql",
+      "unchanged": true,
+      "gitSha256": "30d69edfc45ce804d42fccb09461f52bdfd083739d4baeff6e0b1fc3f10969bd",
+      "workspaceSha256": "30d69edfc45ce804d42fccb09461f52bdfd083739d4baeff6e0b1fc3f10969bd"
+    },
+    {
+      "file": "apps/api/prisma/migrations/0007_preserve_legacy_assistance/migration.sql",
+      "unchanged": true,
+      "gitSha256": "094b7008e7063b55f9c45327b13e4ddc5b619f3f474735835eda3d5309faeeae",
+      "workspaceSha256": "094b7008e7063b55f9c45327b13e4ddc5b619f3f474735835eda3d5309faeeae"
+    },
+    {
+      "file": "apps/api/prisma/migrations/0008_learning_episodes/migration.sql",
+      "unchanged": true,
+      "gitSha256": "e4743a7d6edb8ba70da72d345e2d8e70d91617be782679a7b396d7e02a091a19",
+      "workspaceSha256": "e8660cb232985c8e8b700df4ae554701a49a7df1a006c0eafe12c3e0316ec703"
+    },
+    {
+      "file": "apps/api/prisma/migrations/0009_current_progress/migration.sql",
+      "unchanged": true,
+      "gitSha256": "6315f372538bdb152b40d270141eadd9eb8de63c94faa91f234e71f16866c4d5",
+      "workspaceSha256": "72a2ae218c0c19b8659250708275fe371c00ef93fccd95c92236df682afe862e"
+    },
+    {
+      "file": "apps/api/prisma/migrations/migration_lock.toml",
+      "unchanged": true,
+      "gitSha256": "1db17a8d051aa136110736752c5e1f8b7ed92b6ea8e803112fbbe2497047c210",
+      "workspaceSha256": "1db17a8d051aa136110736752c5e1f8b7ed92b6ea8e803112fbbe2497047c210"
+    },
+    {
+      "file": "apps/api/prisma/schema.prisma",
+      "unchanged": true,
+      "gitSha256": "ed21c630e376f1567edf8c5aed2d6e1a9a5fd026ab960b471c5df6d62eddd37d",
+      "workspaceSha256": "ed21c630e376f1567edf8c5aed2d6e1a9a5fd026ab960b471c5df6d62eddd37d"
+    },
+    {
+      "file": "apps/api/src/progress.ts",
+      "unchanged": true,
+      "gitSha256": "fb946281258c6b013c2a867a871654f4039d99bed54c7fd3afe7aa6368852d5f",
+      "workspaceSha256": "fb946281258c6b013c2a867a871654f4039d99bed54c7fd3afe7aa6368852d5f"
+    },
+    {
+      "file": "apps/api/src/retention-review.ts",
+      "unchanged": true,
+      "gitSha256": "45572a9e63f522440e09aaa3fc748f2dddaded69953f84e6af0256011be4be58",
+      "workspaceSha256": "45572a9e63f522440e09aaa3fc748f2dddaded69953f84e6af0256011be4be58"
+    },
+    {
+      "file": "apps/api/src/teacher-demo.ts",
+      "unchanged": true,
+      "gitSha256": "92df30d37f9cd7d587d87f68d6aa88736c7aa465e0196ee0a0babaeff9758514",
+      "workspaceSha256": "92df30d37f9cd7d587d87f68d6aa88736c7aa465e0196ee0a0babaeff9758514"
+    },
+    {
+      "file": "apps/web/src/StudentProgress.tsx",
+      "unchanged": true,
+      "gitSha256": "c447936ab90cb62c246e263ae51678ffd7a921ecd980ff289edf3c9dd821f1ac",
+      "workspaceSha256": "c447936ab90cb62c246e263ae51678ffd7a921ecd980ff289edf3c9dd821f1ac"
+    },
+    {
+      "file": "apps/web/src/TeacherDemo.tsx",
+      "unchanged": true,
+      "gitSha256": "d0856900aee4c6e390aa142b81f8b927820c070c1581d37c73dcf5645faac442",
+      "workspaceSha256": "d0856900aee4c6e390aa142b81f8b927820c070c1581d37c73dcf5645faac442"
+    },
+    {
+      "file": "docs/12-API-CONTRACT.yaml",
+      "unchanged": true,
+      "gitSha256": "c8b5027ec74ea9b960c3428a0d3f1e221320d46c320507713549f5892eb5ecf3",
+      "workspaceSha256": "c8b5027ec74ea9b960c3428a0d3f1e221320d46c320507713549f5892eb5ecf3"
+    },
+    {
+      "file": "docs/14-GOLDEN-DATASET.cases.json",
+      "unchanged": true,
+      "gitSha256": "1c3e5fec509a8fad930a3d05e9f5b764b6b060281ec7277a32575511095b7f12",
+      "workspaceSha256": "1c3e5fec509a8fad930a3d05e9f5b764b6b060281ec7277a32575511095b7f12"
+    },
+    {
+      "file": "docs/14-GOLDEN-DATASET.md",
+      "unchanged": true,
+      "gitSha256": "cb46458dc172cecfb0c111da28f223c221bfe082be89fc147920063e494b8f92",
+      "workspaceSha256": "cb46458dc172cecfb0c111da28f223c221bfe082be89fc147920063e494b8f92"
+    },
+    {
+      "file": "packages/contracts/openapi.yaml",
+      "unchanged": true,
+      "gitSha256": "c8b5027ec74ea9b960c3428a0d3f1e221320d46c320507713549f5892eb5ecf3",
+      "workspaceSha256": "c8b5027ec74ea9b960c3428a0d3f1e221320d46c320507713549f5892eb5ecf3"
+    },
+    {
+      "file": "packages/contracts/package.json",
+      "unchanged": true,
+      "gitSha256": "a69b31ae034e7bd2a69ba0917f3c577e73a7f16083e547568ccc8074acaac1fc",
+      "workspaceSha256": "653dc2d3fee9720360428e9f12cc6798f7d16e3c1e7660d5a46ffb62efdd8013"
+    },
+    {
+      "file": "packages/contracts/schemas/golden-fixtures-v1.schema.json",
+      "unchanged": true,
+      "gitSha256": "d328ee16d720ef80fb5181fec8d500fe2cc18523ab912e15a2e39d72434f72a3",
+      "workspaceSha256": "d328ee16d720ef80fb5181fec8d500fe2cc18523ab912e15a2e39d72434f72a3"
+    },
+    {
+      "file": "packages/contracts/schemas/math-internal-v1.examples.json",
+      "unchanged": true,
+      "gitSha256": "6994a1b0723810a709a09a15a3e01959d766dd5cccb175db660577a5af0fb275",
+      "workspaceSha256": "6994a1b0723810a709a09a15a3e01959d766dd5cccb175db660577a5af0fb275"
+    },
+    {
+      "file": "packages/contracts/schemas/math-internal-v1.schema.json",
+      "unchanged": true,
+      "gitSha256": "d72855a399c9100c5b1e54a5cdeb884a18da1e8bf53805ee23da2c05a8d874dc",
+      "workspaceSha256": "d72855a399c9100c5b1e54a5cdeb884a18da1e8bf53805ee23da2c05a8d874dc"
+    },
+    {
+      "file": "packages/contracts/src/generated/api-validators.cjs",
+      "unchanged": true,
+      "gitSha256": "c75a7179134d1b194f4a50028fd112a733556a58b5588bb1af1b1d86a1201275",
+      "workspaceSha256": "c75a7179134d1b194f4a50028fd112a733556a58b5588bb1af1b1d86a1201275"
+    },
+    {
+      "file": "packages/contracts/src/generated/api-validators.d.cts",
+      "unchanged": true,
+      "gitSha256": "03652908fca4fe7c62db4987c370ad3d56b2eb8391e644c3859aa9c2dd1083d9",
+      "workspaceSha256": "03652908fca4fe7c62db4987c370ad3d56b2eb8391e644c3859aa9c2dd1083d9"
+    },
+    {
+      "file": "packages/contracts/src/generated/public-api.d.ts",
+      "unchanged": true,
+      "gitSha256": "7782006c3f70c31eda657787014093faa746077d5b0ce2b404e8328e62148500",
+      "workspaceSha256": "7782006c3f70c31eda657787014093faa746077d5b0ce2b404e8328e62148500"
+    },
+    {
+      "file": "packages/contracts/src/index.ts",
+      "unchanged": true,
+      "gitSha256": "b29fb05ec8b4d6509ce4e96c89d8357fca39a2d3ac37dacde47711cfcf81c6d8",
+      "workspaceSha256": "b29fb05ec8b4d6509ce4e96c89d8357fca39a2d3ac37dacde47711cfcf81c6d8"
+    },
+    {
+      "file": "packages/contracts/tsconfig.json",
+      "unchanged": true,
+      "gitSha256": "cb541636c5ba8ad4b9be6162842d100ab03316b3128822a9631113d9883fb191",
+      "workspaceSha256": "63b2e4374a9b1e3706d55fb1f1b862b39fbb3412663bbc4ccca5eb6c6dd725d2"
+    },
+    {
+      "file": "planning/ph09-local-run.md",
+      "unchanged": true,
+      "gitSha256": "e6051b7d599a2640af9529d8be39ea224d1a45fbb7f4663ea72aa3640284b45c",
+      "workspaceSha256": "e6051b7d599a2640af9529d8be39ea224d1a45fbb7f4663ea72aa3640284b45c"
+    },
+    {
+      "file": "planning/ph09-plan.md",
+      "unchanged": true,
+      "gitSha256": "14fc44b2aa897810e7fc264f5c802407c2092879d47a7ad18faf30ffdb1b7b95",
+      "workspaceSha256": "14fc44b2aa897810e7fc264f5c802407c2092879d47a7ad18faf30ffdb1b7b95"
+    },
+    {
+      "file": "planning/ph09-status.json",
+      "unchanged": true,
+      "gitSha256": "0bd78c5891ff5177c6047d7b13cf087c84f282878a0ec591452a2702474e547b",
+      "workspaceSha256": "0bd78c5891ff5177c6047d7b13cf087c84f282878a0ec591452a2702474e547b"
+    },
+    {
+      "file": "qa-reports/ph09-browser-checks.json",
+      "unchanged": true,
+      "gitSha256": "27e999bc4c9b318958cc6f5969b24e83826abb4c30a863a10caec036a21e3a78",
+      "workspaceSha256": "27e999bc4c9b318958cc6f5969b24e83826abb4c30a863a10caec036a21e3a78"
+    },
+    {
+      "file": "qa-reports/ph09-checks.json",
+      "unchanged": true,
+      "gitSha256": "2ed9672180be7021a071f0f2863497fd5ad984befab3f35cd4d0a1abf5a4175e",
+      "workspaceSha256": "2ed9672180be7021a071f0f2863497fd5ad984befab3f35cd4d0a1abf5a4175e"
+    },
+    {
+      "file": "qa-reports/ph09-container-cached-development-run.json",
+      "unchanged": true,
+      "gitSha256": "382e95baef5da3662608a27b9c7e7f3ae68aab1969204e22139a7cce6d640641",
+      "workspaceSha256": "382e95baef5da3662608a27b9c7e7f3ae68aab1969204e22139a7cce6d640641"
+    },
+    {
+      "file": "qa-reports/ph09-container-download-retry.json",
+      "unchanged": true,
+      "gitSha256": "badae8bb5c728f83244c10271e341a6c5b3a4fe941dc2326344a2a061456fce9",
+      "workspaceSha256": "badae8bb5c728f83244c10271e341a6c5b3a4fe941dc2326344a2a061456fce9"
+    },
+    {
+      "file": "qa-reports/ph09-container-network-failure.json",
+      "unchanged": true,
+      "gitSha256": "2c4022f84983c1501f3dadbd419931a8d278d526a91b0e0a7d37234d9a8aa5a9",
+      "workspaceSha256": "2c4022f84983c1501f3dadbd419931a8d278d526a91b0e0a7d37234d9a8aa5a9"
+    },
+    {
+      "file": "qa-reports/ph09-container.json",
+      "unchanged": true,
+      "gitSha256": "44d3b19d9349da23f714ce70fe0c2809cabd87d2a701869e069f05133ac8922d",
+      "workspaceSha256": "44d3b19d9349da23f714ce70fe0c2809cabd87d2a701869e069f05133ac8922d"
+    },
+    {
+      "file": "qa-reports/ph09-delivery.md",
+      "unchanged": true,
+      "gitSha256": "b1e7487c5e9fbbd5955715d6ed902710de7b1840aafa7b29f1bbbb7cde595635",
+      "workspaceSha256": "b1e7487c5e9fbbd5955715d6ed902710de7b1840aafa7b29f1bbbb7cde595635"
+    },
+    {
+      "file": "qa-reports/ph09-dependency-reuse.json",
+      "unchanged": true,
+      "gitSha256": "dbb4f19e983eec1823a3d8f6d862c7068ec460043cab968186d4cb9382a4c092",
+      "workspaceSha256": "dbb4f19e983eec1823a3d8f6d862c7068ec460043cab968186d4cb9382a4c092"
+    },
+    {
+      "file": "qa-reports/ph09-files.json",
+      "unchanged": true,
+      "gitSha256": "b9dc9f7e2273c7db148bc9f2e5cb05cf6638e7b70459d0b690ecc10df2f07135",
+      "workspaceSha256": "b9dc9f7e2273c7db148bc9f2e5cb05cf6638e7b70459d0b690ecc10df2f07135"
+    },
+    {
+      "file": "qa-reports/ph09-https-results.json",
+      "unchanged": true,
+      "gitSha256": "97db06e4ea314037dcb6ea81fb6294041185e7c4e7b1429e95648c41f6283cef",
+      "workspaceSha256": "97db06e4ea314037dcb6ea81fb6294041185e7c4e7b1429e95648c41f6283cef"
+    },
+    {
+      "file": "qa-reports/ph09-image-source.json",
+      "unchanged": true,
+      "gitSha256": "eada45b59fee482f34b91224d8a367c0fb2b3cd29fca9d4a028bc63ebab5087d",
+      "workspaceSha256": "eada45b59fee482f34b91224d8a367c0fb2b3cd29fca9d4a028bc63ebab5087d"
+    },
+    {
+      "file": "qa-reports/ph09-integrity.json",
+      "unchanged": true,
+      "gitSha256": "f1f708605d996914564dd50353adffab33045eb087206bc5a370d045c0f5b802",
+      "workspaceSha256": "f1f708605d996914564dd50353adffab33045eb087206bc5a370d045c0f5b802"
+    },
+    {
+      "file": "qa-reports/ph09-live-results.json",
+      "unchanged": true,
+      "gitSha256": "35cc755f76ecca82212d9e0c7e1a1e1212f7d859ae45cbe4fffd3cbe9eb1f0cb",
+      "workspaceSha256": "35cc755f76ecca82212d9e0c7e1a1e1212f7d859ae45cbe4fffd3cbe9eb1f0cb"
+    },
+    {
+      "file": "qa-reports/ph09-local-run.json",
+      "unchanged": true,
+      "gitSha256": "50d15f695a491328375efa8cf348f73c9217354d50a2ec0a8a6256b5529d1c37",
+      "workspaceSha256": "50d15f695a491328375efa8cf348f73c9217354d50a2ec0a8a6256b5529d1c37"
+    },
+    {
+      "file": "qa-reports/ph09-regression-ph08-container.json",
+      "unchanged": true,
+      "gitSha256": "8bfde8f380ab5a1c726caea9b9fddbf7a60f9dfe0d2bc18bb0659cf797a10714",
+      "workspaceSha256": "8bfde8f380ab5a1c726caea9b9fddbf7a60f9dfe0d2bc18bb0659cf797a10714"
+    },
+    {
+      "file": "qa-reports/ph09-regression-ph08-live-results.json",
+      "unchanged": true,
+      "gitSha256": "70189be47363eb9cc893e0436b3806a7ec10ca7cbdbc4746fb3f1221127528cc",
+      "workspaceSha256": "70189be47363eb9cc893e0436b3806a7ec10ca7cbdbc4746fb3f1221127528cc"
+    },
+    {
+      "file": "qa-reports/ph09-regression-summary.json",
+      "unchanged": true,
+      "gitSha256": "aa57ed1e53cefa65a0bbf3181f072142bdb0a325867ad036b29a3922d2c828a2",
+      "workspaceSha256": "aa57ed1e53cefa65a0bbf3181f072142bdb0a325867ad036b29a3922d2c828a2"
+    },
+    {
+      "file": "qa-reports/ph09-state-coverage.json",
+      "unchanged": true,
+      "gitSha256": "4ad6594811f310570f129c4a6b282ed56bd0040dc10177cd7ac4a86302287a1e",
+      "workspaceSha256": "4ad6594811f310570f129c4a6b282ed56bd0040dc10177cd7ac4a86302287a1e"
+    },
+    {
+      "file": "qa/ph09-container.mjs",
+      "unchanged": true,
+      "gitSha256": "3aebd2742b1f8baed489f5d673d239e5d995530dad8e5ce7df92379e9cb16569",
+      "workspaceSha256": "3aebd2742b1f8baed489f5d673d239e5d995530dad8e5ce7df92379e9cb16569"
+    },
+    {
+      "file": "qa/ph09-down.sql",
+      "unchanged": true,
+      "gitSha256": "686dab411ed06ad09599ecc4263ff9a7367da76f885fae7eadc6660e306978c8",
+      "workspaceSha256": "686dab411ed06ad09599ecc4263ff9a7367da76f885fae7eadc6660e306978c8"
+    },
+    {
+      "file": "qa/ph09-fault-proxy.mjs",
+      "unchanged": true,
+      "gitSha256": "5e80c9e1fb8343eae0ae7772f1702cdd63e54eb303656d479b683b6939eb4224",
+      "workspaceSha256": "5e80c9e1fb8343eae0ae7772f1702cdd63e54eb303656d479b683b6939eb4224"
+    },
+    {
+      "file": "qa/ph09-fixtures.mjs",
+      "unchanged": true,
+      "gitSha256": "1c0ee27aa47986f9d1ca5994730ec67d2cf23ff529b5cbf8fd49cf50d12181c0",
+      "workspaceSha256": "1c0ee27aa47986f9d1ca5994730ec67d2cf23ff529b5cbf8fd49cf50d12181c0"
+    },
+    {
+      "file": "qa/ph09-https-probe.mjs",
+      "unchanged": true,
+      "gitSha256": "db7deb0d92185787f0a420e16278a8c09897d8e02fcd272aa99f1b3edbd2b5f1",
+      "workspaceSha256": "db7deb0d92185787f0a420e16278a8c09897d8e02fcd272aa99f1b3edbd2b5f1"
+    },
+    {
+      "file": "qa/ph09-local-seed.mjs",
+      "unchanged": true,
+      "gitSha256": "55413bd2f91cd91721f5b9bc9e1155540934dcfdc88bac4d8e296c56744ba944",
+      "workspaceSha256": "55413bd2f91cd91721f5b9bc9e1155540934dcfdc88bac4d8e296c56744ba944"
+    },
+    {
+      "file": "qa/ph09-math-proxy.mjs",
+      "unchanged": true,
+      "gitSha256": "c82b7fbf88847b2691fc75a9e495a16392daab85a8acde3280e519514d54350e",
+      "workspaceSha256": "c82b7fbf88847b2691fc75a9e495a16392daab85a8acde3280e519514d54350e"
+    },
+    {
+      "file": "qa/ph09-nginx.conf",
+      "unchanged": true,
+      "gitSha256": "94c30254d29098c76bdb2e1b01ac1802f6adb08662522c08331e2a421ff52c5b",
+      "workspaceSha256": "c0627fabc2b490a86f357a86436ec8bef788d82611732ca2499fbec899b0c98b"
+    },
+    {
+      "file": "services/math-engine/pyproject.toml",
+      "unchanged": true,
+      "gitSha256": "c7c33010f4657a611e847b2c22f45cc0941a26fbd8edadea5b7c16b064935268",
+      "workspaceSha256": "81ecc35e54e72a55b28cc7126a8026655c81e3e9a464a70f7cf3d9bf2629ed60"
+    },
+    {
+      "file": "services/math-engine/requirements-dev.lock",
+      "unchanged": true,
+      "gitSha256": "88f65cbcd38a883dc67606c1f3eb953d2c1debc4ec8c44f203f68ae25de64ebf",
+      "workspaceSha256": "ebe7a48a7c4e0fb5a9cda99b1f41ddc0490039b41b8da789bfa259b96c4998be"
+    },
+    {
+      "file": "services/math-engine/requirements.lock",
+      "unchanged": true,
+      "gitSha256": "47fd19021144e071cc43b6e265aafada0056abe89724ad95bd6e3a8e37995b94",
+      "workspaceSha256": "a5028e29657998bdeca951e3f696d421b46efc36bcb573acda11ded7bc4b3e0a"
+    },
+    {
+      "file": "services/math-engine/src/khotwa_math/__init__.py",
+      "unchanged": true,
+      "gitSha256": "d63f4eaf2bb6be1014faf3f25427b7eeeb7fdfa98d584f42359e00bc39ed369b",
+      "workspaceSha256": "480aa02d47bc0d55839ae31b95d076839ebe845f4c9eb5700226b87060af511a"
+    },
+    {
+      "file": "services/math-engine/src/khotwa_math/__main__.py",
+      "unchanged": true,
+      "gitSha256": "ae29c2e5bed4a867ad483f95d1b95beb5d9615c9aa5dd4bc6053f0f534574dd8",
+      "workspaceSha256": "3b3ec0aeeb69f9406dc7740679b372ce5907acf300b6168eae0e7e07f8cdaad0"
+    },
+    {
+      "file": "services/math-engine/src/khotwa_math/engine.py",
+      "unchanged": true,
+      "gitSha256": "ee534c839614c4cd05b0e0d7f627e8e34339eec2cc2134bb3ac796e4df61f61d",
+      "workspaceSha256": "ee534c839614c4cd05b0e0d7f627e8e34339eec2cc2134bb3ac796e4df61f61d"
+    },
+    {
+      "file": "services/math-engine/src/khotwa_math/lexer.py",
+      "unchanged": true,
+      "gitSha256": "3f2b77f964eb5b865b94885837f8b8adc95a3115113f256ec4614425924bb173",
+      "workspaceSha256": "3f2b77f964eb5b865b94885837f8b8adc95a3115113f256ec4614425924bb173"
+    },
+    {
+      "file": "services/math-engine/src/khotwa_math/linear.py",
+      "unchanged": true,
+      "gitSha256": "c8013e93eb5e6f23a84c1e50954d91d3d8e637d7c97728bd22818cc815ed265b",
+      "workspaceSha256": "c8013e93eb5e6f23a84c1e50954d91d3d8e637d7c97728bd22818cc815ed265b"
+    },
+    {
+      "file": "services/math-engine/src/khotwa_math/model.py",
+      "unchanged": true,
+      "gitSha256": "9577917a1aa95a512ac937a256239201c4648dcc19982b4e8a833c9ce115c7cb",
+      "workspaceSha256": "9577917a1aa95a512ac937a256239201c4648dcc19982b4e8a833c9ce115c7cb"
+    },
+    {
+      "file": "services/math-engine/src/khotwa_math/parser.py",
+      "unchanged": true,
+      "gitSha256": "a3c612ff11bc0832167331ffc239048b25fd3d5b188e36904ada0c368ca0afbc",
+      "workspaceSha256": "a3c612ff11bc0832167331ffc239048b25fd3d5b188e36904ada0c368ca0afbc"
+    },
+    {
+      "file": "services/math-engine/src/khotwa_math/protocol.py",
+      "unchanged": true,
+      "gitSha256": "b9603436f557b1fea35756e8691baf2baad4a07579d15da5d33760c33d1ed109",
+      "workspaceSha256": "b9603436f557b1fea35756e8691baf2baad4a07579d15da5d33760c33d1ed109"
+    },
+    {
+      "file": "services/math-engine/src/khotwa_math/render.py",
+      "unchanged": true,
+      "gitSha256": "236f35b0b8ee604aa9232ec0ee129d243a9984928cdba9f189d12a1375e09a7c",
+      "workspaceSha256": "236f35b0b8ee604aa9232ec0ee129d243a9984928cdba9f189d12a1375e09a7c"
+    },
+    {
+      "file": "services/math-engine/src/khotwa_math/worker.py",
+      "unchanged": true,
+      "gitSha256": "7cfaf655ff4880e515bfb861b47629d269076692918475c9dbde7730ae8d8215",
+      "workspaceSha256": "7cfaf655ff4880e515bfb861b47629d269076692918475c9dbde7730ae8d8215"
+    },
+    {
+      "file": "services/math-engine/src/khotwa_math/worker_manager.py",
+      "unchanged": true,
+      "gitSha256": "a6462c626542609a1103dda7069778f01b32677b3c9a0b013e255a6896bd0c22",
+      "workspaceSha256": "a6462c626542609a1103dda7069778f01b32677b3c9a0b013e255a6896bd0c22"
+    },
+    {
+      "file": "services/math-engine/tests/helpers.py",
+      "unchanged": true,
+      "gitSha256": "207b01cf643c8b2533d39f32249d6693652b0c94aee5c474b8d97fdbc4fa08fc",
+      "workspaceSha256": "207b01cf643c8b2533d39f32249d6693652b0c94aee5c474b8d97fdbc4fa08fc"
+    },
+    {
+      "file": "services/math-engine/tests/test_math_engine.py",
+      "unchanged": true,
+      "gitSha256": "cd1b0304d26477c291b50fe8912c88dad7e5508a6b6460b89387fc7189ebaf9f",
+      "workspaceSha256": "cd1b0304d26477c291b50fe8912c88dad7e5508a6b6460b89387fc7189ebaf9f"
+    },
+    {
+      "file": "services/math-engine/tests/test_protocol.py",
+      "unchanged": true,
+      "gitSha256": "8c9019d2be1a6f4a91132118d0d14acde7bae77aea2ee6bea8c12a79039db370",
+      "workspaceSha256": "8c9019d2be1a6f4a91132118d0d14acde7bae77aea2ee6bea8c12a79039db370"
+    },
+    {
+      "file": "services/math-engine/tests/test_worker.py",
+      "unchanged": true,
+      "gitSha256": "9502f0dab90dbe12bbedc2b226ea4448580a1f7c6ff1560c2bf7566b05465687",
+      "workspaceSha256": "9502f0dab90dbe12bbedc2b226ea4448580a1f7c6ff1560c2bf7566b05465687"
+    },
+    {
+      "file": "services/math-engine/tests/worker_fixture.py",
+      "unchanged": true,
+      "gitSha256": "7339a34bc14a19aaf9b86b7d55ffd540f504c72b93a6fe50df02711ea60fb4d1",
+      "workspaceSha256": "7339a34bc14a19aaf9b86b7d55ffd540f504c72b93a6fe50df02711ea60fb4d1"
+    },
+    {
+      "file": "tools/serve-ph09.mjs",
+      "unchanged": true,
+      "gitSha256": "b33a6b1abaf92d9c89a6a3d58fba683d3bfc2a42837e599b99f4a33dca35f1df",
+      "workspaceSha256": "b33a6b1abaf92d9c89a6a3d58fba683d3bfc2a42837e599b99f4a33dca35f1df"
+    },
+    {
+      "file": "tools/verify-ph09-container.mjs",
+      "unchanged": true,
+      "gitSha256": "ac4d0448fa977bc1d219eb643c8f619bdbc7db9a34105b455fd6bfb1f9903dda",
+      "workspaceSha256": "ac4d0448fa977bc1d219eb643c8f619bdbc7db9a34105b455fd6bfb1f9903dda"
+    },
+    {
+      "file": "tools/verify-ph09.mjs",
+      "unchanged": true,
+      "gitSha256": "f0a67f68c8fb12e19796178a05ef1697805341d7f238a2eb98927abe9a50f369",
+      "workspaceSha256": "f0a67f68c8fb12e19796178a05ef1697805341d7f238a2eb98927abe9a50f369"
+    }
+  ],
+  "allProtectedFilesUnchanged": true,
+  "lineEndingNormalization": "CRLF to LF only for protected comparisons",
+  "changedFiles": [
+    {
+      "file": ".env.example",
+      "sha256": "78fc9bc80556ebcd48b457fb2f994facdaaf008d41538d94f42897582eac07d8"
+    },
+    {
+      "file": "apps/api/src/ai-tutor.ts",
+      "sha256": "d070903371b459937d51ff672a86396b29387e7b006b441d5f87866738551739"
+    },
+    {
+      "file": "apps/api/src/business.ts",
+      "sha256": "2df4c1d8406e1e712e408f80a891b788e49712a1c2ab46094ae9644c57ad786c"
+    },
+    {
+      "file": "apps/api/src/gemini-adapter.ts",
+      "sha256": "70b0c3ee3a0172658d02b86f83c60d934f172b74346a1b3f770a9e1a8fbd5885"
+    },
+    {
+      "file": "apps/api/src/gemini-quota.ts",
+      "sha256": "cb9a756cb101c5110bb17382e924630c0e237801a9c68fdbd985fea56c7f73fe"
+    },
+    {
+      "file": "apps/api/src/ph08-gemini.ts",
+      "sha256": "be85a43f2618df0d27309521cb1a764c075ae985b6513864f1bb5852c1d31292"
+    },
+    {
+      "file": "apps/api/src/tutoring.ts",
+      "sha256": "0c72945033c76b319933eef942539475255eef1c69797b6fb5b83286d9659273"
+    },
+    {
+      "file": "apps/api/tests/gemini-live.test.mjs",
+      "sha256": "78f2925166709edba589c9d698563eb8e80473a3792ab1e97e4782720b370b9e"
+    },
+    {
+      "file": "apps/api/tests/gemini.test.mjs",
+      "sha256": "75ba9f14145016b4e885c689195bd7dd9685f99cd3701544a54242d4d7d5ebef"
+    },
+    {
+      "file": "docs/PROJECT-DECISIONS.md",
+      "sha256": "033e2c05d72a5fe70d648405a1c76dc2fea7b20f96653abe44c261a868885b64"
+    },
+    {
+      "file": "planning/ph08-gemini-audit-proposal.patch",
+      "sha256": "ad8a26b036864a7ab8b2842fe5d37cb7d0219bd3c626fa7ae7e4b5874a59d2d6"
+    },
+    {
+      "file": "planning/ph08-gemini-plan.md",
+      "sha256": "c81d052309e49421ddc8a2c93878028f3061a6f9d492446a84bdb40209896f9e"
+    },
+    {
+      "file": "planning/ph08-gemini-shared-proposal.patch",
+      "sha256": "c26590d73ff5728ef4d448e1bb2018fda2cf197814d7e1a76f491977530317c6"
+    },
+    {
+      "file": "qa-reports/ph08-gemini-checks.json",
+      "sha256": "cae1d2f23bf84ac5ff2ab8d35bed5248c8dcbb56ecd54c90833a4fb31780d08c"
+    },
+    {
+      "file": "qa-reports/ph08-gemini-controlled-initial-results.json",
+      "sha256": "837cf369dff0a71e7249d680ee8ba4b16d01746f1831db9ce55bdec21b5a5dc0"
+    },
+    {
+      "file": "qa-reports/ph08-gemini-controlled-initial-run.json",
+      "sha256": "16d1e16258f511ea78cad134c6ad5c0bb8c1e6c965f98fbffb3a645cd986eeb2"
+    },
+    {
+      "file": "qa-reports/ph08-gemini-controlled-results.json",
+      "sha256": "d350f9434b70c8d3b1470c698c8f3ba9136f2449a4e1cdc3079cfafadb75bed7"
+    },
+    {
+      "file": "qa-reports/ph08-gemini-controlled-run.json",
+      "sha256": "e3dbd8572baefd5eb1fd1249cad0737c6b0ac4faea4ac41502c988ed2c1e1f07"
+    },
+    {
+      "file": "qa-reports/ph08-gemini-integration.md",
+      "sha256": "81620be842e2b6935ca2a7a26d4987b914a8b968148d763a4892a20a3c823588"
+    },
+    {
+      "file": "qa-reports/ph08-gemini-real-initial-results.json",
+      "sha256": "0e65568121eaddba09abe2caeb4b77d15effa85e35d8d9c5fa72d89756c136fa"
+    },
+    {
+      "file": "qa-reports/ph08-gemini-real-initial-run.json",
+      "sha256": "b497b54782825ad481e11ffdad1bf2877974d8e89cafeed24506b4bcb69e9a6e"
+    },
+    {
+      "file": "qa-reports/ph08-gemini-real-results.json",
+      "sha256": "b3dcda4777a8cbb86885639cf5b71d090d5f6b90d6aae48a9a21bda016a2af38"
+    },
+    {
+      "file": "qa-reports/ph08-gemini-real-run.json",
+      "sha256": "dad10714b8a6380c3c9720c4c7e737a693f1589276a3013fa7049d5d71ade637"
+    },
+    {
+      "file": "qa-reports/ph08-gemini-summary.json",
+      "sha256": "bde64649c0a873897ead12b8964313087d15eba782013bd4db6596e81a1e85a9"
+    },
+    {
+      "file": "qa/ph08-gemini-container.mjs",
+      "sha256": "aad9a40073106f6efe843a2ea67ca9509897d584396b3c1cb3ee5e52040f5890"
+    },
+    {
+      "file": "tools/check-ph08-gemini.mjs",
+      "sha256": "c29adf6acd8ca4df6c023a72cdf32db1aea5fb693dd62a20c89789d3ee38dca0"
+    },
+    {
+      "file": "tools/verify-ph08-gemini.mjs",
+      "sha256": "c7ec1137c7b694ce9b0e1c9b0c8cda9b9b3032291b227fb47fb27e32a406d582"
+    }
+  ],
+  "secretPatternMatches": [],
+  "secretScanScope": "Changed and untracked delivery files only; no secret values recorded. Local ignored runtime secret files are excluded.",
+  "gitDiffCheckExitCode": 0,
+  "sharedChangesApprovedByUser": [
+    "ai-tutor.ts kind/schema export",
+    "business.ts PH08 factory wiring",
+    "ai-tutor.ts optional invocationAudit and tutoring.ts audit insertion"
+  ],
+  "ph09SourceChanged": false,
+  "newMigrations": false,
+  "publicApiChanged": false,
+  "canonicalGoldenChanged": false,
+  "actualCallLedgerSpent": 10
+}

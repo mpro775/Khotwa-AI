@@ -1,0 +1,12 @@
+{
+  "include": [
+    "services/math-engine/src",
+    "tools/dev_env.py",
+    "tools/seed_demo.py"
+  ],
+  "venvPath": ".",
+  "venv": ".venv",
+  "pythonVersion": "3.13",
+  "typeCheckingMode": "basic",
+  "reportMissingTypeStubs": false
+}

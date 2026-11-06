@@ -1,0 +1,108 @@
+{
+  "phase": "PH-09",
+  "recordedAt": "2026-11-04T16:04:13.621Z",
+  "branch": "codex/ph09-progress-teacher-demo",
+  "baseCommit": "6e40ed8",
+  "baseline": "pre-PH09 working tree includes uncommitted PH08; .local/ph09-before.json (452 files)",
+  "authorization": "نفذ الآن PH-09 كاملاً، وهذا أمر مني.",
+  "status": "partially_complete_ready_for_technical_review",
+  "tasks": [
+    {
+      "id": "TASK-091",
+      "implementation": "implemented_and_targeted_checks_executed_in_synthetic_environment",
+      "acceptance": "pending_domain_security_device_review"
+    },
+    {
+      "id": "TASK-092",
+      "implementation": "implemented_and_targeted_checks_executed_in_synthetic_environment",
+      "acceptance": "pending_domain_security_device_review"
+    },
+    {
+      "id": "TASK-093",
+      "implementation": "implemented_and_targeted_checks_executed_in_synthetic_environment",
+      "acceptance": "pending_domain_security_device_review"
+    },
+    {
+      "id": "TASK-094",
+      "implementation": "implemented_and_targeted_checks_executed_in_synthetic_environment",
+      "acceptance": "pending_domain_security_device_review"
+    },
+    {
+      "id": "TASK-095",
+      "implementation": "implemented_and_targeted_checks_executed_in_synthetic_environment",
+      "acceptance": "pending_domain_security_device_review",
+      "operationalRetention": "eligibility_review_only_no_purge"
+    },
+    {
+      "id": "TASK-096",
+      "implementation": "implemented_and_targeted_checks_executed_in_synthetic_environment",
+      "acceptance": "pending_domain_security_device_review"
+    }
+  ],
+  "checks": {
+    "groupsPassed": 13,
+    "groupsFailed": 0,
+    "live": {
+      "total": 16,
+      "passed": 16,
+      "failed": 0
+    },
+    "validatedResponses": 240,
+    "httpsPassed": 26,
+    "progressUnitTests": 10,
+    "clientUnitTests": 10
+  },
+  "teacher": {
+    "datasetCode": "ph09-authored-synthetic-v1",
+    "students": 8,
+    "attempts": 12,
+    "examples": 3,
+    "source": "fixed authored synthetic artifact; no Store in teacher reader",
+    "humanReview": "pending"
+  },
+  "externalAiEnabled": false,
+  "actualExternalProviderCalls": 0,
+  "actualLlmInferences": 0,
+  "controlledAiCalls": 2,
+  "retention": {
+    "eligibilityReview": "tested",
+    "actualPurge": "not_implemented_pending_data_security_review",
+    "deletedRecords": 0
+  },
+  "schema": {
+    "businessTables": 31,
+    "migrations": 9,
+    "addedViews": 1,
+    "addedBusinessTables": 0,
+    "publicApiChanged": false,
+    "canonicalGoldenChanged": false,
+    "astChanged": false
+  },
+  "imageSource": {
+    "files": 19,
+    "images": 2,
+    "allMatched": true
+  },
+  "regression": {
+    "phase": "PH-09",
+    "recordedAt": "2026-11-04T15:59:14.863Z",
+    "mode": "PH09 disabled; prior PH08 reports restored byte-for-byte",
+    "exitCode": 0,
+    "testSummary": {
+      "total": 22,
+      "passed": 22,
+      "failed": 0
+    },
+    "unexpectedFailure": false
+  },
+  "browser": "not_run",
+  "realPhone": "not_run",
+  "inheritedReferenceIssue": "GOLD-DIAG-015 / DATASET-ISSUE-PH06-01 pending; full Golden not rerun",
+  "gate1": "blocked",
+  "gate2": "not_approved",
+  "gate3": "not_approved",
+  "ph10": "not_started",
+  "commitCreated": false,
+  "pushed": false,
+  "deployedPublicly": false
+}

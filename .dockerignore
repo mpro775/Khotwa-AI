@@ -1,0 +1,12 @@
+.git
+**/node_modules
+**/dist
+.venv
+**/__pycache__
+.local
+.env
+.env.*
+*.zip
+qa-reports
+planning
+agent-reports

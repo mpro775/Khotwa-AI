@@ -1,0 +1,102 @@
+{
+  "phase": "PH-03-foundation-regression",
+  "recordedAtRiyadh": "2026-11-04 04:04:38",
+  "checks": [
+    {
+      "name": "only_loopback_web_port_published",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "private_internal_backend_network",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "api_no_host_port",
+      "passed": true,
+      "detail": {
+        "imageId": "sha256:d4c5f80716b5ce5cd9b2f641e4c7a288898c00740b355ebb28da480e8d733352",
+        "user": "node",
+        "health": "healthy"
+      }
+    },
+    {
+      "name": "math-engine_no_host_port",
+      "passed": true,
+      "detail": {
+        "imageId": "sha256:173fe988cf4db5e4d73c93634419c8dcd4419161d5cb2ee083aabe93b59876e0",
+        "user": "10001",
+        "health": "healthy"
+      }
+    },
+    {
+      "name": "database_no_host_port",
+      "passed": true,
+      "detail": {
+        "imageId": "sha256:ef257d85f76e48da1c64832459b59fcaba1a4dac97bf5d7450c77753542eee94",
+        "user": "",
+        "health": "healthy"
+      }
+    },
+    {
+      "name": "backend_network_runtime_internal",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "real_postgresql_and_math_readiness",
+      "passed": true,
+      "detail": [
+        {
+          "name": "postgresql",
+          "state": "ok"
+        },
+        {
+          "name": "math-engine",
+          "state": "ok"
+        }
+      ]
+    },
+    {
+      "name": "internal_health_requires_token",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "python_math_worker_is_versioned_and_ready",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "no_domain_tables_or_migrations_applied",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "web_document_reachable_arabic_rtl",
+      "passed": true
+    },
+    {
+      "name": "public_proxy_denies_internal_health",
+      "passed": true
+    },
+    {
+      "name": "built_asset_http_200",
+      "passed": true,
+      "path": "/assets/index-DPaobcpT.js"
+    },
+    {
+      "name": "built_asset_http_200",
+      "passed": true,
+      "path": "/assets/index-Cyu_0488.css"
+    }
+  ],
+  "passed": 14,
+  "failed": 0,
+  "nodeInContainer": "v24.11.1",
+  "postgresVersion": "17.6",
+  "scope": "Foundation container health/readiness/network smoke only; no editor/parser/tutoring/runtime security acceptance",
+  "privateSyntheticOnly": true,
+  "publicUrl": "http://127.0.0.1:8080"
+}

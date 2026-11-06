@@ -1,0 +1,43 @@
+Loaded Prisma config from apps/api/prisma.config.ts.
+
+Prisma schema loaded from apps/api/prisma/schema.prisma.
+Datasource "db": PostgreSQL database "ph05_test", schema "public" at "khotwa-ph05-de3abfd16308-db:5432"
+
+10 migrations found in prisma/migrations
+
+Applying migration `0001_ph04`
+Applying migration `0002_current_version_key`
+Applying migration `0003_content_integrity`
+Applying migration `0004_verification_reports`
+Applying migration `0005_conservative_diagnosis`
+Applying migration `0006_guided_tutoring`
+Applying migration `0007_preserve_legacy_assistance`
+Applying migration `0008_learning_episodes`
+Applying migration `0009_current_progress`
+Applying migration `0010_guest_retention`
+
+The following migration(s) have been applied:
+
+migrations/
+  └─ 0001_ph04/
+    └─ migration.sql
+  └─ 0002_current_version_key/
+    └─ migration.sql
+  └─ 0003_content_integrity/
+    └─ migration.sql
+  └─ 0004_verification_reports/
+    └─ migration.sql
+  └─ 0005_conservative_diagnosis/
+    └─ migration.sql
+  └─ 0006_guided_tutoring/
+    └─ migration.sql
+  └─ 0007_preserve_legacy_assistance/
+    └─ migration.sql
+  └─ 0008_learning_episodes/
+    └─ migration.sql
+  └─ 0009_current_progress/
+    └─ migration.sql
+  └─ 0010_guest_retention/
+    └─ migration.sql
+
+All migrations have been successfully applied.

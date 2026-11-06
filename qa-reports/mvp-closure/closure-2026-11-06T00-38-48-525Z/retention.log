@@ -1,0 +1,30 @@
+✖ SEC-047: actual atomic retention with isolated operator and immutable API history (4555.75163ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5251.670669
+
+✖ failing tests:
+
+test at apps/api/tests/retention-live.test.mjs:10:1
+✖ SEC-047: actual atomic retention with isolated operator and immutable API history (4555.75163ms)
+  AssertionError [ERR_ASSERTION]: {"data":{"probeId":"58456ff9-e068-48e3-876e-f144b96fd360","attemptId":"06a421e8-57f4-4abc-bd95-31433c0d4ef3","attemptRevision":1,"evaluation":"not_supported","diagnosis":{"diagnosisId":"99b32088-7dcc-4567-bc13-4454b13cefd7","state":"rejected","errorCode":"ERR-ALG-01","skillId":"41ca8824-1b02-434f-8a0b-a142c1e589c8","explanationAr":"الجواب يقدم قرينة ضد الفرضية السابقة؛ يبقى سبب الخطأ الأول غير مؤكد، ولا يتغير الحكم الرياضي.","needsProbe":false},"feedbackAr":"الجواب يقدم قرينة ضد الفرضية السابقة؛ يبقى سبب الخطأ الأول غير مؤكد، ولا يتغير الحكم الرياضي.","nextAction":"continue"},"meta":{"requestId":"68e6efb1-94c1-44da-8f39-c2cc80aed653","serverTime":"2026-11-06T00:41:24.606Z","apiVersion":"1"}}
+  
+  201 !== 200
+  
+      at call (file:///app/apps/api/tests/retention-live.test.mjs:26:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+      at async TestContext.<anonymous> (file:///app/apps/api/tests/retention-live.test.mjs:108:7)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

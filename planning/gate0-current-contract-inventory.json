@@ -1,0 +1,102 @@
+{
+  "schemaVersion": "gate0-current-contract-inventory-v1",
+  "status": "CURRENT_HASH_INVENTORY_NOT_APPROVED_FREEZE",
+  "observedAt": "2026-11-04T02:36:47+03:00",
+  "sourceCommit": "873b29377d1f681651e74de3d4bf504e30e6fc5f",
+  "workingTreeContainsUntrackedDocuments": true,
+  "mathDirectEvidence": null,
+  "engineeringDirectEvidence": null,
+  "signedContractFreeze": null,
+  "files": [
+    {
+      "path": "docs/12-API-CONTRACT.yaml",
+      "sha256": "c8b5027ec74ea9b960c3428a0d3f1e221320d46c320507713549f5892eb5ecf3",
+      "declaredVersion": "1.0.0-draft",
+      "byteIdenticalToPreviouslyReviewedArchive": true,
+      "signedBy": null,
+      "signedAt": null,
+      "signoffEvidencePath": null
+    },
+    {
+      "path": "docs/contracts/math-internal-v1.schema.json",
+      "sha256": "d72855a399c9100c5b1e54a5cdeb884a18da1e8bf53805ee23da2c05a8d874dc",
+      "declaredVersion": "math-internal-v1 (proposed)",
+      "byteIdenticalToPreviouslyReviewedArchive": true,
+      "signedBy": null,
+      "signedAt": null,
+      "signoffEvidencePath": null
+    },
+    {
+      "path": "docs/contracts/math-internal-v1.md",
+      "sha256": "a960c5029389d8522317a79479e91eaf3d52e9647fa2258158f7a4af6cd88dc0",
+      "declaredVersion": "math-internal-v1 (proposed)",
+      "byteIdenticalToPreviouslyReviewedArchive": true,
+      "signedBy": null,
+      "signedAt": null,
+      "signoffEvidencePath": null
+    },
+    {
+      "path": "docs/contracts/math-internal-v1.examples.json",
+      "sha256": "6994a1b0723810a709a09a15a3e01959d766dd5cccb175db660577a5af0fb275",
+      "declaredVersion": "illustrative examples for math-internal-v1",
+      "byteIdenticalToPreviouslyReviewedArchive": true,
+      "signedBy": null,
+      "signedAt": null,
+      "signoffEvidencePath": null
+    },
+    {
+      "path": "docs/contracts/golden-fixtures-v1.schema.json",
+      "sha256": "d328ee16d720ef80fb5181fec8d500fe2cc18523ab912e15a2e39d72434f72a3",
+      "declaredVersion": "golden-fixtures-v1 / dataset 1.0-draft",
+      "byteIdenticalToPreviouslyReviewedArchive": true,
+      "signedBy": null,
+      "signedAt": null,
+      "signoffEvidencePath": null
+    },
+    {
+      "path": "docs/contracts/golden-adapter-v1.md",
+      "sha256": "d7b2d6a6f1fd065cda04c9719ad4dc7d8a38d9397ff7943a6cb662a0acd078fd",
+      "declaredVersion": "golden-adapter-v1 (proposed)",
+      "byteIdenticalToPreviouslyReviewedArchive": true,
+      "signedBy": null,
+      "signedAt": null,
+      "signoffEvidencePath": null
+    },
+    {
+      "path": "docs/14-GOLDEN-DATASET.cases.json",
+      "sha256": "1c3e5fec509a8fad930a3d05e9f5b764b6b060281ec7277a32575511095b7f12",
+      "declaredVersion": "1.0-draft",
+      "byteIdenticalToPreviouslyReviewedArchive": true,
+      "signedBy": null,
+      "signedAt": null,
+      "signoffEvidencePath": null
+    },
+    {
+      "path": "docs/10-MATH-ENGINE.md",
+      "sha256": "dd6478d13520ac4da9d827b6ff1738edec125cd9d60da8c86a6537174cc339b0",
+      "declaredVersion": "1.1",
+      "byteIdenticalToPreviouslyReviewedArchive": true,
+      "signedBy": null,
+      "signedAt": null,
+      "signoffEvidencePath": null
+    },
+    {
+      "path": "docs/04-ARABIC-NOTATION.md",
+      "sha256": "e75fb981015d565946a32994e35f9035db1d61fc6365b6048d77c0f4ce067ca7",
+      "declaredVersion": "1.0",
+      "byteIdenticalToPreviouslyReviewedArchive": true,
+      "signedBy": null,
+      "signedAt": null,
+      "signoffEvidencePath": null
+    },
+    {
+      "path": "docs/05-CURRICULUM.md",
+      "sha256": "2c4cabb4db88f4483f42083d6500571d5f741bafe2a3b216ebeb3e047fb3076d",
+      "declaredVersion": "1.1",
+      "byteIdenticalToPreviouslyReviewedArchive": true,
+      "signedBy": null,
+      "signedAt": null,
+      "signoffEvidencePath": null
+    }
+  ]
+}

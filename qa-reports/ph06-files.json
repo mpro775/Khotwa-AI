@@ -1,0 +1,498 @@
+{
+  "phase": "PH-06",
+  "recordedAt": "2026-11-04T04:08:19.221Z",
+  "baseCommit": "640e1976c18b798e3942b2b051b76531ee48370a",
+  "baselineFiles": 317,
+  "comparison": "pre-PH06 clean workspace hashes in ignored .local/ph06-before.json; not against previous phase-delivery HEAD",
+  "excludedFromSelfHash": [
+    "qa-reports/ph06-files.json",
+    "qa-reports/ph06-integrity.json"
+  ],
+  "changedCount": 69,
+  "removedSincePhaseStart": [],
+  "files": [
+    {
+      "path": ".env.example",
+      "change": "modified",
+      "reason": "Opt-in synthetic preview, build, scripts or CI",
+      "beforeSha256": "ca24b943faac8ccaa054d36c734cc8778b40e82d7ace980d0ee3d09cd76aaca4",
+      "sha256": "7be1cc97ebb19ab23b50ff2b1c92843725feb354cb6799d213a45c0c9af25656"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "change": "modified",
+      "reason": "Opt-in synthetic preview, build, scripts or CI",
+      "beforeSha256": "4364bc8b7c2d6ecfd88b73a0b3717c23b3ff18709fc47fc6bcbe4b722161348f",
+      "sha256": "d8e28ec142afa659a93c55adeb9f15efe5a9bac44821a63afd43f0aeee423797"
+    },
+    {
+      "path": "Dockerfile",
+      "change": "modified",
+      "reason": "Opt-in synthetic preview, build, scripts or CI",
+      "beforeSha256": "01f23bfc6d9f1852ba17fdb78fbe6c0ebf5fbf0ae6ed5799ceb278b452893a8f",
+      "sha256": "1bfbd6fe2731421b8bc2d78dc320f5253dd5dbad94e6757d2e56a10809ee9403"
+    },
+    {
+      "path": "README.md",
+      "change": "modified",
+      "reason": "Scope, hypothesis/probe matrix, pending decision or operating guidance",
+      "beforeSha256": "21738fc3ccf27b55bf3b53da192c4cc2ffc8a2e1f51415e52f4b3ddc1d276e3b",
+      "sha256": "532d2adad16781bcd6704f6be3dacc1418d92cc55b346c86b9fafbb7f46b06e9"
+    },
+    {
+      "path": "agent-reports/TASK-061.md",
+      "change": "added",
+      "reason": "Evidence, failure transparency or review status",
+      "beforeSha256": null,
+      "sha256": "c3f9720538ba17c58ad374efa8fc41a84657f4354beee8c576ad5d065f7601ac"
+    },
+    {
+      "path": "agent-reports/TASK-062.md",
+      "change": "added",
+      "reason": "Evidence, failure transparency or review status",
+      "beforeSha256": null,
+      "sha256": "3fc708d1f7757a10fb95fe9bd364bf3158e28aebfe3c02850e856d91b2f0fcfe"
+    },
+    {
+      "path": "agent-reports/TASK-063.md",
+      "change": "added",
+      "reason": "Evidence, failure transparency or review status",
+      "beforeSha256": null,
+      "sha256": "d0ab478f344d6df5935adb272fa945b8875364e087a256da300788120582ad4b"
+    },
+    {
+      "path": "agent-reports/TASK-064.md",
+      "change": "added",
+      "reason": "Evidence, failure transparency or review status",
+      "beforeSha256": null,
+      "sha256": "e8ee03241a1dda403b368e2aedecd36aad55c1bfdbdb0ee83352733116874a4e"
+    },
+    {
+      "path": "agent-reports/TASK-065.md",
+      "change": "added",
+      "reason": "Evidence, failure transparency or review status",
+      "beforeSha256": null,
+      "sha256": "94fca9a33d101f43676e791d495840ae78e2154e0b20fd378fc88009bc470ba5"
+    },
+    {
+      "path": "apps/api/prisma/migrations/0005_conservative_diagnosis/migration.sql",
+      "change": "added",
+      "reason": "Pinned diagnostic catalog, hypotheses, probes, responses and SQL safeguards",
+      "beforeSha256": null,
+      "sha256": "24b0b01a18b0a4a97a84e77546b5efb5b05af4b2577e85a10e9e1e58c2bbb3f3"
+    },
+    {
+      "path": "apps/api/prisma/schema.prisma",
+      "change": "modified",
+      "reason": "Pinned diagnostic catalog, hypotheses, probes, responses and SQL safeguards",
+      "beforeSha256": "5c035352bbf4026b42f594a05d3d728a5a0a6c74e9e71487b65cc7c2634ea6ec",
+      "sha256": "de2ac5407acc992605c27cbb09fa53eda29da466ccc55b9f623bb0316cbcfa2e"
+    },
+    {
+      "path": "apps/api/src/business.ts",
+      "change": "modified",
+      "reason": "Conservative diagnosis, authorized existing routes, currentness and idempotent replay",
+      "beforeSha256": "17bc2f74fd07acdcd054401b301d9fd475baf49ba8427538a1bdcd111e4d6b7d",
+      "sha256": "350beffd4b1f2a7ebd95a7ebde8c8d9d0254a23fa86d2c72b454b33cf628d2e3"
+    },
+    {
+      "path": "apps/api/src/diagnosis-rules.ts",
+      "change": "added",
+      "reason": "Conservative diagnosis, authorized existing routes, currentness and idempotent replay",
+      "beforeSha256": null,
+      "sha256": "85639b66249199ef98113b8dc1fb665d7eb8523ead9cf78b9e2e385d43bfb94e"
+    },
+    {
+      "path": "apps/api/src/diagnosis.ts",
+      "change": "added",
+      "reason": "Conservative diagnosis, authorized existing routes, currentness and idempotent replay",
+      "beforeSha256": null,
+      "sha256": "c2a6cff542a0a1bc44f648434a0a754356d4b14b96fa9eb4d6f85b7a16a08b7f"
+    },
+    {
+      "path": "apps/api/src/health.ts",
+      "change": "modified",
+      "reason": "Conservative diagnosis, authorized existing routes, currentness and idempotent replay",
+      "beforeSha256": "7d07b30c94f4168e54fbc89974a59a1c849f99548e13eaef6d4ce29b7f106fcb",
+      "sha256": "f5cde4a363091be968a04a0414e1f712ded6389c99d5337d095caca41d59ac25"
+    },
+    {
+      "path": "apps/api/src/store.ts",
+      "change": "modified",
+      "reason": "Conservative diagnosis, authorized existing routes, currentness and idempotent replay",
+      "beforeSha256": "faf861f1e721aab9f27be06d3348584d8a50306d983f8b9d7210b643b5b5dd72",
+      "sha256": "0e3d97a75b9f9dc7e7b66d323aba5be0a7ea6d7c44cc4d11d560659d73a298f0"
+    },
+    {
+      "path": "apps/api/src/verification.ts",
+      "change": "modified",
+      "reason": "Conservative diagnosis, authorized existing routes, currentness and idempotent replay",
+      "beforeSha256": "a7b99fdb7158e220c5e25c90a4a9b072d2ad63e82fd97bf902c630520b0adbae",
+      "sha256": "fd6749a8479b321383b1975ed2fbf89eaadcddbf51022b7a834731f9f7266afe"
+    },
+    {
+      "path": "apps/api/tests/diagnosis-live.test.mjs",
+      "change": "added",
+      "reason": "Targeted tests and reproducible isolated evidence",
+      "beforeSha256": null,
+      "sha256": "04cb08441993257b7ac82e0ee47e97da918e5afa5f1fd342b453cf0a06f5a366"
+    },
+    {
+      "path": "apps/api/tests/diagnosis.test.mjs",
+      "change": "added",
+      "reason": "Targeted tests and reproducible isolated evidence",
+      "beforeSha256": null,
+      "sha256": "f63f6aa8ea77641d878d2904ab61d16484d29a28efbcba41482f6329b2734fed"
+    },
+    {
+      "path": "apps/web/src/DiagnosticPanel.tsx",
+      "change": "added",
+      "reason": "Separate Arabic hypothesis/probe UI, typed client and response-context guards",
+      "beforeSha256": null,
+      "sha256": "6493ef1ed2bc63a10b144f2e766f559b4d219284905e5d497e642c67232bc982"
+    },
+    {
+      "path": "apps/web/src/StudentWorkspace.tsx",
+      "change": "modified",
+      "reason": "Separate Arabic hypothesis/probe UI, typed client and response-context guards",
+      "beforeSha256": "5d39ec9f4a013a0ff78150f16380dc5e36a0281e29a4a4d2637aaee223ad2d66",
+      "sha256": "4a73b81ea2ef54bdc4ec87cce594b9f3d7f5930aa06b3b9d6e3d535f51787988"
+    },
+    {
+      "path": "apps/web/src/api-client.ts",
+      "change": "modified",
+      "reason": "Separate Arabic hypothesis/probe UI, typed client and response-context guards",
+      "beforeSha256": "3fdb54ac79e19c825317bfeb6a5fe23ef5baced36b2ed11e7a7613e32dd47433",
+      "sha256": "403f4796892653392bc61879f30e627ba9ebea79c47a602ee8a40fde92ca07d5"
+    },
+    {
+      "path": "apps/web/src/api-schemas.json",
+      "change": "modified",
+      "reason": "Separate Arabic hypothesis/probe UI, typed client and response-context guards",
+      "beforeSha256": "05c43faaf5c516b0001ef91386a2d3b1a26ed355b0dd0ddcd53295f70697689d",
+      "sha256": "610d2ef1d44a0f43c93ed5d4440948fc5b6914f1c26d5a1a3328004d4bdc990e"
+    },
+    {
+      "path": "apps/web/src/workspace-model.ts",
+      "change": "modified",
+      "reason": "Separate Arabic hypothesis/probe UI, typed client and response-context guards",
+      "beforeSha256": "25ce7ac58eaaa7757fdce962d001f7c521a525c0bd94c417edd3865b48105a3c",
+      "sha256": "ef27597fa3c43479f095b0f3c989765388f255fde370f95772df353eb19a7963"
+    },
+    {
+      "path": "apps/web/src/workspace.css",
+      "change": "modified",
+      "reason": "Separate Arabic hypothesis/probe UI, typed client and response-context guards",
+      "beforeSha256": "0a4d6b7a24ba4de5525282e86612a7ddb566f66b5e0dc3440773c8796fd8efaa",
+      "sha256": "baeae0a87892aa1f0295f7e8f57b0ca178cb3e9bce4f99f06110372a05370a77"
+    },
+    {
+      "path": "apps/web/tests/workspace.test.mjs",
+      "change": "modified",
+      "reason": "Targeted tests and reproducible isolated evidence",
+      "beforeSha256": "063386cf3e9cf550c6efcbab7fb48ecd8f27114c0847a1ef165e3c02353f9d0f",
+      "sha256": "0ac04ea52dec3f3580d7d64fe24049c1fb5bef54ee8536c5c31283ed641eb369"
+    },
+    {
+      "path": "compose.ph06.yaml",
+      "change": "added",
+      "reason": "Opt-in synthetic preview, build, scripts or CI",
+      "beforeSha256": null,
+      "sha256": "0a55b6031423ad90058249da2340dc7d1ed03a318a858796459faaea20c0768d"
+    },
+    {
+      "path": "compose.yaml",
+      "change": "modified",
+      "reason": "Opt-in synthetic preview, build, scripts or CI",
+      "beforeSha256": "d84e6214bef3f17887e6b96fe3a16d636a256514312b0fff590426370c09b324",
+      "sha256": "4a1eff3d109b933c0c9dc19dd3482cebe2e126a55d158272bd7618301d0698ff"
+    },
+    {
+      "path": "docs/PROJECT-DECISIONS.md",
+      "change": "modified",
+      "reason": "Scope, hypothesis/probe matrix, pending decision or operating guidance",
+      "beforeSha256": "dcbc2082632a29631184a9612b9c09884e1ace266fad05b31fc8dced4831612a",
+      "sha256": "fe39704202d23a4cc21885b6024da1581bf0099c849e2e128096843f75243cfa"
+    },
+    {
+      "path": "package.json",
+      "change": "modified",
+      "reason": "Opt-in synthetic preview, build, scripts or CI",
+      "beforeSha256": "9da73eb44b47ff09f87cbafa5af1333c0e1f6e8c18e6e250784293094fb0752d",
+      "sha256": "2d3d069a8638a6b304679b5e746e4919b938ff0043b56cfc5a5f3a0726907e34"
+    },
+    {
+      "path": "packages/contracts/src/generated/api-validators.cjs",
+      "change": "modified",
+      "reason": "Derived browser validators; no canonical API change",
+      "beforeSha256": "6518b49355b5848f2ea51ccd06db850241fafbe3d875bd1fb335c60f276c4157",
+      "sha256": "2283d1e184b1e717efa9c87bd656faead6dad3f58e47cd6d1256509876088bef"
+    },
+    {
+      "path": "planning/decisions.md",
+      "change": "modified",
+      "reason": "Scope, hypothesis/probe matrix, pending decision or operating guidance",
+      "beforeSha256": "aad076939f2d5602686a26a2e25e94d7d8c5194ee405ea5f47f02af3be36c3ec",
+      "sha256": "f0b0b19229e81b23ba28b7aa2d108c4a46b3ac9ed3fbd2fbbe417ae9cffe55e4"
+    },
+    {
+      "path": "planning/ph06-dataset-issue.md",
+      "change": "added",
+      "reason": "Scope, hypothesis/probe matrix, pending decision or operating guidance",
+      "beforeSha256": null,
+      "sha256": "b6b38180305a50ed1e593aae36a76607831fb10fda5ca2b79e7bbc5b4877e8e4"
+    },
+    {
+      "path": "planning/ph06-evidence-matrix.md",
+      "change": "added",
+      "reason": "Scope, hypothesis/probe matrix, pending decision or operating guidance",
+      "beforeSha256": null,
+      "sha256": "cebf678fc168aeed5999f74ad69a6d473c725aa8d72c2b8c371bb8aed574da9c"
+    },
+    {
+      "path": "planning/ph06-local-run.md",
+      "change": "added",
+      "reason": "Scope, hypothesis/probe matrix, pending decision or operating guidance",
+      "beforeSha256": null,
+      "sha256": "0f22e9be99f5e7e178c5b0f3b050a93f263fc180be1c9810df932139bfd1a266"
+    },
+    {
+      "path": "planning/ph06-plan.md",
+      "change": "added",
+      "reason": "Scope, hypothesis/probe matrix, pending decision or operating guidance",
+      "beforeSha256": null,
+      "sha256": "d7498be4a035495b3c306855aaec550bb791772667a17814dae647bc99ee12d9"
+    },
+    {
+      "path": "planning/ph06-status.json",
+      "change": "added",
+      "reason": "Scope, hypothesis/probe matrix, pending decision or operating guidance",
+      "beforeSha256": null,
+      "sha256": "a269f1f15beca3ae39016aecf763f8b451af704f8a003418168c387bce40e4a0"
+    },
+    {
+      "path": "planning/technical-decisions.md",
+      "change": "modified",
+      "reason": "Scope, hypothesis/probe matrix, pending decision or operating guidance",
+      "beforeSha256": "c81fb6a5000241ad6779b4907536b33b3ac05efae53086d6ee97e4593c488b5e",
+      "sha256": "3be64e1155a44db8ffbc3e9d7f66ffa0f120741fc679b1f7decdf08024a1f9ca"
+    },
+    {
+      "path": "qa-reports/README.md",
+      "change": "modified",
+      "reason": "Evidence, failure transparency or review status",
+      "beforeSha256": "e3c08ba8c52ed793220a8d0d3b8b982105de7961a8f1d562f02ce9b497e5de1f",
+      "sha256": "780f2d4b9f11dc8bc00a57c78334654069e0d57bcce31b4dbce6bc5709b97379"
+    },
+    {
+      "path": "qa-reports/ph06-browser-checks.json",
+      "change": "added",
+      "reason": "Evidence, failure transparency or review status",
+      "beforeSha256": null,
+      "sha256": "f8454959fd3410c878b19024c31dbca8147c7911f2ae7d446953c22cb946ca72"
+    },
+    {
+      "path": "qa-reports/ph06-checks.json",
+      "change": "added",
+      "reason": "Evidence, failure transparency or review status",
+      "beforeSha256": null,
+      "sha256": "022d9753841d43d6cc0d86f17a69639a85eb516c6e3115a5e53ff7ffcf0cc60d"
+    },
+    {
+      "path": "qa-reports/ph06-container-first-run.json",
+      "change": "added",
+      "reason": "Evidence, failure transparency or review status",
+      "beforeSha256": null,
+      "sha256": "2e247e3eeb04e98de0167be2e49c600c98489dd36193a071ecb7ee0ff1ea7eb5"
+    },
+    {
+      "path": "qa-reports/ph06-container-reference-run.json",
+      "change": "added",
+      "reason": "Evidence, failure transparency or review status",
+      "beforeSha256": null,
+      "sha256": "23ce5430d0e6e72ed207ae703be3322fa3260ed7fd923f6fad3461b8660738ab"
+    },
+    {
+      "path": "qa-reports/ph06-container-second-run.json",
+      "change": "added",
+      "reason": "Evidence, failure transparency or review status",
+      "beforeSha256": null,
+      "sha256": "c49d4fa521f70d908024737f9bd792b016a747f1c2f938881cb170779b24f935"
+    },
+    {
+      "path": "qa-reports/ph06-container.json",
+      "change": "added",
+      "reason": "Evidence, failure transparency or review status",
+      "beforeSha256": null,
+      "sha256": "23f2b45203df4b3510d5897636213a931ce3e92980f19d730a85c6776f8e9721"
+    },
+    {
+      "path": "qa-reports/ph06-delivery.md",
+      "change": "added",
+      "reason": "Evidence, failure transparency or review status",
+      "beforeSha256": null,
+      "sha256": "4d6ff4721fa9357620d4fe2d98166f434aeb845aceb10dc19233286d06563f59"
+    },
+    {
+      "path": "qa-reports/ph06-https-results.json",
+      "change": "added",
+      "reason": "Evidence, failure transparency or review status",
+      "beforeSha256": null,
+      "sha256": "c8b9dd91f4e22ea2afca69ceff4c737fc576c01ac85a9fdd2e0050f02a589fa1"
+    },
+    {
+      "path": "qa-reports/ph06-image-source.json",
+      "change": "added",
+      "reason": "Evidence, failure transparency or review status",
+      "beforeSha256": null,
+      "sha256": "ce66341e1b0f7a269d3d1709f5e4c7fd21cd34a5e801917cd708dee5916d9813"
+    },
+    {
+      "path": "qa-reports/ph06-live-results.json",
+      "change": "added",
+      "reason": "Evidence, failure transparency or review status",
+      "beforeSha256": null,
+      "sha256": "81f4511bbf34d7d2ca6dcf82a66a916db181c991177998f5aec605401bfc7fc9"
+    },
+    {
+      "path": "qa-reports/ph06-local-run.json",
+      "change": "added",
+      "reason": "Evidence, failure transparency or review status",
+      "beforeSha256": null,
+      "sha256": "8c0f3224ed8e903b7507bf60831a1c5bcff714e020c45ec3270e12b9b75e9fff"
+    },
+    {
+      "path": "qa-reports/ph06-regression-ph04-http.json",
+      "change": "added",
+      "reason": "Evidence, failure transparency or review status",
+      "beforeSha256": null,
+      "sha256": "b1cee5fdab38cc8d68e816f9ab4c85956c618ddc4a190b7624f326ac4bb7e216"
+    },
+    {
+      "path": "qa-reports/ph06-regression-ph04.json",
+      "change": "added",
+      "reason": "Evidence, failure transparency or review status",
+      "beforeSha256": null,
+      "sha256": "93b5d592a3462dab796d0e766a70cdc4f762f918dee204ced1662ef0f19492c0"
+    },
+    {
+      "path": "qa-reports/ph06-regression-ph05-live.json",
+      "change": "added",
+      "reason": "Evidence, failure transparency or review status",
+      "beforeSha256": null,
+      "sha256": "14bf80e7b7cd710c68bf3c40639de71bfc3cb00d912b9751e5d07d44d91631e5"
+    },
+    {
+      "path": "qa-reports/ph06-regression-ph05.json",
+      "change": "added",
+      "reason": "Evidence, failure transparency or review status",
+      "beforeSha256": null,
+      "sha256": "74bcd149b390ccc83bb115c58029acbf1ae29bdd50d9c213df6bca95b252a36e"
+    },
+    {
+      "path": "qa-reports/rtl-device-checklist.md",
+      "change": "modified",
+      "reason": "Evidence, failure transparency or review status",
+      "beforeSha256": "593455f3e085d1879f1618c6161a70c93d070f4dfdea16f13e5daa3cdcfee8c6",
+      "sha256": "cb141cc29013fd863270039d69582f10c0ad914fe74b0c4c9a7ed4d374a08d8f"
+    },
+    {
+      "path": "qa/ph04-container.mjs",
+      "change": "modified",
+      "reason": "Targeted tests and reproducible isolated evidence",
+      "beforeSha256": "b24de2dcc8fdd30d1ec3a30e5d8ec32f361426e24112c06c0845d812ec9cf046",
+      "sha256": "2e4c82d43f5fa696f320deaae07e5705395096f70ef51fcb7db3448a474ab3d9"
+    },
+    {
+      "path": "qa/ph04-down.sql",
+      "change": "modified",
+      "reason": "Targeted tests and reproducible isolated evidence",
+      "beforeSha256": "4093ff912f284312bd827a2d3ce53e42fc25ab63c5bf76468057f47b7264d677",
+      "sha256": "7edaf2bd80c4f537b82bfb4acf431f18b0cd95327baa307f7c8c9e84a63fb395"
+    },
+    {
+      "path": "qa/ph05-container.mjs",
+      "change": "modified",
+      "reason": "Targeted tests and reproducible isolated evidence",
+      "beforeSha256": "aecd465815a58253bee722c25acb9481085478da1391644972f6a1108441867b",
+      "sha256": "a7cd18cae3c10967aa0ce33ec60b86d47fb6d60af3a2f43e2727833d80499c83"
+    },
+    {
+      "path": "qa/ph06-container.mjs",
+      "change": "added",
+      "reason": "Targeted tests and reproducible isolated evidence",
+      "beforeSha256": null,
+      "sha256": "e34840d7a502d1d4ad7ff0b3709866b6851bbbee1a4d3e410a859648c9c1a4ea"
+    },
+    {
+      "path": "qa/ph06-down.sql",
+      "change": "added",
+      "reason": "Targeted tests and reproducible isolated evidence",
+      "beforeSha256": null,
+      "sha256": "b8d9cc010cceb8f3b2ae7bf5fe69e5a9abad4b56c6b9e2b63bc5cef134379749"
+    },
+    {
+      "path": "qa/ph06-fixtures.mjs",
+      "change": "added",
+      "reason": "Targeted tests and reproducible isolated evidence",
+      "beforeSha256": null,
+      "sha256": "a115f03a280e49f9f2d2ec3119441dfdd2a48fb5ad9e9aa32aeb6283b57dd93b"
+    },
+    {
+      "path": "qa/ph06-https-probe.mjs",
+      "change": "added",
+      "reason": "Targeted tests and reproducible isolated evidence",
+      "beforeSha256": null,
+      "sha256": "41abd98d0a3847c5293fda400f2efa811b33810682adc943e7e19d31d882dbca"
+    },
+    {
+      "path": "qa/ph06-local-seed.mjs",
+      "change": "added",
+      "reason": "Targeted tests and reproducible isolated evidence",
+      "beforeSha256": null,
+      "sha256": "23edc6610c87983621de7cc4aebf2dc49b2fcda2cef62a37e66f716b23e66c83"
+    },
+    {
+      "path": "qa/ph06-math-proxy.mjs",
+      "change": "added",
+      "reason": "Targeted tests and reproducible isolated evidence",
+      "beforeSha256": null,
+      "sha256": "810dc887a046b065b2036437eb98e6868f70a673f19c45b5a1e573c387c095d1"
+    },
+    {
+      "path": "qa/ph06-nginx.conf",
+      "change": "added",
+      "reason": "Targeted tests and reproducible isolated evidence",
+      "beforeSha256": null,
+      "sha256": "ecad4b3e02de14ecf90a32cf9d95c15e3fd4309df150ada79ea130b5d761db31"
+    },
+    {
+      "path": "tools/contracts.mjs",
+      "change": "modified",
+      "reason": "Derived browser validators; no canonical API change",
+      "beforeSha256": "aaa5385a298c2f5176cbf2153692db58554a30d58d33c9ba664571313c1329ab",
+      "sha256": "94adddf4591961eead49e59df89c0367189bfb266653b04ad73812c1da28be09"
+    },
+    {
+      "path": "tools/serve-ph06.mjs",
+      "change": "added",
+      "reason": "Opt-in synthetic preview, build, scripts or CI",
+      "beforeSha256": null,
+      "sha256": "af236e90efa10033b28c1f32ccee6e31cbeb3dc1066b9837926a7a5a403443bd"
+    },
+    {
+      "path": "tools/verify-ph06-container.mjs",
+      "change": "added",
+      "reason": "Targeted tests and reproducible isolated evidence",
+      "beforeSha256": null,
+      "sha256": "b1efc59bbc7d8a81d033262e0e1d8d0425073d06dbcca32449b02d46d89543cf"
+    },
+    {
+      "path": "tools/verify-ph06.mjs",
+      "change": "added",
+      "reason": "Targeted tests and reproducible isolated evidence",
+      "beforeSha256": null,
+      "sha256": "de8b7b784c0a0121ff860de026b4a0325cd9e1ce43e86ff17d87c93c7c2c9e1f"
+    }
+  ]
+}

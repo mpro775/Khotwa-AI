@@ -1,0 +1,303 @@
+{
+  "status": "illustrative-not-executed-engine-results",
+  "examples": [
+    {
+      "schema": "InternalMathParseRequest",
+      "payload": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "00000000-0000-4000-8000-000000000003",
+        "context": {
+          "attemptId": "00000000-0000-4000-8000-000000000001",
+          "attemptRevision": 4,
+          "problemRevisionId": "00000000-0000-4000-8000-000000000002",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "parse",
+        "source": {
+          "kind": "step",
+          "stepVersionId": "00000000-0000-4000-8000-000000000004"
+        },
+        "raw": "س = ٢"
+      }
+    },
+    {
+      "schema": "InternalMathParseResult",
+      "payload": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "00000000-0000-4000-8000-000000000003",
+        "context": {
+          "attemptId": "00000000-0000-4000-8000-000000000001",
+          "attemptRevision": 4,
+          "problemRevisionId": "00000000-0000-4000-8000-000000000002",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "engineVersion": "example-only-not-a-build",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "operation": "parse",
+        "source": {
+          "kind": "step",
+          "stepVersionId": "00000000-0000-4000-8000-000000000004"
+        },
+        "astSchemaVersion": "math-ast-v1",
+        "parseStatus": "parsed",
+        "normalizedText": "س = ٢",
+        "displayAr": "س = ٢",
+        "ast": {
+          "schemaVersion": "math-ast-v1",
+          "notationProfileVersion": "ar-mashriq-school-v1",
+          "sourceRaw": "س = ٢",
+          "root": {
+            "type": "Equation",
+            "sourceSpan": {
+              "start": 0,
+              "end": 5,
+              "unit": "unicode_codepoint"
+            },
+            "left": {
+              "type": "Variable",
+              "name": "س",
+              "sourceSpan": {
+                "start": 0,
+                "end": 1,
+                "unit": "unicode_codepoint"
+              }
+            },
+            "right": {
+              "type": "Integer",
+              "value": "2",
+              "sourceSpan": {
+                "start": 4,
+                "end": 5,
+                "unit": "unicode_codepoint"
+              }
+            }
+          }
+        },
+        "reasonCode": null,
+        "issue": null
+      }
+    },
+    {
+      "schema": "InternalMathCheckFinalRequest",
+      "payload": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "00000000-0000-4000-8000-000000000005",
+        "context": {
+          "attemptId": "00000000-0000-4000-8000-000000000001",
+          "attemptRevision": 4,
+          "problemRevisionId": "00000000-0000-4000-8000-000000000002",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "operation": "check-final",
+        "originalRaw": "٢س = ٤",
+        "finalStep": {
+          "stepVersionId": "00000000-0000-4000-8000-000000000004",
+          "raw": "س = ٢"
+        }
+      }
+    },
+    {
+      "schema": "InternalMathCheckFinalResult",
+      "payload": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "00000000-0000-4000-8000-000000000005",
+        "context": {
+          "attemptId": "00000000-0000-4000-8000-000000000001",
+          "attemptRevision": 4,
+          "problemRevisionId": "00000000-0000-4000-8000-000000000002",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "engineVersion": "example-only-not-a-build",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "operation": "check-final",
+        "finalStepVersionId": "00000000-0000-4000-8000-000000000004",
+        "status": "verified_valid",
+        "isIsolated": true,
+        "substitutionValid": true,
+        "solution": {
+          "num": "2",
+          "den": "1"
+        },
+        "originalSolution": {
+          "kind": "singleton",
+          "value": {
+            "num": "2",
+            "den": "1"
+          }
+        },
+        "finalSolution": {
+          "kind": "singleton",
+          "value": {
+            "num": "2",
+            "den": "1"
+          }
+        },
+        "reasonCode": null,
+        "evidence": null,
+        "issue": null
+      }
+    },
+    {
+      "schema": "InternalMathTransitionRequest",
+      "payload": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "00000000-0000-4000-8000-000000000003",
+        "context": {
+          "attemptId": "00000000-0000-4000-8000-000000000001",
+          "attemptRevision": 4,
+          "problemRevisionId": "00000000-0000-4000-8000-000000000002",
+          "notationProfile": "ar-mashriq-school-v1",
+          "domain": "reals"
+        },
+        "transition": {
+          "fromKind": "step",
+          "fromStepVersionId": "00000000-0000-4000-8000-000000000004",
+          "toStepVersionId": "00000000-0000-4000-8000-000000000005",
+          "fromRaw": "٢(س + ٣) = ١٠",
+          "toRaw": "٢س + ٣ = ١٠"
+        }
+      }
+    },
+    {
+      "schema": "InternalMathTransitionResult",
+      "payload": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "00000000-0000-4000-8000-000000000003",
+        "engineVersion": "example-only-not-a-build",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 4,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "7",
+              "den": "2"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "2",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      }
+    },
+    {
+      "schema": "InternalMathTransitionResult",
+      "payload": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "00000000-0000-4000-8000-000000000006",
+        "engineVersion": "example-only-not-a-build",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 4,
+        "status": "syntax_error",
+        "reasonCode": "AMBIGUOUS_DIVISION",
+        "evidence": null,
+        "issue": {
+          "reasonCode": "AMBIGUOUS_DIVISION",
+          "messageAr": "أضف أقواسًا لتوضيح موضع المقام.",
+          "spanStart": 0,
+          "spanEnd": 4,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": "use_parentheses"
+        }
+      }
+    },
+    {
+      "schema": "AstDocument",
+      "payload": {
+        "schemaVersion": "math-ast-v1",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "sourceRaw": "٢(س + ٣) = ١٠",
+        "root": {
+          "type": "Equation",
+          "sourceSpan": {
+            "start": 0,
+            "end": 13,
+            "unit": "unicode_codepoint"
+          },
+          "left": {
+            "type": "Multiply",
+            "sourceSpan": {
+              "start": 0,
+              "end": 8,
+              "unit": "unicode_codepoint"
+            },
+            "implicit": true,
+            "left": {
+              "type": "Integer",
+              "value": "2",
+              "sourceSpan": {
+                "start": 0,
+                "end": 1,
+                "unit": "unicode_codepoint"
+              }
+            },
+            "right": {
+              "type": "Add",
+              "sourceSpan": {
+                "start": 2,
+                "end": 7,
+                "unit": "unicode_codepoint"
+              },
+              "groupSpans": [
+                {
+                  "start": 1,
+                  "end": 8,
+                  "unit": "unicode_codepoint"
+                }
+              ],
+              "left": {
+                "type": "Variable",
+                "name": "س",
+                "sourceSpan": {
+                  "start": 2,
+                  "end": 3,
+                  "unit": "unicode_codepoint"
+                }
+              },
+              "right": {
+                "type": "Integer",
+                "value": "3",
+                "sourceSpan": {
+                  "start": 6,
+                  "end": 7,
+                  "unit": "unicode_codepoint"
+                }
+              }
+            }
+          },
+          "right": {
+            "type": "Integer",
+            "value": "10",
+            "sourceSpan": {
+              "start": 11,
+              "end": 13,
+              "unit": "unicode_codepoint"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

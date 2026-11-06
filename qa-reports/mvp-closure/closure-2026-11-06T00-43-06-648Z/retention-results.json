@@ -1,0 +1,190 @@
+{
+  "runId": "closure-2026-11-06T00-43-06-648Z",
+  "commit": "defddb077c94073653dbfe8ef4244c287a05d7f0",
+  "at": "2026-11-06T00:43:21.012Z",
+  "checks": [
+    "GOLD-STATE-011",
+    "GOLD-STATE-016",
+    "runtime_permission_and_history_guard",
+    "dry_run_no_mutation",
+    "atomic_rollback",
+    "actual_full_graph_purge_preserves_other_data",
+    "repeat_safe",
+    "expired_cookie_not_revived",
+    "migration_down_and_transactional_restore"
+  ],
+  "contracts": [
+    {
+      "operationId": "getBootstrap",
+      "status": 200
+    },
+    {
+      "operationId": "createGuestSession",
+      "status": 201
+    },
+    {
+      "operationId": "createLearningSession",
+      "status": 201
+    },
+    {
+      "operationId": "getBootstrap",
+      "status": 200
+    },
+    {
+      "operationId": "createGuestSession",
+      "status": 201
+    },
+    {
+      "operationId": "createLearningSession",
+      "status": 201
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createDiagnosticProbe",
+      "status": 201
+    },
+    {
+      "operationId": "answerDiagnosticProbe",
+      "status": 201
+    },
+    {
+      "operationId": "requestHint",
+      "status": 200
+    },
+    {
+      "operationId": "startRemediation",
+      "status": 201
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "startTransferCheck",
+      "status": 201
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "getAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "createLearningSession",
+      "status": 201
+    },
+    {
+      "operationId": "createAttempt",
+      "status": 201
+    },
+    {
+      "operationId": "createStep",
+      "status": 201
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "getAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "getAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "verifyAttempt",
+      "status": 200
+    },
+    {
+      "operationId": "getAttempt",
+      "status": 401
+    },
+    {
+      "operationId": "getLearningSession",
+      "status": 200
+    }
+  ],
+  "syntheticOnly": true,
+  "dryRun": {
+    "at": "2026-11-06T00:43:23.224876+00:00",
+    "counts": {},
+    "dryRun": true,
+    "policy": "OWN-11/SEC-DEC-04",
+    "deletedGuests": 0,
+    "eligibleGuests": 1
+  },
+  "applied": {
+    "at": "2026-11-06T00:43:23.373393+00:00",
+    "counts": {
+      "attempts": 4,
+      "diagnoses": 1,
+      "step_slots": 4,
+      "audit_events": 14,
+      "hint_requests": 1,
+      "parse_results": 6,
+      "step_versions": 4,
+      "guest_sessions": 1,
+      "skill_evidence": 2,
+      "probe_responses": 1,
+      "tutoring_events": 1,
+      "ai_budget_ledgers": 1,
+      "content_exposures": 4,
+      "diagnostic_probes": 1,
+      "learning_episodes": 1,
+      "learning_sessions": 2,
+      "verification_runs": 6,
+      "idempotency_records": 21,
+      "learning_assignments": 2,
+      "verification_reports": 6,
+      "verification_results": 6
+    },
+    "dryRun": false,
+    "policy": "OWN-11/SEC-DEC-04",
+    "deletedGuests": 1,
+    "eligibleGuests": 1
+  },
+  "rerun": {
+    "at": "2026-11-06T00:43:23.392395+00:00",
+    "counts": {},
+    "dryRun": false,
+    "policy": "OWN-11/SEC-DEC-04",
+    "deletedGuests": 0,
+    "eligibleGuests": 0
+  },
+  "actualGeminiCalls": 0
+}

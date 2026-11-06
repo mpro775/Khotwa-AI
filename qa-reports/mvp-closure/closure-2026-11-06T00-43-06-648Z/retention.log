@@ -1,0 +1,17 @@
+▶ SEC-047: actual atomic retention with isolated operator and immutable API history
+  ✔ GOLD-STATE-011: a new problem revision cannot reinterpret an existing attempt (396.213401ms)
+  ✔ GOLD-STATE-016: failed storage rolls back revision and preserves the mathematical verdict (120.952237ms)
+  ✔ runtime cannot invoke purge or bypass immutable history by setting a flag (28.053441ms)
+  ✔ dry-run makes no changes; seven-day boundary uses idle/absolute/revocation expiry (73.045594ms)
+  ✔ failure rolls back every child deletion and retry is safe (101.672572ms)
+  ✔ apply deletes the full graph, preserves content/other guests and reruns without duplication (87.672453ms)
+  ✔ retention migration executable surface rolls back and restores transactionally (10.6723ms)
+✔ SEC-047: actual atomic retention with isolated operator and immutable API history (5812.036889ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6266.497091

@@ -1,0 +1,14 @@
+--- a/apps/api/src/ph08-generative.ts
++++ b/apps/api/src/ph08-generative.ts
+@@
+-    "ERR-ALG-05": ["SK-ALG-02", "SK-ALG-03", "SK-ALG-06"],
++    "ERR-ALG-05": ["SK-ALG-02", "SK-ALG-03"],
+
+# ORIGINAL PROPOSAL: owner approved temporary PH08 block on 2026-11-05;
+# applied with an additional guard for unresolved profiles. Final curriculum
+# mapping remains pending mathematics/curriculum owner approval.
+# Aligns PH08's generative eligibility with docs/05 and docs/06. It does not
+# remap diagnoses from PH06; its SK06 division observations then use reviewed
+# fallback, or safe 503 when none exists. Tests/acceptance need updating only
+# after approval. Alternative: explicitly approve the contextual division map
+# in owning documents, with evidence and without broadening math capability.

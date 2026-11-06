@@ -1,0 +1,20 @@
+{
+  "phase": "PH-07",
+  "recordedAt": "2026-11-04T04:53:28.245Z",
+  "desktop": {
+    "status": "not_run",
+    "reason": "Prior owner deferred manual local-certificate handoff; no PH07 browser navigation or interaction performed"
+  },
+  "realPhone": {
+    "status": "not_run",
+    "reason": "Owner said no real phone available"
+  },
+  "screenshots": [],
+  "recordings": [],
+  "borrowedPriorPhaseEvidence": false,
+  "httpsProbeIsBrowserTest": false,
+  "trustStoreChanged": false,
+  "tlsVerificationDisabled": false,
+  "nextSteps": "planning/ph07-local-run.md",
+  "gate1": "blocked"
+}

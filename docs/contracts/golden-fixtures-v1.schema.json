@@ -1,0 +1,411 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:khotwa:golden-fixtures:v1",
+  "title": "Schema for existing 1.0-draft fixture snapshot, not scientific approval",
+  "x-status": "proposed-not-approved",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "dataset_version": {
+      "const": "1.0-draft"
+    },
+    "generated_on": {
+      "type": "string",
+      "format": "date"
+    },
+    "review_status": {
+      "const": "draft_requires_subject_and_pedagogy_review"
+    },
+    "fixtures_schema": {
+      "const": "internal_test_fixtures_v1_not_public_api"
+    },
+    "parse": {
+      "type": "array",
+      "minItems": 40,
+      "maxItems": 40,
+      "items": {
+        "$ref": "#/$defs/parse"
+      }
+    },
+    "math": {
+      "type": "array",
+      "minItems": 57,
+      "maxItems": 57,
+      "items": {
+        "$ref": "#/$defs/math"
+      }
+    },
+    "diagnosis": {
+      "type": "array",
+      "minItems": 18,
+      "maxItems": 18,
+      "items": {
+        "$ref": "#/$defs/diagnosis"
+      }
+    },
+    "tutoring": {
+      "type": "array",
+      "minItems": 18,
+      "maxItems": 18,
+      "items": {
+        "$ref": "#/$defs/tutoring"
+      }
+    },
+    "state": {
+      "type": "array",
+      "minItems": 18,
+      "maxItems": 18,
+      "items": {
+        "$ref": "#/$defs/state"
+      }
+    },
+    "seed_problems": {
+      "type": "array",
+      "minItems": 18,
+      "maxItems": 18,
+      "items": {
+        "$ref": "#/$defs/seed_problems"
+      }
+    }
+  },
+  "required": [
+    "dataset_version",
+    "generated_on",
+    "review_status",
+    "fixtures_schema",
+    "parse",
+    "math",
+    "diagnosis",
+    "tutoring",
+    "state",
+    "seed_problems"
+  ],
+  "$defs": {
+    "parse": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^GOLD-PARSE-[0-9]{3}$"
+        },
+        "raw": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "accepted",
+            "syntax_error",
+            "unsupported"
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "enum": [
+            "AMBIGUOUS_DIVISION",
+            "DIVISION_BY_ZERO",
+            "MISSING_EQUAL_SIGN",
+            "MULTIPLE_EQUAL_SIGNS",
+            "NONLINEAR_EXPRESSION",
+            "UNBALANCED_PARENTHESIS",
+            "UNEXPECTED_ADJACENCY",
+            "UNSAFE_CONTROL_CHARACTER",
+            "UNSUPPORTED_DECIMAL",
+            "UNSUPPORTED_FUNCTION",
+            "UNSUPPORTED_POWER",
+            "UNSUPPORTED_VARIABLE",
+            "VARIABLE_DENOMINATOR",
+            "—"
+          ]
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1
+        },
+        "priority": {
+          "const": "P0"
+        }
+      },
+      "required": [
+        "id",
+        "raw",
+        "status",
+        "reason",
+        "note",
+        "priority"
+      ]
+    },
+    "math": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^GOLD-MATH-[0-9]{3}$"
+        },
+        "before": {
+          "type": "string",
+          "minLength": 1
+        },
+        "after": {
+          "type": "string",
+          "minLength": 1
+        },
+        "before_semantic": {
+          "type": "string",
+          "minLength": 1
+        },
+        "after_semantic": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "verified_valid",
+            "verified_invalid"
+          ]
+        },
+        "before_set": {
+          "type": "string",
+          "minLength": 1
+        },
+        "after_set": {
+          "type": "string",
+          "minLength": 1
+        },
+        "witness": {
+          "type": "string",
+          "minLength": 1
+        },
+        "skill": {
+          "type": "string",
+          "pattern": "^SK-ALG-0[1-8]$"
+        },
+        "misconception_candidate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^ERR-ALG-0[1-6]$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "student",
+            "guard"
+          ]
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "before",
+        "after",
+        "before_semantic",
+        "after_semantic",
+        "status",
+        "before_set",
+        "after_set",
+        "witness",
+        "skill",
+        "misconception_candidate",
+        "kind",
+        "note"
+      ]
+    },
+    "diagnosis": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^GOLD-DIAG-[0-9]{3}$"
+        },
+        "math": {
+          "type": "string",
+          "pattern": "^GOLD-MATH-[0-9]{3}$"
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "none",
+            "tentative",
+            "needs_probe",
+            "supported_by_probe",
+            "rejected",
+            "unresolved"
+          ]
+        },
+        "pattern": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^ERR-ALG-0[1-6]$"
+            },
+            {
+              "const": "—"
+            }
+          ]
+        },
+        "probe": {
+          "type": "string",
+          "minLength": 1
+        },
+        "why": {
+          "type": "string",
+          "minLength": 1
+        },
+        "exclusion": {
+          "type": "string",
+          "description": "Optional explanatory text may be empty in the current draft; not a review approval."
+        }
+      },
+      "required": [
+        "id",
+        "math",
+        "state",
+        "pattern",
+        "probe",
+        "why",
+        "exclusion"
+      ]
+    },
+    "tutoring": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^GOLD-TUTOR-[0-9]{3}$"
+        },
+        "trigger": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "learning",
+            "confirmation",
+            "remediation",
+            "transfer_check"
+          ]
+        },
+        "hint_level": {
+          "type": "string",
+          "enum": [
+            "H0",
+            "H1",
+            "H2",
+            "H3",
+            "H4",
+            "H3 أو أقل",
+            "لا كشف",
+            "—"
+          ]
+        },
+        "expected": {
+          "type": "string",
+          "minLength": 1
+        },
+        "forbidden": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reference": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "trigger",
+        "mode",
+        "hint_level",
+        "expected",
+        "forbidden",
+        "reference"
+      ]
+    },
+    "state": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^GOLD-STATE-[0-9]{3}$"
+        },
+        "event": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected": {
+          "type": "string",
+          "minLength": 1
+        },
+        "forbidden": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reference": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "event",
+        "expected",
+        "forbidden",
+        "reference"
+      ]
+    },
+    "seed_problems": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^KH-ALG-[0-9]{3}$"
+        },
+        "equation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "answer": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "main",
+            "diagnostic",
+            "remediation",
+            "transfer"
+          ]
+        },
+        "skill": {
+          "type": "string",
+          "pattern": "^SK-ALG-0[1-8]$"
+        }
+      },
+      "required": [
+        "id",
+        "equation",
+        "answer",
+        "kind",
+        "skill"
+      ]
+    }
+  }
+}

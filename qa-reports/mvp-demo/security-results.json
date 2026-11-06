@@ -1,0 +1,82 @@
+{
+  "at": "2026-11-06T00:51:45.122Z",
+  "scan": "actual generated local secret values and Google-key pattern; no values recorded",
+  "filesScanned": 744,
+  "leaks": [],
+  "containers": [
+    {
+      "service": "api",
+      "ports": {},
+      "networks": [
+        "khotwa-ph09-86f18b7263f8_backend",
+        "khotwa-ph09-86f18b7263f8_frontend"
+      ]
+    },
+    {
+      "service": "database",
+      "ports": {},
+      "networks": [
+        "khotwa-ph09-86f18b7263f8_backend"
+      ]
+    },
+    {
+      "service": "math",
+      "ports": {},
+      "networks": [
+        "khotwa-ph09-86f18b7263f8_backend"
+      ]
+    },
+    {
+      "service": "math-proxy",
+      "ports": {},
+      "networks": [
+        "khotwa-ph09-86f18b7263f8_backend"
+      ]
+    },
+    {
+      "service": "retention",
+      "ports": {},
+      "networks": [
+        "khotwa-ph09-86f18b7263f8_backend"
+      ]
+    },
+    {
+      "service": "seed",
+      "ports": {},
+      "networks": [
+        "khotwa-ph09-86f18b7263f8_backend"
+      ]
+    },
+    {
+      "service": "web",
+      "ports": {
+        "8443/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "8448"
+          }
+        ]
+      },
+      "networks": [
+        "khotwa-ph09-86f18b7263f8_frontend"
+      ]
+    }
+  ],
+  "backendInternal": true,
+  "databaseReview": {
+    "draftPairings": 36,
+    "runtimeCanPurge": false,
+    "problemRevisions": 36,
+    "reviewedPairings": 0,
+    "runtimeSuperuser": false,
+    "diagnosticTemplates": 8,
+    "maintenanceCanPurge": true
+  },
+  "syntheticOnly": true,
+  "googleCallsThisClosure": 0,
+  "limitations": [
+    "No claim of penetration test or production security certification",
+    "Browser inspection unavailable; manual Chrome acceptance pending",
+    "No backups of real guest data created or restored"
+  ]
+}

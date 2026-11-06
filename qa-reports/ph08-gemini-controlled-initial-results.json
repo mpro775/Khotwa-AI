@@ -1,0 +1,90 @@
+{
+  "at": "2026-11-04T22:35:44.429Z",
+  "realProvider": false,
+  "actualExternalCalls": 0,
+  "samples": [],
+  "checks": [
+    {
+      "name": "PH07 root hint is local; only PH08 assigned attempts may call Gemini",
+      "passed": true
+    },
+    {
+      "name": "late Gemini result is rejected after concurrent step edit",
+      "passed": true
+    }
+  ],
+  "metrics": [
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:35:51.585Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": null,
+      "thinkingLevel": "minimal",
+      "latencyMs": 10.882,
+      "httpStatus": 503,
+      "inputTokens": null,
+      "outputTokens": null,
+      "totalTokens": null,
+      "thinkingTokens": null,
+      "outcome": "GEMINI_PROVIDER_ERROR"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:35:52.605Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": null,
+      "thinkingLevel": "minimal",
+      "latencyMs": 7999.962,
+      "httpStatus": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "totalTokens": null,
+      "thinkingTokens": null,
+      "outcome": "GEMINI_ABORTED"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:36:01.186Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 2.23,
+      "httpStatus": 200,
+      "inputTokens": null,
+      "outputTokens": null,
+      "totalTokens": null,
+      "thinkingTokens": null,
+      "outcome": "AI_UNAPPROVED_MEANING"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:36:01.861Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 39.192,
+      "httpStatus": 200,
+      "inputTokens": 120,
+      "outputTokens": 70,
+      "totalTokens": 190,
+      "thinkingTokens": null,
+      "outcome": "AI_VALIDATED"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T22:36:02.396Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 0.826,
+      "httpStatus": 200,
+      "inputTokens": 120,
+      "outputTokens": 70,
+      "totalTokens": 190,
+      "thinkingTokens": null,
+      "outcome": "AI_VALIDATED"
+    }
+  ],
+  "error": "{\"error\":{\"code\":\"internal_error\",\"messageAr\":\"تعذرت الخدمة مؤقتًا.\",\"issues\":[],\"currentRevision\":null,\"retryable\":true,\"retryAfterSeconds\":null},\"meta\":{\"requestId\":\"79e28bf5-4a03-41fe-80f8-58b30dcbb7cd\",\"serverTime\":\"2026-11-04T22:36:02.445Z\",\"apiVersion\":\"1\"}}\n\n500 !== 200\n",
+  "contractResponseCount": 63
+}

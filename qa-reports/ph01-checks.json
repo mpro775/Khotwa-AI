@@ -1,0 +1,62 @@
+{
+  "phase": "PH-01",
+  "recordedAtRiyadh": "2026-11-04 03:18:08",
+  "node": "v26.7.0",
+  "platform": "win32",
+  "npmUserAgent": "npm/11.17.0 node/v26.7.0 win32 x64 workspaces/false",
+  "checks": [
+    {
+      "command": "npm run contracts:check",
+      "exitCode": 0,
+      "seconds": 1.1,
+      "stdout": "\n> khotwa-ai@0.1.0 contracts:check\n> node tools/contracts.mjs --check\n\nCanonical OpenAPI mirror, 3 JSON mirrors, and generated public types verified.\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run format:check",
+      "exitCode": 0,
+      "seconds": 1.6,
+      "stdout": "\n> khotwa-ai@0.1.0 format:check\n> prettier --check package.json tsconfig.base.json eslint.config.mjs pyrightconfig.json compose.yaml Dockerfile .github/workflows/ci.yml \"apps/**/*.{ts,tsx,json,css,html}\" \"packages/contracts/src/index.ts\" \"tools/*.mjs\" && node tools/python-task.mjs -m black --check services/math-engine/src tools/dev_env.py tools/seed_demo.py\n\nChecking formatting...\nAll matched files use Prettier code style!\n",
+      "stderr": "All done! \\u2728 \\U0001f370 \\u2728\r\n4 files would be left unchanged.\r\n"
+    },
+    {
+      "command": "npm run lint",
+      "exitCode": 0,
+      "seconds": 2.5,
+      "stdout": "\n> khotwa-ai@0.1.0 lint\n> eslint apps packages/contracts/src tools/*.mjs && node tools/python-task.mjs -m pycodestyle --max-line-length=88 --ignore=E203,W503 services/math-engine/src tools/dev_env.py tools/seed_demo.py\n\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "seconds": 6.8,
+      "stdout": "\n> khotwa-ai@0.1.0 typecheck\n> npm run typecheck --workspaces --if-present && pyright\n\n\n> @khotwa/api@0.1.0 typecheck\n> tsc --noEmit\n\n\n> @khotwa/web@0.1.0 typecheck\n> tsc --noEmit\n\n\n> @khotwa/contracts@0.1.0 typecheck\n> tsc --noEmit\n\n0 errors, 0 warnings, 0 informations\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "seconds": 8.2,
+      "stdout": "\n> khotwa-ai@0.1.0 build\n> npm run build --workspaces --if-present && node tools/python-task.mjs -m compileall -q services/math-engine/src\n\n\n> @khotwa/api@0.1.0 build\n> tsc -p tsconfig.json\n\n\n> @khotwa/web@0.1.0 build\n> tsc --noEmit && vite build\n\nvite v8.3.5 building client environment for production...\ntransforming...\n✓ 15 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.40 kB │ gzip:  0.28 kB\ndist/assets/index-Cyu_0488.css    0.51 kB │ gzip:  0.35 kB\ndist/assets/index-DPaobcpT.js   220.15 kB │ gzip: 69.02 kB\n\n✓ built in 457ms\n\n> @khotwa/contracts@0.1.0 build\n> tsc --noEmit\n\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run check:foundation",
+      "exitCode": 0,
+      "seconds": 1.6,
+      "stdout": "\n> khotwa-ai@0.1.0 check:foundation\n> node tools/check-foundation.mjs\n\nFoundation checks passed: private topology, canonical contracts/Golden schema, idempotent unpublished synthetic seed, owner-authorized gate, 18 source files scanned.\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run smoke",
+      "exitCode": 0,
+      "seconds": 3,
+      "stdout": "\n> khotwa-ai@0.1.0 smoke\n> node tools/smoke.mjs\n\nNative smoke: 7 checks passed; protected health and truthful unavailable readiness; no business/math routes claimed.\n",
+      "stderr": ""
+    }
+  ],
+  "passed": 7,
+  "failed": 0,
+  "productMathGoldenCasesRun": 0,
+  "scope": "Build/type/format/contracts, private synthetic seed and foundational health smoke; no tutoring/editor/parser acceptance"
+}

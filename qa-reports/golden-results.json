@@ -1,0 +1,1255 @@
+{
+  "runId": "closure-2026-11-06T00-47-37-644Z",
+  "sourceCommit": "3f54abad78042a0294f158c39007ad754208ee32",
+  "at": "2026-11-06T00:50:34.805Z",
+  "datasetSha256": "1c3e5fec509a8fad930a3d05e9f5b764b6b060281ec7277a32575511095b7f12",
+  "datasetReview": "draft_requires_subject_and_pedagogy_review",
+  "counts": {
+    "PASS": 149,
+    "FAIL": 1,
+    "BLOCKED": 1,
+    "NOT_RUN": 0,
+    "NOT_APPLICABLE": 0
+  },
+  "acceptance": "NOT_ACCEPTED_PENDING_DOMAIN_AND_MANUAL_REVIEW",
+  "caseExecution": "97 directly executed math/parse; 18 exact diagnosis comparisons; 36 explicitly mapped policy/state scenarios with assertions or blockers. PASS is development execution only.",
+  "actualGeminiCalls": 0,
+  "cases": [
+    {
+      "id": "GOLD-PARSE-001",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-002",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-003",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-004",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-005",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-006",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-007",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-008",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-009",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-010",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-011",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-012",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-013",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-014",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-015",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-016",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-017",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-018",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-019",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-020",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-021",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-022",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-023",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-024",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-025",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-026",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-027",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-028",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-029",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-030",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-031",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-032",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-033",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-034",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-035",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-036",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-037",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-038",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-039",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-PARSE-040",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-001",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-002",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-003",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-004",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-005",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-006",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-007",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-008",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-009",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-010",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-011",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-012",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-013",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-014",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-015",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-016",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-017",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-018",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-019",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-020",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-021",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-022",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-023",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-024",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-025",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-026",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-027",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-028",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-029",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-030",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-031",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-032",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-033",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-034",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-035",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-036",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-037",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-038",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-039",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-040",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-041",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-042",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-043",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-044",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-045",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-046",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-047",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-048",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-049",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-050",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-051",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-052",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-053",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-054",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-055",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-056",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-MATH-057",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/golden-math-http.json",
+      "scope": "NestJS MathGateway -> authenticated Python HTTP",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-DIAG-001",
+      "status": "PASS",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-01"
+      },
+      "actual": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-01"
+      },
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph06-live-results.json",
+      "issue": null,
+      "reviewStatus": "draft_not_human_approved"
+    },
+    {
+      "id": "GOLD-DIAG-002",
+      "status": "PASS",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-01"
+      },
+      "actual": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-01"
+      },
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph06-live-results.json",
+      "issue": null,
+      "reviewStatus": "draft_not_human_approved"
+    },
+    {
+      "id": "GOLD-DIAG-003",
+      "status": "PASS",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-02"
+      },
+      "actual": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-02"
+      },
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph06-live-results.json",
+      "issue": null,
+      "reviewStatus": "draft_not_human_approved"
+    },
+    {
+      "id": "GOLD-DIAG-004",
+      "status": "PASS",
+      "expected": {
+        "state": "tentative",
+        "pattern": "ERR-ALG-03"
+      },
+      "actual": {
+        "state": "tentative",
+        "pattern": "ERR-ALG-03"
+      },
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph06-live-results.json",
+      "issue": null,
+      "reviewStatus": "draft_not_human_approved"
+    },
+    {
+      "id": "GOLD-DIAG-005",
+      "status": "PASS",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-04"
+      },
+      "actual": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-04"
+      },
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph06-live-results.json",
+      "issue": null,
+      "reviewStatus": "draft_not_human_approved"
+    },
+    {
+      "id": "GOLD-DIAG-006",
+      "status": "PASS",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-06"
+      },
+      "actual": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-06"
+      },
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph06-live-results.json",
+      "issue": null,
+      "reviewStatus": "draft_not_human_approved"
+    },
+    {
+      "id": "GOLD-DIAG-007",
+      "status": "PASS",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-06"
+      },
+      "actual": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-06"
+      },
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph06-live-results.json",
+      "issue": null,
+      "reviewStatus": "draft_not_human_approved"
+    },
+    {
+      "id": "GOLD-DIAG-008",
+      "status": "PASS",
+      "expected": {
+        "state": "unresolved",
+        "pattern": "—"
+      },
+      "actual": {
+        "state": "unresolved",
+        "pattern": "—"
+      },
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph06-live-results.json",
+      "issue": null,
+      "reviewStatus": "draft_not_human_approved"
+    },
+    {
+      "id": "GOLD-DIAG-009",
+      "status": "PASS",
+      "expected": {
+        "state": "none",
+        "pattern": "—"
+      },
+      "actual": {
+        "state": "none",
+        "pattern": "—"
+      },
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph06-live-results.json",
+      "issue": null,
+      "reviewStatus": "draft_not_human_approved"
+    },
+    {
+      "id": "GOLD-DIAG-010",
+      "status": "PASS",
+      "expected": {
+        "state": "none",
+        "pattern": "—"
+      },
+      "actual": {
+        "state": "none",
+        "pattern": "—"
+      },
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph06-live-results.json",
+      "issue": null,
+      "reviewStatus": "draft_not_human_approved"
+    },
+    {
+      "id": "GOLD-DIAG-011",
+      "status": "PASS",
+      "expected": {
+        "state": "none",
+        "pattern": "—"
+      },
+      "actual": {
+        "state": "none",
+        "pattern": "—"
+      },
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph06-live-results.json",
+      "issue": null,
+      "reviewStatus": "draft_not_human_approved"
+    },
+    {
+      "id": "GOLD-DIAG-012",
+      "status": "PASS",
+      "expected": {
+        "state": "tentative",
+        "pattern": "ERR-ALG-03"
+      },
+      "actual": {
+        "state": "tentative",
+        "pattern": "ERR-ALG-03"
+      },
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph06-live-results.json",
+      "issue": null,
+      "reviewStatus": "draft_not_human_approved"
+    },
+    {
+      "id": "GOLD-DIAG-013",
+      "status": "PASS",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-04"
+      },
+      "actual": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-04"
+      },
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph06-live-results.json",
+      "issue": null,
+      "reviewStatus": "draft_not_human_approved"
+    },
+    {
+      "id": "GOLD-DIAG-014",
+      "status": "PASS",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-04"
+      },
+      "actual": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-04"
+      },
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph06-live-results.json",
+      "issue": null,
+      "reviewStatus": "draft_not_human_approved"
+    },
+    {
+      "id": "GOLD-DIAG-015",
+      "status": "FAIL",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-03"
+      },
+      "actual": {
+        "state": "tentative",
+        "pattern": "ERR-ALG-03"
+      },
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph06-live-results.json",
+      "issue": "DATASET-ISSUE-PH06-01",
+      "reviewStatus": "draft_not_human_approved"
+    },
+    {
+      "id": "GOLD-DIAG-016",
+      "status": "PASS",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-05"
+      },
+      "actual": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-05"
+      },
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph06-live-results.json",
+      "issue": null,
+      "reviewStatus": "draft_not_human_approved"
+    },
+    {
+      "id": "GOLD-DIAG-017",
+      "status": "PASS",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-05"
+      },
+      "actual": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-05"
+      },
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph06-live-results.json",
+      "issue": null,
+      "reviewStatus": "draft_not_human_approved"
+    },
+    {
+      "id": "GOLD-DIAG-018",
+      "status": "PASS",
+      "expected": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-05"
+      },
+      "actual": {
+        "state": "needs_probe",
+        "pattern": "ERR-ALG-05"
+      },
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph06-live-results.json",
+      "issue": null,
+      "reviewStatus": "draft_not_human_approved"
+    },
+    {
+      "id": "GOLD-TUTOR-001",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph07-integration.log",
+      "assertion": "H0 is unassisted",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-TUTOR-002",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph07-integration.log",
+      "assertion": "H0 is unassisted",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-TUTOR-003",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph07-integration.log",
+      "assertion": "H0 is unassisted",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-TUTOR-004",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph07-integration.log",
+      "assertion": "H0 is unassisted",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-TUTOR-005",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph07-integration.log",
+      "assertion": "H4 requires confirmation",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-TUTOR-006",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph07-integration.log",
+      "assertion": "H4 requires confirmation",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-TUTOR-007",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph08-integration.log",
+      "assertion": "confirmed H4 may exit transfer directly",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-TUTOR-008",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph08-integration.log",
+      "assertion": "a transfer hint explicitly exits measurement",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-TUTOR-009",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph07-integration.log",
+      "assertion": "syntax/unsupported/inconclusive never escalate",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-TUTOR-010",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph07-integration.log",
+      "assertion": "syntax/unsupported/inconclusive never escalate",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-TUTOR-011",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph07-integration.log",
+      "assertion": "syntax/unsupported/inconclusive never escalate",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-TUTOR-012",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/reviewed-gemini-simulation.log",
+      "assertion": "timeout uses owner-attested reviewed fallback",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-TUTOR-013",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph08-integration.log",
+      "assertion": "a question previously disclosed by a probe is excluded",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-TUTOR-014",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph08-integration.log",
+      "assertion": "one correct probe answer never creates a mastery",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-TUTOR-015",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph06-integration.log",
+      "assertion": "overlap probes distinguish causes",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-TUTOR-016",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph07-integration.log",
+      "assertion": "assistance survives edit/reload",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-TUTOR-017",
+      "status": "BLOCKED",
+      "reason": "The exact fixture requires an approved problem bank. Transfer mechanics passed but bank/pairing review remains pending.",
+      "evidence": "math-tutoring-review-packet.md",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-TUTOR-018",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph08-integration.log",
+      "assertion": "a failed independent transfer offers a different bounded remediation",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-STATE-001",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph04-integration.log",
+      "assertion": "old-step edit invalidates proof dependencies",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-STATE-002",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph05-integration.log",
+      "assertion": "concurrent same-key retry, stale response",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-STATE-003",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph04-integration.log",
+      "assertion": "two different keys racing at one revision",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-STATE-004",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph04-integration.log",
+      "assertion": "step append preserves exact raw and repeat",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-STATE-005",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph05-integration.log",
+      "assertion": "equivalent chain and isolated final answer complete only the pinned revision",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-STATE-006",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph04-integration.log",
+      "assertion": "guest B cannot discover, read or mutate",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-STATE-007",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/reviewed-gemini-simulation.log",
+      "assertion": "invalid_json uses owner-attested reviewed fallback",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-STATE-008",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph07-integration.log",
+      "assertion": "unexpected provider JSON, verdict changes",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-STATE-009",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph05-integration.log",
+      "assertion": "unavailable service preserves raw",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-STATE-010",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/reviewed-gemini-simulation.log",
+      "assertion": "503 uses owner-attested reviewed fallback",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-STATE-011",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/retention.log",
+      "assertion": "GOLD-STATE-011",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-STATE-012",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph07-integration.log",
+      "assertion": "H4 requires confirmation",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-STATE-013",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph08-integration.log",
+      "assertion": "a question previously disclosed by a probe is excluded",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-STATE-014",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph09-integration.log",
+      "assertion": "teacher cards always read the fixed synthetic source",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-STATE-015",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph09-integration.log",
+      "assertion": "anonymous and foreign-session reads cannot resolve",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-STATE-016",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/retention.log",
+      "assertion": "GOLD-STATE-016",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-STATE-017",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph04-integration.log",
+      "assertion": "expiry, idle timeout, revocation and bootstrap replay",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    },
+    {
+      "id": "GOLD-STATE-018",
+      "status": "PASS",
+      "evidence": "mvp-closure/closure-2026-11-06T00-47-37-644Z/ph09-integration.log",
+      "assertion": "duplicate source events and repeated verification",
+      "scope": "mapped executed integration assertions; development conformance, not human content approval",
+      "reviewStatus": "draft_requires_subject_and_pedagogy_review"
+    }
+  ]
+}

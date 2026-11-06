@@ -1,0 +1,557 @@
+{
+  "captured_at_riyadh": "2026-11-04T02:04:48+03:00",
+  "product_tests_run": 0,
+  "scientific_review": "not_performed",
+  "checks": {
+    "golden_group_counts": {
+      "parse": 40,
+      "math": 57,
+      "diagnosis": 18,
+      "tutoring": 18,
+      "state": 18
+    },
+    "golden_expected_counts_match": true,
+    "golden_total": 151,
+    "duplicate_golden_ids": [],
+    "math_status_counts": {
+      "verified_valid": 28,
+      "verified_invalid": 29
+    },
+    "parse_status_counts": {
+      "accepted": 20,
+      "syntax_error": 9,
+      "unsupported": 11
+    },
+    "math_kind_counts": {
+      "student": 53,
+      "guard": 4
+    },
+    "golden_markdown_rows_compared": 169,
+    "golden_content_mismatches": [],
+    "dangling_diagnosis_references": [],
+    "decision_count": 161,
+    "decision_status_counts": {
+      "قرار منتج/سياسة معتمد؛ اختبار التنفيذ لاحقًا": 42,
+      "اتجاه معتمد؛ إثبات تقني معلّق": 77,
+      "اعتماد مختص/QA معلّق": 40,
+      "مؤجل عن P0": 2
+    },
+    "decisions_without_owner_source_row": [],
+    "duplicate_decision_ids": []
+  },
+  "yaml": {
+    "executed": true,
+    "parser": "PyYAML 6.0.3",
+    "openapi": "3.1.0",
+    "info_version": "1.0.0-draft",
+    "paths": 27,
+    "operations": [
+      {
+        "path": "/api/v1/bootstrap",
+        "method": "get",
+        "operationId": "getBootstrap"
+      },
+      {
+        "path": "/api/v1/guest-sessions",
+        "method": "post",
+        "operationId": "createGuestSession"
+      },
+      {
+        "path": "/api/v1/guest-sessions/current",
+        "method": "get",
+        "operationId": "getCurrentGuestSession"
+      },
+      {
+        "path": "/api/v1/guest-sessions/current",
+        "method": "delete",
+        "operationId": "revokeGuestSession"
+      },
+      {
+        "path": "/api/v1/learning-sessions",
+        "method": "post",
+        "operationId": "createLearningSession"
+      },
+      {
+        "path": "/api/v1/learning-sessions/{learningSessionId}",
+        "method": "get",
+        "operationId": "getLearningSession"
+      },
+      {
+        "path": "/api/v1/skills",
+        "method": "get",
+        "operationId": "listSkills"
+      },
+      {
+        "path": "/api/v1/skills/{skillId}",
+        "method": "get",
+        "operationId": "getSkill"
+      },
+      {
+        "path": "/api/v1/problems",
+        "method": "get",
+        "operationId": "listProblems"
+      },
+      {
+        "path": "/api/v1/problems/{problemId}",
+        "method": "get",
+        "operationId": "getProblem"
+      },
+      {
+        "path": "/api/v1/attempts",
+        "method": "post",
+        "operationId": "createAttempt"
+      },
+      {
+        "path": "/api/v1/attempts",
+        "method": "get",
+        "operationId": "listAttempts"
+      },
+      {
+        "path": "/api/v1/attempts/{attemptId}",
+        "method": "get",
+        "operationId": "getAttempt"
+      },
+      {
+        "path": "/api/v1/attempts/{attemptId}/steps",
+        "method": "post",
+        "operationId": "createStep"
+      },
+      {
+        "path": "/api/v1/attempts/{attemptId}/steps/{stepId}",
+        "method": "put",
+        "operationId": "updateStep"
+      },
+      {
+        "path": "/api/v1/attempts/{attemptId}/steps/{stepId}",
+        "method": "delete",
+        "operationId": "deleteStep"
+      },
+      {
+        "path": "/api/v1/attempts/{attemptId}/verify",
+        "method": "post",
+        "operationId": "verifyAttempt"
+      },
+      {
+        "path": "/api/v1/attempts/{attemptId}/verifications/{verificationResultId}",
+        "method": "get",
+        "operationId": "getVerificationResult"
+      },
+      {
+        "path": "/api/v1/attempts/{attemptId}/probes",
+        "method": "post",
+        "operationId": "createDiagnosticProbe"
+      },
+      {
+        "path": "/api/v1/attempts/{attemptId}/probes/{probeId}/responses",
+        "method": "post",
+        "operationId": "answerDiagnosticProbe"
+      },
+      {
+        "path": "/api/v1/attempts/{attemptId}/hints",
+        "method": "post",
+        "operationId": "requestHint"
+      },
+      {
+        "path": "/api/v1/attempts/{attemptId}/remediation",
+        "method": "post",
+        "operationId": "startRemediation"
+      },
+      {
+        "path": "/api/v1/attempts/{attemptId}/transfer",
+        "method": "post",
+        "operationId": "startTransferCheck"
+      },
+      {
+        "path": "/api/v1/learning-episodes/{episodeId}",
+        "method": "get",
+        "operationId": "getLearningEpisode"
+      },
+      {
+        "path": "/api/v1/progress",
+        "method": "get",
+        "operationId": "getProgress"
+      },
+      {
+        "path": "/api/v1/progress/skills/{skillId}",
+        "method": "get",
+        "operationId": "getSkillProgress"
+      },
+      {
+        "path": "/api/v1/teacher-demo/summary",
+        "method": "get",
+        "operationId": "getTeacherDemoSummary"
+      },
+      {
+        "path": "/api/v1/teacher-demo/examples/{exampleId}",
+        "method": "get",
+        "operationId": "getTeacherDemoExample"
+      },
+      {
+        "path": "/internal/health/live",
+        "method": "get",
+        "operationId": "getNestLiveHealth"
+      },
+      {
+        "path": "/internal/health/ready",
+        "method": "get",
+        "operationId": "getNestReadyHealth"
+      }
+    ],
+    "schemas": 89,
+    "ref_occurrences": 390,
+    "unresolved_local_refs": [],
+    "external_refs": [],
+    "duplicate_operation_ids": [],
+    "schemas_summary": {
+      "MathStatus": {
+        "type": "string",
+        "enum": [
+          "verified_valid",
+          "verified_invalid",
+          "syntax_error",
+          "unsupported",
+          "inconclusive",
+          "service_error"
+        ]
+      },
+      "MathIssue": {
+        "type": "object",
+        "required": [
+          "reasonCode",
+          "messageAr",
+          "spanStart",
+          "spanEnd",
+          "spanUnit",
+          "hintKey"
+        ],
+        "properties": {
+          "reasonCode": {
+            "type": "string",
+            "description": "رمز ثابت مثل AMBIGUOUS_DIVISION.",
+            "maxLength": 80
+          },
+          "messageAr": {
+            "type": "string",
+            "description": "رسالة عربية قابلة للعرض دون traceback."
+          },
+          "spanStart": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "format": "int32",
+                "description": "موضع البداية بوحدات Unicode code points.",
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "spanEnd": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "format": "int32",
+                "description": "نهاية المدى حصريًا.",
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "spanUnit": {
+            "type": "string",
+            "enum": [
+              "unicode_codepoint"
+            ]
+          },
+          "hintKey": {
+            "anyOf": [
+              {
+                "type": "string",
+                "description": "مفتاح رسالة توجيهية.",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      },
+      "Step": {
+        "type": "object",
+        "required": [
+          "id",
+          "position",
+          "currentVersion",
+          "source",
+          "isActive",
+          "updatedAt"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "position": {
+            "type": "integer",
+            "format": "int32",
+            "description": "ترتيب الطالب يبدأ من 1، ولا تشمل معادلة السؤال الأصلية.",
+            "minimum": 1
+          },
+          "currentVersion": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 1
+          },
+          "source": {
+            "$ref": "#/components/schemas/MathSource"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "InternalMathEvidence": {
+        "type": "object",
+        "required": [
+          "type",
+          "domain",
+          "previousSolution",
+          "nextSolution",
+          "witness"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "counterexample",
+              "solution_set",
+              "rule_violation",
+              "none"
+            ]
+          },
+          "domain": {
+            "type": "string",
+            "enum": [
+              "reals"
+            ]
+          },
+          "previousSolution": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SolutionSet"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "nextSolution": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SolutionSet"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "witness": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Counterexample"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      },
+      "InternalMathContext": {
+        "type": "object",
+        "required": [
+          "attemptId",
+          "attemptRevision",
+          "problemRevisionId",
+          "notationProfile",
+          "domain"
+        ],
+        "properties": {
+          "attemptId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "attemptRevision": {
+            "type": "integer",
+            "format": "int32",
+            "description": "إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.",
+            "minimum": 0,
+            "maximum": 2147483647,
+            "example": 4
+          },
+          "problemRevisionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "notationProfile": {
+            "type": "string"
+          },
+          "domain": {
+            "type": "string",
+            "enum": [
+              "reals"
+            ]
+          }
+        }
+      },
+      "InternalMathTransitionRequest": {
+        "type": "object",
+        "required": [
+          "schemaVersion",
+          "requestId",
+          "context",
+          "transition"
+        ],
+        "properties": {
+          "schemaVersion": {
+            "type": "string",
+            "enum": [
+              "math-internal-v1"
+            ]
+          },
+          "requestId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "context": {
+            "$ref": "#/components/schemas/InternalMathContext"
+          },
+          "transition": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "fromKind": {
+                "type": "string",
+                "enum": [
+                  "problem",
+                  "step"
+                ]
+              },
+              "fromStepVersionId": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "toStepVersionId": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "fromRaw": {
+                "type": "string",
+                "maxLength": 256
+              },
+              "toRaw": {
+                "type": "string",
+                "maxLength": 256
+              }
+            },
+            "required": [
+              "fromKind",
+              "fromStepVersionId",
+              "toStepVersionId",
+              "fromRaw",
+              "toRaw"
+            ]
+          }
+        }
+      },
+      "InternalMathTransitionResult": {
+        "type": "object",
+        "required": [
+          "schemaVersion",
+          "requestId",
+          "engineVersion",
+          "notationProfileVersion",
+          "attemptRevision",
+          "status",
+          "reasonCode",
+          "evidence",
+          "issue"
+        ],
+        "properties": {
+          "schemaVersion": {
+            "type": "string",
+            "enum": [
+              "math-internal-v1"
+            ]
+          },
+          "requestId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "engineVersion": {
+            "type": "string"
+          },
+          "notationProfileVersion": {
+            "type": "string"
+          },
+          "attemptRevision": {
+            "type": "integer",
+            "format": "int32",
+            "description": "إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.",
+            "minimum": 0,
+            "maximum": 2147483647,
+            "example": 4
+          },
+          "status": {
+            "$ref": "#/components/schemas/MathStatus"
+          },
+          "reasonCode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "evidence": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/InternalMathEvidence"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "issue": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MathIssue"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

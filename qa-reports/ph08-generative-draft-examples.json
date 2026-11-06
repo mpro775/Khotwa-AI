@@ -1,0 +1,81 @@
+{
+  "actualGeminiCalls": 0,
+  "warningAr": "أمثلة محاكاة اصطناعية، ليست مخرجات استدلال فعلي من Gemini، وغير معتمدة تربويًا.",
+  "examples": [
+    {
+      "level": "H1",
+      "profile": {
+        "skillCode": "SK-ALG-04",
+        "errorCode": "ERR-ALG-01",
+        "diagnosisMode": "possible",
+        "phase": "remediation",
+        "transferExited": false
+      },
+      "textAr": "خذ وقتك، تأمل الحدين داخل القوس. يمكنك تدوين ملاحظتك قبل المتابعة.",
+      "acceptance": "PH08_GENERATED_VALIDATED",
+      "source": "simulated_provider_response",
+      "reviewStatus": "draft",
+      "reviewer": "مراد سيف — بانتظار المراجعة"
+    },
+    {
+      "level": "H2",
+      "profile": {
+        "skillCode": "SK-ALG-04",
+        "errorCode": "ERR-ALG-01",
+        "diagnosisMode": "possible",
+        "phase": "remediation",
+        "transferExited": false
+      },
+      "textAr": "لنراجع بهدوء، تساءل كيف يتأثر كل حد بالمعامل؟ إن لم تتضح الفكرة، اطلب مراجعة إضافية.",
+      "acceptance": "PH08_GENERATED_VALIDATED",
+      "source": "simulated_provider_response",
+      "reviewStatus": "draft",
+      "reviewer": "مراد سيف — بانتظار المراجعة"
+    },
+    {
+      "level": "H3",
+      "profile": {
+        "skillCode": "SK-ALG-04",
+        "errorCode": "ERR-ALG-01",
+        "diagnosisMode": "possible",
+        "phase": "remediation",
+        "transferExited": false
+      },
+      "textAr": "قبل أن تتابع، ابدأ بمراجعة أثر المعامل على حد واحد، ثم راجع الحد الآخر بنفسك. يمكنك تدوين ملاحظتك قبل المتابعة.",
+      "acceptance": "PH08_GENERATED_VALIDATED",
+      "source": "simulated_provider_response",
+      "reviewStatus": "draft",
+      "reviewer": "مراد سيف — بانتظار المراجعة"
+    },
+    {
+      "level": "H1",
+      "profile": {
+        "skillCode": "SK-ALG-04",
+        "errorCode": null,
+        "diagnosisMode": "unresolved",
+        "phase": "remediation",
+        "transferExited": false
+      },
+      "textAr": "لنراجع بهدوء، راجع طرفي المساواة. إن لم تتضح الفكرة، اطلب مراجعة إضافية.",
+      "acceptance": "PH08_GENERATED_VALIDATED",
+      "source": "simulated_provider_response",
+      "reviewStatus": "draft",
+      "reviewer": "مراد سيف — بانتظار المراجعة"
+    },
+    {
+      "level": "H1",
+      "profile": {
+        "skillCode": "SK-ALG-04",
+        "errorCode": "ERR-ALG-01",
+        "diagnosisMode": "possible",
+        "phase": "transfer",
+        "transferExited": true
+      },
+      "textAr": "بعد العودة إلى التدريب، لنراجع بهدوء، راجع الحدين داخل القوس. إن لم تتضح الفكرة، اطلب مراجعة إضافية.",
+      "acceptance": "PH08_GENERATED_VALIDATED",
+      "source": "simulated_provider_response",
+      "reviewStatus": "draft",
+      "reviewer": "مراد سيف — بانتظار المراجعة"
+    }
+  ]
+}

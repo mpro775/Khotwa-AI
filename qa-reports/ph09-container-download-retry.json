@@ -1,0 +1,25 @@
+{
+  "phase": "PH-09",
+  "recordedAt": "2026-11-04T15:50:25.667Z",
+  "failure": "Docker step failed: build --target ph09-test\nary/node:24.11.1-alpine3.22@sha256:2867d550cf9d8bb50059a0fff528741f11a84d985c732e60e19e8e75c7239c43\n#5 resolve docker.io/library/node:24.11.1-alpine3.22@sha256:2867d550cf9d8bb50059a0fff528741f11a84d985c732e60e19e8e75c7239c43\n#5 resolve docker.io/library/node:24.11.1-alpine3.22@sha256:2867d550cf9d8bb50059a0fff528741f11a84d985c732e60e19e8e75c7239c43 0.2s done\n#5 DONE 0.3s\n\n#4 [internal] load build context\n#4 transferring context: 44.64kB 0.1s done\n#4 DONE 0.2s\n\n#6 [node-build 2/9] WORKDIR /app\n#6 CACHED\n\n#7 [node-build 3/9] COPY package.json package-lock.json ./\n#7 CACHED\n\n#8 [node-build 4/9] COPY apps/api/package.json apps/api/package.json\n#8 CACHED\n\n#9 [node-build 5/9] COPY apps/web/package.json apps/web/package.json\n#9 CACHED\n\n#10 [node-build 6/9] COPY packages/contracts/package.json packages/contracts/package.json\n#10 CACHED\n\n#11 [node-build 7/9] RUN npm ci --include=optional --no-audit --no-fund && node --input-type=module -e \"await import('rolldown')\"\n#11 286.6 \n#11 286.6 added 384 packages in 5m\n#11 286.7 npm notice\n#11 286.7 npm notice New minor version of npm available! 11.6.2 -> 11.21.1\n#11 286.7 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.21.1\n#11 286.7 npm notice To update run: npm install -g npm@11.21.1\n#11 286.7 npm notice\n#11 DONE 287.1s\n\n#12 [node-build 8/9] COPY . .\n#12 DONE 0.4s\n\n#13 [node-build 9/9] RUN npm run contracts && npm run build --workspace @khotwa/api && npm run build --workspace @khotwa/web\n#13 0.622 \n#13 0.622 > khotwa-ai@0.1.0 contracts\n#13 0.622 > node tools/contracts.mjs\n#13 0.622 \n#13 2.811 Canonical OpenAPI mirror, 3 JSON mirrors, and generated public types generated.\n#13 5.812 \n#13 5.812 > @khotwa/api@0.1.0 build\n#13 5.812 > npm run generate && tsc -p tsconfig.json\n#13 5.812 \n#13 6.252 \n#13 6.252 > @khotwa/api@0.1.0 generate\n#13 6.252 > prisma generate --config prisma.config.ts\n#13 6.252 \n#13 9.024 Loaded Prisma config from prisma.config.ts.\n#13 9.024 \n#13 9.988 Prisma schema loaded from prisma/schema.prisma.\n",
+  "checks": [
+    {
+      "command": [
+        "docker",
+        "build",
+        "--target",
+        "ph09-test",
+        "-t",
+        "khotwa-ph09-test",
+        "."
+      ],
+      "exitCode": 4294967295,
+      "seconds": 301.7,
+      "stdout": "",
+      "stderr": "#0 building with \"desktop-linux\" instance using docker driver\n\n#1 [internal] load build definition from Dockerfile\n#1 transferring dockerfile: 2.50kB 0.0s done\n#1 DONE 0.1s\n\n#2 [internal] load metadata for docker.io/library/node:24.11.1-alpine3.22\n#2 DONE 0.6s\n\n#3 [internal] load .dockerignore\n#3 transferring context: 161B 0.0s done\n#3 DONE 0.1s\n\n#4 [internal] load build context\n#4 DONE 0.0s\n\n#5 [node-build 1/9] FROM docker.io/library/node:24.11.1-alpine3.22@sha256:2867d550cf9d8bb50059a0fff528741f11a84d985c732e60e19e8e75c7239c43\n#5 resolve docker.io/library/node:24.11.1-alpine3.22@sha256:2867d550cf9d8bb50059a0fff528741f11a84d985c732e60e19e8e75c7239c43\n#5 resolve docker.io/library/node:24.11.1-alpine3.22@sha256:2867d550cf9d8bb50059a0fff528741f11a84d985c732e60e19e8e75c7239c43 0.2s done\n#5 DONE 0.3s\n\n#4 [internal] load build context\n#4 transferring context: 44.64kB 0.1s done\n#4 DONE 0.2s\n\n#6 [node-build 2/9] WORKDIR /app\n#6 CACHED\n\n#7 [node-build 3/9] COPY package.json package-lock.json ./\n#7 CACHED\n\n#8 [node-build 4/9] COPY apps/api/package.json apps/api/package.json\n#8 CACHED\n\n#9 [node-build 5/9] COPY apps/web/package.json apps/web/package.json\n#9 CACHED\n\n#10 [node-build 6/9] COPY packages/contracts/package.json packages/contracts/package.json\n#10 CACHED\n\n#11 [node-build 7/9] RUN npm ci --include=optional --no-audit --no-fund && node --input-type=module -e \"await import('rolldown')\"\n#11 286.6 \n#11 286.6 added 384 packages in 5m\n#11 286.7 npm notice\n#11 286.7 npm notice New minor version of npm available! 11.6.2 -> 11.21.1\n#11 286.7 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.21.1\n#11 286.7 npm notice To update run: npm install -g npm@11.21.1\n#11 286.7 npm notice\n#11 DONE 287.1s\n\n#12 [node-build 8/9] COPY . .\n#12 DONE 0.4s\n\n#13 [node-build 9/9] RUN npm run contracts && npm run build --workspace @khotwa/api && npm run build --workspace @khotwa/web\n#13 0.622 \n#13 0.622 > khotwa-ai@0.1.0 contracts\n#13 0.622 > node tools/contracts.mjs\n#13 0.622 \n#13 2.811 Canonical OpenAPI mirror, 3 JSON mirrors, and generated public types generated.\n#13 5.812 \n#13 5.812 > @khotwa/api@0.1.0 build\n#13 5.812 > npm run generate && tsc -p tsconfig.json\n#13 5.812 \n#13 6.252 \n#13 6.252 > @khotwa/api@0.1.0 generate\n#13 6.252 > prisma generate --config prisma.config.ts\n#13 6.252 \n#13 9.024 Loaded Prisma config from prisma.config.ts.\n#13 9.024 \n#13 9.988 Prisma schema loaded from prisma/schema.prisma.\n"
+    }
+  ],
+  "dbProof": null,
+  "liveProof": null,
+  "testSummary": null
+}

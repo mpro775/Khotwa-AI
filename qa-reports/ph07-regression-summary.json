@@ -1,0 +1,23 @@
+{
+  "phase": "PH-07",
+  "recordedAt": "2026-11-04T04:51:27.094Z",
+  "mode": "PH07 disabled; previous reports restored byte-for-byte",
+  "results": [
+    {
+      "phase": "04",
+      "exitCode": 0,
+      "expectedInheritedReferenceFailure": false
+    },
+    {
+      "phase": "05",
+      "exitCode": 0,
+      "expectedInheritedReferenceFailure": false
+    },
+    {
+      "phase": "06",
+      "exitCode": 1,
+      "expectedInheritedReferenceFailure": true
+    }
+  ],
+  "unexpectedFailure": false
+}

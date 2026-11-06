@@ -1,0 +1,59 @@
+--- a/apps/api/src/ai-tutor.ts
++++ b/apps/api/src/ai-tutor.ts
+@@ -25,7 +25,7 @@
+   outputTokens: number | null;
+ }
+ export interface AiTutorPort {
+-  readonly kind: "disabled" | "test_double";
++  readonly kind: "disabled" | "test_double" | "gemini";
+   readonly enabled: boolean;
+   readonly maximumCostUnits: number;
+   adaptHint(context: HintContext, signal: AbortSignal): Promise<AiReply>;
+@@ -67,7 +67,7 @@
+     maxOutputTokens: input.maxOutputTokens,
+   };
+ }
+-const schema = {
++export const HINT_REPLY_SCHEMA = {
+   type: "object",
+   additionalProperties: false,
+   required: [
+@@ -89,7 +89,7 @@
+     isAnswerRevealed: { type: "boolean" },
+   },
+ };
+-const validate = new Ajv({ allErrors: false, strict: true }).compile(schema);
++const validate = new Ajv({ allErrors: false, strict: true }).compile(HINT_REPLY_SCHEMA);
+ const unsafe =
+   /[<>`A-Za-z0-9\u061c\u200b-\u200f\u202a-\u202e\u2066-\u2069\ufeff]|https?:|www\.|(?:ضعيف|لا تفهم|لا تعرف|متقن نهائي|أتقنت نهائي|نسبة|ذكاء)|[%٪]/u;
+ export function safeTeachingText(text: string): boolean {
+--- a/apps/api/src/business.ts
++++ b/apps/api/src/business.ts
+@@ -28,6 +28,7 @@
+ import { DiagnosisService } from "./diagnosis";
+ import { TutoringService, TutoringLimits } from "./tutoring";
+ import { NoExternalAi } from "./ai-tutor";
++import { ph08TutoringFromEnvironment } from "./ph08-gemini";
+ import { LearningService } from "./learning";
+ import { ProgressService } from "./progress";
+ import { TeacherDemoService } from "./teacher-demo";
+@@ -745,10 +746,6 @@
+     {
+       provide: TutoringService,
+       useFactory: (store: Store, math: MathGateway, ai: NoExternalAi) => {
+-        if (process.env.AI_ENABLED === "true")
+-          throw new Error(
+-            "No external AI provider is approved; AI_ENABLED must remain false",
+-          );
+         const active = process.env.PH07_API_ENABLED === "true";
+         const limit = (name: string, fallback: number) =>
+           active ? numberSetting(process.env[name]) : fallback;
+@@ -763,7 +760,7 @@
+           globalCostUnits: limit("PH07_GLOBAL_COST_UNITS", 1000),
+           maxParallel: limit("PH07_MAX_PARALLEL", 2),
+         };
+-        return new TutoringService(store, math, ai, limits, active);
++        return ph08TutoringFromEnvironment(store, math, ai, limits, active);
+       },
+       inject: [Store, MathGateway, NoExternalAi],
+     },

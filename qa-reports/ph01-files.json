@@ -1,0 +1,926 @@
+{
+  "phase": "PH-01",
+  "implementationCommit": "bf1acf23d9fde59aad969eaf3f43f90272b8c950",
+  "note": "Includes the pre-existing local PH-00 specification baseline first put under version control; not all lines were authored in PH-01. Files with currentSha256 are measured before final documentation commit. This index omits its own hash to avoid recursion.",
+  "files": [
+    {
+      "path": ".dockerignore",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "da0a748558c38263b08abfee962e49c43d450a8486ba5f05507a854e1efd025a",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": ".env.example",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "3e678b83b9f813c3fecf8db952b10555a1f1d23645f874b2c0404960d3c8457a",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": ".gitattributes",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "19a5318b215de32130a8ab5e62152392fa5b62e132842467b67482d9f4fd13cd",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "4f13e00d88436ee51be23d1c328c3018539082dd51be100b6ffda3caa17032a9",
+      "kind": "foundation_source"
+    },
+    {
+      "path": ".gitignore",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "a6a115b8a7a8e6612d394bcd6827f778a5a943860b71b1bcd40ab38d73dbbb9c",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": ".prettierignore",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "0fb8868d8b91d5a0a4886239a5c3d45d8d8e8a19eded0d1474361bbdeccd81d7",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "AGENTS.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "c1853093cc019b4e8d1d7a4cc9bfc36dab3354770d4cc31982281ad26f9ad821",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "Dockerfile",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "beb4e94310f3e95495f7688d8ea170d784185618d58a421b72e61ba3cb4ac40d",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "README-GATE0-FINAL.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "a46548e33a32055024f9207f3e5e73e944644eb2d94edd4ceb80d74138475502",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "README.md",
+      "change_in_implementation_commit": "M",
+      "currentSha256": "daf66a265786a7f2291ea350e7dc3ff541a095202326c97551f1b99894a73eeb",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "agent-reports/TASK-001.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "eff747f183ab203c3e32ce62df77d111d1dd977a0bd57240a86e29d0305a1eab",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "agent-reports/TASK-002.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "141e15a7f2487e0934d708002c50bc2f5f0e0d71749371af6e55cfccab3d0ec4",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "agent-reports/TASK-003.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "638136dbf7ca124e89789583f2debbc6dd3bad3bb34ab16cc060b8820979310e",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "agent-reports/TASK-004.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "6002f8215bf5a509ee75382a6b0ae7e4f247d2b8d672fc2ec20093996448ae4f",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "agent-reports/TASK-005.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "aedfcbda48dba2cdebd79af6ebc90b2b058d38d996190eacad77bcb89a28b179",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "agent-reports/TASK-006.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "0e4da9fa83f1b0b5093677fd9829440337e8c9197697a248af5852e229a28c1f",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "agent-reports/TASK-007.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "8f5bc9736a69a59be317f81454c5e10a1746278b577d84cd5bc114596cbadc8a",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "agent-reports/TASK-008.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "681934bf5c7407b5c504feeaa6f27aa49dd365a53a825c2810794402649483e1",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "apps/api/package.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "d43255f43000b3fc34f6aab7213c5d8c1b3385ada8f7f55ad7de008a0b0d6455",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "apps/api/src/health.ts",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "712a190fdc2c5818f97f78327f5bb0c4161e46ba98790cc59515cff0acdb6e6a",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "apps/api/src/http.ts",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "d8eb95126bd3cf31e0ba19d0f01670a97c1a49043b0cd5c7739089fcc2b7d5fd",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "apps/api/src/main.ts",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "c207ca4fbe8bbc195f8e134efd1189e7f326a194d745eaca23d67032b710ea46",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "apps/api/tsconfig.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "d13ac59498cd5a78aeed16dc3c84c8632e1b52c620595e77272fc55f2a197eef",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "apps/web/index.html",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "f6a6f47fbdc602b231a925ffde66fdc8ca070c004775ad3609a3818f068da17e",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "apps/web/nginx.conf",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "948c227f5e2c3d2d0faa6ff1672247f93c1bb61ff1fefefef33d3ba83fed78dd",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "apps/web/package.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "b5c8706459234a4ef96761385bf41a9604f7f0e28f4d3e9cb22e5f55ab28d409",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "apps/web/src/main.tsx",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "2413880da89f9facb89e4121da103a2cce4c412352b618402c5ef71a4fd61fb7",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "apps/web/src/style.css",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "d8aaed357166faa713489dbc709603449e7bd0dd9ced48257a74b8464fa11426",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "apps/web/tsconfig.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "71515d10cdc478a7ee3840dea56691f5fa113c50335d5eed44892fadb04204ac",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "apps/web/vite.config.ts",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "b5e6874e015fbf140299ceaea3d294e65ad4b334e90e9648dbcfd9b258324b5a",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "compose.yaml",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "62828539e09f360d63b8314a99b35b23cd0606a0803436d1c0e2b8738bb4ca37",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "docs/00-PROJECT-VISION.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "6c54baa0b0b3cb47f9f21c0692c4fa246deb0c2017e31dcb119560804814ac70",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/01-PRD.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "ac55a25ba2a16860915755f5fe77fdeb582795d0978496ca7090f84845b33952",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/02-MVP-SCOPE.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "e5f6edc24c5109d0de015bef0fb188a33d61fbcc5d289ef226ffd0af9f4a436c",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/04-ARABIC-NOTATION.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "e75fb981015d565946a32994e35f9035db1d61fc6365b6048d77c0f4ce067ca7",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/05-CURRICULUM.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "2c4cabb4db88f4483f42083d6500571d5f741bafe2a3b216ebeb3e047fb3076d",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/06-MISCONCEPTIONS.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "3658eae4bb81842285f62ef2d8e8cca5c3219314bb3e59f779d76c08e8b76f33",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/07-TUTORING-POLICY.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "f4cb0a7cb19cec4c57b7ee814b7e1fcd0a289bf667e8bee9726a3bbb68c0b56a",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/08-UX-DESIGN.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "80c3d395ba248129a47195a9c736faed9f2a3cfcb44389d6372d653d34979903",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/09-SYSTEM-ARCHITECTURE.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "ca2d132254fd7ed054bd25740c6a098f68117e655ae7733f588cfa599f8c362b",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/10-MATH-ENGINE.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "dd6478d13520ac4da9d827b6ff1738edec125cd9d60da8c86a6537174cc339b0",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/11-DATA-MODEL.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "7253e3abde1cd442058e5fa492bf576d91b4831b3006d94001a9c90e40073290",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/12-API-CONTRACT.yaml",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "c8b5027ec74ea9b960c3428a0d3f1e221320d46c320507713549f5892eb5ecf3",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/13-AI-ENGINE.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "991e5b8f542a3e8de895b09dab28b9ab95cdebd85a6373937773ab8a8bf741d3",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/14-GOLDEN-DATASET.cases.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "1c3e5fec509a8fad930a3d05e9f5b764b6b060281ec7277a32575511095b7f12",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/14-GOLDEN-DATASET.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "cb46458dc172cecfb0c111da28f223c221bfe082be89fc147920063e494b8f92",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/15-TEST-AND-ACCEPTANCE.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "d9c0a06aafcad6006775e3285df0f76db225614163b40025c40d4ab51c278f5d",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/16-SECURITY-PRIVACY.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "e448f9838baaac6b24cee430f374ec81b38229ff865bf424cccbe6489959e6d5",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/17-IMPLEMENTATION-PLAN-GATE0-ADDENDUM.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "3e68a13de5341b153f6cccba70e60b577daf1dc1fe3319d507f6ea9ef935a59b",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/17-IMPLEMENTATION-PLAN.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "0905c40386ab2d7baf1ddaf1a4f51779cd4eab1262f98c835474344301f1984b",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/AGENTS.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "66578e93195c545371622357b24ee30cfa5323150e357d381a4c775d66553ca8",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/PROJECT-DECISIONS.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "b3f718e37702ac1f3fc2adcdda948015855a50bcffa8bfb85edbdedec0c30c3a",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/contracts/golden-adapter-v1.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "d7b2d6a6f1fd065cda04c9719ad4dc7d8a38d9397ff7943a6cb662a0acd078fd",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/contracts/golden-fixtures-v1.schema.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "d328ee16d720ef80fb5181fec8d500fe2cc18523ab912e15a2e39d72434f72a3",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/contracts/math-internal-v1.examples.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "6994a1b0723810a709a09a15a3e01959d766dd5cccb175db660577a5af0fb275",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/contracts/math-internal-v1.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "a960c5029389d8522317a79479e91eaf3d52e9647fa2258158f7a4af6cd88dc0",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "docs/contracts/math-internal-v1.schema.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "d72855a399c9100c5b1e54a5cdeb884a18da1e8bf53805ee23da2c05a8d874dc",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "eslint.config.mjs",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "6359b7a6cae126187e1857ab30ab1b2252d861ac07520a718c66d2ecab5d672f",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "instructions/AGENT-FINALIZE-GATE0-THEN-PH01.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "3453ff56982d9bb0815736b3627f5384f03aac99657a9d8dfb885ab0cab43d9d",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "instructions/PH01-START-ORDER.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "59a84a440e3449f94ddb1bbed344fa3c11c5250a5c51a7cc3b5c1586a5280a63",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "package-lock.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "d5b4fd511e6739a7179c88b7940597b27e2bc8ec3cbe0577f8374f0a9b0817e1",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "package-manifest.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "42d411fc1606d2fa4cfda4f8a6e703e4fa5ef1f23a21efc408f70a60f186e575",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "package.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "9fc1115eee23a63b010164c9185bf09ccd8cb0cce1bf1f8f7310cfa1e97c01bb",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "packages/contracts/openapi.yaml",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "c8b5027ec74ea9b960c3428a0d3f1e221320d46c320507713549f5892eb5ecf3",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "packages/contracts/package.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "653dc2d3fee9720360428e9f12cc6798f7d16e3c1e7660d5a46ffb62efdd8013",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "packages/contracts/schemas/golden-fixtures-v1.schema.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "d328ee16d720ef80fb5181fec8d500fe2cc18523ab912e15a2e39d72434f72a3",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "packages/contracts/schemas/math-internal-v1.examples.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "6994a1b0723810a709a09a15a3e01959d766dd5cccb175db660577a5af0fb275",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "packages/contracts/schemas/math-internal-v1.schema.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "d72855a399c9100c5b1e54a5cdeb884a18da1e8bf53805ee23da2c05a8d874dc",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "packages/contracts/src/generated/public-api.d.ts",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "7782006c3f70c31eda657787014093faa746077d5b0ce2b404e8328e62148500",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "packages/contracts/src/index.ts",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "b29fb05ec8b4d6509ce4e96c89d8357fca39a2d3ac37dacde47711cfcf81c6d8",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "packages/contracts/tsconfig.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "63b2e4374a9b1e3706d55fb1f1b862b39fbb3412663bbc4ccca5eb6c6dd725d2",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "planning/GATE0-CONTRACT-FREEZE.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "39d44f0ce2e73a2b9ebbb79cf63dbc6ca37bc88bbb3648757939996a37a66184",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/GATE0-HUMAN-SIGNOFF-REGISTER.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "bb42e2f0153bbd91abf4690091bd0e2494a42841aa11ea6f87d5c643b317d849",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/GATE0-OWNER-DELEGATED-DECISION.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "87cf8f230878e61de52dfc120ea8d2d0f18a29f4446b3e9551eca38c4c7c325b",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/GATE0-OWNER-EVIDENCE-CLARIFICATION.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "fc98aff2c6826aaff620986ca11116f555f380c2e9ad94f930617b2c09b21480",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/GATE0-OWNER-FINAL-DECISION.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "7f6d345f6f653c4e6f5027bffec386e10ef46d98de2e058f74558e07c24a4886",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/approval-evidence.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "9ba09bd10327f79f528c478bc8be366583c61f046a45c47ee7ed49b489642901",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/approvals/ENGINEERING-QA-SECURITY-OWNER-DELEGATED-APPROVAL.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "dae76450cd709e9458dabf49a763c0f788b25026b5bec8119a6e342eb8abfe74",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/approvals/MATH-SCOPE-OWNER-DELEGATED-APPROVAL.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "aff569ff4178c3abf0b92e7f76753829074e4d1204ab187632ffecbef3013eed",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/approvals/incoming/MATH-CURRICULUM-REVIEW-GATE0-UPDATED.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "75f0f5bb56b2eabddeba7faefce50395e45ffda3a0f4cc3c3a54167a169b5716",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/approvals/incoming/MATH-CURRICULUM-REVIEW-GATE0.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "94fda7e720c7f7db44a51942fff0e0f0ef2622b552abd9c3372beba0ddf68368",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/approvals/incoming/MATH-TEACHER-APPROVAL-GATE0.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "5637003833384a8445f59a10c1fa0160c67ef23124d1449f19633aab79c38a18",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/approvals/incoming/PH00-FINAL-CONTRACT-QA-SECURITY-REVIEW.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "097e334245d70f82d799537fc0af4d3319df7badb8733e99ddc9a0e4770f3d3a",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/approvals/incoming/PH00-MOHAMMAD-MURAD-INDEPENDENT-AUDIT.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "c5b9ff24597fc2a2e70f8846839780d243b17e3b38314b75d6cffc8ac08b3026",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/approvals/incoming/PH00-MOHAMMAD-MURAD-SIGNOFF-FORM.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "033cff5e4f4d8d5a3f897cb7cc3b0edb47b15c98bb822817600ff077c4a1ebf8",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/audit_ph00.py",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "6cd0869049d2f3c16f3fc0be1b168c4be9e041c5928dba23157e9d5cd1d49822",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/contract-baseline.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "7cfd667c15a3c908ead3efa72b806ad3db9abff8941b15ea4325a19a36e4e86e",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/decision-inventory.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "9423911a543e5338bc23feae4b08a90e8456a6a8598682b3e87e42e750aa43b8",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/decisions.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "81535646764bd853b36f06cfcfe81b85fba5cdba932fd9be838980cf88549ba3",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/document-review.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "960168ce03f4e648735d37a9e585868168ee2aaaa38b4a8f2288833d085a24df",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/gate0-closure.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "d42d3a4dea7fb58502174615cb15561bc0e82f7c5cd75719b7f351584d3529cd",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/gate0-current-contract-inventory.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "caeee52fcee03e84f2cc8330983cdfcb0df95b55922159219a9469ff724123dd",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/gate0-freeze-manifest.template.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "cbc789d21e3937af356dfb0476a55f34f75cfc5241f26f68eb9bec08843fe081",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/gate0-owner-delegation.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "bc6863e77b3b9745c3fb645e6b0004e0788a5b2b9ee5c684959b0a19e8576276",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/input-and-content-baseline.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "26860795c6bffe73721f1c73023b7836401f8d5b10289d0ce506dfb4e026f367",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/owners-and-gates.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "ecbf27651a288b9f3abf361164cfbc29b8a0bbe2ed8bf0611957803d2e27a825",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/ph01-plan.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "545d8162232318b71684ad43cae83b267ddd3f77819073ed735f3fb91fef92bc",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/review-pack.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "e8a346cb011236b3e0deee38ced40362f58aa9a27be8f04c853dec136700802b",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/source-baseline.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "551372b158e3b38195c6336587b1e221dbaa5501415ffa108f6aa3c752954e80",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/spec-conflicts.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "aa309b85e5a323245c56dd318f3fee0f8e7ad8c54ca9ead059d1a2300590492a",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "planning/technical-decisions.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "a5de1b40ca341a40197e3f040f13074942afda4f09ab752ec4fff59af9d15088",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "pyrightconfig.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "49a6cc12e76ab217ca6257cf4cc943d21dd950887da6079c061ff8144a337945",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa-reports/GATE0-FINAL-RECONCILIATION.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "bdfd8fbd9a898d59572cc166713bb7bd7e7b4497da2bef5e8e2555b37626c816",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa-reports/README.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "b7d8ef43f69f130dc5cccce8657703c4d89e43b9062c614d9551a0716f07422e",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa-reports/gate-0.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "9430330ea679781feef095ed5a3134e9212f851e42c4bfa46a37ff75741f7505",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa-reports/gate0-evidence-preflight.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "c6afbbd5279b62de753650eae825dba081345ade5c07ac8d247b06939138740a",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa-reports/gate0-final-reconciliation-before.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "3aafbda21f2d33261f112f67ebcec12553b2f993324f6921752f4e131b56dea0",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa-reports/gate0-overlay-import.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "21e5b0a60e03c35d9a068258129f35fafc779d5a796c3a42ffbae70fcda9000f",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa-reports/gate0-owner-delegation-before.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "5d9c02957d2986c27211385feed689d1091d434b23f8db0afab7377a9918cec7",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa-reports/gate0-owner-delegation-preflight.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "3392b929af6d42a476352e834d5d55f23580902c0190056e32989c2041ebd193",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa-reports/gate0-owner-delegation-validation.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "723ec992fc5d99e0d694bfd1c253aebffde5f94845d3de1f9f46cac133f7632e",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa-reports/gate0-reconciliation-changes.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "785ea826d458a7e2fa9ecb9a0a7418c2687d68faeac01fd89fbbc4b2df8eeec3",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa-reports/gate0-reconciliation-checks.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "23fb43104f50aa5a541675b9bfb0e24e72e1db24b0042efb4b9c15c51d1ed40b",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa-reports/gate0-reconciliation-integrity.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "7fac059c0d2b058ca46c3f2665980c841871ca28e8ff835007c756fc97258cc3",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa-reports/golden-normalized.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "8ced1102fc80af02077499175b1a1976a90e8bde7f9a96059046b917b05389a5",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa-reports/ph00-correction-before.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "6e0a5f6f235ced915bbd720669dd4878de151a7384e9b8ab24ee9f9b0e981cbc",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa-reports/ph00-correction-files.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "3f3843deb1cfebc5ad6ccbd9deb679df1d27fd3b062defdba4e8c9ddc51e7d7b",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa-reports/ph00-correction-report.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "80c562be1bd81cf1494c97435bf4aa96aa79950345694fb5d9c104fc3c7f74f1",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa-reports/ph00-correction-validation.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "c70ea9fa8473564aaa8745a2e206467aff4f5fc05687026a2e9d2aec35b3ddaa",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa-reports/ph00-delivery-verification.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "55a38cc168cc8c73e081c552fabc2ebc0836116a6fed239cf61fb34e58efd029",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa-reports/ph00-document-audit.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "df75ca6fb5e365d6bec7629bc0631a05f77f9c88bf3ed287c79fbccfe3ba3b36",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa-reports/ph01-checks.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "ca1fa2a0fc12dbb7c911ddf7c31fda84858b7b05260b7051889239671fad4317",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa-reports/ph01-container-commands.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "57041fc87633fb46964536bdce5be9ddf0ade93dd7bf9f866fb199ea2c05b029",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa-reports/ph01-source-integrity.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "77043770c921716b6e1a34d594461c85ac6d63185f63c064b34210caf64e5930",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa/golden-review-register.md",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "8a29775dc0c300749d8cd8d1187c2dd50e14848945c1a7fbbb5d09b3c0d19d8f",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa/golden_adapter.py",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "25e84a5500d96848c9743330fa026d1c496010d687dfff940ccb725c1aa863b2",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa/validate_ph00_correction.py",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "8043b5c8a2660d22dd05dacd7a69bc9f3911fbf7c8c67479570e95faf5a319cc",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "services/math-engine/pyproject.toml",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "3917b33d89770e3fd0bbf1c473d87d926ec43f86eeb6c4544e1a36699a862082",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "services/math-engine/requirements-dev.lock",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "ebe7a48a7c4e0fb5a9cda99b1f41ddc0490039b41b8da789bfa259b96c4998be",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "services/math-engine/requirements.lock",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "a5028e29657998bdeca951e3f696d421b46efc36bcb573acda11ded7bc4b3e0a",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "services/math-engine/src/khotwa_math/__init__.py",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "03f44bdb562e8b34a2c1ddd625ff88972fffa947f8b2d23954c0d66f16f7b94c",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "services/math-engine/src/khotwa_math/__main__.py",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "2bd7338b0d66b8258bf7d15879b64025e90c58e9988f4a745629aa4f2e13669e",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "tools/check-foundation.mjs",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "260d7fb28b3d6ab438513aec230c4cbcbafc5436547d42c0dacc3bad21fb886e",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "tools/compose-smoke.mjs",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "bf8d9c9c9e979142b33994f77ed413a839f19c033c52e49b6ac3a71a775b57b7",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "tools/contracts.mjs",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "2703496419869328553c935de821ed954cde0a8457381f145057f0a4f9791b81",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "tools/dev_env.py",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "0ff62cca0e1cd9c08cb1735064eb2fabdde3fe783a69f6a9ba6838de1a759858",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "tools/python-task.mjs",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "5e3f132f2ebbc20fbef0269011437bc603040d4281e58a8fa9f11fad9de8c139",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "tools/seed_demo.py",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "23c9dd1fdb091ed11bcdb3e456fc4f8782bce80dbfca1f78d6a22a5590f2386b",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "tools/smoke.mjs",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "91c8adfa67573090160df73248b61e4912f2b4cc9346f2fbe82f487eaa640e8d",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "tools/verify-ph01.mjs",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "1c3af370feea86ad161a9292292c7720ee490fb27bff3a617aa37f6073d165f2",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "tools/verify_gate0_evidence.py",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "9d0698ac47598c4461b34baeea5ef8036790cf512af052831668518ee6a88ac8",
+      "kind": "foundation_source"
+    },
+    {
+      "path": "tsconfig.base.json",
+      "change_in_implementation_commit": "A",
+      "currentSha256": "4a299e962345448d9b2f4405329875989767afbec1538117fdf1ecb2b159b19e",
+      "kind": "governance_documentation_or_baseline"
+    },
+    {
+      "path": "qa-reports/ph01-delivery.md",
+      "change_in_delivery_commit": "added",
+      "currentSha256": "73eb15ad143d2490fc240599618ab8134d6e2096ba3b315b7e5303a2b6c65e38",
+      "kind": "delivery_evidence"
+    },
+    {
+      "path": "qa-reports/ph01-compose-checks.json",
+      "change_in_delivery_commit": "added",
+      "currentSha256": "209d98d52559c0f9a2f773fe5c6e6a0ec1c6283df2dbd6af1a125596e99d6e73",
+      "kind": "delivery_evidence"
+    },
+    {
+      "path": "planning/ph01-status.json",
+      "change_in_delivery_commit": "added",
+      "currentSha256": "465cef57831b608ac1fe7f81dc064ef52bbc0df177fbb3a817154fb6ac3e3171",
+      "kind": "delivery_evidence"
+    },
+    {
+      "path": "agent-reports/TASK-011.md",
+      "change_in_delivery_commit": "added",
+      "currentSha256": "6b832f9c87393e538cc0f0f681ddb48e0a68c827b08765caa8051286c6a83584",
+      "kind": "delivery_evidence"
+    },
+    {
+      "path": "agent-reports/TASK-012.md",
+      "change_in_delivery_commit": "added",
+      "currentSha256": "37551d30a6a78e6b0ba694a77483f5db4e50132547474e3b3a7193f0e7ad4309",
+      "kind": "delivery_evidence"
+    },
+    {
+      "path": "agent-reports/TASK-013.md",
+      "change_in_delivery_commit": "added",
+      "currentSha256": "b096e71b0d394bae4d9ad4a44485eb227eb42fdd58647600c741fe13151aa456",
+      "kind": "delivery_evidence"
+    },
+    {
+      "path": "agent-reports/TASK-014.md",
+      "change_in_delivery_commit": "added",
+      "currentSha256": "66b734ef752c0617c7ae0b7dc3092b1a6cadb6ee2694207752fa8d2f8345b8d6",
+      "kind": "delivery_evidence"
+    },
+    {
+      "path": "agent-reports/TASK-015.md",
+      "change_in_delivery_commit": "added",
+      "currentSha256": "36bfce90d5787026857e342c8e00382333aefabf0a286ac0108da74b51e61572",
+      "kind": "delivery_evidence"
+    },
+    {
+      "path": "agent-reports/TASK-016.md",
+      "change_in_delivery_commit": "added",
+      "currentSha256": "34a02adfbb111c60ba0a421c60f4cb07a0e5469b3a0e4244def6d8067daac6ad",
+      "kind": "delivery_evidence"
+    },
+    {
+      "path": "agent-reports/TASK-017.md",
+      "change_in_delivery_commit": "added",
+      "currentSha256": "6adf93bfece69f5bde0f9027becb9f13e669e890050e5b1480be4dbc36b48555",
+      "kind": "delivery_evidence"
+    }
+  ],
+  "excluded": [
+    ".local",
+    ".venv",
+    "node_modules",
+    "ZIP archives",
+    "pre-existing root deletions"
+  ]
+}

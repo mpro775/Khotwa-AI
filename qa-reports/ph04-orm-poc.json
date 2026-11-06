@@ -1,0 +1,97 @@
+{
+  "phase": "PH-04",
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "khotwa-ph01_backend",
+    "--env-file",
+    ".local/ph04-poc.env",
+    "khotwa-ph04-orm-poc",
+    "sh",
+    "-c",
+    "npx prisma migrate reset --force && node poc.mjs && npx prisma migrate reset --force && node poc.mjs replay"
+  ],
+  "exitCode": 0,
+  "results": [
+    {
+      "prisma": "7.10.1",
+      "node": "v24.11.1",
+      "postgres": "17.6",
+      "checks": [
+        {
+          "name": "postgres_17_6_isolated_database",
+          "passed": true
+        },
+        {
+          "name": "prisma_7_10_1_adapter_crud",
+          "passed": true
+        },
+        {
+          "name": "partial_unique_active_position",
+          "passed": true
+        },
+        {
+          "name": "partial_index_allows_inactive_history",
+          "passed": true
+        },
+        {
+          "name": "composite_fk_rejects_cross_owner",
+          "passed": true
+        },
+        {
+          "name": "arabic_raw_round_trip",
+          "passed": true
+        },
+        {
+          "name": "check_constraint",
+          "passed": true
+        },
+        {
+          "name": "interactive_transaction_rollback",
+          "passed": true
+        },
+        {
+          "name": "atomic_revision_race_one_winner",
+          "passed": true
+        },
+        {
+          "name": "idempotency_unique_race",
+          "passed": true
+        },
+        {
+          "name": "row_lock_with_prisma_transaction",
+          "passed": true
+        },
+        {
+          "name": "explicit_down_migration_isolated_poc_only",
+          "passed": true
+        }
+      ],
+      "passed": 12,
+      "scope": "isolated synthetic capability proof; not final ORM approval"
+    },
+    {
+      "prisma": "7.10.1",
+      "node": "v24.11.1",
+      "postgres": "17.6",
+      "checks": [
+        {
+          "name": "postgres_17_6_isolated_database",
+          "passed": true
+        },
+        {
+          "name": "migration_replay_clean_tables",
+          "passed": true
+        }
+      ],
+      "passed": 2,
+      "scope": "isolated synthetic capability proof; not final ORM approval"
+    }
+  ],
+  "stdout": "Datasource \"db\": PostgreSQL database \"ormpoc\", schema \"public\" at \"khotwa-ph04-poc-db:5432\"\n\nApplying migration `0001_poc`\n\nDatabase reset successful\n\nThe following migration(s) have been applied:\n\nmigrations/\n  └─ 0001_poc/\n    └─ migration.sql\n\nPH04_POC_RESULT {\"prisma\":\"7.10.1\",\"node\":\"v24.11.1\",\"postgres\":\"17.6\",\"checks\":[{\"name\":\"postgres_17_6_isolated_database\",\"passed\":true},{\"name\":\"prisma_7_10_1_adapter_crud\",\"passed\":true},{\"name\":\"partial_unique_active_position\",\"passed\":true},{\"name\":\"partial_index_allows_inactive_history\",\"passed\":true},{\"name\":\"composite_fk_rejects_cross_owner\",\"passed\":true},{\"name\":\"arabic_raw_round_trip\",\"passed\":true},{\"name\":\"check_constraint\",\"passed\":true},{\"name\":\"interactive_transaction_rollback\",\"passed\":true},{\"name\":\"atomic_revision_race_one_winner\",\"passed\":true},{\"name\":\"idempotency_unique_race\",\"passed\":true},{\"name\":\"row_lock_with_prisma_transaction\",\"passed\":true},{\"name\":\"explicit_down_migration_isolated_poc_only\",\"passed\":true}],\"passed\":12,\"scope\":\"isolated synthetic capability proof; not final ORM approval\"}\nDatasource \"db\": PostgreSQL database \"ormpoc\", schema \"public\" at \"khotwa-ph04-poc-db:5432\"\n\nApplying migration `0001_poc`\n\nDatabase reset successful\n\nThe following migration(s) have been applied:\n\nmigrations/\n  └─ 0001_poc/\n    └─ migration.sql\n\nPH04_POC_RESULT {\"prisma\":\"7.10.1\",\"node\":\"v24.11.1\",\"postgres\":\"17.6\",\"checks\":[{\"name\":\"postgres_17_6_isolated_database\",\"passed\":true},{\"name\":\"migration_replay_clean_tables\",\"passed\":true}],\"passed\":2,\"scope\":\"isolated synthetic capability proof; not final ORM approval\"}\n",
+  "stderr": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\nLoaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\n",
+  "finalOrmApproval": "approved_by_product_owner_for_PH04_2026-11-04",
+  "approvalEvidence": "Explicit conversation reply: أعتمد Prisma مع SQL المكمل لتنفيذ PH-04; see planning/ph04-orm-decision.md"
+}

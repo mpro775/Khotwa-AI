@@ -1,0 +1,251 @@
+{
+  "at": "2026-11-04T23:28:09.965Z",
+  "actualGeminiCalls": 0,
+  "blockedExternalAttempts": 0,
+  "checks": [
+    {
+      "name": "generated H1-H3 are fresh provider response bytes, not a cached template, with draft audit and unchanged math",
+      "passed": true
+    },
+    {
+      "name": "H4 remains explicit, verified stored content and does not call Gemini",
+      "passed": true
+    },
+    {
+      "name": "draft-only rejected generation returns safe 503 with no lost attempt or false reviewed fallback",
+      "passed": true
+    },
+    {
+      "name": "503 uses reviewed-fixture fallback and retains student evidence",
+      "passed": true
+    },
+    {
+      "name": "timeout uses reviewed-fixture fallback and retains student evidence",
+      "passed": true
+    },
+    {
+      "name": "unsafe uses reviewed-fixture fallback and retains student evidence",
+      "passed": true
+    },
+    {
+      "name": "literal uses reviewed-fixture fallback and retains student evidence",
+      "passed": true
+    },
+    {
+      "name": "root PH07 requests stay local; foreign UUID cannot call the adapter",
+      "passed": true
+    },
+    {
+      "name": "a late generated response cannot overwrite evidence after a step edit",
+      "passed": true
+    },
+    {
+      "name": "transfer generation occurs only after explicit exit from independent measurement",
+      "passed": true
+    }
+  ],
+  "examples": [
+    {
+      "level": "H1",
+      "textAr": "خذ وقتك، تأمل الحدين داخل القوس. يمكنك تدوين ملاحظتك قبل المتابعة.",
+      "source": "simulated_provider_response",
+      "reviewStatus": "draft"
+    },
+    {
+      "level": "H2",
+      "textAr": "لنراجع بهدوء، تساءل كيف يتأثر كل حد بالمعامل؟ إن لم تتضح الفكرة، اطلب مراجعة إضافية.",
+      "source": "simulated_provider_response",
+      "reviewStatus": "draft"
+    },
+    {
+      "level": "H3",
+      "textAr": "قبل أن تتابع، ابدأ بمراجعة أثر المعامل على حد واحد، ثم راجع الحد الآخر بنفسك. يمكنك تدوين ملاحظتك قبل المتابعة.",
+      "source": "simulated_provider_response",
+      "reviewStatus": "draft"
+    }
+  ],
+  "metrics": [
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T23:28:12.805Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 2.433,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 200,
+      "outputTokens": 110,
+      "totalTokens": 310,
+      "thinkingTokens": null,
+      "outcome": "PH08_GENERATED_VALIDATED",
+      "textOrigin": "gemini_generated",
+      "generationVersion": "ph08-generative-draft-v1",
+      "transport": "offline_simulated"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T23:28:13.021Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 0.967,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 200,
+      "outputTokens": 110,
+      "totalTokens": 310,
+      "thinkingTokens": null,
+      "outcome": "PH08_GENERATED_VALIDATED",
+      "textOrigin": "gemini_generated",
+      "generationVersion": "ph08-generative-draft-v1",
+      "transport": "offline_simulated"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T23:28:13.200Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 1.019,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 200,
+      "outputTokens": 110,
+      "totalTokens": 310,
+      "thinkingTokens": null,
+      "outcome": "PH08_GENERATED_VALIDATED",
+      "textOrigin": "gemini_generated",
+      "generationVersion": "ph08-generative-draft-v1",
+      "transport": "offline_simulated"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T23:28:14.230Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 0.646,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 200,
+      "outputTokens": 110,
+      "totalTokens": 310,
+      "thinkingTokens": null,
+      "outcome": "PH08_LEVEL_OR_SPEECH_ACT",
+      "textOrigin": "none",
+      "generationVersion": "ph08-generative-draft-v1",
+      "transport": "offline_simulated"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T23:28:14.710Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": null,
+      "thinkingLevel": "minimal",
+      "latencyMs": 1.012,
+      "httpStatus": 503,
+      "providerErrorCode": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "totalTokens": null,
+      "thinkingTokens": null,
+      "outcome": "GEMINI_HTTP_503",
+      "textOrigin": "none",
+      "generationVersion": "ph08-generative-draft-v1",
+      "transport": "offline_simulated"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T23:28:15.227Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": null,
+      "thinkingLevel": "minimal",
+      "latencyMs": 990.839,
+      "httpStatus": null,
+      "providerErrorCode": null,
+      "inputTokens": null,
+      "outputTokens": null,
+      "totalTokens": null,
+      "thinkingTokens": null,
+      "outcome": "GEMINI_ABORTED",
+      "textOrigin": "none",
+      "generationVersion": "ph08-generative-draft-v1",
+      "transport": "offline_simulated"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T23:28:16.700Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 0.943,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 200,
+      "outputTokens": 110,
+      "totalTokens": 310,
+      "thinkingTokens": null,
+      "outcome": "PH08_LEVEL_OR_SPEECH_ACT",
+      "textOrigin": "none",
+      "generationVersion": "ph08-generative-draft-v1",
+      "transport": "offline_simulated"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T23:28:17.087Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 0.67,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 200,
+      "outputTokens": 110,
+      "totalTokens": 310,
+      "thinkingTokens": null,
+      "outcome": "PH08_LITERAL_TEMPLATE",
+      "textOrigin": "none",
+      "generationVersion": "ph08-generative-draft-v1",
+      "transport": "offline_simulated"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T23:28:18.022Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 44.132,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 200,
+      "outputTokens": 110,
+      "totalTokens": 310,
+      "thinkingTokens": null,
+      "outcome": "PH08_GENERATED_VALIDATED",
+      "textOrigin": "gemini_generated",
+      "generationVersion": "ph08-generative-draft-v1",
+      "transport": "offline_simulated"
+    },
+    {
+      "event": "ph08_gemini_call",
+      "at": "2026-11-04T23:28:18.951Z",
+      "requestedModel": "gemini-3.5-flash-lite",
+      "actualModel": "gemini-3.5-flash-lite",
+      "thinkingLevel": "minimal",
+      "latencyMs": 0.701,
+      "httpStatus": 200,
+      "providerErrorCode": null,
+      "inputTokens": 200,
+      "outputTokens": 110,
+      "totalTokens": 310,
+      "thinkingTokens": null,
+      "outcome": "PH08_GENERATED_VALIDATED",
+      "textOrigin": "gemini_generated",
+      "generationVersion": "ph08-generative-draft-v1",
+      "transport": "offline_simulated"
+    }
+  ],
+  "error": null,
+  "validatedContractResponses": 144
+}

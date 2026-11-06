@@ -1,0 +1,15 @@
+{
+  "phase": "PH-04",
+  "baseCommit": "70c946cf8881ed3c8d110bc409dbc8bf42a540a6",
+  "branch": "codex/ph04-api-data",
+  "initialFileFingerprintCount": 221,
+  "initialTree": "dirty with existing PH-02/PH-03 changes",
+  "preexistingOwnerDeletions": [
+    "00-PROJECT-VISION.md",
+    "01_KHOTWA_PRODUCT_VISION_AR.md",
+    "02_KHOTWA_PRODUCT_REQUIREMENTS_AR.md"
+  ],
+  "approval": "Explicit owner instruction PH-04 plus Prisma/SQL approval after PoC",
+  "scope": "TASK-041 through TASK-048 only",
+  "baseComposeBusinessRoutesEnabled": false
+}

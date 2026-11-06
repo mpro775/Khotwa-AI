@@ -1,0 +1,12 @@
+--- a/apps/api/src/ai-tutor.ts
++++ b/apps/api/src/ai-tutor.ts
+@@
+   readonly maximumCostUnits: number;
++  invocationAudit?(): Readonly<Record<string, string | number | boolean | null>>;
+   adaptHint(context: HintContext, signal: AbortSignal): Promise<AiReply>;
+--- a/apps/api/src/tutoring.ts
++++ b/apps/api/src/tutoring.ts
+@@
+           reportedOutputTokens: usage?.outputTokens ?? null,
++          ...this.ai.invocationAudit?.(),
+         };

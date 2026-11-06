@@ -1,0 +1,331 @@
+{
+  "phase": "PH-04",
+  "baseCommit": "70c946cf8881ed3c8d110bc409dbc8bf42a540a6",
+  "comparison": "initial PH-04 fingerprints; not git diff against the older HEAD",
+  "selfHashExclusions": [
+    "qa-reports/ph04-files.json",
+    "qa-reports/ph04-integrity.json"
+  ],
+  "files": [
+    {
+      "path": ".env.example",
+      "status": "modified_from_PH04_start",
+      "sha256": "fc53868b432a270756658c18d5b67b37326201180d766e65f694a3943eb9a9ec"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "status": "modified_from_PH04_start",
+      "sha256": "c146f47013912b13f5fa846b32e4c83c602a6b8b6b3f27ab4cf8919940291bf4"
+    },
+    {
+      "path": "Dockerfile",
+      "status": "modified_from_PH04_start",
+      "sha256": "3688d3a44d16a935cbb2a65a5bf34353e866d30632248f5282ac00a7c9d78010"
+    },
+    {
+      "path": "README.md",
+      "status": "modified_from_PH04_start",
+      "sha256": "c56ab7c723dd127dadd473280edfc0b89f94bcdff4728ca568cd52d03aff7853"
+    },
+    {
+      "path": "agent-reports/TASK-041.md",
+      "status": "added_in_PH04",
+      "sha256": "c1e66752867e69140179b19b91e8222c8471281d58c2bb162ff3f08e58e57ebc"
+    },
+    {
+      "path": "agent-reports/TASK-042.md",
+      "status": "added_in_PH04",
+      "sha256": "a808a646bc1f729ece93622829c710531233df8274dc834823272b56ab5691f4"
+    },
+    {
+      "path": "agent-reports/TASK-043.md",
+      "status": "added_in_PH04",
+      "sha256": "18b0d83d621368b238aed7bc46a8ce1fa99e43d78cb4b4815f7c2c27e45dbbfa"
+    },
+    {
+      "path": "agent-reports/TASK-044.md",
+      "status": "added_in_PH04",
+      "sha256": "25d25604750f6f013cbb073acd047ce848bf651cd6316a6075c913c2b1bddb20"
+    },
+    {
+      "path": "agent-reports/TASK-045.md",
+      "status": "added_in_PH04",
+      "sha256": "42b712743e73764ece2347b07bd238ac15279cb06a1ec013ef79e01e295021ad"
+    },
+    {
+      "path": "agent-reports/TASK-046.md",
+      "status": "added_in_PH04",
+      "sha256": "aa04708280983d72e8440bf740d299c5b80528a1ade28831a653fa1ce952cebd"
+    },
+    {
+      "path": "agent-reports/TASK-047.md",
+      "status": "added_in_PH04",
+      "sha256": "7e94622a2575c98b4a6b6783d57937849f9c283c9862e2251a8e41487b9887e5"
+    },
+    {
+      "path": "agent-reports/TASK-048.md",
+      "status": "added_in_PH04",
+      "sha256": "c28f395cdddbc36fb939f08f04345477f7c9c484900908d2ed8ff29ddb0ea19a"
+    },
+    {
+      "path": "apps/api/package.json",
+      "status": "modified_from_PH04_start",
+      "sha256": "a2b549450491c93131328adcbc9a082d7aa482661fe172646a176e973977dbe1"
+    },
+    {
+      "path": "apps/api/prisma.config.ts",
+      "status": "added_in_PH04",
+      "sha256": "b708ef777ff9b3ba638e2d17b5a4efc4b5d3caa7c495685247b3c760c5aa798a"
+    },
+    {
+      "path": "apps/api/prisma/migrations/0001_ph04/migration.sql",
+      "status": "added_in_PH04",
+      "sha256": "9e0c2ded703d7e99ea0d06f6c079b7db310e34d6f168a1294d09393fb0108aa7"
+    },
+    {
+      "path": "apps/api/prisma/migrations/0002_current_version_key/migration.sql",
+      "status": "added_in_PH04",
+      "sha256": "37df0c6aa0ccca1bf37cae2d1be6f7ef98a7d5ada79978de4ca552da4d1a11fa"
+    },
+    {
+      "path": "apps/api/prisma/migrations/0003_content_integrity/migration.sql",
+      "status": "added_in_PH04",
+      "sha256": "bdb360a9f7b79db7bc48fd595d7afa18ce36a1b40b048a5e2f6cd98b84ba882a"
+    },
+    {
+      "path": "apps/api/prisma/migrations/migration_lock.toml",
+      "status": "added_in_PH04",
+      "sha256": "1db17a8d051aa136110736752c5e1f8b7ed92b6ea8e803112fbbe2497047c210"
+    },
+    {
+      "path": "apps/api/prisma/schema.prisma",
+      "status": "added_in_PH04",
+      "sha256": "c48e6f37558146a39a0373978581b1280d6602a68cc74258b8967c7274de8c01"
+    },
+    {
+      "path": "apps/api/src/ai-port.ts",
+      "status": "added_in_PH04",
+      "sha256": "491bba5c0c5f322433346cc07477af8306a76b555bc1de478c44366b0db6b37a"
+    },
+    {
+      "path": "apps/api/src/application.ts",
+      "status": "added_in_PH04",
+      "sha256": "dc8d2736634078f4bbba3ef6b2d031cbcb56d78e4b3a39b1b505f93c882c759f"
+    },
+    {
+      "path": "apps/api/src/business.ts",
+      "status": "added_in_PH04",
+      "sha256": "b84892777fad7fa6e2b9d862f881a5a230e9cbae0cd5e17cc18847c27f4f7562"
+    },
+    {
+      "path": "apps/api/src/contracts.ts",
+      "status": "added_in_PH04",
+      "sha256": "c92dbe35aa9767c9ff8052a3b5dc89768eee1adb1fbc1d814703ed60934c62a7"
+    },
+    {
+      "path": "apps/api/src/http.ts",
+      "status": "modified_from_PH04_start",
+      "sha256": "55f90eeafb088065b2a128974ea4cbf19bd4cbe8d7e744782a126b1c75e11044"
+    },
+    {
+      "path": "apps/api/src/main.ts",
+      "status": "modified_from_PH04_start",
+      "sha256": "04d28b0b41ce17fbac23151d81f52e89c8c2f73b379d9a045faa6af0c9da96b7"
+    },
+    {
+      "path": "apps/api/src/math-gateway.ts",
+      "status": "added_in_PH04",
+      "sha256": "626403386dae3d89e09aaf2a243a2c3eb320c84913a05fbc022468b96964bc0b"
+    },
+    {
+      "path": "apps/api/src/security.ts",
+      "status": "added_in_PH04",
+      "sha256": "3fe5edb3c39f457a40b671f1f6bda65426dac93d7c43fac0859bd70ec75361a8"
+    },
+    {
+      "path": "apps/api/src/store.ts",
+      "status": "added_in_PH04",
+      "sha256": "86757e89ced86e3cffe26de2837f106a10facd97ede17c4859417d2f3c0db89e"
+    },
+    {
+      "path": "apps/api/tests/integration.test.mjs",
+      "status": "added_in_PH04",
+      "sha256": "b76cddba1fa262382b41afd409a4d69d900cdf62728689d442b36c913d3fe937"
+    },
+    {
+      "path": "apps/api/tests/math-gateway.test.mjs",
+      "status": "added_in_PH04",
+      "sha256": "cf05d989209e928266a500a8e3afee7499b90a0ef8fd5a611d878586b1e2b529"
+    },
+    {
+      "path": "apps/api/tests/security.test.mjs",
+      "status": "added_in_PH04",
+      "sha256": "4faa24c08bd638241bc16f3855ab72d6136c65cf4f6bc1b7d87f923031dacca3"
+    },
+    {
+      "path": "compose.yaml",
+      "status": "modified_from_PH04_start",
+      "sha256": "fe423dfed68bdf408af16e0dabb484b6f3ecf742ac712f61fcdb0c2451dc0b72"
+    },
+    {
+      "path": "docs/PROJECT-DECISIONS.md",
+      "status": "modified_from_PH04_start",
+      "sha256": "7c98fef3f259e0d2a683b890cd4b343b5b8d4d493f6298d8aef0bfcfb37eeed1"
+    },
+    {
+      "path": "package-lock.json",
+      "status": "modified_from_PH04_start",
+      "sha256": "c0d8f9722542842fccc5d913c7480f1dca8f8130230a2125888742293ae6026d"
+    },
+    {
+      "path": "package.json",
+      "status": "modified_from_PH04_start",
+      "sha256": "2c77dd68fc0f461767b2095356c1ffe16b40857f52fcb0d1a4fbaced7af05662"
+    },
+    {
+      "path": "planning/decisions.md",
+      "status": "modified_from_PH04_start",
+      "sha256": "3ac396034b57b61d1145ea3db115a45c730699bc8688e08d601a49d24bf796b6"
+    },
+    {
+      "path": "planning/ph04-local-run.md",
+      "status": "added_in_PH04",
+      "sha256": "5c008334ff33d9d7f9e9c96dbe6e481b7b2ef857dd46cb5d1ff97a45c06ac1d9"
+    },
+    {
+      "path": "planning/ph04-orm-decision.md",
+      "status": "added_in_PH04",
+      "sha256": "8bfd1468ec2638c6d22493f8aaecd10982ce6ef25712b6bda70b77766e9188cc"
+    },
+    {
+      "path": "planning/ph04-plan.md",
+      "status": "modified_from_PH04_start",
+      "sha256": "dc125b9b798b561f87ac954651780d93c8bc6cddc06a4415d19d7a132cc44ee0"
+    },
+    {
+      "path": "planning/ph04-status.json",
+      "status": "added_in_PH04",
+      "sha256": "e414cd294b7279645bb2e09ba93467737ddfa6bc85181845bb687b3c68e598aa"
+    },
+    {
+      "path": "planning/technical-decisions.md",
+      "status": "modified_from_PH04_start",
+      "sha256": "f10d1f136e6ca14b7851ca43f99ac48d5288048d87d58dfff1268f754922b0cc"
+    },
+    {
+      "path": "qa-reports/README.md",
+      "status": "modified_from_PH04_start",
+      "sha256": "51bfd212685d781d48ffdda6d95c596618e53da132d676f82137999a8ce16f5b"
+    },
+    {
+      "path": "qa-reports/ph04-checks.json",
+      "status": "added_in_PH04",
+      "sha256": "fdf54382ffd06a054220d76f1adaf4a2a1c37ce343398fd1d807555db9e04bb1"
+    },
+    {
+      "path": "qa-reports/ph04-container-build.json",
+      "status": "added_in_PH04",
+      "sha256": "12d77ed49f98a69eac5174be55b0685ba08d840d37e46c05ad626fde560fc692"
+    },
+    {
+      "path": "qa-reports/ph04-container.json",
+      "status": "added_in_PH04",
+      "sha256": "627dbc5cdebd270bf81a47ce0cd050722c679655c7fab9f646ef20ac613942f0"
+    },
+    {
+      "path": "qa-reports/ph04-delivery.md",
+      "status": "added_in_PH04",
+      "sha256": "df160e7dedf25faf56c7f0723fc03a53e6eb266d42bbb540635b0de39726c9be"
+    },
+    {
+      "path": "qa-reports/ph04-final-checks.json",
+      "status": "added_in_PH04",
+      "sha256": "b594e9b571d65ca5abac9f408ee1d386e6539f1139e7715adfd01c863d5ed85f"
+    },
+    {
+      "path": "qa-reports/ph04-http-contracts.json",
+      "status": "added_in_PH04",
+      "sha256": "b1cee5fdab38cc8d68e816f9ab4c85956c618ddc4a190b7624f326ac4bb7e216"
+    },
+    {
+      "path": "qa-reports/ph04-local-cleanup.json",
+      "status": "added_in_PH04",
+      "sha256": "4b66b587dff5b226395f90c6f5812522565baa6f5279f843424a85c79d1028b9"
+    },
+    {
+      "path": "qa-reports/ph04-migration-deploy.json",
+      "status": "added_in_PH04",
+      "sha256": "c8f446c3c9601a7362df23ba9d6c08b78991b886d24ff5215c3efc8c9b882009"
+    },
+    {
+      "path": "qa-reports/ph04-orm-poc.json",
+      "status": "added_in_PH04",
+      "sha256": "c5640f3ea86dd582dac4724bac989f9210979bbe3757ee7a80c504556b26fb3d"
+    },
+    {
+      "path": "qa-reports/ph04-preflight.json",
+      "status": "added_in_PH04",
+      "sha256": "d65f12ca3fcbf959b771fa8b69e161a2382005f1e25be56bd91bf014eb97f94c"
+    },
+    {
+      "path": "qa/orm-poc/Dockerfile",
+      "status": "added_in_PH04",
+      "sha256": "48414ea9defbfb3a8f066d4947531d26ae037a185318ceb9e334d99e000000c5"
+    },
+    {
+      "path": "qa/orm-poc/package.json",
+      "status": "added_in_PH04",
+      "sha256": "5019773d9a3c81cc4e96c3c8738cc5a2691a2e4fac9e17a02830d3793c426b2f"
+    },
+    {
+      "path": "qa/orm-poc/poc.mjs",
+      "status": "added_in_PH04",
+      "sha256": "afd03cb3fbf1b9c319a4417a6c3d6a3b74a59b66c27b0928725337980c32a479"
+    },
+    {
+      "path": "qa/orm-poc/prisma.config.ts",
+      "status": "added_in_PH04",
+      "sha256": "315053304acdb8a5b51bbb521198983d1ab4ddb159d6fa0cde2acca771ade8dd"
+    },
+    {
+      "path": "qa/orm-poc/prisma/migrations/0001_poc/migration.sql",
+      "status": "added_in_PH04",
+      "sha256": "70c3ed52846342aab47573c1c501a86f9d00d21a7e27bc6763bffe5402d83b86"
+    },
+    {
+      "path": "qa/orm-poc/prisma/schema.prisma",
+      "status": "added_in_PH04",
+      "sha256": "cddbe01d42e68e3cff4a980541d5c34ca943154c8bb8fddbf24e2f04d012d7b3"
+    },
+    {
+      "path": "qa/ph04-container.mjs",
+      "status": "added_in_PH04",
+      "sha256": "71596ff38248a9e7adc16d8f1fb0ec78604496ec7004f6961c1a5555eb494d9a"
+    },
+    {
+      "path": "qa/ph04-down.sql",
+      "status": "added_in_PH04",
+      "sha256": "4605e262234c2324043e3ad64f14c20858fdcbcbe76968a6a16e758b75ab63fd"
+    },
+    {
+      "path": "qa/ph04-runtime-probe.mjs",
+      "status": "added_in_PH04",
+      "sha256": "40c697c568c09d45f499bf9d286494f7b4bde209dd382e137d37b361d385097f"
+    },
+    {
+      "path": "tools/dev_env.py",
+      "status": "modified_from_PH04_start",
+      "sha256": "31d2ac114e4a3aaae0d81e0a3444bcb2e274a8b405a5432efc60e6933ae1c31e"
+    },
+    {
+      "path": "tools/verify-ph04-container.mjs",
+      "status": "added_in_PH04",
+      "sha256": "39b0efe506b40c880c5b829f672a7119459bb4c9c028b64c460a0b6f3dbf3af0"
+    },
+    {
+      "path": "tools/verify-ph04.mjs",
+      "status": "added_in_PH04",
+      "sha256": "0f59972d63ed369b84d3ea2d0c4e8b8fc604310fbba61b868c4265a1b401e071"
+    }
+  ]
+}

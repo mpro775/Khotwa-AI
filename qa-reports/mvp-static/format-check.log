@@ -1,0 +1,8 @@
+
+> khotwa-ai@0.1.0 format:check
+> prettier --check package.json tsconfig.base.json eslint.config.mjs pyrightconfig.json compose.yaml Dockerfile .github/workflows/ci.yml "apps/**/*.{ts,tsx,json,css,html}" "packages/contracts/src/index.ts" "tools/*.mjs" && node tools/python-task.mjs -m black --check services/math-engine/src tools/dev_env.py tools/seed_demo.py
+
+Checking formatting...
+All matched files use Prettier code style!
+All done! \u2728 \U0001f370 \u2728
+13 files would be left unchanged.

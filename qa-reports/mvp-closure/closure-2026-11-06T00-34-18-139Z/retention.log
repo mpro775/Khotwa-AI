@@ -1,0 +1,30 @@
+✖ SEC-047: actual atomic retention with isolated operator and immutable API history (4632.96916ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6565.675082
+
+✖ failing tests:
+
+test at apps/api/tests/retention-live.test.mjs:10:1
+✖ SEC-047: actual atomic retention with isolated operator and immutable API history (4632.96916ms)
+  AssertionError [ERR_ASSERTION]: {"data":{"id":"5a66fcd3-2b0d-49a9-9097-18f2ce1f8430","attemptId":"a936d259-4c59-40ed-8cb7-9716d5ccdef2","attemptRevision":1,"diagnosisId":"04fe6585-688b-4cef-8fad-0a631ad5fc24","questionAr":"أي التعبيرين يساوي ٥(س + ٤)؟","responseMode":"choice","options":[{"id":"322ca3aa-dbdc-4785-b824-efad7cb225a6","labelAr":"٥س + ٢٠"},{"id":"2af30991-82dc-4578-a6d3-21ab3c12e755","labelAr":"٥س + ٤"},{"id":"eee1311e-9b04-4f2a-b5dc-4167ff06a08e","labelAr":"لا أدري"}],"status":"open"},"meta":{"requestId":"64f01627-7018-4c26-8b40-26b6ec519cdd","serverTime":"2026-11-06T00:38:29.892Z","apiVersion":"1"}}
+  
+  201 !== 200
+  
+      at call (file:///app/apps/api/tests/retention-live.test.mjs:26:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+      at async TestContext.<anonymous> (file:///app/apps/api/tests/retention-live.test.mjs:100:21)
+      at async Test.run (node:internal/test_runner/test:1113:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 201,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,54 @@
+{
+  "phase": "PH-02",
+  "recordedAtRiyadh": "2026-11-04 03:38:00",
+  "node": "v26.7.0",
+  "platform": "win32",
+  "checks": [
+    {
+      "command": "npm exec -- prettier --check package.json .github/workflows/ci.yml tools/verify-ph02.mjs apps/web/src apps/web/tests apps/web/tsconfig.json apps/web/package.json",
+      "exitCode": 0,
+      "stdout": "Checking formatting...\nAll matched files use Prettier code style!\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm exec -- eslint apps/web tools/verify-ph02.mjs",
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": "npm run typecheck --workspace @khotwa/web",
+      "exitCode": 0,
+      "stdout": "\n> @khotwa/web@0.1.0 typecheck\n> tsc --noEmit\n\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run build --workspace @khotwa/web",
+      "exitCode": 0,
+      "stdout": "\n> @khotwa/web@0.1.0 build\n> tsc --noEmit && vite build\n\nvite v8.3.5 building client environment for production...\ntransforming...\n✓ 22 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                                           0.40 kB │ gzip:   0.28 kB\ndist/assets/KaTeX_Size4-Regular-Dl5lxZxV.woff2            4.92 kB\ndist/assets/KaTeX_Size2-Regular-Dy4dx90m.woff2            5.20 kB\ndist/assets/KaTeX_Size1-Regular-mCD8mA8B.woff2            5.46 kB\ndist/assets/KaTeX_Caligraphic-Regular-Di6jR-x-.woff2      6.90 kB\ndist/assets/KaTeX_Caligraphic-Bold-Dq_IR9rO.woff2         6.91 kB\ndist/assets/KaTeX_Script-Regular-D3wIWfF6.woff2           9.64 kB\ndist/assets/KaTeX_SansSerif-Regular-DDBCnlJ7.woff2       10.34 kB\ndist/assets/KaTeX_Fraktur-Regular-CTYiF6lA.woff2         11.31 kB\ndist/assets/KaTeX_Fraktur-Bold-CL6g_b3V.woff2            11.34 kB\ndist/assets/KaTeX_SansSerif-Italic-C3H0VqGB.woff2        12.02 kB\ndist/assets/KaTeX_SansSerif-Bold-D1sUS0GD.woff2          12.21 kB\ndist/assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2      13.56 kB\ndist/assets/KaTeX_Math-BoldItalic-CZnvNsCZ.woff2         16.40 kB\ndist/assets/KaTeX_Math-Italic-t53AETM-.woff2             16.44 kB\ndist/assets/KaTeX_Main-BoldItalic-DxDJ3AOS.woff2         16.78 kB\ndist/assets/KaTeX_Main-Italic-NWA7e6Wa.woff2             16.98 kB\ndist/assets/KaTeX_Main-Bold-Cx986IdX.woff2               25.32 kB\ndist/assets/KaTeX_Main-Regular-B22Nviop.woff2            26.27 kB\ndist/assets/KaTeX_AMS-Regular-BQhdFMY1.woff2             28.07 kB\ndist/assets/index-CGgeFzeW.css                           12.52 kB │ gzip:   6.04 kB\ndist/assets/index-Cz5tJ2np.js                         1,044.76 kB │ gzip: 296.70 kB\n\n✓ built in 5.66s\n",
+      "stderr": "[plugin builtin:vite-reporter] \n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n\u001b[33m[PLUGIN_TIMINGS] \u001b[0mJavaScript callbacks ran for 4.2s of this 5.6s build (75%).\nThe slowest callbacks, timed inside each callback (the wait before a callback starts is excluded, the time it awaits is included):\n  - plugin vite:css-post renderChunk (28%, 1.6s, 1 call)\nAdditional callback time came from the callbacks below and from callbacks under 1s.\n1 callback is listed without a time. Its calls overlapped, so the time inside one call includes work from other calls. To find its cost, profile the build with `node --cpu-prof`:\n  - plugin vite:css transform (2 calls)\nSee https://rolldown.rs/reference/InputOptions.checks#bundlertimings for more details.\n\n"
+    },
+    {
+      "command": "npm run test:editor",
+      "exitCode": 0,
+      "stdout": "\n> khotwa-ai@0.1.0 test:editor\n> npm run test:editor --workspace @khotwa/web\n\n\n> @khotwa/web@0.1.0 test:editor\n> node --test tests/editor-model.test.mjs\n\n✔ AN-002: original ASCII digits stay distinct from a known Arabic display (7.2145ms)\n✔ AN-011: fraction recipe explicitly keeps numerator 1 and denominator 2 (2.1204ms)\n✔ known examples and aliases retain their own source without a parser claim (2.9775ms)\n✔ AN-013/018/020: ambiguous or unsupported samples never acquire a display meaning (0.6193ms)\n✔ AN-030: directional and other hidden controls are reported and kept visible in audit (1.4551ms)\n✔ a 257 code point paste is retained and flagged rather than silently truncated (0.7794ms)\n✔ new edits immediately invalidate the previous fixture meaning and local issue (0.6476ms)\n✔ unknown text, including x, is never aliased to س or treated as a successful parse (0.3961ms)\n✔ selection replacement preserves source order and exact punctuation (0.6167ms)\n✔ issue selection translates Unicode code points into textarea UTF-16 offsets (0.6625ms)\n✔ shallow editor guards flag foreign characters and unbalanced brackets but never assert math validity (1.6594ms)\n✔ deleting a pasted supplementary character does not split a UTF-16 surrogate pair (0.5023ms)\nℹ tests 12\nℹ suites 0\nℹ pass 12\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 485.4491\n",
+      "stderr": ""
+    }
+  ],
+  "passed": 5,
+  "failed": 0,
+  "sourceSha256": {
+    "apps/web/src/ArabicEditor.tsx": "d8854475dc89f60f81a9201e7f498000dfd828cd3a84f98439598a80b4c52683",
+    "apps/web/src/MathLiveProbe.tsx": "f92423f802ac3834edd5cac7b7de22656f2ffe61b91c325eafa270e5b23be8d3",
+    "apps/web/src/FormulaPreview.tsx": "495dc807bafdb81c5d2da81149d32c301ee42c863ba8b5dacb802d9bf72b1fb5",
+    "apps/web/src/editor-fixtures.ts": "f50658e6f965a75fd4c7b040f8605ff5ce296ffd472629b1f10a233bd2561516",
+    "apps/web/src/editor-model.ts": "bcb74ef445d9256e1161288b5b388383ad81dcde1d1fd6b1b9d7f26c698c77eb",
+    "apps/web/src/style.css": "17b866f60bfb97f67d58062484d8785a7d66099516ddd7189234814ff6f47b7b",
+    "apps/web/src/main.tsx": "00a74e59fce584e46bb0caabf69973bdcae7f91a1fa65d005205f106ecff336a",
+    "apps/web/tests/editor-model.test.mjs": "aeaad61002e34dc76bbf77bc35bcf6bb72006d31de4bf5b8830462294f613d20",
+    "package-lock.json": "8b879e5682fbbb06feb8fdc3ee83bb3122bd7b0a7ce6c8c0cd010fe850109241"
+  },
+  "productMathGoldenCasesRun": 0,
+  "physicalPhoneTest": "not_run_user_has_no_phone",
+  "scope": "Targeted frontend format/lint/types/build and editor data guards. No parser, math verdicts or PH-03/04. Browser evidence is separate."
+}

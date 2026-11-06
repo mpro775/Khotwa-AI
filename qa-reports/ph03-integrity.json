@@ -1,0 +1,75 @@
+{
+  "phase": "PH-03",
+  "recordedAtRiyadh": "2026-11-04 04:10:05",
+  "allFinalSourcesMatch": true,
+  "unchanged": [
+    {
+      "path": "docs/04-ARABIC-NOTATION.md",
+      "sha256": "e75fb981015d565946a32994e35f9035db1d61fc6365b6048d77c0f4ce067ca7",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/10-MATH-ENGINE.md",
+      "sha256": "dd6478d13520ac4da9d827b6ff1738edec125cd9d60da8c86a6537174cc339b0",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/12-API-CONTRACT.yaml",
+      "sha256": "c8b5027ec74ea9b960c3428a0d3f1e221320d46c320507713549f5892eb5ecf3",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/14-GOLDEN-DATASET.md",
+      "sha256": "cb46458dc172cecfb0c111da28f223c221bfe082be89fc147920063e494b8f92",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/14-GOLDEN-DATASET.cases.json",
+      "sha256": "1c3e5fec509a8fad930a3d05e9f5b764b6b060281ec7277a32575511095b7f12",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/contracts/math-internal-v1.schema.json",
+      "sha256": "d72855a399c9100c5b1e54a5cdeb884a18da1e8bf53805ee23da2c05a8d874dc",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/contracts/math-internal-v1.examples.json",
+      "sha256": "6994a1b0723810a709a09a15a3e01959d766dd5cccb175db660577a5af0fb275",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "packages/contracts/openapi.yaml",
+      "sha256": "c8b5027ec74ea9b960c3428a0d3f1e221320d46c320507713549f5892eb5ecf3",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "packages/contracts/src/generated/public-api.d.ts",
+      "sha256": "7782006c3f70c31eda657787014093faa746077d5b0ce2b404e8328e62148500",
+      "unchangedFromHead": true
+    }
+  ],
+  "priorLocalFilesCompared": 37,
+  "sharedPriorFilesChangedIntentionally": [
+    ".github/workflows/ci.yml",
+    "README.md",
+    "package.json",
+    "planning/technical-decisions.md",
+    "qa-reports/README.md"
+  ],
+  "allOtherPriorPhaseFilesPreserved": true,
+  "userDeletionsPreserved": [
+    "00-PROJECT-VISION.md",
+    "01_KHOTWA_PRODUCT_VISION_AR.md",
+    "02_KHOTWA_PRODUCT_REQUIREMENTS_AR.md"
+  ],
+  "apiAndFrontendMathIntegrationImplemented": false,
+  "mathEngineImageId": "sha256:173fe988cf4db5e4d73c93634419c8dcd4419161d5cb2ee083aabe93b59876e0",
+  "sourceUnitTests": 41,
+  "draftGoldenPassed": 97,
+  "internalSchemaPairs": 109,
+  "internalHttpPassed": 20,
+  "linuxProbePassed": 13,
+  "composePassed": 14,
+  "gate1": "not_approved"
+}

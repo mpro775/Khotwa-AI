@@ -1,0 +1,31 @@
+▶ PH08 live remediation and transfer on real services
+  ✔ hidden bank is absent from catalog and foreign UUIDs never grant access (1952.901914ms)
+  ✔ six authored pairings select the intended single skill with real reference checks (2891.407452ms)
+  ✔ no verification, abstention and open probe cannot create a misleading treatment (1579.233177ms)
+  ✔ idempotency and distinct racing keys produce one episode and one attempt per assignment (1018.368162ms)
+  ✔ remediation must finish a valid chain before any transfer is assigned (1125.358675ms)
+  ✔ live incorrect-root → probe → AI failure/H4 → remediation → new independent transfer journey (1837.659727ms)
+  ✔ a transfer hint explicitly exits measurement and the latch survives reload, edits and full solution (1413.367855ms)
+  ✔ a late verification cannot restore independent status after a help request (1171.377273ms)
+  ✔ transfer selection excludes exposure across learning sessions and never reuses exhausted content (1030.579527ms)
+  ✔ root revision changes invalidate the whole loop and cached responses without erasing exposure (729.955338ms)
+  ✔ editing remediation invalidates assigned transfer and removes stale evidence while preserving raw history (786.226272ms)
+  ✔ unsupported transfer is not negative evidence and later corrections are re-evaluated (943.873156ms)
+  ✔ finite remediation policy offers stop/support after two failed activities (791.855686ms)
+  ✔ DB rejects cross-scope assignment, mutable evidence and reset measurement eligibility (812.042669ms)
+  ✔ racing root edit and transfer assignment cannot leave an active stale measurement (568.999407ms)
+  ✔ all transfer verification surfaces withhold solution sets and automatic coaching (1390.709608ms)
+  ✔ confirmed H4 may exit transfer directly before steps, but never supplies independent evidence (1948.589971ms)
+  ✔ one correct probe answer never creates a mastery or transfer observation (763.352193ms)
+  ✔ a failed independent transfer offers a different bounded remediation, without permanent labels (1431.671004ms)
+  ✔ a question previously disclosed by a probe is excluded from subsequent transfer (749.41754ms)
+  ✔ a later cross-activity disclosure withdraws positive transfer evidence without rewriting history (1016.517227ms)
+✔ PH08 live remediation and transfer on real services (30626.121776ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31922.332522

@@ -1,0 +1,2253 @@
+{
+  "phase": "PH-08",
+  "recordedAt": "2026-11-04T05:23:40.860Z",
+  "failure": null,
+  "checks": [
+    {
+      "command": [
+        "docker",
+        "build",
+        "--target",
+        "ph08-test",
+        "-t",
+        "khotwa-ph08-test",
+        "."
+      ],
+      "exitCode": 0,
+      "seconds": 53.5,
+      "stdout": "",
+      "stderr": "#0 building with \"desktop-linux\" instance using docker driver\n\n#1 [internal] load build definition from Dockerfile\n#1 transferring dockerfile: 2.35kB 0.1s done\n#1 DONE 0.4s\n\n#2 [internal] load metadata for docker.io/library/node:24.11.1-alpine3.22\n#2 DONE 0.8s\n\n#3 [internal] load .dockerignore\n#3 transferring context: 161B 0.0s done\n#3 DONE 0.0s\n\n#4 [internal] load build context\n#4 DONE 0.0s\n\n#5 [node-build 1/9] FROM docker.io/library/node:24.11.1-alpine3.22@sha256:2867d550cf9d8bb50059a0fff528741f11a84d985c732e60e19e8e75c7239c43\n#5 resolve docker.io/library/node:24.11.1-alpine3.22@sha256:2867d550cf9d8bb50059a0fff528741f11a84d985c732e60e19e8e75c7239c43 0.1s done\n#5 DONE 0.1s\n\n#4 [internal] load build context\n#4 transferring context: 64.06kB 0.0s done\n#4 DONE 0.1s\n\n#6 [node-build 2/9] WORKDIR /app\n#6 CACHED\n\n#7 [node-build 3/9] COPY package.json package-lock.json ./\n#7 CACHED\n\n#8 [node-build 4/9] COPY apps/api/package.json apps/api/package.json\n#8 CACHED\n\n#9 [node-build 5/9] COPY apps/web/package.json apps/web/package.json\n#9 CACHED\n\n#10 [node-build 6/9] COPY packages/contracts/package.json packages/contracts/package.json\n#10 CACHED\n\n#11 [node-build 7/9] RUN npm ci --include=optional --no-audit --no-fund && node --input-type=module -e \"await import('rolldown')\"\n#11 CACHED\n\n#12 [node-build 8/9] COPY . .\n#12 DONE 0.5s\n\n#13 [node-build 9/9] RUN npm run contracts && npm run build --workspace @khotwa/api && npm run build --workspace @khotwa/web\n#13 0.969 \n#13 0.969 > khotwa-ai@0.1.0 contracts\n#13 0.969 > node tools/contracts.mjs\n#13 0.969 \n#13 6.043 Canonical OpenAPI mirror, 3 JSON mirrors, and generated public types generated.\n#13 9.705 \n#13 9.705 > @khotwa/api@0.1.0 build\n#13 9.705 > npm run generate && tsc -p tsconfig.json\n#13 9.705 \n#13 10.01 \n#13 10.01 > @khotwa/api@0.1.0 generate\n#13 10.01 > prisma generate --config prisma.config.ts\n#13 10.01 \n#13 12.14 Loaded Prisma config from prisma.config.ts.\n#13 12.14 \n#13 12.79 Prisma schema loaded from prisma/schema.prisma.\n#13 17.76 \n#13 17.76 ✔ Generated Prisma Client (v7.10.1) to ./../../node_modules/@prisma/client in 4.00s\n#13 17.76 \n#13 17.76 Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)\n#13 17.76 \n#13 17.76 \n#13 32.03 \n#13 32.03 > @khotwa/web@0.1.0 build\n#13 32.03 > tsc --noEmit && vite build\n#13 32.03 \n#13 44.54 vite v8.3.5 building client environment for production...\n#13 44.62 transforming...\n#13 45.13 ✓ 34 modules transformed.\n#13 45.28 rendering chunks...\n#13 45.56 computing gzip size...\n#13 45.58 dist/index.html                                         0.40 kB │ gzip:   0.29 kB\n#13 45.58 dist/assets/KaTeX_Size4-Regular-Dl5lxZxV.woff2          4.92 kB\n#13 45.58 dist/assets/KaTeX_Size2-Regular-Dy4dx90m.woff2          5.20 kB\n#13 45.58 dist/assets/KaTeX_Size1-Regular-mCD8mA8B.woff2          5.46 kB\n#13 45.58 dist/assets/KaTeX_Caligraphic-Regular-Di6jR-x-.woff2    6.90 kB\n#13 45.58 dist/assets/KaTeX_Caligraphic-Bold-Dq_IR9rO.woff2       6.91 kB\n#13 45.58 dist/assets/KaTeX_Script-Regular-D3wIWfF6.woff2         9.64 kB\n#13 45.58 dist/assets/KaTeX_SansSerif-Regular-DDBCnlJ7.woff2     10.34 kB\n#13 45.58 dist/assets/KaTeX_Fraktur-Regular-CTYiF6lA.woff2       11.31 kB\n#13 45.58 dist/assets/KaTeX_Fraktur-Bold-CL6g_b3V.woff2          11.34 kB\n#13 45.58 dist/assets/KaTeX_SansSerif-Italic-C3H0VqGB.woff2      12.02 kB\n#13 45.58 dist/assets/KaTeX_SansSerif-Bold-D1sUS0GD.woff2        12.21 kB\n#13 45.58 dist/assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2    13.56 kB\n#13 45.58 dist/assets/KaTeX_Math-BoldItalic-CZnvNsCZ.woff2       16.40 kB\n#13 45.58 dist/assets/KaTeX_Math-Italic-t53AETM-.woff2           16.44 kB\n#13 45.58 dist/assets/KaTeX_Main-BoldItalic-DxDJ3AOS.woff2       16.78 kB\n#13 45.58 dist/assets/KaTeX_Main-Italic-NWA7e6Wa.woff2           16.98 kB\n#13 45.58 dist/assets/KaTeX_Main-Bold-Cx986IdX.woff2             25.32 kB\n#13 45.58 dist/assets/KaTeX_Main-Regular-B22Nviop.woff2          26.27 kB\n#13 45.58 dist/assets/KaTeX_AMS-Regular-BQhdFMY1.woff2           28.07 kB\n#13 45.58 dist/assets/index-B_9fPZg0.css                          7.86 kB │ gzip:   2.45 kB\n#13 45.58 dist/assets/ArabicEditor-BnjoTxG4.css                   8.00 kB │ gzip:   4.20 kB\n#13 45.58 dist/assets/index-ubSBDemN.js                         502.83 kB │ gzip: 106.16 kB\n#13 45.58 dist/assets/ArabicEditor-CEG6lRoK.js                  816.76 kB │ gzip: 225.27 kB\n#13 45.58 \n#13 45.59 [plugin builtin:vite-reporter] \n#13 45.59 (!) Some chunks are larger than 500 kB after minification. Consider:\n#13 45.59 - Using dynamic import() to code-split the application\n#13 45.59 - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting\n#13 45.59 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n#13 45.59 ✓ built in 1.04s\n#13 DONE 45.7s\n\n#14 exporting to image\n#14 exporting layers\n#14 exporting layers 1.7s done\n#14 exporting manifest sha256:a07500f0ba7e9b51d026d96a83f771eb102ebd65906d83876f3226bc275bf8c8 0.1s done\n#14 exporting config sha256:4abb296f7aee37ab293dca70cde1bfb8e164faa1f92cdb7f37cdaf7fe4f316ba 0.0s done\n#14 exporting attestation manifest sha256:20f57bcb77a5be96b863d9896f41100fcdb23be2778337367c5da25c43d2d08d 0.1s done\n#14 exporting manifest list sha256:a50877f0efbe19845c25f0917f5404644dc8efb31324e3a352aae337f1027e6d 0.0s done\n#14 naming to docker.io/library/khotwa-ph08-test:latest\n#14 naming to docker.io/library/khotwa-ph08-test:latest done\n#14 unpacking to docker.io/library/khotwa-ph08-test:latest\n#14 unpacking to docker.io/library/khotwa-ph08-test:latest 0.5s done\n#14 DONE 2.6s\n"
+    },
+    {
+      "command": [
+        "docker",
+        "build",
+        "--target",
+        "math",
+        "-t",
+        "khotwa-ph08-math",
+        "."
+      ],
+      "exitCode": 0,
+      "seconds": 3.3,
+      "stdout": "",
+      "stderr": "#0 building with \"desktop-linux\" instance using docker driver\n\n#1 [internal] load build definition from Dockerfile\n#1 transferring dockerfile: 2.35kB 0.0s done\n#1 DONE 0.1s\n\n#2 [internal] load metadata for docker.io/library/python:3.13.7-slim-bookworm\n#2 DONE 0.9s\n\n#3 [internal] load .dockerignore\n#3 transferring context: 161B done\n#3 DONE 0.0s\n\n#4 [internal] load build context\n#4 transferring context: 965B 0.0s done\n#4 DONE 0.0s\n\n#5 [math 1/5] FROM docker.io/library/python:3.13.7-slim-bookworm@sha256:adafcc17694d715c905b4c7bebd96907a1fd5cf183395f0ebc4d3428bd22d92d\n#5 resolve docker.io/library/python:3.13.7-slim-bookworm@sha256:adafcc17694d715c905b4c7bebd96907a1fd5cf183395f0ebc4d3428bd22d92d 0.0s done\n#5 DONE 0.1s\n\n#6 [math 5/5] COPY --chown=10001:10001 services/math-engine/src /app/src\n#6 CACHED\n\n#7 exporting to image\n#7 exporting layers done\n#7 exporting manifest sha256:16209cc264699f42c27c546de51b332afc38eb4f508cbf4de2d62765ec53f732 done\n#7 exporting config sha256:dbf374c91a1e59c9b204f8f03353d7acf29696de5475c7fe6c7cdad34c51bacc done\n#7 exporting attestation manifest sha256:df747b56888f4b7c58ee60354bfdfede9c875b63a65dd93cbf110420f91b892c 0.0s done\n#7 exporting manifest list sha256:c0bf05815f7c17b9a693ba4935e8711b792d53cb10dd4359b50d10c44f323022\n#7 exporting manifest list sha256:c0bf05815f7c17b9a693ba4935e8711b792d53cb10dd4359b50d10c44f323022 0.0s done\n#7 naming to docker.io/library/khotwa-ph08-math:latest done\n#7 unpacking to docker.io/library/khotwa-ph08-math:latest 0.0s done\n#7 DONE 0.2s\n"
+    },
+    {
+      "command": [
+        "docker",
+        "network",
+        "create",
+        "--internal",
+        "--label",
+        "khotwa.task=ph08-test",
+        "khotwa-ph08-9b6aef933663"
+      ],
+      "exitCode": 0,
+      "seconds": 0.2,
+      "stdout": "9d6dd040b17b51177735a6dbe1a52d362ce82bb72bd07964dc1e998bbff056f7\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "khotwa-ph08-9b6aef933663-db",
+        "--label",
+        "khotwa.task=ph08-test",
+        "--network",
+        "khotwa-ph08-9b6aef933663",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph08-9b6aef933663-db.env",
+        "--memory",
+        "512m",
+        "--pids-limit",
+        "64",
+        "--tmpfs",
+        "/var/lib/postgresql/data:rw,noexec,nosuid,size=128m",
+        "postgres:17.6-alpine3.22"
+      ],
+      "exitCode": 0,
+      "seconds": 1.2,
+      "stdout": "927aa6d9994a4932b777ec9358823a43a6292ab3c1b03de51986dfbacb340276\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "khotwa-ph08-9b6aef933663-math",
+        "--label",
+        "khotwa.task=ph08-test",
+        "--network",
+        "khotwa-ph08-9b6aef933663",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph08-9b6aef933663-math.env",
+        "--memory",
+        "256m",
+        "--cpus",
+        "1",
+        "--pids-limit",
+        "64",
+        "--read-only",
+        "--tmpfs",
+        "/tmp",
+        "khotwa-ph08-math"
+      ],
+      "exitCode": 0,
+      "seconds": 2.3,
+      "stdout": "83a2c3a406baeb3d2e121481c4143c2ce6ba58c40e9c7995883467c76a3c824b\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "exec",
+        "khotwa-ph08-9b6aef933663-math",
+        "python",
+        "-c",
+        "import os; assert 'DATABASE_URL' not in os.environ; assert 'GUEST_DIGEST_KEY' not in os.environ; print('Math environment isolated from DB and guest-signing credentials')"
+      ],
+      "exitCode": 0,
+      "seconds": 0.7,
+      "stdout": "Math environment isolated from DB and guest-signing credentials\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "--name",
+        "khotwa-ph08-9b6aef933663-tests",
+        "--label",
+        "khotwa.task=ph08-test",
+        "--network",
+        "khotwa-ph08-9b6aef933663",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph08-9b6aef933663.env",
+        "--memory",
+        "768m",
+        "--pids-limit",
+        "128",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\qa,target=/app/qa,readonly",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\apps\\api\\tests,target=/app/apps/api/tests,readonly",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\apps\\api\\prisma,target=/app/apps/api/prisma,readonly",
+        "khotwa-ph08-test"
+      ],
+      "exitCode": 0,
+      "seconds": 53.5,
+      "stdout": "PH08_DB_RESULT {\"checks\":[{\"command\":\"prisma migrate deploy\",\"exitCode\":0},{\"name\":\"PH08_delta_down_preserves_PH07_tables\",\"passed\":true},{\"command\":\"prisma migrate reset --force\",\"exitCode\":0}],\"postgres\":\"17.6\",\"tables\":31,\"migrations\":8,\"scope\":\"isolated tmpfs; PH08 delta rollback and full replay\"}\n▶ PH08 live remediation and transfer on real services\n  ✔ hidden bank is absent from catalog and foreign UUIDs never grant access (1911.269799ms)\n  ✔ six authored pairings select the intended single skill with real reference checks (2404.637124ms)\n  ✔ no verification, abstention and open probe cannot create a misleading treatment (1467.374922ms)\n  ✔ idempotency and distinct racing keys produce one episode and one attempt per assignment (1183.407001ms)\n  ✔ remediation must finish a valid chain before any transfer is assigned (1000.726022ms)\n  ✔ live incorrect-root → probe → AI failure/H4 → remediation → new independent transfer journey (1388.29392ms)\n  ✔ a transfer hint explicitly exits measurement and the latch survives reload, edits and full solution (1413.017208ms)\n  ✔ a late verification cannot restore independent status after a help request (961.969263ms)\n  ✔ transfer selection excludes exposure across learning sessions and never reuses exhausted content (895.887241ms)\n  ✔ root revision changes invalidate the whole loop and cached responses without erasing exposure (615.563578ms)\n  ✔ editing remediation invalidates assigned transfer and removes stale evidence while preserving raw history (895.836036ms)\n  ✔ unsupported transfer is not negative evidence and later corrections are re-evaluated (1101.288311ms)\n  ✔ finite remediation policy offers stop/support after two failed activities (1134.433356ms)\n  ✔ DB rejects cross-scope assignment, mutable evidence and reset measurement eligibility (3024.820748ms)\n  ✔ racing root edit and transfer assignment cannot leave an active stale measurement (1903.758206ms)\n  ✔ all transfer verification surfaces withhold solution sets and automatic coaching (3609.709986ms)\n  ✔ confirmed H4 may exit transfer directly before steps, but never supplies independent evidence (3128.383523ms)\n  ✔ one correct probe answer never creates a mastery or transfer observation (1045.978378ms)\n  ✔ a failed independent transfer offers a different bounded remediation, without permanent labels (2311.83558ms)\n  ✔ a question previously disclosed by a probe is excluded from subsequent transfer (1820.855213ms)\n  ✔ a later cross-activity disclosure withdraws positive transfer evidence without rewriting history (2270.922479ms)\n✔ PH08 live remediation and transfer on real services (39610.438178ms)\nℹ tests 22\nℹ suites 0\nℹ pass 22\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 40781.269685\n \nPH08_LIVE_RESULT {  \"phase\": \"PH-08\",  \"runId\": \"7c8fbe70-71be-4cb6-9a8f-c1aa75e3f4ed\",  \"recordedAt\": \"2026-11-04T05:23:34.745Z\",  \"services\": \"real NestJS/PostgreSQL17.6/Python/SymPy; test-only HTTP AI double\",  \"validatedResponses\": 390,  \"contracts\": [    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getProblem\",      \"status\": 404    },    {      \"operationId\": \"listProblems\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 404    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"getLearningEpisode\",      \"status\": 404    },    {      \"operationId\": \"getProblem\",      \"status\": 404    },    {      \"operationId\": \"createAttempt\",      \"status\": 404    },    {      \"operationId\": \"getProgress\",      \"status\": 404    },    {      \"operationId\": \"getProblem\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"startRemediation\",      \"status\": 409    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 409    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 409    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"startRemediation\",      \"status\": 409    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"startRemediation\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"startRemediation\",      \"status\": 409    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 409    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 409    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 409    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"answerDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 422    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"getSkillProgress\",      \"status\": 200    },    {      \"operationId\": \"getLearningEpisode\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 422    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"updateStep\",      \"status\": 200    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"updateStep\",      \"status\": 200    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 503    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"updateStep\",      \"status\": 200    },    {      \"operationId\": \"getLearningEpisode\",      \"status\": 200    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 409    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"updateStep\",      \"status\": 200    },    {      \"operationId\": \"getProblem\",      \"status\": 404    },    {      \"operationId\": \"requestHint\",      \"status\": 409    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"updateStep\",      \"status\": 200    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 409    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"updateStep\",      \"status\": 200    },    {      \"operationId\": \"getLearningEpisode\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getVerificationResult\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"listAttempts\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 409    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"answerDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 200    },    {      \"operationId\": \"getProblem\",      \"status\": 404    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"answerDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"getLearningEpisode\",      \"status\": 200    }  ],  \"actualExternalProviderCalls\": 0,  \"actualLlmInferences\": 0,  \"controlledProviderCalls\": 1,  \"referenceChecks\": [    {      \"equationHash\": \"82db5abd59d2f0e5e85308718d00dddb324717d5eba5898888979ab29fd4653b\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"1c5b818b12d19065b27f5a53554e1a9dc87626f729ae0bc24fc66749ea56c46a\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"e35735a2128dbb4dd94ad794e0b18c377642b2447e1b1ca10ec7668edcd01798\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"9207b3dffde14fa1bbb177ddfdb45a2815999432bea72f21e84e112d009c352a\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"00834c6d25cc6a0167bc435c4e2163f0667668fbc6f139f5377aeaf07d74faba\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"788066cfef62378ce890b99d89731bed392fd04415a3ae2ccd62b7dc349deee0\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"365fe55c5a30be506b65ed405898262bb57317b17911a076b886a4a447e7cf58\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"023c04e7133e1f3f0adcf60ef69086c574420827522fd71db4f222d11a05392a\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"ec5f5047bb26014f83b927397072bfb9a1902119f8cd194b93b8ca10a79fa3b7\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"de7394e3ce5f8fc18f56e93215a8a3b67c03e69ab964470ce4350a2fd2186027\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"db90fa883d8c2ebec38dfeb2cf528d384ac03b8071978bd90103fde995e66cc7\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"3924bcb7832aa661967fda6dcc3491d2b0155adc91c8d2a9a99be54adabab997\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"616348e114e3526043c5853db3649a4d949c62856c0b721754c14c2dc079110f\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"546c4dba318256688e9534aa5de2ec8f0f3336fb57c513a7341a2ee1aa8d8954\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"cafce48a930b98bcff598f51ba1c9ec1ab022940f0cfa38df8f7fe14c2f003c8\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"bd5e12f9f64f87d002c33de9c483acf0db77225bf540d744bef77ba0455624d6\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"b6648b24e0e1c7b42af028d2481852d77a2d2b51f11b3bcfb2162b3375efe16c\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"4f2630e00704d9d8ca55f616adbe1c4665f36bb2c37f5a801e96c785a869506e\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"b60d07a4c51900efdab4b519258ef8a133ca42d9a32e601e97b52385fee146c9\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"f01194286956947f00fb676dd6c7cf2de126b91e237858e29c4cfa40a647ce9e\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"0805c70514e63884b00baf30665d7cec06a2c1bcf0ee58e663099d129f58c54a\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"6d56ede247362e702f6071225404ba7d0098d4fe2730ff5f1ce06bba532a7847\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"e53ad7c1cabf16845ba07d2369868ac2dcf7f477762035f46165110725962475\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"fd0ce99f3c204a137d5f4d10610c28fe560422f2b9daaed23db169e5e7dc87d9\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"052515cd48d71108f8f81ddc85cea993eccc0657d3af09d2635aaebc53e18727\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"67afea4cf2b03298c133ea987fd64317c741b9eb6640ecbf17347bd988e60553\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"b7fbd96cda317a98a8c76ce4d8239ab9bcb8b73f85fddb8c423c1a8f5cf70086\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"678b41dd6e0f3486a7cd3d4e805dbc072eff7a3a14347fe1f858537de8bde88a\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"f8108b28fac9d1dbb97180f8921b5c0a3d7738ada26a3d0c2abf2279d1bf4f28\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"dcadae3b71a7f6a424da0ef67a36d89556bdb09f785b24f469e7aff1c8f8d3d1\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"3c00697467bafd7f2ab881fd3703f85eee8931e2a9e6cc8e231596afc2d6bf89\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"d099534b886ca8b8375fce3418563b47c2251129d035bf57c4a7a08c3776e29f\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"e75dfb42cbf435a3a8fee137d5070042f4169f5f853e8b48f097d8a04bd6c34b\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"db7d971c45a0c07919e7e3e2e566e6c4cabbd7739da98e031a1d95fdbaad1ea8\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"0b26ff94c7db4f182b2d10c95eb42c699711acb39b653a24566665bade539ff2\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    },    {      \"equationHash\": \"14097c771ed7c3981df9f1af03e271da61674de430bd28d0707ecb2615bd5259\",      \"status\": \"verified_valid\",      \"engine\": \"0.3.0\"    }  ],  \"counts\": {    \"episodes\": 24,    \"assignments\": 41,    \"evidence\": 34,    \"exposures\": 72  },  \"journey\": [    {      \"scenario\": \"QA-E2E-J02/AI/H4\",      \"rootVerdict\": \"verified_invalid\",      \"transferVerdict\": \"verified_complete\",      \"independentTransferCount\": 1,      \"assistedPracticeCount\": 1,      \"episodeId\": \"0ffeb9da-28a1-4777-b487-cc40b6bfae3d\"    }  ],  \"contentReview\": \"draft_not_human_approved\",  \"golden\": [    {      \"id\": \"GOLD-TUTOR-001\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-001\",        \"trigger\": \"انتقال غير صحيح لأول مرة، لم تُطلب مساعدة\",        \"mode\": \"learning\",        \"hint_level\": \"H0\",        \"expected\": \"تغذية محايدة مع فرصة مراجعة\",        \"forbidden\": \"كشف التحويل النهائي\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"result\": \"covered_in_PH07_not_rerun_as_independent_case\",      \"humanReview\": \"pending\"    },    {      \"id\": \"GOLD-TUTOR-002\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-002\",        \"trigger\": \"طالب يطلب تلميحًا أول بعد خطأ توزيع\",        \"mode\": \"learning\",        \"hint_level\": \"H1\",        \"expected\": \"لفت الانتباه إلى الحدين داخل القوس\",        \"forbidden\": \"ناتج القوس الكامل\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"result\": \"covered_in_PH07_not_rerun_as_independent_case\",      \"humanReview\": \"pending\"    },    {      \"id\": \"GOLD-TUTOR-003\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-003\",        \"trigger\": \"إخفاق جديد بعد H1 أو طلب المزيد\",        \"mode\": \"learning\",        \"hint_level\": \"H2\",        \"expected\": \"تذكير بأن المعامل يضرب كل حد\",        \"forbidden\": \"تقديم حل س النهائي\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"result\": \"covered_in_PH07_not_rerun_as_independent_case\",      \"humanReview\": \"pending\"    },    {      \"id\": \"GOLD-TUTOR-004\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-004\",        \"trigger\": \"طلب تلميح ثالث ضمن سياسة الدور\",        \"mode\": \"learning\",        \"hint_level\": \"H3\",        \"expected\": \"مثال ضرب أحد الحدين وطلب إكمال الآخر\",        \"forbidden\": \"كتابة الحل الكامل\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"result\": \"covered_in_PH07_not_rerun_as_independent_case\",      \"humanReview\": \"pending\"    },    {      \"id\": \"GOLD-TUTOR-005\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-005\",        \"trigger\": \"طلب صريح للحل الكامل مع تأكيد\",        \"mode\": \"learning\",        \"hint_level\": \"H4\",        \"expected\": \"عرض حل موثق وتسجيل مشاهدة H4\",        \"forbidden\": \"احتسابه دليل إتقان مستقل\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"result\": \"covered_in_PH07_not_rerun_as_independent_case\",      \"humanReview\": \"pending\"    },    {      \"id\": \"GOLD-TUTOR-006\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-006\",        \"trigger\": \"طلب H4 دون تأكيد\",        \"mode\": \"learning\",        \"hint_level\": \"H3 أو أقل\",        \"expected\": \"طلب التأكيد قبل العرض\",        \"forbidden\": \"كشف الحل فورًا\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"result\": \"covered_in_PH07_not_rerun_as_independent_case\",      \"humanReview\": \"pending\"    },    {      \"id\": \"GOLD-TUTOR-007\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-007\",        \"trigger\": \"طلب H4 أثناء مسألة النقل\",        \"mode\": \"transfer_check\",        \"hint_level\": \"لا كشف\",        \"expected\": \"الخروج من القياس إلى التعلم عند اختيار المساعدة\",        \"forbidden\": \"التقييم كنقل مستقل بعد المساعدة\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"result\": \"observed_synthetic_behavior\",      \"humanReview\": \"pending\"    },    {      \"id\": \"GOLD-TUTOR-008\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-008\",        \"trigger\": \"طلب H1 في مسألة نقل استقلالية\",        \"mode\": \"transfer_check\",        \"hint_level\": \"H1\",        \"expected\": \"إن سُمح: ينتقل النشاط إلى وضع تعلم مساعد\",        \"forbidden\": \"اعتماد محاولة القياس مستقلة\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"result\": \"observed_synthetic_behavior\",      \"humanReview\": \"pending\"    },    {      \"id\": \"GOLD-TUTOR-009\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-009\",        \"trigger\": \"syntax_error في إدخال الطالب\",        \"mode\": \"learning\",        \"hint_level\": \"—\",        \"expected\": \"رسالة توضح موضع إصلاح الصيغة\",        \"forbidden\": \"تسجيل خطأ مفاهيمي أو رفع درجة التلميح\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"result\": \"covered_in_PH07_not_rerun_as_independent_case\",      \"humanReview\": \"pending\"    },    {      \"id\": \"GOLD-TUTOR-010\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-010\",        \"trigger\": \"unsupported للدالة جا\",        \"mode\": \"learning\",        \"hint_level\": \"—\",        \"expected\": \"شرح أن الدالة غير مدعومة في الجبر الحالي\",        \"forbidden\": \"توليد جواب غير متحقق أو تخفيض تقدم\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"result\": \"covered_in_PH07_not_rerun_as_independent_case\",      \"humanReview\": \"pending\"    },    {      \"id\": \"GOLD-TUTOR-011\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-011\",        \"trigger\": \"inconclusive رغم صلاحية الصيغة\",        \"mode\": \"learning\",        \"hint_level\": \"—\",        \"expected\": \"امتناع مهني وطلب توضيح\",        \"forbidden\": \"ادعاء خطأ أو صحة\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"result\": \"covered_in_PH07_not_rerun_as_independent_case\",      \"humanReview\": \"pending\"    },    {      \"id\": \"GOLD-TUTOR-012\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-012\",        \"trigger\": \"service_error أو مهلة مزود AI\",        \"mode\": \"learning\",        \"hint_level\": \"—\",        \"expected\": \"قالب عربي معتمد عند تعطل AI وحفظ العمل\",        \"forbidden\": \"تأنيب المتعلم أو مسح المحاولة\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"result\": \"covered_in_PH07_not_rerun_as_independent_case\",      \"humanReview\": \"pending\"    },    {      \"id\": \"GOLD-TUTOR-013\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-013\",        \"trigger\": \"سؤال تأكيدي مطابق لمسألة النقل\",        \"mode\": \"confirmation\",        \"hint_level\": \"H0\",        \"expected\": \"منع إعادة استخدام السؤال نفسه للقياس\",        \"forbidden\": \"تسريب الإجابة\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"result\": \"observed_synthetic_behavior\",      \"humanReview\": \"pending\"    },    {      \"id\": \"GOLD-TUTOR-014\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-014\",        \"trigger\": \"سؤال تأكيدي صحيح واحد\",        \"mode\": \"confirmation\",        \"hint_level\": \"H0\",        \"expected\": \"يدعم فرضية ضمن المحاولة فقط\",        \"forbidden\": \"وصف إتقان دائم\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"result\": \"observed_synthetic_behavior\",      \"humanReview\": \"pending\"    },    {      \"id\": \"GOLD-TUTOR-015\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-015\",        \"trigger\": \"نمطين محتملين متداخلين\",        \"mode\": \"learning\",        \"hint_level\": \"H1\",        \"expected\": \"سؤال مميز أو unresolved\",        \"forbidden\": \"تشخيصان جازمان متعارضان\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"result\": \"covered_in_PH07_not_rerun_as_independent_case\",      \"humanReview\": \"pending\"    },    {      \"id\": \"GOLD-TUTOR-016\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-016\",        \"trigger\": \"حل صحيح بعد H4\",        \"mode\": \"learning\",        \"hint_level\": \"H4\",        \"expected\": \"النجاح بمساعدة كاملة مع سجل المساعدة\",        \"forbidden\": \"تحويله إلى حل مستقل\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"result\": \"covered_in_PH07_not_rerun_as_independent_case\",      \"humanReview\": \"pending\"    },    {      \"id\": \"GOLD-TUTOR-017\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-017\",        \"trigger\": \"مسألة جديدة مستقلة من بنك معتمد\",        \"mode\": \"transfer_check\",        \"hint_level\": \"H0\",        \"expected\": \"دليل محدود على نقل الفهم\",        \"forbidden\": \"تسمية الإتقان نهائيًا من محاولة واحدة\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"result\": \"observed_synthetic_behavior\",      \"humanReview\": \"pending\"    },    {      \"id\": \"GOLD-TUTOR-018\",      \"sourceRecord\": {        \"id\": \"GOLD-TUTOR-018\",        \"trigger\": \"محاولة نقل غير ناجحة\",        \"mode\": \"transfer_check\",        \"hint_level\": \"H0\",        \"expected\": \"عرض تدريب مناسب أو مراجعة بشرية\",        \"forbidden\": \"اعتبار المتعلم غير قادر دائمًا\",        \"reference\": \"07-TUTORING-POLICY.md\"      },      \"result\": \"observed_synthetic_behavior\",      \"humanReview\": \"pending\"    }  ],  \"gate2\": \"not_approved\",  \"ph09\": \"not_started\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph08-9b6aef933663-tests"
+      ],
+      "exitCode": 0,
+      "seconds": 0.4,
+      "stdout": "khotwa-ph08-9b6aef933663-tests\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph08-9b6aef933663-math"
+      ],
+      "exitCode": 0,
+      "seconds": 1.6,
+      "stdout": "khotwa-ph08-9b6aef933663-math\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph08-9b6aef933663-db"
+      ],
+      "exitCode": 0,
+      "seconds": 1.7,
+      "stdout": "khotwa-ph08-9b6aef933663-db\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "network",
+        "rm",
+        "khotwa-ph08-9b6aef933663"
+      ],
+      "exitCode": 0,
+      "seconds": 0.7,
+      "stdout": "khotwa-ph08-9b6aef933663\n",
+      "stderr": ""
+    }
+  ],
+  "dbProof": {
+    "checks": [
+      {
+        "command": "prisma migrate deploy",
+        "exitCode": 0
+      },
+      {
+        "name": "PH08_delta_down_preserves_PH07_tables",
+        "passed": true
+      },
+      {
+        "command": "prisma migrate reset --force",
+        "exitCode": 0
+      }
+    ],
+    "postgres": "17.6",
+    "tables": 31,
+    "migrations": 8,
+    "scope": "isolated tmpfs; PH08 delta rollback and full replay"
+  },
+  "liveProof": {
+    "phase": "PH-08",
+    "runId": "7c8fbe70-71be-4cb6-9a8f-c1aa75e3f4ed",
+    "recordedAt": "2026-11-04T05:23:34.745Z",
+    "services": "real NestJS/PostgreSQL17.6/Python/SymPy; test-only HTTP AI double",
+    "validatedResponses": 390,
+    "contracts": [
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getProblem",
+        "status": 404
+      },
+      {
+        "operationId": "listProblems",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 404
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "getLearningEpisode",
+        "status": 404
+      },
+      {
+        "operationId": "getProblem",
+        "status": 404
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 404
+      },
+      {
+        "operationId": "getProgress",
+        "status": 404
+      },
+      {
+        "operationId": "getProblem",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 409
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 409
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 409
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 409
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 409
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 409
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 409
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 409
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "answerDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 422
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "getSkillProgress",
+        "status": 200
+      },
+      {
+        "operationId": "getLearningEpisode",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 422
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "updateStep",
+        "status": 200
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "updateStep",
+        "status": 200
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 503
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "updateStep",
+        "status": 200
+      },
+      {
+        "operationId": "getLearningEpisode",
+        "status": 200
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 409
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "updateStep",
+        "status": 200
+      },
+      {
+        "operationId": "getProblem",
+        "status": 404
+      },
+      {
+        "operationId": "requestHint",
+        "status": 409
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "updateStep",
+        "status": 200
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 409
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "updateStep",
+        "status": 200
+      },
+      {
+        "operationId": "getLearningEpisode",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getVerificationResult",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "listAttempts",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 409
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "answerDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 200
+      },
+      {
+        "operationId": "getProblem",
+        "status": 404
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "answerDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "getLearningEpisode",
+        "status": 200
+      }
+    ],
+    "actualExternalProviderCalls": 0,
+    "actualLlmInferences": 0,
+    "controlledProviderCalls": 1,
+    "referenceChecks": [
+      {
+        "equationHash": "82db5abd59d2f0e5e85308718d00dddb324717d5eba5898888979ab29fd4653b",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "1c5b818b12d19065b27f5a53554e1a9dc87626f729ae0bc24fc66749ea56c46a",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "e35735a2128dbb4dd94ad794e0b18c377642b2447e1b1ca10ec7668edcd01798",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "9207b3dffde14fa1bbb177ddfdb45a2815999432bea72f21e84e112d009c352a",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "00834c6d25cc6a0167bc435c4e2163f0667668fbc6f139f5377aeaf07d74faba",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "788066cfef62378ce890b99d89731bed392fd04415a3ae2ccd62b7dc349deee0",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "365fe55c5a30be506b65ed405898262bb57317b17911a076b886a4a447e7cf58",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "023c04e7133e1f3f0adcf60ef69086c574420827522fd71db4f222d11a05392a",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "ec5f5047bb26014f83b927397072bfb9a1902119f8cd194b93b8ca10a79fa3b7",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "de7394e3ce5f8fc18f56e93215a8a3b67c03e69ab964470ce4350a2fd2186027",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "db90fa883d8c2ebec38dfeb2cf528d384ac03b8071978bd90103fde995e66cc7",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "3924bcb7832aa661967fda6dcc3491d2b0155adc91c8d2a9a99be54adabab997",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "616348e114e3526043c5853db3649a4d949c62856c0b721754c14c2dc079110f",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "546c4dba318256688e9534aa5de2ec8f0f3336fb57c513a7341a2ee1aa8d8954",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "cafce48a930b98bcff598f51ba1c9ec1ab022940f0cfa38df8f7fe14c2f003c8",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "bd5e12f9f64f87d002c33de9c483acf0db77225bf540d744bef77ba0455624d6",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "b6648b24e0e1c7b42af028d2481852d77a2d2b51f11b3bcfb2162b3375efe16c",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "4f2630e00704d9d8ca55f616adbe1c4665f36bb2c37f5a801e96c785a869506e",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "b60d07a4c51900efdab4b519258ef8a133ca42d9a32e601e97b52385fee146c9",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "f01194286956947f00fb676dd6c7cf2de126b91e237858e29c4cfa40a647ce9e",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "0805c70514e63884b00baf30665d7cec06a2c1bcf0ee58e663099d129f58c54a",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "6d56ede247362e702f6071225404ba7d0098d4fe2730ff5f1ce06bba532a7847",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "e53ad7c1cabf16845ba07d2369868ac2dcf7f477762035f46165110725962475",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "fd0ce99f3c204a137d5f4d10610c28fe560422f2b9daaed23db169e5e7dc87d9",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "052515cd48d71108f8f81ddc85cea993eccc0657d3af09d2635aaebc53e18727",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "67afea4cf2b03298c133ea987fd64317c741b9eb6640ecbf17347bd988e60553",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "b7fbd96cda317a98a8c76ce4d8239ab9bcb8b73f85fddb8c423c1a8f5cf70086",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "678b41dd6e0f3486a7cd3d4e805dbc072eff7a3a14347fe1f858537de8bde88a",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "f8108b28fac9d1dbb97180f8921b5c0a3d7738ada26a3d0c2abf2279d1bf4f28",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "dcadae3b71a7f6a424da0ef67a36d89556bdb09f785b24f469e7aff1c8f8d3d1",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "3c00697467bafd7f2ab881fd3703f85eee8931e2a9e6cc8e231596afc2d6bf89",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "d099534b886ca8b8375fce3418563b47c2251129d035bf57c4a7a08c3776e29f",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "e75dfb42cbf435a3a8fee137d5070042f4169f5f853e8b48f097d8a04bd6c34b",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "db7d971c45a0c07919e7e3e2e566e6c4cabbd7739da98e031a1d95fdbaad1ea8",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "0b26ff94c7db4f182b2d10c95eb42c699711acb39b653a24566665bade539ff2",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      },
+      {
+        "equationHash": "14097c771ed7c3981df9f1af03e271da61674de430bd28d0707ecb2615bd5259",
+        "status": "verified_valid",
+        "engine": "0.3.0"
+      }
+    ],
+    "counts": {
+      "episodes": 24,
+      "assignments": 41,
+      "evidence": 34,
+      "exposures": 72
+    },
+    "journey": [
+      {
+        "scenario": "QA-E2E-J02/AI/H4",
+        "rootVerdict": "verified_invalid",
+        "transferVerdict": "verified_complete",
+        "independentTransferCount": 1,
+        "assistedPracticeCount": 1,
+        "episodeId": "0ffeb9da-28a1-4777-b487-cc40b6bfae3d"
+      }
+    ],
+    "contentReview": "draft_not_human_approved",
+    "golden": [
+      {
+        "id": "GOLD-TUTOR-001",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-001",
+          "trigger": "انتقال غير صحيح لأول مرة، لم تُطلب مساعدة",
+          "mode": "learning",
+          "hint_level": "H0",
+          "expected": "تغذية محايدة مع فرصة مراجعة",
+          "forbidden": "كشف التحويل النهائي",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "result": "covered_in_PH07_not_rerun_as_independent_case",
+        "humanReview": "pending"
+      },
+      {
+        "id": "GOLD-TUTOR-002",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-002",
+          "trigger": "طالب يطلب تلميحًا أول بعد خطأ توزيع",
+          "mode": "learning",
+          "hint_level": "H1",
+          "expected": "لفت الانتباه إلى الحدين داخل القوس",
+          "forbidden": "ناتج القوس الكامل",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "result": "covered_in_PH07_not_rerun_as_independent_case",
+        "humanReview": "pending"
+      },
+      {
+        "id": "GOLD-TUTOR-003",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-003",
+          "trigger": "إخفاق جديد بعد H1 أو طلب المزيد",
+          "mode": "learning",
+          "hint_level": "H2",
+          "expected": "تذكير بأن المعامل يضرب كل حد",
+          "forbidden": "تقديم حل س النهائي",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "result": "covered_in_PH07_not_rerun_as_independent_case",
+        "humanReview": "pending"
+      },
+      {
+        "id": "GOLD-TUTOR-004",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-004",
+          "trigger": "طلب تلميح ثالث ضمن سياسة الدور",
+          "mode": "learning",
+          "hint_level": "H3",
+          "expected": "مثال ضرب أحد الحدين وطلب إكمال الآخر",
+          "forbidden": "كتابة الحل الكامل",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "result": "covered_in_PH07_not_rerun_as_independent_case",
+        "humanReview": "pending"
+      },
+      {
+        "id": "GOLD-TUTOR-005",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-005",
+          "trigger": "طلب صريح للحل الكامل مع تأكيد",
+          "mode": "learning",
+          "hint_level": "H4",
+          "expected": "عرض حل موثق وتسجيل مشاهدة H4",
+          "forbidden": "احتسابه دليل إتقان مستقل",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "result": "covered_in_PH07_not_rerun_as_independent_case",
+        "humanReview": "pending"
+      },
+      {
+        "id": "GOLD-TUTOR-006",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-006",
+          "trigger": "طلب H4 دون تأكيد",
+          "mode": "learning",
+          "hint_level": "H3 أو أقل",
+          "expected": "طلب التأكيد قبل العرض",
+          "forbidden": "كشف الحل فورًا",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "result": "covered_in_PH07_not_rerun_as_independent_case",
+        "humanReview": "pending"
+      },
+      {
+        "id": "GOLD-TUTOR-007",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-007",
+          "trigger": "طلب H4 أثناء مسألة النقل",
+          "mode": "transfer_check",
+          "hint_level": "لا كشف",
+          "expected": "الخروج من القياس إلى التعلم عند اختيار المساعدة",
+          "forbidden": "التقييم كنقل مستقل بعد المساعدة",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "result": "observed_synthetic_behavior",
+        "humanReview": "pending"
+      },
+      {
+        "id": "GOLD-TUTOR-008",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-008",
+          "trigger": "طلب H1 في مسألة نقل استقلالية",
+          "mode": "transfer_check",
+          "hint_level": "H1",
+          "expected": "إن سُمح: ينتقل النشاط إلى وضع تعلم مساعد",
+          "forbidden": "اعتماد محاولة القياس مستقلة",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "result": "observed_synthetic_behavior",
+        "humanReview": "pending"
+      },
+      {
+        "id": "GOLD-TUTOR-009",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-009",
+          "trigger": "syntax_error في إدخال الطالب",
+          "mode": "learning",
+          "hint_level": "—",
+          "expected": "رسالة توضح موضع إصلاح الصيغة",
+          "forbidden": "تسجيل خطأ مفاهيمي أو رفع درجة التلميح",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "result": "covered_in_PH07_not_rerun_as_independent_case",
+        "humanReview": "pending"
+      },
+      {
+        "id": "GOLD-TUTOR-010",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-010",
+          "trigger": "unsupported للدالة جا",
+          "mode": "learning",
+          "hint_level": "—",
+          "expected": "شرح أن الدالة غير مدعومة في الجبر الحالي",
+          "forbidden": "توليد جواب غير متحقق أو تخفيض تقدم",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "result": "covered_in_PH07_not_rerun_as_independent_case",
+        "humanReview": "pending"
+      },
+      {
+        "id": "GOLD-TUTOR-011",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-011",
+          "trigger": "inconclusive رغم صلاحية الصيغة",
+          "mode": "learning",
+          "hint_level": "—",
+          "expected": "امتناع مهني وطلب توضيح",
+          "forbidden": "ادعاء خطأ أو صحة",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "result": "covered_in_PH07_not_rerun_as_independent_case",
+        "humanReview": "pending"
+      },
+      {
+        "id": "GOLD-TUTOR-012",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-012",
+          "trigger": "service_error أو مهلة مزود AI",
+          "mode": "learning",
+          "hint_level": "—",
+          "expected": "قالب عربي معتمد عند تعطل AI وحفظ العمل",
+          "forbidden": "تأنيب المتعلم أو مسح المحاولة",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "result": "covered_in_PH07_not_rerun_as_independent_case",
+        "humanReview": "pending"
+      },
+      {
+        "id": "GOLD-TUTOR-013",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-013",
+          "trigger": "سؤال تأكيدي مطابق لمسألة النقل",
+          "mode": "confirmation",
+          "hint_level": "H0",
+          "expected": "منع إعادة استخدام السؤال نفسه للقياس",
+          "forbidden": "تسريب الإجابة",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "result": "observed_synthetic_behavior",
+        "humanReview": "pending"
+      },
+      {
+        "id": "GOLD-TUTOR-014",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-014",
+          "trigger": "سؤال تأكيدي صحيح واحد",
+          "mode": "confirmation",
+          "hint_level": "H0",
+          "expected": "يدعم فرضية ضمن المحاولة فقط",
+          "forbidden": "وصف إتقان دائم",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "result": "observed_synthetic_behavior",
+        "humanReview": "pending"
+      },
+      {
+        "id": "GOLD-TUTOR-015",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-015",
+          "trigger": "نمطين محتملين متداخلين",
+          "mode": "learning",
+          "hint_level": "H1",
+          "expected": "سؤال مميز أو unresolved",
+          "forbidden": "تشخيصان جازمان متعارضان",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "result": "covered_in_PH07_not_rerun_as_independent_case",
+        "humanReview": "pending"
+      },
+      {
+        "id": "GOLD-TUTOR-016",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-016",
+          "trigger": "حل صحيح بعد H4",
+          "mode": "learning",
+          "hint_level": "H4",
+          "expected": "النجاح بمساعدة كاملة مع سجل المساعدة",
+          "forbidden": "تحويله إلى حل مستقل",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "result": "covered_in_PH07_not_rerun_as_independent_case",
+        "humanReview": "pending"
+      },
+      {
+        "id": "GOLD-TUTOR-017",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-017",
+          "trigger": "مسألة جديدة مستقلة من بنك معتمد",
+          "mode": "transfer_check",
+          "hint_level": "H0",
+          "expected": "دليل محدود على نقل الفهم",
+          "forbidden": "تسمية الإتقان نهائيًا من محاولة واحدة",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "result": "observed_synthetic_behavior",
+        "humanReview": "pending"
+      },
+      {
+        "id": "GOLD-TUTOR-018",
+        "sourceRecord": {
+          "id": "GOLD-TUTOR-018",
+          "trigger": "محاولة نقل غير ناجحة",
+          "mode": "transfer_check",
+          "hint_level": "H0",
+          "expected": "عرض تدريب مناسب أو مراجعة بشرية",
+          "forbidden": "اعتبار المتعلم غير قادر دائمًا",
+          "reference": "07-TUTORING-POLICY.md"
+        },
+        "result": "observed_synthetic_behavior",
+        "humanReview": "pending"
+      }
+    ],
+    "gate2": "not_approved",
+    "ph09": "not_started"
+  },
+  "testSummary": {
+    "total": 22,
+    "passed": 22,
+    "failed": 0
+  }
+}

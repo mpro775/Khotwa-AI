@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "gate0-contract-freeze-manifest-v1",
+  "status": "TEMPLATE_NOT_APPROVED",
+  "gate": "GATE-0",
+  "freezeId": "REPLACE_FROM_ACTUAL_SIGNED_FREEZE",
+  "sourceCommit": "REPLACE_FROM_LATEST_REPO",
+  "frozenAt": "REPLACE_FROM_SIGNED_RECORD",
+  "reviewer": "محمد مراد",
+  "engineeringApprovalEvidence": "planning/approvals/REPLACE_WITH_DIRECT_SIGNOFF",
+  "mathApprovalEvidence": "planning/approvals/REPLACE_WITH_DIRECT_MATH_SIGNOFF",
+  "files": [
+    {
+      "path": "docs/12-API-CONTRACT.yaml",
+      "sha256": "REPLACE_WITH_SHA256_OF_LATEST_APPROVED_FILE",
+      "contractVersion": "REPLACE_WITH_ACTUAL_VERSION"
+    },
+    {
+      "path": "docs/contracts/math-internal-v1.schema.json",
+      "sha256": "REPLACE_WITH_SHA256_OF_LATEST_APPROVED_FILE",
+      "contractVersion": "REPLACE_WITH_ACTUAL_VERSION"
+    },
+    {
+      "path": "docs/contracts/math-internal-v1.md",
+      "sha256": "REPLACE_WITH_SHA256_OF_LATEST_APPROVED_FILE",
+      "contractVersion": "REPLACE_WITH_ACTUAL_VERSION"
+    },
+    {
+      "path": "docs/contracts/math-internal-v1.examples.json",
+      "sha256": "REPLACE_WITH_SHA256_OF_LATEST_APPROVED_FILE",
+      "contractVersion": "REPLACE_WITH_ACTUAL_VERSION"
+    },
+    {
+      "path": "docs/contracts/golden-fixtures-v1.schema.json",
+      "sha256": "REPLACE_WITH_SHA256_OF_LATEST_APPROVED_FILE",
+      "contractVersion": "REPLACE_WITH_ACTUAL_VERSION"
+    },
+    {
+      "path": "docs/contracts/golden-adapter-v1.md",
+      "sha256": "REPLACE_WITH_SHA256_OF_LATEST_APPROVED_FILE",
+      "contractVersion": "REPLACE_WITH_ACTUAL_VERSION"
+    },
+    {
+      "path": "docs/14-GOLDEN-DATASET.cases.json",
+      "sha256": "REPLACE_WITH_SHA256_OF_LATEST_APPROVED_FILE",
+      "contractVersion": "REPLACE_WITH_ACTUAL_VERSION"
+    }
+  ]
+}

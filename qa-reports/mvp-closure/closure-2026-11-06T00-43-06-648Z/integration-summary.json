@@ -1,0 +1,42 @@
+{
+  "runId": "closure-2026-11-06T00-43-06-648Z",
+  "commit": "defddb077c94073653dbfe8ef4244c287a05d7f0",
+  "actualGeminiCalls": 0,
+  "isolatedNetwork": true,
+  "checks": [
+    {
+      "name": "compile",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "-p",
+        "apps/api/tsconfig.json"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 5569
+    },
+    {
+      "name": "ph09-migrations",
+      "command": [
+        "node",
+        "node_modules/prisma/build/index.js",
+        "migrate",
+        "deploy",
+        "--config",
+        "apps/api/prisma.config.ts"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 1847
+    },
+    {
+      "name": "retention",
+      "command": [
+        "node",
+        "--test",
+        "apps/api/tests/retention-live.test.mjs"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 6316
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "at": "2026-11-04T22:43:21.954Z",
+  "node": "v26.7.0",
+  "platform": "win32",
+  "checks": [
+    {
+      "name": "lint",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "node_modules/eslint/bin/eslint.js",
+        "apps/api/src/ai-tutor.ts",
+        "apps/api/src/business.ts",
+        "apps/api/src/tutoring.ts",
+        "apps/api/src/gemini-adapter.ts",
+        "apps/api/src/gemini-quota.ts",
+        "apps/api/src/ph08-gemini.ts",
+        "apps/api/tests/gemini.test.mjs",
+        "apps/api/tests/gemini-live.test.mjs",
+        "qa/ph08-gemini-container.mjs",
+        "tools/verify-ph08-gemini.mjs",
+        "tools/check-ph08-gemini.mjs"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 2606,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "format",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "node_modules/prettier/bin/prettier.cjs",
+        "--check",
+        "apps/api/src/ai-tutor.ts",
+        "apps/api/src/business.ts",
+        "apps/api/src/tutoring.ts",
+        "apps/api/src/gemini-adapter.ts",
+        "apps/api/src/gemini-quota.ts",
+        "apps/api/src/ph08-gemini.ts",
+        "apps/api/tests/gemini.test.mjs",
+        "apps/api/tests/gemini-live.test.mjs",
+        "qa/ph08-gemini-container.mjs",
+        "tools/verify-ph08-gemini.mjs",
+        "tools/check-ph08-gemini.mjs"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 1251,
+      "stdout": "Checking formatting...\nAll matched files use Prettier code style!\n",
+      "stderr": ""
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "typecheck",
+        "--workspace",
+        "@khotwa/api"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 18588,
+      "stdout": "\n> @khotwa/api@0.1.0 typecheck\n> npm run generate && tsc --noEmit\n\n\n> @khotwa/api@0.1.0 generate\n> prisma generate --config prisma.config.ts\n\n\n✔ Generated Prisma Client (v7.10.1) to .\\..\\..\\node_modules\\@prisma\\client in 926ms\n\nStart by importing your Prisma Client (See: https://pris.ly/d/importing-client)\n\n\n",
+      "stderr": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma\\schema.prisma.\n"
+    },
+    {
+      "name": "build",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "build",
+        "--workspace",
+        "@khotwa/api"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 17704,
+      "stdout": "\n> @khotwa/api@0.1.0 build\n> npm run generate && tsc -p tsconfig.json\n\n\n> @khotwa/api@0.1.0 generate\n> prisma generate --config prisma.config.ts\n\n\n✔ Generated Prisma Client (v7.10.1) to .\\..\\..\\node_modules\\@prisma\\client in 1.60s\n\nStart by importing your Prisma Client (See: https://pris.ly/d/importing-client)\n\n\n",
+      "stderr": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma\\schema.prisma.\n"
+    },
+    {
+      "name": "targeted-tests",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "--test",
+        "apps/api/tests/gemini.test.mjs",
+        "apps/api/tests/tutoring.test.mjs",
+        "apps/api/tests/learning.test.mjs"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 2480,
+      "stdout": "✔ rolling quota persists reservations, counts failures and respects the exact 60s boundary (33.924ms)\n✔ actual remaining daily allowance and reset time fail closed (7.4415ms)\n✔ exclusive lock prevents a second process/adapter from bypassing the ledger (6.4913ms)\n✔ corrupt ledger and changed round configuration cannot replenish a round (21.5023ms)\n✔ structured request uses configurable model/minimal, secret header and local schema validation (75.8078ms)\n✔ local rejection: extra schema fields (7.7674ms)\n✔ local rejection: invented math verdict (7.4448ms)\n✔ local rejection: early answer despite false no-leak flag (7.8498ms)\n✔ local rejection: new unreviewed teaching meaning (7.7059ms)\n✔ local rejection: wrong template (7.878ms)\n✔ local rejection: abstention (9.3655ms)\n✔ provider finish/JSON: AI_INVALID_JSON (9.2034ms)\n✔ provider finish/JSON: AI_TRUNCATED (7.3676ms)\n✔ provider finish/JSON: AI_REFUSED (7.776ms)\n✔ 429 spends one reservation without retry or logging the response body (7.6098ms)\n✔ out-of-scope and pre-aborted calls never contact provider or reserve quota (4.4182ms)\n✔ second concurrent call is rejected without dispatch or reservation (7.2208ms)\n✔ environment factory keeps disabled behavior and rejects PH09/non-synthetic activation (2.2233ms)\n✔ only a current verified complete chain supports a positive independent observation (2.9123ms)\n✔ syntax_error never creates negative or positive conceptual evidence (0.5626ms)\n✔ unsupported never creates negative or positive conceptual evidence (0.3328ms)\n✔ inconclusive never creates negative or positive conceptual evidence (0.4664ms)\n✔ service_error never creates negative or positive conceptual evidence (0.4893ms)\n✔ an invalid edge before a correct final answer cannot count as independent transfer (0.4341ms)\n✔ non-assessable attempts do not erase valid prior evidence; guided activity is never a transfer count (0.4084ms)\n✔ activation is restricted to synthetic stores and explicitly bounded finite loops (1.4107ms)\n✔ public transfer reports hide solution-bearing proofs on copies, without changing math truth (0.8288ms)\n✔ an unresolved verified difficulty remains follow-up after guided practice, while valid transfer evidence is retained (0.5801ms)\n✔ explicit next requests progress from H0 through H3, never implicitly to H4 (4.4613ms)\n✔ H4 requires explicit confirmation and independent/probe modes cannot reveal any level (0.7853ms)\n✔ unassessable math and open confirmation questions never escalate hints (0.5922ms)\n✔ assistance eligibility survives legacy status and feature disabling (0.4831ms)\n✔ provider context allowlist omits identity, raw input, secrets, history and hidden transfer answers (2.2314ms)\n✔ structured usable output must match the exact version and approved level/template phrase (4.6429ms)\n✔ invalid JSON, excess fields, refusal, truncation and oversized/token-invalid outputs are rejected (1.7736ms)\n✔ no-leak self-report cannot authorize a solution, injection, wrong math, Latin x, HTML or bidi control (1.6126ms)\n✔ a hard deadline rejects an adapter that ignores cancellation without retrying (14.7217ms)\n✔ owner-disabled AI never calls a provider (0.8932ms)\nℹ tests 38\nℹ suites 0\nℹ pass 38\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 2364.5778\n",
+      "stderr": ""
+    }
+  ]
+}

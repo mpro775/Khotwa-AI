@@ -1,0 +1,60 @@
+{
+  "phase": "PH-04",
+  "recordedAt": "2026-11-04T01:55:15.708Z",
+  "node": "v26.7.0",
+  "platform": "win32",
+  "checks": [
+    {
+      "command": "npm run contracts:check",
+      "exitCode": 0,
+      "seconds": 1.4,
+      "stdout": "\n> khotwa-ai@0.1.0 contracts:check\n> node tools/contracts.mjs --check\n\nCanonical OpenAPI mirror, 3 JSON mirrors, and generated public types verified.\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run format:check",
+      "exitCode": 0,
+      "seconds": 2.7,
+      "stdout": "\n> khotwa-ai@0.1.0 format:check\n> prettier --check package.json tsconfig.base.json eslint.config.mjs pyrightconfig.json compose.yaml Dockerfile .github/workflows/ci.yml \"apps/**/*.{ts,tsx,json,css,html}\" \"packages/contracts/src/index.ts\" \"tools/*.mjs\" && node tools/python-task.mjs -m black --check services/math-engine/src tools/dev_env.py tools/seed_demo.py\n\nChecking formatting...\nAll matched files use Prettier code style!\n",
+      "stderr": "All done! \\u2728 \\U0001f370 \\u2728\r\n13 files would be left unchanged.\r\n"
+    },
+    {
+      "command": "npm run lint",
+      "exitCode": 0,
+      "seconds": 3.4,
+      "stdout": "\n> khotwa-ai@0.1.0 lint\n> eslint apps packages/contracts/src tools/*.mjs && node tools/python-task.mjs -m pycodestyle --max-line-length=88 --ignore=E203,W503 services/math-engine/src tools/dev_env.py tools/seed_demo.py\n\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "seconds": 24.5,
+      "stdout": "\n> khotwa-ai@0.1.0 typecheck\n> npm run typecheck --workspaces --if-present && pyright\n\n\n> @khotwa/api@0.1.0 typecheck\n> npm run generate && tsc --noEmit\n\n\n> @khotwa/api@0.1.0 generate\n> prisma generate --config prisma.config.ts\n\n\n✔ Generated Prisma Client (v7.10.1) to .\\..\\..\\node_modules\\@prisma\\client in 799ms\n\nStart by importing your Prisma Client (See: https://pris.ly/d/importing-client)\n\n\n\n> @khotwa/web@0.1.0 typecheck\n> tsc --noEmit\n\n\n> @khotwa/contracts@0.1.0 typecheck\n> tsc --noEmit\n\n0 errors, 0 warnings, 0 informations\n",
+      "stderr": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma\\schema.prisma.\n"
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "seconds": 20.9,
+      "stdout": "\n> khotwa-ai@0.1.0 build\n> npm run build --workspaces --if-present && node tools/python-task.mjs -m compileall -q services/math-engine/src\n\n\n> @khotwa/api@0.1.0 build\n> npm run generate && tsc -p tsconfig.json\n\n\n> @khotwa/api@0.1.0 generate\n> prisma generate --config prisma.config.ts\n\n\n✔ Generated Prisma Client (v7.10.1) to .\\..\\..\\node_modules\\@prisma\\client in 365ms\n\nStart by importing your Prisma Client (See: https://pris.ly/d/importing-client)\n\n\n\n> @khotwa/web@0.1.0 build\n> tsc --noEmit && vite build\n\nvite v8.3.5 building client environment for production...\ntransforming...\n✓ 22 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                                           0.40 kB │ gzip:   0.28 kB\ndist/assets/KaTeX_Size4-Regular-Dl5lxZxV.woff2            4.92 kB\ndist/assets/KaTeX_Size2-Regular-Dy4dx90m.woff2            5.20 kB\ndist/assets/KaTeX_Size1-Regular-mCD8mA8B.woff2            5.46 kB\ndist/assets/KaTeX_Caligraphic-Regular-Di6jR-x-.woff2      6.90 kB\ndist/assets/KaTeX_Caligraphic-Bold-Dq_IR9rO.woff2         6.91 kB\ndist/assets/KaTeX_Script-Regular-D3wIWfF6.woff2           9.64 kB\ndist/assets/KaTeX_SansSerif-Regular-DDBCnlJ7.woff2       10.34 kB\ndist/assets/KaTeX_Fraktur-Regular-CTYiF6lA.woff2         11.31 kB\ndist/assets/KaTeX_Fraktur-Bold-CL6g_b3V.woff2            11.34 kB\ndist/assets/KaTeX_SansSerif-Italic-C3H0VqGB.woff2        12.02 kB\ndist/assets/KaTeX_SansSerif-Bold-D1sUS0GD.woff2          12.21 kB\ndist/assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2      13.56 kB\ndist/assets/KaTeX_Math-BoldItalic-CZnvNsCZ.woff2         16.40 kB\ndist/assets/KaTeX_Math-Italic-t53AETM-.woff2             16.44 kB\ndist/assets/KaTeX_Main-BoldItalic-DxDJ3AOS.woff2         16.78 kB\ndist/assets/KaTeX_Main-Italic-NWA7e6Wa.woff2             16.98 kB\ndist/assets/KaTeX_Main-Bold-Cx986IdX.woff2               25.32 kB\ndist/assets/KaTeX_Main-Regular-B22Nviop.woff2            26.27 kB\ndist/assets/KaTeX_AMS-Regular-BQhdFMY1.woff2             28.07 kB\ndist/assets/index-CGgeFzeW.css                           12.52 kB │ gzip:   6.04 kB\ndist/assets/index-Cz5tJ2np.js                         1,044.76 kB │ gzip: 296.70 kB\n\n✓ built in 790ms\n\n> @khotwa/contracts@0.1.0 build\n> tsc --noEmit\n\n",
+      "stderr": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma\\schema.prisma.\n[plugin builtin:vite-reporter] \n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n"
+    },
+    {
+      "command": "npm run test:api",
+      "exitCode": 0,
+      "seconds": 3.8,
+      "stdout": "\n> khotwa-ai@0.1.0 test:api\n> npm run test --workspace @khotwa/api\n\n\n> @khotwa/api@0.1.0 test\n> node --test tests/security.test.mjs tests/math-gateway.test.mjs\n\n▶ private math adapter validates schemas, bounded responses, versions and request context\n  ✔ parse preserves raw and context without judging correctness (229.9918ms)\n  ✔ unsupported input remains a nonconceptual status (9.6618ms)\n  ✔ rejects http500 (6.6472ms)\n  ✔ rejects html (4.2261ms)\n  ✔ rejects invalid_json (4.797ms)\n  ✔ rejects oversized (6.6734ms)\n  ✔ rejects wrong_version (6.2156ms)\n  ✔ rejects wrong_notation (5.8432ms)\n  ✔ rejects wrong_request (7.0303ms)\n  ✔ rejects wrong_context (5.7415ms)\n  ✔ rejects wrong_source (4.2328ms)\n  ✔ rejects wrong_raw (5.3602ms)\n  ✔ rejects extra (11.4593ms)\n  ✔ actual aborted HTTP deadline returns operational unavailability (54.7878ms)\n  ✔ transition accepts verified proof and preserves service failure (64.2251ms)\n  ✔ transition rejects wrong_revision (5.4856ms)\n  ✔ transition rejects invalid_without_proof (3.8567ms)\n  ✔ source-kind mismatch is rejected before a network call (0.6304ms)\n  ✔ check-final validates pinned final version (92.8597ms)\n✔ private math adapter validates schemas, bounded responses, versions and request context (570.876ms)\n✔ bootstrap signature, expiry, Origin and CSRF form one binding (8.1601ms)\n✔ opaque guest digest and CSRF use distinct keys and contexts (1.7189ms)\n✔ cookies retain mandatory security flags and reject duplicates (0.6903ms)\n✔ security fails closed for insecure origin or reused/weak keys (1.1117ms)\n✔ signed cursors cannot cross an owner/filter boundary (2.0848ms)\n✔ fingerprints ignore JSON key order while retaining scope and raw meaning (1.3206ms)\n✔ OpenAPI DTO rejects browser AST, unexpected fields, invalid revisions and long raw input (99.7832ms)\n✔ AI boundary cannot invent a verdict or disclose provider output (0.8722ms)\n✔ experimental limiter separates guests and resets its bounded time window (0.7639ms)\nℹ tests 29\nℹ suites 0\nℹ pass 29\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 2414.3847\n",
+      "stderr": ""
+    },
+    {
+      "command": "npm run smoke",
+      "exitCode": 0,
+      "seconds": 3.9,
+      "stdout": "\n> khotwa-ai@0.1.0 smoke\n> node tools/smoke.mjs\n\nNative smoke: 7 checks passed; protected health, versioned math worker and truthful unavailable DB readiness; no public business routes claimed.\n",
+      "stderr": ""
+    }
+  ],
+  "passed": 7,
+  "failed": 0,
+  "scope": "static checks, API units, foundation health smoke; real DB integration recorded separately; no heavy Golden/load suite"
+}

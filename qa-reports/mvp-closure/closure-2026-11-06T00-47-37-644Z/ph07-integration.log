@@ -1,0 +1,27 @@
+▶ PH-07 guided tutoring on real NestJS PostgreSQL Python
+  ✔ H0 is unassisted; owner-disabled AI uses authored H1/H2/H3 and verified partial math without claiming review (2440.284459ms)
+  ✔ H4 requires confirmation, verifies every transition/final answer, and does not complete the student attempt (561.224888ms)
+  ✔ assistance survives edit/reload and disabling PH07; correct completion is assisted even for H1 (2555.718001ms)
+  ✔ independent transfer/probe fixtures deny all hint levels without exposing hidden content (1152.379164ms)
+  ✔ syntax/unsupported/inconclusive never escalate assistance or call the provider (1151.097779ms)
+  ✔ open probes block hints; any served assistance prevents later independent probe evidence (1056.073865ms)
+  ✔ valid structured test-provider text is sanitized, versioned and never presented as real LLM output (595.739381ms)
+  ✔ unexpected provider JSON, verdict changes, leaked answers, HTML, bidi and unsafe arithmetic fall back (4909.159136ms)
+  ✔ real HTTP provider timeout falls back once without losing raw input or double escalation (403.788134ms)
+  ✔ same-key concurrency and changed-key retry cannot duplicate a hint or its budget charge (372.643364ms)
+  ✔ editing during provider wait rejects the late result and cached old context (287.589312ms)
+  ✔ a pending hint prevents a racing diagnostic question from becoming an independent observation (273.423471ms)
+  ✔ an expired hint reservation can recover, and its old worker cannot overwrite the retry (526.494589ms)
+  ✔ call/cost/input/parallel limits are reserved atomically and use safe fallback (2111.61093ms)
+  ✔ missing or mathematically invalid content never becomes an unverified H4 solution (463.757378ms)
+  ✔ legacy assisted status remains non-independent after migration and an edit without inventing H4 (364.358131ms)
+  ✔ ownership, DTOs, immutable events and monotonic assistance are enforced (561.02898ms)
+✔ PH-07 guided tutoring on real NestJS PostgreSQL Python (23572.666991ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 24882.352392

@@ -1,0 +1,186 @@
+{
+  "runId": "closure-2026-11-06T00-38-48-525Z",
+  "commit": "defddb077c94073653dbfe8ef4244c287a05d7f0",
+  "actualGeminiCalls": 0,
+  "isolatedNetwork": true,
+  "checks": [
+    {
+      "name": "compile",
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "-p",
+        "apps/api/tsconfig.json"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 9356
+    },
+    {
+      "name": "ph04-migrations",
+      "command": [
+        "node",
+        "node_modules/prisma/build/index.js",
+        "migrate",
+        "deploy",
+        "--config",
+        "apps/api/prisma.config.ts"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 2259
+    },
+    {
+      "name": "ph04-integration",
+      "command": [
+        "node",
+        "--test",
+        "apps/api/tests/integration.test.mjs"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 3787
+    },
+    {
+      "name": "ph05-migrations",
+      "command": [
+        "node",
+        "node_modules/prisma/build/index.js",
+        "migrate",
+        "deploy",
+        "--config",
+        "apps/api/prisma.config.ts"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 2784
+    },
+    {
+      "name": "ph05-integration",
+      "command": [
+        "node",
+        "--test",
+        "apps/api/tests/verification-live.test.mjs"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 15594
+    },
+    {
+      "name": "ph06-migrations",
+      "command": [
+        "node",
+        "node_modules/prisma/build/index.js",
+        "migrate",
+        "deploy",
+        "--config",
+        "apps/api/prisma.config.ts"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 5985
+    },
+    {
+      "name": "ph06-integration",
+      "command": [
+        "node",
+        "--test",
+        "apps/api/tests/diagnosis-live.test.mjs"
+      ],
+      "exitCode": 1,
+      "elapsedMs": 13653
+    },
+    {
+      "name": "golden-http",
+      "command": [
+        "node",
+        "qa/ph10-golden-http.mjs"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 2528
+    },
+    {
+      "name": "ph07-migrations",
+      "command": [
+        "node",
+        "node_modules/prisma/build/index.js",
+        "migrate",
+        "deploy",
+        "--config",
+        "apps/api/prisma.config.ts"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 3331
+    },
+    {
+      "name": "ph07-integration",
+      "command": [
+        "node",
+        "--test",
+        "apps/api/tests/tutoring-live.test.mjs"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 20436
+    },
+    {
+      "name": "ph08-migrations",
+      "command": [
+        "node",
+        "node_modules/prisma/build/index.js",
+        "migrate",
+        "deploy",
+        "--config",
+        "apps/api/prisma.config.ts"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 5001
+    },
+    {
+      "name": "ph08-integration",
+      "command": [
+        "node",
+        "--test",
+        "apps/api/tests/learning-live.test.mjs"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 24590
+    },
+    {
+      "name": "reviewed-gemini-simulation",
+      "command": [
+        "node",
+        "--test",
+        "apps/api/tests/ph08-final-integration.test.mjs"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 18142
+    },
+    {
+      "name": "ph09-migrations",
+      "command": [
+        "node",
+        "node_modules/prisma/build/index.js",
+        "migrate",
+        "deploy",
+        "--config",
+        "apps/api/prisma.config.ts"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 2962
+    },
+    {
+      "name": "ph09-integration",
+      "command": [
+        "node",
+        "--test",
+        "apps/api/tests/progress-live.test.mjs"
+      ],
+      "exitCode": 0,
+      "elapsedMs": 13713
+    },
+    {
+      "name": "retention",
+      "command": [
+        "node",
+        "--test",
+        "apps/api/tests/retention-live.test.mjs"
+      ],
+      "exitCode": 1,
+      "elapsedMs": 5330
+    }
+  ]
+}

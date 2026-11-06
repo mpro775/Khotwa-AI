@@ -1,0 +1,237 @@
+{
+  "scope": "Changes in user-authorized PH-00 correction only",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "change": "added",
+      "sha256": "1f0344fa4a569efbae5abc248227a4ccdcdd8eb72d08d52f7403a7208db07bb0"
+    },
+    {
+      "path": "docs/01-PRD.md",
+      "change": "modified",
+      "sha256": "ac55a25ba2a16860915755f5fe77fdeb582795d0978496ca7090f84845b33952"
+    },
+    {
+      "path": "docs/02-MVP-SCOPE.md",
+      "change": "modified",
+      "sha256": "e5f6edc24c5109d0de015bef0fb188a33d61fbcc5d289ef226ffd0af9f4a436c"
+    },
+    {
+      "path": "docs/05-CURRICULUM.md",
+      "change": "modified",
+      "sha256": "2c4cabb4db88f4483f42083d6500571d5f741bafe2a3b216ebeb3e047fb3076d"
+    },
+    {
+      "path": "docs/06-MISCONCEPTIONS.md",
+      "change": "modified",
+      "sha256": "3658eae4bb81842285f62ef2d8e8cca5c3219314bb3e59f779d76c08e8b76f33"
+    },
+    {
+      "path": "docs/07-TUTORING-POLICY.md",
+      "change": "modified",
+      "sha256": "f4cb0a7cb19cec4c57b7ee814b7e1fcd0a289bf667e8bee9726a3bbb68c0b56a"
+    },
+    {
+      "path": "docs/08-UX-DESIGN.md",
+      "change": "modified",
+      "sha256": "80c3d395ba248129a47195a9c736faed9f2a3cfcb44389d6372d653d34979903"
+    },
+    {
+      "path": "docs/09-SYSTEM-ARCHITECTURE.md",
+      "change": "modified",
+      "sha256": "ca2d132254fd7ed054bd25740c6a098f68117e655ae7733f588cfa599f8c362b"
+    },
+    {
+      "path": "docs/10-MATH-ENGINE.md",
+      "change": "modified",
+      "sha256": "dd6478d13520ac4da9d827b6ff1738edec125cd9d60da8c86a6537174cc339b0"
+    },
+    {
+      "path": "docs/11-DATA-MODEL.md",
+      "change": "modified",
+      "sha256": "7253e3abde1cd442058e5fa492bf576d91b4831b3006d94001a9c90e40073290"
+    },
+    {
+      "path": "docs/13-AI-ENGINE.md",
+      "change": "modified",
+      "sha256": "991e5b8f542a3e8de895b09dab28b9ab95cdebd85a6373937773ab8a8bf741d3"
+    },
+    {
+      "path": "docs/14-GOLDEN-DATASET.md",
+      "change": "modified",
+      "sha256": "cb46458dc172cecfb0c111da28f223c221bfe082be89fc147920063e494b8f92"
+    },
+    {
+      "path": "docs/15-TEST-AND-ACCEPTANCE.md",
+      "change": "modified",
+      "sha256": "d9c0a06aafcad6006775e3285df0f76db225614163b40025c40d4ab51c278f5d"
+    },
+    {
+      "path": "docs/16-SECURITY-PRIVACY.md",
+      "change": "modified",
+      "sha256": "e448f9838baaac6b24cee430f374ec81b38229ff865bf424cccbe6489959e6d5"
+    },
+    {
+      "path": "docs/AGENTS.md",
+      "change": "modified",
+      "sha256": "66578e93195c545371622357b24ee30cfa5323150e357d381a4c775d66553ca8"
+    },
+    {
+      "path": "docs/contracts/golden-adapter-v1.md",
+      "change": "added",
+      "sha256": "d7b2d6a6f1fd065cda04c9719ad4dc7d8a38d9397ff7943a6cb662a0acd078fd"
+    },
+    {
+      "path": "docs/contracts/golden-fixtures-v1.schema.json",
+      "change": "added",
+      "sha256": "d328ee16d720ef80fb5181fec8d500fe2cc18523ab912e15a2e39d72434f72a3"
+    },
+    {
+      "path": "docs/contracts/math-internal-v1.examples.json",
+      "change": "added",
+      "sha256": "6994a1b0723810a709a09a15a3e01959d766dd5cccb175db660577a5af0fb275"
+    },
+    {
+      "path": "docs/contracts/math-internal-v1.md",
+      "change": "added",
+      "sha256": "a960c5029389d8522317a79479e91eaf3d52e9647fa2258158f7a4af6cd88dc0"
+    },
+    {
+      "path": "docs/contracts/math-internal-v1.schema.json",
+      "change": "added",
+      "sha256": "d72855a399c9100c5b1e54a5cdeb884a18da1e8bf53805ee23da2c05a8d874dc"
+    },
+    {
+      "path": "docs/PROJECT-DECISIONS.md",
+      "change": "modified",
+      "sha256": "89efa925a8fbe89952e8070b1639621b02c01840ad5ecc3579ac2456a1ee4d73"
+    },
+    {
+      "path": "planning/approval-evidence.md",
+      "change": "added",
+      "sha256": "53b13069b7506c336fc6589f8cdaa5fbbca41b7207d7fbc4086ed335dc450f8f"
+    },
+    {
+      "path": "planning/audit_ph00.py",
+      "change": "modified",
+      "sha256": "6cd0869049d2f3c16f3fc0be1b168c4be9e041c5928dba23157e9d5cd1d49822"
+    },
+    {
+      "path": "planning/contract-baseline.md",
+      "change": "modified",
+      "sha256": "7e0153b96db6033a3f05410492e83368efc7bac00bc2dcef79a220d60af57f96"
+    },
+    {
+      "path": "planning/decision-inventory.json",
+      "change": "modified",
+      "sha256": "9423911a543e5338bc23feae4b08a90e8456a6a8598682b3e87e42e750aa43b8"
+    },
+    {
+      "path": "planning/decisions.md",
+      "change": "modified",
+      "sha256": "b9892d5eeab1c41f601e51fa821b267c40d46eaba1bcb807131ec955dac0b1c3"
+    },
+    {
+      "path": "planning/document-review.md",
+      "change": "modified",
+      "sha256": "960168ce03f4e648735d37a9e585868168ee2aaaa38b4a8f2288833d085a24df"
+    },
+    {
+      "path": "planning/input-and-content-baseline.md",
+      "change": "modified",
+      "sha256": "26860795c6bffe73721f1c73023b7836401f8d5b10289d0ce506dfb4e026f367"
+    },
+    {
+      "path": "planning/owners-and-gates.md",
+      "change": "modified",
+      "sha256": "10a1537857db8a3552ba075fa9f26481dee2c23323a64ed776e2c60886ce2d65"
+    },
+    {
+      "path": "planning/review-pack.md",
+      "change": "added",
+      "sha256": "a945aff129983c232473b592e4db89a104311101aba13e044e5737b760f3dd59"
+    },
+    {
+      "path": "planning/source-baseline.json",
+      "change": "modified",
+      "sha256": "551372b158e3b38195c6336587b1e221dbaa5501415ffa108f6aa3c752954e80"
+    },
+    {
+      "path": "planning/spec-conflicts.md",
+      "change": "modified",
+      "sha256": "b17c074d3f9b9e640336682dee9ca54709ad6f49e584f3f80ec270ab9ae9f22d"
+    },
+    {
+      "path": "planning/technical-decisions.md",
+      "change": "modified",
+      "sha256": "a5de1b40ca341a40197e3f040f13074942afda4f09ab752ec4fff59af9d15088"
+    },
+    {
+      "path": "qa/golden-review-register.md",
+      "change": "modified",
+      "sha256": "8a29775dc0c300749d8cd8d1187c2dd50e14848945c1a7fbbb5d09b3c0d19d8f"
+    },
+    {
+      "path": "qa/golden_adapter.py",
+      "change": "added",
+      "sha256": "25e84a5500d96848c9743330fa026d1c496010d687dfff940ccb725c1aa863b2"
+    },
+    {
+      "path": "qa/validate_ph00_correction.py",
+      "change": "added",
+      "sha256": "8043b5c8a2660d22dd05dacd7a69bc9f3911fbf7c8c67479570e95faf5a319cc"
+    },
+    {
+      "path": "qa-reports/gate-0.md",
+      "change": "modified",
+      "sha256": "6781ad61dbcf574aee5f954391fbd0e2f40d32aa755de36bafa84fc8773b3664"
+    },
+    {
+      "path": "qa-reports/golden-normalized.json",
+      "change": "added",
+      "sha256": "8ced1102fc80af02077499175b1a1976a90e8bde7f9a96059046b917b05389a5"
+    },
+    {
+      "path": "qa-reports/ph00-correction-before.json",
+      "change": "added",
+      "sha256": "6e0a5f6f235ced915bbd720669dd4878de151a7384e9b8ab24ee9f9b0e981cbc"
+    },
+    {
+      "path": "qa-reports/ph00-correction-report.md",
+      "change": "added",
+      "sha256": "dd8fa20480e53f9f44a7233c1a24d86055b5558f004836a3563da3a48d94fab4"
+    },
+    {
+      "path": "qa-reports/ph00-correction-validation.json",
+      "change": "added",
+      "sha256": "c70ea9fa8473564aaa8745a2e206467aff4f5fc05687026a2e9d2aec35b3ddaa"
+    },
+    {
+      "path": "qa-reports/ph00-delivery-verification.json",
+      "change": "modified",
+      "sha256": "55a38cc168cc8c73e081c552fabc2ebc0836116a6fed239cf61fb34e58efd029"
+    },
+    {
+      "path": "qa-reports/ph00-document-audit.json",
+      "change": "modified",
+      "sha256": "df75ca6fb5e365d6bec7629bc0631a05f77f9c88bf3ed287c79fbccfe3ba3b36"
+    },
+    {
+      "path": "qa-reports/README.md",
+      "change": "modified",
+      "sha256": "8587a0560a4495a0cc957f38e254708882ef8b48feada9a64e9284d2dae0ba56"
+    },
+    {
+      "path": "qa-reports/ph00-correction-files.json",
+      "change": "added",
+      "sha256": null,
+      "note": "Self-index; no recursive self-hash"
+    }
+  ],
+  "deleted": [],
+  "preexisting_git_deletions_untouched": [
+    "00-PROJECT-VISION.md",
+    "01_KHOTWA_PRODUCT_VISION_AR.md",
+    "02_KHOTWA_PRODUCT_REQUIREMENTS_AR.md"
+  ]
+}

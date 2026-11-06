@@ -1,0 +1,54 @@
+{
+  "phase": "PH-05",
+  "recordedAt": "2026-11-04T03:21:16.028Z",
+  "image": "khotwa-ph05-test",
+  "network": "none",
+  "checks": [
+    {
+      "path": "Dockerfile",
+      "sha256": "01f23bfc6d9f1852ba17fdb78fbe6c0ebf5fbf0ae6ed5799ceb278b452893a8f",
+      "hostSha256": "01f23bfc6d9f1852ba17fdb78fbe6c0ebf5fbf0ae6ed5799ceb278b452893a8f"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "75d454ac1f17daa1922c089b9fe5168f53ca2b72678b2c53817ad4a6563c2de6",
+      "hostSha256": "75d454ac1f17daa1922c089b9fe5168f53ca2b72678b2c53817ad4a6563c2de6"
+    },
+    {
+      "path": "apps/api/src/verification.ts",
+      "sha256": "a7b99fdb7158e220c5e25c90a4a9b072d2ad63e82fd97bf902c630520b0adbae",
+      "hostSha256": "a7b99fdb7158e220c5e25c90a4a9b072d2ad63e82fd97bf902c630520b0adbae"
+    },
+    {
+      "path": "apps/api/src/store.ts",
+      "sha256": "faf861f1e721aab9f27be06d3348584d8a50306d983f8b9d7210b643b5b5dd72",
+      "hostSha256": "faf861f1e721aab9f27be06d3348584d8a50306d983f8b9d7210b643b5b5dd72"
+    },
+    {
+      "path": "apps/api/src/business.ts",
+      "sha256": "17bc2f74fd07acdcd054401b301d9fd475baf49ba8427538a1bdcd111e4d6b7d",
+      "hostSha256": "17bc2f74fd07acdcd054401b301d9fd475baf49ba8427538a1bdcd111e4d6b7d"
+    },
+    {
+      "path": "apps/web/src/StudentWorkspace.tsx",
+      "sha256": "5d39ec9f4a013a0ff78150f16380dc5e36a0281e29a4a4d2637aaee223ad2d66",
+      "hostSha256": "5d39ec9f4a013a0ff78150f16380dc5e36a0281e29a4a4d2637aaee223ad2d66"
+    },
+    {
+      "path": "apps/web/src/api-client.ts",
+      "sha256": "3fdb54ac79e19c825317bfeb6a5fe23ef5baced36b2ed11e7a7613e32dd47433",
+      "hostSha256": "3fdb54ac79e19c825317bfeb6a5fe23ef5baced36b2ed11e7a7613e32dd47433"
+    },
+    {
+      "path": "apps/web/src/workspace-model.ts",
+      "sha256": "25ce7ac58eaaa7757fdce962d001f7c521a525c0bd94c417edd3865b48105a3c",
+      "hostSha256": "25ce7ac58eaaa7757fdce962d001f7c521a525c0bd94c417edd3865b48105a3c"
+    },
+    {
+      "path": "packages/contracts/src/generated/api-validators.cjs",
+      "sha256": "6518b49355b5848f2ea51ccd06db850241fafbe3d875bd1fb335c60f276c4157",
+      "hostSha256": "6518b49355b5848f2ea51ccd06db850241fafbe3d875bd1fb335c60f276c4157"
+    }
+  ],
+  "passed": 9
+}

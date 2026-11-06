@@ -1,0 +1,1261 @@
+{
+  "phase": "PH-06",
+  "recordedAt": "2026-11-04T04:51:27.061Z",
+  "failure": "Core integration passed; exact draft Golden conformance failed: GOLD-DIAG-015 (DATASET-ISSUE-PH06-01 pending review)",
+  "checks": [
+    {
+      "command": [
+        "docker",
+        "build",
+        "--target",
+        "ph06-test",
+        "-t",
+        "khotwa-ph06-test",
+        "."
+      ],
+      "exitCode": 0,
+      "seconds": 5.8,
+      "stdout": "",
+      "stderr": "#0 building with \"desktop-linux\" instance using docker driver\n\n#1 [internal] load build definition from Dockerfile\n#1 transferring dockerfile: 30B 0.1s\n#1 transferring dockerfile: 2.28kB 0.2s done\n#1 DONE 0.3s\n\n#2 [internal] load metadata for docker.io/library/node:24.11.1-alpine3.22\n#2 DONE 0.1s\n\n#3 [internal] load .dockerignore\n#3 transferring context: 161B 0.0s done\n#3 DONE 0.1s\n\n#4 [internal] load build context\n#4 DONE 0.0s\n\n#5 [node-build 1/9] FROM docker.io/library/node:24.11.1-alpine3.22@sha256:2867d550cf9d8bb50059a0fff528741f11a84d985c732e60e19e8e75c7239c43\n#5 resolve docker.io/library/node:24.11.1-alpine3.22@sha256:2867d550cf9d8bb50059a0fff528741f11a84d985c732e60e19e8e75c7239c43 0.1s done\n#5 DONE 0.2s\n\n#4 [internal] load build context\n#4 transferring context: 3.47MB 0.9s done\n#4 DONE 0.9s\n\n#6 [node-build 6/9] COPY packages/contracts/package.json packages/contracts/package.json\n#6 CACHED\n\n#7 [node-build 4/9] COPY apps/api/package.json apps/api/package.json\n#7 CACHED\n\n#8 [node-build 3/9] COPY package.json package-lock.json ./\n#8 CACHED\n\n#9 [node-build 8/9] COPY . .\n#9 CACHED\n\n#10 [node-build 2/9] WORKDIR /app\n#10 CACHED\n\n#11 [node-build 7/9] RUN npm ci --include=optional --no-audit --no-fund && node --input-type=module -e \"await import('rolldown')\"\n#11 CACHED\n\n#12 [node-build 5/9] COPY apps/web/package.json apps/web/package.json\n#12 CACHED\n\n#13 [node-build 9/9] RUN npm run contracts && npm run build --workspace @khotwa/api && npm run build --workspace @khotwa/web\n#13 CACHED\n\n#14 exporting to image\n#14 exporting layers 0.0s done\n#14 exporting manifest sha256:596f041bdd54298f0f0bc296d89327098dcdcaa18f7251390e841ddf42cb444a 0.0s done\n#14 exporting config sha256:1c330d62352794dd8dddf711f3b49524d7739e90bcd8ce6cf55387c339c67520 0.0s done\n#14 exporting attestation manifest sha256:a3802e554f6a21b77792d98381ca1679d35789319766f8ea23e484fb7951cac2 0.0s done\n#14 exporting manifest list sha256:26dbb922b99f67c9e7761d21587f97ff8b866a680569881e1c6369680f388a9b 0.0s done\n#14 naming to docker.io/library/khotwa-ph06-test:latest\n#14 naming to docker.io/library/khotwa-ph06-test:latest done\n#14 unpacking to docker.io/library/khotwa-ph06-test:latest 0.0s done\n#14 DONE 0.3s\n"
+    },
+    {
+      "command": [
+        "docker",
+        "build",
+        "--target",
+        "math",
+        "-t",
+        "khotwa-ph06-math",
+        "."
+      ],
+      "exitCode": 0,
+      "seconds": 3.3,
+      "stdout": "",
+      "stderr": "#0 building with \"desktop-linux\" instance using docker driver\n\n#1 [internal] load build definition from Dockerfile\n#1 transferring dockerfile: 2.28kB 0.0s done\n#1 DONE 0.0s\n\n#2 [internal] load metadata for docker.io/library/python:3.13.7-slim-bookworm\n#2 DONE 1.2s\n\n#3 [internal] load .dockerignore\n#3 transferring context: 161B 0.0s done\n#3 DONE 0.0s\n\n#4 [internal] load build context\n#4 transferring context: 965B 0.0s done\n#4 DONE 0.0s\n\n#5 [math 1/5] FROM docker.io/library/python:3.13.7-slim-bookworm@sha256:adafcc17694d715c905b4c7bebd96907a1fd5cf183395f0ebc4d3428bd22d92d\n#5 resolve docker.io/library/python:3.13.7-slim-bookworm@sha256:adafcc17694d715c905b4c7bebd96907a1fd5cf183395f0ebc4d3428bd22d92d 0.1s done\n#5 DONE 0.1s\n\n#6 [math 4/5] RUN pip install --no-cache-dir --no-deps -r requirements.lock && useradd --uid 10001 --create-home mathuser\n#6 CACHED\n\n#7 [math 2/5] WORKDIR /app\n#7 CACHED\n\n#8 [math 3/5] COPY services/math-engine/requirements.lock ./requirements.lock\n#8 CACHED\n\n#9 [math 5/5] COPY --chown=10001:10001 services/math-engine/src /app/src\n#9 CACHED\n\n#10 exporting to image\n#10 exporting layers done\n#10 exporting manifest sha256:16209cc264699f42c27c546de51b332afc38eb4f508cbf4de2d62765ec53f732 done\n#10 exporting config sha256:dbf374c91a1e59c9b204f8f03353d7acf29696de5475c7fe6c7cdad34c51bacc done\n#10 exporting attestation manifest sha256:0a63cb6e76d2fd8d92b7f96cfc73aace526c79331d2d8597fadfc7568c02a51f 0.0s done\n#10 exporting manifest list sha256:c2896d7a54f155b5f96647c880ddd34419b4006cde936beff6e563cd93df6b98 0.0s done\n#10 naming to docker.io/library/khotwa-ph06-math:latest\n#10 naming to docker.io/library/khotwa-ph06-math:latest done\n#10 unpacking to docker.io/library/khotwa-ph06-math:latest 0.0s done\n#10 DONE 0.2s\n"
+    },
+    {
+      "command": [
+        "docker",
+        "network",
+        "create",
+        "--internal",
+        "--label",
+        "khotwa.task=ph06-test",
+        "khotwa-ph06-7d682f28e9a8"
+      ],
+      "exitCode": 0,
+      "seconds": 0.2,
+      "stdout": "f936cfce53de9b170a69d70d4a9f7c4d1fd9dd60d824ce7a6c63151b4c5b2736\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "khotwa-ph06-7d682f28e9a8-db",
+        "--label",
+        "khotwa.task=ph06-test",
+        "--network",
+        "khotwa-ph06-7d682f28e9a8",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph06-7d682f28e9a8-db.env",
+        "--memory",
+        "512m",
+        "--pids-limit",
+        "64",
+        "--tmpfs",
+        "/var/lib/postgresql/data:rw,noexec,nosuid,size=128m",
+        "postgres:17.6-alpine3.22"
+      ],
+      "exitCode": 0,
+      "seconds": 1,
+      "stdout": "ce9f6116c33d4c2b2c81c340791151137e56a2f9ebe5a55786273e4bb3e8b1ad\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "khotwa-ph06-7d682f28e9a8-math",
+        "--label",
+        "khotwa.task=ph06-test",
+        "--network",
+        "khotwa-ph06-7d682f28e9a8",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph06-7d682f28e9a8-math.env",
+        "--memory",
+        "256m",
+        "--cpus",
+        "1",
+        "--pids-limit",
+        "64",
+        "--read-only",
+        "--tmpfs",
+        "/tmp",
+        "khotwa-ph06-math"
+      ],
+      "exitCode": 0,
+      "seconds": 1.6,
+      "stdout": "f88dce69e4a07d88ea9ab45096f576111a0fd0f8a5685db608344f92c0931b4a\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "exec",
+        "khotwa-ph06-7d682f28e9a8-math",
+        "python",
+        "-c",
+        "import os; assert 'DATABASE_URL' not in os.environ; assert 'GUEST_DIGEST_KEY' not in os.environ; print('Math environment isolated from DB and guest-signing credentials')"
+      ],
+      "exitCode": 0,
+      "seconds": 0.8,
+      "stdout": "Math environment isolated from DB and guest-signing credentials\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "--name",
+        "khotwa-ph06-7d682f28e9a8-tests",
+        "--label",
+        "khotwa.task=ph06-test",
+        "--network",
+        "khotwa-ph06-7d682f28e9a8",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph06-7d682f28e9a8.env",
+        "--memory",
+        "768m",
+        "--pids-limit",
+        "128",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\qa,target=/app/qa,readonly",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\apps\\api\\tests,target=/app/apps/api/tests,readonly",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\apps\\api\\prisma,target=/app/apps/api/prisma,readonly",
+        "khotwa-ph06-test"
+      ],
+      "exitCode": 1,
+      "seconds": 18.5,
+      "stdout": "PH06_DB_RESULT {\"checks\":[{\"command\":\"prisma migrate deploy\",\"exitCode\":0},{\"name\":\"PH06_delta_down_preserves_PH05_tables\",\"passed\":true},{\"command\":\"prisma migrate reset --force\",\"exitCode\":0}],\"postgres\":\"17.6\",\"tables\":26,\"scope\":\"isolated tmpfs; PH06 delta rollback and full replay\"}\n▶ PH-06 conservative diagnosis on real NestJS PostgreSQL Python\n  ✔ six patterns retain distinct observations, pinned evidence, skills and policy (1613.210084ms)\n  ✔ reviewed expectations are not invented: execute all draft Golden diagnosis cases and record exact mismatches (1944.9022ms)\n  ✔ questions are private-key-free, shuffled, idempotent, and single per revision even after reverify (854.48727ms)\n  ✔ a correct probe answer contradicts the error hypothesis, and overlap probes distinguish causes (787.979799ms)\n  ✔ unclear choices and unverified text never become a confirmed weakness (483.845025ms)\n  ✔ valid and abstaining cases cannot create hypotheses or probes; target edges and later invalid edges are ineligible (784.233686ms)\n  ✔ an unrecognized wrong final answer abstains from a cause (123.379134ms)\n  ✔ editing invalidates open questions and cached operations without deleting historical evidence (256.178857ms)\n  ✔ a real Python response held across an edit never persists a diagnosis (140.914103ms)\n  ✔ disabled patterns/templates and non-synthetic sessions fail closed; guest isolation and DTOs are enforced (708.572348ms)\n  ✔ real private-service failure creates neither a diagnosis nor a negative learning observation (132.442793ms)\n  ✔ diagnosis and probe history are immutable and template changes require a new version (329.982639ms)\n✔ PH-06 conservative diagnosis on real NestJS PostgreSQL Python (9861.148132ms)\n✖ exact conformance to every draft GOLD-DIAG state and pattern (no exemptions) (10.397671ms)\nℹ tests 14\nℹ suites 0\nℹ pass 13\nℹ fail 1\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 10693.610294\n\n✖ failing tests:\n\ntest at apps/api/tests/diagnosis-live.test.mjs:686:1\n✖ exact conformance to every draft GOLD-DIAG state and pattern (no exemptions) (10.397671ms)\n  AssertionError [ERR_ASSERTION]: Reference mismatches require content/QA review; no expected values were changed\n  + actual - expected\n  \n  + [\n  +   {\n  +     actual: {\n  +       pattern: 'ERR-ALG-03',\n  +       state: 'tentative'\n  +     },\n  +     expected: {\n  +       pattern: 'ERR-ALG-03',\n  +       state: 'needs_probe'\n  +     },\n  +     id: 'GOLD-DIAG-015',\n  +     issue: 'DATASET-ISSUE-PH06-01',\n  +     matched: false,\n  +     mathCase: 'GOLD-MATH-046',\n  +     reviewStatus: 'draft_not_human_approved',\n  +     scope: 'public_saved_attempt'\n  +   }\n  + ]\n  - []\n  \n      at TestContext.<anonymous> (file:///app/apps/api/tests/diagnosis-live.test.mjs:691:12)\n      at Test.runInAsyncScope (node:async_hooks:214:14)\n      at Test.run (node:internal/test_runner/test:1106:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)\n      at Test.postRun (node:internal/test_runner/test:1235:19)\n      at Test.run (node:internal/test_runner/test:1163:12)\n      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {\n    generatedMessage: false,\n    code: 'ERR_ASSERTION',\n    actual: [ { id: 'GOLD-DIAG-015', mathCase: 'GOLD-MATH-046', scope: 'public_saved_attempt', expected: [Object], actual: [Object], matched: false, reviewStatus: 'draft_not_human_approved', issue: 'DATASET-ISSUE-PH06-01' } ],\n    expected: [],\n    operator: 'deepStrictEqual',\n    diff: 'simple'\n  }\n \nPH06_LIVE_RESULT {  \"phase\": \"PH-06\",  \"runId\": \"557a2ef7-8cbf-4047-a3d2-9694e770f3b0\",  \"recordedAt\": \"2026-11-04T04:51:24.895Z\",  \"contracts\": [    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"answerDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"answerDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"answerDiagnosticProbe\",      \"status\": 409    },    {      \"operationId\": \"answerDiagnosticProbe\",      \"status\": 409    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 409    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"answerDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"answerDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"answerDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"answerDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"answerDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 409    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 409    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 409    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 409    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 409    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 409    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 409    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"updateStep\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 409    },    {      \"operationId\": \"answerDiagnosticProbe\",      \"status\": 409    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"updateStep\",      \"status\": 200    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 409    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 201    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 404    },    {      \"operationId\": \"answerDiagnosticProbe\",      \"status\": 404    },    {      \"operationId\": \"answerDiagnosticProbe\",      \"status\": 422    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"answerDiagnosticProbe\",      \"status\": 409    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 409    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 409    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 422    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 503    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createDiagnosticProbe\",      \"status\": 201    }  ],  \"validatedResponses\": 178,  \"golden\": [    {      \"id\": \"GOLD-DIAG-001\",      \"mathCase\": \"GOLD-MATH-029\",      \"scope\": \"public_saved_attempt\",      \"expected\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-01\"      },      \"actual\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-01\"      },      \"matched\": true,      \"reviewStatus\": \"draft_not_human_approved\",      \"issue\": null    },    {      \"id\": \"GOLD-DIAG-002\",      \"mathCase\": \"GOLD-MATH-035\",      \"scope\": \"public_saved_attempt\",      \"expected\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-01\"      },      \"actual\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-01\"      },      \"matched\": true,      \"reviewStatus\": \"draft_not_human_approved\",      \"issue\": null    },    {      \"id\": \"GOLD-DIAG-003\",      \"mathCase\": \"GOLD-MATH-030\",      \"scope\": \"public_saved_attempt\",      \"expected\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-02\"      },      \"actual\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-02\"      },      \"matched\": true,      \"reviewStatus\": \"draft_not_human_approved\",      \"issue\": null    },    {      \"id\": \"GOLD-DIAG-004\",      \"mathCase\": \"GOLD-MATH-031\",      \"scope\": \"public_saved_attempt\",      \"expected\": {        \"state\": \"tentative\",        \"pattern\": \"ERR-ALG-03\"      },      \"actual\": {        \"state\": \"tentative\",        \"pattern\": \"ERR-ALG-03\"      },      \"matched\": true,      \"reviewStatus\": \"draft_not_human_approved\",      \"issue\": null    },    {      \"id\": \"GOLD-DIAG-005\",      \"mathCase\": \"GOLD-MATH-032\",      \"scope\": \"public_saved_attempt\",      \"expected\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-04\"      },      \"actual\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-04\"      },      \"matched\": true,      \"reviewStatus\": \"draft_not_human_approved\",      \"issue\": null    },    {      \"id\": \"GOLD-DIAG-006\",      \"mathCase\": \"GOLD-MATH-034\",      \"scope\": \"public_saved_attempt\",      \"expected\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-06\"      },      \"actual\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-06\"      },      \"matched\": true,      \"reviewStatus\": \"draft_not_human_approved\",      \"issue\": null    },    {      \"id\": \"GOLD-DIAG-007\",      \"mathCase\": \"GOLD-MATH-045\",      \"scope\": \"public_saved_attempt\",      \"expected\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-06\"      },      \"actual\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-06\"      },      \"matched\": true,      \"reviewStatus\": \"draft_not_human_approved\",      \"issue\": null    },    {      \"id\": \"GOLD-DIAG-008\",      \"mathCase\": \"GOLD-MATH-037\",      \"scope\": \"public_saved_attempt\",      \"expected\": {        \"state\": \"unresolved\",        \"pattern\": \"—\"      },      \"actual\": {        \"state\": \"unresolved\",        \"pattern\": \"—\"      },      \"matched\": true,      \"reviewStatus\": \"draft_not_human_approved\",      \"issue\": null    },    {      \"id\": \"GOLD-DIAG-009\",      \"mathCase\": \"GOLD-MATH-001\",      \"scope\": \"public_saved_attempt\",      \"expected\": {        \"state\": \"none\",        \"pattern\": \"—\"      },      \"actual\": {        \"state\": \"none\",        \"pattern\": \"—\"      },      \"matched\": true,      \"reviewStatus\": \"draft_not_human_approved\",      \"issue\": null    },    {      \"id\": \"GOLD-DIAG-010\",      \"mathCase\": \"GOLD-MATH-002\",      \"scope\": \"public_saved_attempt\",      \"expected\": {        \"state\": \"none\",        \"pattern\": \"—\"      },      \"actual\": {        \"state\": \"none\",        \"pattern\": \"—\"      },      \"matched\": true,      \"reviewStatus\": \"draft_not_human_approved\",      \"issue\": null    },    {      \"id\": \"GOLD-DIAG-011\",      \"mathCase\": \"GOLD-MATH-027\",      \"scope\": \"internal_guard_not_published\",      \"expected\": {        \"state\": \"none\",        \"pattern\": \"—\"      },      \"actual\": {        \"state\": \"none\",        \"pattern\": \"—\"      },      \"matched\": true,      \"reviewStatus\": \"draft_not_human_approved\",      \"issue\": null    },    {      \"id\": \"GOLD-DIAG-012\",      \"mathCase\": \"GOLD-MATH-033\",      \"scope\": \"public_saved_attempt\",      \"expected\": {        \"state\": \"tentative\",        \"pattern\": \"ERR-ALG-03\"      },      \"actual\": {        \"state\": \"tentative\",        \"pattern\": \"ERR-ALG-03\"      },      \"matched\": true,      \"reviewStatus\": \"draft_not_human_approved\",      \"issue\": null    },    {      \"id\": \"GOLD-DIAG-013\",      \"mathCase\": \"GOLD-MATH-038\",      \"scope\": \"public_saved_attempt\",      \"expected\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-04\"      },      \"actual\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-04\"      },      \"matched\": true,      \"reviewStatus\": \"draft_not_human_approved\",      \"issue\": null    },    {      \"id\": \"GOLD-DIAG-014\",      \"mathCase\": \"GOLD-MATH-039\",      \"scope\": \"public_saved_attempt\",      \"expected\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-04\"      },      \"actual\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-04\"      },      \"matched\": true,      \"reviewStatus\": \"draft_not_human_approved\",      \"issue\": null    },    {      \"id\": \"GOLD-DIAG-015\",      \"mathCase\": \"GOLD-MATH-046\",      \"scope\": \"public_saved_attempt\",      \"expected\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-03\"      },      \"actual\": {        \"state\": \"tentative\",        \"pattern\": \"ERR-ALG-03\"      },      \"matched\": false,      \"reviewStatus\": \"draft_not_human_approved\",      \"issue\": \"DATASET-ISSUE-PH06-01\"    },    {      \"id\": \"GOLD-DIAG-016\",      \"mathCase\": \"GOLD-MATH-055\",      \"scope\": \"public_saved_attempt\",      \"expected\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-05\"      },      \"actual\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-05\"      },      \"matched\": true,      \"reviewStatus\": \"draft_not_human_approved\",      \"issue\": null    },    {      \"id\": \"GOLD-DIAG-017\",      \"mathCase\": \"GOLD-MATH-056\",      \"scope\": \"public_saved_attempt\",      \"expected\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-05\"      },      \"actual\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-05\"      },      \"matched\": true,      \"reviewStatus\": \"draft_not_human_approved\",      \"issue\": null    },    {      \"id\": \"GOLD-DIAG-018\",      \"mathCase\": \"GOLD-MATH-057\",      \"scope\": \"public_saved_attempt\",      \"expected\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-05\"      },      \"actual\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-05\"      },      \"matched\": true,      \"reviewStatus\": \"draft_not_human_approved\",      \"issue\": null    }  ],  \"goldenMatched\": 17,  \"goldenMismatches\": [    {      \"id\": \"GOLD-DIAG-015\",      \"mathCase\": \"GOLD-MATH-046\",      \"scope\": \"public_saved_attempt\",      \"expected\": {        \"state\": \"needs_probe\",        \"pattern\": \"ERR-ALG-03\"      },      \"actual\": {        \"state\": \"tentative\",        \"pattern\": \"ERR-ALG-03\"      },      \"matched\": false,      \"reviewStatus\": \"draft_not_human_approved\",      \"issue\": \"DATASET-ISSUE-PH06-01\"    }  ],  \"goldenConformance\": \"not_passed_pending_reference_review\",  \"reviewerApproval\": \"pending\",  \"syntheticOnly\": true,  \"services\": \"real NestJS + PostgreSQL 17.6 + Python/SymPy; no external AI\",  \"node\": \"v24.11.1\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph06-7d682f28e9a8-tests"
+      ],
+      "exitCode": 0,
+      "seconds": 0.1,
+      "stdout": "khotwa-ph06-7d682f28e9a8-tests\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph06-7d682f28e9a8-math"
+      ],
+      "exitCode": 0,
+      "seconds": 0.4,
+      "stdout": "khotwa-ph06-7d682f28e9a8-math\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph06-7d682f28e9a8-db"
+      ],
+      "exitCode": 0,
+      "seconds": 0.4,
+      "stdout": "khotwa-ph06-7d682f28e9a8-db\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "network",
+        "rm",
+        "khotwa-ph06-7d682f28e9a8"
+      ],
+      "exitCode": 0,
+      "seconds": 0.3,
+      "stdout": "khotwa-ph06-7d682f28e9a8\n",
+      "stderr": ""
+    }
+  ],
+  "dbProof": {
+    "checks": [
+      {
+        "command": "prisma migrate deploy",
+        "exitCode": 0
+      },
+      {
+        "name": "PH06_delta_down_preserves_PH05_tables",
+        "passed": true
+      },
+      {
+        "command": "prisma migrate reset --force",
+        "exitCode": 0
+      }
+    ],
+    "postgres": "17.6",
+    "tables": 26,
+    "scope": "isolated tmpfs; PH06 delta rollback and full replay"
+  },
+  "liveProof": {
+    "phase": "PH-06",
+    "runId": "557a2ef7-8cbf-4047-a3d2-9694e770f3b0",
+    "recordedAt": "2026-11-04T04:51:24.895Z",
+    "contracts": [
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "answerDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "answerDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "answerDiagnosticProbe",
+        "status": 409
+      },
+      {
+        "operationId": "answerDiagnosticProbe",
+        "status": 409
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 409
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "answerDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "answerDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "answerDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "answerDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "answerDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 409
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 409
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 409
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 409
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 409
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 409
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 409
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "updateStep",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 409
+      },
+      {
+        "operationId": "answerDiagnosticProbe",
+        "status": 409
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "updateStep",
+        "status": 200
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 409
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 201
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 404
+      },
+      {
+        "operationId": "answerDiagnosticProbe",
+        "status": 404
+      },
+      {
+        "operationId": "answerDiagnosticProbe",
+        "status": 422
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "answerDiagnosticProbe",
+        "status": 409
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 409
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 409
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 422
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 503
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createDiagnosticProbe",
+        "status": 201
+      }
+    ],
+    "validatedResponses": 178,
+    "golden": [
+      {
+        "id": "GOLD-DIAG-001",
+        "mathCase": "GOLD-MATH-029",
+        "scope": "public_saved_attempt",
+        "expected": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-01"
+        },
+        "actual": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-01"
+        },
+        "matched": true,
+        "reviewStatus": "draft_not_human_approved",
+        "issue": null
+      },
+      {
+        "id": "GOLD-DIAG-002",
+        "mathCase": "GOLD-MATH-035",
+        "scope": "public_saved_attempt",
+        "expected": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-01"
+        },
+        "actual": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-01"
+        },
+        "matched": true,
+        "reviewStatus": "draft_not_human_approved",
+        "issue": null
+      },
+      {
+        "id": "GOLD-DIAG-003",
+        "mathCase": "GOLD-MATH-030",
+        "scope": "public_saved_attempt",
+        "expected": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-02"
+        },
+        "actual": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-02"
+        },
+        "matched": true,
+        "reviewStatus": "draft_not_human_approved",
+        "issue": null
+      },
+      {
+        "id": "GOLD-DIAG-004",
+        "mathCase": "GOLD-MATH-031",
+        "scope": "public_saved_attempt",
+        "expected": {
+          "state": "tentative",
+          "pattern": "ERR-ALG-03"
+        },
+        "actual": {
+          "state": "tentative",
+          "pattern": "ERR-ALG-03"
+        },
+        "matched": true,
+        "reviewStatus": "draft_not_human_approved",
+        "issue": null
+      },
+      {
+        "id": "GOLD-DIAG-005",
+        "mathCase": "GOLD-MATH-032",
+        "scope": "public_saved_attempt",
+        "expected": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-04"
+        },
+        "actual": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-04"
+        },
+        "matched": true,
+        "reviewStatus": "draft_not_human_approved",
+        "issue": null
+      },
+      {
+        "id": "GOLD-DIAG-006",
+        "mathCase": "GOLD-MATH-034",
+        "scope": "public_saved_attempt",
+        "expected": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-06"
+        },
+        "actual": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-06"
+        },
+        "matched": true,
+        "reviewStatus": "draft_not_human_approved",
+        "issue": null
+      },
+      {
+        "id": "GOLD-DIAG-007",
+        "mathCase": "GOLD-MATH-045",
+        "scope": "public_saved_attempt",
+        "expected": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-06"
+        },
+        "actual": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-06"
+        },
+        "matched": true,
+        "reviewStatus": "draft_not_human_approved",
+        "issue": null
+      },
+      {
+        "id": "GOLD-DIAG-008",
+        "mathCase": "GOLD-MATH-037",
+        "scope": "public_saved_attempt",
+        "expected": {
+          "state": "unresolved",
+          "pattern": "—"
+        },
+        "actual": {
+          "state": "unresolved",
+          "pattern": "—"
+        },
+        "matched": true,
+        "reviewStatus": "draft_not_human_approved",
+        "issue": null
+      },
+      {
+        "id": "GOLD-DIAG-009",
+        "mathCase": "GOLD-MATH-001",
+        "scope": "public_saved_attempt",
+        "expected": {
+          "state": "none",
+          "pattern": "—"
+        },
+        "actual": {
+          "state": "none",
+          "pattern": "—"
+        },
+        "matched": true,
+        "reviewStatus": "draft_not_human_approved",
+        "issue": null
+      },
+      {
+        "id": "GOLD-DIAG-010",
+        "mathCase": "GOLD-MATH-002",
+        "scope": "public_saved_attempt",
+        "expected": {
+          "state": "none",
+          "pattern": "—"
+        },
+        "actual": {
+          "state": "none",
+          "pattern": "—"
+        },
+        "matched": true,
+        "reviewStatus": "draft_not_human_approved",
+        "issue": null
+      },
+      {
+        "id": "GOLD-DIAG-011",
+        "mathCase": "GOLD-MATH-027",
+        "scope": "internal_guard_not_published",
+        "expected": {
+          "state": "none",
+          "pattern": "—"
+        },
+        "actual": {
+          "state": "none",
+          "pattern": "—"
+        },
+        "matched": true,
+        "reviewStatus": "draft_not_human_approved",
+        "issue": null
+      },
+      {
+        "id": "GOLD-DIAG-012",
+        "mathCase": "GOLD-MATH-033",
+        "scope": "public_saved_attempt",
+        "expected": {
+          "state": "tentative",
+          "pattern": "ERR-ALG-03"
+        },
+        "actual": {
+          "state": "tentative",
+          "pattern": "ERR-ALG-03"
+        },
+        "matched": true,
+        "reviewStatus": "draft_not_human_approved",
+        "issue": null
+      },
+      {
+        "id": "GOLD-DIAG-013",
+        "mathCase": "GOLD-MATH-038",
+        "scope": "public_saved_attempt",
+        "expected": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-04"
+        },
+        "actual": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-04"
+        },
+        "matched": true,
+        "reviewStatus": "draft_not_human_approved",
+        "issue": null
+      },
+      {
+        "id": "GOLD-DIAG-014",
+        "mathCase": "GOLD-MATH-039",
+        "scope": "public_saved_attempt",
+        "expected": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-04"
+        },
+        "actual": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-04"
+        },
+        "matched": true,
+        "reviewStatus": "draft_not_human_approved",
+        "issue": null
+      },
+      {
+        "id": "GOLD-DIAG-015",
+        "mathCase": "GOLD-MATH-046",
+        "scope": "public_saved_attempt",
+        "expected": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-03"
+        },
+        "actual": {
+          "state": "tentative",
+          "pattern": "ERR-ALG-03"
+        },
+        "matched": false,
+        "reviewStatus": "draft_not_human_approved",
+        "issue": "DATASET-ISSUE-PH06-01"
+      },
+      {
+        "id": "GOLD-DIAG-016",
+        "mathCase": "GOLD-MATH-055",
+        "scope": "public_saved_attempt",
+        "expected": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-05"
+        },
+        "actual": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-05"
+        },
+        "matched": true,
+        "reviewStatus": "draft_not_human_approved",
+        "issue": null
+      },
+      {
+        "id": "GOLD-DIAG-017",
+        "mathCase": "GOLD-MATH-056",
+        "scope": "public_saved_attempt",
+        "expected": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-05"
+        },
+        "actual": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-05"
+        },
+        "matched": true,
+        "reviewStatus": "draft_not_human_approved",
+        "issue": null
+      },
+      {
+        "id": "GOLD-DIAG-018",
+        "mathCase": "GOLD-MATH-057",
+        "scope": "public_saved_attempt",
+        "expected": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-05"
+        },
+        "actual": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-05"
+        },
+        "matched": true,
+        "reviewStatus": "draft_not_human_approved",
+        "issue": null
+      }
+    ],
+    "goldenMatched": 17,
+    "goldenMismatches": [
+      {
+        "id": "GOLD-DIAG-015",
+        "mathCase": "GOLD-MATH-046",
+        "scope": "public_saved_attempt",
+        "expected": {
+          "state": "needs_probe",
+          "pattern": "ERR-ALG-03"
+        },
+        "actual": {
+          "state": "tentative",
+          "pattern": "ERR-ALG-03"
+        },
+        "matched": false,
+        "reviewStatus": "draft_not_human_approved",
+        "issue": "DATASET-ISSUE-PH06-01"
+      }
+    ],
+    "goldenConformance": "not_passed_pending_reference_review",
+    "reviewerApproval": "pending",
+    "syntheticOnly": true,
+    "services": "real NestJS + PostgreSQL 17.6 + Python/SymPy; no external AI",
+    "node": "v24.11.1"
+  },
+  "testSummary": {
+    "total": 14,
+    "passed": 13,
+    "failed": 1,
+    "coreIntegrationPassed": true,
+    "exactGoldenConformance": "not_passed_pending_reference_review"
+  }
+}

@@ -1,0 +1,299 @@
+{
+  "runId": "closure-2026-11-06T00-41-56-286Z",
+  "commit": "defddb077c94073653dbfe8ef4244c287a05d7f0",
+  "node": "v26.7.0",
+  "actualGeminiCalls": 0,
+  "checks": [
+    {
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "khotwa-ph09-test",
+        "sha256sum",
+        "/app/package-lock.json"
+      ],
+      "exitCode": 0,
+      "stdout": "75d454ac1f17daa1922c089b9fe5168f53ca2b72678b2c53817ad4a6563c2de6  /app/package-lock.json\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "network",
+        "create",
+        "--internal",
+        "--label",
+        "khotwa.task=mvp-closure",
+        "khotwa-ph10-db8bfcc7ee4f"
+      ],
+      "exitCode": 0,
+      "stdout": "06014627a193df40b376a76558b6cbc8bb5d328b486dba467c5ed1c8da4cdd7a\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "khotwa-ph10-db8bfcc7ee4f-db",
+        "--network",
+        "khotwa-ph10-db8bfcc7ee4f",
+        "--network-alias",
+        "khotwa-ph04-db8bfcc7ee4f-db",
+        "--network-alias",
+        "khotwa-ph05-db8bfcc7ee4f-db",
+        "--network-alias",
+        "khotwa-ph06-db8bfcc7ee4f-db",
+        "--network-alias",
+        "khotwa-ph07-db8bfcc7ee4f-db",
+        "--network-alias",
+        "khotwa-ph08-db8bfcc7ee4f-db",
+        "--network-alias",
+        "khotwa-ph09-db8bfcc7ee4f-db",
+        "--label",
+        "khotwa.task=mvp-closure",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph10-db8bfcc7ee4f-db.env",
+        "--tmpfs",
+        "/var/lib/postgresql/data",
+        "postgres:17.6-alpine3.22"
+      ],
+      "exitCode": 0,
+      "stdout": "b67161d9ee87cdf7db09a050b56ec00c3fa1b2fedfa0d324a6d92cb21ed83de6\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "khotwa-ph10-db8bfcc7ee4f-math",
+        "--network",
+        "khotwa-ph10-db8bfcc7ee4f",
+        "--network-alias",
+        "khotwa-ph09-db8bfcc7ee4f-math",
+        "--label",
+        "khotwa.task=mvp-closure",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph10-db8bfcc7ee4f-math.env",
+        "--read-only",
+        "--tmpfs",
+        "/tmp",
+        "--memory",
+        "256m",
+        "--cpus",
+        "1",
+        "--pids-limit",
+        "64",
+        "khotwa-ph08-math"
+      ],
+      "exitCode": 0,
+      "stdout": "39bf58ea9c6fb21557acaf892b0a0e66cd6596af07b7ef57ad1e2260ae9fc567\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "exec",
+        "khotwa-ph10-db8bfcc7ee4f-db",
+        "pg_isready",
+        "-U",
+        "ph10"
+      ],
+      "exitCode": 2,
+      "stdout": "/var/run/postgresql:5432 - no response\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "exec",
+        "khotwa-ph10-db8bfcc7ee4f-db",
+        "pg_isready",
+        "-U",
+        "ph10"
+      ],
+      "exitCode": 2,
+      "stdout": "/var/run/postgresql:5432 - no response\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "exec",
+        "khotwa-ph10-db8bfcc7ee4f-db",
+        "pg_isready",
+        "-U",
+        "ph10"
+      ],
+      "exitCode": 2,
+      "stdout": "/var/run/postgresql:5432 - no response\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "exec",
+        "khotwa-ph10-db8bfcc7ee4f-db",
+        "pg_isready",
+        "-U",
+        "ph10"
+      ],
+      "exitCode": 2,
+      "stdout": "/var/run/postgresql:5432 - no response\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "exec",
+        "khotwa-ph10-db8bfcc7ee4f-db",
+        "pg_isready",
+        "-U",
+        "ph10"
+      ],
+      "exitCode": 0,
+      "stdout": "/var/run/postgresql:5432 - accepting connections\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "--name",
+        "khotwa-ph10-db8bfcc7ee4f-tests",
+        "--network",
+        "khotwa-ph10-db8bfcc7ee4f",
+        "--label",
+        "khotwa.task=mvp-closure",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph10-db8bfcc7ee4f.env",
+        "--memory",
+        "1024m",
+        "--pids-limit",
+        "160",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\apps\\api\\src,target=/app/apps/api/src,readonly",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\apps\\api\\tests,target=/app/apps/api/tests,readonly",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\apps\\api\\prisma,target=/app/apps/api/prisma,readonly",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\qa,target=/app/qa,readonly",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\content,target=/app/content,readonly",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\docs,target=/app/docs,readonly",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\qa-reports\\mvp-closure\\closure-2026-11-06T00-41-56-286Z,target=/evidence",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\qa-reports\\mvp-closure\\closure-2026-11-06T00-41-56-286Z,target=/app/qa-reports",
+        "khotwa-ph09-test",
+        "node",
+        "qa/ph10-container.mjs"
+      ],
+      "exitCode": 1,
+      "stdout": "{\"name\":\"compile\",\"command\":[\"node\",\"node_modules/typescript/bin/tsc\",\"-p\",\"apps/api/tsconfig.json\"],\"exitCode\":0,\"elapsedMs\":7993}\n{\"name\":\"ph09-migrations\",\"command\":[\"node\",\"node_modules/prisma/build/index.js\",\"migrate\",\"deploy\",\"--config\",\"apps/api/prisma.config.ts\"],\"exitCode\":0,\"elapsedMs\":2750}\n{\"name\":\"retention\",\"command\":[\"node\",\"--test\",\"apps/api/tests/retention-live.test.mjs\"],\"exitCode\":1,\"elapsedMs\":5117}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "inspect",
+        "khotwa-ph10-db8bfcc7ee4f-tests",
+        "--format",
+        "{{ index .Config.Labels \"khotwa.task\" }}"
+      ],
+      "exitCode": 0,
+      "stdout": "mvp-closure\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph10-db8bfcc7ee4f-tests"
+      ],
+      "exitCode": 0,
+      "stdout": "khotwa-ph10-db8bfcc7ee4f-tests\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "inspect",
+        "khotwa-ph10-db8bfcc7ee4f-math",
+        "--format",
+        "{{ index .Config.Labels \"khotwa.task\" }}"
+      ],
+      "exitCode": 0,
+      "stdout": "mvp-closure\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph10-db8bfcc7ee4f-math"
+      ],
+      "exitCode": 0,
+      "stdout": "khotwa-ph10-db8bfcc7ee4f-math\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "inspect",
+        "khotwa-ph10-db8bfcc7ee4f-db",
+        "--format",
+        "{{ index .Config.Labels \"khotwa.task\" }}"
+      ],
+      "exitCode": 0,
+      "stdout": "mvp-closure\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph10-db8bfcc7ee4f-db"
+      ],
+      "exitCode": 0,
+      "stdout": "khotwa-ph10-db8bfcc7ee4f-db\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "network",
+        "inspect",
+        "khotwa-ph10-db8bfcc7ee4f",
+        "--format",
+        "{{ index .Labels \"khotwa.task\" }}"
+      ],
+      "exitCode": 0,
+      "stdout": "mvp-closure\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "network",
+        "rm",
+        "khotwa-ph10-db8bfcc7ee4f"
+      ],
+      "exitCode": 0,
+      "stdout": "khotwa-ph10-db8bfcc7ee4f\n",
+      "stderr": ""
+    }
+  ]
+}

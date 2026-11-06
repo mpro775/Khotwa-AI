@@ -1,0 +1,3836 @@
+# Khotwa AI — NestJS Public API Contract (OpenAPI 3.1)
+# الحالة: مسودة تنفيذية للمراجعة والاعتماد؛ المعايير العددية التي لم تعتمد بعد موسومة في قرارات العقد.
+# لا تضاف خدمة Python/SymPy الداخلية إلى المسارات العامة.
+openapi: 3.1.0
+info:
+  title: خُطوة AI — عقد واجهات NestJS
+  version: 1.0.0-draft
+  description: |
+    مواصفة OpenAPI 3.1 لنسخة هاكثون شِراع (P0).
+
+    واجهة React لا تتصل إلا بـNestJS؛ محرك Python/SymPy داخلي ولا يظهر بمسارات API عامة.
+    المتغير الرياضي في واجهة الطالب «س»، والأرقام الافتراضية عربية، ومفاتيح JSON البرمجية إنجليزية.
+    تعرض واجهة الطالب رسائل عربية، ولا تعتمد استجابة قديمة بعد زيادة attempt.revision.
+
+    **الحالة:** عقد مقترح للمراجعة وليس توثيقًا لواجهات منفذة بالفعل.
+    **المراجع:** 00-PROJECT-VISION.md، 01-PRD.md، 02-MVP-SCOPE.md، 04-ARABIC-NOTATION.md، 05-CURRICULUM.md، 06-MISCONCEPTIONS.md، 07-TUTORING-POLICY.md، 08-UX-DESIGN.md، 09-SYSTEM-ARCHITECTURE.md، 10-MATH-ENGINE.md، 11-DATA-MODEL.md.
+
+    **النطاق:** معادلات خطية بمجهول واحد «س»، معاملات صحيحة وكسور عددية بسيطة وفق اختبارات العرض؛ جا وجتا والبرمجة والفيزياء والكيمياء والصور خارج P0.
+  contact:
+    name: Khotwa AI Product Team
+servers:
+- url: /
+  description: نفس أصل تطبيق الويب عبر Reverse Proxy؛ المسارات العامة تبدأ /api/v1.
+tags:
+- name: تهيئة
+  description: حماية CSRF وقدرات النسخة.
+- name: الجلسات
+  description: جلسة ضيف محدودة وجلسة تعلم مستقلة.
+- name: المنهج
+  description: المهارات ذات محتوى معتمد.
+- name: المسائل
+  description: المسائل المنشورة دون مفاتيح حلول.
+- name: المحاولات
+  description: إنشاء المحاولات واسترجاع النسخ الحالية.
+- name: الخطوات
+  description: إنشاء وتعديل وحذف خطوات بنظام نسخ.
+- name: التحقق الرياضي
+  description: تحديد الصحة بالدليل أو الامتناع.
+- name: التشخيص
+  description: أسئلة تأكيد وفرضيات أخطاء.
+- name: التعليم والتلميحات
+  description: سلم التلميحات وتسجيل المساعدة.
+- name: التعلم العلاجي
+  description: تدريب على مهارة ومسألة نقل جديدة.
+- name: التقدم
+  description: أدلة تعلم وملخصات غير مضللة.
+- name: لوحة المعلم التجريبية
+  description: بيانات اصطناعية مميزة عن الحقيقي.
+- name: التشغيل الداخلي
+  description: مسارات تشغيلية لا تمر عبر الوكيل العام.
+x-khotwa-spec-status: draft-needs-team-approval
+x-khotwa-api-invariants:
+- id: API-INV-01
+  description: استعمال session cookie وليس UUID لإثبات ملكية كل مورد؛ يعيد NestJS 404 للموارد غير المملوكة.
+- id: API-INV-02
+  description: كل عملية كتابة على محاولة تتطلب expectedRevision يطابق الحالة المحفوظة وتزيده ذريًا عند تغيير الخطوات.
+- id: API-INV-03
+  description: كل عملية تغيير للأحداث تُحمى بـIdempotency-Key ونطاق guest+operation مع بصمة حمولة؛ تكرار مختلف يسبب
+    409.
+- id: API-INV-04
+  description: عند تغير خطوة، لا يُعاد اعتماد أحكام أو تشخيصات أو تلميحات مبنية على النسخ القديمة، وإن ظلت محفوظة
+    تاريخيًا.
+- id: API-INV-05
+  description: لا يُرسل المتصفح AST موثوقة ولا نتائج صحة ولا diagnosis state ولا mastery score؛ كلها مشتقات خادمية.
+- id: API-INV-06
+  description: syntax_error وunsupported وinconclusive وservice_error ليست دليل تعثر الطالب ولا تنشئ خطأ مفاهيميًا
+    سلبيًا.
+- id: API-INV-07
+  description: التحقق يعتمد مجموعة حلول معادلة خطية بمجال الأعداد الحقيقية، لا تشابه نص المعادلتين.
+- id: API-INV-08
+  description: لا يدعي نظام التعليم أن طالبًا أتقن نهائيًا بعد مسألة واحدة؛ يخزن أدلة جديدة مع ظروف المساعدة.
+- id: API-INV-09
+  description: مسألة النقل مختلفة عن أمثلة الشرح السابقة ولا تعرض حلًا خلال التقييم المستقل.
+- id: API-INV-10
+  description: لوحة المعلم P0 تعرض بيانات تركيبية فقط مع وسم واضح؛ ولا تعرض بيانات جلسات الضيوف الحقيقية.
+- id: API-INV-11
+  description: مخرجات Python/LLM لا تمرر مباشرة للواجهة؛ NestJS يتحقق من schema ومن نسخ السياق ومن السياسات.
+- id: API-INV-12
+  description: مفاتيح الحماية وأوامر التشخيص ونصوص الطلاب والبيانات الحساسة لا تسجل في access logs.
+- id: API-INV-13
+  description: لا تظهر في كتالوج الطلاب مسائل transfer أو remediation أو إجاباتها قبل إسنادها، ولا يكفي معرفة UUID
+    لكشفها.
+- id: API-INV-14
+  description: GET learning-episodes يعيد الإسنادات التي أصبحت متاحة فقط، ولا يسرّب مسألة النقل قبل وصول الطالب
+    إلى حالتها.
+- id: API-INV-15
+  description: جميع استجابات بيانات الضيف والطلبات التعليمية private,no-store؛ حذف جلسة الضيف يمسح cookie ولا يساوي
+    بالضرورة حذف البيانات التاريخية.
+- id: API-INV-16
+  description: POST guest-sessions المكرر مع cookie صالح يعيد الجلسة نفسها؛ في السباق قبل وصول cookie يربط الخادم
+    طلب الإنشاء بالـCSRF bootstrap الموقّع لمنع تكرار الجلسة.
+x-khotwa-architecture:
+  primaryBackend: NestJS / TypeScript
+  database: PostgreSQL
+  internalMath: Python + SymPy via private HTTP/JSON, not FastAPI
+  aiIntegration: NestJS provider adapter with reviewed fallback
+  frontend: React + TypeScript
+x-khotwa-open-decisions:
+- id: API-DEC-01
+  topic: Cookie CSRF/token lifetime/CORS details
+  owner: Security + NestJS
+  reference: 16-SECURITY-PRIVACY.md
+- id: API-DEC-02
+  topic: ORM and migration tooling
+  owner: NestJS lead
+  reference: 09-SYSTEM-ARCHITECTURE.md
+- id: API-DEC-03
+  topic: Signed CSRF bootstrap and same-origin proxy design
+  owner: Security + DevOps
+  reference: 16-SECURITY-PRIVACY.md
+- id: API-DEC-04
+  topic: Request size, timeout and rate limit numeric thresholds
+  owner: QA + DevOps
+  reference: 15-TEST-AND-ACCEPTANCE.md
+- id: API-DEC-05
+  topic: Final supported fraction formats and math editor
+  owner: Math + UI + QA
+  reference: 04-ARABIC-NOTATION.md
+- id: API-DEC-06
+  topic: Teacher demo access policy and reviewer role
+  owner: Product + Security
+  reference: 16-SECURITY-PRIVACY.md
+- id: API-DEC-07
+  topic: Retention and revocation semantics for stored attempts
+  owner: Product + Security
+  reference: 16-SECURITY-PRIVACY.md
+- id: API-DEC-08
+  topic: LLM model, fallback, tutoring thresholds
+  owner: AI + Teacher
+  reference: 13-AI-ENGINE.md
+x-khotwa-internal-math:
+  visibility: private-network-only; NOT browser endpoints and NOT served by NestJS public proxy
+  operations:
+  - method: POST
+    path: /internal/v1/math/parse
+    requestSchema: Math parser contract to finalize in 10-MATH-ENGINE.md
+  - method: POST
+    path: /internal/v1/math/verify-transition
+    requestSchema: '#/components/schemas/InternalMathTransitionRequest'
+    responseSchema: '#/components/schemas/InternalMathTransitionResult'
+  - method: POST
+    path: /internal/v1/math/check-final
+    requestSchema: Math final-check contract to finalize in 10-MATH-ENGINE.md
+  - method: GET
+    path: /internal/health
+    requestSchema: none
+  rules:
+  - private network + service authentication
+  - bounded deadline and resources
+  - schema version matching
+  - never DB student access
+  - Never parse_expr or sympify on raw student input
+  - number evidence as Rational, never float
+paths:
+  /api/v1/bootstrap:
+    get:
+      tags:
+      - تهيئة
+      summary: تهيئة الواجهة والحصول على رمز CSRF والقدرات المدعومة
+      operationId: getBootstrap
+      description: نقطة دخول من نفس الأصل. تُصدر رمز CSRF مرتبطًا بملف ارتباط موقّع منفصل، ولا تُصدر صلاحية طالب
+        بحد ذاتها. لا تُخزن الاستجابة في ذاكرة مشتركة.
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-01
+      - AN-DEC-01
+      responses:
+        '200':
+          description: تمت العملية.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BootstrapEnvelope'
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                example: no-store
+            Set-Cookie:
+              description: ملف ارتباط تمهيدي مُوقّع خاص بـCSRF، وليس جلسة طالب.
+              schema:
+                type: string
+        '400':
+          $ref: '#/components/responses/E400'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+      security: []
+  /api/v1/guest-sessions:
+    post:
+      tags:
+      - الجلسات
+      summary: بدء تجربة ضيف دون بيانات شخصية
+      operationId: createGuestSession
+      description: إنشاء جلسة ضيف عبر Cookie HttpOnly Secure SameSite وفق قرار الأمان. يرفض الخادم Origin غير المعتمد
+        وContent-Type غير JSON. إذا وُجدت جلسة صالحة تعاد 200 ولا تنشأ جلسة موازية بالخطأ.
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-01
+      - DATA-AC-01
+      responses:
+        '201':
+          description: تم إنشاء جلسة ضيف.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GuestEnvelope'
+          headers:
+            Set-Cookie:
+              description: kh_guest بخصائص HttpOnly وSecure وSameSite؛ لا يُرجع السر في JSON.
+              schema:
+                type: string
+        '400':
+          $ref: '#/components/responses/E400'
+        '403':
+          $ref: '#/components/responses/E403'
+        '409':
+          $ref: '#/components/responses/E409'
+        '422':
+          $ref: '#/components/responses/E422'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+        '200':
+          description: الجلسة الموجودة صالحة وأُعيدت دون تكرار.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GuestEnvelope'
+      parameters:
+      - $ref: '#/components/parameters/Csrf'
+      security: []
+      requestBody:
+        required: true
+        description: حمولة JSON ذات مخطط مضبوط. المقادير الرياضية لا تُرسل كـ AST غير موثوقة.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGuestInput'
+  /api/v1/guest-sessions/current:
+    get:
+      tags:
+      - الجلسات
+      summary: قراءة حالة جلسة الضيف الحالية
+      operationId: getCurrentGuestSession
+      description: ''
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-01
+      responses:
+        '200':
+          description: تمت العملية.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GuestCurrentEnvelope'
+        '401':
+          $ref: '#/components/responses/E401'
+        '410':
+          $ref: '#/components/responses/E410'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+      security:
+      - GuestCookie: []
+    delete:
+      tags:
+      - الجلسات
+      summary: إبطال جلسة الضيف ومسح الكوكي
+      operationId: revokeGuestSession
+      description: إبطال رمز الدخول يختلف عن محو بيانات التعليم؛ سياسة الحذف والاحتفاظ تُعتمد في 16-SECURITY-PRIVACY.md.
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-12
+      responses:
+        '204':
+          description: تمت العملية بلا جسم.
+        '400':
+          $ref: '#/components/responses/E400'
+        '401':
+          $ref: '#/components/responses/E401'
+        '403':
+          $ref: '#/components/responses/E403'
+        '409':
+          $ref: '#/components/responses/E409'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+      parameters:
+      - $ref: '#/components/parameters/Csrf'
+      - $ref: '#/components/parameters/Idempotency'
+      security:
+      - GuestCookie: []
+  /api/v1/learning-sessions:
+    post:
+      tags:
+      - الجلسات
+      summary: إنشاء جلسة تعلم وربطها بحزمة محتوى منشورة
+      operationId: createLearningSession
+      description: ''
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-01
+      - FR-001
+      responses:
+        '201':
+          description: أُنشئت جلسة تعلم.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LearningSessionEnvelope'
+        '400':
+          $ref: '#/components/responses/E400'
+        '401':
+          $ref: '#/components/responses/E401'
+        '403':
+          $ref: '#/components/responses/E403'
+        '409':
+          $ref: '#/components/responses/E409'
+        '422':
+          $ref: '#/components/responses/E422'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+      parameters:
+      - $ref: '#/components/parameters/Csrf'
+      - $ref: '#/components/parameters/Idempotency'
+      security:
+      - GuestCookie: []
+      requestBody:
+        required: true
+        description: حمولة JSON ذات مخطط مضبوط. المقادير الرياضية لا تُرسل كـ AST غير موثوقة.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLearningSessionInput'
+  /api/v1/learning-sessions/{learningSessionId}:
+    get:
+      tags:
+      - الجلسات
+      summary: قراءة جلسة تعلم يملكها الضيف
+      operationId: getLearningSession
+      description: ''
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-01
+      responses:
+        '200':
+          description: تمت العملية.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LearningSessionEnvelope'
+        '400':
+          $ref: '#/components/responses/E400'
+        '401':
+          $ref: '#/components/responses/E401'
+        '404':
+          $ref: '#/components/responses/E404'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+      parameters:
+      - $ref: '#/components/parameters/LearningSessionId'
+      security:
+      - GuestCookie: []
+  /api/v1/skills:
+    get:
+      tags:
+      - المنهج
+      summary: قائمة المهارات المدعومة المنشورة
+      operationId: listSkills
+      description: ''
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-01
+      - SK-ALG-01..08
+      responses:
+        '200':
+          description: تمت العملية.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillListEnvelope'
+        '401':
+          $ref: '#/components/responses/E401'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+      security:
+      - GuestCookie: []
+  /api/v1/skills/{skillId}:
+    get:
+      tags:
+      - المنهج
+      summary: تفاصيل مهارة من محتوى منشور
+      operationId: getSkill
+      description: ''
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-01
+      responses:
+        '200':
+          description: تمت العملية.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillEnvelope'
+        '400':
+          $ref: '#/components/responses/E400'
+        '401':
+          $ref: '#/components/responses/E401'
+        '404':
+          $ref: '#/components/responses/E404'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+      parameters:
+      - $ref: '#/components/parameters/SkillId'
+      security:
+      - GuestCookie: []
+  /api/v1/problems:
+    get:
+      tags:
+      - المسائل
+      summary: قائمة المسائل المنشورة والمسموحة للمسار
+      operationId: listProblems
+      description: تعرض فقط مسائل kind=main المنشورة القابلة للبدء من الكتالوج؛ لا تكشف مسألة نقل أو علاج غير مسندة،
+        حتى لو عُرف معرفها.
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-01
+      - MVP-09
+      responses:
+        '200':
+          description: تمت العملية.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemListEnvelope'
+        '400':
+          $ref: '#/components/responses/E400'
+        '401':
+          $ref: '#/components/responses/E401'
+        '422':
+          $ref: '#/components/responses/E422'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+      parameters:
+      - name: skillId
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: الفلتر الإلزامي لمنع عرض مواد خارج نطاق المهارة.
+      - $ref: '#/components/parameters/Cursor'
+      - $ref: '#/components/parameters/Limit'
+      security:
+      - GuestCookie: []
+  /api/v1/problems/{problemId}:
+    get:
+      tags:
+      - المسائل
+      summary: قراءة المسألة المنشورة دون تسريب الحل المرجعي
+      operationId: getProblem
+      description: قراءة kind=main المنشورة، أو مسألة علاج/نقل مُسندة فعليًا لجلسة المالك فقط؛ 404 عند محاولة اكتشاف
+        مسألة نقل قبل الإسناد.
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-01
+      - FR-003
+      responses:
+        '200':
+          description: تمت العملية.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemEnvelope'
+        '400':
+          $ref: '#/components/responses/E400'
+        '401':
+          $ref: '#/components/responses/E401'
+        '404':
+          $ref: '#/components/responses/E404'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+      parameters:
+      - $ref: '#/components/parameters/ProblemId'
+      security:
+      - GuestCookie: []
+  /api/v1/attempts:
+    post:
+      tags:
+      - المحاولات
+      summary: بدء محاولة رئيسية أو مرتبطة بإسناد تربوي
+      operationId: createAttempt
+      description: المحاولة من الكتالوج مسموحة فقط لمسائل main؛ يجب أن يعود problemRevisionId إلى محتوى منشور وموافق
+        لحزمة الجلسة. عند source.kind=assignment تُثبت الملكية وسياسة المساعدة والنسخة من الخادم.
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-04
+      - DATA-AC-01
+      responses:
+        '201':
+          description: أُنشئت محاولة.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttemptEnvelope'
+        '400':
+          $ref: '#/components/responses/E400'
+        '401':
+          $ref: '#/components/responses/E401'
+        '403':
+          $ref: '#/components/responses/E403'
+        '404':
+          $ref: '#/components/responses/E404'
+        '409':
+          $ref: '#/components/responses/E409'
+        '422':
+          $ref: '#/components/responses/E422'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+      parameters:
+      - $ref: '#/components/parameters/Csrf'
+      - $ref: '#/components/parameters/Idempotency'
+      security:
+      - GuestCookie: []
+      requestBody:
+        required: true
+        description: حمولة JSON ذات مخطط مضبوط. المقادير الرياضية لا تُرسل كـ AST غير موثوقة.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAttemptInput'
+    get:
+      tags:
+      - المحاولات
+      summary: سرد محاولات جلسة تعلم مملوكة
+      operationId: listAttempts
+      description: ''
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-04
+      responses:
+        '200':
+          description: تمت العملية.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttemptListEnvelope'
+        '400':
+          $ref: '#/components/responses/E400'
+        '401':
+          $ref: '#/components/responses/E401'
+        '404':
+          $ref: '#/components/responses/E404'
+        '422':
+          $ref: '#/components/responses/E422'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+      parameters:
+      - name: learningSessionId
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - $ref: '#/components/parameters/Cursor'
+      - $ref: '#/components/parameters/Limit'
+      security:
+      - GuestCookie: []
+  /api/v1/attempts/{attemptId}:
+    get:
+      tags:
+      - المحاولات
+      summary: قراءة الخطوات النشطة والحكم الحالي فقط
+      operationId: getAttempt
+      description: قد توجد نتائج تاريخية محفوظة بالقاعدة، لكنها لا تُعرض على أنها صحيحة للحالة الحالية عند تغير
+        النسخ.
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-04
+      - MVP-06
+      responses:
+        '200':
+          description: تمت العملية.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttemptEnvelope'
+        '400':
+          $ref: '#/components/responses/E400'
+        '401':
+          $ref: '#/components/responses/E401'
+        '404':
+          $ref: '#/components/responses/E404'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+      parameters:
+      - $ref: '#/components/parameters/AttemptId'
+      security:
+      - GuestCookie: []
+  /api/v1/attempts/{attemptId}/steps:
+    post:
+      tags:
+      - الخطوات
+      summary: إضافة خطوة بنسخة أولى وحفظ مصدرها العربي
+      operationId: createStep
+      description: ''
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-02
+      - MVP-04
+      responses:
+        '201':
+          description: أُنشئت الخطوة؛ أُعيد رقم مراجعة المحاولة الجديد.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StepMutationEnvelope'
+        '400':
+          $ref: '#/components/responses/E400'
+        '401':
+          $ref: '#/components/responses/E401'
+        '403':
+          $ref: '#/components/responses/E403'
+        '404':
+          $ref: '#/components/responses/E404'
+        '409':
+          $ref: '#/components/responses/E409'
+        '422':
+          $ref: '#/components/responses/E422'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+      parameters:
+      - $ref: '#/components/parameters/AttemptId'
+      - $ref: '#/components/parameters/Csrf'
+      - $ref: '#/components/parameters/Idempotency'
+      security:
+      - GuestCookie: []
+      requestBody:
+        required: true
+        description: حمولة JSON ذات مخطط مضبوط. المقادير الرياضية لا تُرسل كـ AST غير موثوقة.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateStepInput'
+            examples:
+              InputArabicMath:
+                $ref: '#/components/examples/InputArabicMath'
+              InputArabicMixedDigits:
+                $ref: '#/components/examples/InputArabicMixedDigits'
+  /api/v1/attempts/{attemptId}/steps/{stepId}:
+    put:
+      tags:
+      - الخطوات
+      summary: تحرير خطوة بإضافة نسخة لا باستبدال التاريخ
+      operationId: updateStep
+      description: يرتفع attempt.revision ذريًا وتبطل نتائج الانتقال المتأثر واللاحق والتشخيصات والتلميحات المبنية
+        عليه.
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-04
+      - DATA-AC-01
+      responses:
+        '200':
+          description: تمت العملية.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StepMutationEnvelope'
+        '400':
+          $ref: '#/components/responses/E400'
+        '401':
+          $ref: '#/components/responses/E401'
+        '403':
+          $ref: '#/components/responses/E403'
+        '404':
+          $ref: '#/components/responses/E404'
+        '409':
+          $ref: '#/components/responses/E409'
+        '422':
+          $ref: '#/components/responses/E422'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+      parameters:
+      - $ref: '#/components/parameters/AttemptId'
+      - $ref: '#/components/parameters/StepId'
+      - $ref: '#/components/parameters/Csrf'
+      - $ref: '#/components/parameters/Idempotency'
+      security:
+      - GuestCookie: []
+      requestBody:
+        required: true
+        description: حمولة JSON ذات مخطط مضبوط. المقادير الرياضية لا تُرسل كـ AST غير موثوقة.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditStepInput'
+    delete:
+      tags:
+      - الخطوات
+      summary: حذف خطوة منطقيًا وإبطال النتائج التابعة
+      operationId: deleteStep
+      description: ''
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-04
+      responses:
+        '200':
+          description: تمت العملية.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StepMutationEnvelope'
+        '400':
+          $ref: '#/components/responses/E400'
+        '401':
+          $ref: '#/components/responses/E401'
+        '403':
+          $ref: '#/components/responses/E403'
+        '404':
+          $ref: '#/components/responses/E404'
+        '409':
+          $ref: '#/components/responses/E409'
+        '422':
+          $ref: '#/components/responses/E422'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+      parameters:
+      - $ref: '#/components/parameters/AttemptId'
+      - $ref: '#/components/parameters/StepId'
+      - $ref: '#/components/parameters/Csrf'
+      - $ref: '#/components/parameters/Idempotency'
+      security:
+      - GuestCookie: []
+      requestBody:
+        required: true
+        description: حمولة JSON ذات مخطط مضبوط. المقادير الرياضية لا تُرسل كـ AST غير موثوقة.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteStepInput'
+  /api/v1/attempts/{attemptId}/verify:
+    post:
+      tags:
+      - التحقق الرياضي
+      summary: تحقق من انتقال محدد أو سلسلة الحل الحالية
+      operationId: verifyAttempt
+      description: scope=target_edge يتطلب targetStepId غير null؛ scope=current_sequence يتطلب targetStepId=null
+        ويتحقق من التسلسل قبل إكمال المحاولة. استجابة HTTP 200 تشمل syntax_error/unsupported/inconclusive بوصفها
+        أحكام المحرك. عطل Python ينتج 503 دون احتساب خطأ تعليمي. نتيجة قديمة بعد تعديل خطوة تُرفض 409.
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-05
+      - MVP-06
+      - ME-034..ME-062
+      responses:
+        '200':
+          description: تمت العملية.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationEnvelope'
+              examples:
+                VerifiedInvalid:
+                  $ref: '#/components/examples/VerificationInvalidResponse'
+        '400':
+          $ref: '#/components/responses/E400'
+        '401':
+          $ref: '#/components/responses/E401'
+        '403':
+          $ref: '#/components/responses/E403'
+        '404':
+          $ref: '#/components/responses/E404'
+        '409':
+          description: تعارض رقم مراجعة أو مفتاح تكرار أو نتيجة قديمة.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+              examples:
+                RevisionConflict:
+                  $ref: '#/components/examples/RevisionConflictResponse'
+        '422':
+          $ref: '#/components/responses/E422'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+        '503':
+          $ref: '#/components/responses/E503'
+      parameters:
+      - $ref: '#/components/parameters/AttemptId'
+      - $ref: '#/components/parameters/Csrf'
+      - $ref: '#/components/parameters/Idempotency'
+      security:
+      - GuestCookie: []
+      requestBody:
+        required: true
+        description: حمولة JSON ذات مخطط مضبوط. المقادير الرياضية لا تُرسل كـ AST غير موثوقة.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyInput'
+            examples:
+              VerifyValid:
+                $ref: '#/components/examples/VerifyValid'
+              VerifySequence:
+                $ref: '#/components/examples/VerifySequence'
+  /api/v1/attempts/{attemptId}/verifications/{verificationResultId}:
+    get:
+      tags:
+      - التحقق الرياضي
+      summary: قراءة دليل تحقق مع تحديد صلاحيته للنسخة الحالية
+      operationId: getVerificationResult
+      description: لا يعتمد التاريخ كحكم جارٍ؛ يوضح isCurrent حالة النسخ حين القراءة.
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-06
+      responses:
+        '200':
+          description: تمت العملية.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationDetailEnvelope'
+        '400':
+          $ref: '#/components/responses/E400'
+        '401':
+          $ref: '#/components/responses/E401'
+        '404':
+          $ref: '#/components/responses/E404'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+      parameters:
+      - $ref: '#/components/parameters/AttemptId'
+      - $ref: '#/components/parameters/VerificationResultId'
+      security:
+      - GuestCookie: []
+  /api/v1/attempts/{attemptId}/probes:
+    post:
+      tags:
+      - التشخيص
+      summary: اقتراح سؤال تأكيدي من نتيجة خطأ مثبتة
+      operationId: createDiagnosticProbe
+      description: لا يولد سؤالًا تشخيصيًا بسبب syntax_error/unsupported/inconclusive/service_error. الاستجابة لا
+        تكشف الحل الصحيح للسؤال.
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-07
+      - ERR-ALG-01..06
+      responses:
+        '201':
+          description: أُنشئ سؤال تأكيدي.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProbeEnvelope'
+        '400':
+          $ref: '#/components/responses/E400'
+        '401':
+          $ref: '#/components/responses/E401'
+        '403':
+          $ref: '#/components/responses/E403'
+        '404':
+          $ref: '#/components/responses/E404'
+        '409':
+          $ref: '#/components/responses/E409'
+        '422':
+          $ref: '#/components/responses/E422'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+        '503':
+          $ref: '#/components/responses/E503'
+      parameters:
+      - $ref: '#/components/parameters/AttemptId'
+      - $ref: '#/components/parameters/Csrf'
+      - $ref: '#/components/parameters/Idempotency'
+      security:
+      - GuestCookie: []
+      requestBody:
+        required: true
+        description: حمولة JSON ذات مخطط مضبوط. المقادير الرياضية لا تُرسل كـ AST غير موثوقة.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestProbeInput'
+  /api/v1/attempts/{attemptId}/probes/{probeId}/responses:
+    post:
+      tags:
+      - التشخيص
+      summary: تسجيل إجابة سؤال التأكيد وإعادة تقييم الفرضية
+      operationId: answerDiagnosticProbe
+      description: ''
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-07
+      responses:
+        '201':
+          description: حُفظت إجابة السؤال التأكيدي.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProbeAnswerEnvelope'
+        '400':
+          $ref: '#/components/responses/E400'
+        '401':
+          $ref: '#/components/responses/E401'
+        '403':
+          $ref: '#/components/responses/E403'
+        '404':
+          $ref: '#/components/responses/E404'
+        '409':
+          $ref: '#/components/responses/E409'
+        '422':
+          $ref: '#/components/responses/E422'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+        '503':
+          $ref: '#/components/responses/E503'
+      parameters:
+      - $ref: '#/components/parameters/AttemptId'
+      - $ref: '#/components/parameters/ProbeId'
+      - $ref: '#/components/parameters/Csrf'
+      - $ref: '#/components/parameters/Idempotency'
+      security:
+      - GuestCookie: []
+      requestBody:
+        required: true
+        description: حمولة JSON ذات مخطط مضبوط. المقادير الرياضية لا تُرسل كـ AST غير موثوقة.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnswerProbeInput'
+  /api/v1/attempts/{attemptId}/hints:
+    post:
+      tags:
+      - التعليم والتلميحات
+      summary: طلب تلميح تالٍ أو عرض حل كامل بتأكيد واضح
+      operationId: requestHint
+      description: مستوى H0–H4 يحدده الخادم؛ show_full_solution مسموح فقط بنمط تعلم مناسب مع confirmAssistedCompletion=true،
+        ويمنع إثبات نقل مستقل للمحاولة نفسها. عند فشل AI يستخدم قالبًا معتمدًا أو استجابة 503، ولا يغير الحكم الرياضي.
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-08
+      - H0..H4
+      responses:
+        '200':
+          description: سُجل حدث المساعدة.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HintEnvelope'
+        '400':
+          $ref: '#/components/responses/E400'
+        '401':
+          $ref: '#/components/responses/E401'
+        '403':
+          $ref: '#/components/responses/E403'
+        '404':
+          $ref: '#/components/responses/E404'
+        '409':
+          $ref: '#/components/responses/E409'
+        '422':
+          $ref: '#/components/responses/E422'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+        '503':
+          $ref: '#/components/responses/E503'
+      parameters:
+      - $ref: '#/components/parameters/AttemptId'
+      - $ref: '#/components/parameters/Csrf'
+      - $ref: '#/components/parameters/Idempotency'
+      security:
+      - GuestCookie: []
+      requestBody:
+        required: true
+        description: حمولة JSON ذات مخطط مضبوط. المقادير الرياضية لا تُرسل كـ AST غير موثوقة.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HintInput'
+            examples:
+              HintNext:
+                $ref: '#/components/examples/HintNext'
+              HintFullSolution:
+                $ref: '#/components/examples/HintFullSolution'
+  /api/v1/attempts/{attemptId}/remediation:
+    post:
+      tags:
+      - التعلم العلاجي
+      summary: بدء حلقة تدريب على مهارة واحدة
+      operationId: startRemediation
+      description: يمكن أيضًا بدء التدريب من طلب الطالب دون تشخيص سلبي، ولا يُدعى وجود سبب مثبت عندما تكون الحالة
+        unresolved.
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-09
+      responses:
+        '201':
+          description: أُنشئت أو أعيدت حلقة العلاج.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EpisodeEnvelope'
+        '400':
+          $ref: '#/components/responses/E400'
+        '401':
+          $ref: '#/components/responses/E401'
+        '403':
+          $ref: '#/components/responses/E403'
+        '404':
+          $ref: '#/components/responses/E404'
+        '409':
+          $ref: '#/components/responses/E409'
+        '422':
+          $ref: '#/components/responses/E422'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+        '503':
+          $ref: '#/components/responses/E503'
+        '200':
+          description: الحلقة النشطة موجودة وأُعيدت دون مضاعفة.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EpisodeEnvelope'
+      parameters:
+      - $ref: '#/components/parameters/AttemptId'
+      - $ref: '#/components/parameters/Csrf'
+      - $ref: '#/components/parameters/Idempotency'
+      security:
+      - GuestCookie: []
+      requestBody:
+        required: true
+        description: حمولة JSON ذات مخطط مضبوط. المقادير الرياضية لا تُرسل كـ AST غير موثوقة.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartRemediationInput'
+  /api/v1/attempts/{attemptId}/transfer:
+    post:
+      tags:
+      - التعلم العلاجي
+      summary: إسناد مسألة جديدة للتحقق من انتقال الفهم
+      operationId: startTransferCheck
+      description: يجب أن تكون الحلقة جاهزة، والمسألة جديدة لم تُكشف إجابتها، وسياسة المساعدة independent؛ إذا طلب
+        الطالب مساعدة أثناء النقل يخرج إلى التعلم دون أن يحسب نجاحًا مستقلًا.
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-09
+      - 07-TUTORING-POLICY.md
+      responses:
+        '201':
+          description: أُسندت مسألة النقل.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EpisodeEnvelope'
+        '400':
+          $ref: '#/components/responses/E400'
+        '401':
+          $ref: '#/components/responses/E401'
+        '403':
+          $ref: '#/components/responses/E403'
+        '404':
+          $ref: '#/components/responses/E404'
+        '409':
+          $ref: '#/components/responses/E409'
+        '422':
+          $ref: '#/components/responses/E422'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+        '503':
+          $ref: '#/components/responses/E503'
+      parameters:
+      - $ref: '#/components/parameters/AttemptId'
+      - $ref: '#/components/parameters/Csrf'
+      - $ref: '#/components/parameters/Idempotency'
+      security:
+      - GuestCookie: []
+      requestBody:
+        required: true
+        description: حمولة JSON ذات مخطط مضبوط. المقادير الرياضية لا تُرسل كـ AST غير موثوقة.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartTransferInput'
+  /api/v1/learning-episodes/{episodeId}:
+    get:
+      tags:
+      - التعلم العلاجي
+      summary: قراءة حالة حلقة التعلم والإسنادات الحالية
+      operationId: getLearningEpisode
+      description: ''
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-09
+      responses:
+        '200':
+          description: تمت العملية.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EpisodeEnvelope'
+        '400':
+          $ref: '#/components/responses/E400'
+        '401':
+          $ref: '#/components/responses/E401'
+        '404':
+          $ref: '#/components/responses/E404'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+      parameters:
+      - $ref: '#/components/parameters/EpisodeId'
+      security:
+      - GuestCookie: []
+  /api/v1/progress:
+    get:
+      tags:
+      - التقدم
+      summary: ملخص المهارات المستند إلى أدلة صالحة
+      operationId: getProgress
+      description: لا تعني not_assessed صفرًا في المهارة؛ لا يُحسب مجرد مشاهدة حل كامل إتقانًا مستقلًا، ولا تستعمل
+        نتائج تاريخية غير صالحة.
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-10
+      - FR-041
+      - FR-042
+      responses:
+        '200':
+          description: تمت العملية.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProgressEnvelope'
+        '400':
+          $ref: '#/components/responses/E400'
+        '401':
+          $ref: '#/components/responses/E401'
+        '404':
+          $ref: '#/components/responses/E404'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+      parameters:
+      - name: learningSessionId
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      security:
+      - GuestCookie: []
+  /api/v1/progress/skills/{skillId}:
+    get:
+      tags:
+      - التقدم
+      summary: ملخص مهارة محددة لجلسة التعلم
+      operationId: getSkillProgress
+      description: ''
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-10
+      responses:
+        '200':
+          description: تمت العملية.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillProgressEnvelope'
+        '400':
+          $ref: '#/components/responses/E400'
+        '401':
+          $ref: '#/components/responses/E401'
+        '404':
+          $ref: '#/components/responses/E404'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+      parameters:
+      - $ref: '#/components/parameters/SkillId'
+      - name: learningSessionId
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      security:
+      - GuestCookie: []
+  /api/v1/teacher-demo/summary:
+    get:
+      tags:
+      - لوحة المعلم التجريبية
+      summary: مؤشرات الفصل الاصطناعي المنفصل
+      operationId: getTeacherDemoSummary
+      description: لا تُقرأ جلسات طالب حقيقي. يجب أن تكون isSynthetic=true وأن تكون الأعداد مشتقة من حزمة تجريبية
+        مصنفة ومعلنة، مع حارس وصول عبر جلسة ضيف.
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-11
+      responses:
+        '200':
+          description: تمت العملية.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeacherSummaryEnvelope'
+        '401':
+          $ref: '#/components/responses/E401'
+        '403':
+          $ref: '#/components/responses/E403'
+        '404':
+          $ref: '#/components/responses/E404'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+      security:
+      - GuestCookie: []
+  /api/v1/teacher-demo/examples/{exampleId}:
+    get:
+      tags:
+      - لوحة المعلم التجريبية
+      summary: مثال خطأ اصطناعي مشروح
+      operationId: getTeacherDemoExample
+      description: لا يمكن تغيير مصدر البيانات إلى جلسات مستخدمين حقيقيين عبر معامل أو معرّف من المتصفح.
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-11
+      responses:
+        '200':
+          description: تمت العملية.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeacherExampleEnvelope'
+        '400':
+          $ref: '#/components/responses/E400'
+        '401':
+          $ref: '#/components/responses/E401'
+        '403':
+          $ref: '#/components/responses/E403'
+        '404':
+          $ref: '#/components/responses/E404'
+        '429':
+          $ref: '#/components/responses/E429'
+        '500':
+          $ref: '#/components/responses/E500'
+      parameters:
+      - $ref: '#/components/parameters/ExampleId'
+      security:
+      - GuestCookie: []
+  /internal/health/live:
+    get:
+      tags:
+      - التشغيل الداخلي
+      summary: فحص وجود خدمة NestJS داخليًا
+      operationId: getNestLiveHealth
+      description: ''
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-14
+      responses:
+        '200':
+          description: تمت العملية.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthEnvelope'
+        '403':
+          $ref: '#/components/responses/E403'
+        '500':
+          $ref: '#/components/responses/E500'
+      security:
+      - InternalHealthToken: []
+      x-internal: true
+  /internal/health/ready:
+    get:
+      tags:
+      - التشغيل الداخلي
+      summary: فحص جاهزية الاتصالات الحرجة داخليًا
+      operationId: getNestReadyHealth
+      description: ''
+      x-khotwa-priority: P0
+      x-source-requirements:
+      - MVP-14
+      responses:
+        '200':
+          description: تمت العملية.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthEnvelope'
+        '403':
+          $ref: '#/components/responses/E403'
+        '500':
+          $ref: '#/components/responses/E500'
+        '503':
+          $ref: '#/components/responses/E503'
+      security:
+      - InternalHealthToken: []
+      x-internal: true
+components:
+  securitySchemes:
+    GuestCookie:
+      type: apiKey
+      in: cookie
+      name: kh_guest
+      description: جلسة ضيف عشوائية عبر HttpOnly+Secure+SameSite cookie؛ token digest فقط بقاعدة البيانات.
+    InternalHealthToken:
+      type: http
+      scheme: bearer
+      bearerFormat: internal-health-token
+      description: مصادقة فحوص الصحة فقط على الشبكة الداخلية؛ proxy العام يحجب المسار.
+  parameters:
+    AttemptId:
+      name: attemptId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: هوية المحاولة؛ لا تُعد دليل ملكية.
+    StepId:
+      name: stepId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    SkillId:
+      name: skillId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    ProblemId:
+      name: problemId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    LearningSessionId:
+      name: learningSessionId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    EpisodeId:
+      name: episodeId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    ProbeId:
+      name: probeId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    VerificationResultId:
+      name: verificationResultId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    ExampleId:
+      name: exampleId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    Csrf:
+      name: X-CSRF-Token
+      in: header
+      required: true
+      schema:
+        type: string
+        minLength: 32
+      description: رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة.
+    Idempotency:
+      name: Idempotency-Key
+      in: header
+      required: true
+      schema:
+        type: string
+        pattern: ^[A-Za-z0-9_-]+$
+        minLength: 8
+        maxLength: 128
+      description: مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ
+        ملخصه فقط.
+    Cursor:
+      name: cursor
+      in: query
+      required: false
+      schema:
+        type: string
+        maxLength: 256
+      description: مؤشر صفحات معتم؛ لا تفسره الواجهة.
+    Limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 30
+        default: 15
+  responses:
+    E400:
+      description: طلب JSON غير صالح أو رأس مفقود.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorEnvelope'
+      headers:
+        X-Request-Id:
+          description: معرّف تتبع يصلح للدعم دون مشاركة بيانات الطالب.
+          schema:
+            type: string
+            format: uuid
+    E401:
+      description: جلسة ضيف غير موجودة أو انتهت.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorEnvelope'
+      headers:
+        X-Request-Id:
+          description: معرّف تتبع يصلح للدعم دون مشاركة بيانات الطالب.
+          schema:
+            type: string
+            format: uuid
+    E403:
+      description: جلسة مصادق عليها لكن الإجراء غير مسموح.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorEnvelope'
+      headers:
+        X-Request-Id:
+          description: معرّف تتبع يصلح للدعم دون مشاركة بيانات الطالب.
+          schema:
+            type: string
+            format: uuid
+    E404:
+      description: المورد غير موجود أو ليس ضمن ملكية الجلسة.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorEnvelope'
+      headers:
+        X-Request-Id:
+          description: معرّف تتبع يصلح للدعم دون مشاركة بيانات الطالب.
+          schema:
+            type: string
+            format: uuid
+    E409:
+      description: تعارض إصدار أو مفتاح تكرار أو حالة سير العمل.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorEnvelope'
+      headers:
+        X-Request-Id:
+          description: معرّف تتبع يصلح للدعم دون مشاركة بيانات الطالب.
+          schema:
+            type: string
+            format: uuid
+    E410:
+      description: جلسة أبطلت أو محتوى لم يعد صالحًا وفق السياسة.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorEnvelope'
+      headers:
+        X-Request-Id:
+          description: معرّف تتبع يصلح للدعم دون مشاركة بيانات الطالب.
+          schema:
+            type: string
+            format: uuid
+    E422:
+      description: مدخلات صحيحة JSON لكنها تخالف قيود DTO أو سياسة العملية.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorEnvelope'
+      headers:
+        X-Request-Id:
+          description: معرّف تتبع يصلح للدعم دون مشاركة بيانات الطالب.
+          schema:
+            type: string
+            format: uuid
+    E429:
+      description: حد الطلبات تجاوز الحدود المعتمدة.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorEnvelope'
+      headers:
+        X-Request-Id:
+          description: معرّف تتبع يصلح للدعم دون مشاركة بيانات الطالب.
+          schema:
+            type: string
+            format: uuid
+        Retry-After:
+          description: ثوانٍ أو وقت HTTP عند انطباقه.
+          schema:
+            type: string
+    E503:
+      description: خدمة معتمدة غير متاحة؛ لا يصنَّف الطالب مخطئًا.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorEnvelope'
+      headers:
+        X-Request-Id:
+          description: معرّف تتبع يصلح للدعم دون مشاركة بيانات الطالب.
+          schema:
+            type: string
+            format: uuid
+        Retry-After:
+          description: ثوانٍ أو وقت HTTP عند انطباقه.
+          schema:
+            type: string
+    E500:
+      description: عطل خادمي غير متوقع.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorEnvelope'
+      headers:
+        X-Request-Id:
+          description: معرّف تتبع يصلح للدعم دون مشاركة بيانات الطالب.
+          schema:
+            type: string
+            format: uuid
+  schemas:
+    Meta:
+      type: object
+      additionalProperties: false
+      properties:
+        requestId:
+          type: string
+          description: معرّف تتبع الطلب.
+          format: uuid
+        serverTime:
+          type: string
+          description: وقت الاستجابة UTC.
+          format: date-time
+        apiVersion:
+          type: string
+          description: إصدار الواجهة.
+          example: '1'
+      required:
+      - requestId
+      - serverTime
+      - apiVersion
+    ProblemKind:
+      type: string
+      description: نوع المسألة من نسخة المحتوى المنشورة.
+      enum:
+      - main
+      - remediation
+      - transfer
+      - diagnostic
+    MathStatus:
+      type: string
+      description: حكم محرك الرياضيات؛ لا يساوي تشخيصًا تربويًا.
+      enum:
+      - verified_valid
+      - verified_invalid
+      - syntax_error
+      - unsupported
+      - inconclusive
+      - service_error
+    DiagnosisState:
+      type: string
+      description: حالة فرضية الخطأ، وليست حكمًا على الطالب.
+      enum:
+      - tentative
+      - needs_probe
+      - supported_by_probe
+      - rejected
+      - unresolved
+    AttemptKind:
+      type: string
+      enum:
+      - main
+      - probe
+      - remediation
+      - transfer
+    AttemptStatus:
+      type: string
+      enum:
+      - in_progress
+      - completed
+      - assisted_completed
+      - stopped
+    LearningEpisodeState:
+      type: string
+      enum:
+      - proposed
+      - probing
+      - remediating
+      - awaiting_transfer
+      - finished
+      - cancelled
+    HintLevel:
+      type: string
+      description: المساعدة من دون تلميح إلى الحل الكامل.
+      enum:
+      - H0
+      - H1
+      - H2
+      - H3
+      - H4
+    ProgressState:
+      type: string
+      enum:
+      - not_assessed
+      - needs_followup
+      - practice_with_support
+      - new_evidence_of_understanding
+    VerificationScope:
+      type: string
+      description: التحقق من انتقال واحد أو السلسلة كاملة.
+      enum:
+      - target_edge
+      - current_sequence
+    Rational:
+      type: object
+      additionalProperties: false
+      description: تمثيل دقيق للنسب؛ لا تستخدم float.
+      properties:
+        num:
+          type: string
+          description: البسط العشري كنص صحيح موقع.
+          pattern: ^-?(0|[1-9][0-9]*)$
+          example: '2'
+        den:
+          type: string
+          description: المقام العشري كنص صحيح موجب، ولا يساوي صفرًا.
+          pattern: ^[1-9][0-9]*$
+          example: '1'
+      required:
+      - num
+      - den
+    MathSource:
+      type: object
+      additionalProperties: false
+      properties:
+        sourceRaw:
+          type: string
+          description: الصيغة العربية كما أدخلها الطالب دون استبدال صامت.
+          maxLength: 256
+          example: ٢س + ٦ = ١٠
+        displayAr:
+          anyOf:
+          - type: string
+            description: العرض العربي الذي صادق عليه المحرك بعد التحليل.
+          - type: 'null'
+        parseStatus:
+          type: string
+          description: حالة التحليل البنيوي.
+          enum:
+          - not_checked
+          - parsed
+          - syntax_error
+          - unsupported
+          - inconclusive
+      required:
+      - sourceRaw
+      - displayAr
+      - parseStatus
+    MathIssue:
+      type: object
+      additionalProperties: false
+      properties:
+        reasonCode:
+          type: string
+          description: رمز ثابت مثل AMBIGUOUS_DIVISION.
+          maxLength: 80
+        messageAr:
+          type: string
+          description: رسالة عربية قابلة للعرض دون traceback.
+        spanStart:
+          anyOf:
+          - type: integer
+            format: int32
+            description: موضع البداية بوحدات Unicode code points.
+            minimum: 0
+          - type: 'null'
+        spanEnd:
+          anyOf:
+          - type: integer
+            format: int32
+            description: نهاية المدى حصريًا.
+            minimum: 0
+          - type: 'null'
+        spanUnit:
+          type: string
+          enum:
+          - unicode_codepoint
+        hintKey:
+          anyOf:
+          - type: string
+            description: مفتاح رسالة توجيهية.
+            maxLength: 80
+          - type: 'null'
+      required:
+      - reasonCode
+      - messageAr
+      - spanStart
+      - spanEnd
+      - spanUnit
+      - hintKey
+    SolutionSet:
+      type: object
+      additionalProperties: false
+      properties:
+        kind:
+          type: string
+          description: مجموعة حل المعادلة الخطية ضمن الأعداد الحقيقية.
+          enum:
+          - singleton
+          - all_reals
+          - empty
+        value:
+          anyOf:
+          - $ref: '#/components/schemas/Rational'
+          - type: 'null'
+      required:
+      - kind
+      - value
+    Counterexample:
+      type: object
+      additionalProperties: false
+      properties:
+        variable:
+          type: string
+          enum:
+          - س
+        value:
+          $ref: '#/components/schemas/Rational'
+        satisfiesPrevious:
+          type: boolean
+        satisfiesNext:
+          type: boolean
+      required:
+      - variable
+      - value
+      - satisfiesPrevious
+      - satisfiesNext
+    MathEvidence:
+      type: object
+      additionalProperties: false
+      properties:
+        kind:
+          type: string
+          enum:
+          - counterexample
+          - solution_set
+          - rule_violation
+          - none
+        domain:
+          type: string
+          enum:
+          - reals
+        previousSolution:
+          anyOf:
+          - $ref: '#/components/schemas/SolutionSet'
+          - type: 'null'
+        nextSolution:
+          anyOf:
+          - $ref: '#/components/schemas/SolutionSet'
+          - type: 'null'
+        witness:
+          anyOf:
+          - $ref: '#/components/schemas/Counterexample'
+          - type: 'null'
+        summaryAr:
+          anyOf:
+          - type: string
+            description: شرح الدليل بعد التحقق الرياضي، وليس توليدًا غير موثق.
+          - type: 'null'
+      required:
+      - kind
+      - domain
+      - previousSolution
+      - nextSolution
+      - witness
+      - summaryAr
+    DiagnosisCandidate:
+      type: object
+      additionalProperties: false
+      properties:
+        diagnosisId:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+        state:
+          $ref: '#/components/schemas/DiagnosisState'
+        errorCode:
+          anyOf:
+          - type: string
+            description: كود خطأ من ERR-ALG-01 إلى ERR-ALG-06.
+            pattern: ^ERR-ALG-0[1-6]$
+          - type: 'null'
+        skillId:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+        explanationAr:
+          type: string
+          description: صياغة احتمالية، لا حكم قطعي.
+        needsProbe:
+          type: boolean
+      required:
+      - diagnosisId
+      - state
+      - errorCode
+      - skillId
+      - explanationAr
+      - needsProbe
+    Capabilities:
+      type: object
+      additionalProperties: false
+      properties:
+        notationProfile:
+          type: string
+          enum:
+          - ar-mashriq-school-v1
+        subject:
+          type: string
+          enum:
+          - algebra
+        variable:
+          type: string
+          enum:
+          - س
+        mathModes:
+          type: array
+          items:
+            type: string
+            enum:
+            - linear_one_variable
+        supportsTrigonometry:
+          type: boolean
+          default: false
+        supportsHandwriting:
+          type: boolean
+          default: false
+        supportsFractions:
+          type: boolean
+          description: تفعيل الكسور يخضع لنجاح اختبارات العرض.
+          default: false
+        supportsTeacherRealData:
+          type: boolean
+          default: false
+        supportedMathStatuses:
+          type: array
+          items:
+            $ref: '#/components/schemas/MathStatus'
+      required:
+      - notationProfile
+      - subject
+      - variable
+      - mathModes
+      - supportsTrigonometry
+      - supportsHandwriting
+      - supportsFractions
+      - supportsTeacherRealData
+      - supportedMathStatuses
+    BootstrapData:
+      type: object
+      additionalProperties: false
+      properties:
+        csrfToken:
+          type: string
+          description: رمز حماية ضد تزوير الطلبات، ليس رمز جلسة دخول.
+          minLength: 32
+        csrfHeaderName:
+          type: string
+          enum:
+          - X-CSRF-Token
+        capabilities:
+          $ref: '#/components/schemas/Capabilities'
+        hasActiveGuestSession:
+          type: boolean
+      required:
+      - csrfToken
+      - csrfHeaderName
+      - capabilities
+      - hasActiveGuestSession
+    GuestSession:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum:
+          - active
+          - expired
+          - revoked
+        expiresAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+      required:
+      - id
+      - status
+      - expiresAt
+      - createdAt
+    GuestCreateData:
+      type: object
+      additionalProperties: false
+      properties:
+        session:
+          $ref: '#/components/schemas/GuestSession'
+        csrfToken:
+          type: string
+          description: رمز حماية جديد إن تم تدويره بعد إصدار الجلسة؛ يستبدل الرمز السابق.
+          minLength: 32
+      required:
+      - session
+      - csrfToken
+    LearningSession:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum:
+          - active
+          - ended
+          - abandoned
+        releaseId:
+          type: string
+          format: uuid
+        startedAt:
+          type: string
+          format: date-time
+        endedAt:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+        isSynthetic:
+          type: boolean
+          description: تكون false دائمًا في جلسات الطلاب الحقيقيين.
+      required:
+      - id
+      - status
+      - releaseId
+      - startedAt
+      - endedAt
+      - isSynthetic
+    Skill:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        code:
+          type: string
+          description: كود ثابت مثل SK-ALG-03.
+          pattern: ^SK-ALG-0[1-8]$
+        titleAr:
+          type: string
+        objectiveAr:
+          type: string
+        prerequisiteSkillIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        availableProblemCount:
+          type: integer
+          format: int32
+          minimum: 0
+        availability:
+          type: string
+          enum:
+          - available
+          - unavailable
+      required:
+      - id
+      - code
+      - titleAr
+      - objectiveAr
+      - prerequisiteSkillIds
+      - availableProblemCount
+      - availability
+    ProblemSummary:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          description: هوية المسألة الأساسية.
+          format: uuid
+        revisionId:
+          type: string
+          description: النسخة المنشورة المحددة.
+          format: uuid
+        titleAr:
+          type: string
+        kind:
+          $ref: '#/components/schemas/ProblemKind'
+        skillId:
+          type: string
+          format: uuid
+        difficultyBand:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 5
+        notationProfile:
+          type: string
+        contentReleaseId:
+          type: string
+          format: uuid
+      required:
+      - id
+      - revisionId
+      - titleAr
+      - kind
+      - skillId
+      - difficultyBand
+      - notationProfile
+      - contentReleaseId
+    ProblemDetail:
+      type: object
+      additionalProperties: false
+      description: لا تتضمن الحل المرجعي أو answer_spec أو بيانات الإجابة الصحيحة للطالب.
+      properties:
+        id:
+          type: string
+          format: uuid
+        revisionId:
+          type: string
+          format: uuid
+        versionNumber:
+          type: integer
+          format: int32
+          minimum: 1
+        statementAr:
+          type: string
+          description: صياغة المسألة المعتمدة.
+        originalEquation:
+          type: string
+          description: المعادلة العربية الأصلية الموثقة.
+          example: ٢(س + ٣) = ١٠
+        kind:
+          $ref: '#/components/schemas/ProblemKind'
+        primarySkillId:
+          type: string
+          format: uuid
+        notationProfile:
+          type: string
+        difficultyBand:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 5
+        contentReleaseId:
+          type: string
+          format: uuid
+      required:
+      - id
+      - revisionId
+      - versionNumber
+      - statementAr
+      - originalEquation
+      - kind
+      - primarySkillId
+      - notationProfile
+      - difficultyBand
+      - contentReleaseId
+    Step:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        position:
+          type: integer
+          format: int32
+          description: ترتيب الطالب يبدأ من 1، ولا تشمل معادلة السؤال الأصلية.
+          minimum: 1
+        currentVersion:
+          type: integer
+          format: int32
+          minimum: 1
+        source:
+          $ref: '#/components/schemas/MathSource'
+        isActive:
+          type: boolean
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+      - id
+      - position
+      - currentVersion
+      - source
+      - isActive
+      - updatedAt
+    Attempt:
+      type: object
+      additionalProperties: false
+      description: مصدر الحقيقة للحالة الحالية؛ النتائج السابقة تبقى تاريخية ولا تُعد نتائج نشطة بعد التعديل.
+      properties:
+        id:
+          type: string
+          format: uuid
+        learningSessionId:
+          type: string
+          format: uuid
+        problemRevisionId:
+          type: string
+          format: uuid
+        kind:
+          $ref: '#/components/schemas/AttemptKind'
+        revision:
+          type: integer
+          format: int32
+          description: إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.
+          minimum: 0
+          maximum: 2147483647
+          example: 4
+        status:
+          $ref: '#/components/schemas/AttemptStatus'
+        completionVerdict:
+          anyOf:
+          - type: string
+            enum:
+            - verified_complete
+            - not_complete
+            - unknown
+          - type: 'null'
+        notationProfile:
+          type: string
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/Step'
+        openedAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        parentEpisodeId:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+        currentVerification:
+          anyOf:
+          - $ref: '#/components/schemas/VerificationReport'
+          - type: 'null'
+      required:
+      - id
+      - learningSessionId
+      - problemRevisionId
+      - kind
+      - revision
+      - status
+      - completionVerdict
+      - notationProfile
+      - steps
+      - openedAt
+      - updatedAt
+      - parentEpisodeId
+      - currentVerification
+    StepMutationResult:
+      type: object
+      additionalProperties: false
+      properties:
+        attemptId:
+          type: string
+          format: uuid
+        attemptRevision:
+          type: integer
+          format: int32
+          description: إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.
+          minimum: 0
+          maximum: 2147483647
+          example: 4
+        step:
+          anyOf:
+          - $ref: '#/components/schemas/Step'
+          - type: 'null'
+        invalidatedFromPosition:
+          type: integer
+          format: int32
+          description: أول موقع يجب إعادة فحصه.
+          minimum: 1
+        invalidatedVerificationCount:
+          type: integer
+          format: int32
+          minimum: 0
+      required:
+      - attemptId
+      - attemptRevision
+      - step
+      - invalidatedFromPosition
+      - invalidatedVerificationCount
+    TransitionVerdict:
+      type: object
+      additionalProperties: false
+      properties:
+        verificationResultId:
+          type: string
+          format: uuid
+        from:
+          type: object
+          additionalProperties: false
+          properties:
+            kind:
+              type: string
+              enum:
+              - problem
+              - step
+            stepId:
+              anyOf:
+              - type: string
+                format: uuid
+              - type: 'null'
+            stepVersion:
+              anyOf:
+              - type: integer
+                format: int32
+                minimum: 1
+              - type: 'null'
+          required:
+          - kind
+          - stepId
+          - stepVersion
+        to:
+          type: object
+          additionalProperties: false
+          properties:
+            stepId:
+              type: string
+              format: uuid
+            stepVersion:
+              type: integer
+              format: int32
+              minimum: 1
+          required:
+          - stepId
+          - stepVersion
+        mathStatus:
+          $ref: '#/components/schemas/MathStatus'
+        reasonCode:
+          anyOf:
+          - type: string
+          - type: 'null'
+        issue:
+          anyOf:
+          - $ref: '#/components/schemas/MathIssue'
+          - type: 'null'
+        evidence:
+          anyOf:
+          - $ref: '#/components/schemas/MathEvidence'
+          - type: 'null'
+        engineVersion:
+          type: string
+        notationProfileVersion:
+          type: string
+      required:
+      - verificationResultId
+      - from
+      - to
+      - mathStatus
+      - reasonCode
+      - issue
+      - evidence
+      - engineVersion
+      - notationProfileVersion
+    Completion:
+      type: object
+      additionalProperties: false
+      properties:
+        state:
+          type: string
+          enum:
+          - not_complete
+          - verified_complete
+          - unknown
+        canMarkAttemptCompleted:
+          type: boolean
+        explanationAr:
+          type: string
+      required:
+      - state
+      - canMarkAttemptCompleted
+      - explanationAr
+    VerificationReport:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          description: معرّف تشغيل التحقق.
+          format: uuid
+        attemptId:
+          type: string
+          format: uuid
+        attemptRevision:
+          type: integer
+          format: int32
+          description: إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.
+          minimum: 0
+          maximum: 2147483647
+          example: 4
+        problemRevisionId:
+          type: string
+          format: uuid
+        scope:
+          $ref: '#/components/schemas/VerificationScope'
+        isCurrent:
+          type: boolean
+          description: يجب أن تكون true في استجابة ناجحة حديثة؛ القديمة تعاد 409.
+        transitions:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransitionVerdict'
+          minItems: 1
+        firstBlockingTransitionIndex:
+          anyOf:
+          - type: integer
+            format: int32
+            minimum: 0
+          - type: 'null'
+        completion:
+          $ref: '#/components/schemas/Completion'
+        diagnosisCandidate:
+          anyOf:
+          - $ref: '#/components/schemas/DiagnosisCandidate'
+          - type: 'null'
+      required:
+      - id
+      - attemptId
+      - attemptRevision
+      - problemRevisionId
+      - scope
+      - isCurrent
+      - transitions
+      - firstBlockingTransitionIndex
+      - completion
+      - diagnosisCandidate
+    ProbeOption:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          maxLength: 64
+        labelAr:
+          type: string
+          maxLength: 300
+      required:
+      - id
+      - labelAr
+    Probe:
+      type: object
+      additionalProperties: false
+      description: لا تُرسل الإجابة الصحيحة إلى الطالب قبل إرسال الإجابة.
+      properties:
+        id:
+          type: string
+          format: uuid
+        attemptId:
+          type: string
+          format: uuid
+        attemptRevision:
+          type: integer
+          format: int32
+          description: إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.
+          minimum: 0
+          maximum: 2147483647
+          example: 4
+        diagnosisId:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+        questionAr:
+          type: string
+        responseMode:
+          type: string
+          enum:
+          - choice
+          - text
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProbeOption'
+        status:
+          type: string
+          enum:
+          - open
+          - answered
+          - cancelled
+      required:
+      - id
+      - attemptId
+      - attemptRevision
+      - diagnosisId
+      - questionAr
+      - responseMode
+      - options
+      - status
+    ProbeEvaluation:
+      type: object
+      additionalProperties: false
+      properties:
+        probeId:
+          type: string
+          format: uuid
+        attemptId:
+          type: string
+          format: uuid
+        attemptRevision:
+          type: integer
+          format: int32
+          description: إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.
+          minimum: 0
+          maximum: 2147483647
+          example: 4
+        evaluation:
+          type: string
+          enum:
+          - supported
+          - not_supported
+          - unclear
+          - unverified
+        diagnosis:
+          anyOf:
+          - $ref: '#/components/schemas/DiagnosisCandidate'
+          - type: 'null'
+        feedbackAr:
+          type: string
+        nextAction:
+          type: string
+          enum:
+          - hint
+          - remediation
+          - continue
+          - clarify
+      required:
+      - probeId
+      - attemptId
+      - attemptRevision
+      - evaluation
+      - diagnosis
+      - feedbackAr
+      - nextAction
+    TutoringEvent:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        attemptId:
+          type: string
+          format: uuid
+        attemptRevision:
+          type: integer
+          format: int32
+          description: إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.
+          minimum: 0
+          maximum: 2147483647
+          example: 4
+        eventType:
+          type: string
+          enum:
+          - hint
+          - full_solution
+          - fallback
+          - pause
+        hintLevel:
+          $ref: '#/components/schemas/HintLevel'
+        textAr:
+          type: string
+          description: رسالة عربية مراجعة أو مولدة خاضعة للتصفية والتحقق.
+        solutionStepsAr:
+          type: array
+          items:
+            type: string
+            description: خطوة معتمدة رياضيًا، لا ينتجها LLM بلا تحقق.
+        generationSource:
+          type: string
+          enum:
+          - reviewed_template
+          - llm_validated
+          - manual
+        independentEvidenceEligible:
+          type: boolean
+          description: false عند عرض H4 أو الحل الكامل.
+        createdAt:
+          type: string
+          format: date-time
+      required:
+      - id
+      - attemptId
+      - attemptRevision
+      - eventType
+      - hintLevel
+      - textAr
+      - solutionStepsAr
+      - generationSource
+      - independentEvidenceEligible
+      - createdAt
+    Assignment:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        episodeId:
+          type: string
+          format: uuid
+        phase:
+          type: string
+          enum:
+          - probe
+          - remediation
+          - transfer
+        problemRevisionId:
+          type: string
+          format: uuid
+        problem:
+          $ref: '#/components/schemas/ProblemDetail'
+        assistancePolicy:
+          type: string
+          enum:
+          - guided
+          - limited
+          - independent
+        attemptId:
+          anyOf:
+          - type: string
+            format: uuid
+          - type: 'null'
+        assignedAt:
+          type: string
+          format: date-time
+      required:
+      - id
+      - episodeId
+      - phase
+      - problemRevisionId
+      - problem
+      - assistancePolicy
+      - attemptId
+      - assignedAt
+    LearningEpisode:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        rootAttemptId:
+          type: string
+          format: uuid
+        skillId:
+          type: string
+          format: uuid
+        state:
+          $ref: '#/components/schemas/LearningEpisodeState'
+        assignments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Assignment'
+        createdAt:
+          type: string
+          format: date-time
+        endedAt:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+        nextAction:
+          type: string
+          enum:
+          - answer_probe
+          - start_remediation
+          - complete_remediation
+          - start_transfer
+          - review_progress
+          - none
+      required:
+      - id
+      - rootAttemptId
+      - skillId
+      - state
+      - assignments
+      - createdAt
+      - endedAt
+      - nextAction
+    SkillProgress:
+      type: object
+      additionalProperties: false
+      properties:
+        skillId:
+          type: string
+          format: uuid
+        skillCode:
+          type: string
+        titleAr:
+          type: string
+        state:
+          $ref: '#/components/schemas/ProgressState'
+        evidenceCount:
+          type: integer
+          format: int32
+          minimum: 0
+        independentTransferCount:
+          type: integer
+          format: int32
+          minimum: 0
+        assistedPracticeCount:
+          type: integer
+          format: int32
+          minimum: 0
+        updatedAt:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+      required:
+      - skillId
+      - skillCode
+      - titleAr
+      - state
+      - evidenceCount
+      - independentTransferCount
+      - assistedPracticeCount
+      - updatedAt
+    ProgressSummary:
+      type: object
+      additionalProperties: false
+      properties:
+        learningSessionId:
+          type: string
+          format: uuid
+        isSynthetic:
+          type: boolean
+        skills:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkillProgress'
+        updatedAt:
+          type: string
+          format: date-time
+        noteAr:
+          type: string
+          description: نتائج دليل محدود، ليست شهادة إتقان نهائي.
+      required:
+      - learningSessionId
+      - isSynthetic
+      - skills
+      - updatedAt
+      - noteAr
+    TeacherDemoMetric:
+      type: object
+      additionalProperties: false
+      properties:
+        code:
+          type: string
+        titleAr:
+          type: string
+        count:
+          type: integer
+          format: int32
+          minimum: 0
+      required:
+      - code
+      - titleAr
+      - count
+    TeacherDemoSummary:
+      type: object
+      additionalProperties: false
+      properties:
+        isSynthetic:
+          type: boolean
+          const: true
+          description: ثابت true؛ ممنوع خلط بيانات الطلاب الحقيقية.
+          example: true
+        datasetCode:
+          type: string
+        generatedAt:
+          type: string
+          format: date-time
+        sampleStudentCount:
+          type: integer
+          format: int32
+          minimum: 0
+        sampleAttemptCount:
+          type: integer
+          format: int32
+          minimum: 0
+        metrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/TeacherDemoMetric'
+        topMisconceptions:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              errorCode:
+                type: string
+              nameAr:
+                type: string
+              count:
+                type: integer
+                format: int32
+                minimum: 0
+            required:
+            - errorCode
+            - nameAr
+            - count
+        exampleIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        disclaimerAr:
+          type: string
+      required:
+      - isSynthetic
+      - datasetCode
+      - generatedAt
+      - sampleStudentCount
+      - sampleAttemptCount
+      - metrics
+      - topMisconceptions
+      - exampleIds
+      - disclaimerAr
+    TeacherDemoExample:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        isSynthetic:
+          type: boolean
+          const: true
+          description: بيانات تركيبية فقط
+        datasetCode:
+          type: string
+        problem:
+          $ref: '#/components/schemas/ProblemDetail'
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/Step'
+        mathStatus:
+          $ref: '#/components/schemas/MathStatus'
+        diagnosis:
+          anyOf:
+          - $ref: '#/components/schemas/DiagnosisCandidate'
+          - type: 'null'
+        reviewNoteAr:
+          type: string
+      required:
+      - id
+      - isSynthetic
+      - datasetCode
+      - problem
+      - steps
+      - mathStatus
+      - diagnosis
+      - reviewNoteAr
+    ListSkills:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Skill'
+      required:
+      - items
+    ListProblems:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProblemSummary'
+        nextCursor:
+          anyOf:
+          - type: string
+            description: مؤشر معتم لا تُفسر قيمته.
+          - type: 'null'
+      required:
+      - items
+      - nextCursor
+    ListAttempts:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attempt'
+        nextCursor:
+          anyOf:
+          - type: string
+          - type: 'null'
+      required:
+      - items
+      - nextCursor
+    ServiceHealth:
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          type: string
+          enum:
+          - ok
+          - degraded
+          - unavailable
+        service:
+          type: string
+        time:
+          type: string
+          format: date-time
+        dependencies:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              name:
+                type: string
+              state:
+                type: string
+                enum:
+                - ok
+                - unavailable
+            required:
+            - name
+            - state
+      required:
+      - status
+      - service
+      - time
+      - dependencies
+    CreateLearningSessionInput:
+      type: object
+      additionalProperties: false
+      description: لا يحدد المتصفح حزمة أو نسخة سياسة؛ يختارها الخادم من محتوى منشور.
+    CreateAttemptInput:
+      type: object
+      additionalProperties: false
+      description: النسخة يثبتها الخادم من المحتوى المنشور أو الإسناد المعتمد.
+      properties:
+        learningSessionId:
+          type: string
+          format: uuid
+        source:
+          oneOf:
+          - type: object
+            additionalProperties: false
+            properties:
+              kind:
+                type: string
+                enum:
+                - catalog
+              problemRevisionId:
+                type: string
+                format: uuid
+            required:
+            - kind
+            - problemRevisionId
+          - type: object
+            additionalProperties: false
+            properties:
+              kind:
+                type: string
+                enum:
+                - assignment
+              assignmentId:
+                type: string
+                format: uuid
+            required:
+            - kind
+            - assignmentId
+      required:
+      - learningSessionId
+      - source
+    CreateStepInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision:
+          type: integer
+          format: int32
+          description: إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.
+          minimum: 0
+          maximum: 2147483647
+          example: 4
+        position:
+          type: integer
+          format: int32
+          description: مكان جديد في نهاية التسلسل P0.
+          minimum: 1
+        sourceRaw:
+          type: string
+          description: معادلة عربية؛ يسمح بحفظ مسودة غير مكتملة دون نسبة خطأ مفاهيمي.
+          minLength: 1
+          maxLength: 256
+        inputOrigin:
+          type: string
+          enum:
+          - keyboard
+          - math_editor
+      required:
+      - expectedRevision
+      - position
+      - sourceRaw
+      - inputOrigin
+    EditStepInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision:
+          type: integer
+          format: int32
+          description: إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.
+          minimum: 0
+          maximum: 2147483647
+          example: 4
+        sourceRaw:
+          type: string
+          minLength: 1
+          maxLength: 256
+        inputOrigin:
+          type: string
+          enum:
+          - keyboard
+          - math_editor
+      required:
+      - expectedRevision
+      - sourceRaw
+      - inputOrigin
+    DeleteStepInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision:
+          type: integer
+          format: int32
+          description: إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.
+          minimum: 0
+          maximum: 2147483647
+          example: 4
+      required:
+      - expectedRevision
+    VerifyInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision:
+          type: integer
+          format: int32
+          description: إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.
+          minimum: 0
+          maximum: 2147483647
+          example: 4
+        scope:
+          $ref: '#/components/schemas/VerificationScope'
+        targetStepId:
+          anyOf:
+          - type: string
+            description: إلزامي إذا scope=target_edge؛ يجب أن يكون خطوة نشطة ضمن المحاولة.
+            format: uuid
+          - type: 'null'
+      required:
+      - expectedRevision
+      - scope
+      - targetStepId
+      allOf:
+      - if:
+          properties:
+            scope:
+              const: target_edge
+          required:
+          - scope
+        then:
+          properties:
+            targetStepId:
+              type: string
+              format: uuid
+      - if:
+          properties:
+            scope:
+              const: current_sequence
+          required:
+          - scope
+        then:
+          properties:
+            targetStepId:
+              type: 'null'
+    RequestProbeInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision:
+          type: integer
+          format: int32
+          description: إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.
+          minimum: 0
+          maximum: 2147483647
+          example: 4
+        verificationResultId:
+          type: string
+          description: نتيجة حالية verified_invalid تحمل دليلًا مثبتًا.
+          format: uuid
+      required:
+      - expectedRevision
+      - verificationResultId
+    ProbeAnswer:
+      oneOf:
+      - type: object
+        additionalProperties: false
+        properties:
+          kind:
+            type: string
+            enum:
+            - choice
+          optionId:
+            type: string
+            minLength: 1
+            maxLength: 64
+        required:
+        - kind
+        - optionId
+      - type: object
+        additionalProperties: false
+        properties:
+          kind:
+            type: string
+            enum:
+            - text
+          textAr:
+            type: string
+            minLength: 1
+            maxLength: 1000
+        required:
+        - kind
+        - textAr
+    AnswerProbeInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision:
+          type: integer
+          format: int32
+          description: إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.
+          minimum: 0
+          maximum: 2147483647
+          example: 4
+        answer:
+          $ref: '#/components/schemas/ProbeAnswer'
+      required:
+      - expectedRevision
+      - answer
+    HintInput:
+      type: object
+      additionalProperties: false
+      description: لا يرسل العميل hintLevel؛ NestJS يفرض سياسة H0–H4 ووضع المهمة.
+      properties:
+        expectedRevision:
+          type: integer
+          format: int32
+          description: إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.
+          minimum: 0
+          maximum: 2147483647
+          example: 4
+        action:
+          type: string
+          enum:
+          - next_hint
+          - show_full_solution
+        confirmAssistedCompletion:
+          type: boolean
+          description: يجب true عند show_full_solution، وإلا 422.
+          default: false
+      required:
+      - expectedRevision
+      - action
+      allOf:
+      - if:
+          properties:
+            action:
+              const: show_full_solution
+          required:
+          - action
+        then:
+          properties:
+            confirmAssistedCompletion:
+              const: true
+          required:
+          - confirmAssistedCompletion
+    StartRemediationInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision:
+          type: integer
+          format: int32
+          description: إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.
+          minimum: 0
+          maximum: 2147483647
+          example: 4
+      required:
+      - expectedRevision
+    StartTransferInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision:
+          type: integer
+          format: int32
+          description: إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.
+          minimum: 0
+          maximum: 2147483647
+          example: 4
+        episodeId:
+          type: string
+          format: uuid
+      required:
+      - expectedRevision
+      - episodeId
+    CreateGuestInput:
+      type: object
+      additionalProperties: false
+      description: إنشاء ضيف دون أسماء أو بريد أو هاتف.
+    ValidationIssue:
+      type: object
+      additionalProperties: false
+      properties:
+        path:
+          type: string
+          example: body.expectedRevision
+        rule:
+          type: string
+          example: required
+        messageAr:
+          type: string
+      required:
+      - path
+      - rule
+      - messageAr
+    ErrorDetail:
+      type: object
+      additionalProperties: false
+      properties:
+        code:
+          type: string
+          description: رمز خطأ تطبيقي ثابت للمستهلك.
+          enum:
+          - invalid_input
+          - unauthenticated
+          - forbidden
+          - not_found
+          - session_expired
+          - revision_conflict
+          - idempotency_conflict
+          - request_in_progress
+          - invalid_state
+          - content_version_conflict
+          - math_unsupported
+          - math_inconclusive
+          - math_unavailable
+          - ai_unavailable
+          - rate_limited
+          - internal_error
+          - csrf_invalid
+        messageAr:
+          type: string
+        issues:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationIssue'
+        currentRevision:
+          anyOf:
+          - type: integer
+            format: int32
+            description: آخر إصدار عند تعارض تعديل.
+            minimum: 0
+            maximum: 2147483647
+            example: 4
+          - type: 'null'
+        retryable:
+          type: boolean
+        retryAfterSeconds:
+          anyOf:
+          - type: integer
+            format: int32
+            minimum: 0
+          - type: 'null'
+      required:
+      - code
+      - messageAr
+      - issues
+      - currentRevision
+      - retryable
+      - retryAfterSeconds
+    ErrorEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorDetail'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - error
+      - meta
+    InternalMathEvidence:
+      type: object
+      additionalProperties: false
+      description: نتيجة إثبات داخلية دون نصوص تعليمية مولدة.
+      properties:
+        type:
+          type: string
+          enum:
+          - counterexample
+          - solution_set
+          - rule_violation
+          - none
+        domain:
+          type: string
+          enum:
+          - reals
+        previousSolution:
+          anyOf:
+          - $ref: '#/components/schemas/SolutionSet'
+          - type: 'null'
+        nextSolution:
+          anyOf:
+          - $ref: '#/components/schemas/SolutionSet'
+          - type: 'null'
+        witness:
+          anyOf:
+          - $ref: '#/components/schemas/Counterexample'
+          - type: 'null'
+      required:
+      - type
+      - domain
+      - previousSolution
+      - nextSolution
+      - witness
+    VerificationResultDetail:
+      type: object
+      additionalProperties: false
+      description: الوصول إلى نتيجة تاريخية لا يعني صلاحيتها للنسخة الحالية.
+      properties:
+        attemptId:
+          type: string
+          format: uuid
+        attemptRevision:
+          type: integer
+          format: int32
+          description: إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.
+          minimum: 0
+          maximum: 2147483647
+          example: 4
+        isCurrent:
+          type: boolean
+        result:
+          $ref: '#/components/schemas/TransitionVerdict'
+      required:
+      - attemptId
+      - attemptRevision
+      - isCurrent
+      - result
+    InternalMathContext:
+      type: object
+      additionalProperties: false
+      properties:
+        attemptId:
+          type: string
+          format: uuid
+        attemptRevision:
+          type: integer
+          format: int32
+          description: إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.
+          minimum: 0
+          maximum: 2147483647
+          example: 4
+        problemRevisionId:
+          type: string
+          format: uuid
+        notationProfile:
+          type: string
+        domain:
+          type: string
+          enum:
+          - reals
+      required:
+      - attemptId
+      - attemptRevision
+      - problemRevisionId
+      - notationProfile
+      - domain
+    InternalMathTransitionRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        schemaVersion:
+          type: string
+          enum:
+          - math-internal-v1
+        requestId:
+          type: string
+          format: uuid
+        context:
+          $ref: '#/components/schemas/InternalMathContext'
+        transition:
+          type: object
+          additionalProperties: false
+          properties:
+            fromKind:
+              type: string
+              enum:
+              - problem
+              - step
+            fromStepVersionId:
+              anyOf:
+              - type: string
+                format: uuid
+              - type: 'null'
+            toStepVersionId:
+              type: string
+              format: uuid
+            fromRaw:
+              type: string
+              maxLength: 256
+            toRaw:
+              type: string
+              maxLength: 256
+          required:
+          - fromKind
+          - fromStepVersionId
+          - toStepVersionId
+          - fromRaw
+          - toRaw
+      required:
+      - schemaVersion
+      - requestId
+      - context
+      - transition
+    InternalMathTransitionResult:
+      type: object
+      additionalProperties: false
+      properties:
+        schemaVersion:
+          type: string
+          enum:
+          - math-internal-v1
+        requestId:
+          type: string
+          format: uuid
+        engineVersion:
+          type: string
+        notationProfileVersion:
+          type: string
+        attemptRevision:
+          type: integer
+          format: int32
+          description: إصدار محاولة، يعادل bigint في PostgreSQL لكنه مقيد هنا إلى Int32 آمن لواجهات JavaScript.
+          minimum: 0
+          maximum: 2147483647
+          example: 4
+        status:
+          $ref: '#/components/schemas/MathStatus'
+        reasonCode:
+          anyOf:
+          - type: string
+          - type: 'null'
+        evidence:
+          anyOf:
+          - $ref: '#/components/schemas/InternalMathEvidence'
+          - type: 'null'
+        issue:
+          anyOf:
+          - $ref: '#/components/schemas/MathIssue'
+          - type: 'null'
+      required:
+      - schemaVersion
+      - requestId
+      - engineVersion
+      - notationProfileVersion
+      - attemptRevision
+      - status
+      - reasonCode
+      - evidence
+      - issue
+    BootstrapEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/BootstrapData'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - meta
+    GuestEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/GuestCreateData'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - meta
+    GuestCurrentEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/GuestSession'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - meta
+    LearningSessionEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/LearningSession'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - meta
+    SkillListEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/ListSkills'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - meta
+    SkillEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/Skill'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - meta
+    ProblemListEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/ListProblems'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - meta
+    ProblemEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/ProblemDetail'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - meta
+    AttemptListEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/ListAttempts'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - meta
+    AttemptEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/Attempt'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - meta
+    StepMutationEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/StepMutationResult'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - meta
+    VerificationEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/VerificationReport'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - meta
+    VerificationDetailEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/VerificationResultDetail'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - meta
+    ProbeEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/Probe'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - meta
+    ProbeAnswerEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/ProbeEvaluation'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - meta
+    HintEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/TutoringEvent'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - meta
+    EpisodeEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/LearningEpisode'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - meta
+    ProgressEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/ProgressSummary'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - meta
+    SkillProgressEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/SkillProgress'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - meta
+    TeacherSummaryEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/TeacherDemoSummary'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - meta
+    TeacherExampleEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/TeacherDemoExample'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - meta
+    HealthEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: '#/components/schemas/ServiceHealth'
+        meta:
+          $ref: '#/components/schemas/Meta'
+      required:
+      - data
+      - meta
+  examples:
+    VerifyValid:
+      summary: انتقال صحيح بالتوزيع
+      value:
+        expectedRevision: 3
+        scope: target_edge
+        targetStepId: 11111111-1111-4111-8111-111111111111
+    VerifySequence:
+      summary: فحص سلسلة كاملة
+      value:
+        expectedRevision: 4
+        scope: current_sequence
+        targetStepId: null
+    HintNext:
+      summary: التلميح التالي
+      value:
+        expectedRevision: 4
+        action: next_hint
+        confirmAssistedCompletion: false
+    HintFullSolution:
+      summary: طلب حل كامل في وضع التعلم
+      value:
+        expectedRevision: 4
+        action: show_full_solution
+        confirmAssistedCompletion: true
+    InputArabicMath:
+      summary: إضافة خطوة عربية صحيحة الصياغة
+      value:
+        expectedRevision: 0
+        position: 1
+        sourceRaw: ٢س + ٦ = ١٠
+        inputOrigin: math_editor
+    InputArabicMixedDigits:
+      summary: مدخل مقبول بديلًا ثم يعرض بالعربية
+      value:
+        expectedRevision: 1
+        position: 2
+        sourceRaw: 2س = 4
+        inputOrigin: keyboard
+    VerificationInvalidResponse:
+      summary: خطأ مثبت في تطبيق التوزيع؛ التشخيص يحتاج تأكيدًا
+      value:
+        data:
+          id: aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa
+          attemptId: bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb
+          attemptRevision: 4
+          problemRevisionId: cccccccc-cccc-4ccc-8ccc-cccccccccccc
+          scope: target_edge
+          isCurrent: true
+          transitions:
+          - verificationResultId: dddddddd-dddd-4ddd-8ddd-dddddddddddd
+            from:
+              kind: problem
+              stepId: null
+              stepVersion: null
+            to:
+              stepId: eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee
+              stepVersion: 1
+            mathStatus: verified_invalid
+            reasonCode: SOLUTION_SET_MISMATCH
+            issue: null
+            evidence:
+              kind: counterexample
+              domain: reals
+              previousSolution:
+                kind: singleton
+                value:
+                  num: '2'
+                  den: '1'
+              nextSolution:
+                kind: singleton
+                value:
+                  num: '7'
+                  den: '2'
+              witness:
+                variable: س
+                value:
+                  num: '2'
+                  den: '1'
+                satisfiesPrevious: true
+                satisfiesNext: false
+              summaryAr: القيمة س = ٢ تحقق المعادلة الأصلية، لكنها لا تحقق المعادلة التالية.
+            engineVersion: math-engine-v1
+            notationProfileVersion: ar-mashriq-school-v1
+          firstBlockingTransitionIndex: 0
+          completion:
+            state: not_complete
+            canMarkAttemptCompleted: false
+            explanationAr: لا يمكن إكمال الحل قبل مراجعة هذه الخطوة.
+          diagnosisCandidate:
+            diagnosisId: null
+            state: needs_probe
+            errorCode: ERR-ALG-01
+            skillId: null
+            explanationAr: قد يكون السبب إغفال توزيع المعامل على أحد الحدود؛ نحتاج سؤالًا للتأكيد.
+            needsProbe: true
+        meta:
+          requestId: ffffffff-ffff-4fff-8fff-ffffffffffff
+          serverTime: '2026-11-03T19:00:00Z'
+          apiVersion: '1'
+    RevisionConflictResponse:
+      summary: الحل تغير أثناء التحقق أو التعديل
+      value:
+        error:
+          code: revision_conflict
+          messageAr: تغيّرت المحاولة؛ حدّث الخطوات ثم حاول مرة أخرى.
+          issues: []
+          currentRevision: 5
+          retryable: true
+          retryAfterSeconds: null
+        meta:
+          requestId: ffffffff-ffff-4fff-8fff-ffffffffffff
+          serverTime: '2026-11-03T19:00:00Z'
+          apiVersion: '1'

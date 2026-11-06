@@ -1,0 +1,32 @@
+{
+  "phase": "PH-05",
+  "recordedAt": "2026-11-04T03:22:31.910Z",
+  "baseCommit": "70c946cf8881ed3c8d110bc409dbc8bf42a540a6",
+  "beforeFileCount": 271,
+  "changedFiles": 68,
+  "preservedFiles": 247,
+  "removedSincePhaseStart": [],
+  "canonicalAndMathChecks": 52,
+  "canonicalChanged": [],
+  "previousReportsChecked": 55,
+  "changedOldReports": [],
+  "secretValuesCheckedFromIgnoredLocalEnv": 2,
+  "secretIssues": [],
+  "markdownLinksCheckedFiles": [
+    "README.md",
+    "planning/ph05-local-run.md",
+    "planning/ph05-plan.md",
+    "qa-reports/ph05-delivery.md",
+    "qa-reports/gate-1.md",
+    "agent-reports/PH-05.md"
+  ],
+  "brokenLinks": [],
+  "gitDiffCheck": 0,
+  "serverOnlyAnswerSentinelInWebBundle": false,
+  "userRootDeletionsPreserved": true,
+  "deployedOrBaseDatabaseTouched": false,
+  "limitations": [
+    "No current interactive browser or physical-phone evidence",
+    "No human content/Golden approval or Gate-1 signoff"
+  ]
+}

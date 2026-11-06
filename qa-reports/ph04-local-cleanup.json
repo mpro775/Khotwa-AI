@@ -1,0 +1,90 @@
+{
+  "checks": [
+    {
+      "command": [
+        "docker",
+        "inspect",
+        "khotwa-ph04-poc-db",
+        "--format",
+        "{{ index .Config.Labels \"khotwa.task\" }}"
+      ],
+      "exitCode": 0,
+      "stdout": "ph04-poc\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "inspect",
+        "khotwa-ph04-poc-db",
+        "--format",
+        "{{json .HostConfig.PortBindings}}"
+      ],
+      "exitCode": 0,
+      "stdout": "{}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph04-poc-db"
+      ],
+      "exitCode": 0,
+      "stdout": "khotwa-ph04-poc-db\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "inspect",
+        "khotwa-ph04-test-db",
+        "--format",
+        "{{ index .Config.Labels \"khotwa.task\" }}"
+      ],
+      "exitCode": 0,
+      "stdout": "ph04-test\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "inspect",
+        "khotwa-ph04-test-db",
+        "--format",
+        "{{json .HostConfig.PortBindings}}"
+      ],
+      "exitCode": 0,
+      "stdout": "{}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph04-test-db"
+      ],
+      "exitCode": 0,
+      "stdout": "khotwa-ph04-test-db\n",
+      "stderr": ""
+    }
+  ],
+  "baselineContainersUnchanged": true,
+  "baselineBefore": [
+    "25f9dd7efb7d khotwa-ph01-math-engine-1",
+    "79566faec0ab khotwa-ph01-api-1",
+    "be299bf55ab6 khotwa-ph01-web-1",
+    "ef91159dfcee khotwa-ph01-database-1"
+  ],
+  "baselineAfter": [
+    "25f9dd7efb7d khotwa-ph01-math-engine-1",
+    "79566faec0ab khotwa-ph01-api-1",
+    "be299bf55ab6 khotwa-ph01-web-1",
+    "ef91159dfcee khotwa-ph01-database-1"
+  ],
+  "scope": "only two explicitly created PH-04 prototype databases and their own anonymous volumes removed"
+}

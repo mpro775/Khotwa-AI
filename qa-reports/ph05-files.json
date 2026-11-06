@@ -1,0 +1,490 @@
+{
+  "phase": "PH-05",
+  "recordedAt": "2026-11-04T03:22:31.333Z",
+  "baseline": ".local/ph05-before.json captured at phase start, 271 files",
+  "comparison": "against pre-PH05 workspace, not HEAD; previous uncommitted phases excluded",
+  "excludedFromSelfHash": [
+    "qa-reports/ph05-files.json",
+    "qa-reports/ph05-integrity.json"
+  ],
+  "changedCount": 68,
+  "removedSincePhaseStart": [],
+  "files": [
+    {
+      "path": ".env.example",
+      "change": "modified",
+      "reason": "Opt-in local HTTPS, build, dependency or CI wiring",
+      "beforeSha256": "fc53868b432a270756658c18d5b67b37326201180d766e65f694a3943eb9a9ec",
+      "sha256": "ca24b943faac8ccaa054d36c734cc8778b40e82d7ace980d0ee3d09cd76aaca4"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "change": "modified",
+      "reason": "Opt-in local HTTPS, build, dependency or CI wiring",
+      "beforeSha256": "c146f47013912b13f5fa846b32e4c83c602a6b8b6b3f27ab4cf8919940291bf4",
+      "sha256": "4364bc8b7c2d6ecfd88b73a0b3717c23b3ff18709fc47fc6bcbe4b722161348f"
+    },
+    {
+      "path": "Dockerfile",
+      "change": "modified",
+      "reason": "Opt-in local HTTPS, build, dependency or CI wiring",
+      "beforeSha256": "3688d3a44d16a935cbb2a65a5bf34353e866d30632248f5282ac00a7c9d78010",
+      "sha256": "01f23bfc6d9f1852ba17fdb78fbe6c0ebf5fbf0ae6ed5799ceb278b452893a8f"
+    },
+    {
+      "path": "README.md",
+      "change": "modified",
+      "reason": "Scope, decisions, operation and pending review",
+      "beforeSha256": "c56ab7c723dd127dadd473280edfc0b89f94bcdff4728ca568cd52d03aff7853",
+      "sha256": "21738fc3ccf27b55bf3b53da192c4cc2ffc8a2e1f51415e52f4b3ddc1d276e3b"
+    },
+    {
+      "path": "agent-reports/PH-05.md",
+      "change": "added",
+      "reason": "Delivery evidence or review status",
+      "beforeSha256": null,
+      "sha256": "d8c96f6aec14a4d8eaadee45d080cf0511d6582f7fa15caad073872535061684"
+    },
+    {
+      "path": "apps/api/prisma/migrations/0004_verification_reports/migration.sql",
+      "change": "added",
+      "reason": "Internal immutable verification grouping and migration",
+      "beforeSha256": null,
+      "sha256": "3e7ff653456034f3720724f850ca22e2fa2d4f15561dbe2577ffcdccbda28b87"
+    },
+    {
+      "path": "apps/api/prisma/schema.prisma",
+      "change": "modified",
+      "reason": "Internal immutable verification grouping and migration",
+      "beforeSha256": "c48e6f37558146a39a0373978581b1280d6602a68cc74258b8967c7274de8c01",
+      "sha256": "5c035352bbf4026b42f594a05d3d728a5a0a6c74e9e71487b65cc7c2634ea6ec"
+    },
+    {
+      "path": "apps/api/src/business.ts",
+      "change": "modified",
+      "reason": "NestJS real verification integration and version safety",
+      "beforeSha256": "b84892777fad7fa6e2b9d862f881a5a230e9cbae0cd5e17cc18847c27f4f7562",
+      "sha256": "17bc2f74fd07acdcd054401b301d9fd475baf49ba8427538a1bdcd111e4d6b7d"
+    },
+    {
+      "path": "apps/api/src/contracts.ts",
+      "change": "modified",
+      "reason": "NestJS real verification integration and version safety",
+      "beforeSha256": "c92dbe35aa9767c9ff8052a3b5dc89768eee1adb1fbc1d814703ed60934c62a7",
+      "sha256": "2f4b0f492d2e64fd76c74c93aa47f64ea4678b7b7cea313243c30b917498d811"
+    },
+    {
+      "path": "apps/api/src/health.ts",
+      "change": "modified",
+      "reason": "NestJS real verification integration and version safety",
+      "beforeSha256": "712a190fdc2c5818f97f78327f5bb0c4161e46ba98790cc59515cff0acdb6e6a",
+      "sha256": "7d07b30c94f4168e54fbc89974a59a1c849f99548e13eaef6d4ce29b7f106fcb"
+    },
+    {
+      "path": "apps/api/src/math-gateway.ts",
+      "change": "modified",
+      "reason": "NestJS real verification integration and version safety",
+      "beforeSha256": "626403386dae3d89e09aaf2a243a2c3eb320c84913a05fbc022468b96964bc0b",
+      "sha256": "5f31b3948c7741042d20e20df610e415c2377ec75984436e4652662c5feb51f3"
+    },
+    {
+      "path": "apps/api/src/store.ts",
+      "change": "modified",
+      "reason": "NestJS real verification integration and version safety",
+      "beforeSha256": "86757e89ced86e3cffe26de2837f106a10facd97ede17c4859417d2f3c0db89e",
+      "sha256": "faf861f1e721aab9f27be06d3348584d8a50306d983f8b9d7210b643b5b5dd72"
+    },
+    {
+      "path": "apps/api/src/verification.ts",
+      "change": "added",
+      "reason": "NestJS real verification integration and version safety",
+      "beforeSha256": null,
+      "sha256": "a7b99fdb7158e220c5e25c90a4a9b072d2ad63e82fd97bf902c630520b0adbae"
+    },
+    {
+      "path": "apps/api/tests/verification-live.test.mjs",
+      "change": "added",
+      "reason": "Targeted test and reproducible evidence",
+      "beforeSha256": null,
+      "sha256": "7b748f66a969558c43998029723c4fd2c3c5e2d114f5aa4c326e69f4b901f208"
+    },
+    {
+      "path": "apps/web/package.json",
+      "change": "modified",
+      "reason": "Opt-in local HTTPS, build, dependency or CI wiring",
+      "beforeSha256": "4d59869ec4139da3a2c76aa0e5c411a0be6705959fce3f7543fedeceadf7cdc5",
+      "sha256": "04dde55ae267acf379b2ae24fa0409335dad0e84da4d1ed67c16b0592c220942"
+    },
+    {
+      "path": "apps/web/src/MathInput.tsx",
+      "change": "added",
+      "reason": "Arabic student workspace, raw input and typed public client",
+      "beforeSha256": null,
+      "sha256": "cd943fa8aa7e834bc2e80b6d97d0249a5579367a2704b225031393013c6bab8d"
+    },
+    {
+      "path": "apps/web/src/StudentWorkspace.tsx",
+      "change": "added",
+      "reason": "Arabic student workspace, raw input and typed public client",
+      "beforeSha256": null,
+      "sha256": "5d39ec9f4a013a0ff78150f16380dc5e36a0281e29a4a4d2637aaee223ad2d66"
+    },
+    {
+      "path": "apps/web/src/api-client.ts",
+      "change": "added",
+      "reason": "Arabic student workspace, raw input and typed public client",
+      "beforeSha256": null,
+      "sha256": "3fdb54ac79e19c825317bfeb6a5fe23ef5baced36b2ed11e7a7613e32dd47433"
+    },
+    {
+      "path": "apps/web/src/api-schemas.json",
+      "change": "added",
+      "reason": "Arabic student workspace, raw input and typed public client",
+      "beforeSha256": null,
+      "sha256": "05c43faaf5c516b0001ef91386a2d3b1a26ed355b0dd0ddcd53295f70697689d"
+    },
+    {
+      "path": "apps/web/src/main.tsx",
+      "change": "modified",
+      "reason": "Arabic student workspace, raw input and typed public client",
+      "beforeSha256": "00a74e59fce584e46bb0caabf69973bdcae7f91a1fa65d005205f106ecff336a",
+      "sha256": "9fab9f766b97b38dd92c1b93f14c3a2c6d6c13e04a24834d8046a8c97fc66d29"
+    },
+    {
+      "path": "apps/web/src/workspace-model.ts",
+      "change": "added",
+      "reason": "Arabic student workspace, raw input and typed public client",
+      "beforeSha256": null,
+      "sha256": "25ce7ac58eaaa7757fdce962d001f7c521a525c0bd94c417edd3865b48105a3c"
+    },
+    {
+      "path": "apps/web/src/workspace.css",
+      "change": "added",
+      "reason": "Arabic student workspace, raw input and typed public client",
+      "beforeSha256": null,
+      "sha256": "0a4d6b7a24ba4de5525282e86612a7ddb566f66b5e0dc3440773c8796fd8efaa"
+    },
+    {
+      "path": "apps/web/tests/workspace.test.mjs",
+      "change": "added",
+      "reason": "Targeted test and reproducible evidence",
+      "beforeSha256": null,
+      "sha256": "063386cf3e9cf550c6efcbab7fb48ecd8f27114c0847a1ef165e3c02353f9d0f"
+    },
+    {
+      "path": "apps/web/vite.config.ts",
+      "change": "modified",
+      "reason": "Opt-in local HTTPS, build, dependency or CI wiring",
+      "beforeSha256": "b5e6874e015fbf140299ceaea3d294e65ad4b334e90e9648dbcfd9b258324b5a",
+      "sha256": "67c6a3762f7fc73277240fdcd03cb8df3108d4f01e0ab3a9a5c4ebb64e59ffd2"
+    },
+    {
+      "path": "compose.ph05.yaml",
+      "change": "added",
+      "reason": "Opt-in local HTTPS, build, dependency or CI wiring",
+      "beforeSha256": null,
+      "sha256": "1e28c8038ae80914d0b29d8bac8b255188c07f3649feb4612074e38c6a00420e"
+    },
+    {
+      "path": "compose.yaml",
+      "change": "modified",
+      "reason": "Opt-in local HTTPS, build, dependency or CI wiring",
+      "beforeSha256": "fe423dfed68bdf408af16e0dabb484b6f3ecf742ac712f61fcdb0c2451dc0b72",
+      "sha256": "d84e6214bef3f17887e6b96fe3a16d636a256514312b0fff590426370c09b324"
+    },
+    {
+      "path": "docs/PROJECT-DECISIONS.md",
+      "change": "modified",
+      "reason": "Scope, decisions, operation and pending review",
+      "beforeSha256": "7c98fef3f259e0d2a683b890cd4b343b5b8d4d493f6298d8aef0bfcfb37eeed1",
+      "sha256": "dcbc2082632a29631184a9612b9c09884e1ace266fad05b31fc8dced4831612a"
+    },
+    {
+      "path": "package-lock.json",
+      "change": "modified",
+      "reason": "Opt-in local HTTPS, build, dependency or CI wiring",
+      "beforeSha256": "c0d8f9722542842fccc5d913c7480f1dca8f8130230a2125888742293ae6026d",
+      "sha256": "75d454ac1f17daa1922c089b9fe5168f53ca2b72678b2c53817ad4a6563c2de6"
+    },
+    {
+      "path": "package.json",
+      "change": "modified",
+      "reason": "Opt-in local HTTPS, build, dependency or CI wiring",
+      "beforeSha256": "2c77dd68fc0f461767b2095356c1ffe16b40857f52fcb0d1a4fbaced7af05662",
+      "sha256": "9da73eb44b47ff09f87cbafa5af1333c0e1f6e8c18e6e250784293094fb0752d"
+    },
+    {
+      "path": "packages/contracts/src/generated/api-validators.cjs",
+      "change": "added",
+      "reason": "Derived public validators for strict CSP; canonical unchanged",
+      "beforeSha256": null,
+      "sha256": "6518b49355b5848f2ea51ccd06db850241fafbe3d875bd1fb335c60f276c4157"
+    },
+    {
+      "path": "packages/contracts/src/generated/api-validators.d.cts",
+      "change": "added",
+      "reason": "Derived public validators for strict CSP; canonical unchanged",
+      "beforeSha256": null,
+      "sha256": "03652908fca4fe7c62db4987c370ad3d56b2eb8391e644c3859aa9c2dd1083d9"
+    },
+    {
+      "path": "planning/decisions.md",
+      "change": "modified",
+      "reason": "Scope, decisions, operation and pending review",
+      "beforeSha256": "3ac396034b57b61d1145ea3db115a45c730699bc8688e08d601a49d24bf796b6",
+      "sha256": "aad076939f2d5602686a26a2e25e94d7d8c5194ee405ea5f47f02af3be36c3ec"
+    },
+    {
+      "path": "planning/ph05-local-run.md",
+      "change": "added",
+      "reason": "Scope, decisions, operation and pending review",
+      "beforeSha256": null,
+      "sha256": "7389368971a0e35d8b250e5f051aa924e1e57af7cc87d37a381f192360813d68"
+    },
+    {
+      "path": "planning/ph05-plan.md",
+      "change": "added",
+      "reason": "Scope, decisions, operation and pending review",
+      "beforeSha256": null,
+      "sha256": "4e5cbc9983798a147bc09652e5c290604f6552eedec191291bf5ae73594a8175"
+    },
+    {
+      "path": "planning/ph05-status.json",
+      "change": "added",
+      "reason": "Scope, decisions, operation and pending review",
+      "beforeSha256": null,
+      "sha256": "f726c6017c76c1e1796f5bc3e6d947764f34e3c9b67156b6da6b7aa4adf4ca23"
+    },
+    {
+      "path": "planning/technical-decisions.md",
+      "change": "modified",
+      "reason": "Scope, decisions, operation and pending review",
+      "beforeSha256": "f10d1f136e6ca14b7851ca43f99ac48d5288048d87d58dfff1268f754922b0cc",
+      "sha256": "c81fb6a5000241ad6779b4907536b33b3ac05efae53086d6ee97e4593c488b5e"
+    },
+    {
+      "path": "qa-reports/README.md",
+      "change": "modified",
+      "reason": "Delivery evidence or review status",
+      "beforeSha256": "51bfd212685d781d48ffdda6d95c596618e53da132d676f82137999a8ce16f5b",
+      "sha256": "e3c08ba8c52ed793220a8d0d3b8b982105de7961a8f1d562f02ce9b497e5de1f"
+    },
+    {
+      "path": "qa-reports/gate-1.md",
+      "change": "added",
+      "reason": "Delivery evidence or review status",
+      "beforeSha256": null,
+      "sha256": "2af134653e28eccda38192132a1aac7ec900022b37cfb1099adccdaf479e60fc"
+    },
+    {
+      "path": "qa-reports/ph05-browser-checks.json",
+      "change": "added",
+      "reason": "Delivery evidence or review status",
+      "beforeSha256": null,
+      "sha256": "455ba9636a1855d441be3ab409b8d5255f134f0ca47fbcefc271c474beec10ec"
+    },
+    {
+      "path": "qa-reports/ph05-checks.json",
+      "change": "added",
+      "reason": "Delivery evidence or review status",
+      "beforeSha256": null,
+      "sha256": "38029b39a52ff4c89eba2e8413f567d718c69dbc62d8e6dcf413e46834b436ab"
+    },
+    {
+      "path": "qa-reports/ph05-container-build-failure.json",
+      "change": "added",
+      "reason": "Delivery evidence or review status",
+      "beforeSha256": null,
+      "sha256": "98cd418efc4df3cc8dfe042b7a5a84e36b6578bfc1efb64232f920b2b8d80406"
+    },
+    {
+      "path": "qa-reports/ph05-container-first-run.json",
+      "change": "added",
+      "reason": "Delivery evidence or review status",
+      "beforeSha256": null,
+      "sha256": "74cabfaa33efbacfefcc1fa371f1d5d80eb40cad7d43beb565f0e14e2be28a2d"
+    },
+    {
+      "path": "qa-reports/ph05-container-second-run.json",
+      "change": "added",
+      "reason": "Delivery evidence or review status",
+      "beforeSha256": null,
+      "sha256": "6db6850f1ba4b586a501da89d3c4992a92903d891a7b1697f82ab599ef1c567f"
+    },
+    {
+      "path": "qa-reports/ph05-container-uuid-regression.json",
+      "change": "added",
+      "reason": "Delivery evidence or review status",
+      "beforeSha256": null,
+      "sha256": "aa958a76c6f893af2395559f4b41ef0060743d3e9512b2c38c49f070b0330d3b"
+    },
+    {
+      "path": "qa-reports/ph05-container.json",
+      "change": "added",
+      "reason": "Delivery evidence or review status",
+      "beforeSha256": null,
+      "sha256": "86d2978e1aa71c577ab127ad96da96ce21fd0ee6e6ab9083b3ee9dc1d415a715"
+    },
+    {
+      "path": "qa-reports/ph05-delivery.md",
+      "change": "added",
+      "reason": "Delivery evidence or review status",
+      "beforeSha256": null,
+      "sha256": "511af232d5467ab542bec9a1a95666d4a74f5bc2bebbc6c462585f8127b877e8"
+    },
+    {
+      "path": "qa-reports/ph05-https-results.json",
+      "change": "added",
+      "reason": "Delivery evidence or review status",
+      "beforeSha256": null,
+      "sha256": "e16b287235d1119df69a568a7634a1aba7043b3bfd455cad17c363de5646f6b0"
+    },
+    {
+      "path": "qa-reports/ph05-image-source.json",
+      "change": "added",
+      "reason": "Delivery evidence or review status",
+      "beforeSha256": null,
+      "sha256": "2f9f7717aff911f4602ea1388c338dd2156fd25ca1a1380a09f045a54b6380b0"
+    },
+    {
+      "path": "qa-reports/ph05-live-results.json",
+      "change": "added",
+      "reason": "Delivery evidence or review status",
+      "beforeSha256": null,
+      "sha256": "d134a3a7a77d5f8d072a7aa64d4fef68fc93cc6038604122344bdb38df065177"
+    },
+    {
+      "path": "qa-reports/ph05-local-build-failure.json",
+      "change": "added",
+      "reason": "Delivery evidence or review status",
+      "beforeSha256": null,
+      "sha256": "b2bc06061e8ef9b779d5c2d89f3a0dc6128ac8db1de6e5b9ccd55bdf6fa4fb78"
+    },
+    {
+      "path": "qa-reports/ph05-local-run.json",
+      "change": "added",
+      "reason": "Delivery evidence or review status",
+      "beforeSha256": null,
+      "sha256": "df6d48ec911f493529d2479f3ae3bee434dc90874efd9e2dd89fe863fb9f4cb5"
+    },
+    {
+      "path": "qa-reports/ph05-regression-ph04-http.json",
+      "change": "added",
+      "reason": "Delivery evidence or review status",
+      "beforeSha256": null,
+      "sha256": "b1cee5fdab38cc8d68e816f9ab4c85956c618ddc4a190b7624f326ac4bb7e216"
+    },
+    {
+      "path": "qa-reports/ph05-regression-ph04.json",
+      "change": "added",
+      "reason": "Delivery evidence or review status",
+      "beforeSha256": null,
+      "sha256": "2ea77b1a0fa160791d6d7ffe9153cf7abe02824abef89fbf004d8fd816ab345e"
+    },
+    {
+      "path": "qa-reports/rtl-device-checklist.md",
+      "change": "modified",
+      "reason": "Delivery evidence or review status",
+      "beforeSha256": "a7f6deb7a7181b65c93b969fb5061b63dbba7c439f17731776f22c5f2bb3345a",
+      "sha256": "593455f3e085d1879f1618c6161a70c93d070f4dfdea16f13e5daa3cdcfee8c6"
+    },
+    {
+      "path": "qa/ph04-container.mjs",
+      "change": "modified",
+      "reason": "Targeted test and reproducible evidence",
+      "beforeSha256": "71596ff38248a9e7adc16d8f1fb0ec78604496ec7004f6961c1a5555eb494d9a",
+      "sha256": "b24de2dcc8fdd30d1ec3a30e5d8ec32f361426e24112c06c0845d812ec9cf046"
+    },
+    {
+      "path": "qa/ph04-down.sql",
+      "change": "modified",
+      "reason": "Targeted test and reproducible evidence",
+      "beforeSha256": "4605e262234c2324043e3ad64f14c20858fdcbcbe76968a6a16e758b75ab63fd",
+      "sha256": "4093ff912f284312bd827a2d3ce53e42fc25ab63c5bf76468057f47b7264d677"
+    },
+    {
+      "path": "qa/ph05-container.mjs",
+      "change": "added",
+      "reason": "Targeted test and reproducible evidence",
+      "beforeSha256": null,
+      "sha256": "aecd465815a58253bee722c25acb9481085478da1391644972f6a1108441867b"
+    },
+    {
+      "path": "qa/ph05-fixtures.mjs",
+      "change": "added",
+      "reason": "Targeted test and reproducible evidence",
+      "beforeSha256": null,
+      "sha256": "f546b7c2863221f334b23d6604288938ae7154be804b6fc27234908115a172a5"
+    },
+    {
+      "path": "qa/ph05-http-client.mjs",
+      "change": "added",
+      "reason": "Targeted test and reproducible evidence",
+      "beforeSha256": null,
+      "sha256": "aad52d7ff546352511a6ae69c6620d3e0de73fe29a5037b9e960ac5ec8fb5760"
+    },
+    {
+      "path": "qa/ph05-https-probe.mjs",
+      "change": "added",
+      "reason": "Targeted test and reproducible evidence",
+      "beforeSha256": null,
+      "sha256": "8eb48cf5eb8a661610931427df597900e7a224bbcef60f59e567fc1f56aa4e1b"
+    },
+    {
+      "path": "qa/ph05-local-seed.mjs",
+      "change": "added",
+      "reason": "Targeted test and reproducible evidence",
+      "beforeSha256": null,
+      "sha256": "76f61032145a51b8f148410c30cbc59fd1ae19dec7374148041d5e2dee1332b5"
+    },
+    {
+      "path": "qa/ph05-math-proxy.mjs",
+      "change": "added",
+      "reason": "Targeted test and reproducible evidence",
+      "beforeSha256": null,
+      "sha256": "ef174a0805650a0ad21d470091ed260809652f60e7b96f4048b8afc5ced26fde"
+    },
+    {
+      "path": "qa/ph05-nginx.conf",
+      "change": "added",
+      "reason": "Targeted test and reproducible evidence",
+      "beforeSha256": null,
+      "sha256": "f45849923bbc53577ec556b07a4f935d278edef3e9c825616b1d2cb9b1fe3495"
+    },
+    {
+      "path": "tools/contracts.mjs",
+      "change": "modified",
+      "reason": "Derived public validators for strict CSP; canonical unchanged",
+      "beforeSha256": "2703496419869328553c935de821ed954cde0a8457381f145057f0a4f9791b81",
+      "sha256": "aaa5385a298c2f5176cbf2153692db58554a30d58d33c9ba664571313c1329ab"
+    },
+    {
+      "path": "tools/serve-ph05.mjs",
+      "change": "added",
+      "reason": "Opt-in local HTTPS, build, dependency or CI wiring",
+      "beforeSha256": null,
+      "sha256": "445424b76da6cc06da836515cb42e56c0f87877a3084e5a08e613cd9a895c3a3"
+    },
+    {
+      "path": "tools/test-workspace.mjs",
+      "change": "added",
+      "reason": "Targeted test and reproducible evidence",
+      "beforeSha256": null,
+      "sha256": "a711504165d995abfa3a0fa52d84f67153a6b524d451cce5957cd41a32646d9a"
+    },
+    {
+      "path": "tools/verify-ph05-container.mjs",
+      "change": "added",
+      "reason": "Targeted test and reproducible evidence",
+      "beforeSha256": null,
+      "sha256": "7427498634b5185b32d9c7dd207a90526d75e24759b70ba0623ddac5bf80fdc2"
+    },
+    {
+      "path": "tools/verify-ph05.mjs",
+      "change": "added",
+      "reason": "Targeted test and reproducible evidence",
+      "beforeSha256": null,
+      "sha256": "f9e60913a971868348509a3d707a889f241044a502be5ebd66949ba730d84ade"
+    }
+  ]
+}

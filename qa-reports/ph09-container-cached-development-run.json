@@ -1,0 +1,1390 @@
+{
+  "phase": "PH-09",
+  "recordedAt": "2026-11-04T15:52:16.842Z",
+  "failure": "Real integration checks failed: ",
+  "checks": [
+    {
+      "command": [
+        "docker",
+        "network",
+        "create",
+        "--internal",
+        "--label",
+        "khotwa.task=ph09-test",
+        "khotwa-ph09-629c08360e34"
+      ],
+      "exitCode": 0,
+      "seconds": 0.2,
+      "stdout": "f1e2bd122bc5c524f8d20cf1e41283e9917d0e0bba05f38b5862fa335e349362\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "khotwa-ph09-629c08360e34-db",
+        "--label",
+        "khotwa.task=ph09-test",
+        "--network",
+        "khotwa-ph09-629c08360e34",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph09-629c08360e34-db.env",
+        "--memory",
+        "512m",
+        "--pids-limit",
+        "64",
+        "--tmpfs",
+        "/var/lib/postgresql/data:rw,noexec,nosuid,size=128m",
+        "postgres:17.6-alpine3.22"
+      ],
+      "exitCode": 0,
+      "seconds": 1.3,
+      "stdout": "d4f6583c273cbf942d5a929620eefd4666838a804b272eaa9df66d006af8022b\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "-d",
+        "--name",
+        "khotwa-ph09-629c08360e34-math",
+        "--label",
+        "khotwa.task=ph09-test",
+        "--network",
+        "khotwa-ph09-629c08360e34",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph09-629c08360e34-math.env",
+        "--memory",
+        "256m",
+        "--cpus",
+        "1",
+        "--pids-limit",
+        "64",
+        "--read-only",
+        "--tmpfs",
+        "/tmp",
+        "khotwa-ph09-math"
+      ],
+      "exitCode": 0,
+      "seconds": 2.9,
+      "stdout": "aa59270c39871d2ea13a6d81b504a6846e4d81a71ede4dff2069fa76a23f7fc4\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "exec",
+        "khotwa-ph09-629c08360e34-math",
+        "python",
+        "-c",
+        "import os; assert 'DATABASE_URL' not in os.environ; assert 'GUEST_DIGEST_KEY' not in os.environ; print('Math environment isolated from DB and guest-signing credentials')"
+      ],
+      "exitCode": 0,
+      "seconds": 0.8,
+      "stdout": "Math environment isolated from DB and guest-signing credentials\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "run",
+        "--name",
+        "khotwa-ph09-629c08360e34-tests",
+        "--label",
+        "khotwa.task=ph09-test",
+        "--network",
+        "khotwa-ph09-629c08360e34",
+        "--env-file",
+        "C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\.local\\khotwa-ph09-629c08360e34.env",
+        "--memory",
+        "768m",
+        "--pids-limit",
+        "128",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\qa,target=/app/qa,readonly",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\apps\\api\\tests,target=/app/apps/api/tests,readonly",
+        "--mount",
+        "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\apps\\api\\prisma,target=/app/apps/api/prisma,readonly",
+        "khotwa-ph09-test"
+      ],
+      "exitCode": 1,
+      "seconds": 36.3,
+      "stdout": "PH09_DB_RESULT {\"checks\":[{\"command\":\"prisma migrate deploy\",\"exitCode\":0},{\"name\":\"PH09_delta_down_preserves_PH08_tables\",\"passed\":true},{\"command\":\"prisma migrate reset --force\",\"exitCode\":0}],\"postgres\":\"17.6\",\"tables\":31,\"migrations\":9,\"scope\":\"isolated tmpfs; PH09 delta rollback and full replay\"}\n▶ PH09 current progress, isolated teacher artifact and failure/security boundaries\n  ✔ teacher math examples are real verified counterexamples, with no hidden bank or live attempt IDs (249.824322ms)\n  ✔ three progress states and per-skill detail match actual current evidence without mastery scores (5249.199076ms)\n  ✔ duplicate source events and repeated verification do not double count a completed attempt (1860.035483ms)\n  ✔ content withdrawal, assignment mode and source revisions immediately remove stale positive evidence (1694.139827ms)\n  ✔ a new non-assessable transfer does not erase another current independent observation (1771.173375ms)\n  ✔ teacher cards always read the fixed synthetic source, independent of guest data and feature-source selectors (447.145624ms)\n  ✔ anonymous and foreign-session reads cannot resolve progress, examples or learning resources (626.598451ms)\n  ✔ absolute expiry and idle expiry revoke read permission including teacher demo (77.783697ms)\n  ✖ logout is repeatable revocation, not a false claim of deleting stored work (221.756805ms)\n  ✔ Origin, CSRF and secure cookies stay mandatory and errors do not disclose stacks or credentials (308.625688ms)\n  ✔ parallel duplicate keys and revision races never duplicate student work (457.745559ms)\n  ✔ real HTTP Python failure and timeout preserve saved raw, prior facts and safe same-key retry (2806.170465ms)\n  ✔ Python failure after an edit produces no negative skill event or overwritten source (958.563816ms)\n  ✔ AI invalid JSON and HTTP timeout use a draft fallback while preserving verified math and private raw (618.877402ms)\n  ✔ a held real Python response cannot restore an old revision or its progress (1333.626058ms)\n✖ PH09 current progress, isolated teacher artifact and failure/security boundaries (24806.78155ms)\nℹ tests 16\nℹ suites 0\nℹ pass 14\nℹ fail 2\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 25633.929093\n\n✖ failing tests:\n\ntest at apps/api/tests/progress-live.test.mjs:474:15\n✖ logout is repeatable revocation, not a false claim of deleting stored work (221.756805ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  \n  400 !== 204\n  \n      at TestContext.<anonymous> (file:///app/apps/api/tests/progress-live.test.mjs:486:18)\n      at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n      at async Test.run (node:internal/test_runner/test:1113:7)\n      at async TestContext.<anonymous> (file:///app/apps/api/tests/progress-live.test.mjs:474:7)\n      at async Test.run (node:internal/test_runner/test:1113:7)\n      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: 400,\n    expected: 204,\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n \nPH09_LIVE_RESULT {  \"phase\": \"PH-09\",  \"runId\": \"f10e6aea-f2a5-48af-bb6a-90c1d7af5b0a\",  \"recordedAt\": \"2026-11-04T15:52:13.476Z\",  \"services\": \"real NestJS/PostgreSQL17.6/Python/SymPy; loopback HTTP fault proxies and AI test double only\",  \"validatedResponses\": 238,  \"contracts\": [    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"getSkillProgress\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"updateStep\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"getTeacherDemoSummary\",      \"status\": 200    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"getTeacherDemoSummary\",      \"status\": 200    },    {      \"operationId\": \"getTeacherDemoExample\",      \"status\": 200    },    {      \"operationId\": \"getProblem\",      \"status\": 404    },    {      \"operationId\": \"getTeacherDemoExample\",      \"status\": 200    },    {      \"operationId\": \"getProblem\",      \"status\": 404    },    {      \"operationId\": \"getTeacherDemoExample\",      \"status\": 200    },    {      \"operationId\": \"getProblem\",      \"status\": 404    },    {      \"operationId\": \"getTeacherDemoExample\",      \"status\": 404    },    {      \"operationId\": \"getTeacherDemoSummary\",      \"status\": 404    },    {      \"operationId\": \"getTeacherDemoSummary\",      \"status\": 404    },    {      \"operationId\": \"getTeacherDemoSummary\",      \"status\": 404    },    {      \"operationId\": \"getTeacherDemoSummary\",      \"status\": 404    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"getTeacherDemoSummary\",      \"status\": 401    },    {      \"operationId\": \"getTeacherDemoExample\",      \"status\": 401    },    {      \"operationId\": \"getProgress\",      \"status\": 401    },    {      \"operationId\": \"getProgress\",      \"status\": 404    },    {      \"operationId\": \"getSkillProgress\",      \"status\": 404    },    {      \"operationId\": \"getLearningEpisode\",      \"status\": 404    },    {      \"operationId\": \"getAttempt\",      \"status\": 404    },    {      \"operationId\": \"getProgress\",      \"status\": 400    },    {      \"operationId\": \"getProgress\",      \"status\": 404    },    {      \"operationId\": \"getTeacherDemoSummary\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"getTeacherDemoSummary\",      \"status\": 401    },    {      \"operationId\": \"getProgress\",      \"status\": 401    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"getTeacherDemoSummary\",      \"status\": 401    },    {      \"operationId\": \"getProgress\",      \"status\": 401    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"revokeGuestSession\",      \"status\": 400    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 403    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 409    },    {      \"operationId\": \"createStep\",      \"status\": 409    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 503    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 503    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 503    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"updateStep\",      \"status\": 200    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 503    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"requestHint\",      \"status\": 200    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"getBootstrap\",      \"status\": 200    },    {      \"operationId\": \"createGuestSession\",      \"status\": 201    },    {      \"operationId\": \"createLearningSession\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startRemediation\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"startTransferCheck\",      \"status\": 201    },    {      \"operationId\": \"createAttempt\",      \"status\": 201    },    {      \"operationId\": \"createStep\",      \"status\": 201    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 200    },    {      \"operationId\": \"updateStep\",      \"status\": 200    },    {      \"operationId\": \"verifyAttempt\",      \"status\": 409    },    {      \"operationId\": \"getAttempt\",      \"status\": 200    },    {      \"operationId\": \"getProgress\",      \"status\": 200    }  ],  \"teacher\": {    \"datasetCode\": \"ph09-authored-synthetic-v1\",    \"source\": \"fixed authored synthetic artifact, no learner DB queries\",    \"sampleStudentCount\": 8,    \"sampleAttemptCount\": 12,    \"metrics\": [      {        \"code\": \"evaluable_attempts\",        \"titleAr\": \"محاولات قابلة للتقييم الرياضي\",        \"count\": 8      },      {        \"code\": \"non_assessable_attempts\",        \"titleAr\": \"محاولات تعذر تقييمها؛ لا تعني خطأً مفاهيميًا\",        \"count\": 4      },      {        \"code\": \"verified_invalid_attempts\",        \"titleAr\": \"انتقالات غير متكافئة ضمن العينة\",        \"count\": 3      },      {        \"code\": \"independent_transfer_attempts\",        \"titleAr\": \"إكمال نقل مستقل في سجلات العرض المؤلفة\",        \"count\": 2      },      {        \"code\": \"assisted_completions\",        \"titleAr\": \"إكمال بعد مساعدة في سجلات العرض\",        \"count\": 2      }    ],    \"mathProofs\": [      {        \"exampleId\": \"d9090000-0000-4000-8000-000000000001\",        \"status\": \"verified_invalid\",        \"evidence\": {          \"type\": \"counterexample\",          \"domain\": \"reals\",          \"previousSolution\": {            \"kind\": \"singleton\",            \"value\": {              \"num\": \"5\",              \"den\": \"1\"            }          },          \"nextSolution\": {            \"kind\": \"singleton\",            \"value\": {              \"num\": \"41\",              \"den\": \"5\"            }          },          \"witness\": {            \"variable\": \"س\",            \"value\": {              \"num\": \"5\",              \"den\": \"1\"            },            \"satisfiesPrevious\": true,            \"satisfiesNext\": false          }        },        \"engine\": \"0.3.0\"      },      {        \"exampleId\": \"d9090000-0000-4000-8000-000000000002\",        \"status\": \"verified_invalid\",        \"evidence\": {          \"type\": \"counterexample\",          \"domain\": \"reals\",          \"previousSolution\": {            \"kind\": \"singleton\",            \"value\": {              \"num\": \"5\",              \"den\": \"1\"            }          },          \"nextSolution\": {            \"kind\": \"singleton\",            \"value\": {              \"num\": \"13\",              \"den\": \"1\"            }          },          \"witness\": {            \"variable\": \"س\",            \"value\": {              \"num\": \"5\",              \"den\": \"1\"            },            \"satisfiesPrevious\": true,            \"satisfiesNext\": false          }        },        \"engine\": \"0.3.0\"      },      {        \"exampleId\": \"d9090000-0000-4000-8000-000000000003\",        \"status\": \"verified_invalid\",        \"evidence\": {          \"type\": \"counterexample\",          \"domain\": \"reals\",          \"previousSolution\": {            \"kind\": \"singleton\",            \"value\": {              \"num\": \"0\",              \"den\": \"1\"            }          },          \"nextSolution\": {            \"kind\": \"singleton\",            \"value\": {              \"num\": \"-4\",              \"den\": \"1\"            }          },          \"witness\": {            \"variable\": \"س\",            \"value\": {              \"num\": \"0\",              \"den\": \"1\"            },            \"satisfiesPrevious\": true,            \"satisfiesNext\": false          }        },        \"engine\": \"0.3.0\"      }    ],    \"contentReview\": \"pending\"  },  \"review\": [    {      \"case\": \"states_and_source\",      \"evidenceCount\": 2,      \"independentTransferCount\": 1,      \"assistedPracticeCount\": 1    }  ],  \"pythonFaultRequests\": [    {      \"operation\": \"/internal/v1/math/parse\",      \"mode\": \"503\"    },    {      \"operation\": \"/internal/v1/math/parse\",      \"mode\": \"forward\"    },    {      \"operation\": \"/internal/v1/math/parse\",      \"mode\": \"forward\"    },    {      \"operation\": \"/internal/v1/math/verify-transition\",      \"mode\": \"forward\"    },    {      \"operation\": \"/internal/v1/math/check-final\",      \"mode\": \"forward\"    },    {      \"operation\": \"/internal/v1/math/parse\",      \"mode\": \"timeout\"    },    {      \"operation\": \"/internal/v1/math/parse\",      \"mode\": \"forward\"    },    {      \"operation\": \"/internal/v1/math/parse\",      \"mode\": \"forward\"    },    {      \"operation\": \"/internal/v1/math/verify-transition\",      \"mode\": \"forward\"    },    {      \"operation\": \"/internal/v1/math/check-final\",      \"mode\": \"forward\"    },    {      \"operation\": \"/internal/v1/math/parse\",      \"mode\": \"invalid_json\"    },    {      \"operation\": \"/internal/v1/math/parse\",      \"mode\": \"forward\"    },    {      \"operation\": \"/internal/v1/math/parse\",      \"mode\": \"forward\"    },    {      \"operation\": \"/internal/v1/math/verify-transition\",      \"mode\": \"forward\"    },    {      \"operation\": \"/internal/v1/math/check-final\",      \"mode\": \"forward\"    },    {      \"operation\": \"/internal/v1/math/parse\",      \"mode\": \"503\"    },    {      \"operation\": \"/internal/v1/math/parse\",      \"mode\": \"forward\"    },    {      \"operation\": \"/internal/v1/math/parse\",      \"mode\": \"forward\"    },    {      \"operation\": \"/internal/v1/math/verify-transition\",      \"mode\": \"forward\"    },    {      \"operation\": \"/internal/v1/math/check-final\",      \"mode\": \"forward\"    }  ],  \"controlledAiCalls\": 2,  \"actualExternalProviderCalls\": 0,  \"actualLlmInferences\": 0,  \"retention\": {    \"eligibilityReview\": \"tested\",    \"actualPurge\": \"not_implemented_pending_data_security_review\",    \"deletedRecords\": 0  },  \"gate2\": \"not_approved\",  \"gate3\": \"not_approved\",  \"ph10\": \"not_started\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph09-629c08360e34-tests"
+      ],
+      "exitCode": 0,
+      "seconds": 0.2,
+      "stdout": "khotwa-ph09-629c08360e34-tests\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph09-629c08360e34-math"
+      ],
+      "exitCode": 0,
+      "seconds": 0.7,
+      "stdout": "khotwa-ph09-629c08360e34-math\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "rm",
+        "-f",
+        "-v",
+        "khotwa-ph09-629c08360e34-db"
+      ],
+      "exitCode": 0,
+      "seconds": 1.1,
+      "stdout": "khotwa-ph09-629c08360e34-db\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "docker",
+        "network",
+        "rm",
+        "khotwa-ph09-629c08360e34"
+      ],
+      "exitCode": 0,
+      "seconds": 0.3,
+      "stdout": "khotwa-ph09-629c08360e34\n",
+      "stderr": ""
+    }
+  ],
+  "dbProof": {
+    "checks": [
+      {
+        "command": "prisma migrate deploy",
+        "exitCode": 0
+      },
+      {
+        "name": "PH09_delta_down_preserves_PH08_tables",
+        "passed": true
+      },
+      {
+        "command": "prisma migrate reset --force",
+        "exitCode": 0
+      }
+    ],
+    "postgres": "17.6",
+    "tables": 31,
+    "migrations": 9,
+    "scope": "isolated tmpfs; PH09 delta rollback and full replay"
+  },
+  "liveProof": {
+    "phase": "PH-09",
+    "runId": "f10e6aea-f2a5-48af-bb6a-90c1d7af5b0a",
+    "recordedAt": "2026-11-04T15:52:13.476Z",
+    "services": "real NestJS/PostgreSQL17.6/Python/SymPy; loopback HTTP fault proxies and AI test double only",
+    "validatedResponses": 238,
+    "contracts": [
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "getSkillProgress",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "updateStep",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "getTeacherDemoSummary",
+        "status": 200
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "getTeacherDemoSummary",
+        "status": 200
+      },
+      {
+        "operationId": "getTeacherDemoExample",
+        "status": 200
+      },
+      {
+        "operationId": "getProblem",
+        "status": 404
+      },
+      {
+        "operationId": "getTeacherDemoExample",
+        "status": 200
+      },
+      {
+        "operationId": "getProblem",
+        "status": 404
+      },
+      {
+        "operationId": "getTeacherDemoExample",
+        "status": 200
+      },
+      {
+        "operationId": "getProblem",
+        "status": 404
+      },
+      {
+        "operationId": "getTeacherDemoExample",
+        "status": 404
+      },
+      {
+        "operationId": "getTeacherDemoSummary",
+        "status": 404
+      },
+      {
+        "operationId": "getTeacherDemoSummary",
+        "status": 404
+      },
+      {
+        "operationId": "getTeacherDemoSummary",
+        "status": 404
+      },
+      {
+        "operationId": "getTeacherDemoSummary",
+        "status": 404
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "getTeacherDemoSummary",
+        "status": 401
+      },
+      {
+        "operationId": "getTeacherDemoExample",
+        "status": 401
+      },
+      {
+        "operationId": "getProgress",
+        "status": 401
+      },
+      {
+        "operationId": "getProgress",
+        "status": 404
+      },
+      {
+        "operationId": "getSkillProgress",
+        "status": 404
+      },
+      {
+        "operationId": "getLearningEpisode",
+        "status": 404
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 404
+      },
+      {
+        "operationId": "getProgress",
+        "status": 400
+      },
+      {
+        "operationId": "getProgress",
+        "status": 404
+      },
+      {
+        "operationId": "getTeacherDemoSummary",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "getTeacherDemoSummary",
+        "status": 401
+      },
+      {
+        "operationId": "getProgress",
+        "status": 401
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "getTeacherDemoSummary",
+        "status": 401
+      },
+      {
+        "operationId": "getProgress",
+        "status": 401
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "revokeGuestSession",
+        "status": 400
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 403
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 409
+      },
+      {
+        "operationId": "createStep",
+        "status": 409
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 503
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 503
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 503
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "updateStep",
+        "status": 200
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 503
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "requestHint",
+        "status": 200
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getBootstrap",
+        "status": 200
+      },
+      {
+        "operationId": "createGuestSession",
+        "status": 201
+      },
+      {
+        "operationId": "createLearningSession",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startRemediation",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "startTransferCheck",
+        "status": 201
+      },
+      {
+        "operationId": "createAttempt",
+        "status": 201
+      },
+      {
+        "operationId": "createStep",
+        "status": 201
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "updateStep",
+        "status": 200
+      },
+      {
+        "operationId": "verifyAttempt",
+        "status": 409
+      },
+      {
+        "operationId": "getAttempt",
+        "status": 200
+      },
+      {
+        "operationId": "getProgress",
+        "status": 200
+      }
+    ],
+    "teacher": {
+      "datasetCode": "ph09-authored-synthetic-v1",
+      "source": "fixed authored synthetic artifact, no learner DB queries",
+      "sampleStudentCount": 8,
+      "sampleAttemptCount": 12,
+      "metrics": [
+        {
+          "code": "evaluable_attempts",
+          "titleAr": "محاولات قابلة للتقييم الرياضي",
+          "count": 8
+        },
+        {
+          "code": "non_assessable_attempts",
+          "titleAr": "محاولات تعذر تقييمها؛ لا تعني خطأً مفاهيميًا",
+          "count": 4
+        },
+        {
+          "code": "verified_invalid_attempts",
+          "titleAr": "انتقالات غير متكافئة ضمن العينة",
+          "count": 3
+        },
+        {
+          "code": "independent_transfer_attempts",
+          "titleAr": "إكمال نقل مستقل في سجلات العرض المؤلفة",
+          "count": 2
+        },
+        {
+          "code": "assisted_completions",
+          "titleAr": "إكمال بعد مساعدة في سجلات العرض",
+          "count": 2
+        }
+      ],
+      "mathProofs": [
+        {
+          "exampleId": "d9090000-0000-4000-8000-000000000001",
+          "status": "verified_invalid",
+          "evidence": {
+            "type": "counterexample",
+            "domain": "reals",
+            "previousSolution": {
+              "kind": "singleton",
+              "value": {
+                "num": "5",
+                "den": "1"
+              }
+            },
+            "nextSolution": {
+              "kind": "singleton",
+              "value": {
+                "num": "41",
+                "den": "5"
+              }
+            },
+            "witness": {
+              "variable": "س",
+              "value": {
+                "num": "5",
+                "den": "1"
+              },
+              "satisfiesPrevious": true,
+              "satisfiesNext": false
+            }
+          },
+          "engine": "0.3.0"
+        },
+        {
+          "exampleId": "d9090000-0000-4000-8000-000000000002",
+          "status": "verified_invalid",
+          "evidence": {
+            "type": "counterexample",
+            "domain": "reals",
+            "previousSolution": {
+              "kind": "singleton",
+              "value": {
+                "num": "5",
+                "den": "1"
+              }
+            },
+            "nextSolution": {
+              "kind": "singleton",
+              "value": {
+                "num": "13",
+                "den": "1"
+              }
+            },
+            "witness": {
+              "variable": "س",
+              "value": {
+                "num": "5",
+                "den": "1"
+              },
+              "satisfiesPrevious": true,
+              "satisfiesNext": false
+            }
+          },
+          "engine": "0.3.0"
+        },
+        {
+          "exampleId": "d9090000-0000-4000-8000-000000000003",
+          "status": "verified_invalid",
+          "evidence": {
+            "type": "counterexample",
+            "domain": "reals",
+            "previousSolution": {
+              "kind": "singleton",
+              "value": {
+                "num": "0",
+                "den": "1"
+              }
+            },
+            "nextSolution": {
+              "kind": "singleton",
+              "value": {
+                "num": "-4",
+                "den": "1"
+              }
+            },
+            "witness": {
+              "variable": "س",
+              "value": {
+                "num": "0",
+                "den": "1"
+              },
+              "satisfiesPrevious": true,
+              "satisfiesNext": false
+            }
+          },
+          "engine": "0.3.0"
+        }
+      ],
+      "contentReview": "pending"
+    },
+    "review": [
+      {
+        "case": "states_and_source",
+        "evidenceCount": 2,
+        "independentTransferCount": 1,
+        "assistedPracticeCount": 1
+      }
+    ],
+    "pythonFaultRequests": [
+      {
+        "operation": "/internal/v1/math/parse",
+        "mode": "503"
+      },
+      {
+        "operation": "/internal/v1/math/parse",
+        "mode": "forward"
+      },
+      {
+        "operation": "/internal/v1/math/parse",
+        "mode": "forward"
+      },
+      {
+        "operation": "/internal/v1/math/verify-transition",
+        "mode": "forward"
+      },
+      {
+        "operation": "/internal/v1/math/check-final",
+        "mode": "forward"
+      },
+      {
+        "operation": "/internal/v1/math/parse",
+        "mode": "timeout"
+      },
+      {
+        "operation": "/internal/v1/math/parse",
+        "mode": "forward"
+      },
+      {
+        "operation": "/internal/v1/math/parse",
+        "mode": "forward"
+      },
+      {
+        "operation": "/internal/v1/math/verify-transition",
+        "mode": "forward"
+      },
+      {
+        "operation": "/internal/v1/math/check-final",
+        "mode": "forward"
+      },
+      {
+        "operation": "/internal/v1/math/parse",
+        "mode": "invalid_json"
+      },
+      {
+        "operation": "/internal/v1/math/parse",
+        "mode": "forward"
+      },
+      {
+        "operation": "/internal/v1/math/parse",
+        "mode": "forward"
+      },
+      {
+        "operation": "/internal/v1/math/verify-transition",
+        "mode": "forward"
+      },
+      {
+        "operation": "/internal/v1/math/check-final",
+        "mode": "forward"
+      },
+      {
+        "operation": "/internal/v1/math/parse",
+        "mode": "503"
+      },
+      {
+        "operation": "/internal/v1/math/parse",
+        "mode": "forward"
+      },
+      {
+        "operation": "/internal/v1/math/parse",
+        "mode": "forward"
+      },
+      {
+        "operation": "/internal/v1/math/verify-transition",
+        "mode": "forward"
+      },
+      {
+        "operation": "/internal/v1/math/check-final",
+        "mode": "forward"
+      }
+    ],
+    "controlledAiCalls": 2,
+    "actualExternalProviderCalls": 0,
+    "actualLlmInferences": 0,
+    "retention": {
+      "eligibilityReview": "tested",
+      "actualPurge": "not_implemented_pending_data_security_review",
+      "deletedRecords": 0
+    },
+    "gate2": "not_approved",
+    "gate3": "not_approved",
+    "ph10": "not_started"
+  },
+  "testSummary": {
+    "total": 16,
+    "passed": 14,
+    "failed": 2
+  }
+}

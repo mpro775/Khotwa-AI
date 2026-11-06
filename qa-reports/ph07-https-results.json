@@ -1,0 +1,31 @@
+{
+  "phase": "PH-07",
+  "runId": "6bc316cc-fc94-4f23-869a-d94014d56a2b",
+  "url": "https://localhost:8445",
+  "recordedAt": "2026-11-04T04:49:46.363Z",
+  "passed": 13,
+  "checks": [
+    "HTTPS page and strict CSP with pinned local CA; verification remains enabled",
+    "real TLS guest bootstrap, CSRF and secured host-only cookie",
+    "live published synthetic catalog, no answer specification",
+    "HTTPS → nginx → NestJS → PostgreSQL → real Python → verified chain completion",
+    "HTTPS verification retry reuses the same result",
+    "HTTPS pinned invalid-edge hypothesis and private-key-free diagnostic probe",
+    "HTTPS uncertain answer remains unresolved and idempotent",
+    "HTTPS stale probe-answer replay rejected after revision change",
+    "HTTPS authored H1/H2/H3, real partial-math checks and idempotency; no external AI claimed",
+    "HTTPS explicit H4 confirmation and verified solution",
+    "HTTPS durable assisted completion and rejection of old hint replay after edit",
+    "cross-origin HTTPS mutation rejected",
+    "private paths blocked by public proxy"
+  ],
+  "tls": {
+    "certificateValidation": true,
+    "explicitTestCa": true,
+    "globalTrustStoreChanged": false,
+    "browserAcceptance": "separate manual certificate handoff required"
+  },
+  "syntheticOnly": true,
+  "externalAiEnabled": false,
+  "actualLlmInferences": 0
+}

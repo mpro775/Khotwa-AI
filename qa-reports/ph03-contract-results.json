@@ -1,0 +1,168 @@
+{
+  "phase": "PH-03",
+  "fixturePairsValidated": 109,
+  "schemasFromCanonical": true,
+  "httpChecks": [
+    {
+      "name": "protected_health_and_versioned_ready_worker",
+      "passed": true,
+      "detail": {
+        "status": "ok",
+        "service": "khotwa-math",
+        "sympyVersion": "1.14.0",
+        "verificationImplemented": true,
+        "engineVersion": "0.3.0",
+        "schemaVersion": "math-internal-v1",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "workerReady": true
+      }
+    },
+    {
+      "name": "http_parse",
+      "passed": true,
+      "detail": {
+        "status": "parsed",
+        "requestIdEchoed": true
+      }
+    },
+    {
+      "name": "http_verify-transition",
+      "passed": true,
+      "detail": {
+        "status": "verified_valid",
+        "requestIdEchoed": true
+      }
+    },
+    {
+      "name": "http_check-final",
+      "passed": true,
+      "detail": {
+        "status": "verified_valid",
+        "requestIdEchoed": true
+      }
+    },
+    {
+      "name": "unknown_wire_version",
+      "passed": true,
+      "detail": {
+        "httpStatus": 400,
+        "error": "schema_version_mismatch"
+      }
+    },
+    {
+      "name": "untrusted_client_ast",
+      "passed": true,
+      "detail": {
+        "httpStatus": 400,
+        "error": "invalid_request"
+      }
+    },
+    {
+      "name": "client_resource_override",
+      "passed": true,
+      "detail": {
+        "httpStatus": 400,
+        "error": "invalid_request"
+      }
+    },
+    {
+      "name": "invalid_uuid",
+      "passed": true,
+      "detail": {
+        "httpStatus": 400,
+        "error": "invalid_request"
+      }
+    },
+    {
+      "name": "boolean_revision",
+      "passed": true,
+      "detail": {
+        "httpStatus": 400,
+        "error": "invalid_request"
+      }
+    },
+    {
+      "name": "input_over_contract_length",
+      "passed": true,
+      "detail": {
+        "httpStatus": 400,
+        "error": "invalid_request"
+      }
+    },
+    {
+      "name": "body_over_transport_budget",
+      "passed": true,
+      "detail": {
+        "httpStatus": 413,
+        "error": "request_too_large"
+      }
+    },
+    {
+      "name": "invalid_json",
+      "passed": true,
+      "detail": {
+        "httpStatus": 400,
+        "error": "invalid_json"
+      }
+    },
+    {
+      "name": "invalid_utf8",
+      "passed": true,
+      "detail": {
+        "httpStatus": 400,
+        "error": "invalid_json"
+      }
+    },
+    {
+      "name": "deep_json",
+      "passed": true,
+      "detail": {
+        "httpStatus": 400,
+        "error": "invalid_request"
+      }
+    },
+    {
+      "name": "duplicate_keys",
+      "passed": true,
+      "detail": {
+        "httpStatus": 400,
+        "error": "invalid_json"
+      }
+    },
+    {
+      "name": "student_cookie_not_forwarded_to_math",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "json_content_type_required",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "unknown_private_route_rejected",
+      "passed": true,
+      "detail": true
+    },
+    {
+      "name": "math_scope_error_is_200_typed_abstention",
+      "passed": true,
+      "detail": {
+        "status": "unsupported",
+        "reasonCode": "VARIABLE_DENOMINATOR"
+      }
+    },
+    {
+      "name": "escaped_surrogate_is_safe_typed_syntax_error",
+      "passed": true,
+      "detail": {
+        "status": "syntax_error",
+        "workerStillReady": true
+      }
+    }
+  ],
+  "gate1": "not_approved",
+  "recordedAtRiyadh": "2026-11-04 04:04:44",
+  "passed": 20,
+  "failed": 0
+}

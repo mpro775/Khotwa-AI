@@ -1,0 +1,222 @@
+{
+  "phase": "PH-03",
+  "engineVersion": "0.3.0",
+  "python": "3.13.7 (main, Sep 30 2025, 00:38:53) [GCC 12.2.0]",
+  "checks": [
+    {
+      "name": "non_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no_external_network_interface",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "read_only_root",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "container_memory_cap_256_mib",
+      "passed": true,
+      "detail": 268435456
+    },
+    {
+      "name": "cpu_cap_one_core",
+      "passed": true,
+      "detail": {
+        "quota": "100000",
+        "period": "100000"
+      }
+    },
+    {
+      "name": "worker_rlimit_as_192_mib",
+      "passed": true,
+      "detail": {
+        "ready": true,
+        "memoryLimitBytes": 201326592
+      }
+    },
+    {
+      "name": "worker_verified_valid",
+      "passed": true,
+      "detail": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "00000000-0000-4000-8000-000000000003",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 4,
+        "status": "verified_valid",
+        "reasonCode": null,
+        "evidence": {
+          "type": "solution_set",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "witness": null
+        },
+        "issue": null
+      }
+    },
+    {
+      "name": "worker_verified_invalid",
+      "passed": true,
+      "detail": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "00000000-0000-4000-8000-000000000003",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 4,
+        "status": "verified_invalid",
+        "reasonCode": "SOLUTION_SET_MISMATCH",
+        "evidence": {
+          "type": "counterexample",
+          "domain": "reals",
+          "previousSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "2",
+              "den": "1"
+            }
+          },
+          "nextSolution": {
+            "kind": "singleton",
+            "value": {
+              "num": "7",
+              "den": "2"
+            }
+          },
+          "witness": {
+            "variable": "س",
+            "value": {
+              "num": "2",
+              "den": "1"
+            },
+            "satisfiesPrevious": true,
+            "satisfiesNext": false
+          }
+        },
+        "issue": null
+      }
+    },
+    {
+      "name": "worker_unsupported",
+      "passed": true,
+      "detail": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "00000000-0000-4000-8000-000000000003",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 4,
+        "status": "unsupported",
+        "reasonCode": "VARIABLE_DENOMINATOR",
+        "evidence": null,
+        "issue": {
+          "reasonCode": "VARIABLE_DENOMINATOR",
+          "messageAr": "المقام الذي يحتوي متغيرًا غير مدعوم، حتى لو أمكن اختزاله.",
+          "spanStart": 2,
+          "spanEnd": 3,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": null
+        }
+      }
+    },
+    {
+      "name": "worker_syntax_error",
+      "passed": true,
+      "detail": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "00000000-0000-4000-8000-000000000003",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 4,
+        "status": "syntax_error",
+        "reasonCode": "DIVISION_BY_ZERO",
+        "evidence": null,
+        "issue": {
+          "reasonCode": "DIVISION_BY_ZERO",
+          "messageAr": "لا يمكن القسمة على صفر. راجع المقام.",
+          "spanStart": 2,
+          "spanEnd": 3,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": null
+        }
+      }
+    },
+    {
+      "name": "worker_inconclusive",
+      "passed": true,
+      "detail": {
+        "schemaVersion": "math-internal-v1",
+        "requestId": "00000000-0000-4000-8000-000000000003",
+        "engineVersion": "0.3.0",
+        "notationProfileVersion": "ar-mashriq-school-v1",
+        "attemptRevision": 4,
+        "status": "inconclusive",
+        "reasonCode": "RESOURCE_RATIONAL_LIMIT",
+        "evidence": null,
+        "issue": {
+          "reasonCode": "RESOURCE_RATIONAL_LIMIT",
+          "messageAr": "تجاوز الحساب حد الأعداد النسبية التجريبي؛ لم نصدر حكمًا.",
+          "spanStart": null,
+          "spanEnd": null,
+          "spanUnit": "unicode_codepoint",
+          "hintKey": null
+        }
+      }
+    },
+    {
+      "name": "linux_address_space_limit_applied",
+      "passed": true,
+      "detail": "Max address space         201326592            201326592            bytes     "
+    },
+    {
+      "name": "linux_per_request_cpu_soft_limit",
+      "passed": true,
+      "detail": "Max cpu time              3                    unlimited            seconds   "
+    }
+  ],
+  "passed": 13,
+  "failed": 0,
+  "scope": "Local synthetic Linux resource/worker checks; no public port, DB, NestJS adapter, load test or gate acceptance",
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "none",
+    "--memory",
+    "256m",
+    "--cpus",
+    "1",
+    "--pids-limit",
+    "64",
+    "--read-only",
+    "--tmpfs",
+    "/tmp",
+    "--mount",
+    "type=bind,source=C:\\Users\\PC\\Desktop\\Projects\\Khotwa AI Project\\qa,target=/qa,readonly",
+    "khotwa-ph01-math-engine",
+    "python",
+    "-X",
+    "utf8",
+    "/qa/ph03_container_smoke.py"
+  ],
+  "exitCode": 0,
+  "imageId": "sha256:173fe988cf4db5e4d73c93634419c8dcd4419161d5cb2ee083aabe93b59876e0",
+  "recordedAtRiyadh": "2026-11-04 04:04:42"
+}

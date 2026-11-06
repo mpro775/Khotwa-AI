@@ -1,0 +1,273 @@
+.student-workspace .catalog-card,
+.question-card,
+.verification-card {
+  background: #fff;
+  border: 1px solid #d6dfd2;
+  border-radius: 16px;
+  padding: 24px;
+  margin-block: 22px;
+}
+.session-line {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.choices,
+.problem-choices {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+.problem-choices button {
+  text-align: start;
+  max-width: 100%;
+}
+.test-banner {
+  padding: 14px 20px;
+  background: #fff0d8;
+  border-inline-start: 4px solid #ab6b12;
+  border-radius: 8px;
+}
+.question-equation {
+  display: block;
+  font-size: 1.7rem;
+  margin-top: 16px;
+  text-align: center;
+}
+.math-text {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: block;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 1.2rem;
+}
+.live-workspace {
+  grid-template-columns: 1fr 1.1fr;
+}
+.live-input textarea {
+  width: 100%;
+  min-height: 105px;
+  resize: vertical;
+  padding: 14px;
+  border: 1px solid #97b49e;
+  border-radius: 10px;
+  outline-offset: 3px;
+  font-size: 1.4rem;
+  text-align: start;
+  unicode-bidi: isolate;
+}
+.live-input label {
+  display: block;
+  margin-block: 12px 7px;
+}
+.input-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-block: 10px;
+}
+.live-input details {
+  margin-block: 12px;
+}
+.saved-steps {
+  padding: 0;
+  list-style: none;
+  counter-reset: steps;
+}
+.saved-steps li {
+  padding: 18px 0;
+  border-bottom: 1px solid #e3e9e0;
+}
+.step-line {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  justify-content: space-between;
+}
+.step-line small,
+.step-line span {
+  color: #5e7467;
+  font-size: 0.85rem;
+}
+.saved-steps .math-text {
+  padding: 8px 0;
+}
+.parsed-equation {
+  color: #185b46;
+}
+.step-actions {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.step-actions button {
+  font-size: 0.85rem;
+  padding: 6px 10px;
+}
+.verify-sequence {
+  margin-top: 14px;
+  width: 100%;
+}
+.service-notice {
+  background: #fff1df;
+  border: 1px solid #cda05b;
+  padding: 18px;
+  border-radius: 12px;
+  margin-block: 18px;
+}
+.workspace-notice {
+  min-height: 28px;
+  color: #47674f;
+}
+.verdict {
+  padding: 18px;
+  border: 1px solid #d6dce0;
+  border-inline-start-width: 5px;
+  border-radius: 10px;
+  margin-top: 14px;
+}
+.verdict-verified_valid {
+  border-inline-start-color: #28704c;
+  background: #f3f8ef;
+}
+.verdict-verified_invalid {
+  border-inline-start-color: #ab6529;
+  background: #fff9ef;
+}
+.verdict-syntax_error,
+.verdict-unsupported,
+.verdict-inconclusive,
+.verdict-service_error {
+  border-inline-start-color: #4a6d8b;
+  background: #f1f6f9;
+}
+.completion {
+  margin-top: 20px;
+  padding: 16px;
+  background: #f0f3ef;
+  border-radius: 10px;
+}
+.completion.complete {
+  background: #e5f3de;
+}
+@media (max-width: 760px) {
+  .live-workspace {
+    grid-template-columns: 1fr;
+  }
+  .student-workspace .catalog-card,
+  .question-card,
+  .verification-card {
+    padding: 17px;
+  }
+  .step-line {
+    flex-wrap: wrap;
+  }
+  .question-equation {
+    font-size: 1.4rem;
+  }
+}
+.diagnostic-card {
+  border: 1px solid #b89559;
+  border-inline-start: 4px solid #b89559;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-block: 1rem;
+  background: #fffaf0;
+}
+.diagnostic-card fieldset {
+  border: 0;
+  padding: 0;
+}
+.probe-option {
+  display: block;
+  margin-block: 0.75rem;
+}
+.hint-card {
+  border: 1px solid #86a39a;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-block: 1rem;
+  background: #f5faf7;
+}
+.hint-card details {
+  margin-block: 1rem;
+}
+.hint-card label {
+  display: block;
+  margin-block: 0.75rem;
+}
+.hint-card button {
+  margin-inline-end: 0.75rem;
+}
+.hint-card li {
+  padding-block: 0.5rem;
+}
+.assistance-badge {
+  border-inline-start: 4px solid #b89559;
+  padding: 0.75rem;
+  background: #fffaf0;
+}
+
+.episode-card {
+  background: var(--surface, #fff);
+  border: 1px solid #c8d9d5;
+  border-radius: 18px;
+  padding: 1.2rem;
+  margin-block: 1rem;
+}
+.episode-card li {
+  margin-block: 1rem;
+}
+.measurement-exit {
+  display: block;
+  padding: 1rem;
+  border: 1px solid #c88720;
+  margin-block: 1rem;
+}
+
+.progress-card,
+.teacher-example,
+.teacher-sample {
+  border: 1px solid #c8d9d5;
+  border-radius: 18px;
+  padding: 1.2rem;
+  margin-block: 1rem;
+  background: #fff;
+}
+.progress-skills,
+.teacher-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  gap: 1rem;
+  margin-block: 1rem;
+}
+.progress-skills article,
+.teacher-metrics article {
+  padding: 1rem;
+  border: 1px solid #c8d9d5;
+  border-radius: 12px;
+}
+.teacher-demo {
+  max-width: 1100px;
+  margin: auto;
+  padding: clamp(1rem, 4vw, 2.5rem);
+}
+.synthetic-banner {
+  border: 2px solid #9a630c;
+  background: #fff5dd;
+  color: #5a3909;
+  padding: 1rem;
+  border-radius: 12px;
+  font-weight: 700;
+}
+.teacher-metrics strong {
+  font-size: 2rem;
+}
+.progress-card details {
+  border-block-start: 1px solid #c8d9d5;
+  padding-block: 1rem;
+}
