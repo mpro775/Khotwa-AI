@@ -12,6 +12,7 @@ from typing import cast
 from . import ENGINE_VERSION, NOTATION_VERSION, WIRE_VERSION
 from .model import Json
 from .protocol import ContractError, ROUTES, validate_request
+from .physics import verify_physics
 from .worker_manager import WorkerManager
 
 MAX_BODY_BYTES = 8192
@@ -110,7 +111,11 @@ class MathHandler(BaseHTTPRequestHandler):
         if not self.authorized():
             self.respond(403, {"error": "forbidden"})
             return
-        operation = ROUTES.get(self.path)
+        operation = (
+            "physics"
+            if self.path == "/internal/v1/physics/verify"
+            else ROUTES.get(self.path)
+        )
         if operation is None:
             self.respond(404, {"error": "not_found"})
             return
@@ -135,7 +140,13 @@ class MathHandler(BaseHTTPRequestHandler):
             data = self.rfile.read(length)
             if len(data) != length:
                 raise ContractError("invalid_request")
-            request = validate_request(operation, strict_json(data))
+            decoded = strict_json(data)
+            if operation == "physics":
+                # The separate fixed formula/unit grammar performs a bounded
+                # number of rational operations, never arbitrary expressions.
+                self.respond(200, verify_physics(decoded))
+                return
+            request = validate_request(operation, decoded)
             if self.manager is None:
                 self.respond(503, {"error": "math_unavailable"})
                 return

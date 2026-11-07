@@ -3,6 +3,7 @@ import {
   replaceSelection,
   previousSymbolStart,
   visibleRaw,
+  localInputIssue,
 } from "./editor-model";
 const symbols = [..."٠١٢٣٤٥٦٧٨٩", "س", "+", "−", "×", "÷", "/", "=", "(", ")"];
 const names: Record<string, string> = {
@@ -17,13 +18,16 @@ const names: Record<string, string> = {
   ")": "أغلق قوسًا",
 };
 export function MathInput({
+  id = "step-draft",
   value,
   onChange,
 }: {
+  id?: string;
   value: string;
   onChange: (raw: string) => void;
 }) {
   const input = useRef<HTMLTextAreaElement>(null);
+  const issue = localInputIssue(value);
   function replace(start: number, end: number, text: string) {
     const next = replaceSelection(value, start, end, text);
     onChange(next.raw);
@@ -34,9 +38,9 @@ export function MathInput({
   }
   return (
     <div className="live-input">
-      <label htmlFor="step-draft">خطوتك — النص الأصلي</label>
+      <label htmlFor={id}>خطوتك — النص الأصلي</label>
       <textarea
-        id="step-draft"
+        id={id}
         ref={input}
         value={value}
         onChange={(e) => onChange(e.target.value)}
@@ -44,12 +48,19 @@ export function MathInput({
         spellCheck={false}
         autoCapitalize="off"
         autoCorrect="off"
-        aria-describedby="draft-help draft-count"
+        aria-invalid={issue?.status === "syntax_error" || undefined}
+        aria-describedby={id + "-help " + id + "-count"}
       />
-      <p id="draft-help" className="helper">
+      <p id={id + "-help"} className="helper">
         اكتب معادلة واحدة في س. يمكنك حفظ صيغة غير مكتملة ثم تعديلها؛ التحقق
         يوضح ما يمكن قراءته.
       </p>
+      {issue && (
+        <p className="editor-local-notice" role="status">
+          ملاحظة إدخال: {issue.message} هذا فحص أولي للكتابة؛ الحكم الرياضي يصدر
+          من خدمة التحقق.
+        </p>
+      )}
       <div
         className="symbol-pad"
         dir="ltr"
@@ -88,7 +99,7 @@ export function MathInput({
         >
           احذف رمزًا من المسودة
         </button>
-        <span className="helper" id="draft-count">
+        <span className="helper" id={id + "-count"}>
           {[...value].length > 256
             ? "تجاوز النص الحد المسموح (٢٥٦ محرفًا)."
             : ""}

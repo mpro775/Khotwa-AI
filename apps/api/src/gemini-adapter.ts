@@ -7,7 +7,6 @@ import type { AiTutorPort, AiReply, HintContext } from "./ai-tutor";
 import { GeminiQuota } from "./gemini-quota";
 import {
   generationRules,
-  PH08_GENERATION_VERSION,
   PH08_GENERATIVE_PROMPT,
   type GenerationProfile,
 } from "./ph08-generative";
@@ -196,7 +195,7 @@ export class GeminiAdapter implements AiTutorPort {
       thinkingTokens: null,
       outcome: "GEMINI_PROVIDER_ERROR",
       textOrigin: "none",
-      generationVersion: rules ? PH08_GENERATION_VERSION : null,
+      generationVersion: rules ? rules.version : null,
     };
     try {
       const response = await this.transport(

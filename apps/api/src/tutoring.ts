@@ -9,7 +9,10 @@ import { ApiFault } from "./http";
 import { output, Schema } from "./contracts";
 import type { AttemptRow, GuestAuth, Store } from "./store";
 import type { MathPort } from "./math-gateway";
+import { adaptiveTutoring, TutoringPlan } from "./adaptive-tutoring";
+import { betaTelemetry, reserveBetaAiBudget } from "./beta-operations";
 import { projectDiagnosis } from "./diagnosis";
+import { DIAGNOSIS_POLICY } from "./diagnosis-rules";
 import {
   AiTutorPort,
   DraftResult,
@@ -150,6 +153,29 @@ export class TutoringService {
     if (limits.aiTimeoutMs >= limits.requestTimeoutMs)
       throw new Error("AI timeout must fit inside whole-request deadline");
   }
+  private async recentReports(
+    tx: Tx,
+    id: string,
+  ): Promise<Schema<"VerificationReport">[]> {
+    const rows = await tx.$queryRaw<
+      { report_json: unknown }[]
+    >`SELECT report_json FROM (SELECT DISTINCT ON (attempt_revision) report_json,attempt_revision,finished_at FROM verification_reports WHERE attempt_id=${id}::uuid AND scope='current_sequence' AND dispatch_status='finished' ORDER BY attempt_revision DESC,finished_at DESC,id DESC LIMIT 3) recent ORDER BY attempt_revision DESC`;
+    return rows.map((r) => output("VerificationReport", r.report_json));
+  }
+  async plan(auth: GuestAuth, id: string): Promise<TutoringPlan> {
+    if (!this.active)
+      throw new ApiFault(404, "not_found", "المسار غير متاح في هذه النسخة.");
+    return this.store.db.$transaction(async (tx) => {
+      await this.store.authorizeInTransaction(tx, auth);
+      const current = await this.current(tx, auth, id);
+      const recent = await this.recentReports(tx, id);
+      return adaptiveTutoring(
+        current.report,
+        recent,
+        current.a.highest_hint_level_seen ?? 0,
+      );
+    });
+  }
   private async current(tx: Tx, auth: GuestAuth, id: string): Promise<Current> {
     const a = await this.store.readAttemptInTransaction(tx, auth, id);
     if (ph08Active()) await requireAssignmentCurrent(tx, a.id);
@@ -223,7 +249,7 @@ export class TutoringService {
     });
     const [probe] = await tx.$queryRaw<
       { id: string }[]
-    >`SELECT p.id FROM diagnostic_probes p JOIN current_diagnoses d ON d.id=p.diagnosis_id WHERE d.attempt_id=${a.id}::uuid AND NOT EXISTS(SELECT 1 FROM probe_responses r WHERE r.probe_id=p.id)`;
+    >`SELECT p.id FROM diagnostic_probes p JOIN current_diagnoses d ON d.id=p.diagnosis_id WHERE d.attempt_id=${a.id}::uuid AND d.diagnosis_policy_version=${DIAGNOSIS_POLICY} AND NOT EXISTS(SELECT 1 FROM probe_responses r WHERE r.probe_id=p.id)`;
     return {
       a,
       original: p.original_equation_raw,
@@ -353,14 +379,28 @@ export class TutoringService {
             1,
           );
         const current = await this.current(tx, auth, a.id);
+        const recent = await this.recentReports(tx, a.id);
         const [last] = await tx.$queryRaw<
-          { level: number | null }[]
-        >`SELECT max(hint_level)::int AS level FROM tutoring_events WHERE attempt_id=${a.id}::uuid AND context_key=${current.contextKey} AND policy_version=${TUTORING_POLICY}`;
+          { level: number | null; same_pattern_level: number | null }[]
+        >`SELECT max(e.hint_level) FILTER (WHERE e.context_key=${current.contextKey})::int AS level,max(e.hint_level) FILTER (WHERE d.candidate_json->>'errorCode'=${current.pattern})::int AS same_pattern_level FROM tutoring_events e LEFT JOIN diagnoses d ON d.id=e.diagnosis_id WHERE e.attempt_id=${a.id}::uuid AND e.policy_version=${TUTORING_POLICY}`;
+        const repeatedPattern =
+          current.pattern !== null &&
+          recent.filter(
+            (r) =>
+              r.diagnosisCandidate?.errorCode === current.pattern &&
+              r.transitions.some((t) => t.mathStatus === "verified_invalid"),
+          ).length >= 2;
+        const previous = Math.max(
+          Number(last?.level ?? 0),
+          repeatedPattern
+            ? Math.min(2, Number(last?.same_pattern_level ?? 0))
+            : 0,
+        );
         const effectiveKind = await transferLearningKind(tx, current.a, body);
         const level = nextHintLevel(
           body,
           effectiveKind,
-          Number(last?.level ?? 0),
+          previous,
           current.assessable &&
             (!!current.report || body.action === "show_full_solution"),
           current.openProbe,
@@ -370,6 +410,9 @@ export class TutoringService {
         >`SELECT * FROM intervention_templates WHERE release_id=${current.releaseId}::uuid AND hint_level=${level} AND policy_version=${TUTORING_POLICY} AND enabled AND is_synthetic AND (problem_revision_id=${a.problem_revision_id}::uuid OR problem_revision_id IS NULL) AND (${level}=4 OR error_code IS NULL OR error_code=${current.pattern}) ORDER BY (problem_revision_id IS NOT NULL) DESC,(error_code IS NOT NULL) DESC,template_version DESC,id LIMIT 1 FOR SHARE`;
         if (
           !template ||
+          template.review_status !== "reviewed" ||
+          !template.reviewed_at ||
+          !template.reviewed_by_role ||
           (level === 4 &&
             template.problem_revision_id !== a.problem_revision_id)
         )
@@ -392,6 +435,15 @@ export class TutoringService {
                     ? "هناك انتقال يحتاج مراجعة؛ السبب المفاهيمي غير مؤكد."
                     : "سياق رياضي متحقق؛ لا تصنيف لضعف الطالب.",
                 maxOutputTokens: this.limits.maxOutputTokens,
+                recentActions: {
+                  previousHintLevel: previous,
+                  verifiedErrorObservations: adaptiveTutoring(
+                    current.report,
+                    recent,
+                    previous,
+                  ).recentVerifiedErrors,
+                },
+                misconceptionCandidate: current.pattern,
               })
             : null;
         if (!old)
@@ -554,7 +606,7 @@ export class TutoringService {
         )
           throw stale(Number(current.a.revision));
         const source: Event["generationSource"] =
-          reason === "PH08_GENERATED_VALIDATED"
+          reason === "PH08_GENERATED_VALIDATED" || reason === "AI_VALIDATED"
             ? "llm_validated"
             : s.template.review_status === "reviewed"
               ? "reviewed_template"
@@ -626,8 +678,16 @@ export class TutoringService {
     );
     try {
       const proof = await this.mathProof(s, controller.signal);
-      const result: DraftResult =
+      const betaAllowed =
         s.aiContext && s.aiReserved
+          ? await reserveBetaAiBudget(
+              this.store,
+              auth,
+              this.limits.maxInputBytes + this.limits.maxOutputTokens,
+            )
+          : false;
+      const result: DraftResult =
+        s.aiContext && s.aiReserved && betaAllowed
           ? await composeWithDeadline(
               this.ai,
               s.aiContext,
@@ -635,7 +695,13 @@ export class TutoringService {
               this.limits.aiTimeoutMs,
               this.limits.maxOutputTokens,
             )
-          : { text: null, reason: s.providerReason };
+          : {
+              text: null,
+              reason:
+                s.aiReserved && !betaAllowed
+                  ? "BETA_AI_BUDGET_REJECTED"
+                  : s.providerReason,
+            };
       if (controller.signal.aborted) throw unavailable();
       if (
         result.text === null &&
@@ -645,7 +711,7 @@ export class TutoringService {
         s.template.review_status !== "reviewed"
       )
         throw unavailable();
-      return await this.commit(
+      const event = await this.commit(
         auth,
         s,
         result.text ?? s.template.text_ar,
@@ -653,6 +719,19 @@ export class TutoringService {
         proof,
         result,
       );
+      betaTelemetry.recordAi({
+        provider: s.aiReserved && betaAllowed ? this.ai.kind : "not_used",
+        invoked: s.aiReserved && betaAllowed,
+        source:
+          event.generationSource === "llm_validated"
+            ? "llm_validated"
+            : "reviewed_template",
+        inputTokens: result.inputTokens ?? null,
+        outputTokens: result.outputTokens ?? null,
+        estimatedCostMicros: null,
+        timeout: result.reason === "AI_TIMEOUT",
+      });
+      return event;
     } catch (e) {
       await this.store.db.$transaction(async (tx) => {
         await tx.$executeRaw`UPDATE hint_requests SET dispatch_status='failed',outcome_code=${e instanceof ApiFault && e.status === 409 ? "STALE_CONTEXT" : "SAFE_FAILURE"},finished_at=now() WHERE id=${s.id}::uuid AND dispatch_status='running'`;

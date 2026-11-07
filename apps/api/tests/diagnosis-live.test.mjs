@@ -141,7 +141,7 @@ test(
             assert.ok(stored.rows[0].basis_json.evidence.witness);
             assert.equal(
               stored.rows[0].diagnosis_policy_version,
-              "conservative-algebra-0.6.0",
+              "conservative-algebra-1.1.0",
             );
           }
         },

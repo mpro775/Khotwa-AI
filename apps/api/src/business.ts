@@ -32,6 +32,15 @@ import { ph08TutoringFromEnvironment } from "./ph08-gemini";
 import { LearningService } from "./learning";
 import { ProgressService } from "./progress";
 import { TeacherDemoService } from "./teacher-demo";
+import { AccountService, AccountsController } from "./accounts";
+import { BetaController, BetaOperationsService } from "./beta-operations";
+import {
+  ContentStudioController,
+  ContentStudioService,
+} from "./content-studio";
+import { PhysicsController, PhysicsService } from "./physics";
+import { ProgrammingController, ProgrammingService } from "./programming";
+import { Judge0Runner, runnerFromEnvironment } from "./programming-runner";
 
 type AccessMode = "bootstrap" | "createGuest" | "current" | "logout";
 const Access = (mode: AccessMode) => SetMetadata("access", mode);
@@ -117,6 +126,12 @@ export class SessionGuard implements CanActivate {
       logout: mode === "logout",
     });
     if (guest) request.auth = guest;
+    if (process.env.BETA_ENABLED === "true" && mode === "createGuest" && !guest)
+      throw new ApiFault(
+        403,
+        "forbidden",
+        "سجل الدخول بحساب مدعو لاستخدام النسخة التجريبية.",
+      );
     this.limits.take(guest ? guest.row.id : "anonymous");
     if (request.method !== "GET") {
       if (
@@ -270,14 +285,15 @@ export class BusinessController {
       ? { auth: request.auth, created: false }
       : await this.store.createGuest(nonce!);
     response.status(result.created ? 201 : 200);
-    response.setHeader(
-      "Set-Cookie",
-      secureCookie(
-        "kh_guest",
-        result.auth.token,
-        (result.auth.row.expires_at.getTime() - Date.now()) / 1000,
-      ),
-    );
+    if (!result.auth.accountSessionId)
+      response.setHeader(
+        "Set-Cookie",
+        secureCookie(
+          "kh_guest",
+          result.auth.token,
+          (result.auth.row.expires_at.getTime() - Date.now()) / 1000,
+        ),
+      );
     return envelope(request, {
       session: guestDto(result.auth.row),
       csrfToken: this.security.guestCsrf(result.auth.token),
@@ -287,6 +303,19 @@ export class BusinessController {
   @Access("current")
   current(@Req() request: SessionRequest): Schema<"GuestCurrentEnvelope"> {
     return envelope(request, guestDto(auth(request).row));
+  }
+  @Get("attempts/:id/tutoring-plan")
+  tutoringPlan(@Req() request: SessionRequest, @Param("id") id: string) {
+    return this.tutoring
+      .plan(auth(request), uuid(id))
+      .then((data) => envelope(request, data));
+  }
+  @Get("attempts/:id/problem")
+  async pinnedProblem(@Req() request: SessionRequest, @Param("id") id: string) {
+    return envelope(
+      request,
+      await this.store.getAttemptProblem(auth(request), uuid(id)),
+    );
   }
   @Delete("guest-sessions/current")
   @Access("logout")
@@ -678,7 +707,14 @@ export class BusinessController {
   }
 }
 @Module({
-  controllers: [BusinessController],
+  controllers: [
+    BusinessController,
+    AccountsController,
+    BetaController,
+    ContentStudioController,
+    PhysicsController,
+    ProgrammingController,
+  ],
   providers: [
     { provide: Security, useFactory: securityFromEnvironment },
     {
@@ -698,6 +734,43 @@ export class BusinessController {
           numberSetting(process.env.PH04_RATE_LIMIT_MAX),
           numberSetting(process.env.PH04_RATE_LIMIT_WINDOW_SECONDS),
         ),
+    },
+    {
+      provide: AccountService,
+      useFactory: (store: Store) => new AccountService(store),
+      inject: [Store],
+    },
+    {
+      provide: BetaOperationsService,
+      useFactory: (store: Store, accounts: AccountService) =>
+        new BetaOperationsService(store, accounts),
+      inject: [Store, AccountService],
+    },
+    { provide: Judge0Runner, useFactory: runnerFromEnvironment },
+    {
+      provide: ContentStudioService,
+      useFactory: (
+        store: Store,
+        accounts: AccountService,
+        math: MathGateway,
+        runner: Judge0Runner,
+      ) => new ContentStudioService(store, accounts, math, runner),
+      inject: [Store, AccountService, MathGateway, Judge0Runner],
+    },
+    {
+      provide: PhysicsService,
+      useFactory: (store: Store, accounts: AccountService) =>
+        new PhysicsService(store, accounts),
+      inject: [Store, AccountService],
+    },
+    {
+      provide: ProgrammingService,
+      useFactory: (
+        store: Store,
+        accounts: AccountService,
+        runner: Judge0Runner,
+      ) => new ProgrammingService(store, accounts, runner),
+      inject: [Store, AccountService, Judge0Runner],
     },
     {
       provide: MathGateway,

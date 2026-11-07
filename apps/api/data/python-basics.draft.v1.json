@@ -1,0 +1,1170 @@
+[
+  {
+    "titleAr": "طباعة ترحيب",
+    "statementAr": "اطبع مرحبًا بكلمة Hello.",
+    "subject": "programming",
+    "unitCode": "python_basics",
+    "unitTitleAr": "أساسيات Python",
+    "lessonCode": "print",
+    "lessonTitleAr": "الطباعة",
+    "skillCodes": ["PY-PRINT"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "PY-001",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "اقرأ المطلوب وحدد المدخل والمخرج أولًا.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "راجع نوع القيمة قبل تطبيق العملية المطلوبة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "جرّب تتبع مثال علني على الورق قبل تشغيل الكود.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "نموذج شرح كامل للمراجعة:\nprint('Hello')",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "programming": {
+      "starterCode": "# اكتب حلك هنا\n",
+      "referenceCode": "print('Hello')",
+      "tests": [
+        {
+          "input": "",
+          "expectedOutput": "Hello",
+          "hidden": false
+        },
+        {
+          "input": "ignored",
+          "expectedOutput": "Hello",
+          "hidden": true
+        }
+      ]
+    }
+  },
+  {
+    "titleAr": "طباعة عدد",
+    "statementAr": "اطبع العدد 7.",
+    "subject": "programming",
+    "unitCode": "python_basics",
+    "unitTitleAr": "أساسيات Python",
+    "lessonCode": "print",
+    "lessonTitleAr": "الطباعة",
+    "skillCodes": ["PY-PRINT"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "PY-002",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "اقرأ المطلوب وحدد المدخل والمخرج أولًا.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "راجع نوع القيمة قبل تطبيق العملية المطلوبة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "جرّب تتبع مثال علني على الورق قبل تشغيل الكود.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "نموذج شرح كامل للمراجعة:\nprint(7)",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "programming": {
+      "starterCode": "# اكتب حلك هنا\n",
+      "referenceCode": "print(7)",
+      "tests": [
+        {
+          "input": "",
+          "expectedOutput": "7",
+          "hidden": false
+        },
+        {
+          "input": "anything",
+          "expectedOutput": "7",
+          "hidden": true
+        }
+      ]
+    }
+  },
+  {
+    "titleAr": "سطران",
+    "statementAr": "اطبع Python ثم Khotwa في سطرين منفصلين.",
+    "subject": "programming",
+    "unitCode": "python_basics",
+    "unitTitleAr": "أساسيات Python",
+    "lessonCode": "print",
+    "lessonTitleAr": "الطباعة",
+    "skillCodes": ["PY-PRINT"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "PY-003",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "اقرأ المطلوب وحدد المدخل والمخرج أولًا.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "راجع نوع القيمة قبل تطبيق العملية المطلوبة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "جرّب تتبع مثال علني على الورق قبل تشغيل الكود.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "نموذج شرح كامل للمراجعة:\nprint('Python')\nprint('Khotwa')",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "programming": {
+      "starterCode": "# اكتب حلك هنا\n",
+      "referenceCode": "print('Python')\nprint('Khotwa')",
+      "tests": [
+        {
+          "input": "",
+          "expectedOutput": "Python\nKhotwa",
+          "hidden": false
+        },
+        {
+          "input": "x",
+          "expectedOutput": "Python\nKhotwa",
+          "hidden": true
+        }
+      ]
+    }
+  },
+  {
+    "titleAr": "متغير نصي",
+    "statementAr": "اقرأ اسمًا من سطر واحد ثم اطبعه.",
+    "subject": "programming",
+    "unitCode": "python_basics",
+    "unitTitleAr": "أساسيات Python",
+    "lessonCode": "variables",
+    "lessonTitleAr": "المتغيرات والأنواع",
+    "skillCodes": ["PY-VARIABLES"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "PY-004",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "اقرأ المطلوب وحدد المدخل والمخرج أولًا.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "راجع نوع القيمة قبل تطبيق العملية المطلوبة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "جرّب تتبع مثال علني على الورق قبل تشغيل الكود.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "نموذج شرح كامل للمراجعة:\nname = input()\nprint(name)",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "programming": {
+      "starterCode": "# اكتب حلك هنا\n",
+      "referenceCode": "name = input()\nprint(name)",
+      "tests": [
+        {
+          "input": "Ali",
+          "expectedOutput": "Ali",
+          "hidden": false
+        },
+        {
+          "input": "Mona",
+          "expectedOutput": "Mona",
+          "hidden": true
+        }
+      ]
+    }
+  },
+  {
+    "titleAr": "عدد مع زيادة",
+    "statementAr": "اقرأ عددًا صحيحًا واطبع العدد الذي يليه.",
+    "subject": "programming",
+    "unitCode": "python_basics",
+    "unitTitleAr": "أساسيات Python",
+    "lessonCode": "variables",
+    "lessonTitleAr": "المتغيرات والأنواع",
+    "skillCodes": ["PY-VARIABLES"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "PY-005",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "اقرأ المطلوب وحدد المدخل والمخرج أولًا.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "راجع نوع القيمة قبل تطبيق العملية المطلوبة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "جرّب تتبع مثال علني على الورق قبل تشغيل الكود.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "نموذج شرح كامل للمراجعة:\nnumber = int(input())\nprint(number + 1)",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "programming": {
+      "starterCode": "# اكتب حلك هنا\n",
+      "referenceCode": "number = int(input())\nprint(number + 1)",
+      "tests": [
+        {
+          "input": "3",
+          "expectedOutput": "4",
+          "hidden": false
+        },
+        {
+          "input": "-1",
+          "expectedOutput": "0",
+          "hidden": true
+        },
+        {
+          "input": "12",
+          "expectedOutput": "13",
+          "hidden": true
+        }
+      ]
+    }
+  },
+  {
+    "titleAr": "تبديل قيمتين",
+    "statementAr": "اقرأ عددين في سطرين واطبعهما بترتيب معكوس كل في سطر.",
+    "subject": "programming",
+    "unitCode": "python_basics",
+    "unitTitleAr": "أساسيات Python",
+    "lessonCode": "variables",
+    "lessonTitleAr": "المتغيرات والأنواع",
+    "skillCodes": ["PY-VARIABLES"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "PY-006",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "اقرأ المطلوب وحدد المدخل والمخرج أولًا.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "راجع نوع القيمة قبل تطبيق العملية المطلوبة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "جرّب تتبع مثال علني على الورق قبل تشغيل الكود.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "نموذج شرح كامل للمراجعة:\na = input()\nb = input()\nprint(b)\nprint(a)",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "programming": {
+      "starterCode": "# اكتب حلك هنا\n",
+      "referenceCode": "a = input()\nb = input()\nprint(b)\nprint(a)",
+      "tests": [
+        {
+          "input": "2\n9",
+          "expectedOutput": "9\n2",
+          "hidden": false
+        },
+        {
+          "input": "-5\n0",
+          "expectedOutput": "0\n-5",
+          "hidden": true
+        }
+      ]
+    }
+  },
+  {
+    "titleAr": "جمع عددين",
+    "statementAr": "اقرأ عددين صحيحين في سطرين واطبع مجموعهما.",
+    "subject": "programming",
+    "unitCode": "python_basics",
+    "unitTitleAr": "أساسيات Python",
+    "lessonCode": "arithmetic",
+    "lessonTitleAr": "العمليات الحسابية",
+    "skillCodes": ["PY-ARITHMETIC"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "PY-007",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "اقرأ المطلوب وحدد المدخل والمخرج أولًا.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "راجع نوع القيمة قبل تطبيق العملية المطلوبة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "جرّب تتبع مثال علني على الورق قبل تشغيل الكود.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "نموذج شرح كامل للمراجعة:\na = int(input())\nb = int(input())\nprint(a + b)",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "programming": {
+      "starterCode": "# اكتب حلك هنا\n",
+      "referenceCode": "a = int(input())\nb = int(input())\nprint(a + b)",
+      "tests": [
+        {
+          "input": "2\n3",
+          "expectedOutput": "5",
+          "hidden": false
+        },
+        {
+          "input": "-4\n9",
+          "expectedOutput": "5",
+          "hidden": true
+        },
+        {
+          "input": "0\n0",
+          "expectedOutput": "0",
+          "hidden": true
+        }
+      ]
+    }
+  },
+  {
+    "titleAr": "مساحة مستطيل",
+    "statementAr": "اقرأ طولًا وعرضًا صحيحين موجبين في سطرين واطبع المساحة.",
+    "subject": "programming",
+    "unitCode": "python_basics",
+    "unitTitleAr": "أساسيات Python",
+    "lessonCode": "arithmetic",
+    "lessonTitleAr": "العمليات الحسابية",
+    "skillCodes": ["PY-ARITHMETIC"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "PY-008",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "اقرأ المطلوب وحدد المدخل والمخرج أولًا.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "راجع نوع القيمة قبل تطبيق العملية المطلوبة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "جرّب تتبع مثال علني على الورق قبل تشغيل الكود.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "نموذج شرح كامل للمراجعة:\nlength = int(input())\nwidth = int(input())\nprint(length * width)",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "programming": {
+      "starterCode": "# اكتب حلك هنا\n",
+      "referenceCode": "length = int(input())\nwidth = int(input())\nprint(length * width)",
+      "tests": [
+        {
+          "input": "3\n4",
+          "expectedOutput": "12",
+          "hidden": false
+        },
+        {
+          "input": "9\n2",
+          "expectedOutput": "18",
+          "hidden": true
+        }
+      ]
+    }
+  },
+  {
+    "titleAr": "باقي القسمة",
+    "statementAr": "اقرأ عددًا صحيحًا غير سالب واطبع باقي قسمته على 3.",
+    "subject": "programming",
+    "unitCode": "python_basics",
+    "unitTitleAr": "أساسيات Python",
+    "lessonCode": "arithmetic",
+    "lessonTitleAr": "العمليات الحسابية",
+    "skillCodes": ["PY-ARITHMETIC"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "PY-009",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "اقرأ المطلوب وحدد المدخل والمخرج أولًا.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "راجع نوع القيمة قبل تطبيق العملية المطلوبة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "جرّب تتبع مثال علني على الورق قبل تشغيل الكود.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "نموذج شرح كامل للمراجعة:\nn = int(input())\nprint(n % 3)",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "programming": {
+      "starterCode": "# اكتب حلك هنا\n",
+      "referenceCode": "n = int(input())\nprint(n % 3)",
+      "tests": [
+        {
+          "input": "7",
+          "expectedOutput": "1",
+          "hidden": false
+        },
+        {
+          "input": "0",
+          "expectedOutput": "0",
+          "hidden": true
+        },
+        {
+          "input": "11",
+          "expectedOutput": "2",
+          "hidden": true
+        }
+      ]
+    }
+  },
+  {
+    "titleAr": "زوجي أم فردي",
+    "statementAr": "اقرأ عددًا صحيحًا؛ اطبع even إن كان زوجيًا وإلا odd.",
+    "subject": "programming",
+    "unitCode": "python_basics",
+    "unitTitleAr": "أساسيات Python",
+    "lessonCode": "conditions",
+    "lessonTitleAr": "الشروط",
+    "skillCodes": ["PY-CONDITIONS"],
+    "difficulty": 2,
+    "kind": "main",
+    "familyCode": "PY-010",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "اقرأ المطلوب وحدد المدخل والمخرج أولًا.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "افحص الحالة الحدية وما إذا كانت تدخل في فرع الشرط.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "جرّب تتبع مثال علني على الورق قبل تشغيل الكود.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "نموذج شرح كامل للمراجعة:\nn = int(input())\nif n % 2 == 0:\n    print('even')\nelse:\n    print('odd')",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "programming": {
+      "starterCode": "# اكتب حلك هنا\n",
+      "referenceCode": "n = int(input())\nif n % 2 == 0:\n    print('even')\nelse:\n    print('odd')",
+      "tests": [
+        {
+          "input": "4",
+          "expectedOutput": "even",
+          "hidden": false
+        },
+        {
+          "input": "3",
+          "expectedOutput": "odd",
+          "hidden": true
+        },
+        {
+          "input": "0",
+          "expectedOutput": "even",
+          "hidden": true
+        }
+      ]
+    }
+  },
+  {
+    "titleAr": "الأكبر",
+    "statementAr": "اقرأ عددين صحيحين في سطرين واطبع الأكبر.",
+    "subject": "programming",
+    "unitCode": "python_basics",
+    "unitTitleAr": "أساسيات Python",
+    "lessonCode": "conditions",
+    "lessonTitleAr": "الشروط",
+    "skillCodes": ["PY-CONDITIONS"],
+    "difficulty": 2,
+    "kind": "main",
+    "familyCode": "PY-011",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "اقرأ المطلوب وحدد المدخل والمخرج أولًا.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "افحص الحالة الحدية وما إذا كانت تدخل في فرع الشرط.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "جرّب تتبع مثال علني على الورق قبل تشغيل الكود.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "نموذج شرح كامل للمراجعة:\na = int(input())\nb = int(input())\nif a >= b:\n    print(a)\nelse:\n    print(b)",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "programming": {
+      "starterCode": "# اكتب حلك هنا\n",
+      "referenceCode": "a = int(input())\nb = int(input())\nif a >= b:\n    print(a)\nelse:\n    print(b)",
+      "tests": [
+        {
+          "input": "2\n9",
+          "expectedOutput": "9",
+          "hidden": false
+        },
+        {
+          "input": "-3\n-7",
+          "expectedOutput": "-3",
+          "hidden": true
+        },
+        {
+          "input": "5\n5",
+          "expectedOutput": "5",
+          "hidden": true
+        }
+      ]
+    }
+  },
+  {
+    "titleAr": "إشارة عدد",
+    "statementAr": "اقرأ عددًا صحيحًا واطبع positive أو negative أو zero حسب إشارته.",
+    "subject": "programming",
+    "unitCode": "python_basics",
+    "unitTitleAr": "أساسيات Python",
+    "lessonCode": "conditions",
+    "lessonTitleAr": "الشروط",
+    "skillCodes": ["PY-CONDITIONS"],
+    "difficulty": 2,
+    "kind": "main",
+    "familyCode": "PY-012",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "اقرأ المطلوب وحدد المدخل والمخرج أولًا.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "افحص الحالة الحدية وما إذا كانت تدخل في فرع الشرط.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "جرّب تتبع مثال علني على الورق قبل تشغيل الكود.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "نموذج شرح كامل للمراجعة:\nn = int(input())\nif n > 0:\n    print('positive')\nelif n < 0:\n    print('negative')\nelse:\n    print('zero')",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "programming": {
+      "starterCode": "# اكتب حلك هنا\n",
+      "referenceCode": "n = int(input())\nif n > 0:\n    print('positive')\nelif n < 0:\n    print('negative')\nelse:\n    print('zero')",
+      "tests": [
+        {
+          "input": "3",
+          "expectedOutput": "positive",
+          "hidden": false
+        },
+        {
+          "input": "-2",
+          "expectedOutput": "negative",
+          "hidden": true
+        },
+        {
+          "input": "0",
+          "expectedOutput": "zero",
+          "hidden": true
+        }
+      ]
+    }
+  },
+  {
+    "titleAr": "حد النجاح",
+    "statementAr": "اقرأ درجة من 0 إلى 100 واطبع pass إذا بلغت 50 وإلا retry.",
+    "subject": "programming",
+    "unitCode": "python_basics",
+    "unitTitleAr": "أساسيات Python",
+    "lessonCode": "conditions",
+    "lessonTitleAr": "الشروط",
+    "skillCodes": ["PY-CONDITIONS"],
+    "difficulty": 2,
+    "kind": "main",
+    "familyCode": "PY-013",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "اقرأ المطلوب وحدد المدخل والمخرج أولًا.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "افحص الحالة الحدية وما إذا كانت تدخل في فرع الشرط.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "جرّب تتبع مثال علني على الورق قبل تشغيل الكود.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "نموذج شرح كامل للمراجعة:\ngrade = int(input())\nif grade >= 50:\n    print('pass')\nelse:\n    print('retry')",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "programming": {
+      "starterCode": "# اكتب حلك هنا\n",
+      "referenceCode": "grade = int(input())\nif grade >= 50:\n    print('pass')\nelse:\n    print('retry')",
+      "tests": [
+        {
+          "input": "75",
+          "expectedOutput": "pass",
+          "hidden": false
+        },
+        {
+          "input": "50",
+          "expectedOutput": "pass",
+          "hidden": true
+        },
+        {
+          "input": "49",
+          "expectedOutput": "retry",
+          "hidden": true
+        }
+      ]
+    }
+  },
+  {
+    "titleAr": "المجموع المتدرج",
+    "statementAr": "اقرأ n من 0 إلى 100 واطبع مجموع الأعداد من 1 إلى n.",
+    "subject": "programming",
+    "unitCode": "python_basics",
+    "unitTitleAr": "أساسيات Python",
+    "lessonCode": "loops",
+    "lessonTitleAr": "التكرار",
+    "skillCodes": ["PY-LOOPS"],
+    "difficulty": 2,
+    "kind": "main",
+    "familyCode": "PY-014",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "اقرأ المطلوب وحدد المدخل والمخرج أولًا.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "حدد بداية التكرار ونهايته وما الذي يتغير في كل دورة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بمتغير يجمع النتيجة ثم حدّثه داخل الحلقة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "نموذج شرح كامل للمراجعة:\nn = int(input())\ntotal = 0\nfor value in range(1, n + 1):\n    total += value\nprint(total)",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "programming": {
+      "starterCode": "# اكتب حلك هنا\n",
+      "referenceCode": "n = int(input())\ntotal = 0\nfor value in range(1, n + 1):\n    total += value\nprint(total)",
+      "tests": [
+        {
+          "input": "4",
+          "expectedOutput": "10",
+          "hidden": false
+        },
+        {
+          "input": "0",
+          "expectedOutput": "0",
+          "hidden": true
+        },
+        {
+          "input": "6",
+          "expectedOutput": "21",
+          "hidden": true
+        }
+      ]
+    }
+  },
+  {
+    "titleAr": "عد تنازلي",
+    "statementAr": "اقرأ n من 1 إلى 10 واطبع الأعداد من n إلى 1 كل في سطر.",
+    "subject": "programming",
+    "unitCode": "python_basics",
+    "unitTitleAr": "أساسيات Python",
+    "lessonCode": "loops",
+    "lessonTitleAr": "التكرار",
+    "skillCodes": ["PY-LOOPS"],
+    "difficulty": 2,
+    "kind": "main",
+    "familyCode": "PY-015",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "اقرأ المطلوب وحدد المدخل والمخرج أولًا.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "حدد بداية التكرار ونهايته وما الذي يتغير في كل دورة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بمتغير يجمع النتيجة ثم حدّثه داخل الحلقة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "نموذج شرح كامل للمراجعة:\nn = int(input())\nwhile n > 0:\n    print(n)\n    n -= 1",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "programming": {
+      "starterCode": "# اكتب حلك هنا\n",
+      "referenceCode": "n = int(input())\nwhile n > 0:\n    print(n)\n    n -= 1",
+      "tests": [
+        {
+          "input": "3",
+          "expectedOutput": "3\n2\n1",
+          "hidden": false
+        },
+        {
+          "input": "1",
+          "expectedOutput": "1",
+          "hidden": true
+        }
+      ]
+    }
+  },
+  {
+    "titleAr": "عدد المضاعفات",
+    "statementAr": "اقرأ n من 0 إلى 100 واطبع عدد الأعداد الزوجية بين 1 وn شاملًا الطرفين.",
+    "subject": "programming",
+    "unitCode": "python_basics",
+    "unitTitleAr": "أساسيات Python",
+    "lessonCode": "loops",
+    "lessonTitleAr": "التكرار",
+    "skillCodes": ["PY-LOOPS"],
+    "difficulty": 2,
+    "kind": "main",
+    "familyCode": "PY-016",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "اقرأ المطلوب وحدد المدخل والمخرج أولًا.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "حدد بداية التكرار ونهايته وما الذي يتغير في كل دورة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بمتغير يجمع النتيجة ثم حدّثه داخل الحلقة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "نموذج شرح كامل للمراجعة:\nn = int(input())\ncount = 0\nfor value in range(1, n + 1):\n    if value % 2 == 0:\n        count += 1\nprint(count)",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "programming": {
+      "starterCode": "# اكتب حلك هنا\n",
+      "referenceCode": "n = int(input())\ncount = 0\nfor value in range(1, n + 1):\n    if value % 2 == 0:\n        count += 1\nprint(count)",
+      "tests": [
+        {
+          "input": "7",
+          "expectedOutput": "3",
+          "hidden": false
+        },
+        {
+          "input": "0",
+          "expectedOutput": "0",
+          "hidden": true
+        },
+        {
+          "input": "10",
+          "expectedOutput": "5",
+          "hidden": true
+        }
+      ]
+    }
+  },
+  {
+    "titleAr": "تكرار كلمة",
+    "statementAr": "اقرأ n من 0 إلى 5 واطبع go في n أسطر.",
+    "subject": "programming",
+    "unitCode": "python_basics",
+    "unitTitleAr": "أساسيات Python",
+    "lessonCode": "loops",
+    "lessonTitleAr": "التكرار",
+    "skillCodes": ["PY-LOOPS"],
+    "difficulty": 2,
+    "kind": "main",
+    "familyCode": "PY-017",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "اقرأ المطلوب وحدد المدخل والمخرج أولًا.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "حدد بداية التكرار ونهايته وما الذي يتغير في كل دورة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بمتغير يجمع النتيجة ثم حدّثه داخل الحلقة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "نموذج شرح كامل للمراجعة:\nn = int(input())\nfor _ in range(n):\n    print('go')",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "programming": {
+      "starterCode": "# اكتب حلك هنا\n",
+      "referenceCode": "n = int(input())\nfor _ in range(n):\n    print('go')",
+      "tests": [
+        {
+          "input": "2",
+          "expectedOutput": "go\ngo",
+          "hidden": false
+        },
+        {
+          "input": "0",
+          "expectedOutput": "",
+          "hidden": true
+        },
+        {
+          "input": "3",
+          "expectedOutput": "go\ngo\ngo",
+          "hidden": true
+        }
+      ]
+    }
+  },
+  {
+    "titleAr": "دالة الجمع",
+    "statementAr": "اكتب دالة add(a, b) تعيد مجموع عددين دون طباعته. يستدعيها الاختبار تلقائيًا.",
+    "subject": "programming",
+    "unitCode": "python_basics",
+    "unitTitleAr": "أساسيات Python",
+    "lessonCode": "functions",
+    "lessonTitleAr": "الدوال",
+    "skillCodes": ["PY-FUNCTIONS"],
+    "difficulty": 2,
+    "kind": "main",
+    "familyCode": "PY-018",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "اقرأ المطلوب وحدد المدخل والمخرج أولًا.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "الدالة تعيد قيمة؛ فرّق بين return وprint.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "اكتب اسم الدالة والمعاملات كما وردت في السؤال، ثم أعد قيمة واحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "نموذج شرح كامل للمراجعة:\ndef add(a, b):\n    return a + b",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "programming": {
+      "starterCode": "def add(a, b):\n    pass\n",
+      "referenceCode": "def add(a, b):\n    return a + b",
+      "tests": [
+        {
+          "input": "[2,3]",
+          "expectedOutput": "5",
+          "hidden": false
+        },
+        {
+          "input": "[-4,7]",
+          "expectedOutput": "3",
+          "hidden": true
+        },
+        {
+          "input": "[0,0]",
+          "expectedOutput": "0",
+          "hidden": true
+        }
+      ],
+      "functionName": "add"
+    }
+  },
+  {
+    "titleAr": "دالة التربيع",
+    "statementAr": "اكتب دالة square(n) تعيد مربع عدد صحيح دون طباعته.",
+    "subject": "programming",
+    "unitCode": "python_basics",
+    "unitTitleAr": "أساسيات Python",
+    "lessonCode": "functions",
+    "lessonTitleAr": "الدوال",
+    "skillCodes": ["PY-FUNCTIONS"],
+    "difficulty": 2,
+    "kind": "main",
+    "familyCode": "PY-019",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "اقرأ المطلوب وحدد المدخل والمخرج أولًا.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "الدالة تعيد قيمة؛ فرّق بين return وprint.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "اكتب اسم الدالة والمعاملات كما وردت في السؤال، ثم أعد قيمة واحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "نموذج شرح كامل للمراجعة:\ndef square(n):\n    return n * n",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "programming": {
+      "starterCode": "def square(n):\n    pass\n",
+      "referenceCode": "def square(n):\n    return n * n",
+      "tests": [
+        {
+          "input": "[3]",
+          "expectedOutput": "9",
+          "hidden": false
+        },
+        {
+          "input": "[-4]",
+          "expectedOutput": "16",
+          "hidden": true
+        },
+        {
+          "input": "[0]",
+          "expectedOutput": "0",
+          "hidden": true
+        }
+      ],
+      "functionName": "square"
+    }
+  },
+  {
+    "titleAr": "دالة الزوجية",
+    "statementAr": "اكتب دالة is_even(n) تعيد قيمة منطقية تدل على زوجية العدد.",
+    "subject": "programming",
+    "unitCode": "python_basics",
+    "unitTitleAr": "أساسيات Python",
+    "lessonCode": "functions",
+    "lessonTitleAr": "الدوال",
+    "skillCodes": ["PY-FUNCTIONS"],
+    "difficulty": 2,
+    "kind": "main",
+    "familyCode": "PY-020",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "اقرأ المطلوب وحدد المدخل والمخرج أولًا.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "الدالة تعيد قيمة؛ فرّق بين return وprint.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "اكتب اسم الدالة والمعاملات كما وردت في السؤال، ثم أعد قيمة واحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "نموذج شرح كامل للمراجعة:\ndef is_even(n):\n    return n % 2 == 0",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "programming": {
+      "starterCode": "def is_even(n):\n    pass\n",
+      "referenceCode": "def is_even(n):\n    return n % 2 == 0",
+      "tests": [
+        {
+          "input": "[4]",
+          "expectedOutput": "true",
+          "hidden": false
+        },
+        {
+          "input": "[3]",
+          "expectedOutput": "false",
+          "hidden": true
+        },
+        {
+          "input": "[0]",
+          "expectedOutput": "true",
+          "hidden": true
+        }
+      ],
+      "functionName": "is_even"
+    }
+  }
+]

@@ -4,6 +4,95 @@ generator client {
   engineType      = "client"
 }
 
+// DEV-021…025. PostgreSQL owns the supplemental FK/check constraints in 0011.
+model users {
+  id                String   @id @db.Uuid
+  email_normalized  String   @unique @db.VarChar(254)
+  email_verified_at DateTime @db.Timestamptz(6)
+  role              String
+  status            String
+  is_internal       Boolean  @default(false)
+  learning_guest_id String?  @unique @db.Uuid
+  created_at        DateTime @default(now()) @db.Timestamptz(6)
+}
+
+model auth_sessions {
+  id           String    @id @db.Uuid
+  user_id      String    @db.Uuid
+  token_digest Bytes     @unique
+  expires_at   DateTime  @db.Timestamptz(6)
+  revoked_at   DateTime? @db.Timestamptz(6)
+  created_at   DateTime  @default(now()) @db.Timestamptz(6)
+
+  @@index([user_id, expires_at], map: "auth_sessions_user_expiry", where: raw("revoked_at IS NULL"))
+}
+
+model email_login_challenges {
+  id             String    @id @db.Uuid
+  email_digest   Bytes
+  code_digest    Bytes
+  expires_at     DateTime  @db.Timestamptz(6)
+  attempts       Int       @default(0)
+  consumed_at    DateTime? @db.Timestamptz(6)
+  delivery_state String
+  created_at     DateTime  @default(now()) @db.Timestamptz(6)
+
+  @@index([email_digest, created_at], map: "login_challenge_email")
+  @@index([expires_at], map: "login_challenge_expiry")
+}
+
+model account_request_keys {
+  id           String   @id @db.Uuid
+  scope_digest Bytes
+  operation    String
+  key_digest   Bytes
+  fingerprint  Bytes
+  response     Json
+  expires_at   DateTime @db.Timestamptz(6)
+  created_at   DateTime @default(now()) @db.Timestamptz(6)
+
+  @@unique([scope_digest, operation, key_digest])
+}
+
+model guest_account_claims {
+  id                     String   @id @db.Uuid
+  guest_session_id       String   @unique @db.Uuid
+  user_id                String   @db.Uuid
+  target_guest_id        String   @db.Uuid
+  learning_session_count Int
+  consent_version        String
+  created_at             DateTime @default(now()) @db.Timestamptz(6)
+}
+
+model account_deletion_requests {
+  id           String    @id @db.Uuid
+  user_id      String    @unique @db.Uuid
+  status       String
+  requested_at DateTime  @default(now()) @db.Timestamptz(6)
+  completed_at DateTime? @db.Timestamptz(6)
+}
+
+model beta_feedback {
+  id               String   @id @db.Uuid
+  owner_key        String
+  kind             String
+  message_redacted String
+  request_id       String?  @db.Uuid
+  created_at       DateTime @default(now()) @db.Timestamptz(6)
+
+  @@index([owner_key, created_at], map: "beta_feedback_owner_created")
+}
+
+model beta_ai_reservations {
+  id                  String   @id @db.Uuid
+  owner_key           String
+  maximum_tokens      Int
+  maximum_cost_micros BigInt
+  created_at          DateTime @default(now()) @db.Timestamptz(6)
+
+  @@index([owner_key, created_at], map: "beta_ai_reservations_owner_created")
+}
+
 datasource db {
   provider = "postgresql"
 }
@@ -656,4 +745,91 @@ model skill_evidence {
   release             content_releases     @relation(fields: [content_release_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 
   @@unique([learning_session_id, dedup_key])
+}
+
+// Post-hackathon raw SQL services use these models. SQL migrations also own
+// foreign keys, status checks, immutable snapshots and partial publication keys.
+model studio_items {
+  id           String   @id @db.Uuid
+  code         String   @unique
+  subject_code String
+  unit_code    String
+  lesson_code  String
+  created_at   DateTime @default(now()) @db.Timestamptz(6)
+}
+
+model studio_revisions {
+  id            String    @id @db.Uuid
+  item_id       String    @db.Uuid
+  version       Int
+  edit_revision Int       @default(0)
+  status        String    @default("draft")
+  payload       Json
+  content_hash  String
+  validation    Json?
+  created_by    String?   @db.Uuid
+  reviewed_by   String?   @db.Uuid
+  published_by  String?   @db.Uuid
+  created_at    DateTime  @default(now()) @db.Timestamptz(6)
+  reviewed_at   DateTime? @db.Timestamptz(6)
+  published_at  DateTime? @db.Timestamptz(6)
+
+  @@unique([item_id, version])
+  @@index([status, item_id], map: "studio_status")
+}
+
+model studio_events {
+  id           String   @id @db.Uuid
+  revision_id  String   @db.Uuid
+  actor_id     String?  @db.Uuid
+  action       String
+  content_hash String
+  created_at   DateTime @default(now()) @db.Timestamptz(6)
+}
+
+model studio_algebra_links {
+  studio_revision_id  String @id @db.Uuid
+  problem_revision_id String @unique @db.Uuid
+  problem_id          String @db.Uuid
+  release_id          String @db.Uuid
+}
+
+model product_mutations {
+  id             String   @id @db.Uuid
+  owner_key      String
+  operation      String
+  key_digest     String
+  fingerprint    String
+  response_cache Json
+  created_at     DateTime @default(now()) @db.Timestamptz(6)
+  expires_at     DateTime @db.Timestamptz(6)
+
+  @@unique([owner_key, operation, key_digest])
+  @@index([expires_at], map: "product_mutation_expiry")
+}
+
+model subject_attempts {
+  id                  String   @id @db.Uuid
+  owner_key           String
+  subject_code        String
+  problem_revision_id String   @db.Uuid
+  revision            Int      @default(0)
+  source_raw          String
+  answer_json         Json
+  verdict             Json
+  assistance_level    Int      @default(0)
+  independent         Boolean  @default(true)
+  created_at          DateTime @default(now()) @db.Timestamptz(6)
+  updated_at          DateTime @default(now()) @db.Timestamptz(6)
+
+  @@index([owner_key, created_at(sort: Desc), id], map: "subject_attempt_owner")
+}
+
+model subject_attempt_events {
+  id         String   @id @db.Uuid
+  attempt_id String   @db.Uuid
+  revision   Int
+  event_kind String
+  result     Json
+  created_at DateTime @default(now()) @db.Timestamptz(6)
 }

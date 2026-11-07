@@ -1,0 +1,1082 @@
+[
+  {
+    "titleAr": "التوزيع — تمرين 1",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "distribution",
+    "lessonTitleAr": "التوزيع",
+    "skillCodes": ["SK-ALG-04"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "ALG-distribution-0",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "راجع المعامل وكل حد داخل القوس.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اسأل نفسك كيف يؤثر ضرب القوس في كل حد داخله.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بضرب المعامل في حد واحد ثم راجع الحد الآخر بنفسك.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ١.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "٢(س + ٣) = ٨",
+      "answerRaw": "س = ١",
+      "validStepRaw": "٢س + ٦ = ٨",
+      "invalidStepRaw": "٢س + ٣ = ٨"
+    }
+  },
+  {
+    "titleAr": "التوزيع — تمرين 2",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "distribution",
+    "lessonTitleAr": "التوزيع",
+    "skillCodes": ["SK-ALG-04"],
+    "difficulty": 1,
+    "kind": "remediation",
+    "familyCode": "ALG-distribution-1",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "راجع المعامل وكل حد داخل القوس.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اسأل نفسك كيف يؤثر ضرب القوس في كل حد داخله.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بضرب المعامل في حد واحد ثم راجع الحد الآخر بنفسك.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ٢.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "٣(س + ٤) = ١٨",
+      "answerRaw": "س = ٢",
+      "validStepRaw": "٣س + ١٢ = ١٨",
+      "invalidStepRaw": "٣س + ٤ = ١٨"
+    }
+  },
+  {
+    "titleAr": "التوزيع — تمرين 3",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "distribution",
+    "lessonTitleAr": "التوزيع",
+    "skillCodes": ["SK-ALG-04"],
+    "difficulty": 2,
+    "kind": "transfer",
+    "familyCode": "ALG-distribution-2",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "راجع المعامل وكل حد داخل القوس.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اسأل نفسك كيف يؤثر ضرب القوس في كل حد داخله.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بضرب المعامل في حد واحد ثم راجع الحد الآخر بنفسك.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ٣.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "٤(س + ٥) = ٣٢",
+      "answerRaw": "س = ٣",
+      "validStepRaw": "٤س + ٢٠ = ٣٢",
+      "invalidStepRaw": "٤س + ٥ = ٣٢"
+    }
+  },
+  {
+    "titleAr": "التوزيع — تمرين 4",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "distribution",
+    "lessonTitleAr": "التوزيع",
+    "skillCodes": ["SK-ALG-04"],
+    "difficulty": 2,
+    "kind": "transfer",
+    "familyCode": "ALG-distribution-3",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "راجع المعامل وكل حد داخل القوس.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اسأل نفسك كيف يؤثر ضرب القوس في كل حد داخله.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بضرب المعامل في حد واحد ثم راجع الحد الآخر بنفسك.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ٤.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "٥(س + ٦) = ٥٠",
+      "answerRaw": "س = ٤",
+      "validStepRaw": "٥س + ٣٠ = ٥٠",
+      "invalidStepRaw": "٥س + ٦ = ٥٠"
+    }
+  },
+  {
+    "titleAr": "العملية العكسية للجمع — تمرين 1",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "inverse_add",
+    "lessonTitleAr": "العملية العكسية للجمع",
+    "skillCodes": ["SK-ALG-05"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "ALG-inverse_add-0",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "راجع العملية التي تربط الحد الثابت بالمتغير.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "فكر في العملية العكسية التي تبقي طرفي المساواة متكافئين.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "اختر عملية تلغي الحد الثابت وطبقها على الطرفين.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ١.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "س + ٣ = ٤",
+      "answerRaw": "س = ١",
+      "validStepRaw": "س = ٤ - ٣",
+      "invalidStepRaw": "س = ٤ + ٣"
+    }
+  },
+  {
+    "titleAr": "العملية العكسية للجمع — تمرين 2",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "inverse_add",
+    "lessonTitleAr": "العملية العكسية للجمع",
+    "skillCodes": ["SK-ALG-05"],
+    "difficulty": 1,
+    "kind": "remediation",
+    "familyCode": "ALG-inverse_add-1",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "راجع العملية التي تربط الحد الثابت بالمتغير.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "فكر في العملية العكسية التي تبقي طرفي المساواة متكافئين.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "اختر عملية تلغي الحد الثابت وطبقها على الطرفين.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ٢.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "س + ٤ = ٦",
+      "answerRaw": "س = ٢",
+      "validStepRaw": "س = ٦ - ٤",
+      "invalidStepRaw": "س = ٦ + ٤"
+    }
+  },
+  {
+    "titleAr": "العملية العكسية للجمع — تمرين 3",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "inverse_add",
+    "lessonTitleAr": "العملية العكسية للجمع",
+    "skillCodes": ["SK-ALG-05"],
+    "difficulty": 2,
+    "kind": "transfer",
+    "familyCode": "ALG-inverse_add-2",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "راجع العملية التي تربط الحد الثابت بالمتغير.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "فكر في العملية العكسية التي تبقي طرفي المساواة متكافئين.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "اختر عملية تلغي الحد الثابت وطبقها على الطرفين.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ٣.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "س + ٥ = ٨",
+      "answerRaw": "س = ٣",
+      "validStepRaw": "س = ٨ - ٥",
+      "invalidStepRaw": "س = ٨ + ٥"
+    }
+  },
+  {
+    "titleAr": "العملية العكسية للجمع — تمرين 4",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "inverse_add",
+    "lessonTitleAr": "العملية العكسية للجمع",
+    "skillCodes": ["SK-ALG-05"],
+    "difficulty": 2,
+    "kind": "transfer",
+    "familyCode": "ALG-inverse_add-3",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "راجع العملية التي تربط الحد الثابت بالمتغير.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "فكر في العملية العكسية التي تبقي طرفي المساواة متكافئين.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "اختر عملية تلغي الحد الثابت وطبقها على الطرفين.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ٤.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "س + ٦ = ١٠",
+      "answerRaw": "س = ٤",
+      "validStepRaw": "س = ١٠ - ٦",
+      "invalidStepRaw": "س = ١٠ + ٦"
+    }
+  },
+  {
+    "titleAr": "توازن المعادلة — تمرين 1",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "balance",
+    "lessonTitleAr": "توازن المعادلة",
+    "skillCodes": ["SK-ALG-01"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "ALG-balance-0",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "قارن ما حدث في طرفي المساواة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اسأل نفسك كيف تحافظ العملية نفسها على توازن المعادلة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "راجع أثر عملية واحدة على كل طرف قبل متابعة الحل.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ١.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "س + ٣ = ٤",
+      "answerRaw": "س = ١",
+      "validStepRaw": "س = ١",
+      "invalidStepRaw": "س + ٣ = ١"
+    }
+  },
+  {
+    "titleAr": "توازن المعادلة — تمرين 2",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "balance",
+    "lessonTitleAr": "توازن المعادلة",
+    "skillCodes": ["SK-ALG-01"],
+    "difficulty": 1,
+    "kind": "remediation",
+    "familyCode": "ALG-balance-1",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "قارن ما حدث في طرفي المساواة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اسأل نفسك كيف تحافظ العملية نفسها على توازن المعادلة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "راجع أثر عملية واحدة على كل طرف قبل متابعة الحل.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ٢.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "س + ٤ = ٦",
+      "answerRaw": "س = ٢",
+      "validStepRaw": "س = ٢",
+      "invalidStepRaw": "س + ٤ = ٢"
+    }
+  },
+  {
+    "titleAr": "توازن المعادلة — تمرين 3",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "balance",
+    "lessonTitleAr": "توازن المعادلة",
+    "skillCodes": ["SK-ALG-01"],
+    "difficulty": 2,
+    "kind": "transfer",
+    "familyCode": "ALG-balance-2",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "قارن ما حدث في طرفي المساواة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اسأل نفسك كيف تحافظ العملية نفسها على توازن المعادلة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "راجع أثر عملية واحدة على كل طرف قبل متابعة الحل.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ٣.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "س + ٥ = ٨",
+      "answerRaw": "س = ٣",
+      "validStepRaw": "س = ٣",
+      "invalidStepRaw": "س + ٥ = ٣"
+    }
+  },
+  {
+    "titleAr": "توازن المعادلة — تمرين 4",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "balance",
+    "lessonTitleAr": "توازن المعادلة",
+    "skillCodes": ["SK-ALG-01"],
+    "difficulty": 2,
+    "kind": "transfer",
+    "familyCode": "ALG-balance-3",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "قارن ما حدث في طرفي المساواة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اسأل نفسك كيف تحافظ العملية نفسها على توازن المعادلة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "راجع أثر عملية واحدة على كل طرف قبل متابعة الحل.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ٤.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "س + ٦ = ١٠",
+      "answerRaw": "س = ٤",
+      "validStepRaw": "س = ٤",
+      "invalidStepRaw": "س + ٦ = ٤"
+    }
+  },
+  {
+    "titleAr": "العملية العكسية للضرب — تمرين 1",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "inverse_multiply",
+    "lessonTitleAr": "العملية العكسية للضرب",
+    "skillCodes": ["SK-ALG-06"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "ALG-inverse_multiply-0",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "راجع المعامل المرتبط بالمتغير.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "ما العملية العكسية للضرب في معامل غير صفري؟",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "حدد المعامل ثم طبق العملية العكسية على طرفي المساواة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ١.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "٢س = ٢",
+      "answerRaw": "س = ١",
+      "validStepRaw": "س = ١",
+      "invalidStepRaw": "س = ٢ × ٢"
+    }
+  },
+  {
+    "titleAr": "العملية العكسية للضرب — تمرين 2",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "inverse_multiply",
+    "lessonTitleAr": "العملية العكسية للضرب",
+    "skillCodes": ["SK-ALG-06"],
+    "difficulty": 1,
+    "kind": "remediation",
+    "familyCode": "ALG-inverse_multiply-1",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "راجع المعامل المرتبط بالمتغير.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "ما العملية العكسية للضرب في معامل غير صفري؟",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "حدد المعامل ثم طبق العملية العكسية على طرفي المساواة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ٢.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "٣س = ٦",
+      "answerRaw": "س = ٢",
+      "validStepRaw": "س = ٢",
+      "invalidStepRaw": "س = ٦ × ٣"
+    }
+  },
+  {
+    "titleAr": "العملية العكسية للضرب — تمرين 3",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "inverse_multiply",
+    "lessonTitleAr": "العملية العكسية للضرب",
+    "skillCodes": ["SK-ALG-06"],
+    "difficulty": 2,
+    "kind": "transfer",
+    "familyCode": "ALG-inverse_multiply-2",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "راجع المعامل المرتبط بالمتغير.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "ما العملية العكسية للضرب في معامل غير صفري؟",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "حدد المعامل ثم طبق العملية العكسية على طرفي المساواة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ٣.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "٤س = ١٢",
+      "answerRaw": "س = ٣",
+      "validStepRaw": "س = ٣",
+      "invalidStepRaw": "س = ١٢ × ٤"
+    }
+  },
+  {
+    "titleAr": "العملية العكسية للضرب — تمرين 4",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "inverse_multiply",
+    "lessonTitleAr": "العملية العكسية للضرب",
+    "skillCodes": ["SK-ALG-06"],
+    "difficulty": 2,
+    "kind": "transfer",
+    "familyCode": "ALG-inverse_multiply-3",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "راجع المعامل المرتبط بالمتغير.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "ما العملية العكسية للضرب في معامل غير صفري؟",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "حدد المعامل ثم طبق العملية العكسية على طرفي المساواة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ٤.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "٥س = ٢٠",
+      "answerRaw": "س = ٤",
+      "validStepRaw": "س = ٤",
+      "invalidStepRaw": "س = ٢٠ × ٥"
+    }
+  },
+  {
+    "titleAr": "الحساب العددي — تمرين 1",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "calculation",
+    "lessonTitleAr": "الحساب العددي",
+    "skillCodes": ["SK-ALG-03"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "ALG-calculation-0",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "راجع العملية العددية المكتوبة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "تحقق من الحساب العددي منفصلًا عن المعادلة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "أعد حساب جزء عددي واحد ثم قارن ما كتبته.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ١.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "س = ٤ - ٣",
+      "answerRaw": "س = ١",
+      "validStepRaw": "س = ١",
+      "invalidStepRaw": "س = ٢"
+    }
+  },
+  {
+    "titleAr": "الحساب العددي — تمرين 2",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "calculation",
+    "lessonTitleAr": "الحساب العددي",
+    "skillCodes": ["SK-ALG-03"],
+    "difficulty": 1,
+    "kind": "remediation",
+    "familyCode": "ALG-calculation-1",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "راجع العملية العددية المكتوبة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "تحقق من الحساب العددي منفصلًا عن المعادلة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "أعد حساب جزء عددي واحد ثم قارن ما كتبته.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ٢.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "س = ٦ - ٤",
+      "answerRaw": "س = ٢",
+      "validStepRaw": "س = ٢",
+      "invalidStepRaw": "س = ٣"
+    }
+  },
+  {
+    "titleAr": "الحساب العددي — تمرين 3",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "calculation",
+    "lessonTitleAr": "الحساب العددي",
+    "skillCodes": ["SK-ALG-03"],
+    "difficulty": 2,
+    "kind": "transfer",
+    "familyCode": "ALG-calculation-2",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "راجع العملية العددية المكتوبة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "تحقق من الحساب العددي منفصلًا عن المعادلة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "أعد حساب جزء عددي واحد ثم قارن ما كتبته.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ٣.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "س = ٨ - ٥",
+      "answerRaw": "س = ٣",
+      "validStepRaw": "س = ٣",
+      "invalidStepRaw": "س = ٤"
+    }
+  },
+  {
+    "titleAr": "الحساب العددي — تمرين 4",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "calculation",
+    "lessonTitleAr": "الحساب العددي",
+    "skillCodes": ["SK-ALG-03"],
+    "difficulty": 2,
+    "kind": "transfer",
+    "familyCode": "ALG-calculation-3",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "راجع العملية العددية المكتوبة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "تحقق من الحساب العددي منفصلًا عن المعادلة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "أعد حساب جزء عددي واحد ثم قارن ما كتبته.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ٤.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "س = ١٠ - ٦",
+      "answerRaw": "س = ٤",
+      "validStepRaw": "س = ٤",
+      "invalidStepRaw": "س = ٥"
+    }
+  },
+  {
+    "titleAr": "توزيع معامل سالب — تمرين 1",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "negative_distribution",
+    "lessonTitleAr": "توزيع معامل سالب",
+    "skillCodes": ["SK-ALG-04"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "ALG-negative_distribution-0",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "لاحظ إشارة المعامل خارج القوس.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "فكر في أثر إشارة كل عامل على حاصل الضرب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "راجع إشارة حاصل ضرب المعامل في حد واحد ثم راجع الحد الآخر.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ١.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "−٢(س − ٣) = ٤",
+      "answerRaw": "س = ١",
+      "validStepRaw": "−٢س + ٦ = ٤",
+      "invalidStepRaw": "−٢س − ٦ = ٤"
+    }
+  },
+  {
+    "titleAr": "توزيع معامل سالب — تمرين 2",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "negative_distribution",
+    "lessonTitleAr": "توزيع معامل سالب",
+    "skillCodes": ["SK-ALG-04"],
+    "difficulty": 1,
+    "kind": "remediation",
+    "familyCode": "ALG-negative_distribution-1",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "لاحظ إشارة المعامل خارج القوس.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "فكر في أثر إشارة كل عامل على حاصل الضرب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "راجع إشارة حاصل ضرب المعامل في حد واحد ثم راجع الحد الآخر.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ٢.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "−٣(س − ٤) = ٦",
+      "answerRaw": "س = ٢",
+      "validStepRaw": "−٣س + ١٢ = ٦",
+      "invalidStepRaw": "−٣س − ١٢ = ٦"
+    }
+  },
+  {
+    "titleAr": "توزيع معامل سالب — تمرين 3",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "negative_distribution",
+    "lessonTitleAr": "توزيع معامل سالب",
+    "skillCodes": ["SK-ALG-04"],
+    "difficulty": 2,
+    "kind": "transfer",
+    "familyCode": "ALG-negative_distribution-2",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "لاحظ إشارة المعامل خارج القوس.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "فكر في أثر إشارة كل عامل على حاصل الضرب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "راجع إشارة حاصل ضرب المعامل في حد واحد ثم راجع الحد الآخر.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ٣.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "−٤(س − ٥) = ٨",
+      "answerRaw": "س = ٣",
+      "validStepRaw": "−٤س + ٢٠ = ٨",
+      "invalidStepRaw": "−٤س − ٢٠ = ٨"
+    }
+  },
+  {
+    "titleAr": "توزيع معامل سالب — تمرين 4",
+    "statementAr": "حل المعادلة واكتب خطوات متكافئة.",
+    "subject": "algebra",
+    "unitCode": "linear_equations",
+    "unitTitleAr": "المعادلات الخطية",
+    "lessonCode": "negative_distribution",
+    "lessonTitleAr": "توزيع معامل سالب",
+    "skillCodes": ["SK-ALG-04"],
+    "difficulty": 2,
+    "kind": "transfer",
+    "familyCode": "ALG-negative_distribution-3",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "لاحظ إشارة المعامل خارج القوس.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "فكر في أثر إشارة كل عامل على حاصل الضرب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "راجع إشارة حاصل ضرب المعامل في حد واحد ثم راجع الحد الآخر.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: س = ٤.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "algebra": {
+      "equationRaw": "−٥(س − ٦) = ١٠",
+      "answerRaw": "س = ٤",
+      "validStepRaw": "−٥س + ٣٠ = ١٠",
+      "invalidStepRaw": "−٥س − ٣٠ = ١٠"
+    }
+  }
+]

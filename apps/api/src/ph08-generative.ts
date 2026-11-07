@@ -1,12 +1,14 @@
 import type { DraftResult, HintContext } from "./ai-tutor";
 
 export const PH08_GENERATION_VERSION = "ph08-generative-draft-v2";
+export const V11_GENERATION_VERSION = "tutoring-natural-v1.1-draft";
 export interface GenerationProfile {
   skillCode: string;
   errorCode: string | null;
   diagnosisMode: "possible" | "unresolved";
   phase: "remediation" | "transfer";
   transferExited: boolean;
+  languageVersion?: "v1.1-draft";
 }
 type Concept =
   | "balance"
@@ -100,6 +102,38 @@ const starters: Record<Level, string[]> = {
   H2: ["اسأل نفسك", "تساءل"],
   H3: ["ابدأ بمراجعة", "راجع"],
 };
+const naturalFocus: Record<Concept, Record<Level, string[]>> = {
+  balance: {
+    H1: ["ما يحدث على جانبي المساواة"],
+    H2: ["لماذا نطبق العملية نفسها على الطرفين"],
+    H3: ["أثر عملية واحدة على كلا الطرفين"],
+  },
+  distribution: {
+    H1: ["المعامل وكل حد داخل القوس"],
+    H2: ["لماذا يشمل الضرب كل حد داخل القوس"],
+    H3: ["ضرب المعامل في أحد الحدين"],
+  },
+  sign: {
+    H1: ["الإشارة المرافقة للمعامل"],
+    H2: ["أثر إشارة كل عامل في حاصل الضرب"],
+    H3: ["إشارة حاصل ضرب حد واحد"],
+  },
+  calculation: {
+    H1: ["العملية العددية المكتوبة"],
+    H2: ["كيف تتحقق من العملية العددية منفصلة"],
+    H3: ["حساب جزء عددي واحد"],
+  },
+  inverse: {
+    H1: ["العملية التي تربط العدد بالمتغير"],
+    H2: ["كيف تلغي العملية باستعمال عكسها"],
+    H3: ["اختيار عملية تلغي العملية المرتبطة بالمتغير"],
+  },
+  like_terms: {
+    H1: ["الحدود التي تحمل المتغير نفسه"],
+    H2: ["لماذا نجمع معاملات الحدود المتشابهة"],
+    H3: ["معاملي حدين متشابهين"],
+  },
+};
 export function generationRules(p: GenerationProfile, level: Level) {
   if (
     !["H1", "H2", "H3"].includes(level) ||
@@ -111,16 +145,24 @@ export function generationRules(p: GenerationProfile, level: Level) {
   if (!concept || (p.phase === "transfer" && !p.transferExited)) return null;
   const c = concepts[concept];
   return {
-    version: PH08_GENERATION_VERSION,
+    version:
+      p.languageVersion === "v1.1-draft"
+        ? V11_GENERATION_VERSION
+        : PH08_GENERATION_VERSION,
     concept,
     level,
     diagnosisMode: p.diagnosisMode,
     // This describes a compositional language, not an enum of whole messages.
     grammar: {
-      introductions,
+      introductions:
+        p.languageVersion === "v1.1-draft"
+          ? [...introductions, "يمكننا المراجعة خطوة خطوة، "]
+          : introductions,
       transferPrefix: p.phase === "transfer" ? "بعد العودة إلى التدريب، " : "",
       starters: starters[level],
       focus: level === "H1" ? c.h1 : level === "H2" ? c.h2 : c.h3,
+      focusAlternatives:
+        p.languageVersion === "v1.1-draft" ? naturalFocus[concept][level] : [],
       continuation:
         level === "H3" ? ["، ثم " + c.follow, "، وبعد ذلك " + c.follow] : [],
       punctuation: level === "H2" ? "؟" : ".",
@@ -157,7 +199,9 @@ export function validateGeneratedMeaning(
     if (p.phase !== "transfer") return reject("PH08_PHASE_MISMATCH");
     body = body.slice("بعد العودة إلى التدريب، ".length);
   }
-  const intro = introductions.find((v) => v && body.startsWith(v));
+  const intro = rules.grammar.introductions.find(
+    (v) => v && body.startsWith(v),
+  );
   if (intro) body = body.slice(intro.length);
   const ending = endings.find((v) => v && body.endsWith(v));
   if (ending) body = body.slice(0, -ending.length);
@@ -172,6 +216,7 @@ export function validateGeneratedMeaning(
     if (!continuation) return reject("PH08_LEVEL_OR_SPEECH_ACT");
     body = body.slice(0, -continuation.length);
   }
-  if (body !== g.focus) return reject("PH08_SKILL_OR_UNPARSED_MEANING");
+  if (![g.focus, ...g.focusAlternatives].includes(body))
+    return reject("PH08_SKILL_OR_UNPARSED_MEANING");
   return { text, reason: "PH08_GENERATED_VALIDATED" };
 }

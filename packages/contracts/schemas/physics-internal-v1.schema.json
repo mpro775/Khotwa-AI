@@ -1,0 +1,225 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:khotwa:physics-internal-v1",
+  "$defs": {
+    "Reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "topic": {
+          "const": "kinematics_1d"
+        },
+        "formula": {
+          "enum": [
+            "constant_speed_distance",
+            "constant_velocity_displacement",
+            "average_speed",
+            "average_velocity",
+            "final_velocity",
+            "displacement",
+            "acceleration",
+            "elapsed_time"
+          ]
+        },
+        "quantity": {
+          "enum": [
+            "distance",
+            "displacement",
+            "speed",
+            "velocity",
+            "acceleration",
+            "time"
+          ]
+        },
+        "expectedDimension": {
+          "enum": [
+            "length",
+            "time",
+            "speed",
+            "acceleration"
+          ]
+        },
+        "expectedValueSI": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 28
+        },
+        "expectedUnit": {
+          "enum": [
+            "m",
+            "s",
+            "m/s",
+            "m/s²",
+            "km/h"
+          ]
+        },
+        "tolerance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 28
+        },
+        "givens": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 28
+          },
+          "maxProperties": 3
+        },
+        "constraints": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "nonNegativeAnswer": {
+              "type": "boolean"
+            }
+          },
+          "required": []
+        }
+      },
+      "required": [
+        "topic",
+        "formula",
+        "quantity",
+        "expectedDimension",
+        "expectedValueSI",
+        "expectedUnit",
+        "tolerance",
+        "givens"
+      ]
+    },
+    "Request": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "contractVersion": {
+          "const": "physics-internal-v1"
+        },
+        "operation": {
+          "enum": [
+            "check_answer",
+            "validate_reference"
+          ]
+        },
+        "problemRevisionId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]{1,80}$"
+        },
+        "reference": {
+          "$ref": "#/$defs/Reference"
+        },
+        "answer": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 28
+            },
+            "unit": {
+              "type": "string",
+              "maxLength": 16
+            }
+          },
+          "required": [
+            "value",
+            "unit"
+          ]
+        }
+      },
+      "required": [
+        "contractVersion",
+        "operation",
+        "problemRevisionId",
+        "reference"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "operation": {
+                "const": "check_answer"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "answer"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "answer"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "Response": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "contractVersion": {
+          "const": "physics-internal-v1"
+        },
+        "engineVersion": {
+          "const": "physics-1.0.0"
+        },
+        "problemRevisionId": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "correct",
+            "wrong_value",
+            "wrong_unit",
+            "unsupported",
+            "invalid_input",
+            "service_error"
+          ]
+        },
+        "valueCorrect": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "unitCorrect": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "reasonCode": {
+          "type": "string",
+          "pattern": "^[A-Z_]{1,80}$"
+        },
+        "diagnosisCode": {
+          "enum": [
+            null,
+            "speed_distance_confusion",
+            "unit_conversion",
+            "sign_or_acceleration",
+            "formula_choice"
+          ]
+        }
+      },
+      "required": [
+        "contractVersion",
+        "engineVersion",
+        "problemRevisionId",
+        "status",
+        "valueCorrect",
+        "unitCorrect",
+        "reasonCode",
+        "diagnosisCode"
+      ]
+    }
+  }
+}

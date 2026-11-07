@@ -1,6 +1,6 @@
 import type { Schema } from "./contracts";
 
-export const DIAGNOSIS_POLICY = "conservative-algebra-0.6.0";
+export const DIAGNOSIS_POLICY = "conservative-algebra-1.1.0";
 export type ErrorCode = `ERR-ALG-0${1 | 2 | 3 | 4 | 5 | 6}`;
 type Node = {
   type: string;

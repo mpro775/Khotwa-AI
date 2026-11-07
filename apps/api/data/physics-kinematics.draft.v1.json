@@ -1,0 +1,1052 @@
+[
+  {
+    "titleAr": "الحركة الخطية — تمرين 1",
+    "statementAr": "تحرك جسم بسرعة ثابتة ٣ م/ث مدة ٤ ثوان. ما المسافة؟",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "constant_motion",
+    "lessonTitleAr": "الحركة بسرعة ثابتة",
+    "skillCodes": ["PHYS-CONSTANT_MOTION"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "physics-constant_speed_distance-1",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ثم راجع الحركة بسرعة ثابتة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اربط الحركة بسرعة ثابتة بالمعطيات قبل إجراء الحساب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بتعويض معطى واحد في العلاقة ثم راجع الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: 12 m.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "constant_speed_distance",
+      "quantity": "distance",
+      "expectedDimension": "length",
+      "expectedValueSI": "12",
+      "expectedUnit": "m",
+      "tolerance": "0",
+      "givens": {
+        "v": "3",
+        "t": "4"
+      }
+    }
+  },
+  {
+    "titleAr": "الحركة الخطية — تمرين 2",
+    "statementAr": "تحرك جسم بسرعة ٥ م/ث مدة ٦ ثوان. ما المسافة؟",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "constant_motion",
+    "lessonTitleAr": "الحركة بسرعة ثابتة",
+    "skillCodes": ["PHYS-CONSTANT_MOTION"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "physics-constant_speed_distance-2",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ثم راجع الحركة بسرعة ثابتة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اربط الحركة بسرعة ثابتة بالمعطيات قبل إجراء الحساب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بتعويض معطى واحد في العلاقة ثم راجع الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: 30 m.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "constant_speed_distance",
+      "quantity": "distance",
+      "expectedDimension": "length",
+      "expectedValueSI": "30",
+      "expectedUnit": "m",
+      "tolerance": "0",
+      "givens": {
+        "v": "5",
+        "t": "6"
+      }
+    }
+  },
+  {
+    "titleAr": "الحركة الخطية — تمرين 3",
+    "statementAr": "تحرك جسم بسرعة ٣٦ كم/س مدة ثانيتين. ما المسافة بالمتر؟",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "constant_motion",
+    "lessonTitleAr": "الحركة بسرعة ثابتة",
+    "skillCodes": ["PHYS-CONSTANT_MOTION"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "physics-constant_speed_distance-3",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ثم راجع الحركة بسرعة ثابتة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اربط الحركة بسرعة ثابتة بالمعطيات قبل إجراء الحساب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بتعويض معطى واحد في العلاقة ثم راجع الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: 20 m.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "constant_speed_distance",
+      "quantity": "distance",
+      "expectedDimension": "length",
+      "expectedValueSI": "20",
+      "expectedUnit": "m",
+      "tolerance": "0",
+      "givens": {
+        "v": "10",
+        "t": "2"
+      }
+    }
+  },
+  {
+    "titleAr": "الحركة الخطية — تمرين 4",
+    "statementAr": "تحرك جسم بسرعة متجهة −٤ م/ث مدة ٣ ثوان. ما إزاحته؟",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "distance_displacement",
+    "lessonTitleAr": "المسافة والإزاحة",
+    "skillCodes": ["PHYS-DISTANCE_DISPLACEMENT"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "physics-constant_velocity_displacement-4",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ثم راجع المسافة والإزاحة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اربط المسافة والإزاحة بالمعطيات قبل إجراء الحساب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بتعويض معطى واحد في العلاقة ثم راجع الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: -12 m.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "constant_velocity_displacement",
+      "quantity": "displacement",
+      "expectedDimension": "length",
+      "expectedValueSI": "-12",
+      "expectedUnit": "m",
+      "tolerance": "0",
+      "givens": {
+        "v": "-4",
+        "t": "3"
+      }
+    }
+  },
+  {
+    "titleAr": "الحركة الخطية — تمرين 5",
+    "statementAr": "تحرك جسم باتجاه المحور الموجب بسرعة ٢ م/ث مدة ٥ ثوان. ما إزاحته؟",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "distance_displacement",
+    "lessonTitleAr": "المسافة والإزاحة",
+    "skillCodes": ["PHYS-DISTANCE_DISPLACEMENT"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "physics-constant_velocity_displacement-5",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ثم راجع المسافة والإزاحة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اربط المسافة والإزاحة بالمعطيات قبل إجراء الحساب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بتعويض معطى واحد في العلاقة ثم راجع الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: 10 m.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "constant_velocity_displacement",
+      "quantity": "displacement",
+      "expectedDimension": "length",
+      "expectedValueSI": "10",
+      "expectedUnit": "m",
+      "tolerance": "0",
+      "givens": {
+        "v": "2",
+        "t": "5"
+      }
+    }
+  },
+  {
+    "titleAr": "الحركة الخطية — تمرين 6",
+    "statementAr": "تحرك جسم بسرعة متجهة −٤ م/ث مدة ٣ ثوان. ما المسافة المقطوعة؟",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "distance_displacement",
+    "lessonTitleAr": "المسافة والإزاحة",
+    "skillCodes": ["PHYS-DISTANCE_DISPLACEMENT"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "physics-constant_speed_distance-6",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ثم راجع المسافة والإزاحة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اربط المسافة والإزاحة بالمعطيات قبل إجراء الحساب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بتعويض معطى واحد في العلاقة ثم راجع الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: 12 m.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "constant_speed_distance",
+      "quantity": "distance",
+      "expectedDimension": "length",
+      "expectedValueSI": "12",
+      "expectedUnit": "m",
+      "tolerance": "0",
+      "givens": {
+        "v": "-4",
+        "t": "3"
+      }
+    }
+  },
+  {
+    "titleAr": "الحركة الخطية — تمرين 7",
+    "statementAr": "قطع جسم مسافة ٦٠ م في ١٢ ثانية. ما سرعته المتوسطة؟",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "average_speed",
+    "lessonTitleAr": "السرعة المتوسطة",
+    "skillCodes": ["PHYS-AVERAGE_SPEED"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "physics-average_speed-7",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ثم راجع السرعة المتوسطة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اربط السرعة المتوسطة بالمعطيات قبل إجراء الحساب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بتعويض معطى واحد في العلاقة ثم راجع الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: 5 m/s.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "average_speed",
+      "quantity": "speed",
+      "expectedDimension": "speed",
+      "expectedValueSI": "5",
+      "expectedUnit": "m/s",
+      "tolerance": "0",
+      "givens": {
+        "d": "60",
+        "t": "12"
+      }
+    }
+  },
+  {
+    "titleAr": "الحركة الخطية — تمرين 8",
+    "statementAr": "قطع جسم مسافة ١٠٠ م في ١٠ ثوان. ما سرعته المتوسطة؟",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "average_speed",
+    "lessonTitleAr": "السرعة المتوسطة",
+    "skillCodes": ["PHYS-AVERAGE_SPEED"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "physics-average_speed-8",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ثم راجع السرعة المتوسطة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اربط السرعة المتوسطة بالمعطيات قبل إجراء الحساب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بتعويض معطى واحد في العلاقة ثم راجع الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: 10 m/s.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "average_speed",
+      "quantity": "speed",
+      "expectedDimension": "speed",
+      "expectedValueSI": "10",
+      "expectedUnit": "m/s",
+      "tolerance": "0",
+      "givens": {
+        "d": "100",
+        "t": "10"
+      }
+    }
+  },
+  {
+    "titleAr": "الحركة الخطية — تمرين 9",
+    "statementAr": "إزاحة جسم −٢٠ م خلال ٥ ثوان. ما سرعته المتجهة المتوسطة؟",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "average_speed",
+    "lessonTitleAr": "السرعة المتوسطة",
+    "skillCodes": ["PHYS-AVERAGE_SPEED"],
+    "difficulty": 1,
+    "kind": "main",
+    "familyCode": "physics-average_velocity-9",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ثم راجع السرعة المتوسطة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اربط السرعة المتوسطة بالمعطيات قبل إجراء الحساب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بتعويض معطى واحد في العلاقة ثم راجع الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: -4 m/s.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "average_velocity",
+      "quantity": "velocity",
+      "expectedDimension": "speed",
+      "expectedValueSI": "-4",
+      "expectedUnit": "m/s",
+      "tolerance": "0",
+      "givens": {
+        "dx": "-20",
+        "t": "5"
+      }
+    }
+  },
+  {
+    "titleAr": "الحركة الخطية — تمرين 10",
+    "statementAr": "تغيرت السرعة من ٢ إلى ١٤ م/ث في ٤ ثوان. ما التسارع؟",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "acceleration",
+    "lessonTitleAr": "التسارع",
+    "skillCodes": ["PHYS-ACCELERATION"],
+    "difficulty": 2,
+    "kind": "main",
+    "familyCode": "physics-acceleration-10",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ثم راجع التسارع.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اربط التسارع بالمعطيات قبل إجراء الحساب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بتعويض معطى واحد في العلاقة ثم راجع الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: 3 m/s².",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "acceleration",
+      "quantity": "acceleration",
+      "expectedDimension": "acceleration",
+      "expectedValueSI": "3",
+      "expectedUnit": "m/s²",
+      "tolerance": "0",
+      "givens": {
+        "v": "14",
+        "v0": "2",
+        "t": "4"
+      }
+    }
+  },
+  {
+    "titleAr": "الحركة الخطية — تمرين 11",
+    "statementAr": "تغيرت السرعة من ١٦ إلى ٤ م/ث في ٦ ثوان. ما التسارع؟",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "acceleration",
+    "lessonTitleAr": "التسارع",
+    "skillCodes": ["PHYS-ACCELERATION"],
+    "difficulty": 2,
+    "kind": "main",
+    "familyCode": "physics-acceleration-11",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ثم راجع التسارع.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اربط التسارع بالمعطيات قبل إجراء الحساب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بتعويض معطى واحد في العلاقة ثم راجع الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: -2 m/s².",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "acceleration",
+      "quantity": "acceleration",
+      "expectedDimension": "acceleration",
+      "expectedValueSI": "-2",
+      "expectedUnit": "m/s²",
+      "tolerance": "0",
+      "givens": {
+        "v": "4",
+        "v0": "16",
+        "t": "6"
+      }
+    }
+  },
+  {
+    "titleAr": "الحركة الخطية — تمرين 12",
+    "statementAr": "بقيت السرعة ٩ م/ث طوال ٣ ثوان. ما التسارع؟",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "acceleration",
+    "lessonTitleAr": "التسارع",
+    "skillCodes": ["PHYS-ACCELERATION"],
+    "difficulty": 2,
+    "kind": "main",
+    "familyCode": "physics-acceleration-12",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ثم راجع التسارع.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اربط التسارع بالمعطيات قبل إجراء الحساب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بتعويض معطى واحد في العلاقة ثم راجع الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: 0 m/s².",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "acceleration",
+      "quantity": "acceleration",
+      "expectedDimension": "acceleration",
+      "expectedValueSI": "0",
+      "expectedUnit": "m/s²",
+      "tolerance": "0",
+      "givens": {
+        "v": "9",
+        "v0": "9",
+        "t": "3"
+      }
+    }
+  },
+  {
+    "titleAr": "الحركة الخطية — تمرين 13",
+    "statementAr": "بدأ جسم بسرعة ٢ م/ث وتسارع ثابت ٣ م/ث² لمدة ٤ ثوان. ما سرعته النهائية؟",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "final_velocity",
+    "lessonTitleAr": "السرعة النهائية",
+    "skillCodes": ["PHYS-FINAL_VELOCITY"],
+    "difficulty": 2,
+    "kind": "main",
+    "familyCode": "physics-final_velocity-13",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ثم راجع السرعة النهائية.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اربط السرعة النهائية بالمعطيات قبل إجراء الحساب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بتعويض معطى واحد في العلاقة ثم راجع الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: 14 m/s.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "final_velocity",
+      "quantity": "velocity",
+      "expectedDimension": "speed",
+      "expectedValueSI": "14",
+      "expectedUnit": "m/s",
+      "tolerance": "0",
+      "givens": {
+        "v0": "2",
+        "a": "3",
+        "t": "4"
+      }
+    }
+  },
+  {
+    "titleAr": "الحركة الخطية — تمرين 14",
+    "statementAr": "بدأ جسم بسرعة ٥ م/ث وتسارع ٢ م/ث² لمدة ٣ ثوان. ما سرعته النهائية؟",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "final_velocity",
+    "lessonTitleAr": "السرعة النهائية",
+    "skillCodes": ["PHYS-FINAL_VELOCITY"],
+    "difficulty": 2,
+    "kind": "main",
+    "familyCode": "physics-final_velocity-14",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ثم راجع السرعة النهائية.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اربط السرعة النهائية بالمعطيات قبل إجراء الحساب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بتعويض معطى واحد في العلاقة ثم راجع الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: 11 m/s.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "final_velocity",
+      "quantity": "velocity",
+      "expectedDimension": "speed",
+      "expectedValueSI": "11",
+      "expectedUnit": "m/s",
+      "tolerance": "0",
+      "givens": {
+        "v0": "5",
+        "a": "2",
+        "t": "3"
+      }
+    }
+  },
+  {
+    "titleAr": "الحركة الخطية — تمرين 15",
+    "statementAr": "سرعة جسم ٢٠ م/ث وتسارعه −٣ م/ث² لمدة ٤ ثوان. ما سرعته النهائية؟",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "final_velocity",
+    "lessonTitleAr": "السرعة النهائية",
+    "skillCodes": ["PHYS-FINAL_VELOCITY"],
+    "difficulty": 2,
+    "kind": "main",
+    "familyCode": "physics-final_velocity-15",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ثم راجع السرعة النهائية.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اربط السرعة النهائية بالمعطيات قبل إجراء الحساب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بتعويض معطى واحد في العلاقة ثم راجع الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: 8 m/s.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "final_velocity",
+      "quantity": "velocity",
+      "expectedDimension": "speed",
+      "expectedValueSI": "8",
+      "expectedUnit": "m/s",
+      "tolerance": "0",
+      "givens": {
+        "v0": "20",
+        "a": "-3",
+        "t": "4"
+      }
+    }
+  },
+  {
+    "titleAr": "الحركة الخطية — تمرين 16",
+    "statementAr": "سرعة جسم −٢ م/ث وتسارعه −١ م/ث² مدة ٥ ثوان. ما سرعته النهائية؟",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "final_velocity",
+    "lessonTitleAr": "السرعة النهائية",
+    "skillCodes": ["PHYS-FINAL_VELOCITY"],
+    "difficulty": 2,
+    "kind": "main",
+    "familyCode": "physics-final_velocity-16",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ثم راجع السرعة النهائية.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اربط السرعة النهائية بالمعطيات قبل إجراء الحساب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بتعويض معطى واحد في العلاقة ثم راجع الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: -7 m/s.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "final_velocity",
+      "quantity": "velocity",
+      "expectedDimension": "speed",
+      "expectedValueSI": "-7",
+      "expectedUnit": "m/s",
+      "tolerance": "0",
+      "givens": {
+        "v0": "-2",
+        "a": "-1",
+        "t": "5"
+      }
+    }
+  },
+  {
+    "titleAr": "الحركة الخطية — تمرين 17",
+    "statementAr": "بدأ جسم بسرعة ٢ م/ث وتسارع ٣ م/ث² مدة ٤ ثوان. ما إزاحته؟",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "displacement",
+    "lessonTitleAr": "الإزاحة مع التسارع",
+    "skillCodes": ["PHYS-DISPLACEMENT"],
+    "difficulty": 2,
+    "kind": "main",
+    "familyCode": "physics-displacement-17",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ثم راجع الإزاحة مع التسارع.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اربط الإزاحة مع التسارع بالمعطيات قبل إجراء الحساب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بتعويض معطى واحد في العلاقة ثم راجع الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: 32 m.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "displacement",
+      "quantity": "displacement",
+      "expectedDimension": "length",
+      "expectedValueSI": "32",
+      "expectedUnit": "m",
+      "tolerance": "0",
+      "givens": {
+        "v0": "2",
+        "a": "3",
+        "t": "4"
+      }
+    }
+  },
+  {
+    "titleAr": "الحركة الخطية — تمرين 18",
+    "statementAr": "بدأ جسم من السكون بتسارع ٢ م/ث² مدة ٥ ثوان. ما إزاحته؟",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "displacement",
+    "lessonTitleAr": "الإزاحة مع التسارع",
+    "skillCodes": ["PHYS-DISPLACEMENT"],
+    "difficulty": 2,
+    "kind": "main",
+    "familyCode": "physics-displacement-18",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ثم راجع الإزاحة مع التسارع.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اربط الإزاحة مع التسارع بالمعطيات قبل إجراء الحساب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بتعويض معطى واحد في العلاقة ثم راجع الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: 25 m.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "displacement",
+      "quantity": "displacement",
+      "expectedDimension": "length",
+      "expectedValueSI": "25",
+      "expectedUnit": "m",
+      "tolerance": "0",
+      "givens": {
+        "v0": "0",
+        "a": "2",
+        "t": "5"
+      }
+    }
+  },
+  {
+    "titleAr": "الحركة الخطية — تمرين 19",
+    "statementAr": "سرعة جسم الابتدائية ١٠ م/ث وتسارعه −٢ م/ث² مدة ٣ ثوان. ما إزاحته؟",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "displacement",
+    "lessonTitleAr": "الإزاحة مع التسارع",
+    "skillCodes": ["PHYS-DISPLACEMENT"],
+    "difficulty": 2,
+    "kind": "main",
+    "familyCode": "physics-displacement-19",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ثم راجع الإزاحة مع التسارع.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اربط الإزاحة مع التسارع بالمعطيات قبل إجراء الحساب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بتعويض معطى واحد في العلاقة ثم راجع الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: 21 m.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "displacement",
+      "quantity": "displacement",
+      "expectedDimension": "length",
+      "expectedValueSI": "21",
+      "expectedUnit": "m",
+      "tolerance": "0",
+      "givens": {
+        "v0": "10",
+        "a": "-2",
+        "t": "3"
+      }
+    }
+  },
+  {
+    "titleAr": "الحركة الخطية — تمرين 20",
+    "statementAr": "تحرك جسم بسرعة ثابتة ٦ م/ث وقطع إزاحة ٢٤ م. كم استغرق من الزمن؟",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "constant_motion",
+    "lessonTitleAr": "الحركة بسرعة ثابتة",
+    "skillCodes": ["PHYS-CONSTANT_MOTION"],
+    "difficulty": 2,
+    "kind": "main",
+    "familyCode": "physics-elapsed_time-20",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ثم راجع الحركة بسرعة ثابتة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "اربط الحركة بسرعة ثابتة بالمعطيات قبل إجراء الحساب.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "ابدأ بتعويض معطى واحد في العلاقة ثم راجع الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "الحل المرجعي للمراجعة: 4 s.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "elapsed_time",
+      "quantity": "time",
+      "expectedDimension": "time",
+      "expectedValueSI": "4",
+      "expectedUnit": "s",
+      "tolerance": "0",
+      "givens": {
+        "dx": "24",
+        "v": "6"
+      }
+    }
+  }
+]

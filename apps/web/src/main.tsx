@@ -2,7 +2,7 @@ import { StrictMode, lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import "./style.css";
 import "./workspace.css";
-import { StudentWorkspace } from "./StudentWorkspace";
+import { ProductShell } from "./ProductShell";
 const EditorLab = lazy(() =>
   import("./ArabicEditor").then((module) => ({ default: module.ArabicEditor })),
 );
@@ -22,7 +22,7 @@ createRoot(root).render(
         <EditorLab />
       </Suspense>
     ) : (
-      <StudentWorkspace />
+      <ProductShell />
     )}
   </StrictMode>,
 );

@@ -1,0 +1,6 @@
+FROM node:24.11.1-alpine3.22
+RUN apk add --no-cache postgresql17-client && mkdir /backups && chown node:node /backups
+WORKDIR /app
+COPY --chown=node:node tools/beta-backup.mjs tools/beta-restore.mjs ./tools/
+USER node
+CMD ["node", "tools/beta-backup.mjs"]

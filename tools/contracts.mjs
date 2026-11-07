@@ -15,6 +15,7 @@ const pairs = [
     "math-internal-v1.schema.json",
     "golden-fixtures-v1.schema.json",
     "math-internal-v1.examples.json",
+    "physics-internal-v1.schema.json",
   ].map((n) => ["docs/contracts/" + n, "packages/contracts/schemas/" + n]),
 ];
 for (const [source, target] of pairs) {
@@ -45,7 +46,7 @@ if (check) {
   writeFileSync(target, declaration);
 }
 console.log(
-  "Canonical OpenAPI mirror, 3 JSON mirrors, and generated public types " +
+  "Canonical OpenAPI mirror, 4 JSON mirrors, and generated public types " +
     (check ? "verified." : "generated."),
 );
 // Browser validators contain public response schemas only: no internal wire,

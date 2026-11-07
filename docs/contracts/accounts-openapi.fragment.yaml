@@ -1,0 +1,1222 @@
+paths:
+  /api/v1/me:
+    get:
+      operationId: product_api_v1_me_get
+      summary: هوية الحساب وCSRF؛ لا يربط الضيف تلقائيًا
+      tags:
+        - حسابات الطلاب
+      security: []
+      responses:
+        "200":
+          description: نجاح
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountCurrentEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+    delete:
+      operationId: product_api_v1_me_delete
+      summary: طلب محو مع إبطال الوصول؛ لا يدعي المحو الفوري من النسخ
+      tags:
+        - حسابات الطلاب
+      security:
+        - AccountCookie: []
+      responses:
+        "202":
+          description: نجاح
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountDeletionEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      parameters:
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountDeletionInput"
+  /api/v1/auth/email/request:
+    post:
+      operationId: product_api_v1_auth_email_request_post
+      summary: طلب OTP عبر بريد الخادم؛ رمز loginCsrfToken من GET me
+      tags:
+        - حسابات الطلاب
+      security: []
+      responses:
+        "200":
+          description: نجاح
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountEmailRequestEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      parameters:
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountEmailRequest"
+  /api/v1/auth/email/verify:
+    post:
+      operationId: product_api_v1_auth_email_verify_post
+      summary: استهلاك OTP واحد وإصدار kh_account Secure HttpOnly
+      tags:
+        - حسابات الطلاب
+      security: []
+      responses:
+        "200":
+          description: نجاح
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountVerifyEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      parameters:
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountEmailVerify"
+  /api/v1/auth/logout:
+    post:
+      operationId: product_api_v1_auth_logout_post
+      summary: /api/v1/auth/logout
+      tags:
+        - حسابات الطلاب
+      security:
+        - AccountCookie: []
+      responses:
+        "200":
+          description: نجاح
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountLogoutEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      parameters:
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountEmptyInput"
+  /api/v1/me/claim-guest:
+    post:
+      operationId: product_api_v1_me_claim_guest_post
+      summary: ربط الضيف الحالي فقط بعد موافقة صريحة؛ سجل provenance ومعاملة واحدة
+      tags:
+        - حسابات الطلاب
+      security:
+        - AccountCookie: []
+      responses:
+        "200":
+          description: نجاح
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountClaimEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      parameters:
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountClaimInput"
+  /api/v1/me/attempts:
+    get:
+      operationId: product_api_v1_me_attempts_get
+      summary: /api/v1/me/attempts
+      tags:
+        - حسابات الطلاب
+      security:
+        - AccountCookie: []
+      responses:
+        "200":
+          description: نجاح
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountAttemptsEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/me/progress:
+    get:
+      operationId: product_api_v1_me_progress_get
+      summary: /api/v1/me/progress
+      tags:
+        - حسابات الطلاب
+      security:
+        - AccountCookie: []
+      responses:
+        "200":
+          description: نجاح
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountProgressEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/me/export:
+    get:
+      operationId: product_api_v1_me_export_get
+      summary: /api/v1/me/export
+      tags:
+        - حسابات الطلاب
+      security:
+        - AccountCookie: []
+      responses:
+        "200":
+          description: نجاح
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountExportEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/beta/feedback:
+    post:
+      operationId: product_api_v1_beta_feedback_post
+      summary: /api/v1/beta/feedback
+      tags:
+        - تشغيل Beta
+      security:
+        - AccountCookie: []
+        - GuestCookie: []
+      responses:
+        "201":
+          description: نجاح
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BetaFeedbackEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      parameters:
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BetaFeedbackInput"
+  /api/v1/beta/metrics:
+    get:
+      operationId: product_api_v1_beta_metrics_get
+      summary: مقاييس منقحة لمسؤول admin فقط
+      tags:
+        - تشغيل Beta
+      security:
+        - AccountCookie: []
+      responses:
+        "200":
+          description: نجاح
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BetaMetricsEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/beta/access/revoke:
+    post:
+      operationId: product_api_v1_beta_access_revoke_post
+      summary: إيقاف حساب وإبطال جميع جلساته؛ admin فقط
+      tags:
+        - تشغيل Beta
+      security:
+        - AccountCookie: []
+      responses:
+        "200":
+          description: نجاح
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BetaRevokeEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      parameters:
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BetaRevokeInput"
+components:
+  securitySchemes:
+    AccountCookie:
+      type: apiKey
+      in: cookie
+      name: kh_account
+      description: Opaque 256-bit account session; Secure HttpOnly SameSite=Lax Path=/; digest only in PostgreSQL
+  schemas:
+    AccountUser:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+          format: email
+        role:
+          type: string
+          enum:
+            - student
+            - teacher
+            - content_manager
+            - admin
+        status:
+          type: string
+          enum:
+            - active
+            - suspended
+            - deletion_requested
+            - deleted
+        isInternal:
+          type: boolean
+      required:
+        - id
+        - email
+        - role
+        - status
+        - isInternal
+    AccountIdentity:
+      type: object
+      additionalProperties: false
+      properties:
+        user:
+          anyOf:
+            - $ref: "#/components/schemas/AccountUser"
+            - type: "null"
+        csrfToken:
+          type: string
+          minLength: 32
+        guestAvailable:
+          type: boolean
+        loginCsrfToken:
+          type: string
+          minLength: 32
+      required:
+        - user
+        - csrfToken
+        - guestAvailable
+    AccountEmailRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 254
+      required:
+        - email
+    AccountEmailVerify:
+      type: object
+      additionalProperties: false
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        challengeId:
+          type: string
+          format: uuid
+        code:
+          type: string
+          pattern: ^[0-9]{6}$
+      required:
+        - email
+        - challengeId
+        - code
+    AccountClaimInput:
+      type: object
+      additionalProperties: false
+      properties:
+        consent:
+          const: true
+      required:
+        - consent
+    AccountDeletionInput:
+      type: object
+      additionalProperties: false
+      properties:
+        confirm:
+          const: true
+      required:
+        - confirm
+    AccountEmptyInput:
+      type: object
+      additionalProperties: false
+      properties: {}
+      required: []
+    AccountAttempt:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        learningSessionId:
+          type: string
+          format: uuid
+        problemRevisionId:
+          type: string
+          format: uuid
+        problemId:
+          type: string
+          format: uuid
+        revision:
+          type: integer
+          minimum: 0
+        status:
+          type: string
+        completionVerdict:
+          anyOf:
+            - type: string
+            - type: "null"
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - learningSessionId
+        - problemRevisionId
+        - problemId
+        - revision
+        - status
+        - completionVerdict
+        - updatedAt
+    AccountSubjectAttempt:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        subjectCode:
+          type: string
+          enum:
+            - physics
+            - programming
+        problemRevisionId:
+          type: string
+          format: uuid
+        revision:
+          type: integer
+          minimum: 0
+        sourceRaw:
+          type: string
+          maxLength: 49152
+        answer: {}
+        verdict: {}
+        assistanceLevel:
+          type: integer
+          minimum: 0
+          maximum: 4
+        independent:
+          type: boolean
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - subjectCode
+        - problemRevisionId
+        - revision
+        - sourceRaw
+        - answer
+        - verdict
+        - assistanceLevel
+        - independent
+        - updatedAt
+    SubjectProgressEvidence:
+      type: object
+      additionalProperties: false
+      properties:
+        subjectCode:
+          type: string
+          enum:
+            - physics
+            - programming
+        skillCode:
+          type: string
+        evidenceCount:
+          type: integer
+          minimum: 0
+        independentCount:
+          type: integer
+          minimum: 0
+        assistedCount:
+          type: integer
+          minimum: 0
+        state:
+          type: string
+          enum:
+            - not_assessed
+            - new_independent_evidence
+            - assisted_evidence
+            - needs_review
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - subjectCode
+        - skillCode
+        - evidenceCount
+        - independentCount
+        - assistedCount
+        - state
+        - updatedAt
+    AccountProgress:
+      type: object
+      additionalProperties: false
+      properties:
+        skills:
+          type: array
+          items:
+            $ref: "#/components/schemas/SkillProgress"
+          maxItems: 1000
+        subjects:
+          type: array
+          items:
+            $ref: "#/components/schemas/SubjectProgressEvidence"
+          maxItems: 1000
+        noteAr:
+          type: string
+      required:
+        - skills
+        - subjects
+        - noteAr
+    AccountStepExport:
+      type: object
+      additionalProperties: false
+      properties:
+        attemptId:
+          type: string
+          format: uuid
+        position:
+          type: integer
+          minimum: 0
+        version:
+          type: integer
+          minimum: 0
+        sourceRaw:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - attemptId
+        - position
+        - version
+        - sourceRaw
+        - createdAt
+    BetaFeedbackInput:
+      type: object
+      additionalProperties: false
+      properties:
+        kind:
+          type: string
+          enum:
+            - bug
+            - content
+            - suggestion
+            - other
+        message:
+          type: string
+          minLength: 3
+          maxLength: 2000
+        requestId:
+          type: string
+          format: uuid
+      required:
+        - kind
+        - message
+    BetaFeedback:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+        kind:
+          type: string
+          enum:
+            - bug
+            - content
+            - suggestion
+            - other
+        message:
+          type: string
+          maxLength: 2000
+        requestId:
+          anyOf:
+            - type: string
+              format: uuid
+            - type: "null"
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - kind
+        - message
+        - requestId
+        - createdAt
+    BetaRevokeInput:
+      type: object
+      additionalProperties: false
+      properties:
+        userId:
+          type: string
+          format: uuid
+      required:
+        - userId
+    BetaMetrics:
+      type: object
+      additionalProperties: false
+      properties:
+        day:
+          type: string
+          format: date
+        api:
+          type: object
+          additionalProperties: false
+          properties:
+            requestCount:
+              type: integer
+              minimum: 0
+            sampleCount:
+              type: integer
+              minimum: 0
+              maximum: 1000
+            status4xx:
+              type: integer
+              minimum: 0
+            status5xx:
+              type: integer
+              minimum: 0
+            p50Ms:
+              anyOf:
+                - type: integer
+                  minimum: 0
+                - type: "null"
+            p95Ms:
+              anyOf:
+                - type: integer
+                  minimum: 0
+                - type: "null"
+          required:
+            - requestCount
+            - sampleCount
+            - status4xx
+            - status5xx
+            - p50Ms
+            - p95Ms
+        ai:
+          type: object
+          additionalProperties: false
+          properties:
+            calls:
+              type: integer
+              minimum: 0
+            hintRequests:
+              type: integer
+              minimum: 0
+            fallback:
+              type: integer
+              minimum: 0
+            fallbackRatio:
+              anyOf:
+                - type: number
+                  minimum: 0
+                  maximum: 1
+                - type: "null"
+            inputTokens:
+              type: integer
+              minimum: 0
+            outputTokens:
+              type: integer
+              minimum: 0
+            estimatedCostMicros:
+              type: integer
+              minimum: 0
+            unknownCostCalls:
+              type: integer
+              minimum: 0
+            timeouts:
+              type: integer
+              minimum: 0
+          required:
+            - calls
+            - hintRequests
+            - fallback
+            - fallbackRatio
+            - inputTokens
+            - outputTokens
+            - estimatedCostMicros
+            - unknownCostCalls
+            - timeouts
+        mathTimeouts:
+          type: integer
+          minimum: 0
+        scope:
+          type: string
+        percentileMinimumSamples:
+          type: integer
+          minimum: 0
+        usage:
+          type: object
+          additionalProperties: false
+          properties:
+            sessionsToday:
+              type: integer
+              minimum: 0
+            attemptsToday:
+              type: integer
+              minimum: 0
+            hintsToday:
+              type: integer
+              minimum: 0
+          required:
+            - sessionsToday
+            - attemptsToday
+            - hintsToday
+        database:
+          type: string
+          enum:
+            - ready
+            - unavailable
+        disk:
+          anyOf:
+            - type: object
+              additionalProperties: false
+              properties:
+                availableBytes:
+                  type: number
+                  minimum: 0
+                totalBytes:
+                  type: number
+                  minimum: 0
+              required:
+                - availableBytes
+                - totalBytes
+            - type: "null"
+        feedback:
+          type: array
+          items:
+            $ref: "#/components/schemas/BetaFeedback"
+          maxItems: 50
+        limits:
+          type: object
+          additionalProperties: false
+          properties:
+            dailyCostMicros:
+              type: integer
+              minimum: 0
+            monthlyCostMicros:
+              type: integer
+              minimum: 0
+            userDailyCalls:
+              type: integer
+              minimum: 0
+          required:
+            - dailyCostMicros
+            - monthlyCostMicros
+            - userDailyCalls
+        noteAr:
+          type: string
+      required:
+        - day
+        - api
+        - ai
+        - mathTimeouts
+        - scope
+        - percentileMinimumSamples
+        - usage
+        - database
+        - disk
+        - feedback
+        - limits
+        - noteAr
+    AccountCurrentEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/AccountIdentity"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    AccountEmailRequestEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            challengeId:
+              type: string
+              format: uuid
+            expiresInSeconds:
+              type: integer
+              minimum: 0
+            resendAfterSeconds:
+              type: integer
+              minimum: 0
+            delivery:
+              const: queued
+          required:
+            - challengeId
+            - expiresInSeconds
+            - resendAfterSeconds
+            - delivery
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    AccountVerifyEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/AccountIdentity"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    AccountLogoutEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            loggedOut:
+              const: true
+          required:
+            - loggedOut
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    AccountClaimEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            claimed:
+              const: true
+            learningSessionCount:
+              type: integer
+              minimum: 0
+          required:
+            - claimed
+            - learningSessionCount
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    AccountAttemptsEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            attempts:
+              type: array
+              items:
+                $ref: "#/components/schemas/AccountAttempt"
+              maxItems: 50
+            subjectAttempts:
+              type: array
+              items:
+                $ref: "#/components/schemas/AccountSubjectAttempt"
+              maxItems: 50
+            nextCursor:
+              type: "null"
+          required:
+            - attempts
+            - subjectAttempts
+            - nextCursor
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    AccountProgressEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/AccountProgress"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    AccountDeletionEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            status:
+              const: deletion_requested
+            accessRevoked:
+              const: true
+            noteAr:
+              type: string
+          required:
+            - status
+            - accessRevoked
+            - noteAr
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    AccountExportEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            user:
+              anyOf:
+                - $ref: "#/components/schemas/AccountUser"
+                - type: "null"
+            attempts:
+              type: array
+              items:
+                $ref: "#/components/schemas/AccountAttempt"
+              maxItems: 50
+            subjectAttempts:
+              type: array
+              items:
+                $ref: "#/components/schemas/AccountSubjectAttempt"
+              maxItems: 1000
+            progress:
+              $ref: "#/components/schemas/AccountProgress"
+            steps:
+              type: array
+              items:
+                $ref: "#/components/schemas/AccountStepExport"
+              maxItems: 5000
+            exportedAt:
+              type: string
+              format: date-time
+            limits:
+              type: object
+              additionalProperties: false
+              properties:
+                attempts:
+                  type: integer
+                  minimum: 0
+                stepVersions:
+                  type: integer
+                  minimum: 0
+                subjectAttempts:
+                  type: integer
+                  minimum: 0
+              required:
+                - attempts
+                - stepVersions
+                - subjectAttempts
+            noteAr:
+              type: string
+          required:
+            - user
+            - attempts
+            - subjectAttempts
+            - progress
+            - steps
+            - exportedAt
+            - limits
+            - noteAr
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    BetaFeedbackEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            id:
+              type: string
+              format: uuid
+            status:
+              const: received
+          required:
+            - id
+            - status
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    BetaMetricsEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/BetaMetrics"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    BetaRevokeEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            revoked:
+              const: true
+          required:
+            - revoked
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta

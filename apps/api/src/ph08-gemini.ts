@@ -177,6 +177,16 @@ export function ph08TutoringFromEnvironment(
   });
   try {
     const generative = env.PH08_GEMINI_GENERATIVE_ENABLED === "true";
+    const naturalLanguage = env.V11_NATURAL_LANGUAGE_ENABLED === "true";
+    // New wording is a separate, opt-in draft version. It cannot inherit the
+    // old 27-card approval or silently consume a historical live round.
+    if (
+      naturalLanguage &&
+      (!env.V11_HINT_REVIEW_REFERENCE ||
+        (!offline &&
+          env.GEMINI_LIVE_AUTHORIZATION_ID === PH08_CONTENT_AUTHORIZATION))
+    )
+      throw Error("V11_NEW_LANGUAGE_REVIEW_AND_ROUND_REQUIRED");
     const prepare = async (
       context: HintContext,
     ): Promise<GenerationProfile> => {
@@ -220,6 +230,9 @@ export function ph08TutoringFromEnvironment(
             : ("unresolved" as const),
           phase: row.phase,
           transferExited: !!row.measurement_exited_at,
+          ...(naturalLanguage
+            ? { languageVersion: "v1.1-draft" as const }
+            : {}),
         };
       });
       current.profile = profile;

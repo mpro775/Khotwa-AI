@@ -1,6 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { ApiClient, ClientFault, Schema } from "./api-client";
 import { canAdoptHint } from "./workspace-model";
+import { ProductApi, numberField, record, textField } from "./product-api";
+type Plan = {
+  recommendation: string;
+  reasonAr: string;
+  recentVerifiedErrors: number;
+  interpretation: string;
+};
 export function HintPanel({
   api,
   attempt,
@@ -15,6 +22,7 @@ export function HintPanel({
   onServed: (event: Schema<"TutoringEvent">) => void;
 }) {
   const [event, setEvent] = useState<Schema<"TutoringEvent"> | null>(null);
+  const [plan, setPlan] = useState<Plan | null>(null);
   const [leaveMeasurement, setLeaveMeasurement] = useState(false);
   const [confirmed, setConfirmed] = useState(false),
     [busy, setBusy] = useState(false),
@@ -39,6 +47,30 @@ export function HintPanel({
     report.isCurrent &&
     report.scope === "current_sequence" &&
     !["H3", "H4"].includes(event?.hintLevel ?? "H0");
+  useEffect(() => {
+    let active = true;
+    setPlan(null);
+    if (report?.isCurrent)
+      void new ProductApi()
+        .request(`/attempts/${attempt.id}/tutoring-plan`, (value) => {
+          const data = record(value);
+          return {
+            recommendation: textField(data.recommendation),
+            reasonAr: textField(data.reasonAr),
+            recentVerifiedErrors: numberField(data.recentVerifiedErrors),
+            interpretation: textField(data.interpretation),
+          };
+        })
+        .then((next) => {
+          if (active) setPlan(next);
+        })
+        .catch(() => {
+          /* Core reviewed assistance remains usable when the optional plan is unavailable. */
+        });
+    return () => {
+      active = false;
+    };
+  }, [attempt.id, attempt.revision, report?.id, report?.isCurrent, event?.id]);
   async function request(action: "next_hint" | "show_full_solution") {
     if (action === "show_full_solution" && !confirmed) return;
     if (transfer && !leaveMeasurement) return;
@@ -91,6 +123,20 @@ export function HintPanel({
         يحدد الخادم التلميح التالي. تبقى المساعدة السابقة مسجلة عند التعديل أو
         إعادة فتح المحاولة.
       </p>
+      {plan && (
+        <div className="hint-message">
+          <p>{plan.reasonAr}</p>
+          {plan.recommendation === "remediation" && (
+            <p>
+              يمكنك الانتقال إلى قسم «تدريب على المهارة ومسألة جديدة» لتجربة
+              تدريب مناسب.
+            </p>
+          )}
+          {plan.interpretation === "unknown" && (
+            <p className="helper">لا تكفي الأدلة الحالية للجزم بسبب الخطأ.</p>
+          )}
+        </div>
+      )}
       {independent ? (
         <p>لا تُكشف التلميحات أو الحل أثناء هذه المحاولة المستقلة.</p>
       ) : (
@@ -152,6 +198,14 @@ export function HintPanel({
         <article role="status">
           <h3>{titles[event.hintLevel]}</h3>
           <p>{event.textAr}</p>
+          <p className="helper">
+            المصدر:{" "}
+            {event.generationSource === "llm_validated"
+              ? "صياغة آلية خضعت للفحص"
+              : event.generationSource === "reviewed_template"
+                ? "قالب تعليمي مراجع"
+                : "محتوى يدوي"}
+          </p>
           {!!event.solutionStepsAr.length && (
             <ol>
               {event.solutionStepsAr.map((step, i) => (

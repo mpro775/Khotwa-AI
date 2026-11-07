@@ -1,0 +1,19 @@
+# Optional local mail capture, never sends internet email. Not started by tests.
+services:
+  api:
+    environment:
+      ACCOUNT_MAIL_MODE: smtp
+      SMTP_HOST: mailpit
+      SMTP_PORT: "1025"
+      SMTP_FROM: noreply@khotwa.test
+      SMTP_IMPLICIT_TLS: "false"
+      SMTP_ALLOW_LOCAL_PLAINTEXT: "true"
+  mailpit:
+    image: axllent/mailpit:v1.27.8
+    ports: ["127.0.0.1:8025:8025"]
+    networks: [backend]
+    read_only: true
+    tmpfs: [/data, /tmp]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 64m
+    pids_limit: 32

@@ -55,7 +55,8 @@
     "test:progress": "node --test apps/api/tests/progress.test.mjs",
     "verify:ph09": "node tools/verify-ph09.mjs",
     "verify:ph09:container": "node tools/verify-ph09-container.mjs",
-    "dev:ph09": "node tools/serve-ph09.mjs"
+    "dev:ph09": "node tools/serve-ph09.mjs",
+    "test:roadmap": "npm run build --workspace @khotwa/api && node --test apps/api/tests/accounts-operations.test.mjs apps/api/tests/content-programming-review.test.mjs apps/api/tests/roadmap-contracts.test.mjs apps/api/tests/roadmap-tutoring-physics.test.mjs apps/api/tests/studio-pairings.test.mjs apps/web/tests/editor-model.test.mjs apps/web/tests/product-experience.test.mjs"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

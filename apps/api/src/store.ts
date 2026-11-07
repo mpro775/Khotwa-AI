@@ -25,6 +25,8 @@ type GuestRow = {
 export interface GuestAuth {
   row: GuestRow;
   token: string;
+  accountSessionId?: string;
+  accountUserId?: string;
 }
 type LearningRow = {
   id: string;
@@ -180,8 +182,72 @@ export class Store implements OnModuleDestroy {
   }
   async authenticate(
     request: RequestContext,
-    options: { optional?: boolean; current?: boolean; logout?: boolean } = {},
+    options: {
+      optional?: boolean;
+      current?: boolean;
+      logout?: boolean;
+      guestOnly?: boolean;
+    } = {},
   ): Promise<GuestAuth | null> {
+    const accountToken =
+      !options.guestOnly && process.env.ACCOUNTS_ENABLED === "true"
+        ? cookieValue(request, "kh_account")
+        : null;
+    if (accountToken) {
+      if (!/^[A-Za-z0-9_-]{43}$/.test(accountToken)) {
+        if (options.optional) return null;
+        throw new ApiFault(401, "unauthenticated", "جلسة الحساب غير صالحة.");
+      }
+      const [account] = await this.db.$queryRaw<
+        (GuestRow & {
+          account_session_id: string;
+          account_user_id: string;
+          email_normalized: string;
+        })[]
+      >`
+        SELECT g.*,s.id AS account_session_id,u.id AS account_user_id,u.email_normalized
+        FROM auth_sessions s JOIN users u ON u.id=s.user_id JOIN guest_sessions g ON g.id=u.learning_guest_id
+        WHERE s.token_digest=${bytes(this.security.digest("account:" + accountToken))} AND s.revoked_at IS NULL AND s.expires_at>now() AND u.status='active' AND g.status='active'`;
+      if (!account) {
+        if (options.optional) return null;
+        throw new ApiFault(
+          401,
+          "session_expired",
+          "انتهت جلسة الحساب. سجل الدخول مجددًا.",
+        );
+      }
+      if (
+        process.env.BETA_ENABLED === "true" &&
+        (process.env.BETA_ACCESS_PAUSED === "true" ||
+          !(process.env.BETA_EMAIL_ALLOWLIST ?? "")
+            .split(",")
+            .map((v) => v.trim().toLowerCase())
+            .includes(account.email_normalized))
+      )
+        throw new ApiFault(
+          403,
+          "forbidden",
+          "هذه النسخة متاحة للحسابات المدعوة فقط.",
+        );
+      // Canonical learning ownership is bridged only by a verified account
+      // session. Its opaque guest digest is never issued to a browser.
+      await this.db
+        .$executeRaw`UPDATE guest_sessions SET last_seen_at=now() WHERE id=${account.id}::uuid AND status='active'`;
+      return {
+        row: { ...account, last_seen_at: new Date() },
+        token: accountToken,
+        accountSessionId: account.account_session_id,
+        accountUserId: account.account_user_id,
+      };
+    }
+    if (!options.guestOnly && process.env.BETA_ENABLED === "true") {
+      if (options.optional) return null;
+      throw new ApiFault(
+        401,
+        "unauthenticated",
+        "سجل الدخول بالحساب المدعو للنسخة التجريبية.",
+      );
+    }
     const token = cookieValue(request, "kh_guest");
     if (!token || !/^[A-Za-z0-9_-]{43}$/.test(token)) {
       if (options.optional) return null;
@@ -233,6 +299,18 @@ export class Store implements OnModuleDestroy {
     });
   }
   private async lockGuest(tx: Tx, auth: GuestAuth): Promise<GuestRow> {
+    if (auth.accountSessionId && auth.accountUserId) {
+      const [row] = await tx.$queryRaw<
+        GuestRow[]
+      >`SELECT g.* FROM guest_sessions g
+        JOIN users u ON u.learning_guest_id=g.id JOIN auth_sessions s ON s.user_id=u.id
+        WHERE g.id=${auth.row.id}::uuid AND u.id=${auth.accountUserId}::uuid AND u.status='active'
+        AND s.id=${auth.accountSessionId}::uuid AND s.token_digest=${bytes(this.security.digest("account:" + auth.token))}
+        AND s.revoked_at IS NULL AND s.expires_at>now() FOR UPDATE OF g FOR SHARE OF u,s`;
+      if (!row)
+        throw new ApiFault(401, "session_expired", "انتهت جلسة الحساب.");
+      return { ...row, last_seen_at: new Date() };
+    }
     const [row] = await tx.$queryRaw<
       GuestRow[]
     >`SELECT id,status,expires_at,created_at,last_seen_at FROM guest_sessions WHERE id=${auth.row.id}::uuid AND token_digest=${bytes(this.security.digest(auth.token))} FOR UPDATE`;
@@ -298,6 +376,12 @@ export class Store implements OnModuleDestroy {
     );
   }
   async revoke(auth: GuestAuth, key: string): Promise<MutationResult<null>> {
+    if (auth.accountSessionId)
+      throw new ApiFault(
+        409,
+        "invalid_state",
+        "استخدم تسجيل خروج الحساب؛ إنهاء الضيف لا يلغي بيانات حسابك.",
+      );
     return this.mutate(
       auth,
       "guest.revoke",
@@ -329,7 +413,7 @@ export class Store implements OnModuleDestroy {
     return this.mutate(auth, "learning.create", key, body, async (tx) => {
       const [release] = await tx.$queryRaw<
         { id: string }[]
-      >`SELECT id FROM content_releases WHERE status='published' ORDER BY published_at DESC,id LIMIT 1 FOR SHARE`;
+      >`SELECT id FROM content_releases WHERE status='published' AND release_code NOT LIKE 'studio-%' ORDER BY published_at DESC,id LIMIT 1 FOR SHARE`;
       if (!release)
         throw new ApiFault(
           409,
@@ -350,12 +434,17 @@ export class Store implements OnModuleDestroy {
     return learningDto(await this.learning(this.db, auth, id));
   }
   private async problemRows(tx: Tx, where: Prisma.Sql): Promise<ProblemRow[]> {
+    const studioGate =
+      process.env.ACCOUNTS_ENABLED === "true"
+        ? Prisma.sql`AND (c.release_code NOT LIKE 'studio-%' OR EXISTS(SELECT 1 FROM studio_algebra_links sl JOIN studio_revisions sr ON sr.id=sl.studio_revision_id WHERE sl.problem_revision_id=r.id AND sr.status='published'))`
+        : Prisma.empty;
     return tx.$queryRaw<
       ProblemRow[]
     >(Prisma.sql`SELECT r.id,r.problem_id,r.version_number,r.statement_ar,r.original_equation_raw,r.item_kind,ps.skill_id,r.difficulty_band,r.notation_profile,r.release_id
       FROM problem_revisions r JOIN problems p ON p.id=r.problem_id JOIN content_releases c ON c.id=r.release_id
       JOIN problem_skills ps ON ps.problem_revision_id=r.id AND ps.coverage_kind='primary' JOIN skills s ON s.id=ps.skill_id
-      WHERE c.status='published' AND r.review_status='published' AND r.item_kind='main' AND p.archived_at IS NULL AND s.status='active' AND ${where}`);
+      WHERE c.status='published' AND r.review_status='published' AND r.item_kind='main' AND p.archived_at IS NULL AND s.status='active'
+      ${studioGate} AND ${where}`);
   }
   private problemDto(p: ProblemRow): Schema<"ProblemDetail"> {
     return {
@@ -370,6 +459,20 @@ export class Store implements OnModuleDestroy {
       difficultyBand: p.difficulty_band,
       contentReleaseId: p.release_id,
     };
+  }
+  async getAttemptProblem(
+    auth: GuestAuth,
+    id: string,
+  ): Promise<Schema<"ProblemDetail">> {
+    return this.db.$transaction(async (tx) => {
+      await this.authorizeInTransaction(tx, auth);
+      const attempt = await this.attempt(tx, auth, id);
+      const [problem] = await tx.$queryRaw<
+        ProblemRow[]
+      >`SELECT r.*,ps.skill_id FROM problem_revisions r JOIN problem_skills ps ON ps.problem_revision_id=r.id AND ps.coverage_kind='primary' WHERE r.id=${attempt.problem_revision_id}::uuid`;
+      if (!problem) throw missing();
+      return this.problemDto(problem);
+    });
   }
   async getProblem(
     id: string,
@@ -447,7 +550,7 @@ export class Store implements OnModuleDestroy {
       (SELECT count(*) FROM problem_skills ps JOIN problem_revisions p ON p.id=ps.problem_revision_id JOIN problems base ON base.id=p.problem_id
        WHERE ps.skill_id=s.id AND ps.coverage_kind='primary' AND p.review_status='published' AND p.item_kind='main' AND base.archived_at IS NULL) AS count
       FROM skills s JOIN content_releases c ON c.id=s.release_id WHERE c.status='published' AND s.status='active'
-      AND (${id}::uuid IS NULL OR s.id=${id}::uuid) AND (${id}::uuid IS NOT NULL OR c.id=(SELECT id FROM content_releases WHERE status='published' ORDER BY published_at DESC,id LIMIT 1)) ORDER BY s.sort_order,s.id`;
+      AND (${id}::uuid IS NULL OR s.id=${id}::uuid) AND (${id}::uuid IS NOT NULL OR c.id=(SELECT id FROM content_releases WHERE status='published' AND release_code NOT LIKE 'studio-%' ORDER BY published_at DESC,id LIMIT 1)) ORDER BY s.sort_order,s.id`;
     return rows.map((s) => ({
       id: s.id,
       code: s.skill_code,

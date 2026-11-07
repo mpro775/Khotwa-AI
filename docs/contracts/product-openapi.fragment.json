@@ -1,0 +1,3020 @@
+{
+  "paths": {
+    "/api/v1/studio/items": {
+      "get": {
+        "operationId": "listStudioItems",
+        "tags": [
+          "تطوير ما بعد الهاكثون"
+        ],
+        "security": [
+          {
+            "GuestCookie": []
+          },
+          {
+            "AccountCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "subject",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 40
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 40
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 0,
+              "maxLength": 120
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudioItemsEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          },
+          "503": {
+            "$ref": "#/components/responses/E503"
+          }
+        },
+        "x-required-roles": [
+          "teacher",
+          "content_manager",
+          "admin"
+        ]
+      },
+      "post": {
+        "operationId": "createStudioDraft",
+        "tags": [
+          "تطوير ما بعد الهاكثون"
+        ],
+        "security": [
+          {
+            "GuestCookie": []
+          },
+          {
+            "AccountCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Csrf"
+          },
+          {
+            "$ref": "#/components/parameters/Idempotency"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudioItemEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          },
+          "503": {
+            "$ref": "#/components/responses/E503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudioContentPayload"
+              }
+            }
+          }
+        },
+        "x-required-roles": [
+          "teacher",
+          "content_manager",
+          "admin"
+        ]
+      }
+    },
+    "/api/v1/studio/items/{id}": {
+      "get": {
+        "operationId": "getStudioRevision",
+        "tags": [
+          "تطوير ما بعد الهاكثون"
+        ],
+        "security": [
+          {
+            "GuestCookie": []
+          },
+          {
+            "AccountCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudioItemEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          },
+          "503": {
+            "$ref": "#/components/responses/E503"
+          }
+        },
+        "x-required-roles": [
+          "teacher",
+          "content_manager",
+          "admin"
+        ]
+      },
+      "put": {
+        "operationId": "editStudioDraft",
+        "tags": [
+          "تطوير ما بعد الهاكثون"
+        ],
+        "security": [
+          {
+            "GuestCookie": []
+          },
+          {
+            "AccountCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          },
+          {
+            "$ref": "#/components/parameters/Idempotency"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudioItemEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          },
+          "503": {
+            "$ref": "#/components/responses/E503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudioEditInput"
+              }
+            }
+          }
+        },
+        "x-required-roles": [
+          "teacher",
+          "content_manager",
+          "admin"
+        ]
+      },
+      "delete": {
+        "operationId": "deleteStudioDraft",
+        "tags": [
+          "تطوير ما بعد الهاكثون"
+        ],
+        "security": [
+          {
+            "GuestCookie": []
+          },
+          {
+            "AccountCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          },
+          {
+            "$ref": "#/components/parameters/Idempotency"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudioItemEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          },
+          "503": {
+            "$ref": "#/components/responses/E503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "expectedRevision": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 2147483647
+                  }
+                },
+                "required": [
+                  "expectedRevision"
+                ]
+              }
+            }
+          }
+        },
+        "x-required-roles": [
+          "teacher",
+          "content_manager",
+          "admin"
+        ]
+      }
+    },
+    "/api/v1/studio/items/{id}/validate": {
+      "post": {
+        "operationId": "validateStudioRevision",
+        "tags": [
+          "تطوير ما بعد الهاكثون"
+        ],
+        "security": [
+          {
+            "GuestCookie": []
+          },
+          {
+            "AccountCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          },
+          {
+            "$ref": "#/components/parameters/Idempotency"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudioItemEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          },
+          "503": {
+            "$ref": "#/components/responses/E503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "expectedRevision": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 2147483647
+                  }
+                },
+                "required": [
+                  "expectedRevision"
+                ]
+              }
+            }
+          }
+        },
+        "x-required-roles": [
+          "teacher",
+          "content_manager",
+          "admin"
+        ]
+      }
+    },
+    "/api/v1/studio/items/{id}/transition": {
+      "post": {
+        "operationId": "transitionStudioRevision",
+        "tags": [
+          "تطوير ما بعد الهاكثون"
+        ],
+        "security": [
+          {
+            "GuestCookie": []
+          },
+          {
+            "AccountCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          },
+          {
+            "$ref": "#/components/parameters/Idempotency"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudioItemEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          },
+          "503": {
+            "$ref": "#/components/responses/E503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudioTransitionInput"
+              }
+            }
+          }
+        },
+        "x-required-roles": [
+          "teacher",
+          "content_manager",
+          "admin"
+        ],
+        "description": "submit/revise للمحرر؛ approve/publish/archive/rollback للمشرف. النسخ المنشورة ثابتة، ويستلزم النشر تحقق المحرك ومراجعة المستخدم المخول."
+      }
+    },
+    "/api/v1/studio/import/preview": {
+      "post": {
+        "operationId": "previewStudioImport",
+        "tags": [
+          "تطوير ما بعد الهاكثون"
+        ],
+        "security": [
+          {
+            "GuestCookie": []
+          },
+          {
+            "AccountCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Csrf"
+          },
+          {
+            "$ref": "#/components/parameters/Idempotency"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudioPreviewEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          },
+          "503": {
+            "$ref": "#/components/responses/E503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudioImportInput"
+              }
+            }
+          }
+        },
+        "x-required-roles": [
+          "teacher",
+          "content_manager",
+          "admin"
+        ]
+      }
+    },
+    "/api/v1/studio/import": {
+      "post": {
+        "operationId": "importStudioDrafts",
+        "tags": [
+          "تطوير ما بعد الهاكثون"
+        ],
+        "security": [
+          {
+            "GuestCookie": []
+          },
+          {
+            "AccountCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Csrf"
+          },
+          {
+            "$ref": "#/components/parameters/Idempotency"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudioItemsEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          },
+          "503": {
+            "$ref": "#/components/responses/E503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudioImportInput"
+              }
+            }
+          }
+        },
+        "x-required-roles": [
+          "teacher",
+          "content_manager",
+          "admin"
+        ]
+      }
+    },
+    "/api/v1/studio/export": {
+      "get": {
+        "operationId": "exportStudioContent",
+        "tags": [
+          "تطوير ما بعد الهاكثون"
+        ],
+        "security": [
+          {
+            "GuestCookie": []
+          },
+          {
+            "AccountCookie": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudioExportEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          },
+          "503": {
+            "$ref": "#/components/responses/E503"
+          }
+        },
+        "x-required-roles": [
+          "teacher",
+          "content_manager",
+          "admin"
+        ]
+      }
+    },
+    "/api/v1/catalog": {
+      "get": {
+        "operationId": "getProductCatalog",
+        "tags": [
+          "تطوير ما بعد الهاكثون"
+        ],
+        "security": [
+          {
+            "GuestCookie": []
+          },
+          {
+            "AccountCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "subject",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "algebra",
+                "physics",
+                "programming"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductCatalogEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          },
+          "503": {
+            "$ref": "#/components/responses/E503"
+          }
+        }
+      }
+    },
+    "/api/v1/catalog/problems/{id}": {
+      "get": {
+        "operationId": "getPublishedProductProblem",
+        "tags": [
+          "تطوير ما بعد الهاكثون"
+        ],
+        "security": [
+          {
+            "GuestCookie": []
+          },
+          {
+            "AccountCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductPublicItemEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          },
+          "503": {
+            "$ref": "#/components/responses/E503"
+          }
+        }
+      }
+    },
+    "/api/v1/catalog/problems/{id}/start": {
+      "post": {
+        "operationId": "startPublishedStudioAlgebra",
+        "tags": [
+          "تطوير ما بعد الهاكثون"
+        ],
+        "security": [
+          {
+            "GuestCookie": []
+          },
+          {
+            "AccountCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          },
+          {
+            "$ref": "#/components/parameters/Idempotency"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductStartEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          },
+          "503": {
+            "$ref": "#/components/responses/E503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {},
+                "required": []
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/programming/problems": {
+      "get": {
+        "operationId": "listProgrammingProblems",
+        "tags": [
+          "تطوير ما بعد الهاكثون"
+        ],
+        "security": [
+          {
+            "GuestCookie": []
+          },
+          {
+            "AccountCookie": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductPublicItemListEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          },
+          "503": {
+            "$ref": "#/components/responses/E503"
+          }
+        }
+      }
+    },
+    "/api/v1/programming/problems/{id}": {
+      "get": {
+        "operationId": "getProgrammingProblem",
+        "tags": [
+          "تطوير ما بعد الهاكثون"
+        ],
+        "security": [
+          {
+            "GuestCookie": []
+          },
+          {
+            "AccountCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductPublicItemEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          },
+          "503": {
+            "$ref": "#/components/responses/E503"
+          }
+        }
+      }
+    },
+    "/api/v1/programming/attempts": {
+      "get": {
+        "operationId": "listProgrammingAttempts",
+        "tags": [
+          "تطوير ما بعد الهاكثون"
+        ],
+        "security": [
+          {
+            "GuestCookie": []
+          },
+          {
+            "AccountCookie": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProgrammingHistoryEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          },
+          "503": {
+            "$ref": "#/components/responses/E503"
+          }
+        }
+      },
+      "post": {
+        "operationId": "submitProgrammingCode",
+        "tags": [
+          "تطوير ما بعد الهاكثون"
+        ],
+        "security": [
+          {
+            "GuestCookie": []
+          },
+          {
+            "AccountCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Csrf"
+          },
+          {
+            "$ref": "#/components/parameters/Idempotency"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProgrammingResultEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          },
+          "503": {
+            "$ref": "#/components/responses/E503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProgrammingSubmitInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/programming/attempts/{id}": {
+      "get": {
+        "operationId": "getProgrammingAttempt",
+        "tags": [
+          "تطوير ما بعد الهاكثون"
+        ],
+        "security": [
+          {
+            "GuestCookie": []
+          },
+          {
+            "AccountCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProgrammingAttemptEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          },
+          "503": {
+            "$ref": "#/components/responses/E503"
+          }
+        }
+      }
+    },
+    "/api/v1/programming/attempts/{id}/hints": {
+      "post": {
+        "operationId": "getProgrammingHint",
+        "tags": [
+          "تطوير ما بعد الهاكثون"
+        ],
+        "security": [
+          {
+            "GuestCookie": []
+          },
+          {
+            "AccountCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/Csrf"
+          },
+          {
+            "$ref": "#/components/parameters/Idempotency"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProgrammingHintEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          },
+          "503": {
+            "$ref": "#/components/responses/E503"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProgrammingHintInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/attempts/{id}/tutoring-plan": {
+      "get": {
+        "operationId": "getAdaptiveTutoringPlan",
+        "tags": [
+          "تطوير ما بعد الهاكثون"
+        ],
+        "security": [
+          {
+            "GuestCookie": []
+          },
+          {
+            "AccountCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TutoringPlanEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          },
+          "503": {
+            "$ref": "#/components/responses/E503"
+          }
+        }
+      }
+    },
+    "/api/v1/attempts/{id}/problem": {
+      "get": {
+        "operationId": "getAttemptPinnedProblem",
+        "tags": [
+          "تطوير ما بعد الهاكثون"
+        ],
+        "security": [
+          {
+            "GuestCookie": []
+          },
+          {
+            "AccountCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemEnvelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/E400"
+          },
+          "401": {
+            "$ref": "#/components/responses/E401"
+          },
+          "403": {
+            "$ref": "#/components/responses/E403"
+          },
+          "404": {
+            "$ref": "#/components/responses/E404"
+          },
+          "409": {
+            "$ref": "#/components/responses/E409"
+          },
+          "422": {
+            "$ref": "#/components/responses/E422"
+          },
+          "429": {
+            "$ref": "#/components/responses/E429"
+          },
+          "500": {
+            "$ref": "#/components/responses/E500"
+          },
+          "503": {
+            "$ref": "#/components/responses/E503"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ProductContentHint": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "level": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 4
+          },
+          "textAr": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1200
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "manual",
+              "ai_suggested"
+            ]
+          },
+          "reviewed": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "level",
+          "textAr",
+          "source",
+          "reviewed"
+        ]
+      },
+      "StudioAlgebraContent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "equationRaw": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "answerRaw": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "validStepRaw": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "invalidStepRaw": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          }
+        },
+        "required": [
+          "equationRaw",
+          "answerRaw",
+          "validStepRaw",
+          "invalidStepRaw"
+        ]
+      },
+      "StudioPhysicsContent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "topic": {
+            "const": "kinematics_1d"
+          },
+          "formula": {
+            "type": "string",
+            "enum": [
+              "constant_speed_distance",
+              "constant_velocity_displacement",
+              "average_speed",
+              "average_velocity",
+              "final_velocity",
+              "displacement",
+              "acceleration",
+              "elapsed_time"
+            ]
+          },
+          "quantity": {
+            "type": "string",
+            "enum": [
+              "distance",
+              "displacement",
+              "speed",
+              "velocity",
+              "acceleration",
+              "time"
+            ]
+          },
+          "expectedDimension": {
+            "type": "string",
+            "enum": [
+              "length",
+              "time",
+              "speed",
+              "acceleration"
+            ]
+          },
+          "expectedValueSI": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 48
+          },
+          "expectedUnit": {
+            "type": "string",
+            "enum": [
+              "m",
+              "s",
+              "m/s",
+              "m/s²",
+              "km/h"
+            ]
+          },
+          "tolerance": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 48
+          },
+          "givens": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 48
+            },
+            "maxProperties": 6
+          },
+          "constraints": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "nonNegativeAnswer": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "nonNegativeAnswer"
+            ]
+          }
+        },
+        "required": [
+          "topic",
+          "formula",
+          "quantity",
+          "expectedDimension",
+          "expectedValueSI",
+          "expectedUnit",
+          "tolerance",
+          "givens"
+        ]
+      },
+      "ProgrammingTestCase": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "input": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 4096
+          },
+          "expectedOutput": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 4096
+          },
+          "hidden": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "input",
+          "expectedOutput",
+          "hidden"
+        ]
+      },
+      "StudioProgrammingContent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "starterCode": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 12000
+          },
+          "referenceCode": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 12000
+          },
+          "tests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProgrammingTestCase"
+            },
+            "maxItems": 12,
+            "minItems": 1
+          },
+          "functionName": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_]{0,63}$"
+          }
+        },
+        "required": [
+          "starterCode",
+          "referenceCode",
+          "tests"
+        ]
+      },
+      "StudioContentValidation": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "valid": {
+            "type": "boolean"
+          },
+          "issues": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "maxItems": 50
+          },
+          "checkedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "engine": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          }
+        },
+        "required": [
+          "valid",
+          "issues",
+          "checkedAt",
+          "engine"
+        ]
+      },
+      "ProductPublicAlgebra": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "equationRaw": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          }
+        },
+        "required": [
+          "equationRaw"
+        ]
+      },
+      "ProductPublicPhysics": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "givens": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 48
+            }
+          },
+          "quantity": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "units": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 16
+            },
+            "maxItems": 5
+          }
+        },
+        "required": [
+          "givens",
+          "quantity",
+          "units"
+        ]
+      },
+      "ProductPublicProgramming": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "starterCode": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 12000
+          },
+          "publicTests": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "input": {
+                  "type": "string",
+                  "minLength": 0,
+                  "maxLength": 4096
+                },
+                "expectedOutput": {
+                  "type": "string",
+                  "minLength": 0,
+                  "maxLength": 4096
+                }
+              },
+              "required": [
+                "input",
+                "expectedOutput"
+              ]
+            },
+            "maxItems": 12
+          },
+          "functionName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          }
+        },
+        "required": [
+          "starterCode",
+          "publicTests"
+        ]
+      },
+      "ProgrammingSubmitInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "problemRevisionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "sourceRaw": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 12000
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "run",
+              "submit"
+            ]
+          },
+          "attemptId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expectedRevision": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          }
+        },
+        "required": [
+          "problemRevisionId",
+          "sourceRaw",
+          "mode"
+        ]
+      },
+      "ProgrammingResult": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "attemptId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "run",
+              "submit"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "queued",
+              "running",
+              "succeeded",
+              "compile_error",
+              "runtime_error",
+              "timeout",
+              "resource_limit",
+              "service_error"
+            ]
+          },
+          "stdout": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 65536
+          },
+          "stderr": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 8192
+          },
+          "passed": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 12
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 12
+          },
+          "allPassed": {
+            "type": "boolean"
+          },
+          "independent": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "attemptId",
+          "revision",
+          "mode",
+          "status",
+          "stdout",
+          "stderr",
+          "passed",
+          "total",
+          "allPassed",
+          "independent",
+          "createdAt"
+        ]
+      },
+      "ProgrammingHintInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "level": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 4
+          },
+          "confirmFullSolution": {
+            "type": "boolean"
+          },
+          "expectedRevision": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          }
+        },
+        "required": [
+          "level",
+          "expectedRevision"
+        ]
+      },
+      "ProgrammingHint": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "attemptId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "revision": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "level": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 4
+          },
+          "textAr": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1200
+          },
+          "source": {
+            "const": "reviewed_template"
+          },
+          "reasonAr": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "attemptId",
+          "revision",
+          "level",
+          "textAr",
+          "source",
+          "reasonAr"
+        ]
+      },
+      "TutoringPlan": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "judgment": {
+            "type": "string",
+            "enum": [
+              "error_verified",
+              "no_error",
+              "unknown"
+            ]
+          },
+          "interpretation": {
+            "type": "string",
+            "enum": [
+              "misconception_candidate",
+              "unknown"
+            ]
+          },
+          "recommendation": {
+            "type": "string",
+            "enum": [
+              "try_step",
+              "hint_h1",
+              "hint_h2",
+              "hint_h3",
+              "remediation"
+            ]
+          },
+          "reasonAr": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "recentVerifiedErrors": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "previousHintLevel": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 4
+          }
+        },
+        "required": [
+          "judgment",
+          "interpretation",
+          "recommendation",
+          "reasonAr",
+          "recentVerifiedErrors",
+          "previousHintLevel"
+        ]
+      },
+      "StudioContentPayload": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "titleAr": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          },
+          "statementAr": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 3000
+          },
+          "subject": {
+            "type": "string",
+            "enum": [
+              "algebra",
+              "physics",
+              "programming"
+            ]
+          },
+          "unitCode": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
+            "maxLength": 80
+          },
+          "unitTitleAr": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          },
+          "lessonCode": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
+            "maxLength": 80
+          },
+          "lessonTitleAr": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          },
+          "skillCodes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
+              "maxLength": 80
+            },
+            "maxItems": 8,
+            "minItems": 1
+          },
+          "difficulty": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 3
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "main",
+              "remediation",
+              "transfer"
+            ]
+          },
+          "familyCode": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
+            "maxLength": 80
+          },
+          "hints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductContentHint"
+            },
+            "maxItems": 4
+          },
+          "algebra": {
+            "$ref": "#/components/schemas/StudioAlgebraContent"
+          },
+          "physics": {
+            "$ref": "#/components/schemas/StudioPhysicsContent"
+          },
+          "programming": {
+            "$ref": "#/components/schemas/StudioProgrammingContent"
+          }
+        },
+        "required": [
+          "titleAr",
+          "statementAr",
+          "subject",
+          "unitCode",
+          "unitTitleAr",
+          "lessonCode",
+          "lessonTitleAr",
+          "skillCodes",
+          "difficulty",
+          "kind",
+          "familyCode",
+          "hints"
+        ],
+        "oneOf": [
+          {
+            "properties": {
+              "subject": {
+                "const": "algebra"
+              }
+            },
+            "required": [
+              "algebra"
+            ],
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "physics"
+                  ]
+                },
+                {
+                  "required": [
+                    "programming"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "properties": {
+              "subject": {
+                "const": "physics"
+              }
+            },
+            "required": [
+              "physics"
+            ],
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "algebra"
+                  ]
+                },
+                {
+                  "required": [
+                    "programming"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "properties": {
+              "subject": {
+                "const": "programming"
+              }
+            },
+            "required": [
+              "programming"
+            ],
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "algebra"
+                  ]
+                },
+                {
+                  "required": [
+                    "physics"
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "StudioItem": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "itemId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "editRevision": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "in_review",
+              "approved",
+              "published",
+              "archived"
+            ]
+          },
+          "payload": {
+            "$ref": "#/components/schemas/StudioContentPayload"
+          },
+          "contentHash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "validation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/StudioContentValidation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "reviewedAt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "publishedAt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "itemId",
+          "version",
+          "editRevision",
+          "status",
+          "payload",
+          "contentHash",
+          "validation",
+          "createdAt",
+          "reviewedAt",
+          "publishedAt"
+        ]
+      },
+      "ProductPublicItem": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "itemId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          },
+          "subject": {
+            "type": "string",
+            "enum": [
+              "algebra",
+              "physics",
+              "programming"
+            ]
+          },
+          "titleAr": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          },
+          "statementAr": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 3000
+          },
+          "unitCode": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
+            "maxLength": 80
+          },
+          "lessonCode": {
+            "type": "string",
+            "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
+            "maxLength": 80
+          },
+          "skillCodes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
+              "maxLength": 80
+            },
+            "maxItems": 8
+          },
+          "difficulty": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 3
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "main",
+              "remediation",
+              "transfer"
+            ]
+          },
+          "algebra": {
+            "$ref": "#/components/schemas/ProductPublicAlgebra"
+          },
+          "physics": {
+            "$ref": "#/components/schemas/ProductPublicPhysics"
+          },
+          "programming": {
+            "$ref": "#/components/schemas/ProductPublicProgramming"
+          }
+        },
+        "required": [
+          "id",
+          "itemId",
+          "version",
+          "subject",
+          "titleAr",
+          "statementAr",
+          "unitCode",
+          "lessonCode",
+          "skillCodes",
+          "difficulty",
+          "kind"
+        ]
+      },
+      "ProductCatalog": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "subjects": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "enum": [
+                    "algebra",
+                    "physics",
+                    "programming"
+                  ]
+                },
+                "titleAr": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                },
+                "units": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "code": {
+                        "type": "string",
+                        "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
+                        "maxLength": 80
+                      },
+                      "titleAr": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 160
+                      },
+                      "lessons": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "code": {
+                              "type": "string",
+                              "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
+                              "maxLength": 80
+                            },
+                            "titleAr": {
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 160
+                            },
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/ProductPublicItem"
+                              },
+                              "maxItems": 500
+                            }
+                          },
+                          "required": [
+                            "code",
+                            "titleAr",
+                            "items"
+                          ]
+                        },
+                        "maxItems": 100
+                      }
+                    },
+                    "required": [
+                      "code",
+                      "titleAr",
+                      "lessons"
+                    ]
+                  },
+                  "maxItems": 100
+                }
+              },
+              "required": [
+                "code",
+                "titleAr",
+                "units"
+              ]
+            },
+            "maxItems": 3
+          }
+        },
+        "required": [
+          "subjects"
+        ]
+      },
+      "StudioImportInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StudioContentPayload"
+            },
+            "maxItems": 100
+          }
+        },
+        "required": [
+          "items"
+        ]
+      },
+      "StudioImportPreview": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "accepted": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "rejected": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "index": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 99
+                },
+                "valid": {
+                  "type": "boolean"
+                },
+                "issues": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 2000
+                  },
+                  "maxItems": 20
+                }
+              },
+              "required": [
+                "index",
+                "valid",
+                "issues"
+              ]
+            },
+            "maxItems": 100
+          }
+        },
+        "required": [
+          "accepted",
+          "rejected",
+          "results"
+        ]
+      },
+      "StudioEditInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "payload": {
+            "$ref": "#/components/schemas/StudioContentPayload"
+          }
+        },
+        "required": [
+          "expectedRevision",
+          "payload"
+        ]
+      },
+      "StudioTransitionInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "submit",
+              "approve",
+              "publish",
+              "archive",
+              "revise",
+              "rollback"
+            ]
+          }
+        },
+        "required": [
+          "expectedRevision",
+          "action"
+        ]
+      },
+      "StudioItemEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/StudioItem"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "StudioItemsEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/StudioItem"
+                },
+                "maxItems": 300
+              }
+            },
+            "required": [
+              "items"
+            ]
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "StudioPreviewEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/StudioImportPreview"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "StudioExportEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "format": {
+                "const": "khotwa-content-v1"
+              },
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/StudioContentPayload"
+                },
+                "maxItems": 1000
+              }
+            },
+            "required": [
+              "format",
+              "items"
+            ]
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "ProductCatalogEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ProductCatalog"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "ProductPublicItemEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ProductPublicItem"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "ProductPublicItemListEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProductPublicItem"
+                },
+                "maxItems": 200
+              }
+            },
+            "required": [
+              "items"
+            ]
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "ProductStartEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "attemptId": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "problemId": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "learningSessionId": {
+                "type": "string",
+                "format": "uuid"
+              }
+            },
+            "required": [
+              "attemptId",
+              "problemId",
+              "learningSessionId"
+            ]
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "ProgrammingResultEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ProgrammingResult"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "ProgrammingHistoryEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProgrammingResult"
+                },
+                "maxItems": 50
+              }
+            },
+            "required": [
+              "items"
+            ]
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "ProgrammingAttemptEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "problem": {
+                "$ref": "#/components/schemas/ProductPublicItem"
+              },
+              "result": {
+                "$ref": "#/components/schemas/ProgrammingResult"
+              },
+              "sourceRaw": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 12000
+              },
+              "assistanceLevel": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 4
+              }
+            },
+            "required": [
+              "problem",
+              "result",
+              "sourceRaw",
+              "assistanceLevel"
+            ]
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "ProgrammingHintEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ProgrammingHint"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      },
+      "TutoringPlanEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/TutoringPlan"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ]
+      }
+    }
+  }
+}

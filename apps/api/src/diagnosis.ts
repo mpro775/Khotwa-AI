@@ -105,14 +105,17 @@ export class DiagnosisService {
     pattern: ErrorCode,
     family: string | null,
   ): Promise<string | null> {
+    // Curriculum 05/06 maps integer arithmetic to SK02/03 only. A numeric
+    // division observation is not permission to relabel it SK06; until content
+    // owners resolve that family we retain an unresolved, unassigned cause.
+    if (pattern === "ERR-ALG-05" && family === "calculation_divide")
+      return null;
     const contextual =
       pattern === "ERR-ALG-04" && family === "inverse_add"
         ? "SK-ALG-05"
-        : pattern === "ERR-ALG-05" && family === "calculation_divide"
-          ? "SK-ALG-06"
-          : pattern === "ERR-ALG-05" && family === "calculation_signed"
-            ? "SK-ALG-02"
-            : null;
+        : pattern === "ERR-ALG-05" && family === "calculation_signed"
+          ? "SK-ALG-02"
+          : null;
     if (contextual) {
       const [row] = await tx.$queryRaw<
         { id: string }[]
@@ -175,15 +178,15 @@ export class DiagnosisService {
         >`SELECT id,template_version FROM diagnostic_templates WHERE release_id=${learning.release_id}::uuid AND family=${h.family} AND enabled AND is_synthetic ORDER BY template_version DESC,id LIMIT 1 FOR SHARE`
       : [];
     const id = randomUUID(),
-      hasProbe = !!template && h.primary !== null;
+      targetSkill = h.primary
+        ? await this.skill(tx, learning.release_id, h.primary, h.family)
+        : null,
+      hasProbe = !!template && h.primary !== null && targetSkill !== null;
     const candidate = output("DiagnosisCandidate", {
       diagnosisId: id,
       state: hasProbe ? h.state : "unresolved",
       errorCode: hasProbe ? h.primary : null,
-      skillId:
-        hasProbe && h.primary
-          ? await this.skill(tx, learning.release_id, h.primary, h.family)
-          : null,
+      skillId: hasProbe ? targetSkill : null,
       explanationAr:
         h.observation +
         " هذا تفسير محتمل في هذه المحاولة، وليس تشخيصًا دائمًا. السؤال الإضافي قد يدعمه أو يناقضه.",
@@ -210,6 +213,14 @@ export class DiagnosisService {
       ),
       templateVersion: template?.template_version ?? null,
       syntheticReviewOnly: true,
+      boundedPrecedingTransitions: verdicts
+        .slice(Math.max(0, index - 2), index + 1)
+        .map((v) => ({
+          from: v.from,
+          to: v.to,
+          mathStatus: v.mathStatus,
+          evidence: v.evidence,
+        })),
     };
     await tx.$executeRaw`INSERT INTO diagnoses(id,attempt_id,verification_result_id,attempt_revision,release_id,template_id,diagnosis_policy_version,candidate_json,basis_json) VALUES(${id}::uuid,${a.id}::uuid,${verdict.verificationResultId}::uuid,${a.revision},${learning.release_id}::uuid,${template?.id ?? null}::uuid,${DIAGNOSIS_POLICY},${JSON.stringify(candidate)}::jsonb,${JSON.stringify(basis)}::jsonb)`;
     return candidate;

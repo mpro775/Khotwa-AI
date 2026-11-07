@@ -4,6 +4,7 @@ import { ApiFault } from "./http";
 import { output, type Schema } from "./contracts";
 import type { Store, GuestAuth, AttemptRow } from "./store";
 import { projectDiagnosis } from "./diagnosis";
+import { DIAGNOSIS_POLICY } from "./diagnosis-rules";
 import { hasAssistance } from "./assistance";
 import {
   LEARNING_POLICY,
@@ -228,7 +229,7 @@ export class LearningService {
   ): Promise<Pair[]> {
     return tx.$queryRaw<
       Pair[]
-    >`SELECT p.id,p.remediation_revision_id,p.transfer_revision_id,p.skill_id FROM content_pairings p JOIN attempts a ON a.id=${e.root_attempt_id}::uuid JOIN problem_revisions rem ON rem.id=p.remediation_revision_id JOIN problem_revisions tr ON tr.id=p.transfer_revision_id JOIN content_releases c ON c.id=p.release_id JOIN problems rb ON rb.id=rem.problem_id JOIN problems tb ON tb.id=tr.problem_id JOIN skills s ON s.id=p.skill_id WHERE p.root_problem_revision_id=a.problem_revision_id AND p.skill_id=${e.skill_id}::uuid AND p.release_id=${e.release_id}::uuid AND p.enabled AND p.is_synthetic AND rem.review_status='published' AND tr.review_status='published' AND c.status='published' AND s.status='active' AND rb.archived_at IS NULL AND tb.archived_at IS NULL AND p.math_checks->>'status'='verified_valid' ORDER BY p.version,p.id FOR SHARE OF p,rem,tr,c,s`;
+    >`SELECT p.id,p.remediation_revision_id,p.transfer_revision_id,p.skill_id FROM content_pairings p JOIN attempts a ON a.id=${e.root_attempt_id}::uuid JOIN problem_revisions root ON root.id=a.problem_revision_id JOIN problem_revisions rem ON rem.id=p.remediation_revision_id JOIN problem_revisions tr ON tr.id=p.transfer_revision_id JOIN content_releases c ON c.id=p.release_id JOIN problems rb ON rb.id=rem.problem_id JOIN problems tb ON tb.id=tr.problem_id JOIN skills s ON s.id=p.skill_id WHERE p.root_problem_revision_id=a.problem_revision_id AND p.skill_id=${e.skill_id}::uuid AND p.release_id=${e.release_id}::uuid AND p.enabled AND p.is_synthetic AND rem.review_status='published' AND tr.review_status='published' AND rem.item_kind='remediation' AND tr.item_kind='transfer' AND rem.problem_id<>tr.problem_id AND rem.id<>tr.id AND regexp_replace(rem.original_equation_raw,'[[:space:]]','','g')<>regexp_replace(tr.original_equation_raw,'[[:space:]]','','g') AND abs(rem.difficulty_band-root.difficulty_band)<=1 AND abs(tr.difficulty_band-rem.difficulty_band)<=1 AND c.status='published' AND s.status='active' AND rb.archived_at IS NULL AND tb.archived_at IS NULL AND p.math_checks->>'status'='verified_valid' ORDER BY CASE WHEN a.highest_hint_level_seen>=2 THEN rem.difficulty_band ELSE abs(rem.difficulty_band-root.difficulty_band) END,p.version,p.id FOR SHARE OF p,rem,tr,c,s`;
   }
   private async fresh(tx: Tx, guestId: string, id: string) {
     const [p] = await tx.$queryRaw<
@@ -292,7 +293,7 @@ export class LearningService {
         const rootReport = await this.report(tx, a);
         const [openProbe] = await tx.$queryRaw<
           { id: string }[]
-        >`SELECT p.id FROM diagnostic_probes p JOIN current_diagnoses d ON d.id=p.diagnosis_id WHERE d.attempt_id=${a.id}::uuid AND NOT EXISTS(SELECT 1 FROM probe_responses r WHERE r.probe_id=p.id)`;
+        >`SELECT p.id FROM diagnostic_probes p JOIN current_diagnoses d ON d.id=p.diagnosis_id WHERE d.attempt_id=${a.id}::uuid AND d.diagnosis_policy_version=${DIAGNOSIS_POLICY} AND NOT EXISTS(SELECT 1 FROM probe_responses r WHERE r.probe_id=p.id)`;
         if (openProbe)
           throw blocked(
             "أجب عن السؤال التأكيدي المفتوح قبل بدء نشاط قد يلقّن إجابته.",

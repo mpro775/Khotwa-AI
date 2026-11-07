@@ -1,0 +1,135 @@
+# Prepared configuration only. Review, migrate a TEST database and validate TLS
+# before deployment. Usage: docker compose -f compose.yaml -f compose.beta.yaml ...
+name: khotwa-beta
+services:
+  api:
+    environment:
+      DATABASE_URL: postgresql://khotwa_beta_app:${BETA_DB_APP_PASSWORD:?Set beta app password}@database:5432/khotwa_beta
+      PUBLIC_APP_ORIGIN: https://${BETA_HOST:?Set reviewed Beta hostname}
+      ACCOUNTS_ENABLED: "true"
+      ACCOUNT_OTP_DIGEST_KEY: ${ACCOUNT_OTP_DIGEST_KEY:?Set independent secret}
+      ACCOUNT_OTP_TTL_SECONDS: ${ACCOUNT_OTP_TTL_SECONDS:-600}
+      ACCOUNT_SESSION_TTL_SECONDS: ${ACCOUNT_SESSION_TTL_SECONDS:-604800}
+      ACCOUNT_GLOBAL_OTP_PER_HOUR: ${ACCOUNT_GLOBAL_OTP_PER_HOUR:-200}
+      ACCOUNT_MAIL_MODE: smtp
+      SMTP_HOST: ${SMTP_HOST:?Set SMTP host}
+      SMTP_PORT: ${SMTP_PORT:-465}
+      SMTP_FROM: ${SMTP_FROM:?Set sender}
+      SMTP_USERNAME: ${SMTP_USERNAME:-}
+      SMTP_PASSWORD: ${SMTP_PASSWORD:-}
+      SMTP_IMPLICIT_TLS: "true"
+      ACCOUNT_ADMIN_ALLOWLIST: ${ACCOUNT_ADMIN_ALLOWLIST:-}
+      ACCOUNT_CONTENT_MANAGER_ALLOWLIST: ${ACCOUNT_CONTENT_MANAGER_ALLOWLIST:-}
+      ACCOUNT_INTERNAL_ALLOWLIST: ${ACCOUNT_INTERNAL_ALLOWLIST:-}
+      BETA_ENABLED: "true"
+      BETA_ACCESS_PAUSED: ${BETA_ACCESS_PAUSED:-true}
+      BETA_EMAIL_ALLOWLIST: ${BETA_EMAIL_ALLOWLIST:-}
+      BETA_AI_ENABLED: "false"
+      BETA_AI_DAILY_COST_MICROS: ${BETA_AI_DAILY_COST_MICROS:-0}
+      BETA_AI_MONTHLY_COST_MICROS: ${BETA_AI_MONTHLY_COST_MICROS:-0}
+      BETA_AI_USER_DAILY_CALLS: ${BETA_AI_USER_DAILY_CALLS:-10}
+      BETA_AI_USER_DAILY_TOKENS: ${BETA_AI_USER_DAILY_TOKENS:-10000}
+      BETA_AI_MAX_CALL_COST_MICROS: ${BETA_AI_MAX_CALL_COST_MICROS:-0}
+      AI_ENABLED: "false"
+      # Synthetic trial only. Paused access remains the default.
+      PH04_API_ENABLED: "true"
+      PH05_API_ENABLED: "true"
+      PH06_API_ENABLED: "true"
+      PH07_API_ENABLED: "true"
+      PH08_API_ENABLED: "true"
+      PH09_API_ENABLED: "true"
+      KHOTWA_SYNTHETIC_DATA: "true"
+      PH05_VERIFY_TIMEOUT_MS: ${PH05_VERIFY_TIMEOUT_MS:-20000}
+      PH07_REQUEST_TIMEOUT_MS: ${PH07_REQUEST_TIMEOUT_MS:-20000}
+      PH07_AI_TIMEOUT_MS: ${PH07_AI_TIMEOUT_MS:-500}
+      PH07_MAX_INPUT_BYTES: ${PH07_MAX_INPUT_BYTES:-4096}
+      PH07_MAX_OUTPUT_TOKENS: ${PH07_MAX_OUTPUT_TOKENS:-256}
+      PH07_GUEST_CALLS: ${PH07_GUEST_CALLS:-10}
+      PH07_GLOBAL_CALLS: ${PH07_GLOBAL_CALLS:-100}
+      PH07_GUEST_COST_UNITS: ${PH07_GUEST_COST_UNITS:-100}
+      PH07_GLOBAL_COST_UNITS: ${PH07_GLOBAL_COST_UNITS:-1000}
+      PH07_MAX_PARALLEL: ${PH07_MAX_PARALLEL:-2}
+      PH08_MAX_REMEDIATION_ASSIGNMENTS: ${PH08_MAX_REMEDIATION_ASSIGNMENTS:-2}
+      PH08_MAX_TRANSFER_ASSIGNMENTS: ${PH08_MAX_TRANSFER_ASSIGNMENTS:-2}
+      PHYSICS_TIMEOUT_MS: ${PHYSICS_TIMEOUT_MS:-3000}
+      PROGRAMMING_RUNNER_ENABLED: ${PROGRAMMING_RUNNER_ENABLED:-false}
+      RUNNER_ISOLATION_ATTESTED: ${RUNNER_ISOLATION_ATTESTED:-false}
+      JUDGE0_BASE_URL: ${JUDGE0_BASE_URL:-http://judge0:2358}
+      JUDGE0_AUTH_TOKEN: ${JUDGE0_AUTH_TOKEN:-}
+      JUDGE0_PYTHON_LANGUAGE_ID: ${JUDGE0_PYTHON_LANGUAGE_ID:-0}
+      RUNNER_TIMEOUT_MS: ${RUNNER_TIMEOUT_MS:-15000}
+      RUNNER_CPU_SECONDS: ${RUNNER_CPU_SECONDS:-2}
+      RUNNER_MEMORY_KIB: ${RUNNER_MEMORY_KIB:-131072}
+      RUNNER_OUTPUT_BYTES: ${RUNNER_OUTPUT_BYTES:-65536}
+      PROGRAMMING_RUNS_PER_MINUTE: ${PROGRAMMING_RUNS_PER_MINUTE:-10}
+      PROGRAMMING_RUNS_PER_DAY: ${PROGRAMMING_RUNS_PER_DAY:-100}
+  database:
+    environment:
+      POSTGRES_USER: khotwa_beta_owner
+      POSTGRES_DB: khotwa_beta
+      POSTGRES_PASSWORD: ${BETA_DB_OWNER_PASSWORD:?Set migration owner secret}
+      POSTGRES_APP_PASSWORD: ${BETA_DB_APP_PASSWORD:?Set restricted app secret}
+      POSTGRES_BACKUP_PASSWORD: ${BETA_DB_BACKUP_PASSWORD:?Set read-only backup secret}
+    volumes:
+      - beta-postgres-data:/var/lib/postgresql/data
+      - ./ops/beta-init-db.sh:/docker-entrypoint-initdb.d/20-beta-roles.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U khotwa_beta_owner -d khotwa_beta"]
+  tls:
+    image: caddy:2.10.2-alpine
+    environment:
+      BETA_HOST: ${BETA_HOST:?Set reviewed hostname}
+    ports: ["80:80", "443:443"]
+    volumes:
+      - ./ops/Caddyfile.beta:/etc/caddy/Caddyfile:ro
+      - beta-tls-data:/data
+      - beta-tls-config:/config
+    networks: [frontend]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 128m
+    pids_limit: 64
+    depends_on: [web]
+  backup:
+    profiles: [maintenance]
+    build:
+      context: .
+      dockerfile: ops/Dockerfile.beta-backup
+    environment:
+      BACKUP_DATABASE_URL: postgresql://khotwa_beta_backup:${BETA_DB_BACKUP_PASSWORD:?Set backup password}@database:5432/khotwa_beta
+      BACKUP_ENCRYPTION_KEY: ${BACKUP_ENCRYPTION_KEY:?Set base64 32 byte encryption key}
+      BACKUP_DIRECTORY: /backups
+      BACKUP_MAX_FILES: ${BACKUP_MAX_FILES:-7}
+    command: ["node", "/app/tools/beta-backup.mjs", "--interval-hours=24"]
+    volumes: ["beta-backups:/backups"]
+    networks: [backend]
+    read_only: true
+    tmpfs: [/tmp]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 128m
+    pids_limit: 32
+  retention:
+    profiles: [maintenance]
+    build:
+      context: .
+      target: node-build
+    environment:
+      RETENTION_DATABASE_URL: ${RETENTION_DATABASE_URL:?Set dedicated retention operator URL}
+    command:
+      [
+        "node",
+        "tools/purge-guests.mjs",
+        "--apply",
+        "--auth-cleanup",
+        "--interval-seconds=3600",
+      ]
+    networks: [backend]
+    read_only: true
+    tmpfs: [/tmp]
+    security_opt: ["no-new-privileges:true"]
+    mem_limit: 128m
+    pids_limit: 32
+volumes:
+  beta-postgres-data: {}
+  beta-tls-data: {}
+  beta-tls-config: {}
+  beta-backups: {}

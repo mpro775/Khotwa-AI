@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ApiClient, ClientFault } from "./api-client";
 import type { Schema } from "./api-client";
 import { MathInput } from "./MathInput";
@@ -24,7 +24,9 @@ interface PendingMutation {
   key: string;
   epoch: number;
 }
-export function StudentWorkspace() {
+export function StudentWorkspace({
+  resumeAttempt,
+}: { resumeAttempt?: { attemptId: string; problemId: string } | null } = {}) {
   const [probeOpen, setProbeOpen] = useState(false),
     [assistedSeen, setAssistedSeen] = useState(false);
   const [helpEpoch, setHelpEpoch] = useState(0);
@@ -125,7 +127,7 @@ export function StudentWorkspace() {
               "AttemptEnvelope",
             );
             const question = await api.request(
-              "/problems/" + ids.problemId,
+              "/attempts/" + ids.attemptId + "/problem",
               "ProblemEnvelope",
             );
             if (previous.problemRevisionId === question.revisionId) {
@@ -161,6 +163,62 @@ export function StudentWorkspace() {
       setBusy(false);
     }
   }
+  useEffect(() => {
+    if (!resumeAttempt) return;
+    let active = true;
+    setBusy(true);
+    setError("");
+    void (async () => {
+      try {
+        await api.start();
+        const previous = await api.request(
+          "/attempts/" + resumeAttempt.attemptId,
+          "AttemptEnvelope",
+        );
+        const question = await api.request(
+          "/attempts/" + resumeAttempt.attemptId + "/problem",
+          "ProblemEnvelope",
+        );
+        if (previous.problemRevisionId !== question.revisionId)
+          throw new ClientFault(
+            409,
+            "revision_conflict",
+            "ترتبط المحاولة بإصدار سابق. افتح الإصدار المحفوظ للمحاولة قبل المتابعة.",
+          );
+        const session = await api.request(
+          "/learning-sessions/" + previous.learningSessionId,
+          "LearningSessionEnvelope",
+        );
+        if (!active) return;
+        invalidate();
+        setStarted(true);
+        setLearning(session);
+        setProblem(question);
+        adopt(previous);
+        setReport(previous.currentVerification);
+        setAssistedSeen(false);
+        setSkills((await api.request("/skills", "SkillListEnvelope")).items);
+        setNotice(
+          "فُتحت محاولتك المحفوظة. بقيت أي مسودة غير مرسلة في المحرر؛ راجع ارتباطها بالمسألة.",
+        );
+        try {
+          sessionStorage.setItem(
+            "khotwa-active-attempt",
+            JSON.stringify(resumeAttempt),
+          );
+        } catch {
+          /* Optional resource identifiers only. */
+        }
+      } catch (e) {
+        if (active) failure(e);
+      } finally {
+        if (active) setBusy(false);
+      }
+    })();
+    return () => {
+      active = false;
+    };
+  }, [resumeAttempt, api]);
   async function chooseSkill(id: string) {
     setBusy(true);
     setError("");
@@ -390,7 +448,7 @@ export function StudentWorkspace() {
         <span className="brand">
           خُطوة <span lang="en">AI</span>
         </span>
-        <a href="/editor-lab">مختبر المحرر</a>
+        <span className="eyebrow">مساحة الجبر</span>
       </header>
       <nav aria-label="التنقل">
         <a href="/demo/teacher">عرض المعلم — بيانات اصطناعية</a>
@@ -403,8 +461,8 @@ export function StudentWorkspace() {
           سبب الخطأ.
         </p>
         <p className="helper">
-          نسخة الهاكثون للحاسوب. عرض الكسور غير معتمد في هذه النسخة؛ استخدم
-          مسائل الأعداد الصحيحة المتاحة. التلميحات قد تأتي من قوالب ثابتة.
+          اكتب الأرقام العربية والمتغير س. عرض الكسور غير مفعّل في بنك هذه
+          النسخة؛ استخدم المسائل المتاحة. يظهر مصدر التلميح عند تقديمه.
         </p>
       </div>
       {learning?.isSynthetic && (
@@ -419,11 +477,15 @@ export function StudentWorkspace() {
           disabled={busy}
           onClick={() => void start()}
         >
-          {started ? "استعد الجلسة والمحاولة المحفوظة" : "ابدأ جلسة ضيف"}
+          {busy
+            ? "جارٍ إعداد الجلسة…"
+            : started
+              ? "استعد الجلسة والمحاولة المحفوظة"
+              : "ابدأ أو تابع التعلم"}
         </button>
         <p className="helper">
-          لا نطلب اسمًا أو بريدًا أو هاتفًا. عمر الجلسة ٢٤ ساعة، وتنتهي بعد
-          ساعتين من الخمول.
+          يمكن التعلم كضيف. عمر جلسة الضيف ٢٤ ساعة، وتنتهي بعد ساعتين من الخمول.
+          استعمل «حسابي» لحفظ صلتك بالمحاولات عبر الجلسات.
         </p>
       </div>
       {error && (

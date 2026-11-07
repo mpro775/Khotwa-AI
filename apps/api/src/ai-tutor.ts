@@ -14,6 +14,11 @@ export interface HintContext {
   skillNameAr: string;
   verifiedObservationAr: string;
   maxOutputTokens: number;
+  recentActions: {
+    previousHintLevel: number;
+    verifiedErrorObservations: number;
+  };
+  misconceptionCandidate: string | null;
 }
 export interface AiReply {
   rawJson: string;
@@ -55,6 +60,11 @@ export function buildHintContext(input: {
   skillNameAr: string;
   observationAr: string;
   maxOutputTokens: number;
+  recentActions?: {
+    previousHintLevel: number;
+    verifiedErrorObservations: number;
+  };
+  misconceptionCandidate?: string | null;
 }): HintContext {
   // Explicit allowlist: no raw learner input, session/resource IDs, answer keys,
   // full solutions, transfer material or conversation history enter this object.
@@ -70,6 +80,24 @@ export function buildHintContext(input: {
     skillNameAr: input.skillNameAr,
     verifiedObservationAr: input.observationAr,
     maxOutputTokens: input.maxOutputTokens,
+    recentActions: {
+      previousHintLevel: Math.max(
+        0,
+        Math.min(3, Math.trunc(input.recentActions?.previousHintLevel ?? 0)),
+      ),
+      verifiedErrorObservations: Math.max(
+        0,
+        Math.min(
+          3,
+          Math.trunc(input.recentActions?.verifiedErrorObservations ?? 0),
+        ),
+      ),
+    },
+    misconceptionCandidate: /^ERR-ALG-0[1-6]$/.test(
+      input.misconceptionCandidate ?? "",
+    )
+      ? input.misconceptionCandidate!
+      : null,
   };
 }
 export const HINT_REPLY_SCHEMA = {

@@ -1,0 +1,453 @@
+paths:
+  /api/v1/physics/problems:
+    get:
+      operationId: listPhysicsProblems
+      tags:
+        - الفيزياء
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      responses:
+        "200":
+          description: استجابة موثوقة من NestJS دون مفتاح الحل
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PhysicsProblemListEnvelope"
+        "401":
+          description: جلسة غير صالحة
+        "403":
+          description: أصل الطلب أو CSRF غير صالح
+        "404":
+          description: مورد غير متاح
+        "409":
+          description: مراجعة قديمة أو مفتاح متعارض
+        "422":
+          description: مدخل غير صالح
+        "503":
+          description: تعذر المحرك أو التلميح المراجع
+  /api/v1/physics/problems/{id}:
+    get:
+      operationId: getPhysicsProblem
+      tags:
+        - الفيزياء
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - &a1
+          name: id
+          in: path
+          required: true
+          schema: &a4
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: استجابة موثوقة من NestJS دون مفتاح الحل
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PhysicsProblemEnvelope"
+        "401":
+          description: جلسة غير صالحة
+        "403":
+          description: أصل الطلب أو CSRF غير صالح
+        "404":
+          description: مورد غير متاح
+        "409":
+          description: مراجعة قديمة أو مفتاح متعارض
+        "422":
+          description: مدخل غير صالح
+        "503":
+          description: تعذر المحرك أو التلميح المراجع
+  /api/v1/physics/attempts:
+    post:
+      operationId: submitPhysicsAnswer
+      tags:
+        - الفيزياء
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - &a2
+          name: X-CSRF-Token
+          in: header
+          required: true
+          schema:
+            type: string
+            minLength: 32
+            maxLength: 200
+        - &a3
+          name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            minLength: 16
+            maxLength: 200
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PhysicsAttemptInput"
+      responses:
+        "200":
+          description: استجابة موثوقة من NestJS دون مفتاح الحل
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PhysicsAttemptEnvelope"
+        "401":
+          description: جلسة غير صالحة
+        "403":
+          description: أصل الطلب أو CSRF غير صالح
+        "404":
+          description: مورد غير متاح
+        "409":
+          description: مراجعة قديمة أو مفتاح متعارض
+        "422":
+          description: مدخل غير صالح
+        "503":
+          description: تعذر المحرك أو التلميح المراجع
+  /api/v1/physics/attempts/{id}/hints:
+    post:
+      operationId: requestPhysicsHint
+      tags:
+        - الفيزياء
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - *a1
+        - *a2
+        - *a3
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PhysicsHintInput"
+      responses:
+        "200":
+          description: استجابة موثوقة من NestJS دون مفتاح الحل
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PhysicsHintEnvelope"
+        "401":
+          description: جلسة غير صالحة
+        "403":
+          description: أصل الطلب أو CSRF غير صالح
+        "404":
+          description: مورد غير متاح
+        "409":
+          description: مراجعة قديمة أو مفتاح متعارض
+        "422":
+          description: مدخل غير صالح
+        "503":
+          description: تعذر المحرك أو التلميح المراجع
+  /api/v1/physics/attempts/{id}:
+    get:
+      operationId: resumePhysicsAttempt
+      tags:
+        - الفيزياء
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: استعادة محاولة يملكها المستخدم مع نسخة السؤال المثبتة
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PhysicsResumeEnvelope"
+        "401":
+          description: جلسة غير صالحة
+        "404":
+          description: محاولة غير متاحة
+components:
+  schemas:
+    PhysicsProblem:
+      type: object
+      additionalProperties: false
+      properties:
+        id: *a4
+        problemId: *a4
+        revisionId: *a4
+        code:
+          type: string
+          maxLength: 80
+        titleAr:
+          type: string
+          maxLength: 160
+        statementAr:
+          type: string
+          maxLength: 3000
+        unitCode:
+          type: string
+          maxLength: 80
+        lessonCode:
+          type: string
+          maxLength: 80
+        lessonTitleAr:
+          type: string
+          maxLength: 160
+        skillCodes:
+          type: array
+          items:
+            type: string
+            maxLength: 80
+        difficulty:
+          type: integer
+          minimum: 1
+          maximum: 3
+        quantity:
+          type: string
+          maxLength: 80
+        givens:
+          type: object
+          additionalProperties:
+            type: string
+            maxLength: 48
+        allowedUnits:
+          type: array
+          items:
+            type: string
+            maxLength: 16
+      required:
+        - id
+        - problemId
+        - revisionId
+        - code
+        - titleAr
+        - statementAr
+        - unitCode
+        - lessonCode
+        - lessonTitleAr
+        - skillCodes
+        - difficulty
+        - quantity
+        - givens
+        - allowedUnits
+    PhysicsAttempt:
+      type: object
+      additionalProperties: false
+      properties:
+        id: *a4
+        problemRevisionId: *a4
+        revision:
+          type: integer
+          minimum: 0
+        status:
+          type: string
+          enum:
+            - correct
+            - wrong_value
+            - wrong_unit
+            - unsupported
+            - invalid_input
+            - service_error
+        valueCorrect:
+          type:
+            - boolean
+            - "null"
+        unitCorrect:
+          type:
+            - boolean
+            - "null"
+        messageAr:
+          type: string
+          maxLength: 2000
+        diagnosis:
+          type: object
+          additionalProperties: false
+          properties:
+            state:
+              type: string
+              enum:
+                - possible
+                - unresolved
+            code:
+              type:
+                - string
+                - "null"
+            messageAr:
+              type: string
+              maxLength: 2000
+          required:
+            - state
+            - code
+            - messageAr
+        independentEvidence:
+          type: boolean
+        assistanceLevel:
+          type: integer
+          minimum: 0
+          maximum: 4
+      required:
+        - id
+        - problemRevisionId
+        - revision
+        - status
+        - valueCorrect
+        - unitCorrect
+        - messageAr
+        - diagnosis
+        - independentEvidence
+        - assistanceLevel
+    PhysicsHint:
+      type: object
+      additionalProperties: false
+      properties:
+        attemptId: *a4
+        revision:
+          type: integer
+          minimum: 0
+        level:
+          type: integer
+          minimum: 1
+          maximum: 4
+        textAr:
+          type: string
+          maxLength: 1200
+        source:
+          const: reviewed_template
+        independentEvidence:
+          const: false
+        reasonAr:
+          type: string
+          maxLength: 2000
+      required:
+        - attemptId
+        - revision
+        - level
+        - textAr
+        - source
+        - independentEvidence
+        - reasonAr
+    PhysicsAttemptInput:
+      type: object
+      additionalProperties: false
+      properties:
+        problemRevisionId: *a4
+        value:
+          type: string
+          minLength: 1
+          maxLength: 28
+        unit:
+          type: string
+          maxLength: 16
+        attemptId: *a4
+        expectedRevision:
+          type: integer
+          minimum: 0
+      required:
+        - problemRevisionId
+        - value
+        - unit
+    PhysicsHintInput:
+      type: object
+      additionalProperties: false
+      properties:
+        level:
+          type: integer
+          minimum: 1
+          maximum: 4
+        confirmFullSolution:
+          type: boolean
+        expectedRevision:
+          type: integer
+          minimum: 0
+      required:
+        - level
+        - expectedRevision
+    PhysicsProblemEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/PhysicsProblem"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    PhysicsProblemListEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            items:
+              type: array
+              maxItems: 200
+              items:
+                $ref: "#/components/schemas/PhysicsProblem"
+          required:
+            - items
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    PhysicsAttemptEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/PhysicsAttempt"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    PhysicsHintEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/PhysicsHint"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    PhysicsResumeEnvelope:
+      type: object
+      additionalProperties: false
+      required:
+        - data
+        - meta
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          required:
+            - problem
+            - result
+            - value
+            - unit
+          properties:
+            problem:
+              $ref: "#/components/schemas/PhysicsProblem"
+            result:
+              $ref: "#/components/schemas/PhysicsAttempt"
+            value:
+              type: string
+              maxLength: 28
+            unit:
+              type: string
+              maxLength: 16
+        meta:
+          $ref: "#/components/schemas/Meta"

@@ -512,6 +512,547 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/me": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** هوية الحساب وCSRF؛ لا يربط الضيف تلقائيًا */
+        get: operations["product_api_v1_me_get"];
+        put?: never;
+        post?: never;
+        /** طلب محو مع إبطال الوصول؛ لا يدعي المحو الفوري من النسخ */
+        delete: operations["product_api_v1_me_delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/email/request": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** طلب OTP عبر بريد الخادم؛ رمز loginCsrfToken من GET me */
+        post: operations["product_api_v1_auth_email_request_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/email/verify": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** استهلاك OTP واحد وإصدار kh_account Secure HttpOnly */
+        post: operations["product_api_v1_auth_email_verify_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/logout": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** /api/v1/auth/logout */
+        post: operations["product_api_v1_auth_logout_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/claim-guest": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** ربط الضيف الحالي فقط بعد موافقة صريحة؛ سجل provenance ومعاملة واحدة */
+        post: operations["product_api_v1_me_claim_guest_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/attempts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** /api/v1/me/attempts */
+        get: operations["product_api_v1_me_attempts_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/progress": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** /api/v1/me/progress */
+        get: operations["product_api_v1_me_progress_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** /api/v1/me/export */
+        get: operations["product_api_v1_me_export_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/beta/feedback": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** /api/v1/beta/feedback */
+        post: operations["product_api_v1_beta_feedback_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/beta/metrics": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** مقاييس منقحة لمسؤول admin فقط */
+        get: operations["product_api_v1_beta_metrics_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/beta/access/revoke": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** إيقاف حساب وإبطال جميع جلساته؛ admin فقط */
+        post: operations["product_api_v1_beta_access_revoke_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/physics/problems": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["listPhysicsProblems"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/physics/problems/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getPhysicsProblem"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/physics/attempts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["submitPhysicsAnswer"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/physics/attempts/{id}/hints": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["requestPhysicsHint"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/physics/attempts/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["resumePhysicsAttempt"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/studio/items": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["listStudioItems"];
+        put?: never;
+        post: operations["createStudioDraft"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/studio/items/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getStudioRevision"];
+        put: operations["editStudioDraft"];
+        post?: never;
+        delete: operations["deleteStudioDraft"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/studio/items/{id}/validate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["validateStudioRevision"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/studio/items/{id}/transition": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description submit/revise للمحرر؛ approve/publish/archive/rollback للمشرف. النسخ المنشورة ثابتة، ويستلزم النشر تحقق المحرك ومراجعة المستخدم المخول. */
+        post: operations["transitionStudioRevision"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/studio/import/preview": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["previewStudioImport"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/studio/import": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["importStudioDrafts"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/studio/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["exportStudioContent"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/catalog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getProductCatalog"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/catalog/problems/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getPublishedProductProblem"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/catalog/problems/{id}/start": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["startPublishedStudioAlgebra"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/programming/problems": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["listProgrammingProblems"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/programming/problems/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getProgrammingProblem"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/programming/attempts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["listProgrammingAttempts"];
+        put?: never;
+        post: operations["submitProgrammingCode"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/programming/attempts/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getProgrammingAttempt"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/programming/attempts/{id}/hints": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["getProgrammingHint"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/attempts/{id}/tutoring-plan": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getAdaptiveTutoringPlan"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/attempts/{id}/problem": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getAttemptPinnedProblem"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -1364,6 +1905,651 @@ export interface components {
         };
         HealthEnvelope: {
             data: components["schemas"]["ServiceHealth"];
+            meta: components["schemas"]["Meta"];
+        };
+        AccountUser: {
+            /** Format: uuid */
+            id: string;
+            /** Format: email */
+            email: string;
+            /** @enum {string} */
+            role: "student" | "teacher" | "content_manager" | "admin";
+            /** @enum {string} */
+            status: "active" | "suspended" | "deletion_requested" | "deleted";
+            isInternal: boolean;
+        };
+        AccountIdentity: {
+            user: components["schemas"]["AccountUser"] | null;
+            csrfToken: string;
+            guestAvailable: boolean;
+            loginCsrfToken?: string;
+        };
+        AccountEmailRequest: {
+            /** Format: email */
+            email: string;
+        };
+        AccountEmailVerify: {
+            /** Format: email */
+            email: string;
+            /** Format: uuid */
+            challengeId: string;
+            code: string;
+        };
+        AccountClaimInput: {
+            /** @constant */
+            consent: true;
+        };
+        AccountDeletionInput: {
+            /** @constant */
+            confirm: true;
+        };
+        AccountEmptyInput: Record<string, never>;
+        AccountAttempt: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            learningSessionId: string;
+            /** Format: uuid */
+            problemRevisionId: string;
+            /** Format: uuid */
+            problemId: string;
+            revision: number;
+            status: string;
+            completionVerdict: string | null;
+            /** Format: date-time */
+            updatedAt: string;
+        };
+        AccountSubjectAttempt: {
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            subjectCode: "physics" | "programming";
+            /** Format: uuid */
+            problemRevisionId: string;
+            revision: number;
+            sourceRaw: string;
+            answer: unknown;
+            verdict: unknown;
+            assistanceLevel: number;
+            independent: boolean;
+            /** Format: date-time */
+            updatedAt: string;
+        };
+        SubjectProgressEvidence: {
+            /** @enum {string} */
+            subjectCode: "physics" | "programming";
+            skillCode: string;
+            evidenceCount: number;
+            independentCount: number;
+            assistedCount: number;
+            /** @enum {string} */
+            state: "not_assessed" | "new_independent_evidence" | "assisted_evidence" | "needs_review";
+            /** Format: date-time */
+            updatedAt: string;
+        };
+        AccountProgress: {
+            skills: components["schemas"]["SkillProgress"][];
+            subjects: components["schemas"]["SubjectProgressEvidence"][];
+            noteAr: string;
+        };
+        AccountStepExport: {
+            /** Format: uuid */
+            attemptId: string;
+            position: number;
+            version: number;
+            sourceRaw: string;
+            /** Format: date-time */
+            createdAt: string;
+        };
+        BetaFeedbackInput: {
+            /** @enum {string} */
+            kind: "bug" | "content" | "suggestion" | "other";
+            message: string;
+            /** Format: uuid */
+            requestId?: string;
+        };
+        BetaFeedback: {
+            /** Format: uuid */
+            id: string;
+            /** @enum {string} */
+            kind: "bug" | "content" | "suggestion" | "other";
+            message: string;
+            requestId: string | null;
+            /** Format: date-time */
+            createdAt: string;
+        };
+        BetaRevokeInput: {
+            /** Format: uuid */
+            userId: string;
+        };
+        BetaMetrics: {
+            /** Format: date */
+            day: string;
+            api: {
+                requestCount: number;
+                sampleCount: number;
+                status4xx: number;
+                status5xx: number;
+                p50Ms: number | null;
+                p95Ms: number | null;
+            };
+            ai: {
+                calls: number;
+                hintRequests: number;
+                fallback: number;
+                fallbackRatio: number | null;
+                inputTokens: number;
+                outputTokens: number;
+                estimatedCostMicros: number;
+                unknownCostCalls: number;
+                timeouts: number;
+            };
+            mathTimeouts: number;
+            scope: string;
+            percentileMinimumSamples: number;
+            usage: {
+                sessionsToday: number;
+                attemptsToday: number;
+                hintsToday: number;
+            };
+            /** @enum {string} */
+            database: "ready" | "unavailable";
+            disk: {
+                availableBytes: number;
+                totalBytes: number;
+            } | null;
+            feedback: components["schemas"]["BetaFeedback"][];
+            limits: {
+                dailyCostMicros: number;
+                monthlyCostMicros: number;
+                userDailyCalls: number;
+            };
+            noteAr: string;
+        };
+        AccountCurrentEnvelope: {
+            data: components["schemas"]["AccountIdentity"];
+            meta: components["schemas"]["Meta"];
+        };
+        AccountEmailRequestEnvelope: {
+            data: {
+                /** Format: uuid */
+                challengeId: string;
+                expiresInSeconds: number;
+                resendAfterSeconds: number;
+                /** @constant */
+                delivery: "queued";
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        AccountVerifyEnvelope: {
+            data: components["schemas"]["AccountIdentity"];
+            meta: components["schemas"]["Meta"];
+        };
+        AccountLogoutEnvelope: {
+            data: {
+                /** @constant */
+                loggedOut: true;
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        AccountClaimEnvelope: {
+            data: {
+                /** @constant */
+                claimed: true;
+                learningSessionCount: number;
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        AccountAttemptsEnvelope: {
+            data: {
+                attempts: components["schemas"]["AccountAttempt"][];
+                subjectAttempts: components["schemas"]["AccountSubjectAttempt"][];
+                nextCursor: null;
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        AccountProgressEnvelope: {
+            data: components["schemas"]["AccountProgress"];
+            meta: components["schemas"]["Meta"];
+        };
+        AccountDeletionEnvelope: {
+            data: {
+                /** @constant */
+                status: "deletion_requested";
+                /** @constant */
+                accessRevoked: true;
+                noteAr: string;
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        AccountExportEnvelope: {
+            data: {
+                user: components["schemas"]["AccountUser"] | null;
+                attempts: components["schemas"]["AccountAttempt"][];
+                subjectAttempts: components["schemas"]["AccountSubjectAttempt"][];
+                progress: components["schemas"]["AccountProgress"];
+                steps: components["schemas"]["AccountStepExport"][];
+                /** Format: date-time */
+                exportedAt: string;
+                limits: {
+                    attempts: number;
+                    stepVersions: number;
+                    subjectAttempts: number;
+                };
+                noteAr: string;
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        BetaFeedbackEnvelope: {
+            data: {
+                /** Format: uuid */
+                id: string;
+                /** @constant */
+                status: "received";
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        BetaMetricsEnvelope: {
+            data: components["schemas"]["BetaMetrics"];
+            meta: components["schemas"]["Meta"];
+        };
+        BetaRevokeEnvelope: {
+            data: {
+                /** @constant */
+                revoked: true;
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        PhysicsProblem: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            problemId: string;
+            /** Format: uuid */
+            revisionId: string;
+            code: string;
+            titleAr: string;
+            statementAr: string;
+            unitCode: string;
+            lessonCode: string;
+            lessonTitleAr: string;
+            skillCodes: string[];
+            difficulty: number;
+            quantity: string;
+            givens: {
+                [key: string]: string;
+            };
+            allowedUnits: string[];
+        };
+        PhysicsAttempt: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            problemRevisionId: string;
+            revision: number;
+            /** @enum {string} */
+            status: "correct" | "wrong_value" | "wrong_unit" | "unsupported" | "invalid_input" | "service_error";
+            valueCorrect: boolean | null;
+            unitCorrect: boolean | null;
+            messageAr: string;
+            diagnosis: {
+                /** @enum {string} */
+                state: "possible" | "unresolved";
+                code: string | null;
+                messageAr: string;
+            };
+            independentEvidence: boolean;
+            assistanceLevel: number;
+        };
+        PhysicsHint: {
+            /** Format: uuid */
+            attemptId: string;
+            revision: number;
+            level: number;
+            textAr: string;
+            /** @constant */
+            source: "reviewed_template";
+            /** @constant */
+            independentEvidence: false;
+            reasonAr: string;
+        };
+        PhysicsAttemptInput: {
+            /** Format: uuid */
+            problemRevisionId: string;
+            value: string;
+            unit: string;
+            /** Format: uuid */
+            attemptId?: string;
+            expectedRevision?: number;
+        };
+        PhysicsHintInput: {
+            level: number;
+            confirmFullSolution?: boolean;
+            expectedRevision: number;
+        };
+        PhysicsProblemEnvelope: {
+            data: components["schemas"]["PhysicsProblem"];
+            meta: components["schemas"]["Meta"];
+        };
+        PhysicsProblemListEnvelope: {
+            data: {
+                items: components["schemas"]["PhysicsProblem"][];
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        PhysicsAttemptEnvelope: {
+            data: components["schemas"]["PhysicsAttempt"];
+            meta: components["schemas"]["Meta"];
+        };
+        PhysicsHintEnvelope: {
+            data: components["schemas"]["PhysicsHint"];
+            meta: components["schemas"]["Meta"];
+        };
+        PhysicsResumeEnvelope: {
+            data: {
+                problem: components["schemas"]["PhysicsProblem"];
+                result: components["schemas"]["PhysicsAttempt"];
+                value: string;
+                unit: string;
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        ProductContentHint: {
+            level: number;
+            textAr: string;
+            /** @enum {string} */
+            source: "manual" | "ai_suggested";
+            reviewed: boolean;
+        };
+        StudioAlgebraContent: {
+            equationRaw: string;
+            answerRaw: string;
+            validStepRaw: string;
+            invalidStepRaw: string;
+        };
+        StudioPhysicsContent: {
+            /** @constant */
+            topic: "kinematics_1d";
+            /** @enum {string} */
+            formula: "constant_speed_distance" | "constant_velocity_displacement" | "average_speed" | "average_velocity" | "final_velocity" | "displacement" | "acceleration" | "elapsed_time";
+            /** @enum {string} */
+            quantity: "distance" | "displacement" | "speed" | "velocity" | "acceleration" | "time";
+            /** @enum {string} */
+            expectedDimension: "length" | "time" | "speed" | "acceleration";
+            expectedValueSI: string;
+            /** @enum {string} */
+            expectedUnit: "m" | "s" | "m/s" | "m/s²" | "km/h";
+            tolerance: string;
+            givens: {
+                [key: string]: string;
+            };
+            constraints?: {
+                nonNegativeAnswer: boolean;
+            };
+        };
+        ProgrammingTestCase: {
+            input: string;
+            expectedOutput: string;
+            hidden: boolean;
+        };
+        StudioProgrammingContent: {
+            starterCode: string;
+            referenceCode: string;
+            tests: components["schemas"]["ProgrammingTestCase"][];
+            functionName?: string;
+        };
+        StudioContentValidation: {
+            valid: boolean;
+            issues: string[];
+            /** Format: date-time */
+            checkedAt: string;
+            engine: string;
+        };
+        ProductPublicAlgebra: {
+            equationRaw: string;
+        };
+        ProductPublicPhysics: {
+            givens: {
+                [key: string]: string;
+            };
+            quantity: string;
+            units: string[];
+        };
+        ProductPublicProgramming: {
+            starterCode: string;
+            publicTests: {
+                input: string;
+                expectedOutput: string;
+            }[];
+            functionName?: string;
+        };
+        ProgrammingSubmitInput: {
+            /** Format: uuid */
+            problemRevisionId: string;
+            sourceRaw: string;
+            /** @enum {string} */
+            mode: "run" | "submit";
+            /** Format: uuid */
+            attemptId?: string;
+            expectedRevision?: number;
+        };
+        ProgrammingResult: {
+            /** Format: uuid */
+            attemptId: string;
+            revision: number;
+            /** @enum {string} */
+            mode: "run" | "submit";
+            /** @enum {string} */
+            status: "queued" | "running" | "succeeded" | "compile_error" | "runtime_error" | "timeout" | "resource_limit" | "service_error";
+            stdout: string;
+            stderr: string;
+            passed: number;
+            total: number;
+            allPassed: boolean;
+            independent: boolean;
+            /** Format: date-time */
+            createdAt: string;
+        };
+        ProgrammingHintInput: {
+            level: number;
+            confirmFullSolution?: boolean;
+            expectedRevision: number;
+        };
+        ProgrammingHint: {
+            /** Format: uuid */
+            attemptId: string;
+            revision: number;
+            level: number;
+            textAr: string;
+            /** @constant */
+            source: "reviewed_template";
+            reasonAr: string;
+        };
+        TutoringPlan: {
+            /** @enum {string} */
+            judgment: "error_verified" | "no_error" | "unknown";
+            /** @enum {string} */
+            interpretation: "misconception_candidate" | "unknown";
+            /** @enum {string} */
+            recommendation: "try_step" | "hint_h1" | "hint_h2" | "hint_h3" | "remediation";
+            reasonAr: string;
+            recentVerifiedErrors: number;
+            previousHintLevel: number;
+        };
+        StudioContentPayload: {
+            titleAr: string;
+            statementAr: string;
+            /** @enum {string} */
+            subject: "algebra" | "physics" | "programming";
+            unitCode: string;
+            unitTitleAr: string;
+            lessonCode: string;
+            lessonTitleAr: string;
+            skillCodes: string[];
+            difficulty: number;
+            /** @enum {string} */
+            kind: "main" | "remediation" | "transfer";
+            familyCode: string;
+            hints: components["schemas"]["ProductContentHint"][];
+            algebra?: components["schemas"]["StudioAlgebraContent"];
+            physics?: components["schemas"]["StudioPhysicsContent"];
+            programming?: components["schemas"]["StudioProgrammingContent"];
+        } & ({
+            /** @constant */
+            subject?: "algebra";
+        } | {
+            /** @constant */
+            subject?: "physics";
+        } | {
+            /** @constant */
+            subject?: "programming";
+        });
+        StudioItem: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            itemId: string;
+            version: number;
+            editRevision: number;
+            /** @enum {string} */
+            status: "draft" | "in_review" | "approved" | "published" | "archived";
+            payload: components["schemas"]["StudioContentPayload"];
+            contentHash: string;
+            validation: components["schemas"]["StudioContentValidation"] | null;
+            /** Format: date-time */
+            createdAt: string;
+            reviewedAt: string | null;
+            publishedAt: string | null;
+        };
+        ProductPublicItem: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            itemId: string;
+            version: number;
+            /** @enum {string} */
+            subject: "algebra" | "physics" | "programming";
+            titleAr: string;
+            statementAr: string;
+            unitCode: string;
+            lessonCode: string;
+            skillCodes: string[];
+            difficulty: number;
+            /** @enum {string} */
+            kind: "main" | "remediation" | "transfer";
+            algebra?: components["schemas"]["ProductPublicAlgebra"];
+            physics?: components["schemas"]["ProductPublicPhysics"];
+            programming?: components["schemas"]["ProductPublicProgramming"];
+        };
+        ProductCatalog: {
+            subjects: {
+                /** @enum {string} */
+                code: "algebra" | "physics" | "programming";
+                titleAr: string;
+                units: {
+                    code: string;
+                    titleAr: string;
+                    lessons: {
+                        code: string;
+                        titleAr: string;
+                        items: components["schemas"]["ProductPublicItem"][];
+                    }[];
+                }[];
+            }[];
+        };
+        StudioImportInput: {
+            items: components["schemas"]["StudioContentPayload"][];
+        };
+        StudioImportPreview: {
+            accepted: number;
+            rejected: number;
+            results: {
+                index: number;
+                valid: boolean;
+                issues: string[];
+            }[];
+        };
+        StudioEditInput: {
+            expectedRevision: number;
+            payload: components["schemas"]["StudioContentPayload"];
+        };
+        StudioTransitionInput: {
+            expectedRevision: number;
+            /** @enum {string} */
+            action: "submit" | "approve" | "publish" | "archive" | "revise" | "rollback";
+        };
+        StudioItemEnvelope: {
+            data: components["schemas"]["StudioItem"];
+            meta: components["schemas"]["Meta"];
+        };
+        StudioItemsEnvelope: {
+            data: {
+                items: components["schemas"]["StudioItem"][];
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        StudioPreviewEnvelope: {
+            data: components["schemas"]["StudioImportPreview"];
+            meta: components["schemas"]["Meta"];
+        };
+        StudioExportEnvelope: {
+            data: {
+                /** @constant */
+                format: "khotwa-content-v1";
+                items: components["schemas"]["StudioContentPayload"][];
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        ProductCatalogEnvelope: {
+            data: components["schemas"]["ProductCatalog"];
+            meta: components["schemas"]["Meta"];
+        };
+        ProductPublicItemEnvelope: {
+            data: components["schemas"]["ProductPublicItem"];
+            meta: components["schemas"]["Meta"];
+        };
+        ProductPublicItemListEnvelope: {
+            data: {
+                items: components["schemas"]["ProductPublicItem"][];
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        ProductStartEnvelope: {
+            data: {
+                /** Format: uuid */
+                attemptId: string;
+                /** Format: uuid */
+                problemId: string;
+                /** Format: uuid */
+                learningSessionId: string;
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        ProgrammingResultEnvelope: {
+            data: components["schemas"]["ProgrammingResult"];
+            meta: components["schemas"]["Meta"];
+        };
+        ProgrammingHistoryEnvelope: {
+            data: {
+                items: components["schemas"]["ProgrammingResult"][];
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        ProgrammingAttemptEnvelope: {
+            data: {
+                problem: components["schemas"]["ProductPublicItem"];
+                result: components["schemas"]["ProgrammingResult"];
+                sourceRaw: string;
+                assistanceLevel: number;
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        ProgrammingHintEnvelope: {
+            data: components["schemas"]["ProgrammingHint"];
+            meta: components["schemas"]["Meta"];
+        };
+        TutoringPlanEnvelope: {
+            data: components["schemas"]["TutoringPlan"];
             meta: components["schemas"]["Meta"];
         };
     };
@@ -2502,6 +3688,1452 @@ export interface operations {
                 };
             };
             403: components["responses"]["E403"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    product_api_v1_me_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description نجاح */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccountCurrentEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    product_api_v1_me_delete: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AccountDeletionInput"];
+            };
+        };
+        responses: {
+            /** @description نجاح */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccountDeletionEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    product_api_v1_auth_email_request_post: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AccountEmailRequest"];
+            };
+        };
+        responses: {
+            /** @description نجاح */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccountEmailRequestEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    product_api_v1_auth_email_verify_post: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AccountEmailVerify"];
+            };
+        };
+        responses: {
+            /** @description نجاح */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccountVerifyEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    product_api_v1_auth_logout_post: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AccountEmptyInput"];
+            };
+        };
+        responses: {
+            /** @description نجاح */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccountLogoutEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    product_api_v1_me_claim_guest_post: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AccountClaimInput"];
+            };
+        };
+        responses: {
+            /** @description نجاح */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccountClaimEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    product_api_v1_me_attempts_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description نجاح */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccountAttemptsEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    product_api_v1_me_progress_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description نجاح */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccountProgressEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    product_api_v1_me_export_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description نجاح */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccountExportEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    product_api_v1_beta_feedback_post: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BetaFeedbackInput"];
+            };
+        };
+        responses: {
+            /** @description نجاح */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BetaFeedbackEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    product_api_v1_beta_metrics_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description نجاح */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BetaMetricsEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    product_api_v1_beta_access_revoke_post: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BetaRevokeInput"];
+            };
+        };
+        responses: {
+            /** @description نجاح */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BetaRevokeEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    listPhysicsProblems: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description استجابة موثوقة من NestJS دون مفتاح الحل */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PhysicsProblemListEnvelope"];
+                };
+            };
+            /** @description جلسة غير صالحة */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description أصل الطلب أو CSRF غير صالح */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description مورد غير متاح */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description مراجعة قديمة أو مفتاح متعارض */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description مدخل غير صالح */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description تعذر المحرك أو التلميح المراجع */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    getPhysicsProblem: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description استجابة موثوقة من NestJS دون مفتاح الحل */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PhysicsProblemEnvelope"];
+                };
+            };
+            /** @description جلسة غير صالحة */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description أصل الطلب أو CSRF غير صالح */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description مورد غير متاح */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description مراجعة قديمة أو مفتاح متعارض */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description مدخل غير صالح */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description تعذر المحرك أو التلميح المراجع */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    submitPhysicsAnswer: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PhysicsAttemptInput"];
+            };
+        };
+        responses: {
+            /** @description استجابة موثوقة من NestJS دون مفتاح الحل */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PhysicsAttemptEnvelope"];
+                };
+            };
+            /** @description جلسة غير صالحة */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description أصل الطلب أو CSRF غير صالح */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description مورد غير متاح */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description مراجعة قديمة أو مفتاح متعارض */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description مدخل غير صالح */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description تعذر المحرك أو التلميح المراجع */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    requestPhysicsHint: {
+        parameters: {
+            query?: never;
+            header: {
+                "X-CSRF-Token": string;
+                "Idempotency-Key": string;
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PhysicsHintInput"];
+            };
+        };
+        responses: {
+            /** @description استجابة موثوقة من NestJS دون مفتاح الحل */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PhysicsHintEnvelope"];
+                };
+            };
+            /** @description جلسة غير صالحة */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description أصل الطلب أو CSRF غير صالح */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description مورد غير متاح */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description مراجعة قديمة أو مفتاح متعارض */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description مدخل غير صالح */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description تعذر المحرك أو التلميح المراجع */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    resumePhysicsAttempt: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description استعادة محاولة يملكها المستخدم مع نسخة السؤال المثبتة */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PhysicsResumeEnvelope"];
+                };
+            };
+            /** @description جلسة غير صالحة */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description محاولة غير متاحة */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    listStudioItems: {
+        parameters: {
+            query?: {
+                subject?: string;
+                status?: string;
+                q?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudioItemsEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    createStudioDraft: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StudioContentPayload"];
+            };
+        };
+        responses: {
+            /** @description استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudioItemEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getStudioRevision: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudioItemEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    editStudioDraft: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StudioEditInput"];
+            };
+        };
+        responses: {
+            /** @description استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudioItemEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    deleteStudioDraft: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    expectedRevision: number;
+                };
+            };
+        };
+        responses: {
+            /** @description استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudioItemEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    validateStudioRevision: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    expectedRevision: number;
+                };
+            };
+        };
+        responses: {
+            /** @description استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudioItemEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    transitionStudioRevision: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StudioTransitionInput"];
+            };
+        };
+        responses: {
+            /** @description استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudioItemEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    previewStudioImport: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StudioImportInput"];
+            };
+        };
+        responses: {
+            /** @description استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudioPreviewEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    importStudioDrafts: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StudioImportInput"];
+            };
+        };
+        responses: {
+            /** @description استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudioItemsEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    exportStudioContent: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudioExportEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getProductCatalog: {
+        parameters: {
+            query?: {
+                subject?: "algebra" | "physics" | "programming";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductCatalogEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getPublishedProductProblem: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductPublicItemEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    startPublishedStudioAlgebra: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductStartEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    listProgrammingProblems: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductPublicItemListEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getProgrammingProblem: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProductPublicItemEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    listProgrammingAttempts: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProgrammingHistoryEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    submitProgrammingCode: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProgrammingSubmitInput"];
+            };
+        };
+        responses: {
+            /** @description استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProgrammingResultEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getProgrammingAttempt: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProgrammingAttemptEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getProgrammingHint: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProgrammingHintInput"];
+            };
+        };
+        responses: {
+            /** @description استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProgrammingHintEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getAdaptiveTutoringPlan: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TutoringPlanEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getAttemptPinnedProblem: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description استجابة NestJS موثوقة؛ بيانات الطالب لا تحتوي مفاتيح الحل */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProblemEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
             500: components["responses"]["E500"];
             503: components["responses"]["E503"];
         };

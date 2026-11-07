@@ -1,0 +1,11 @@
+{$BETA_HOST} {
+  header {
+    X-Content-Type-Options nosniff
+    Referrer-Policy no-referrer
+    Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  }
+  @internal path /internal* /debug* /metrics*
+  respond @internal 403
+  reverse_proxy web:8080
+  # Access logging is deliberately disabled: no URLs, cookies or credentials.
+}
