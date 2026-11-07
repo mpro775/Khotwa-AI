@@ -13,7 +13,7 @@ export interface RequestContext {
   url?: string;
 }
 export interface ResponseContext {
-  setHeader(name: string, value: string): this;
+  setHeader(name: string, value: string | string[]): this;
   status(code: number): this;
   json(body: unknown): this;
 }

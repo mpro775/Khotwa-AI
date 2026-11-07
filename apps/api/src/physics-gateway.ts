@@ -1,6 +1,7 @@
 import type { PhysicsContent } from "../../../packages/contracts/src/product";
 import type { PhysicsStatus } from "../../../packages/contracts/src/product-physics";
 import { ApiFault } from "./http";
+import { betaTelemetry } from "./beta-operations";
 
 export interface PhysicsResult {
   contractVersion: "physics-internal-v1";
@@ -132,7 +133,12 @@ export class PhysicsGateway {
       )
         throw unavailable();
       return r as unknown as PhysicsResult;
-    } catch {
+    } catch (error) {
+      if (
+        error instanceof Error &&
+        ["AbortError", "TimeoutError"].includes(error.name)
+      )
+        betaTelemetry.recordMathTimeout();
       throw unavailable();
     }
   }

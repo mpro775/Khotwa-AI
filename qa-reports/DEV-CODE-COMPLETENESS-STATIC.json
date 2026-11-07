@@ -1,0 +1,720 @@
+{
+  "mode": "static-only; no app imports, tests, services, database or provider calls",
+  "schemaTables": 46,
+  "sql": {
+    "templates": 300,
+    "inserts": 70,
+    "updates": 65,
+    "issues": [],
+    "limitation": "Checks explicit INSERT/UPDATE column names only; does not parse/execute PostgreSQL or prove SELECT semantics, transaction correctness, triggers or isolation."
+  },
+  "controllers": {
+    "registered": [
+      "AccountsController",
+      "BetaController",
+      "BusinessController",
+      "ContentStudioController",
+      "HealthController",
+      "PhysicsController",
+      "ProgrammingController"
+    ],
+    "operations": 36,
+    "routes": [
+      {
+        "file": "apps/api/src/accounts.ts",
+        "line": 905,
+        "controller": "AccountsController",
+        "method": "get",
+        "path": "/api/v1/me",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/accounts.ts",
+        "line": 911,
+        "controller": "AccountsController",
+        "method": "post",
+        "path": "/api/v1/auth/email/request",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/accounts.ts",
+        "line": 917,
+        "controller": "AccountsController",
+        "method": "post",
+        "path": "/api/v1/auth/email/verify",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/accounts.ts",
+        "line": 924,
+        "controller": "AccountsController",
+        "method": "post",
+        "path": "/api/v1/auth/logout",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/accounts.ts",
+        "line": 932,
+        "controller": "AccountsController",
+        "method": "post",
+        "path": "/api/v1/me/claim-guest",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/accounts.ts",
+        "line": 938,
+        "controller": "AccountsController",
+        "method": "get",
+        "path": "/api/v1/me/attempts",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/accounts.ts",
+        "line": 941,
+        "controller": "AccountsController",
+        "method": "get",
+        "path": "/api/v1/me/progress",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/accounts.ts",
+        "line": 944,
+        "controller": "AccountsController",
+        "method": "get",
+        "path": "/api/v1/me/export",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/accounts.ts",
+        "line": 947,
+        "controller": "AccountsController",
+        "method": "delete",
+        "path": "/api/v1/me",
+        "status": 202
+      },
+      {
+        "file": "apps/api/src/beta-operations.ts",
+        "line": 373,
+        "controller": "BetaController",
+        "method": "post",
+        "path": "/api/v1/beta/feedback",
+        "status": 201
+      },
+      {
+        "file": "apps/api/src/beta-operations.ts",
+        "line": 379,
+        "controller": "BetaController",
+        "method": "get",
+        "path": "/api/v1/beta/metrics",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/beta-operations.ts",
+        "line": 382,
+        "controller": "BetaController",
+        "method": "post",
+        "path": "/api/v1/beta/access/revoke",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/content-studio.ts",
+        "line": 688,
+        "controller": "ContentStudioController",
+        "method": "get",
+        "path": "/api/v1/studio/items",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/content-studio.ts",
+        "line": 694,
+        "controller": "ContentStudioController",
+        "method": "get",
+        "path": "/api/v1/studio/items/:id",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/content-studio.ts",
+        "line": 700,
+        "controller": "ContentStudioController",
+        "method": "post",
+        "path": "/api/v1/studio/items",
+        "status": 201
+      },
+      {
+        "file": "apps/api/src/content-studio.ts",
+        "line": 703,
+        "controller": "ContentStudioController",
+        "method": "delete",
+        "path": "/api/v1/studio/items/:id",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/content-studio.ts",
+        "line": 710,
+        "controller": "ContentStudioController",
+        "method": "put",
+        "path": "/api/v1/studio/items/:id",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/content-studio.ts",
+        "line": 717,
+        "controller": "ContentStudioController",
+        "method": "post",
+        "path": "/api/v1/studio/items/:id/validate",
+        "status": 201
+      },
+      {
+        "file": "apps/api/src/content-studio.ts",
+        "line": 724,
+        "controller": "ContentStudioController",
+        "method": "post",
+        "path": "/api/v1/studio/items/:id/transition",
+        "status": 201
+      },
+      {
+        "file": "apps/api/src/content-studio.ts",
+        "line": 731,
+        "controller": "ContentStudioController",
+        "method": "post",
+        "path": "/api/v1/studio/import/preview",
+        "status": 201
+      },
+      {
+        "file": "apps/api/src/content-studio.ts",
+        "line": 737,
+        "controller": "ContentStudioController",
+        "method": "post",
+        "path": "/api/v1/studio/import",
+        "status": 201
+      },
+      {
+        "file": "apps/api/src/content-studio.ts",
+        "line": 740,
+        "controller": "ContentStudioController",
+        "method": "get",
+        "path": "/api/v1/studio/export",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/content-studio.ts",
+        "line": 743,
+        "controller": "ContentStudioController",
+        "method": "get",
+        "path": "/api/v1/catalog",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/content-studio.ts",
+        "line": 749,
+        "controller": "ContentStudioController",
+        "method": "get",
+        "path": "/api/v1/catalog/problems/:id",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/content-studio.ts",
+        "line": 755,
+        "controller": "ContentStudioController",
+        "method": "post",
+        "path": "/api/v1/catalog/problems/:id/start",
+        "status": 201
+      },
+      {
+        "file": "apps/api/src/physics.ts",
+        "line": 402,
+        "controller": "PhysicsController",
+        "method": "get",
+        "path": "/api/v1/physics/problems",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/physics.ts",
+        "line": 405,
+        "controller": "PhysicsController",
+        "method": "get",
+        "path": "/api/v1/physics/problems/:id",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/physics.ts",
+        "line": 411,
+        "controller": "PhysicsController",
+        "method": "get",
+        "path": "/api/v1/physics/attempts/:id",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/physics.ts",
+        "line": 417,
+        "controller": "PhysicsController",
+        "method": "post",
+        "path": "/api/v1/physics/attempts",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/physics.ts",
+        "line": 423,
+        "controller": "PhysicsController",
+        "method": "post",
+        "path": "/api/v1/physics/attempts/:id/hints",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/programming.ts",
+        "line": 348,
+        "controller": "ProgrammingController",
+        "method": "get",
+        "path": "/api/v1/programming/problems",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/programming.ts",
+        "line": 351,
+        "controller": "ProgrammingController",
+        "method": "get",
+        "path": "/api/v1/programming/problems/:id",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/programming.ts",
+        "line": 357,
+        "controller": "ProgrammingController",
+        "method": "get",
+        "path": "/api/v1/programming/attempts",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/programming.ts",
+        "line": 360,
+        "controller": "ProgrammingController",
+        "method": "get",
+        "path": "/api/v1/programming/attempts/:id",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/programming.ts",
+        "line": 366,
+        "controller": "ProgrammingController",
+        "method": "post",
+        "path": "/api/v1/programming/attempts",
+        "status": 201
+      },
+      {
+        "file": "apps/api/src/programming.ts",
+        "line": 369,
+        "controller": "ProgrammingController",
+        "method": "post",
+        "path": "/api/v1/programming/attempts/:id/hints",
+        "status": 201
+      }
+    ],
+    "issues": [],
+    "limitation": "AST checks Module/controller declarations and OpenAPI success status only; not runtime integration."
+  },
+  "content": {
+    "banks": [
+      {
+        "file": "algebra-expansion.draft.v1.json",
+        "items": 24,
+        "subject": "algebra",
+        "lessons": {
+          "distribution": {
+            "main": 1,
+            "remediation": 1,
+            "transfer": 2
+          },
+          "inverse_add": {
+            "main": 1,
+            "remediation": 1,
+            "transfer": 2
+          },
+          "balance": {
+            "main": 1,
+            "remediation": 1,
+            "transfer": 2
+          },
+          "inverse_multiply": {
+            "main": 1,
+            "remediation": 1,
+            "transfer": 2
+          },
+          "calculation": {
+            "main": 1,
+            "remediation": 1,
+            "transfer": 2
+          },
+          "negative_distribution": {
+            "main": 1,
+            "remediation": 1,
+            "transfer": 2
+          }
+        },
+        "allHintsDraft": true,
+        "privateReferencesPresent": true
+      },
+      {
+        "file": "physics-kinematics.draft.v1.json",
+        "items": 20,
+        "subject": "physics",
+        "lessons": {
+          "constant_motion": {
+            "main": 4,
+            "remediation": 0,
+            "transfer": 0
+          },
+          "distance_displacement": {
+            "main": 3,
+            "remediation": 0,
+            "transfer": 0
+          },
+          "average_speed": {
+            "main": 3,
+            "remediation": 0,
+            "transfer": 0
+          },
+          "acceleration": {
+            "main": 3,
+            "remediation": 0,
+            "transfer": 0
+          },
+          "final_velocity": {
+            "main": 4,
+            "remediation": 0,
+            "transfer": 0
+          },
+          "displacement": {
+            "main": 3,
+            "remediation": 0,
+            "transfer": 0
+          }
+        },
+        "allHintsDraft": true,
+        "privateReferencesPresent": true
+      },
+      {
+        "file": "python-basics.draft.v1.json",
+        "items": 20,
+        "subject": "programming",
+        "lessons": {
+          "print": {
+            "main": 3,
+            "remediation": 0,
+            "transfer": 0
+          },
+          "variables": {
+            "main": 3,
+            "remediation": 0,
+            "transfer": 0
+          },
+          "arithmetic": {
+            "main": 3,
+            "remediation": 0,
+            "transfer": 0
+          },
+          "conditions": {
+            "main": 4,
+            "remediation": 0,
+            "transfer": 0
+          },
+          "loops": {
+            "main": 4,
+            "remediation": 0,
+            "transfer": 0
+          },
+          "functions": {
+            "main": 3,
+            "remediation": 0,
+            "transfer": 0
+          }
+        },
+        "allHintsDraft": true,
+        "privateReferencesPresent": true
+      }
+    ],
+    "issues": [],
+    "limitation": "Validates stored field shapes and structural lesson coverage only; no math engine or sandbox execution, content approval or learning effectiveness inferred."
+  },
+  "originalTasks": [
+    {
+      "id": "DEV-011",
+      "title": "تحسين التشخيص الدقيق",
+      "plan": "planning/roadmap/V1.1-INTELLIGENT-TUTORING.md"
+    },
+    {
+      "id": "DEV-012",
+      "title": "تلميحات Gemini أكثر فائدة",
+      "plan": "planning/roadmap/V1.1-INTELLIGENT-TUTORING.md"
+    },
+    {
+      "id": "DEV-013",
+      "title": "سياسة مساعدة تكيفية بسيطة",
+      "plan": "planning/roadmap/V1.1-INTELLIGENT-TUTORING.md"
+    },
+    {
+      "id": "DEV-014",
+      "title": "اختيار العلاج ونقل الفهم",
+      "plan": "planning/roadmap/V1.1-INTELLIGENT-TUTORING.md"
+    },
+    {
+      "id": "DEV-015",
+      "title": "بنك مسائل أفضل",
+      "plan": "planning/roadmap/V1.1-INTELLIGENT-TUTORING.md"
+    },
+    {
+      "id": "DEV-016",
+      "title": "واجهة التلميحات والتقدم",
+      "plan": "planning/roadmap/V1.1-INTELLIGENT-TUTORING.md"
+    },
+    {
+      "id": "DEV-017",
+      "title": "تقييم الجودة",
+      "plan": "planning/roadmap/V1.1-INTELLIGENT-TUTORING.md"
+    },
+    {
+      "id": "DEV-021",
+      "title": "بيانات الحساب والجلسات",
+      "plan": "planning/roadmap/V1.2-STUDENT-ACCOUNTS-PROGRESS.md"
+    },
+    {
+      "id": "DEV-022",
+      "title": "نقاط الدخول API",
+      "plan": "planning/roadmap/V1.2-STUDENT-ACCOUNTS-PROGRESS.md"
+    },
+    {
+      "id": "DEV-023",
+      "title": "ربط الضيف بالحساب بأمان",
+      "plan": "planning/roadmap/V1.2-STUDENT-ACCOUNTS-PROGRESS.md"
+    },
+    {
+      "id": "DEV-024",
+      "title": "واجهات الطلاب",
+      "plan": "planning/roadmap/V1.2-STUDENT-ACCOUNTS-PROGRESS.md"
+    },
+    {
+      "id": "DEV-025",
+      "title": "الاستمرار والخصوصية",
+      "plan": "planning/roadmap/V1.2-STUDENT-ACCOUNTS-PROGRESS.md"
+    },
+    {
+      "id": "DEV-031",
+      "title": "هيكلة محتوى بسيطة",
+      "plan": "planning/roadmap/V1.3-CURRICULUM-CONTENT-MANAGEMENT.md"
+    },
+    {
+      "id": "DEV-032",
+      "title": "دورة نشر واضحة",
+      "plan": "planning/roadmap/V1.3-CURRICULUM-CONTENT-MANAGEMENT.md"
+    },
+    {
+      "id": "DEV-033",
+      "title": "لوحة المحتوى React",
+      "plan": "planning/roadmap/V1.3-CURRICULUM-CONTENT-MANAGEMENT.md"
+    },
+    {
+      "id": "DEV-034",
+      "title": "تحقق صحة المسألة قبل النشر",
+      "plan": "planning/roadmap/V1.3-CURRICULUM-CONTENT-MANAGEMENT.md"
+    },
+    {
+      "id": "DEV-035",
+      "title": "بنك التلميحات والمراجعة",
+      "plan": "planning/roadmap/V1.3-CURRICULUM-CONTENT-MANAGEMENT.md"
+    },
+    {
+      "id": "DEV-036",
+      "title": "استيراد وتصدير بسيط",
+      "plan": "planning/roadmap/V1.3-CURRICULUM-CONTENT-MANAGEMENT.md"
+    },
+    {
+      "id": "DEV-037",
+      "title": "APIs والصلاحيات",
+      "plan": "planning/roadmap/V1.3-CURRICULUM-CONTENT-MANAGEMENT.md"
+    },
+    {
+      "id": "DEV-041",
+      "title": "تدفق الطالب",
+      "plan": "planning/roadmap/V1.4-UX-MATH-EDITOR-ACCESSIBILITY.md"
+    },
+    {
+      "id": "DEV-042",
+      "title": "محرر الرياضيات",
+      "plan": "planning/roadmap/V1.4-UX-MATH-EDITOR-ACCESSIBILITY.md"
+    },
+    {
+      "id": "DEV-043",
+      "title": "نسخة الهاتف المتجاوبة",
+      "plan": "planning/roadmap/V1.4-UX-MATH-EDITOR-ACCESSIBILITY.md"
+    },
+    {
+      "id": "DEV-044",
+      "title": "إتاحة عربية عملية",
+      "plan": "planning/roadmap/V1.4-UX-MATH-EDITOR-ACCESSIBILITY.md"
+    },
+    {
+      "id": "DEV-045",
+      "title": "ربط الشاشات بالخدمات",
+      "plan": "planning/roadmap/V1.4-UX-MATH-EDITOR-ACCESSIBILITY.md"
+    },
+    {
+      "id": "DEV-046",
+      "title": "تحسين مظهر خفيف",
+      "plan": "planning/roadmap/V1.4-UX-MATH-EDITOR-ACCESSIBILITY.md"
+    },
+    {
+      "id": "DEV-051",
+      "title": "إعداد بيئة التجربة",
+      "plan": "planning/roadmap/V1.5-CLOSED-BETA-OPERATIONS.md"
+    },
+    {
+      "id": "DEV-052",
+      "title": "الدخول للنسخة التجريبية",
+      "plan": "planning/roadmap/V1.5-CLOSED-BETA-OPERATIONS.md"
+    },
+    {
+      "id": "DEV-053",
+      "title": "مراقبة مبسطة",
+      "plan": "planning/roadmap/V1.5-CLOSED-BETA-OPERATIONS.md"
+    },
+    {
+      "id": "DEV-054",
+      "title": "حدود التكلفة والأمان",
+      "plan": "planning/roadmap/V1.5-CLOSED-BETA-OPERATIONS.md"
+    },
+    {
+      "id": "DEV-055",
+      "title": "النسخ الاحتياطية والاحتفاظ",
+      "plan": "planning/roadmap/V1.5-CLOSED-BETA-OPERATIONS.md"
+    },
+    {
+      "id": "DEV-056",
+      "title": "جودة التجربة والتغذية الراجعة",
+      "plan": "planning/roadmap/V1.5-CLOSED-BETA-OPERATIONS.md"
+    },
+    {
+      "id": "DEV-061",
+      "title": "بيانات المنهج",
+      "plan": "planning/roadmap/V2.0-PHYSICS-EXTENSION.md"
+    },
+    {
+      "id": "DEV-062",
+      "title": "عقد التحقق الفيزيائي",
+      "plan": "planning/roadmap/V2.0-PHYSICS-EXTENSION.md"
+    },
+    {
+      "id": "DEV-063",
+      "title": "الحساب والوحدات",
+      "plan": "planning/roadmap/V2.0-PHYSICS-EXTENSION.md"
+    },
+    {
+      "id": "DEV-064",
+      "title": "واجهة مسائل الفيزياء",
+      "plan": "planning/roadmap/V2.0-PHYSICS-EXTENSION.md"
+    },
+    {
+      "id": "DEV-065",
+      "title": "تشخيص وتلميحات الفيزياء",
+      "plan": "planning/roadmap/V2.0-PHYSICS-EXTENSION.md"
+    },
+    {
+      "id": "DEV-066",
+      "title": "التقدم وإدارة المحتوى",
+      "plan": "planning/roadmap/V2.0-PHYSICS-EXTENSION.md"
+    },
+    {
+      "id": "DEV-067",
+      "title": "الاختبارات",
+      "plan": "planning/roadmap/V2.0-PHYSICS-EXTENSION.md"
+    },
+    {
+      "id": "DEV-071",
+      "title": "محتوى مادة البرمجة",
+      "plan": "planning/roadmap/V2.1-PROGRAMMING-EXTENSION.md"
+    },
+    {
+      "id": "DEV-072",
+      "title": "محرر كود React",
+      "plan": "planning/roadmap/V2.1-PROGRAMMING-EXTENSION.md"
+    },
+    {
+      "id": "DEV-073",
+      "title": "خدمة تشغيل محدودة",
+      "plan": "planning/roadmap/V2.1-PROGRAMMING-EXTENSION.md"
+    },
+    {
+      "id": "DEV-074",
+      "title": "التحقق من حلول التمارين",
+      "plan": "planning/roadmap/V2.1-PROGRAMMING-EXTENSION.md"
+    },
+    {
+      "id": "DEV-075",
+      "title": "الذكاء التعليمي في البرمجة",
+      "plan": "planning/roadmap/V2.1-PROGRAMMING-EXTENSION.md"
+    },
+    {
+      "id": "DEV-076",
+      "title": "التقدم وسجل المحاولات",
+      "plan": "planning/roadmap/V2.1-PROGRAMMING-EXTENSION.md"
+    },
+    {
+      "id": "DEV-077",
+      "title": "لوحة المعلم",
+      "plan": "planning/roadmap/V2.1-PROGRAMMING-EXTENSION.md"
+    },
+    {
+      "id": "DEV-078",
+      "title": "اختبارات أساسية",
+      "plan": "planning/roadmap/V2.1-PROGRAMMING-EXTENSION.md"
+    }
+  ],
+  "retention": {
+    "baselineGuardMatched": true,
+    "roadmapCleanupPreserved": true,
+    "canonicalSuspensionProtected": true,
+    "claimedProvenanceProtected": true,
+    "reportAndHintForeignKeysProtected": true,
+    "guestSevenDayPolicyUnchanged": true,
+    "sqlExecuted": false,
+    "limitation": "Text reconstruction and source predicates only; PostgreSQL grammar, privileges, locking, FK behavior and purge execution remain untested.",
+    "reconstructedDefinitionSha256": "2b3372383e0e9d67680ddb935d1c0aa82f34bf6d36468fbf67e252dee4594477",
+    "issues": []
+  },
+  "baseline": [
+    {
+      "file": "planning/roadmap/V1.1-INTELLIGENT-TUTORING.md",
+      "sha256": "85165e63ab389f4489a5f923d26614ea0dafebe9ca75c7b8e533b284f8f35ff7"
+    },
+    {
+      "file": "planning/roadmap/V1.2-STUDENT-ACCOUNTS-PROGRESS.md",
+      "sha256": "1026e4d2337ccb63a8def6a731baf2f251288d4e7ee8cee0df2efbbabb80bdf1"
+    },
+    {
+      "file": "planning/roadmap/V1.3-CURRICULUM-CONTENT-MANAGEMENT.md",
+      "sha256": "3a3c44279a16ca13acee78db5ea944be7aff5ee11d02895553020d95de0b0617"
+    },
+    {
+      "file": "planning/roadmap/V1.4-UX-MATH-EDITOR-ACCESSIBILITY.md",
+      "sha256": "b63f9e59f1cdb91a9ebfce51427d5ccce7355add0c601614d85f20845962ca78"
+    },
+    {
+      "file": "planning/roadmap/V1.5-CLOSED-BETA-OPERATIONS.md",
+      "sha256": "2c57f5b2c2dfdbe2777b2f8dcd8db2f3431f20bc1a4864e340ca9b06c8fd232d"
+    },
+    {
+      "file": "planning/roadmap/V2.0-PHYSICS-EXTENSION.md",
+      "sha256": "a203ea2a411b55082f20ea8240a87bb2cee09bd046a4f0cadd42722003acda8a"
+    },
+    {
+      "file": "planning/roadmap/V2.1-PROGRAMMING-EXTENSION.md",
+      "sha256": "d2931d4e604fadff2725ad6589e49c22264c6a41e905e081fe7cf881ad013150"
+    },
+    {
+      "file": "docs/14-GOLDEN-DATASET.md",
+      "sha256": "cb46458dc172cecfb0c111da28f223c221bfe082be89fc147920063e494b8f92"
+    },
+    {
+      "file": "docs/14-GOLDEN-DATASET.cases.json",
+      "sha256": "1c3e5fec509a8fad930a3d05e9f5b764b6b060281ec7277a32575511095b7f12"
+    }
+  ]
+}

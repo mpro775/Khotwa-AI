@@ -131,10 +131,17 @@ export class AccountService {
       2592000,
     );
     this.otpKey = process.env.ACCOUNT_OTP_DIGEST_KEY ?? "";
+    const sessionKeys = [
+      store.security.settings.digestKey,
+      store.security.settings.bootstrapKey,
+      store.security.settings.csrfKey,
+      store.security.settings.issueKey,
+      store.security.settings.idempotencyKey,
+      store.security.settings.cursorKey,
+    ];
     if (
       this.enabled &&
-      (this.otpKey.length < 43 ||
-        this.otpKey === store.security.settings.digestKey)
+      (this.otpKey.length < 43 || sessionKeys.includes(this.otpKey))
     )
       throw new Error("DISTINCT_ACCOUNT_OTP_DIGEST_KEY_REQUIRED");
     this.mail =
@@ -260,6 +267,11 @@ export class AccountService {
   }
   async current(request: RequestContext, response: ResponseContext) {
     const account = this.enabled ? await this.account(request, true) : null;
+    const cookies: string[] = [];
+    if (this.enabled && !account && cookieValue(request, "kh_account") !== null)
+      // A revoked/expired account must not keep poisoning the legacy guest
+      // bridge after a lost logout response. The original guest is preserved.
+      cookies.push(secureCookie("kh_account", "", 0));
     const guest = await this.store.authenticate(request, {
       optional: true,
       guestOnly: true,
@@ -286,8 +298,7 @@ export class AccountService {
     }
     if (!bootstrap) {
       bootstrap = this.store.security.bootstrap();
-      response.setHeader(
-        "Set-Cookie",
+      cookies.push(
         secureCookie(
           "kh_bootstrap",
           bootstrap.cookie,
@@ -295,6 +306,11 @@ export class AccountService {
         ),
       );
     }
+    if (cookies.length)
+      response.setHeader(
+        "Set-Cookie",
+        cookies.length === 1 ? cookies[0]! : cookies,
+      );
     return {
       user: account ? userDto(account.row) : null,
       csrfToken: account
@@ -613,8 +629,11 @@ export class AccountService {
           "لا يمكن خلط البيانات الاصطناعية مع حسابات المتعلمين.",
         );
       await tx.$executeRaw`UPDATE learning_sessions SET guest_session_id=${actor.guestId}::uuid WHERE guest_session_id=${guest.row.id}::uuid`;
-      await tx.$executeRaw`INSERT INTO content_exposures(id,guest_session_id,problem_revision_id,learning_family,equation_hash,exposure_kind,created_at)
-        SELECT gen_random_uuid(),${actor.guestId}::uuid,problem_revision_id,learning_family,equation_hash,exposure_kind,created_at FROM content_exposures WHERE guest_session_id=${guest.row.id}::uuid ON CONFLICT(guest_session_id,problem_revision_id) DO NOTHING`;
+      // Exposure history is immutable. Preserve the original first-seen time
+      // when copying; an existing canonical exposure already disqualifies fresh
+      // transfer, so a conflict must not rewrite that historical row.
+      await tx.$executeRaw`INSERT INTO content_exposures(id,guest_session_id,problem_revision_id,learning_family,equation_hash,exposure_kind,first_seen_at)
+        SELECT gen_random_uuid(),${actor.guestId}::uuid,problem_revision_id,learning_family,equation_hash,exposure_kind,first_seen_at FROM content_exposures WHERE guest_session_id=${guest.row.id}::uuid ON CONFLICT(guest_session_id,problem_revision_id) DO NOTHING`;
       // The table is added by the next independent roadmap migration.
       const [product] = await tx.$queryRaw<
         { present: boolean }[]

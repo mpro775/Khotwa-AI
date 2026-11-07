@@ -234,20 +234,11 @@ export class PhysicsService {
         };
       },
     );
-    let engine: PhysicsResult;
-    try {
-      engine = await this.gateway.verify(problemId, prepared.reference, {
-        value,
-        unit,
-      });
-    } catch {
-      return prepared.pending;
-    }
-    return this.store.db.$transaction(async (tx) => {
+    const currentSubmission = async (tx: Prisma.TransactionClient) => {
       await this.accounts.authorizeInTransaction(tx, owner);
       const [current] = await tx.$queryRaw<
         AttemptRow[]
-      >`SELECT * FROM subject_attempts WHERE id=${prepared.id}::uuid AND owner_key=${owner.ownerKey} FOR UPDATE`;
+      >`SELECT * FROM subject_attempts WHERE id=${prepared.id}::uuid AND owner_key=${owner.ownerKey} AND subject_code='physics' FOR UPDATE`;
       if (!current || current.revision !== prepared.revision)
         throw new ApiFault(
           409,
@@ -256,7 +247,45 @@ export class PhysicsService {
           [],
           current?.revision ?? null,
         );
-      if (current.verdict.status !== "service_error") return current.verdict;
+      // Read after acquiring the row lock, with a fresh READ COMMITTED snapshot.
+      // A completed service_error is distinct from the initial pending verdict.
+      const [completion] = await tx.$queryRaw<
+        { completed: boolean }[]
+      >`SELECT EXISTS(SELECT 1 FROM subject_attempt_events WHERE attempt_id=${prepared.id}::uuid AND revision=${prepared.revision} AND event_kind='verified') AS completed`;
+      return {
+        ...current,
+        verification_completed: completion?.completed === true,
+      };
+    };
+    const completed = await this.store.db.$transaction(async (tx) => {
+      const current = await currentSubmission(tx);
+      return current.verification_completed ||
+        current.verdict.status !== "service_error"
+        ? current.verdict
+        : null;
+    });
+    if (completed) return completed;
+    let engine: PhysicsResult;
+    try {
+      engine = await this.gateway.verify(problemId, prepared.reference, {
+        value,
+        unit,
+      });
+    } catch {
+      return this.store.db.$transaction(async (tx) => {
+        const current = await currentSubmission(tx);
+        return current.verification_completed
+          ? current.verdict
+          : prepared.pending;
+      });
+    }
+    return this.store.db.$transaction(async (tx) => {
+      const current = await currentSubmission(tx);
+      if (
+        current.verification_completed ||
+        current.verdict.status !== "service_error"
+      )
+        return current.verdict;
       const result: PhysicsAttempt = {
         ...prepared.pending,
         status: engine.status,

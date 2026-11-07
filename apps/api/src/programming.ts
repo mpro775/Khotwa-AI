@@ -221,6 +221,14 @@ export class ProgrammingService {
         Attempt[]
       >`SELECT * FROM subject_attempts WHERE id=${prepared.id}::uuid AND owner_key=${owner.ownerKey}`;
       if (!row) throw missing();
+      if (row.revision !== prepared.revision)
+        throw new ApiFault(
+          409,
+          "revision_conflict",
+          "تغيرت المحاولة منذ هذا الإرسال؛ حدّثها قبل عرض النتيجة.",
+          [],
+          row.revision,
+        );
       return row.verdict;
     }
     const problem = await this.problem(this.store.db, revisionId, true),

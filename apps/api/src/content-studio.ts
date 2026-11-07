@@ -92,11 +92,15 @@ export class ContentStudioService {
   }
   async list(request: RequestContext, query: Record<string, unknown>) {
     await this.accounts.actor(request, false, editors);
-    only(query, ["subject", "status", "q"]);
+    only(query, ["subject", "status", "q", "skillCode", "difficulty"]);
     const subject =
         query.subject === undefined ? null : textField(query.subject, 40),
       status = query.status === undefined ? null : textField(query.status, 40),
-      q = query.q === undefined ? null : textField(query.q, 120, 0);
+      q = query.q === undefined ? null : textField(query.q, 120, 0),
+      skillCode =
+        query.skillCode === undefined ? null : textField(query.skillCode, 80),
+      difficulty =
+        query.difficulty === undefined ? null : textField(query.difficulty, 1);
     if (subject && !["algebra", "physics", "programming"].includes(subject))
       throw productInvalid();
     if (
@@ -106,9 +110,13 @@ export class ContentStudioService {
       )
     )
       throw productInvalid();
+    if (skillCode && !/^[A-Za-z][A-Za-z0-9_-]*$/.test(skillCode))
+      throw productInvalid("رمز تصفية المهارة غير صالح.");
+    if (difficulty && !["1", "2", "3"].includes(difficulty))
+      throw productInvalid("اختر صعوبة من ١ إلى ٣.");
     const rows = await this.store.db.$queryRaw<
       StudioRow[]
-    >`SELECT * FROM studio_revisions WHERE (${subject}::text IS NULL OR payload->>'subject'=${subject}) AND (${status}::text IS NULL OR status=${status}) AND (${q}::text IS NULL OR strpos(lower(payload->>'titleAr'),lower(${q}))>0 OR EXISTS(SELECT 1 FROM jsonb_array_elements_text(payload->'skillCodes') s WHERE strpos(lower(s),lower(${q}))>0)) ORDER BY created_at DESC,id LIMIT 300`;
+    >`SELECT * FROM studio_revisions WHERE (${subject}::text IS NULL OR payload->>'subject'=${subject}) AND (${status}::text IS NULL OR status=${status}) AND (${skillCode}::text IS NULL OR payload->'skillCodes' ? ${skillCode}) AND (${difficulty}::text IS NULL OR payload->>'difficulty'=${difficulty}) AND (${q}::text IS NULL OR strpos(lower(payload->>'titleAr'),lower(${q}))>0 OR EXISTS(SELECT 1 FROM jsonb_array_elements_text(payload->'skillCodes') s WHERE strpos(lower(s),lower(${q}))>0)) ORDER BY created_at DESC,id LIMIT 300`;
     return { items: rows.map(dto) };
   }
   async detail(request: RequestContext, id: string) {
@@ -487,11 +495,21 @@ export class ContentStudioService {
       skill = { id: randomUUID() };
       await tx.$executeRaw`INSERT INTO skills(id,release_id,skill_code,name_ar,learning_objective_ar,sort_order,status) VALUES(${skill.id}::uuid,${release.id}::uuid,${primary},${p.lessonTitleAr},${p.statementAr},0,'active')`;
     }
+    const secondarySkills: string[] = [];
+    for (const skillCode of [...new Set(p.skillCodes.slice(1))].filter(
+      (code) => code !== primary,
+    )) {
+      const secondaryId = randomUUID();
+      await tx.$executeRaw`INSERT INTO skills(id,release_id,skill_code,name_ar,learning_objective_ar,sort_order,status) VALUES(${secondaryId}::uuid,${release.id}::uuid,${skillCode},${p.lessonTitleAr},${p.statementAr},${secondarySkills.length + 1},'active')`;
+      secondarySkills.push(secondaryId);
+    }
     const problemId = row.item_id,
       revisionId = randomUUID();
     await tx.$executeRaw`INSERT INTO problems(id,problem_code) VALUES(${problemId}::uuid,${"STUDIO-" + problemId}) ON CONFLICT(id) DO NOTHING`;
     await tx.$executeRaw`INSERT INTO problem_revisions(id,problem_id,version_number,release_id,item_kind,statement_ar,original_equation_raw,answer_spec,difficulty_band,notation_profile,review_status,reviewed_at,published_at,content_hash,learning_family) VALUES(${revisionId}::uuid,${problemId}::uuid,${row.version},${release.id}::uuid,${p.kind},${p.statementAr},${a.equationRaw},${JSON.stringify({ kind: "linear_one_variable", finalRaw: a.answerRaw })}::jsonb,${p.difficulty},'ar-mashriq-school-v1','published',now(),now(),${row.content_hash},${p.familyCode})`;
     await tx.$executeRaw`INSERT INTO problem_skills(problem_revision_id,skill_id,coverage_kind) VALUES(${revisionId}::uuid,${skill.id}::uuid,'primary')`;
+    for (const secondaryId of secondarySkills)
+      await tx.$executeRaw`INSERT INTO problem_skills(problem_revision_id,skill_id,coverage_kind) VALUES(${revisionId}::uuid,${secondaryId}::uuid,'secondary')`;
     await tx.$executeRaw`INSERT INTO studio_algebra_links(studio_revision_id,problem_revision_id,problem_id,release_id) VALUES(${row.id}::uuid,${revisionId}::uuid,${problemId}::uuid,${release.id}::uuid)`;
     await materializeStudioHints(tx, {
       payload: p,
@@ -570,6 +588,14 @@ export class ContentStudioService {
     return {
       format: "khotwa-content-v1",
       items: rows.map((r) => parsePayload(r.payload)),
+      revisionMetadata: rows.map((r, itemIndex) => ({
+        itemIndex,
+        revisionId: r.id,
+        itemId: r.item_id,
+        version: r.version,
+        status: r.status,
+        contentHash: r.content_hash,
+      })),
     };
   }
   async catalog(

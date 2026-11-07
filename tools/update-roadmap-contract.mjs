@@ -345,6 +345,23 @@ const envelopeSchemas = {
   StudioExportEnvelope: obj({
     format: { const: "khotwa-content-v1" },
     items: arr(ref("StudioContentPayload"), 1000),
+    revisionMetadata: arr(
+      obj({
+        itemIndex: num(0, 999),
+        revisionId: id,
+        itemId: id,
+        version: num(1),
+        status: enumeration(
+          "draft",
+          "in_review",
+          "approved",
+          "published",
+          "archived",
+        ),
+        contentHash: { type: "string", pattern: "^[a-f0-9]{64}$" },
+      }),
+      1000,
+    ),
   }),
   ProductCatalogEnvelope: ref("ProductCatalog"),
   ProductPublicItemEnvelope: ref("ProductPublicItem"),
@@ -421,6 +438,10 @@ paths["/api/v1/studio/items"].get.parameters.push(
     in: "query",
     schema: str(name === "q" ? 120 : 40, 0),
   })),
+);
+paths["/api/v1/studio/items"].get.parameters.push(
+  { name: "skillCode", in: "query", schema: code },
+  { name: "difficulty", in: "query", schema: enumeration("1", "2", "3") },
 );
 route(
   "/api/v1/studio/items",

@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { ApiFault } from "./http";
 import { internalValue, Schema } from "./contracts";
+import { betaTelemetry } from "./beta-operations";
 
 type Context = Schema<"InternalMathContext">;
 type TransitionRequest = Schema<"InternalMathTransitionRequest">;
@@ -144,7 +145,12 @@ export class MathGateway implements MathPort {
         new TextDecoder("utf-8", { fatal: true }).decode(Buffer.concat(chunks)),
       );
       return internalValue<T>(responseSchema, value);
-    } catch {
+    } catch (error) {
+      if (
+        error instanceof Error &&
+        ["AbortError", "TimeoutError"].includes(error.name)
+      )
+        betaTelemetry.recordMathTimeout();
       throw this.unavailable();
     }
   }

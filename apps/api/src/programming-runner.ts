@@ -28,6 +28,13 @@ const unavailable = (): Execution => ({
   stdout: "",
   stderr: "خدمة التنفيذ المعزول غير متاحة الآن. بقي الكود محفوظًا.",
 });
+const displayOutput = (value: string): string =>
+  Array.from(value)
+    .filter((character) => {
+      const point = character.codePointAt(0)!;
+      return point >= 32 || point === 9 || point === 10 || point === 13;
+    })
+    .join("");
 /** Judge0 is a private, separately managed sandbox. This API process executes no student code. */
 export class Judge0Runner implements RunnerPort {
   constructor(
@@ -47,12 +54,16 @@ export class Judge0Runner implements RunnerPort {
       !Number.isInteger(settings.languageId) ||
       settings.languageId <= 0 ||
       settings.token.length < 32 ||
+      !Number.isInteger(settings.timeoutMs) ||
       settings.timeoutMs < 1000 ||
       settings.timeoutMs > 30000 ||
+      !Number.isFinite(settings.cpuSeconds) ||
       settings.cpuSeconds <= 0 ||
       settings.cpuSeconds > 3 ||
+      !Number.isInteger(settings.memoryKiB) ||
       settings.memoryKiB < 16384 ||
       settings.memoryKiB > 131072 ||
+      !Number.isInteger(settings.outputBytes) ||
       settings.outputBytes < 1024 ||
       settings.outputBytes > 65536
     )
@@ -169,12 +180,11 @@ export class Judge0Runner implements RunnerPort {
           const bytes = Buffer.from(value, "base64");
           if (bytes.length > this.settings.outputBytes)
             throw new Error("runner_output_limit");
-          return Array.from(bytes.toString("utf8"))
-            .filter((character) => {
-              const point = character.codePointAt(0)!;
-              return point >= 32 || point === 9 || point === 10 || point === 13;
-            })
-            .join("");
+          if (bytes.toString("base64") !== value.replace(/[\r\n]/g, ""))
+            throw new Error("runner_invalid_output");
+          // Compare the original UTF-8 output. Display sanitation must never
+          // make an incorrect output match the expected answer.
+          return new TextDecoder("utf-8", { fatal: true }).decode(bytes);
         };
         const stdout = decode(result.stdout),
           stderr = decode(result.stderr),
@@ -305,8 +315,8 @@ export async function evaluateProgram(
         if (onAbort) signal.removeEventListener("abort", onAbort);
       }
       if (!test.hidden) {
-        stdout = execution.stdout;
-        stderr = execution.stderr;
+        stdout = displayOutput(execution.stdout);
+        stderr = displayOutput(execution.stderr);
       }
       if (execution.status !== "succeeded") {
         status = execution.status;

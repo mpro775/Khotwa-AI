@@ -2497,6 +2497,17 @@ export interface components {
                 /** @constant */
                 format: "khotwa-content-v1";
                 items: components["schemas"]["StudioContentPayload"][];
+                revisionMetadata: {
+                    itemIndex: number;
+                    /** Format: uuid */
+                    revisionId: string;
+                    /** Format: uuid */
+                    itemId: string;
+                    version: number;
+                    /** @enum {string} */
+                    status: "draft" | "in_review" | "approved" | "published" | "archived";
+                    contentHash: string;
+                }[];
             };
             meta: components["schemas"]["Meta"];
         };
@@ -4411,6 +4422,8 @@ export interface operations {
                 subject?: string;
                 status?: string;
                 q?: string;
+                skillCode?: string;
+                difficulty?: "1" | "2" | "3";
             };
             header?: never;
             path?: never;

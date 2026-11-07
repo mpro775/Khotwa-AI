@@ -1,4 +1,4 @@
-import { connect as connectTcp, type Socket } from "node:net";
+import { connect as connectTcp, isIP, type Socket } from "node:net";
 import { connect as connectTls, type TLSSocket } from "node:tls";
 
 export interface LoginMessage {
@@ -38,12 +38,22 @@ type SmtpSettings = {
  * explicitly configured local Mailpit service. No STARTTLS downgrade. */
 export class SmtpAccountMail implements AccountMail {
   constructor(readonly settings: SmtpSettings) {
+    const hostIsValid =
+      settings.host.length > 0 &&
+      settings.host.length <= 253 &&
+      settings.host === settings.host.trim() &&
+      (isIP(settings.host) !== 0 ||
+        settings.host
+          .split(".")
+          .every((label) =>
+            /^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$/i.test(label),
+          ));
     if (
+      !hostIsValid ||
       !Number.isInteger(settings.port) ||
       settings.port < 1 ||
       settings.port > 65535 ||
       !/^[^\s<>@]+@[^\s<>@]+$/.test(settings.from) ||
-      /[\r\n]/.test(settings.host) ||
       (!settings.implicitTls &&
         !(
           settings.allowLocalPlaintext &&

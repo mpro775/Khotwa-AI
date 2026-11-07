@@ -41,6 +41,27 @@
               "minLength": 0,
               "maxLength": 120
             }
+          },
+          {
+            "name": "skillCode",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
+              "maxLength": 80
+            }
+          },
+          {
+            "name": "difficulty",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "1",
+                "2",
+                "3"
+              ]
+            }
           }
         ],
         "responses": {
@@ -2784,11 +2805,62 @@
                   "$ref": "#/components/schemas/StudioContentPayload"
                 },
                 "maxItems": 1000
+              },
+              "revisionMetadata": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "itemIndex": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 999
+                    },
+                    "revisionId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "itemId": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "version": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 2147483647
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "draft",
+                        "in_review",
+                        "approved",
+                        "published",
+                        "archived"
+                      ]
+                    },
+                    "contentHash": {
+                      "type": "string",
+                      "pattern": "^[a-f0-9]{64}$"
+                    }
+                  },
+                  "required": [
+                    "itemIndex",
+                    "revisionId",
+                    "itemId",
+                    "version",
+                    "status",
+                    "contentHash"
+                  ]
+                },
+                "maxItems": 1000
               }
             },
             "required": [
               "format",
-              "items"
+              "items",
+              "revisionMetadata"
             ]
           },
           "meta": {

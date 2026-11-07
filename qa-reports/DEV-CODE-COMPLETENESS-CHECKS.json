@@ -1,0 +1,81 @@
+{
+  "auditDate": "2026-11-07",
+  "timeZone": "Asia/Riyadh",
+  "baselineCommit": "9d44ac0",
+  "branch": "codex/posthack-roadmap",
+  "mode": "Source audit and static checks only. No unit/integration/E2E or service/database/provider/Sandbox/deployment execution.",
+  "checks": [
+    {
+      "key": "lint",
+      "command": "npm run lint",
+      "chunk_id": "fea034",
+      "wall_time_seconds": 0.0000244,
+      "exit_code": 0,
+      "original_token_count": 0,
+      "output": "\n> khotwa-ai@0.1.0 lint\n> eslint apps packages/contracts/src tools/*.mjs && node tools/python-task.mjs -m pycodestyle --max-line-length=88 --ignore=E203,W503 services/math-engine/src tools/dev_env.py tools/seed_demo.py\n\n"
+    },
+    {
+      "key": "format",
+      "command": "npm run format:check",
+      "chunk_id": "e04827",
+      "wall_time_seconds": 0.0000253,
+      "exit_code": 0,
+      "original_token_count": 29,
+      "output": "\n> khotwa-ai@0.1.0 format:check\n> prettier --check package.json tsconfig.base.json eslint.config.mjs pyrightconfig.json compose.yaml Dockerfile .github/workflows/ci.yml \"apps/**/*.{ts,tsx,json,css,html}\" \"packages/contracts/src/index.ts\" \"tools/*.mjs\" && node tools/python-task.mjs -m black --check services/math-engine/src tools/dev_env.py tools/seed_demo.py\n\nChecking formatting...\nAll matched files use Prettier code style!\nAll done! \\u2728 \\U0001f370 \\u2728\r\n14 files would be left unchanged.\r\n"
+    },
+    {
+      "key": "typecheck",
+      "command": "npm run typecheck",
+      "chunk_id": "7de245",
+      "wall_time_seconds": 0.0000201,
+      "exit_code": 0,
+      "original_token_count": 77,
+      "output": "\n> khotwa-ai@0.1.0 typecheck\n> npm run typecheck --workspaces --if-present && pyright\n\n\n> @khotwa/api@0.1.0 typecheck\n> npm run generate && tsc --noEmit\n\n\n> @khotwa/api@0.1.0 generate\n> prisma generate --config prisma.config.ts\n\nLoaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma\\schema.prisma.\n\n✔ Generated Prisma Client (v7.10.1) to .\\..\\..\\node_modules\\@prisma\\client in 1.15s\n\nStart by importing your Prisma Client (See: https://pris.ly/d/importing-client)\n\n\n\n> @khotwa/web@0.1.0 typecheck\n> tsc --noEmit\n\n\n> @khotwa/contracts@0.1.0 typecheck\n> tsc --noEmit\n\n0 errors, 0 warnings, 0 informations\n"
+    },
+    {
+      "key": "build",
+      "command": "npm run build",
+      "chunk_id": "de9860",
+      "wall_time_seconds": 0.0000129,
+      "exit_code": 0,
+      "original_token_count": 588,
+      "output": "\n> khotwa-ai@0.1.0 build\n> npm run build --workspaces --if-present && node tools/python-task.mjs -m compileall -q services/math-engine/src\n\n\n> @khotwa/api@0.1.0 build\n> npm run generate && tsc -p tsconfig.json\n\n\n> @khotwa/api@0.1.0 generate\n> prisma generate --config prisma.config.ts\n\nLoaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma\\schema.prisma.\n\n✔ Generated Prisma Client (v7.10.1) to .\\..\\..\\node_modules\\@prisma\\client in 634ms\n\nStart by importing your Prisma Client (See: https://pris.ly/d/importing-client)\n\n\n\n> @khotwa/web@0.1.0 build\n> tsc --noEmit && vite build\n\nvite v8.3.5 building client environment for production...\ntransforming...\n✓ 46 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                                         0.40 kB │ gzip:   0.28 kB\ndist/assets/KaTeX_Size4-Regular-Dl5lxZxV.woff2          4.92 kB\ndist/assets/KaTeX_Size2-Regular-Dy4dx90m.woff2          5.20 kB\ndist/assets/KaTeX_Size1-Regular-mCD8mA8B.woff2          5.46 kB\ndist/assets/KaTeX_Caligraphic-Regular-Di6jR-x-.woff2    6.90 kB\ndist/assets/KaTeX_Caligraphic-Bold-Dq_IR9rO.woff2       6.91 kB\ndist/assets/KaTeX_Script-Regular-D3wIWfF6.woff2         9.64 kB\ndist/assets/KaTeX_SansSerif-Regular-DDBCnlJ7.woff2     10.34 kB\ndist/assets/KaTeX_Fraktur-Regular-CTYiF6lA.woff2       11.31 kB\ndist/assets/KaTeX_Fraktur-Bold-CL6g_b3V.woff2          11.34 kB\ndist/assets/KaTeX_SansSerif-Italic-C3H0VqGB.woff2      12.02 kB\ndist/assets/KaTeX_SansSerif-Bold-D1sUS0GD.woff2        12.21 kB\ndist/assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2    13.56 kB\ndist/assets/KaTeX_Math-BoldItalic-CZnvNsCZ.woff2       16.40 kB\ndist/assets/KaTeX_Math-Italic-t53AETM-.woff2           16.44 kB\ndist/assets/KaTeX_Main-BoldItalic-DxDJ3AOS.woff2       16.78 kB\ndist/assets/KaTeX_Main-Italic-NWA7e6Wa.woff2           16.98 kB\ndist/assets/KaTeX_Main-Bold-Cx986IdX.woff2             25.32 kB\ndist/assets/KaTeX_Main-Regular-B22Nviop.woff2          26.27 kB\ndist/assets/KaTeX_AMS-Regular-BQhdFMY1.woff2           28.07 kB\ndist/assets/ArabicEditor-BnjoTxG4.css                   8.00 kB │ gzip:   4.20 kB\ndist/assets/index-BD0pVSXV.css                         17.39 kB │ gzip:   4.76 kB\ndist/assets/TeacherDemo-CnQDX1pe.js                     5.05 kB │ gzip:   1.97 kB\ndist/assets/index-D1awB-gx.js                         622.07 kB │ gzip: 130.66 kB\ndist/assets/ArabicEditor-CNBgSI3O.js                  816.77 kB │ gzip: 225.26 kB\n\n[plugin builtin:vite-reporter] \n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n✓ built in 482ms\n\n> @khotwa/contracts@0.1.0 build\n> tsc --noEmit\n\n"
+    },
+    {
+      "key": "contracts",
+      "command": "npm run contracts:check",
+      "chunk_id": "7c2dfd",
+      "wall_time_seconds": 4.1258616,
+      "exit_code": 0,
+      "original_token_count": 38,
+      "output": "\n> khotwa-ai@0.1.0 contracts:check\n> node tools/contracts.mjs --check\n\nCanonical OpenAPI mirror, 4 JSON mirrors, and generated public types verified.\n"
+    },
+    {
+      "key": "static",
+      "command": "node tools/audit-code-completeness.mjs",
+      "chunk_id": "90ed2f",
+      "wall_time_seconds": 3.6846288,
+      "exit_code": 0,
+      "original_token_count": 57,
+      "output": "{\n  \"tasks\": 46,\n  \"tables\": 46,\n  \"sqlTemplates\": 300,\n  \"inserts\": 70,\n  \"updates\": 65,\n  \"sqlIssues\": [],\n  \"productOperations\": 36,\n  \"routeIssues\": [],\n  \"contentItems\": 64,\n  \"contentIssues\": [],\n  \"retentionIssues\": []\n}\n"
+    },
+      {
+        "key": "golden",
+        "command": "git diff --exit-code 9d44ac0 -- docs/14-GOLDEN-DATASET.md docs/14-GOLDEN-DATASET.cases.json planning/roadmap",
+        "chunk_id": "215111",
+        "wall_time_seconds": 0.578995,
+        "exit_code": 0,
+        "original_token_count": 0,
+        "output": ""
+      },
+      {
+        "key": "diff",
+        "command": "git diff --check",
+        "chunk_id": "210226",
+        "wall_time_seconds": 0.6038742,
+        "exit_code": 0,
+        "original_token_count": 0,
+        "output": ""
+      }
+  ]
+}

@@ -15,6 +15,8 @@ interface BetaMetrics {
   day: string;
   noteAr: string;
   database: string;
+  mathTimeouts: number;
+  disk: { availableBytes: number; totalBytes: number } | null;
   samples: number;
   status4xx: number;
   status5xx: number;
@@ -39,6 +41,14 @@ function betaMetrics(value: unknown): BetaMetrics {
     day: textField(r.day),
     noteAr: textField(r.noteAr),
     database: textField(r.database),
+    mathTimeouts: numberField(r.mathTimeouts),
+    disk:
+      r.disk === null
+        ? null
+        : {
+            availableBytes: numberField(record(r.disk).availableBytes),
+            totalBytes: numberField(record(r.disk).totalBytes),
+          },
     samples: numberField(api.sampleCount),
     status4xx: numberField(api.status4xx),
     status5xx: numberField(api.status5xx),
@@ -229,6 +239,10 @@ export function BetaPanel({
                   { name: "عينات زمن الطلب", value: metrics.samples },
                   { name: "أخطاء 4xx", value: metrics.status4xx },
                   { name: "أخطاء 5xx", value: metrics.status5xx },
+                  {
+                    name: "المهل المنتهية للتحقق الداخلي",
+                    value: metrics.mathTimeouts,
+                  },
                   { name: "زمن p50 (ms)", value: metrics.p50Ms },
                   { name: "زمن p95 (ms)", value: metrics.p95Ms },
                   ...metrics.usage.map((m) => ({
@@ -252,6 +266,21 @@ export function BetaPanel({
                   </article>
                 ))}
               </div>
+              <p className="helper">
+                {metrics.disk
+                  ? "المساحة المتاحة في نظام ملفات خدمة API: " +
+                    (metrics.disk.availableBytes / 1073741824).toLocaleString(
+                      "ar",
+                      { maximumFractionDigits: 2 },
+                    ) +
+                    " GiB من " +
+                    (metrics.disk.totalBytes / 1073741824).toLocaleString(
+                      "ar",
+                      { maximumFractionDigits: 2 },
+                    ) +
+                    " GiB. لا تقيس مساحة volume قاعدة البيانات."
+                  : "تعذر قراءة مساحة نظام ملفات خدمة API."}
+              </p>
               <h3>الملاحظات الأخيرة</h3>
               {metrics.feedback.length ? (
                 metrics.feedback.map((f) => (

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type {
   ContentPayload,
   ContentStatus,
@@ -419,8 +419,11 @@ export function ContentStudio({
   const [filter, setFilter] = useState(""),
     [status, setStatus] = useState(""),
     [query, setQuery] = useState(""),
+    [filterSkill, setFilterSkill] = useState(""),
+    [filterDifficulty, setFilterDifficulty] = useState(""),
     [importText, setImportText] = useState(""),
     [preview, setPreview] = useState<Preview | null>(null);
+  const editEpoch = useRef(0);
   const authorized =
       !!identity?.user &&
       ["teacher", "content_manager", "admin"].includes(identity.user.role),
@@ -446,6 +449,8 @@ export function ContentStudio({
       if (filter) search.set("subject", filter);
       if (status) search.set("status", status);
       if (query) search.set("q", query);
+      if (filterSkill.trim()) search.set("skillCode", filterSkill.trim());
+      if (filterDifficulty) search.set("difficulty", filterDifficulty);
       setItems(
         await api.request("/studio/items?" + search, (value) =>
           arrayField(record(value).items, studioItem),
@@ -454,10 +459,12 @@ export function ContentStudio({
     });
   }
   function change(next: ContentPayload) {
+    editEpoch.current++;
     setPayload(next);
     setDirty(true);
   }
   function open(item: StudioItem) {
+    editEpoch.current++;
     setSelected(item);
     setPayload(hintSlots(item.payload));
     setSkillText(item.payload.skillCodes.join(", "));
@@ -496,14 +503,49 @@ export function ContentStudio({
       | "revise"
       | "rollback",
   ) {
-    if (!selected) return;
+    if (!selected || (action === "submit" && dirty)) return;
+    const submitted = selected,
+      epoch = editEpoch.current;
     await work(async () => {
+      let target = submitted;
+      if (action === "submit") {
+        const checked = await api.request(
+          `/studio/items/${submitted.id}/validate`,
+          studioItem,
+          "POST",
+          { expectedRevision: submitted.editRevision },
+        );
+        if (editEpoch.current !== epoch) {
+          setNotice(
+            "تغيّرت المسودة أثناء التحقق؛ بقيت تغييراتك ولم تُرسل للمراجعة.",
+          );
+          return;
+        }
+        setSelected(checked);
+        setItems((old) => [
+          checked,
+          ...old.filter((item) => item.id !== checked.id),
+        ]);
+        if (!checked.validation?.valid) {
+          setNotice(
+            "بقيت المسألة مسودة؛ صحح ملاحظات فحص المرجع قبل إرسالها للمراجعة.",
+          );
+          return;
+        }
+        target = checked;
+      }
       const next = await api.request(
-        `/studio/items/${selected.id}/transition`,
+        `/studio/items/${target.id}/transition`,
         studioItem,
         "POST",
-        { expectedRevision: selected.editRevision, action },
+        { expectedRevision: target.editRevision, action },
       );
+      if (editEpoch.current !== epoch) {
+        setNotice(
+          "اكتملت العملية للنسخة السابقة؛ بقيت المسودة المفتوحة كما كتبتها.",
+        );
+        return;
+      }
       setSelected(next);
       setPayload(hintSlots(next.payload));
       setSkillText(next.payload.skillCodes.join(", "));
@@ -519,7 +561,7 @@ export function ContentStudio({
     });
   }
   async function removeDraft() {
-    if (!selected || selected.status !== "draft") return;
+    if (!selected || selected.status !== "draft" || dirty) return;
     await work(async () => {
       const next = await api.request(
         `/studio/items/${selected.id}`,
@@ -646,6 +688,33 @@ export function ContentStudio({
                 <option value="physics">الفيزياء</option>
                 <option value="programming">البرمجة</option>
               </select>
+              <label htmlFor="studio-skill-filter">المهارة</label>
+              <input
+                id="studio-skill-filter"
+                list="studio-skill-options"
+                dir="ltr"
+                value={filterSkill}
+                onChange={(e) => setFilterSkill(e.target.value)}
+                placeholder="SK-ALG-04"
+              />
+              <datalist id="studio-skill-options">
+                {[...new Set(items.flatMap((item) => item.payload.skillCodes))]
+                  .sort()
+                  .map((skill) => (
+                    <option key={skill} value={skill} />
+                  ))}
+              </datalist>
+              <label htmlFor="studio-difficulty-filter">الصعوبة</label>
+              <select
+                id="studio-difficulty-filter"
+                value={filterDifficulty}
+                onChange={(e) => setFilterDifficulty(e.target.value)}
+              >
+                <option value="">كل الصعوبات</option>
+                <option value="1">١ — تمهيدية</option>
+                <option value="2">٢ — متوسطة</option>
+                <option value="3">٣ — تحدٍّ بسيط</option>
+              </select>
               <label htmlFor="studio-status-filter">الحالة</label>
               <select
                 id="studio-status-filter"
@@ -664,7 +733,9 @@ export function ContentStudio({
                   بحث وتحديث
                 </button>
                 <button
+                  disabled={busy}
                   onClick={() => {
+                    editEpoch.current++;
                     setSelected(null);
                     setPayload(emptyPayload());
                     setSkillText("");
@@ -686,6 +757,10 @@ export function ContentStudio({
                     <strong>{item.payload.titleAr}</strong>
                     <small>
                       {item.payload.unitTitleAr} / {item.payload.lessonTitleAr}
+                    </small>
+                    <small>
+                      {item.payload.skillCodes.join(" · ")} · الصعوبة{" "}
+                      {item.payload.difficulty.toLocaleString("ar")}
                     </small>
                     <span>
                       {statuses[item.status]} · إصدار{" "}
@@ -1423,7 +1498,7 @@ export function ContentStudio({
                   {selected?.status === "draft" && (
                     <button
                       type="button"
-                      disabled={busy}
+                      disabled={busy || dirty}
                       onClick={() => void removeDraft()}
                     >
                       أزل المسودة من التحرير
