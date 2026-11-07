@@ -103,10 +103,17 @@ export async function transferLearningKind(
   const [x] = await tx.$queryRaw<
     Assignment[]
   >`SELECT * FROM learning_assignments WHERE attempt_id=${a.id}::uuid FOR UPDATE`;
+  if (!x) {
+    // V2.2 assessments use canonical transfer attempts. Only an explicit,
+    // persisted exit from measurement permits the existing tutoring policy.
+    const [item] = await tx.$queryRaw<
+      { measurement_exited_at: Date | null }[]
+    >`SELECT measurement_exited_at FROM learning_assessment_items WHERE attempt_id=${a.id}::uuid FOR UPDATE`;
+    return item?.measurement_exited_at ? "remediation" : a.attempt_kind;
+  }
   if (
-    !x ||
-    (input.action === "show_full_solution" &&
-      input.confirmAssistedCompletion !== true)
+    input.action === "show_full_solution" &&
+    input.confirmAssistedCompletion !== true
   )
     return a.attempt_kind;
   if (x.assistance_policy === "independent") {

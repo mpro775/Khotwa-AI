@@ -15,6 +15,7 @@ import { PhysicsWorkspace, ProgrammingWorkspace } from "./SubjectWorkspace";
 import { BetaPanel } from "./BetaPanel";
 import { StudentWorkspace } from "./StudentWorkspace";
 import { clearLearningStorage } from "./product-session";
+import { LearningPaths } from "./LearningPaths";
 import "./product.css";
 
 type View =
@@ -260,7 +261,7 @@ export function ProductShell() {
             </button>
             {ready && (
               <button disabled={busy} onClick={() => void loadCatalog()}>
-                حدّث الدروس المنشورة
+                حدّث بنك المسائل المنشورة
               </button>
             )}
           </div>
@@ -270,62 +271,68 @@ export function ProductShell() {
             <span>٣ · افهم النتيجة</span>
             <span>٤ · جرّب مسألة جديدة</span>
           </div>
-          {catalog?.subjects.length ? (
-            catalog.subjects.map((subject) => (
-              <section key={subject.code} className="product-card">
-                <h2>{subject.titleAr}</h2>
-                {subject.units.map((unit) => (
-                  <section key={unit.code} className="catalog-unit">
-                    <h3>{unit.titleAr}</h3>
-                    {unit.lessons.map((lesson) => (
-                      <div key={lesson.code} className="catalog-lesson">
-                        <h4>{lesson.titleAr}</h4>
-                        <div className="product-grid">
-                          {lesson.items.map((item) => (
-                            <article key={item.id} className="lesson-card">
-                              <span className="eyebrow">
-                                {item.kind === "transfer"
-                                  ? "نقل فهم"
-                                  : item.kind === "remediation"
-                                    ? "تدريب على المهارة"
-                                    : "مسألة درس"}{" "}
-                                ·{" "}
-                                {item.difficulty === 1
-                                  ? "تمهيدية"
-                                  : item.difficulty === 2
-                                    ? "متوسطة"
-                                    : "تحدٍّ بسيط"}
-                              </span>
-                              <h3>{item.titleAr}</h3>
-                              <p>{item.statementAr}</p>
-                              <button
-                                disabled={busy}
-                                onClick={() => void open(item)}
-                              >
-                                ابدأ هذه المسألة
-                              </button>
-                            </article>
-                          ))}
+          {ready && <LearningPaths key={ownerEpoch} api={api} />}
+          <details className="legacy-problem-bank">
+            <summary>بنك المسائل ومساحات التدريب الحالية</summary>
+            {catalog?.subjects.length ? (
+              catalog.subjects.map((subject) => (
+                <section key={subject.code} className="product-card">
+                  <h2>{subject.titleAr}</h2>
+                  {subject.units.map((unit) => (
+                    <section key={unit.code} className="catalog-unit">
+                      <h3>{unit.titleAr}</h3>
+                      {unit.lessons.map((lesson) => (
+                        <div key={lesson.code} className="catalog-lesson">
+                          <h4>{lesson.titleAr}</h4>
+                          <div className="product-grid">
+                            {lesson.items.map((item) => (
+                              <article key={item.id} className="lesson-card">
+                                <span className="eyebrow">
+                                  {item.kind === "transfer"
+                                    ? "نقل فهم"
+                                    : item.kind === "remediation"
+                                      ? "تدريب على المهارة"
+                                      : "مسألة درس"}{" "}
+                                  ·{" "}
+                                  {item.difficulty === 1
+                                    ? "تمهيدية"
+                                    : item.difficulty === 2
+                                      ? "متوسطة"
+                                      : "تحدٍّ بسيط"}
+                                </span>
+                                <h3>{item.titleAr}</h3>
+                                <p>{item.statementAr}</p>
+                                <button
+                                  disabled={busy}
+                                  onClick={() => void open(item)}
+                                >
+                                  ابدأ هذه المسألة
+                                </button>
+                              </article>
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    ))}
-                  </section>
-                ))}
-              </section>
-            ))
-          ) : (
-            <div className="product-card">
-              <h2>{busy ? "جارٍ تحميل الدروس…" : "ابدأ من المسائل المتاحة"}</h2>
-              <p>
-                {ready
-                  ? "لا توجد دروس منشورة في البنك الجديد حاليًا. يمكنك متابعة الجبر الموجود، أو نشر محتوى مراجع من حساب مخوّل."
-                  : "ابدأ جلسة ضيف لعرض المحتوى المنشور، أو ادخل بحسابك لاستعادة تقدمك."}
-              </p>
-              <button onClick={() => navigate("algebra")}>
-                افتح مساحة الجبر
-              </button>
-            </div>
-          )}
+                      ))}
+                    </section>
+                  ))}
+                </section>
+              ))
+            ) : (
+              <div className="product-card">
+                <h2>
+                  {busy ? "جارٍ تحميل الدروس…" : "ابدأ من المسائل المتاحة"}
+                </h2>
+                <p>
+                  {ready
+                    ? "لا توجد دروس منشورة في البنك الجديد حاليًا. يمكنك متابعة الجبر الموجود، أو نشر محتوى مراجع من حساب مخوّل."
+                    : "ابدأ جلسة ضيف لعرض المحتوى المنشور، أو ادخل بحسابك لاستعادة تقدمك."}
+                </p>
+                <button onClick={() => navigate("algebra")}>
+                  افتح مساحة الجبر
+                </button>
+              </div>
+            )}
+          </details>
           <p className="helper">
             الكسور الجبرية غير المفعلة تبقى خارج بنك الطالب حتى اكتمال فحص
             عرضها. لا يُفقد التقدم عند تعذر خدمة المساعدة.

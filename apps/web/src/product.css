@@ -626,3 +626,187 @@ pre {
     scroll-behavior: auto !important;
   }
 }
+.learning-paths {
+  margin-block: 1.5rem 2.5rem;
+}
+.learning-paths > header {
+  margin-block-end: 1rem;
+}
+.learning-subjects {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.learning-subjects button {
+  text-align: start;
+  padding: 1.1rem;
+  min-height: 7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.learning-subjects button[aria-pressed="true"],
+.studio-tabs button[aria-pressed="true"] {
+  background: #e7f4ef;
+  border-color: #1f7257;
+  color: #144932;
+}
+.learning-paths .actions {
+  margin-block: 1rem;
+}
+.lesson-callout {
+  padding: 1rem;
+  background: #f4f8f6;
+  border-inline-start: 0.25rem solid #277455;
+  margin-block: 1rem;
+  border-radius: 0.4rem;
+}
+.lesson-callout.common_mistake {
+  background: #fff8ed;
+  border-color: #97611a;
+}
+.lesson-callout h3 {
+  font-size: 1rem;
+  margin-block-start: 0;
+}
+.lesson-example {
+  padding: 1.2rem;
+  margin: 1.2rem 0;
+  border: 1px solid #d5e4df;
+  border-radius: 0.75rem;
+}
+.lesson-example figcaption {
+  font-weight: 650;
+  margin-block-end: 1rem;
+}
+.lesson-example pre {
+  overflow: auto;
+  padding: 1rem;
+  background: #f4f6f8;
+  border-radius: 0.5rem;
+  white-space: pre;
+}
+.lesson-equation {
+  display: block;
+  font-size: 1.4rem;
+  margin-block: 0.8rem;
+}
+.learning-lesson p {
+  max-width: 75ch;
+  line-height: 1.95;
+  white-space: pre-wrap;
+}
+.learning-lesson .worked-steps {
+  padding-inline-start: 1.6rem;
+}
+.worked-steps li {
+  padding: 0.7rem;
+  border-block-start: 1px solid #e4ebe8;
+}
+.worked-steps p {
+  margin-block: 0.3rem;
+}
+.lesson-givens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+}
+.lesson-givens div {
+  display: flex;
+  gap: 0.5rem;
+}
+.lesson-givens dd {
+  margin: 0;
+}
+.path-studio-list {
+  list-style: none;
+  padding: 0;
+}
+.path-studio-list button {
+  width: 100%;
+  margin-block: 0.2rem;
+  text-align: start;
+}
+.path-studio-list small {
+  display: block;
+  margin-block-start: 0.25rem;
+}
+.path-editor fieldset,
+.lesson-block-editor {
+  margin-block: 1rem;
+  border: 1px solid #d5e4df;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+.path-editor input[type="checkbox"],
+.path-question-list input[type="checkbox"] {
+  width: auto;
+  margin-inline-end: 0.4rem;
+}
+.path-editor label,
+.path-studio aside > label {
+  display: block;
+  margin-block: 0.7rem;
+}
+.skill-selection {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem;
+  border-block-end: 1px solid #e4ebe8;
+}
+.path-question-list {
+  max-height: 30rem;
+  overflow: auto;
+}
+.worked-step-editor {
+  margin-block: 0.7rem;
+  padding: 0.7rem;
+  background: #f7faf8;
+}
+.assessment-progress {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+.assessment-question {
+  margin-block: 1.3rem;
+}
+.assessment-state {
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  background: #edf5fa;
+}
+.assessment-summary table {
+  width: 100%;
+}
+.assessment-summary th,
+.assessment-summary td {
+  padding: 0.8rem;
+  border-block-end: 1px solid #dce6e2;
+  text-align: start;
+}
+.path-lesson-card {
+  margin-block: 0.8rem;
+  padding: 1rem;
+  border: 1px solid #dce6e2;
+  border-radius: 0.6rem;
+}
+.path-studio fieldset:disabled {
+  opacity: 0.85;
+}
+@media (max-width: 700px) {
+  .learning-subjects {
+    grid-template-columns: 1fr;
+  }
+  .learning-subjects button {
+    min-height: 5rem;
+  }
+  .lesson-example {
+    padding: 0.75rem;
+  }
+  .assessment-summary table {
+    min-width: 30rem;
+  }
+}

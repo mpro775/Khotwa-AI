@@ -4,7 +4,7 @@
 openapi: 3.1.0
 info:
   title: خُطوة AI — عقد واجهات NestJS
-  version: 1.2.0-development
+  version: 1.3.0-development
   description: |-
     مواصفة OpenAPI 3.1 لنسخة هاكثون شِراع (P0).
 
@@ -51,6 +51,8 @@ tags:
     description: بيانات اصطناعية مميزة عن الحقيقي.
   - name: التشغيل الداخلي
     description: مسارات تشغيلية لا تمر عبر الوكيل العام.
+  - name: مسارات التعلم
+    description: V2.2 — دروس بإصدارات وتقييم مستقل وتوصيات متحفظة.
 x-khotwa-spec-status: draft-needs-team-approval
 x-khotwa-api-invariants:
   - id: API-INV-01
@@ -3243,6 +3245,923 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/PhysicsLearningInput"
+  /api/v1/learning/tracks:
+    get:
+      tags:
+        - مسارات التعلم
+      operationId: v22GetLearningTracks
+      description: مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: subject
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: نجاح العملية.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LPLearningContentListEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/tracks/{id}:
+    get:
+      tags:
+        - مسارات التعلم
+      operationId: v22GetLearningTracksId
+      description: مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: نجاح العملية.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LPLearningTrackEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/lessons/{id}:
+    get:
+      tags:
+        - مسارات التعلم
+      operationId: v22GetLearningLessonsId
+      description: مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: نجاح العملية.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LPLearningLessonEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/skill-map:
+    get:
+      tags:
+        - مسارات التعلم
+      operationId: v22GetLearningSkillMap
+      description: مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      responses:
+        "200":
+          description: نجاح العملية.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LPLearningSkillMapEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/studio/learning-content:
+    get:
+      tags:
+        - مسارات التعلم
+      operationId: v22GetStudioLearningContent
+      description: مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: subject
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: kind
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: نجاح العملية.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LPLearningContentListEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      x-required-roles:
+        - teacher
+        - content_manager
+        - admin
+    post:
+      tags:
+        - مسارات التعلم
+      operationId: v22PostStudioLearningContent
+      description: مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LPLearningContentPayload"
+      responses:
+        "201":
+          description: نجاح العملية.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LPLearningContentEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      x-required-roles:
+        - teacher
+        - content_manager
+        - admin
+  /api/v1/studio/learning-content/{id}:
+    get:
+      tags:
+        - مسارات التعلم
+      operationId: v22GetStudioLearningContentId
+      description: مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: نجاح العملية.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LPLearningContentEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      x-required-roles:
+        - teacher
+        - content_manager
+        - admin
+    put:
+      tags:
+        - مسارات التعلم
+      operationId: v22PutStudioLearningContentId
+      description: مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LPLearningEditInput"
+      responses:
+        "200":
+          description: نجاح العملية.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LPLearningContentEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      x-required-roles:
+        - teacher
+        - content_manager
+        - admin
+  /api/v1/studio/learning-content/{id}/validate:
+    post:
+      tags:
+        - مسارات التعلم
+      operationId: v22PostStudioLearningContentIdValidate
+      description: مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LPExpectedRevisionInput"
+      responses:
+        "201":
+          description: نجاح العملية.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LPLearningContentEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      x-required-roles:
+        - teacher
+        - content_manager
+        - admin
+  /api/v1/studio/learning-content/{id}/transition:
+    post:
+      tags:
+        - مسارات التعلم
+      operationId: v22PostStudioLearningContentIdTransition
+      description: مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LPLearningTransitionInput"
+      responses:
+        "201":
+          description: نجاح العملية.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LPLearningContentEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      x-required-roles:
+        - teacher
+        - content_manager
+        - admin
+  /api/v1/studio/learning-bank:
+    get:
+      tags:
+        - مسارات التعلم
+      operationId: v22GetStudioLearningBank
+      description: مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: subject
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: skillCode
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: difficulty
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: نجاح العملية.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LPLearningBankEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      x-required-roles:
+        - teacher
+        - content_manager
+        - admin
+  /api/v1/studio/learning-content/seed:
+    post:
+      tags:
+        - مسارات التعلم
+      operationId: v22PostStudioLearningContentSeed
+      description: يستورد حزمة مسودات فقط؛ لا يصنع اعتمادا أو نشرا تلقائيا.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties: {}
+              required: []
+      responses:
+        "201":
+          description: نجاح العملية.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LPLearningContentListEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      x-required-roles:
+        - teacher
+        - content_manager
+        - admin
+  /api/v1/assessments/start:
+    post:
+      tags:
+        - مسارات التعلم
+      operationId: v22PostAssessmentsStart
+      description: مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LPAssessmentStartInput"
+      responses:
+        "201":
+          description: نجاح العملية.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LPAssessmentEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/assessments/{id}:
+    get:
+      tags:
+        - مسارات التعلم
+      operationId: v22GetAssessmentsId
+      description: مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: نجاح العملية.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LPAssessmentEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/assessments/{id}/answer:
+    post:
+      tags:
+        - مسارات التعلم
+      operationId: v22PostAssessmentsIdAnswer
+      description: مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LPAssessmentAnswerInput"
+      responses:
+        "201":
+          description: نجاح العملية.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LPAssessmentEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/assessments/{id}/support:
+    post:
+      tags:
+        - مسارات التعلم
+      operationId: v22PostAssessmentsIdSupport
+      description: يسجل الخروج من القياس المستقل قبل طلب التلميح. H4 يتطلب تأكيدا صريحا.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LPAssessmentSupportInput"
+      responses:
+        "201":
+          description: نجاح العملية.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LPAssessmentSupportEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/assessments/{id}/summary:
+    get:
+      tags:
+        - مسارات التعلم
+      operationId: v22GetAssessmentsIdSummary
+      description: مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: نجاح العملية.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LPAssessmentSummaryEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/recommendations/next:
+    get:
+      tags:
+        - مسارات التعلم
+      operationId: v22GetRecommendationsNext
+      description: مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: trackRevisionId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: نجاح العملية.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LPLearningRecommendationEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/lessons/{id}/progress:
+    post:
+      tags:
+        - مسارات التعلم
+      operationId: v22PostLearningLessonsIdProgress
+      description: مشاهدة الدرس حدث فقط ولا تمنح دليل فهم مستقل.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LPLessonProgressInput"
+      responses:
+        "201":
+          description: نجاح العملية.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LPLessonProgressEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/progress:
+    get:
+      tags:
+        - مسارات التعلم
+      operationId: v22GetLearningProgress
+      description: مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: trackRevisionId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: نجاح العملية.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LPLearningProgressEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
 components:
   securitySchemes:
     GuestCookie:
@@ -8049,6 +8968,1135 @@ components:
         - public
         - hidden
         - cases
+    LPLessonBlock:
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          type: string
+          enum:
+            - paragraph
+            - heading
+            - math_example
+            - worked_steps
+            - key_point
+            - common_mistake
+            - practice_link
+            - code_example
+            - physics_example
+        textAr:
+          type: string
+        raw:
+          type: string
+        steps:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              raw:
+                type: string
+              explanationAr:
+                type: string
+            required:
+              - raw
+              - explanationAr
+        code:
+          type: string
+        physics:
+          $ref: "#/components/schemas/StudioPhysicsContent"
+        problemRevisionId:
+          type: string
+      required:
+        - type
+        - textAr
+    LPLessonPayload:
+      type: object
+      additionalProperties: false
+      properties:
+        kind:
+          type: string
+          const: lesson
+        subject:
+          type: string
+          enum:
+            - algebra
+            - physics
+            - programming
+        code:
+          type: string
+        titleAr:
+          type: string
+        descriptionAr:
+          type: string
+        objectives:
+          type: array
+          items:
+            type: string
+        skillCodes:
+          type: array
+          items:
+            type: string
+        prerequisiteSkillCodes:
+          type: array
+          items:
+            type: string
+        prerequisiteLessonIds:
+          type: array
+          items:
+            type: string
+        contentBlocks:
+          type: array
+          items:
+            $ref: "#/components/schemas/LPLessonBlock"
+        practiceProblemRevisionIds:
+          type: array
+          items:
+            type: string
+        assessmentProblemRevisionIds:
+          type: array
+          items:
+            type: string
+        errorCodes:
+          type: array
+          items:
+            type: string
+        mappingPending:
+          type: array
+          items:
+            type: string
+      required:
+        - kind
+        - subject
+        - code
+        - titleAr
+        - descriptionAr
+        - objectives
+        - skillCodes
+        - prerequisiteSkillCodes
+        - prerequisiteLessonIds
+        - contentBlocks
+        - practiceProblemRevisionIds
+        - assessmentProblemRevisionIds
+        - errorCodes
+        - mappingPending
+    LPTrackPayload:
+      type: object
+      additionalProperties: false
+      properties:
+        kind:
+          type: string
+          const: track
+        subject:
+          type: string
+          enum:
+            - algebra
+            - physics
+            - programming
+        code:
+          type: string
+        titleAr:
+          type: string
+        descriptionAr:
+          type: string
+        units:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              code:
+                type: string
+              titleAr:
+                type: string
+              lessonRevisionIds:
+                type: array
+                items:
+                  type: string
+            required:
+              - code
+              - titleAr
+              - lessonRevisionIds
+      required:
+        - kind
+        - subject
+        - code
+        - titleAr
+        - descriptionAr
+        - units
+    LPLearningContentPayload:
+      anyOf:
+        - $ref: "#/components/schemas/LPLessonPayload"
+        - $ref: "#/components/schemas/LPTrackPayload"
+    LPLearningContentValidation:
+      type: object
+      additionalProperties: false
+      properties:
+        valid:
+          type: boolean
+        issues:
+          type: array
+          items:
+            type: string
+        checkedAt:
+          type: string
+        engine:
+          type: string
+        examples:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              blockIndex:
+                type: number
+              normalizedText:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              displayAr:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              ast:
+                anyOf:
+                  - type: object
+                    additionalProperties: {}
+                  - type: "null"
+              status:
+                type: string
+              stepStatuses:
+                type: array
+                items:
+                  type: string
+            required:
+              - blockIndex
+              - normalizedText
+              - displayAr
+              - ast
+              - status
+              - stepStatuses
+      required:
+        - valid
+        - issues
+        - checkedAt
+        - engine
+        - examples
+    LPLearningContentRevision:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        itemId:
+          type: string
+        version:
+          type: number
+        editRevision:
+          type: number
+        status:
+          type: string
+          enum:
+            - draft
+            - in_review
+            - approved
+            - published
+            - archived
+        payload:
+          $ref: "#/components/schemas/LPLearningContentPayload"
+        contentHash:
+          type: string
+        validation:
+          anyOf:
+            - $ref: "#/components/schemas/LPLearningContentValidation"
+            - type: "null"
+        createdAt:
+          type: string
+        reviewedAt:
+          anyOf:
+            - type: string
+            - type: "null"
+        publishedAt:
+          anyOf:
+            - type: string
+            - type: "null"
+      required:
+        - id
+        - itemId
+        - version
+        - editRevision
+        - status
+        - payload
+        - contentHash
+        - validation
+        - createdAt
+        - reviewedAt
+        - publishedAt
+    LPLearningBankProblem:
+      type: object
+      additionalProperties: false
+      properties:
+        revisionId:
+          type: string
+        problemId:
+          type: string
+        source:
+          type: string
+          enum:
+            - algebra
+            - studio
+        subject:
+          type: string
+          enum:
+            - algebra
+            - physics
+            - programming
+        titleAr:
+          type: string
+        statementAr:
+          type: string
+        skillCodes:
+          type: array
+          items:
+            type: string
+        primarySkillCode:
+          type: string
+        difficulty:
+          type: number
+        kind:
+          type: string
+          enum:
+            - main
+            - remediation
+            - transfer
+            - diagnostic
+        familyCode:
+          type: string
+        equationRaw:
+          type: string
+        physics:
+          type: object
+          additionalProperties: false
+          properties:
+            quantity:
+              type: string
+            givens:
+              type: object
+              additionalProperties:
+                type: string
+            allowedUnits:
+              type: array
+              items:
+                type: string
+          required:
+            - quantity
+            - givens
+            - allowedUnits
+        programming:
+          type: object
+          additionalProperties: false
+          properties:
+            starterCode:
+              type: string
+            publicTests:
+              type: array
+              items:
+                type: object
+                additionalProperties: false
+                properties:
+                  input:
+                    type: string
+                  expectedOutput:
+                    type: string
+                required:
+                  - input
+                  - expectedOutput
+          required:
+            - starterCode
+            - publicTests
+      required:
+        - revisionId
+        - problemId
+        - source
+        - subject
+        - titleAr
+        - statementAr
+        - skillCodes
+        - primarySkillCode
+        - difficulty
+        - kind
+        - familyCode
+    LPLearningTrackDetail:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        itemId:
+          type: string
+        version:
+          type: number
+        editRevision:
+          type: number
+        status:
+          type: string
+          enum:
+            - draft
+            - in_review
+            - approved
+            - published
+            - archived
+        payload:
+          $ref: "#/components/schemas/LPLearningContentPayload"
+        contentHash:
+          type: string
+        validation:
+          anyOf:
+            - $ref: "#/components/schemas/LPLearningContentValidation"
+            - type: "null"
+        createdAt:
+          type: string
+        reviewedAt:
+          anyOf:
+            - type: string
+            - type: "null"
+        publishedAt:
+          anyOf:
+            - type: string
+            - type: "null"
+        lessons:
+          type: array
+          items:
+            $ref: "#/components/schemas/LPLearningContentRevision"
+      required:
+        - id
+        - itemId
+        - version
+        - editRevision
+        - status
+        - payload
+        - contentHash
+        - validation
+        - createdAt
+        - reviewedAt
+        - publishedAt
+        - lessons
+    LPLearningLessonDetail:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        itemId:
+          type: string
+        version:
+          type: number
+        editRevision:
+          type: number
+        status:
+          type: string
+          enum:
+            - draft
+            - in_review
+            - approved
+            - published
+            - archived
+        payload:
+          $ref: "#/components/schemas/LPLearningContentPayload"
+        contentHash:
+          type: string
+        validation:
+          anyOf:
+            - $ref: "#/components/schemas/LPLearningContentValidation"
+            - type: "null"
+        createdAt:
+          type: string
+        reviewedAt:
+          anyOf:
+            - type: string
+            - type: "null"
+        publishedAt:
+          anyOf:
+            - type: string
+            - type: "null"
+        practiceProblems:
+          type: array
+          items:
+            $ref: "#/components/schemas/LPLearningBankProblem"
+        assessmentProblems:
+          type: array
+          items:
+            $ref: "#/components/schemas/LPLearningBankProblem"
+      required:
+        - id
+        - itemId
+        - version
+        - editRevision
+        - status
+        - payload
+        - contentHash
+        - validation
+        - createdAt
+        - reviewedAt
+        - publishedAt
+        - practiceProblems
+        - assessmentProblems
+    LPLearningSkillMap:
+      type: object
+      additionalProperties: false
+      properties:
+        ruleVersion:
+          type: string
+        mappingPending:
+          type: array
+          items:
+            type: string
+        skills:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              skillCode:
+                type: string
+              titleAr:
+                type: string
+              prerequisiteSkillCodes:
+                type: array
+                items:
+                  type: string
+              lessonRevisionId:
+                anyOf:
+                  - type: string
+                  - type: "null"
+            required:
+              - skillCode
+              - titleAr
+              - prerequisiteSkillCodes
+              - lessonRevisionId
+        errors:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              errorCode:
+                type: string
+              candidateSkills:
+                type: array
+                items:
+                  type: string
+              mappingPending:
+                type: boolean
+            required:
+              - errorCode
+              - candidateSkills
+              - mappingPending
+      required:
+        - ruleVersion
+        - mappingPending
+        - skills
+        - errors
+    LPAssessmentKind:
+      type: string
+      enum:
+        - diagnostic_pretest
+        - lesson_check
+        - post_remediation
+        - practice
+    LPLearningEvidenceState:
+      type: string
+      enum:
+        - not_assessed
+        - needs_review
+        - practicing_with_support
+        - independent_evidence
+        - insufficient_evidence
+    LPAssessmentQuestion:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        problem:
+          $ref: "#/components/schemas/LPLearningBankProblem"
+        attemptId:
+          anyOf:
+            - type: string
+            - type: "null"
+        steps:
+          type: array
+          items:
+            type: string
+        value:
+          type: string
+        unit:
+          type: string
+        status:
+          anyOf:
+            - type: string
+            - type: "null"
+        independent:
+          type: boolean
+        supportLevel:
+          type: number
+        completed:
+          type: boolean
+      required:
+        - id
+        - problem
+        - attemptId
+        - steps
+        - value
+        - unit
+        - status
+        - independent
+        - supportLevel
+        - completed
+    LPAssessmentSession:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        revision:
+          type: number
+        subject:
+          type: string
+          enum:
+            - algebra
+            - physics
+            - programming
+        kind:
+          $ref: "#/components/schemas/LPAssessmentKind"
+        trackRevisionId:
+          type: string
+        lessonRevisionId:
+          anyOf:
+            - type: string
+            - type: "null"
+        status:
+          type: string
+          enum:
+            - active
+            - completed
+        mode:
+          type: string
+          enum:
+            - independent
+            - practice
+        questions:
+          type: array
+          items:
+            $ref: "#/components/schemas/LPAssessmentQuestion"
+        coverage:
+          type: object
+          additionalProperties: false
+          properties:
+            requested:
+              type: number
+            available:
+              type: number
+            partial:
+              type: boolean
+            messageAr:
+              type: string
+          required:
+            - requested
+            - available
+            - partial
+            - messageAr
+        createdAt:
+          type: string
+      required:
+        - id
+        - revision
+        - subject
+        - kind
+        - trackRevisionId
+        - lessonRevisionId
+        - status
+        - mode
+        - questions
+        - coverage
+        - createdAt
+    LPLearningSkillEvidence:
+      type: object
+      additionalProperties: false
+      properties:
+        skillCode:
+          type: string
+        titleAr:
+          type: string
+        state:
+          $ref: "#/components/schemas/LPLearningEvidenceState"
+        independentCorrect:
+          type: number
+        independentErrors:
+          type: number
+        assisted:
+          type: number
+        evidenceIds:
+          type: array
+          items:
+            type: string
+        source:
+          type: string
+      required:
+        - skillCode
+        - titleAr
+        - state
+        - independentCorrect
+        - independentErrors
+        - assisted
+        - evidenceIds
+        - source
+    LPLearningRecommendation:
+      type: object
+      additionalProperties: false
+      properties:
+        recommendedLessonId:
+          type: string
+        targetSkillCode:
+          type: string
+        reasonCode:
+          type: string
+          enum:
+            - repeated_independent_error
+            - tentative_review
+            - prerequisite_review
+            - additional_evidence
+            - introduction
+        reasonAr:
+          type: string
+        confidence:
+          type: string
+          const: tentative
+        evidenceCount:
+          type: number
+        evidenceIds:
+          type: array
+          items:
+            type: string
+        ruleVersion:
+          type: string
+        mappingPending:
+          type: array
+          items:
+            type: string
+        nextAction:
+          type: string
+          const: study_lesson
+        alternatives:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              lessonRevisionId:
+                type: string
+              titleAr:
+                type: string
+            required:
+              - lessonRevisionId
+              - titleAr
+      required:
+        - recommendedLessonId
+        - targetSkillCode
+        - reasonCode
+        - reasonAr
+        - confidence
+        - evidenceCount
+        - evidenceIds
+        - ruleVersion
+        - mappingPending
+        - nextAction
+        - alternatives
+    LPAssessmentSummary:
+      type: object
+      additionalProperties: false
+      properties:
+        session:
+          $ref: "#/components/schemas/LPAssessmentSession"
+        skills:
+          type: array
+          items:
+            $ref: "#/components/schemas/LPLearningSkillEvidence"
+        recommendation:
+          anyOf:
+            - $ref: "#/components/schemas/LPLearningRecommendation"
+            - type: "null"
+      required:
+        - session
+        - skills
+        - recommendation
+    LPLearningPathProgress:
+      type: object
+      additionalProperties: false
+      properties:
+        skills:
+          type: array
+          items:
+            $ref: "#/components/schemas/LPLearningSkillEvidence"
+        recommendation:
+          anyOf:
+            - $ref: "#/components/schemas/LPLearningRecommendation"
+            - type: "null"
+        lessons:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              lessonRevisionId:
+                type: string
+              state:
+                type: string
+                enum:
+                  - not_started
+                  - viewed
+                  - practiced
+                  - independent_evidence
+              viewedAt:
+                anyOf:
+                  - type: string
+                  - type: "null"
+            required:
+              - lessonRevisionId
+              - state
+              - viewedAt
+        ruleVersion:
+          type: string
+      required:
+        - skills
+        - recommendation
+        - lessons
+        - ruleVersion
+    LPLearningContentEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/LPLearningContentRevision"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    LPLearningContentListEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            items:
+              type: array
+              items:
+                $ref: "#/components/schemas/LPLearningContentRevision"
+          required:
+            - items
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    LPLearningTrackEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/LPLearningTrackDetail"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    LPLearningLessonEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/LPLearningLessonDetail"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    LPLearningSkillMapEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/LPLearningSkillMap"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    LPLearningBankEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            items:
+              type: array
+              items:
+                $ref: "#/components/schemas/LPLearningBankProblem"
+          required:
+            - items
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    LPExpectedRevisionInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+      required:
+        - expectedRevision
+    LPLearningEditInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+        payload:
+          $ref: "#/components/schemas/LPLearningContentPayload"
+      required:
+        - expectedRevision
+        - payload
+    LPLearningTransitionInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+        action:
+          type: string
+          enum:
+            - submit
+            - approve
+            - publish
+            - archive
+            - revise
+      required:
+        - expectedRevision
+        - action
+    LPLessonProgressInput:
+      type: object
+      additionalProperties: false
+      properties:
+        event:
+          type: string
+          enum:
+            - lesson_started
+            - lesson_viewed
+      required:
+        - event
+    LPAssessmentEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/LPAssessmentSession"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    LPAssessmentSummaryEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/LPAssessmentSummary"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    LPLearningProgressEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/LPLearningPathProgress"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    LPLearningRecommendationEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            skills:
+              type: array
+              items:
+                $ref: "#/components/schemas/LPLearningSkillEvidence"
+            recommendation:
+              anyOf:
+                - $ref: "#/components/schemas/LPLearningRecommendation"
+                - type: "null"
+          required:
+            - skills
+            - recommendation
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    LPAssessmentSupportEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            session:
+              $ref: "#/components/schemas/LPAssessmentSession"
+            hint:
+              type: object
+              additionalProperties: false
+              properties:
+                level:
+                  type: string
+                  enum:
+                    - H1
+                    - H2
+                    - H3
+                    - H4
+                textAr:
+                  type: string
+                source:
+                  type: string
+                solutionStepsAr:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - level
+                - textAr
+                - source
+                - solutionStepsAr
+          required:
+            - session
+            - hint
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    LPLessonProgressEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            lessonRevisionId:
+              type: string
+              format: uuid
+            state:
+              type: string
+              const: viewed
+            viewedAt:
+              type: string
+              format: date-time
+          required:
+            - lessonRevisionId
+            - state
+            - viewedAt
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    LPAssessmentStartInput:
+      type: object
+      additionalProperties: false
+      properties:
+        trackRevisionId:
+          type: string
+          format: uuid
+        lessonRevisionId:
+          type: string
+          format: uuid
+        kind:
+          $ref: "#/components/schemas/LPAssessmentKind"
+      required:
+        - trackRevisionId
+        - kind
+    LPAssessmentAnswerInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+        questionId:
+          type: string
+          format: uuid
+        steps:
+          type: array
+          items:
+            type: string
+            maxLength: 256
+          maxItems: 20
+        value:
+          type: string
+          maxLength: 80
+        unit:
+          type: string
+          maxLength: 20
+      required:
+        - expectedRevision
+        - questionId
+        - steps
+    LPAssessmentSupportInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+        questionId:
+          type: string
+          format: uuid
+        action:
+          type: string
+          enum:
+            - request_hint
+            - show_full_solution
+        confirmAssistedCompletion:
+          type: boolean
+          const: true
+      required:
+        - expectedRevision
+        - questionId
+        - action
   examples:
     VerifyValid:
       summary: انتقال صحيح بالتوزيع
@@ -8163,3 +10211,5 @@ components:
           requestId: ffffffff-ffff-4fff-8fff-ffffffffffff
           serverTime: '2026-11-03T19:00:00Z'
           apiVersion: '1'
+
+x-khotwa-v22-scope: TASK-LP-01…07 by explicit owner request 2026-11-08. New content stays draft until authorized review. No V2.3, deployment, production migration or paid AI.

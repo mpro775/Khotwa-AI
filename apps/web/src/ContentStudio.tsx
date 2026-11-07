@@ -22,6 +22,7 @@ import {
   textField,
 } from "./product-api";
 import { MathInput } from "./MathInput";
+import { PathStudio } from "./PathStudio";
 
 function emptyPayload(subject: Subject = "algebra"): ContentPayload {
   const base = {
@@ -488,7 +489,7 @@ const previewData = (value: unknown): Preview => {
   };
 };
 
-export function ContentStudio({
+function ProblemContentStudio({
   api,
   identity,
 }: {
@@ -2014,5 +2015,41 @@ export function ContentStudio({
         </>
       )}
     </section>
+  );
+}
+
+export function ContentStudio({
+  api,
+  identity,
+}: {
+  api: ProductApi;
+  identity: Identity | null;
+}) {
+  const [tab, setTab] = useState<"paths" | "problems">("paths");
+  return (
+    <>
+      <div
+        className="product-page studio-tabs"
+        role="group"
+        aria-label="أقسام استوديو المحتوى"
+      >
+        <button aria-pressed={tab === "paths"} onClick={() => setTab("paths")}>
+          المسارات والدروس
+        </button>
+        <button
+          aria-pressed={tab === "problems"}
+          onClick={() => setTab("problems")}
+        >
+          بنك المسائل والتلميحات
+        </button>
+      </div>
+      <div hidden={tab !== "paths"} className="product-page">
+        <h1>مسارات التعلم والدروس</h1>
+        <PathStudio api={api} identity={identity} />
+      </div>
+      <div hidden={tab !== "problems"}>
+        <ProblemContentStudio api={api} identity={identity} />
+      </div>
+    </>
   );
 }

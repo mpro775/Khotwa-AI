@@ -213,6 +213,7 @@ function harness() {
       return [{ is_internal: true }];
     if (sql.includes("account_learning_consents"))
       return [{ is_internal: true }];
+    if (sql.includes("FROM learning_assessment_items")) return [];
     if (sql.includes("FROM product_mutations")) {
       const item = cache.get(v[1] + ":" + v[2]);
       return item ? [item] : [];
@@ -477,6 +478,21 @@ test("owned mocked learning flow assigns guided practice then a distinct indepen
   await assert.rejects(
     requirePhysicsAssignmentCurrent(h.tx, h.owner.ownerKey, target.attemptId),
     (e) => e.status === 409,
+  );
+});
+test("independent path physics cannot disclose a hint through its native workspace", async () => {
+  const tx = {
+    $queryRaw: async (strings) => {
+      const sql = strings.join("?");
+      if (sql.includes("FROM physics_learning_assignments")) return [];
+      if (sql.includes("FROM learning_assessment_items"))
+        return [{ id: randomUUID() }];
+      throw Error("Unexpected query");
+    },
+  };
+  await assert.rejects(
+    requirePhysicsHintAllowed(tx, "guest:" + randomUUID(), randomUUID()),
+    (error) => error.status === 409,
   );
 });
 test("wrong ownership, stale revision and service abstention cannot begin a learning loop", async () => {

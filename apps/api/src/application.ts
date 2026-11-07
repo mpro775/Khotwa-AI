@@ -45,7 +45,7 @@ export async function createApplication(
     verify: (request: { url?: string }, _response: unknown, buffer: Buffer) => {
       const path = request.url?.split("?")[0] ?? "";
       const product =
-        /^\/api\/v1\/(studio|programming|physics|catalog|auth|me|beta)(\/|$)/.test(
+        /^\/api\/v1\/(studio|programming|physics|catalog|auth|me|beta|learning|assessments|recommendations)(\/|$)/.test(
           path,
         );
       const limit =

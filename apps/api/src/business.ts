@@ -41,6 +41,14 @@ import {
 import { PhysicsController, PhysicsService } from "./physics";
 import { ProgrammingController, ProgrammingService } from "./programming";
 import { Judge0Runner, runnerFromEnvironment } from "./programming-runner";
+import {
+  LearningPathContentController,
+  LearningPathContentService,
+} from "./learning-path-content";
+import {
+  LearningAssessmentController,
+  LearningAssessmentService,
+} from "./learning-assessments";
 
 type AccessMode = "bootstrap" | "createGuest" | "current" | "logout";
 const Access = (mode: AccessMode) => SetMetadata("access", mode);
@@ -714,6 +722,8 @@ export class BusinessController {
     ContentStudioController,
     PhysicsController,
     ProgrammingController,
+    LearningPathContentController,
+    LearningAssessmentController,
   ],
   providers: [
     { provide: Security, useFactory: securityFromEnvironment },
@@ -762,6 +772,43 @@ export class BusinessController {
       useFactory: (store: Store, accounts: AccountService) =>
         new PhysicsService(store, accounts),
       inject: [Store, AccountService],
+    },
+    {
+      provide: LearningPathContentService,
+      useFactory: (
+        store: Store,
+        accounts: AccountService,
+        math: MathGateway,
+        studio: ContentStudioService,
+      ) => new LearningPathContentService(store, accounts, math, studio),
+      inject: [Store, AccountService, MathGateway, ContentStudioService],
+    },
+    {
+      provide: LearningAssessmentService,
+      useFactory: (
+        store: Store,
+        accounts: AccountService,
+        content: LearningPathContentService,
+        verification: VerificationService,
+        tutoring: TutoringService,
+        physics: PhysicsService,
+      ) =>
+        new LearningAssessmentService(
+          store,
+          accounts,
+          content,
+          verification,
+          tutoring,
+          physics,
+        ),
+      inject: [
+        Store,
+        AccountService,
+        LearningPathContentService,
+        VerificationService,
+        TutoringService,
+        PhysicsService,
+      ],
     },
     {
       provide: ProgrammingService,

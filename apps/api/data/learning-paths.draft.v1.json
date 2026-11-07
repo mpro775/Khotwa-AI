@@ -1,0 +1,730 @@
+[
+  {
+    "kind": "lesson",
+    "subject": "algebra",
+    "code": "ALG-L01",
+    "titleAr": "المتغيرات والمعادلات البسيطة",
+    "descriptionAr": "مسودة تعليمية للمراجعة: المتغيرات والمعادلات البسيطة",
+    "objectives": [
+      "أن يفسر المتعلم المتغيرات والمعادلات البسيطة ويطبقها على مثال جديد ضمن النطاق المدعوم."
+    ],
+    "skillCodes": ["SK-ALG-01"],
+    "prerequisiteSkillCodes": [],
+    "prerequisiteLessonIds": [],
+    "contentBlocks": [
+      {
+        "type": "paragraph",
+        "textAr": "المتغير س يمثل عددًا نبحث عنه. المعادلة جملة تقول إن قيمة الطرف الأيمن تساوي قيمة الطرف الأيسر."
+      },
+      {
+        "type": "paragraph",
+        "textAr": "عند اختيار قيمة للمتغير نستطيع التعويض بها في الطرفين وفحص المساواة، دون أن نغير معنى المعادلة."
+      },
+      {
+        "type": "math_example",
+        "textAr": "مثال على معادلة بسيطة",
+        "raw": "س + ٢ = ٥",
+        "steps": [
+          {
+            "raw": "س = ٣",
+            "explanationAr": "نطرح العدد نفسه من الطرفين."
+          }
+        ]
+      },
+      {
+        "type": "key_point",
+        "textAr": "علامة المساواة علاقة بين قيمتين، وليست أمرًا لكتابة الناتج فقط."
+      }
+    ],
+    "practiceProblemRevisionIds": [],
+    "assessmentProblemRevisionIds": [],
+    "errorCodes": [],
+    "mappingPending": []
+  },
+  {
+    "kind": "lesson",
+    "subject": "algebra",
+    "code": "ALG-L02",
+    "titleAr": "توازن طرفي المعادلة",
+    "descriptionAr": "مسودة تعليمية للمراجعة: توازن طرفي المعادلة",
+    "objectives": [
+      "أن يفسر المتعلم توازن طرفي المعادلة ويطبقها على مثال جديد ضمن النطاق المدعوم."
+    ],
+    "skillCodes": ["SK-ALG-05", "SK-ALG-01"],
+    "prerequisiteSkillCodes": ["SK-ALG-02"],
+    "prerequisiteLessonIds": [],
+    "contentBlocks": [
+      {
+        "type": "paragraph",
+        "textAr": "نحافظ على مجموعة الحل عندما نجمع العدد نفسه إلى الطرفين أو نطرحه منهما."
+      },
+      {
+        "type": "paragraph",
+        "textAr": "عزل المتغير لا يعني نقل عدد بإشارة اعتباطية؛ نختار عملية مكافئة نحافظ بها على التوازن."
+      },
+      {
+        "type": "math_example",
+        "textAr": "طرح العدد نفسه من الطرفين",
+        "raw": "س + ٤ = ٩",
+        "steps": [
+          {
+            "raw": "س + ٤ − ٤ = ٩ − ٤",
+            "explanationAr": "نطرح أربعة من الطرفين."
+          },
+          {
+            "raw": "س = ٥",
+            "explanationAr": "نبسط الطرفين."
+          }
+        ]
+      }
+    ],
+    "practiceProblemRevisionIds": [],
+    "assessmentProblemRevisionIds": [],
+    "errorCodes": ["ERR-ALG-03"],
+    "mappingPending": []
+  },
+  {
+    "kind": "lesson",
+    "subject": "algebra",
+    "code": "ALG-L03",
+    "titleAr": "العمليات العكسية",
+    "descriptionAr": "مسودة تعليمية للمراجعة: العمليات العكسية",
+    "objectives": [
+      "أن يفسر المتعلم العمليات العكسية ويطبقها على مثال جديد ضمن النطاق المدعوم."
+    ],
+    "skillCodes": ["SK-ALG-06", "SK-ALG-05"],
+    "prerequisiteSkillCodes": ["SK-ALG-01", "SK-ALG-02", "SK-ALG-05"],
+    "prerequisiteLessonIds": [],
+    "contentBlocks": [
+      {
+        "type": "paragraph",
+        "textAr": "الجمع والطرح عمليتان عكسيتان، وكذلك الضرب والقسمة على ثابت غير صفري."
+      },
+      {
+        "type": "paragraph",
+        "textAr": "اختر العملية التي تزيل ما يرتبط بالمتغير، وطبقها على الطرفين. لا تقسم على صفر."
+      },
+      {
+        "type": "math_example",
+        "textAr": "عزل المتغير من معامل ثابت",
+        "raw": "٣س = ١٢",
+        "steps": [
+          {
+            "raw": "س = ٤",
+            "explanationAr": "نقسم الطرفين على ثلاثة، وهو عدد غير صفري."
+          }
+        ]
+      }
+    ],
+    "practiceProblemRevisionIds": [],
+    "assessmentProblemRevisionIds": [],
+    "errorCodes": ["ERR-ALG-04"],
+    "mappingPending": []
+  },
+  {
+    "kind": "lesson",
+    "subject": "algebra",
+    "code": "ALG-L04",
+    "titleAr": "توزيع الأقواس",
+    "descriptionAr": "مسودة تعليمية للمراجعة: توزيع الأقواس",
+    "objectives": [
+      "أن يفسر المتعلم توزيع الأقواس ويطبقها على مثال جديد ضمن النطاق المدعوم."
+    ],
+    "skillCodes": ["SK-ALG-04"],
+    "prerequisiteSkillCodes": ["SK-ALG-02", "SK-ALG-03"],
+    "prerequisiteLessonIds": [],
+    "contentBlocks": [
+      {
+        "type": "paragraph",
+        "textAr": "خاصية التوزيع تعني أن المعامل خارج القوس يضرب كل حد داخله. عندما يكون في القوس مجموع حدين، نحسب حاصل ضرب المعامل في كل حد ثم نجمع الناتجين."
+      },
+      {
+        "type": "paragraph",
+        "textAr": "اكتب أثر الضرب على الحد الذي يحتوي س وعلى الحد العددي. وجود س في أحد الحدين لا يعفي الحد الآخر من الضرب."
+      },
+      {
+        "type": "paragraph",
+        "textAr": "بعد فك القوس نستطيع متابعة الحل بعمليات مكافئة على طرفي المعادلة. نفصل بين صحة التحويل الجبري وبين تفسير سبب أي خطأ محتمل."
+      },
+      {
+        "type": "math_example",
+        "textAr": "مثال أول: توزيع معامل موجب",
+        "raw": "٢(س + ٣) = ١٠",
+        "steps": [
+          {
+            "raw": "٢س + ٦ = ١٠",
+            "explanationAr": "ضربنا اثنين في س، ثم ضربنا اثنين في ثلاثة."
+          },
+          {
+            "raw": "٢س = ٤",
+            "explanationAr": "طرحنا ستة من طرفي المعادلة."
+          },
+          {
+            "raw": "س = ٢",
+            "explanationAr": "قسمنا الطرفين على اثنين."
+          }
+        ]
+      },
+      {
+        "type": "math_example",
+        "textAr": "مثال ثان: قوس يحوي طرحًا",
+        "raw": "٣(س − ٢) = ١٥",
+        "steps": [
+          {
+            "raw": "٣س − ٦ = ١٥",
+            "explanationAr": "ضربنا ثلاثة في كل حد مع حفظ إشارة الطرح."
+          },
+          {
+            "raw": "٣س = ٢١",
+            "explanationAr": "أضفنا ستة إلى الطرفين."
+          },
+          {
+            "raw": "س = ٧",
+            "explanationAr": "قسمنا الطرفين على ثلاثة."
+          }
+        ]
+      },
+      {
+        "type": "common_mistake",
+        "textAr": "قد يوزع المتعلم المعامل على حد س وينسى الحد العددي. راجع كل حد منفصلًا؛ خطأ واحد لا يثبت سببًا مفاهيميًا دائمًا."
+      },
+      {
+        "type": "key_point",
+        "textAr": "اضرب المعامل في كل حد داخل القوس، ثم راجع الإشارات قبل متابعة الحل."
+      }
+    ],
+    "practiceProblemRevisionIds": [],
+    "assessmentProblemRevisionIds": [],
+    "errorCodes": ["ERR-ALG-01"],
+    "mappingPending": []
+  },
+  {
+    "kind": "lesson",
+    "subject": "algebra",
+    "code": "ALG-L05",
+    "titleAr": "الإشارات والمعامل السالب",
+    "descriptionAr": "مسودة تعليمية للمراجعة: الإشارات والمعامل السالب",
+    "objectives": [
+      "أن يفسر المتعلم الإشارات والمعامل السالب ويطبقها على مثال جديد ضمن النطاق المدعوم."
+    ],
+    "skillCodes": ["SK-ALG-02", "SK-ALG-04"],
+    "prerequisiteSkillCodes": ["SK-ALG-01"],
+    "prerequisiteLessonIds": [],
+    "contentBlocks": [
+      {
+        "type": "paragraph",
+        "textAr": "إشارة حاصل الضرب تعتمد على إشارتي العاملين: ضرب سالب في سالب يعطي موجبًا، وضرب سالب في موجب يعطي سالبًا."
+      },
+      {
+        "type": "paragraph",
+        "textAr": "عند توزيع معامل سالب افحص كل حد على حدة، ثم تحقق من أن المعادلة الجديدة مكافئة للأصل."
+      },
+      {
+        "type": "math_example",
+        "textAr": "توزيع معامل سالب",
+        "raw": "−٢(س − ٣) = ١٠",
+        "steps": [
+          {
+            "raw": "−٢س + ٦ = ١٠",
+            "explanationAr": "السالب في السالب أعطى موجب ستة."
+          },
+          {
+            "raw": "−٢س = ٤",
+            "explanationAr": "طرحنا ستة من الطرفين."
+          },
+          {
+            "raw": "س = −٢",
+            "explanationAr": "قسمنا الطرفين على سالب اثنين."
+          }
+        ]
+      }
+    ],
+    "practiceProblemRevisionIds": [],
+    "assessmentProblemRevisionIds": [],
+    "errorCodes": ["ERR-ALG-02", "ERR-ALG-06"],
+    "mappingPending": []
+  },
+  {
+    "kind": "lesson",
+    "subject": "algebra",
+    "code": "ALG-L06",
+    "titleAr": "معادلات متعددة الخطوات",
+    "descriptionAr": "مسودة تعليمية للمراجعة: معادلات متعددة الخطوات",
+    "objectives": [
+      "أن يفسر المتعلم معادلات متعددة الخطوات ويطبقها على مثال جديد ضمن النطاق المدعوم."
+    ],
+    "skillCodes": ["SK-ALG-07", "SK-ALG-03"],
+    "prerequisiteSkillCodes": [
+      "SK-ALG-03",
+      "SK-ALG-04",
+      "SK-ALG-05",
+      "SK-ALG-06"
+    ],
+    "prerequisiteLessonIds": [],
+    "contentBlocks": [
+      {
+        "type": "paragraph",
+        "textAr": "قد تحتاج المعادلة إلى توزيع ثم تبسيط ثم عزل المتغير. توجد طرق صحيحة بديلة؛ المهم أن تحافظ كل خطوة على مجموعة الحل."
+      },
+      {
+        "type": "paragraph",
+        "textAr": "بعد الوصول إلى قيمة س نعوض في المعادلة الأصلية. مشاهدة مثال أو طلب تلميح يساعدان التعلم، لكن قياس الفهم المستقل يحتاج سؤالًا آخر بلا مساعدة."
+      },
+      {
+        "type": "math_example",
+        "textAr": "توزيع وتبسيط وعزل المتغير",
+        "raw": "٢(س − ٤) + ٦ = ١٠",
+        "steps": [
+          {
+            "raw": "٢س − ٨ + ٦ = ١٠",
+            "explanationAr": "وزعنا المعامل على حدي القوس."
+          },
+          {
+            "raw": "٢س − ٢ = ١٠",
+            "explanationAr": "جمعنا الحدود العددية المتشابهة."
+          },
+          {
+            "raw": "٢س = ١٢",
+            "explanationAr": "أضفنا اثنين إلى الطرفين."
+          },
+          {
+            "raw": "س = ٦",
+            "explanationAr": "قسمنا الطرفين على اثنين."
+          }
+        ]
+      }
+    ],
+    "practiceProblemRevisionIds": [],
+    "assessmentProblemRevisionIds": [],
+    "errorCodes": [],
+    "mappingPending": []
+  },
+  {
+    "kind": "lesson",
+    "subject": "physics",
+    "code": "PHY-L01",
+    "titleAr": "الحركة بسرعة ثابتة",
+    "descriptionAr": "مسودة تعليمية للمراجعة: الحركة بسرعة ثابتة",
+    "objectives": [
+      "أن يفسر المتعلم الحركة بسرعة ثابتة ويطبقها على مثال جديد ضمن النطاق المدعوم."
+    ],
+    "skillCodes": ["PHYS-CONSTANT_MOTION"],
+    "prerequisiteSkillCodes": [],
+    "prerequisiteLessonIds": [],
+    "contentBlocks": [
+      {
+        "type": "paragraph",
+        "textAr": "المسافة مقدار طول المسار الذي قطعه الجسم. الزمن يحدد مدة الحركة، والسرعة الثابتة تصف المسافة المقطوعة في وحدة الزمن."
+      },
+      {
+        "type": "paragraph",
+        "textAr": "عند ثبات السرعة نحسب المسافة من حاصل ضرب السرعة في الزمن. يجب أن تكون الوحدات متوافقة؛ ضرب متر لكل ثانية في ثانية يعطي مترًا."
+      },
+      {
+        "type": "paragraph",
+        "textAr": "إذا كانت السرعة ثلاثة أمتار لكل ثانية والزمن أربع ثوان، فالمسافة اثنا عشر مترًا. نكتب القيمة والوحدة معًا."
+      },
+      {
+        "type": "physics_example",
+        "textAr": "مثال: جسم سرعته ٣ m/s لمدة ٤ s يقطع مسافة ١٢ m.",
+        "physics": {
+          "topic": "kinematics_1d",
+          "formula": "constant_speed_distance",
+          "quantity": "distance",
+          "expectedDimension": "length",
+          "expectedValueSI": "12",
+          "expectedUnit": "m",
+          "tolerance": "0",
+          "givens": {
+            "v": "3",
+            "t": "4"
+          },
+          "constraints": {
+            "nonNegativeAnswer": true
+          }
+        }
+      },
+      {
+        "type": "common_mistake",
+        "textAr": "لا تُسجل وحدة السرعة m/s مكان وحدة المسافة m. تحقق من الكمية المطلوبة أولًا."
+      }
+    ],
+    "practiceProblemRevisionIds": [],
+    "assessmentProblemRevisionIds": [],
+    "errorCodes": [],
+    "mappingPending": ["مراجعة مختص الفيزياء والمصطلحات والوحدات قبل النشر"]
+  },
+  {
+    "kind": "lesson",
+    "subject": "physics",
+    "code": "PHY-L02",
+    "titleAr": "المسافة والإزاحة",
+    "descriptionAr": "مسودة تعليمية للمراجعة: المسافة والإزاحة",
+    "objectives": [
+      "أن يفسر المتعلم المسافة والإزاحة ويطبقها على مثال جديد ضمن النطاق المدعوم."
+    ],
+    "skillCodes": ["PHYS-DISTANCE_DISPLACEMENT"],
+    "prerequisiteSkillCodes": [],
+    "prerequisiteLessonIds": [],
+    "contentBlocks": [
+      {
+        "type": "paragraph",
+        "textAr": "في هذا الدرس نقرأ المعطيات ونميز الكمية المطلوبة ووحدتها قبل اختيار القانون المناسب."
+      },
+      {
+        "type": "paragraph",
+        "textAr": "تبقى القيمة والوحدة معًا في الإجابة؛ خطأ الوحدة يختلف عن خطأ القيمة، ولا يكفي رقم واحد للجزم بسبب الخطأ."
+      }
+    ],
+    "practiceProblemRevisionIds": [],
+    "assessmentProblemRevisionIds": [],
+    "errorCodes": [],
+    "mappingPending": ["مراجعة مختص الفيزياء والمصطلحات والوحدات قبل النشر"]
+  },
+  {
+    "kind": "lesson",
+    "subject": "physics",
+    "code": "PHY-L03",
+    "titleAr": "السرعة المتوسطة",
+    "descriptionAr": "مسودة تعليمية للمراجعة: السرعة المتوسطة",
+    "objectives": [
+      "أن يفسر المتعلم السرعة المتوسطة ويطبقها على مثال جديد ضمن النطاق المدعوم."
+    ],
+    "skillCodes": ["PHYS-AVERAGE_SPEED"],
+    "prerequisiteSkillCodes": [],
+    "prerequisiteLessonIds": [],
+    "contentBlocks": [
+      {
+        "type": "paragraph",
+        "textAr": "في هذا الدرس نقرأ المعطيات ونميز الكمية المطلوبة ووحدتها قبل اختيار القانون المناسب."
+      },
+      {
+        "type": "paragraph",
+        "textAr": "تبقى القيمة والوحدة معًا في الإجابة؛ خطأ الوحدة يختلف عن خطأ القيمة، ولا يكفي رقم واحد للجزم بسبب الخطأ."
+      }
+    ],
+    "practiceProblemRevisionIds": [],
+    "assessmentProblemRevisionIds": [],
+    "errorCodes": [],
+    "mappingPending": ["مراجعة مختص الفيزياء والمصطلحات والوحدات قبل النشر"]
+  },
+  {
+    "kind": "lesson",
+    "subject": "physics",
+    "code": "PHY-L04",
+    "titleAr": "التسارع",
+    "descriptionAr": "مسودة تعليمية للمراجعة: التسارع",
+    "objectives": [
+      "أن يفسر المتعلم التسارع ويطبقها على مثال جديد ضمن النطاق المدعوم."
+    ],
+    "skillCodes": ["PHYS-ACCELERATION"],
+    "prerequisiteSkillCodes": [],
+    "prerequisiteLessonIds": [],
+    "contentBlocks": [
+      {
+        "type": "paragraph",
+        "textAr": "في هذا الدرس نقرأ المعطيات ونميز الكمية المطلوبة ووحدتها قبل اختيار القانون المناسب."
+      },
+      {
+        "type": "paragraph",
+        "textAr": "تبقى القيمة والوحدة معًا في الإجابة؛ خطأ الوحدة يختلف عن خطأ القيمة، ولا يكفي رقم واحد للجزم بسبب الخطأ."
+      }
+    ],
+    "practiceProblemRevisionIds": [],
+    "assessmentProblemRevisionIds": [],
+    "errorCodes": [],
+    "mappingPending": ["مراجعة مختص الفيزياء والمصطلحات والوحدات قبل النشر"]
+  },
+  {
+    "kind": "lesson",
+    "subject": "physics",
+    "code": "PHY-L05",
+    "titleAr": "السرعة النهائية",
+    "descriptionAr": "مسودة تعليمية للمراجعة: السرعة النهائية",
+    "objectives": [
+      "أن يفسر المتعلم السرعة النهائية ويطبقها على مثال جديد ضمن النطاق المدعوم."
+    ],
+    "skillCodes": ["PHYS-FINAL_VELOCITY"],
+    "prerequisiteSkillCodes": [],
+    "prerequisiteLessonIds": [],
+    "contentBlocks": [
+      {
+        "type": "paragraph",
+        "textAr": "في هذا الدرس نقرأ المعطيات ونميز الكمية المطلوبة ووحدتها قبل اختيار القانون المناسب."
+      },
+      {
+        "type": "paragraph",
+        "textAr": "تبقى القيمة والوحدة معًا في الإجابة؛ خطأ الوحدة يختلف عن خطأ القيمة، ولا يكفي رقم واحد للجزم بسبب الخطأ."
+      }
+    ],
+    "practiceProblemRevisionIds": [],
+    "assessmentProblemRevisionIds": [],
+    "errorCodes": [],
+    "mappingPending": ["مراجعة مختص الفيزياء والمصطلحات والوحدات قبل النشر"]
+  },
+  {
+    "kind": "lesson",
+    "subject": "physics",
+    "code": "PHY-L06",
+    "titleAr": "الإزاحة مع التسارع",
+    "descriptionAr": "مسودة تعليمية للمراجعة: الإزاحة مع التسارع",
+    "objectives": [
+      "أن يفسر المتعلم الإزاحة مع التسارع ويطبقها على مثال جديد ضمن النطاق المدعوم."
+    ],
+    "skillCodes": ["PHYS-DISPLACEMENT"],
+    "prerequisiteSkillCodes": [],
+    "prerequisiteLessonIds": [],
+    "contentBlocks": [
+      {
+        "type": "paragraph",
+        "textAr": "في هذا الدرس نقرأ المعطيات ونميز الكمية المطلوبة ووحدتها قبل اختيار القانون المناسب."
+      },
+      {
+        "type": "paragraph",
+        "textAr": "تبقى القيمة والوحدة معًا في الإجابة؛ خطأ الوحدة يختلف عن خطأ القيمة، ولا يكفي رقم واحد للجزم بسبب الخطأ."
+      }
+    ],
+    "practiceProblemRevisionIds": [],
+    "assessmentProblemRevisionIds": [],
+    "errorCodes": [],
+    "mappingPending": ["مراجعة مختص الفيزياء والمصطلحات والوحدات قبل النشر"]
+  },
+  {
+    "kind": "lesson",
+    "subject": "programming",
+    "code": "PY-L01",
+    "titleAr": "الطباعة",
+    "descriptionAr": "مسودة تعليمية للمراجعة: الطباعة",
+    "objectives": [
+      "أن يفسر المتعلم الطباعة ويطبقها على مثال جديد ضمن النطاق المدعوم."
+    ],
+    "skillCodes": ["PY-PRINT"],
+    "prerequisiteSkillCodes": [],
+    "prerequisiteLessonIds": [],
+    "contentBlocks": [
+      {
+        "type": "paragraph",
+        "textAr": "تستخدم Python الدالة print لعرض قيمة في المخرجات. نضع النص بين علامتي اقتباس، ثم نمرره بين قوسي الدالة."
+      },
+      {
+        "type": "paragraph",
+        "textAr": "المتغير اسم يشير إلى قيمة. في المثال نخزن كلمة في المتغير message ثم نطبع قيمته. علامة = هنا إسناد برمجي، وليست فحص مساواة رياضيًا."
+      },
+      {
+        "type": "paragraph",
+        "textAr": "تدريب معلن: غيّر النص إلى Hello ثم توقع ما سيظهر. التشغيل والتقييم متاحان فقط عندما يكون Runner المعزول مهيأ؛ قراءة الدرس لا تسجل فهمًا مستقلًا."
+      },
+      {
+        "type": "code_example",
+        "textAr": "مثال معلن: تخزين رسالة ثم عرضها. المخرج المتوقع Hello.",
+        "code": "message = \"Hello\"\nprint(message)"
+      },
+      {
+        "type": "key_point",
+        "textAr": "المسافات البادئة وأسماء الدوال جزء من معنى الشيفرة. التنفيذ لا يحدث داخل محرّك SymPy أو خادم NestJS."
+      }
+    ],
+    "practiceProblemRevisionIds": [],
+    "assessmentProblemRevisionIds": [],
+    "errorCodes": [],
+    "mappingPending": ["مراجعة مدرس البرمجة وتهيئة Runner المعزول قبل التقييم"]
+  },
+  {
+    "kind": "lesson",
+    "subject": "programming",
+    "code": "PY-L02",
+    "titleAr": "المتغيرات والأنواع",
+    "descriptionAr": "مسودة تعليمية للمراجعة: المتغيرات والأنواع",
+    "objectives": [
+      "أن يفسر المتعلم المتغيرات والأنواع ويطبقها على مثال جديد ضمن النطاق المدعوم."
+    ],
+    "skillCodes": ["PY-VARIABLES"],
+    "prerequisiteSkillCodes": [],
+    "prerequisiteLessonIds": [],
+    "contentBlocks": [
+      {
+        "type": "paragraph",
+        "textAr": "نقرأ المطلوب ثم نكتب شيفرة Python بخطوات صغيرة ونقارن المخرجات بالاختبارات العلنية."
+      },
+      {
+        "type": "paragraph",
+        "textAr": "تبقى الكلمات المحجوزة وأسماء الدوال في الشيفرة بالإنجليزية. لا تمثل مشاهدة المثال دليل نجاح مستقل في البرمجة."
+      }
+    ],
+    "practiceProblemRevisionIds": [],
+    "assessmentProblemRevisionIds": [],
+    "errorCodes": [],
+    "mappingPending": ["مراجعة مدرس البرمجة وتهيئة Runner المعزول قبل التقييم"]
+  },
+  {
+    "kind": "lesson",
+    "subject": "programming",
+    "code": "PY-L03",
+    "titleAr": "العمليات الحسابية",
+    "descriptionAr": "مسودة تعليمية للمراجعة: العمليات الحسابية",
+    "objectives": [
+      "أن يفسر المتعلم العمليات الحسابية ويطبقها على مثال جديد ضمن النطاق المدعوم."
+    ],
+    "skillCodes": ["PY-ARITHMETIC"],
+    "prerequisiteSkillCodes": [],
+    "prerequisiteLessonIds": [],
+    "contentBlocks": [
+      {
+        "type": "paragraph",
+        "textAr": "نقرأ المطلوب ثم نكتب شيفرة Python بخطوات صغيرة ونقارن المخرجات بالاختبارات العلنية."
+      },
+      {
+        "type": "paragraph",
+        "textAr": "تبقى الكلمات المحجوزة وأسماء الدوال في الشيفرة بالإنجليزية. لا تمثل مشاهدة المثال دليل نجاح مستقل في البرمجة."
+      }
+    ],
+    "practiceProblemRevisionIds": [],
+    "assessmentProblemRevisionIds": [],
+    "errorCodes": [],
+    "mappingPending": ["مراجعة مدرس البرمجة وتهيئة Runner المعزول قبل التقييم"]
+  },
+  {
+    "kind": "lesson",
+    "subject": "programming",
+    "code": "PY-L04",
+    "titleAr": "الشروط",
+    "descriptionAr": "مسودة تعليمية للمراجعة: الشروط",
+    "objectives": [
+      "أن يفسر المتعلم الشروط ويطبقها على مثال جديد ضمن النطاق المدعوم."
+    ],
+    "skillCodes": ["PY-CONDITIONS"],
+    "prerequisiteSkillCodes": [],
+    "prerequisiteLessonIds": [],
+    "contentBlocks": [
+      {
+        "type": "paragraph",
+        "textAr": "نقرأ المطلوب ثم نكتب شيفرة Python بخطوات صغيرة ونقارن المخرجات بالاختبارات العلنية."
+      },
+      {
+        "type": "paragraph",
+        "textAr": "تبقى الكلمات المحجوزة وأسماء الدوال في الشيفرة بالإنجليزية. لا تمثل مشاهدة المثال دليل نجاح مستقل في البرمجة."
+      }
+    ],
+    "practiceProblemRevisionIds": [],
+    "assessmentProblemRevisionIds": [],
+    "errorCodes": [],
+    "mappingPending": ["مراجعة مدرس البرمجة وتهيئة Runner المعزول قبل التقييم"]
+  },
+  {
+    "kind": "lesson",
+    "subject": "programming",
+    "code": "PY-L05",
+    "titleAr": "التكرار",
+    "descriptionAr": "مسودة تعليمية للمراجعة: التكرار",
+    "objectives": [
+      "أن يفسر المتعلم التكرار ويطبقها على مثال جديد ضمن النطاق المدعوم."
+    ],
+    "skillCodes": ["PY-LOOPS"],
+    "prerequisiteSkillCodes": [],
+    "prerequisiteLessonIds": [],
+    "contentBlocks": [
+      {
+        "type": "paragraph",
+        "textAr": "نقرأ المطلوب ثم نكتب شيفرة Python بخطوات صغيرة ونقارن المخرجات بالاختبارات العلنية."
+      },
+      {
+        "type": "paragraph",
+        "textAr": "تبقى الكلمات المحجوزة وأسماء الدوال في الشيفرة بالإنجليزية. لا تمثل مشاهدة المثال دليل نجاح مستقل في البرمجة."
+      }
+    ],
+    "practiceProblemRevisionIds": [],
+    "assessmentProblemRevisionIds": [],
+    "errorCodes": [],
+    "mappingPending": ["مراجعة مدرس البرمجة وتهيئة Runner المعزول قبل التقييم"]
+  },
+  {
+    "kind": "lesson",
+    "subject": "programming",
+    "code": "PY-L06",
+    "titleAr": "الدوال",
+    "descriptionAr": "مسودة تعليمية للمراجعة: الدوال",
+    "objectives": [
+      "أن يفسر المتعلم الدوال ويطبقها على مثال جديد ضمن النطاق المدعوم."
+    ],
+    "skillCodes": ["PY-FUNCTIONS"],
+    "prerequisiteSkillCodes": [],
+    "prerequisiteLessonIds": [],
+    "contentBlocks": [
+      {
+        "type": "paragraph",
+        "textAr": "نقرأ المطلوب ثم نكتب شيفرة Python بخطوات صغيرة ونقارن المخرجات بالاختبارات العلنية."
+      },
+      {
+        "type": "paragraph",
+        "textAr": "تبقى الكلمات المحجوزة وأسماء الدوال في الشيفرة بالإنجليزية. لا تمثل مشاهدة المثال دليل نجاح مستقل في البرمجة."
+      }
+    ],
+    "practiceProblemRevisionIds": [],
+    "assessmentProblemRevisionIds": [],
+    "errorCodes": [],
+    "mappingPending": ["مراجعة مدرس البرمجة وتهيئة Runner المعزول قبل التقييم"]
+  },
+  {
+    "kind": "track",
+    "subject": "algebra",
+    "code": "ALG-BASIC",
+    "titleAr": "الجبر الأساسي",
+    "descriptionAr": "مسار افتتاحي من ستة دروس. جميع النسخ مسودة حتى مراجعة الشخص المخول.",
+    "units": [
+      {
+        "code": "linear_equations",
+        "titleAr": "الجبر الأساسي",
+        "lessonCodes": [
+          "ALG-L01",
+          "ALG-L02",
+          "ALG-L03",
+          "ALG-L04",
+          "ALG-L05",
+          "ALG-L06"
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "track",
+    "subject": "physics",
+    "code": "PHY-MOTION",
+    "titleAr": "الحركة الخطية والوحدات",
+    "descriptionAr": "مسار افتتاحي من ستة دروس. جميع النسخ مسودة حتى مراجعة الشخص المخول.",
+    "units": [
+      {
+        "code": "kinematics_1d",
+        "titleAr": "الحركة الخطية والوحدات",
+        "lessonCodes": [
+          "PHY-L01",
+          "PHY-L02",
+          "PHY-L03",
+          "PHY-L04",
+          "PHY-L05",
+          "PHY-L06"
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "track",
+    "subject": "programming",
+    "code": "PY-BASIC",
+    "titleAr": "Python للمبتدئين",
+    "descriptionAr": "مسار افتتاحي من ستة دروس. جميع النسخ مسودة حتى مراجعة الشخص المخول.",
+    "units": [
+      {
+        "code": "python_basics",
+        "titleAr": "Python للمبتدئين",
+        "lessonCodes": [
+          "PY-L01",
+          "PY-L02",
+          "PY-L03",
+          "PY-L04",
+          "PY-L05",
+          "PY-L06"
+        ]
+      }
+    ]
+  }
+]

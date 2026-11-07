@@ -1137,6 +1137,314 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/learning/tracks": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية. */
+        get: operations["v22GetLearningTracks"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/tracks/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية. */
+        get: operations["v22GetLearningTracksId"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/lessons/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية. */
+        get: operations["v22GetLearningLessonsId"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/skill-map": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية. */
+        get: operations["v22GetLearningSkillMap"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/studio/learning-content": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية. */
+        get: operations["v22GetStudioLearningContent"];
+        put?: never;
+        /** @description مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية. */
+        post: operations["v22PostStudioLearningContent"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/studio/learning-content/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية. */
+        get: operations["v22GetStudioLearningContentId"];
+        /** @description مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية. */
+        put: operations["v22PutStudioLearningContentId"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/studio/learning-content/{id}/validate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية. */
+        post: operations["v22PostStudioLearningContentIdValidate"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/studio/learning-content/{id}/transition": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية. */
+        post: operations["v22PostStudioLearningContentIdTransition"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/studio/learning-bank": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية. */
+        get: operations["v22GetStudioLearningBank"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/studio/learning-content/seed": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description يستورد حزمة مسودات فقط؛ لا يصنع اعتمادا أو نشرا تلقائيا. */
+        post: operations["v22PostStudioLearningContentSeed"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/assessments/start": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية. */
+        post: operations["v22PostAssessmentsStart"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/assessments/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية. */
+        get: operations["v22GetAssessmentsId"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/assessments/{id}/answer": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية. */
+        post: operations["v22PostAssessmentsIdAnswer"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/assessments/{id}/support": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description يسجل الخروج من القياس المستقل قبل طلب التلميح. H4 يتطلب تأكيدا صريحا. */
+        post: operations["v22PostAssessmentsIdSupport"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/assessments/{id}/summary": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية. */
+        get: operations["v22GetAssessmentsIdSummary"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/recommendations/next": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية. */
+        get: operations["v22GetRecommendationsNext"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/lessons/{id}/progress": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description مشاهدة الدرس حدث فقط ولا تمنح دليل فهم مستقل. */
+        post: operations["v22PostLearningLessonsIdProgress"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/progress": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description مسارات V2.2؛ يظل المحتوى مسودة حتى مراجعة مخولة. النسخ السابقة مثبتة ولا تمنح معرفة UUID صلاحية. */
+        get: operations["v22GetLearningProgress"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -2743,6 +3051,352 @@ export interface components {
                 passed: boolean;
                 executed: boolean;
             }[];
+        };
+        LPLessonBlock: {
+            /** @enum {string} */
+            type: "paragraph" | "heading" | "math_example" | "worked_steps" | "key_point" | "common_mistake" | "practice_link" | "code_example" | "physics_example";
+            textAr: string;
+            raw?: string;
+            steps?: {
+                raw: string;
+                explanationAr: string;
+            }[];
+            code?: string;
+            physics?: components["schemas"]["StudioPhysicsContent"];
+            problemRevisionId?: string;
+        };
+        LPLessonPayload: {
+            /** @constant */
+            kind: "lesson";
+            /** @enum {string} */
+            subject: "algebra" | "physics" | "programming";
+            code: string;
+            titleAr: string;
+            descriptionAr: string;
+            objectives: string[];
+            skillCodes: string[];
+            prerequisiteSkillCodes: string[];
+            prerequisiteLessonIds: string[];
+            contentBlocks: components["schemas"]["LPLessonBlock"][];
+            practiceProblemRevisionIds: string[];
+            assessmentProblemRevisionIds: string[];
+            errorCodes: string[];
+            mappingPending: string[];
+        };
+        LPTrackPayload: {
+            /** @constant */
+            kind: "track";
+            /** @enum {string} */
+            subject: "algebra" | "physics" | "programming";
+            code: string;
+            titleAr: string;
+            descriptionAr: string;
+            units: {
+                code: string;
+                titleAr: string;
+                lessonRevisionIds: string[];
+            }[];
+        };
+        LPLearningContentPayload: components["schemas"]["LPLessonPayload"] | components["schemas"]["LPTrackPayload"];
+        LPLearningContentValidation: {
+            valid: boolean;
+            issues: string[];
+            checkedAt: string;
+            engine: string;
+            examples: {
+                blockIndex: number;
+                normalizedText: string | null;
+                displayAr: string | null;
+                ast: {
+                    [key: string]: unknown;
+                } | null;
+                status: string;
+                stepStatuses: string[];
+            }[];
+        };
+        LPLearningContentRevision: {
+            id: string;
+            itemId: string;
+            version: number;
+            editRevision: number;
+            /** @enum {string} */
+            status: "draft" | "in_review" | "approved" | "published" | "archived";
+            payload: components["schemas"]["LPLearningContentPayload"];
+            contentHash: string;
+            validation: components["schemas"]["LPLearningContentValidation"] | null;
+            createdAt: string;
+            reviewedAt: string | null;
+            publishedAt: string | null;
+        };
+        LPLearningBankProblem: {
+            revisionId: string;
+            problemId: string;
+            /** @enum {string} */
+            source: "algebra" | "studio";
+            /** @enum {string} */
+            subject: "algebra" | "physics" | "programming";
+            titleAr: string;
+            statementAr: string;
+            skillCodes: string[];
+            primarySkillCode: string;
+            difficulty: number;
+            /** @enum {string} */
+            kind: "main" | "remediation" | "transfer" | "diagnostic";
+            familyCode: string;
+            equationRaw?: string;
+            physics?: {
+                quantity: string;
+                givens: {
+                    [key: string]: string;
+                };
+                allowedUnits: string[];
+            };
+            programming?: {
+                starterCode: string;
+                publicTests: {
+                    input: string;
+                    expectedOutput: string;
+                }[];
+            };
+        };
+        LPLearningTrackDetail: {
+            id: string;
+            itemId: string;
+            version: number;
+            editRevision: number;
+            /** @enum {string} */
+            status: "draft" | "in_review" | "approved" | "published" | "archived";
+            payload: components["schemas"]["LPLearningContentPayload"];
+            contentHash: string;
+            validation: components["schemas"]["LPLearningContentValidation"] | null;
+            createdAt: string;
+            reviewedAt: string | null;
+            publishedAt: string | null;
+            lessons: components["schemas"]["LPLearningContentRevision"][];
+        };
+        LPLearningLessonDetail: {
+            id: string;
+            itemId: string;
+            version: number;
+            editRevision: number;
+            /** @enum {string} */
+            status: "draft" | "in_review" | "approved" | "published" | "archived";
+            payload: components["schemas"]["LPLearningContentPayload"];
+            contentHash: string;
+            validation: components["schemas"]["LPLearningContentValidation"] | null;
+            createdAt: string;
+            reviewedAt: string | null;
+            publishedAt: string | null;
+            practiceProblems: components["schemas"]["LPLearningBankProblem"][];
+            assessmentProblems: components["schemas"]["LPLearningBankProblem"][];
+        };
+        LPLearningSkillMap: {
+            ruleVersion: string;
+            mappingPending: string[];
+            skills: {
+                skillCode: string;
+                titleAr: string;
+                prerequisiteSkillCodes: string[];
+                lessonRevisionId: string | null;
+            }[];
+            errors: {
+                errorCode: string;
+                candidateSkills: string[];
+                mappingPending: boolean;
+            }[];
+        };
+        /** @enum {string} */
+        LPAssessmentKind: "diagnostic_pretest" | "lesson_check" | "post_remediation" | "practice";
+        /** @enum {string} */
+        LPLearningEvidenceState: "not_assessed" | "needs_review" | "practicing_with_support" | "independent_evidence" | "insufficient_evidence";
+        LPAssessmentQuestion: {
+            id: string;
+            problem: components["schemas"]["LPLearningBankProblem"];
+            attemptId: string | null;
+            steps: string[];
+            value: string;
+            unit: string;
+            status: string | null;
+            independent: boolean;
+            supportLevel: number;
+            completed: boolean;
+        };
+        LPAssessmentSession: {
+            id: string;
+            revision: number;
+            /** @enum {string} */
+            subject: "algebra" | "physics" | "programming";
+            kind: components["schemas"]["LPAssessmentKind"];
+            trackRevisionId: string;
+            lessonRevisionId: string | null;
+            /** @enum {string} */
+            status: "active" | "completed";
+            /** @enum {string} */
+            mode: "independent" | "practice";
+            questions: components["schemas"]["LPAssessmentQuestion"][];
+            coverage: {
+                requested: number;
+                available: number;
+                partial: boolean;
+                messageAr: string;
+            };
+            createdAt: string;
+        };
+        LPLearningSkillEvidence: {
+            skillCode: string;
+            titleAr: string;
+            state: components["schemas"]["LPLearningEvidenceState"];
+            independentCorrect: number;
+            independentErrors: number;
+            assisted: number;
+            evidenceIds: string[];
+            source: string;
+        };
+        LPLearningRecommendation: {
+            recommendedLessonId: string;
+            targetSkillCode: string;
+            /** @enum {string} */
+            reasonCode: "repeated_independent_error" | "tentative_review" | "prerequisite_review" | "additional_evidence" | "introduction";
+            reasonAr: string;
+            /** @constant */
+            confidence: "tentative";
+            evidenceCount: number;
+            evidenceIds: string[];
+            ruleVersion: string;
+            mappingPending: string[];
+            /** @constant */
+            nextAction: "study_lesson";
+            alternatives: {
+                lessonRevisionId: string;
+                titleAr: string;
+            }[];
+        };
+        LPAssessmentSummary: {
+            session: components["schemas"]["LPAssessmentSession"];
+            skills: components["schemas"]["LPLearningSkillEvidence"][];
+            recommendation: components["schemas"]["LPLearningRecommendation"] | null;
+        };
+        LPLearningPathProgress: {
+            skills: components["schemas"]["LPLearningSkillEvidence"][];
+            recommendation: components["schemas"]["LPLearningRecommendation"] | null;
+            lessons: {
+                lessonRevisionId: string;
+                /** @enum {string} */
+                state: "not_started" | "viewed" | "practiced" | "independent_evidence";
+                viewedAt: string | null;
+            }[];
+            ruleVersion: string;
+        };
+        LPLearningContentEnvelope: {
+            data: components["schemas"]["LPLearningContentRevision"];
+            meta: components["schemas"]["Meta"];
+        };
+        LPLearningContentListEnvelope: {
+            data: {
+                items: components["schemas"]["LPLearningContentRevision"][];
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        LPLearningTrackEnvelope: {
+            data: components["schemas"]["LPLearningTrackDetail"];
+            meta: components["schemas"]["Meta"];
+        };
+        LPLearningLessonEnvelope: {
+            data: components["schemas"]["LPLearningLessonDetail"];
+            meta: components["schemas"]["Meta"];
+        };
+        LPLearningSkillMapEnvelope: {
+            data: components["schemas"]["LPLearningSkillMap"];
+            meta: components["schemas"]["Meta"];
+        };
+        LPLearningBankEnvelope: {
+            data: {
+                items: components["schemas"]["LPLearningBankProblem"][];
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        LPExpectedRevisionInput: {
+            expectedRevision: number;
+        };
+        LPLearningEditInput: {
+            expectedRevision: number;
+            payload: components["schemas"]["LPLearningContentPayload"];
+        };
+        LPLearningTransitionInput: {
+            expectedRevision: number;
+            /** @enum {string} */
+            action: "submit" | "approve" | "publish" | "archive" | "revise";
+        };
+        LPLessonProgressInput: {
+            /** @enum {string} */
+            event: "lesson_started" | "lesson_viewed";
+        };
+        LPAssessmentEnvelope: {
+            data: components["schemas"]["LPAssessmentSession"];
+            meta: components["schemas"]["Meta"];
+        };
+        LPAssessmentSummaryEnvelope: {
+            data: components["schemas"]["LPAssessmentSummary"];
+            meta: components["schemas"]["Meta"];
+        };
+        LPLearningProgressEnvelope: {
+            data: components["schemas"]["LPLearningPathProgress"];
+            meta: components["schemas"]["Meta"];
+        };
+        LPLearningRecommendationEnvelope: {
+            data: {
+                skills: components["schemas"]["LPLearningSkillEvidence"][];
+                recommendation: components["schemas"]["LPLearningRecommendation"] | null;
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        LPAssessmentSupportEnvelope: {
+            data: {
+                session: components["schemas"]["LPAssessmentSession"];
+                hint: {
+                    /** @enum {string} */
+                    level: "H1" | "H2" | "H3" | "H4";
+                    textAr: string;
+                    source: string;
+                    solutionStepsAr: string[];
+                };
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        LPLessonProgressEnvelope: {
+            data: {
+                /** Format: uuid */
+                lessonRevisionId: string;
+                /** @constant */
+                state: "viewed";
+                /** Format: date-time */
+                viewedAt: string;
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        LPAssessmentStartInput: {
+            /** Format: uuid */
+            trackRevisionId: string;
+            /** Format: uuid */
+            lessonRevisionId?: string;
+            kind: components["schemas"]["LPAssessmentKind"];
+        };
+        LPAssessmentAnswerInput: {
+            expectedRevision: number;
+            /** Format: uuid */
+            questionId: string;
+            steps: string[];
+            value?: string;
+            unit?: string;
+        };
+        LPAssessmentSupportInput: {
+            expectedRevision: number;
+            /** Format: uuid */
+            questionId: string;
+            /** @enum {string} */
+            action: "request_hint" | "show_full_solution";
+            /** @constant */
+            confirmAssistedCompletion?: true;
         };
     };
     responses: {
@@ -5564,6 +6218,703 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["PhysicsLearningEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    v22GetLearningTracks: {
+        parameters: {
+            query?: {
+                subject?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description نجاح العملية. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LPLearningContentListEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    v22GetLearningTracksId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description نجاح العملية. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LPLearningTrackEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    v22GetLearningLessonsId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description نجاح العملية. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LPLearningLessonEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    v22GetLearningSkillMap: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description نجاح العملية. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LPLearningSkillMapEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    v22GetStudioLearningContent: {
+        parameters: {
+            query?: {
+                subject?: string;
+                kind?: string;
+                status?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description نجاح العملية. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LPLearningContentListEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    v22PostStudioLearningContent: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LPLearningContentPayload"];
+            };
+        };
+        responses: {
+            /** @description نجاح العملية. */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LPLearningContentEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    v22GetStudioLearningContentId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description نجاح العملية. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LPLearningContentEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    v22PutStudioLearningContentId: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LPLearningEditInput"];
+            };
+        };
+        responses: {
+            /** @description نجاح العملية. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LPLearningContentEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    v22PostStudioLearningContentIdValidate: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LPExpectedRevisionInput"];
+            };
+        };
+        responses: {
+            /** @description نجاح العملية. */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LPLearningContentEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    v22PostStudioLearningContentIdTransition: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LPLearningTransitionInput"];
+            };
+        };
+        responses: {
+            /** @description نجاح العملية. */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LPLearningContentEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    v22GetStudioLearningBank: {
+        parameters: {
+            query?: {
+                subject?: string;
+                skillCode?: string;
+                difficulty?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description نجاح العملية. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LPLearningBankEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    v22PostStudioLearningContentSeed: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": Record<string, never>;
+            };
+        };
+        responses: {
+            /** @description نجاح العملية. */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LPLearningContentListEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    v22PostAssessmentsStart: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LPAssessmentStartInput"];
+            };
+        };
+        responses: {
+            /** @description نجاح العملية. */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LPAssessmentEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    v22GetAssessmentsId: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description نجاح العملية. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LPAssessmentEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    v22PostAssessmentsIdAnswer: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LPAssessmentAnswerInput"];
+            };
+        };
+        responses: {
+            /** @description نجاح العملية. */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LPAssessmentEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    v22PostAssessmentsIdSupport: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LPAssessmentSupportInput"];
+            };
+        };
+        responses: {
+            /** @description نجاح العملية. */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LPAssessmentSupportEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    v22GetAssessmentsIdSummary: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description نجاح العملية. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LPAssessmentSummaryEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    v22GetRecommendationsNext: {
+        parameters: {
+            query: {
+                trackRevisionId: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description نجاح العملية. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LPLearningRecommendationEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    v22PostLearningLessonsIdProgress: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LPLessonProgressInput"];
+            };
+        };
+        responses: {
+            /** @description نجاح العملية. */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LPLessonProgressEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    v22GetLearningProgress: {
+        parameters: {
+            query: {
+                trackRevisionId: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description نجاح العملية. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LPLearningProgressEnvelope"];
                 };
             };
             400: components["responses"]["E400"];

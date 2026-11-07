@@ -921,3 +921,82 @@ model PhysicsContentExposure {
   @@index([owner_key,family_code,context_key],map:"physics_exposure_identity")
   @@map("physics_content_exposures")
 }
+
+model learning_content_items {
+  id String @id @db.Uuid
+  code String @unique
+  subject_code String
+  kind String
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+}
+model learning_content_revisions {
+  id String @id @db.Uuid
+  item_id String @db.Uuid
+  version Int
+  edit_revision Int @default(0)
+  status String @default("draft")
+  payload Json
+  content_hash String
+  validation Json?
+  created_by String? @db.Uuid
+  reviewed_by String? @db.Uuid
+  published_by String? @db.Uuid
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  reviewed_at DateTime? @db.Timestamptz(6)
+  published_at DateTime? @db.Timestamptz(6)
+  @@unique([item_id,version])
+}
+model learning_content_events {
+  id String @id @db.Uuid
+  revision_id String @db.Uuid
+  actor_id String? @db.Uuid
+  action String
+  content_hash String
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+}
+
+model learning_assessments {
+  id String @id @db.Uuid
+  owner_key String
+  guest_session_id String @db.Uuid
+  subject_code String
+  track_revision_id String @db.Uuid
+  lesson_revision_id String? @db.Uuid
+  kind String
+  revision Int @default(0)
+  rule_version String
+  mapping_snapshot Json
+  coverage Json
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  @@index([owner_key,created_at(sort: Desc),id],map:"learning_assessment_owner")
+}
+model learning_assessment_items {
+  id String @id @db.Uuid
+  assessment_id String @db.Uuid
+  position Int
+  problem_revision_id String @db.Uuid
+  problem_snapshot Json
+  attempt_id String? @unique @db.Uuid
+  subject_attempt_id String? @unique @db.Uuid
+  measurement_exited_at DateTime? @db.Timestamptz(6)
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  @@unique([assessment_id,position])
+  @@unique([assessment_id,problem_revision_id])
+}
+model learning_lesson_events {
+  id String @id @db.Uuid
+  owner_key String
+  lesson_revision_id String @db.Uuid
+  event_kind String
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  @@index([owner_key,lesson_revision_id,created_at],map:"learning_lesson_owner")
+}
+model learning_recommendation_events {
+  id String @id @db.Uuid
+  owner_key String
+  assessment_id String? @db.Uuid
+  track_revision_id String @db.Uuid
+  rule_version String
+  recommendation Json?
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+}

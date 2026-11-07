@@ -1,0 +1,27 @@
+{
+  "recordedAt": "2026-11-07T23:32:21.023Z",
+  "node": "v26.7.0",
+  "platform": "win32",
+  "scope": "One focused synthetic HTTP journey; ephemeral test DB and real private math; no paid AI, runner, production or load tests. Test workflow actors do not constitute human content approval.",
+  "checks": [
+    {
+      "command": "isolated Prisma migrate deploy",
+      "exitCode": 0,
+      "stdout": "Datasource \"db\": PostgreSQL database \"v22_test\", schema \"public\" at \"127.0.0.1:40222\"\n\n21 migrations found in prisma/migrations\n\nApplying migration `0001_ph04`\nApplying migration `0002_current_version_key`\nApplying migration `0003_content_integrity`\nApplying migration `0004_verification_reports`\nApplying migration `0005_conservative_diagnosis`\nApplying migration `0006_guided_tutoring`\nApplying migration `0007_preserve_legacy_assistance`\nApplying migration `0008_learning_episodes`\nApplying migration `0009_current_progress`\nApplying migration `0010_guest_retention`\nApplying migration `0011_accounts`\nApplying migration `0012_product_content`\nApplying migration `0013_beta`\nApplying migration `0014_studio_integrity`\nApplying migration `0015_roadmap_retention`\nApplying migration `0016_claimed_guest_retention`\nApplying migration `0018_durable_runner_work`\nApplying migration `0019_physics_learning`\nApplying migration `0020_learning_ai_consents`\nApplying migration `0021_learning_paths`\nApplying migration `0022_learning_assessments`\n\nThe following migration(s) have been applied:\n\nmigrations/\n  └─ 0001_ph04/\n    └─ migration.sql\n  └─ 0002_current_version_key/\n    └─ migration.sql\n  └─ 0003_content_integrity/\n    └─ migration.sql\n  └─ 0004_verification_reports/\n    └─ migration.sql\n  └─ 0005_conservative_diagnosis/\n    └─ migration.sql\n  └─ 0006_guided_tutoring/\n    └─ migration.sql\n  └─ 0007_preserve_legacy_assistance/\n    └─ migration.sql\n  └─ 0008_learning_episodes/\n    └─ migration.sql\n  └─ 0009_current_progress/\n    └─ migration.sql\n  └─ 0010_guest_retention/\n    └─ migration.sql\n  └─ 0011_accounts/\n    └─ migration.sql\n  └─ 0012_product_content/\n    └─ migration.sql\n  └─ 0013_beta/\n    └─ migration.sql\n  └─ 0014_studio_integrity/\n    └─ migration.sql\n  └─ 0015_roadmap_retention/\n    └─ migration.sql\n  └─ 0016_claimed_guest_retention/\n    └─ migration.sql\n  └─ 0018_durable_runner_work/\n    └─ migration.sql\n  └─ 0019_physics_learning/\n    └─ migration.sql\n  └─ 0020_learning_ai_consents/\n    └─ migration.sql\n  └─ 0021_learning_paths/\n    └─ migration.sql\n  └─ 0022_learning_assessments/\n    └─ migration.sql\n\nAll migrations have been successfully applied.\n",
+      "stderr": "Loaded Prisma config from apps\\api\\prisma.config.ts.\n\nPrisma schema loaded from apps\\api\\prisma\\schema.prisma.\n",
+      "seconds": 10.117
+    },
+    {
+      "command": "focused V2.2 NestJS/PostgreSQL/SymPy HTTP journey",
+      "exitCode": 0,
+      "stdout": "▶ V2.2 focused synthetic author/student journey uses actual NestJS PostgreSQL and SymPy\n  ﹣ author validates with real math and publishes only through role-controlled workflow; drafts stay private (2.0637ms) # SKIP\n  ﹣ assessment is pinned, independently verified, idempotent and private (0.3166ms) # SKIP\n  ﹣ H2 practice stays assisted; fresh post-remediation questions produce actual evidence (0.2531ms) # SKIP\n  ﹣ published revisions remain pinned after the author creates and publishes a new revision (0.2825ms) # SKIP\n  ✔ physics uses the shared path with actual value/unit verification; programming stays read-only without Runner (4194.4123ms)\n✔ V2.2 focused synthetic author/student journey uses actual NestJS PostgreSQL and SymPy (8418.5698ms)\nℹ Verified 49 HTTP responses against canonical OpenAPI; PostgreSQL17.6 and actual SymPy; synthetic test actors only.\nℹ tests 6\nℹ suites 0\nℹ pass 2\nℹ fail 0\nℹ cancelled 0\nℹ skipped 4\nℹ todo 0\nℹ duration_ms 10773.2411\n",
+      "stderr": "",
+      "seconds": 11.128
+    }
+  ],
+  "failure": null,
+  "resourcesCleanedUp": [
+    "khotwa-v22-3c98761feae9-math",
+    "khotwa-v22-3c98761feae9-db"
+  ]
+}

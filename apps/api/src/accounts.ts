@@ -685,6 +685,9 @@ export class AccountService {
         await tx.$executeRaw`DELETE FROM physics_content_exposures WHERE owner_key=${"guest:" + guest.row.id}`;
       }
       await tx.$executeRaw`INSERT INTO guest_account_claims(id,guest_session_id,user_id,target_guest_id,learning_session_count,consent_version) VALUES(${randomUUID()}::uuid,${guest.row.id}::uuid,${actor.userId}::uuid,${actor.guestId}::uuid,${sessions.length},'explicit-account-link-v1')`;
+      await tx.$executeRaw`UPDATE learning_assessments SET owner_key=${actor.ownerKey},guest_session_id=${actor.guestId}::uuid WHERE owner_key=${"guest:" + guest.row.id} AND guest_session_id=${guest.row.id}::uuid`;
+      await tx.$executeRaw`UPDATE learning_lesson_events SET owner_key=${actor.ownerKey} WHERE owner_key=${"guest:" + guest.row.id}`;
+      await tx.$executeRaw`UPDATE learning_recommendation_events SET owner_key=${actor.ownerKey} WHERE owner_key=${"guest:" + guest.row.id}`;
       await tx.$executeRaw`UPDATE guest_sessions SET status='revoked',revoked_at=now() WHERE id=${guest.row.id}::uuid`;
       return { claimed: true, learningSessionCount: sessions.length };
     });

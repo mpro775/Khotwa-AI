@@ -195,6 +195,13 @@ export async function requirePhysicsHintAllowed(
   attemptId: string,
 ): Promise<void> {
   const phase = await requirePhysicsAssignmentCurrent(tx, ownerKey, attemptId);
+  const [measurement] = await tx.$queryRaw<
+    { id: string }[]
+  >`SELECT i.id FROM learning_assessment_items i JOIN learning_assessments x ON x.id=i.assessment_id WHERE i.subject_attempt_id=${attemptId}::uuid AND x.owner_key=${ownerKey} AND i.measurement_exited_at IS NULL LIMIT 1`;
+  if (measurement)
+    throw blocked(
+      "هذه محاولة قياس مستقلة في المسار؛ لا تكشف تلميحاتها من مساحة أخرى. اختر تدريبًا مستقلًا عن سؤال القياس.",
+    );
   if (phase === "transfer")
     throw blocked("هذه مسألة نقل مستقلة؛ لا تقدم التلميحات أثناء القياس.");
   if (phase === "remediation") {
