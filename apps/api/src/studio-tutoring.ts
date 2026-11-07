@@ -3,6 +3,7 @@ import type { Prisma } from "@prisma/client";
 import type { ContentPayload } from "../../../packages/contracts/src/product";
 import { safeTeachingText } from "./ai-tutor";
 import { TUTORING_POLICY } from "./tutoring-policy";
+import { productInvalid } from "./product-core";
 
 /** Studio hints enter the same audited/versioned tutoring path as older
  * templates. H1–H3 are conceptual prose; equation proof belongs to H4's
@@ -49,6 +50,20 @@ export async function materializeStudioHints(
     payload.hints.some((h) => !h.reviewed)
   )
     throw new Error("Studio tutoring requires reviewed safe algebra hints");
+  const targeted = [
+    ...new Set(
+      payload.hints.flatMap((h) => (h.errorCode ? [h.errorCode] : [])),
+    ),
+  ];
+  if (targeted.length) {
+    const catalog = await tx.$queryRaw<
+      { error_code: string }[]
+    >`SELECT error_code FROM misconception_catalog WHERE release_id=${releaseId}::uuid AND enabled AND review_status='reviewed' AND reviewed_at IS NOT NULL AND reviewed_by_role IS NOT NULL`;
+    if (targeted.some((code) => !catalog.some((m) => m.error_code === code)))
+      throw productInvalid(
+        "نمط التلميح غير مرتبط بكتالوج المهارة المراجع لهذا الإصدار.",
+      );
+  }
   for (const h of payload.hints) {
     const steps =
       h.level === 4
@@ -59,6 +74,6 @@ export async function materializeStudioHints(
             ]),
           ]
         : [];
-    await tx.$executeRaw`INSERT INTO intervention_templates(id,release_id,problem_revision_id,error_code,hint_level,template_version,policy_version,text_ar,allowed_rephrases,math_assertions,solution_steps,is_synthetic,enabled,review_status,reviewed_by_role,reviewed_at) VALUES(${randomUUID()}::uuid,${releaseId}::uuid,${problemRevisionId}::uuid,NULL,${h.level},${"studio-" + studioRevisionId},${TUTORING_POLICY},${h.textAr},'[]'::jsonb,'[]'::jsonb,${JSON.stringify(steps)}::jsonb,true,true,'reviewed',${"admin:" + reviewerId},now())`;
+    await tx.$executeRaw`INSERT INTO intervention_templates(id,release_id,problem_revision_id,error_code,hint_level,template_version,policy_version,text_ar,allowed_rephrases,math_assertions,solution_steps,is_synthetic,enabled,review_status,reviewed_by_role,reviewed_at) VALUES(${randomUUID()}::uuid,${releaseId}::uuid,${problemRevisionId}::uuid,${h.errorCode ?? null},${h.level},${"studio-" + studioRevisionId},${TUTORING_POLICY},${h.textAr},'[]'::jsonb,'[]'::jsonb,${JSON.stringify(steps)}::jsonb,true,true,'reviewed',${"admin:" + reviewerId},now())`;
   }
 }

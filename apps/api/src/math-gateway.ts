@@ -121,6 +121,8 @@ export class MathGateway implements MathPort {
             : AbortSignal.timeout(this.settings.timeoutMs),
         },
       );
+      if ([408, 504].includes(response.status))
+        betaTelemetry.recordMathTimeout();
       if (
         !response.ok ||
         !response.headers.get("content-type")?.includes("application/json")
@@ -144,7 +146,19 @@ export class MathGateway implements MathPort {
       const value: unknown = JSON.parse(
         new TextDecoder("utf-8", { fatal: true }).decode(Buffer.concat(chunks)),
       );
-      return internalValue<T>(responseSchema, value);
+      const result = internalValue<T>(responseSchema, value);
+      const status = result as {
+        status?: string;
+        parseStatus?: string;
+        reasonCode?: string | null;
+      };
+      if (
+        (status.status === "service_error" ||
+          status.parseStatus === "service_error") &&
+        status.reasonCode === "MATH_TIMEOUT"
+      )
+        betaTelemetry.recordMathTimeout();
+      return result;
     } catch (error) {
       if (
         error instanceof Error &&

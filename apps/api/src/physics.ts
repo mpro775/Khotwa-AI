@@ -29,6 +29,19 @@ import {
   textField,
 } from "./product-core";
 import { Store } from "./store";
+import { RunnerCoordinator } from "./runner-coordinator";
+import { composeSubjectHint, canDeliverSubjectAi } from "./subject-ai";
+import { requireProductLearningAccess } from "./learning-access";
+import {
+  requirePhysicsHintAllowed,
+  invalidatePhysicsRootEpisodes,
+  PhysicsLearningService,
+  requirePhysicsAssignmentCurrent,
+  preparePhysicsAssignmentUpdate,
+  recordPhysicsExposure,
+  recordPhysicsExposures,
+  finishPhysicsAssignment,
+} from "./physics-learning";
 
 type RevisionRow = {
   id: string;
@@ -84,10 +97,13 @@ function publicProblem(r: RevisionRow): PhysicsProblem {
 }
 export class PhysicsService {
   readonly gateway = new PhysicsGateway();
+  readonly learning: PhysicsLearningService;
   constructor(
     readonly store: Store,
     readonly accounts: AccountService,
-  ) {}
+  ) {
+    this.learning = new PhysicsLearningService(store, accounts);
+  }
   private async problem(
     tx: Prisma.TransactionClient,
     id: string,
@@ -100,26 +116,40 @@ export class PhysicsService {
     return r;
   }
   async list(request: RequestContext) {
-    await this.accounts.actor(request);
-    const rows = await this.store.db.$queryRaw<
-      RevisionRow[]
-    >`SELECT DISTINCT ON (i.id) r.id,r.item_id,r.payload,r.status,i.code FROM studio_revisions r JOIN studio_items i ON i.id=r.item_id WHERE i.subject_code='physics' AND r.status='published' AND r.payload->>'kind'='main' ORDER BY i.id,r.version DESC LIMIT 200`;
-    return { items: rows.map(publicProblem) };
+    const owner = await this.accounts.actor(request);
+    return this.store.db.$transaction(async (tx) => {
+      await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtextextended(${owner.ownerKey},0))`;
+      await this.accounts.authorizeInTransaction(tx, owner);
+      await requireProductLearningAccess(tx, owner, this.store.syntheticData);
+      const rows = await tx.$queryRaw<
+        RevisionRow[]
+      >`SELECT DISTINCT ON (i.id) r.id,r.item_id,r.payload,r.status,i.code FROM studio_revisions r JOIN studio_items i ON i.id=r.item_id WHERE i.subject_code='physics' AND r.status='published' AND r.payload->>'kind'='main' ORDER BY i.id,r.version DESC LIMIT 200`;
+      await recordPhysicsExposures(tx, owner.ownerKey, rows);
+      return { items: rows.map(publicProblem) };
+    });
   }
   async detail(request: RequestContext, id: string) {
-    await this.accounts.actor(request);
-    const problem = await this.problem(this.store.db, uuid(id));
-    if (problem.payload.kind !== "main") throw missing();
-    return publicProblem(problem);
+    const owner = await this.accounts.actor(request);
+    return this.store.db.$transaction(async (tx) => {
+      await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtextextended(${owner.ownerKey},0))`;
+      await this.accounts.authorizeInTransaction(tx, owner);
+      await requireProductLearningAccess(tx, owner, this.store.syntheticData);
+      const problem = await this.problem(tx, uuid(id));
+      if (problem.payload.kind !== "main") throw missing();
+      await recordPhysicsExposure(tx, owner.ownerKey, problem);
+      return publicProblem(problem);
+    });
   }
   async resume(request: RequestContext, id: string) {
     const owner = await this.accounts.actor(request);
     return this.store.db.$transaction(async (tx) => {
+      await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtextextended(${owner.ownerKey},0))`;
       await this.accounts.authorizeInTransaction(tx, owner);
       const [a] = await tx.$queryRaw<
         AttemptRow[]
       >`SELECT * FROM subject_attempts WHERE id=${uuid(id)}::uuid AND owner_key=${owner.ownerKey} AND subject_code='physics'`;
       if (!a) throw missing();
+      await requirePhysicsAssignmentCurrent(tx, owner.ownerKey, a.id);
       const problem = publicProblem(
         await this.problem(tx, a.problem_revision_id, true),
       );
@@ -174,6 +204,7 @@ export class PhysicsService {
       b,
       async (tx) => {
         await this.accounts.authorizeInTransaction(tx, owner);
+        await requireProductLearningAccess(tx, owner, this.store.syntheticData);
         const [prior] = await tx.$queryRaw<
           AttemptRow[]
         >`SELECT * FROM subject_attempts WHERE id=${id}::uuid AND owner_key=${owner.ownerKey} AND subject_code='physics' FOR UPDATE`;
@@ -191,6 +222,18 @@ export class PhysicsService {
             prior.revision,
           );
         const problem = await this.problem(tx, problemId, !!prior);
+        const phase = prior
+          ? await preparePhysicsAssignmentUpdate(tx, owner.ownerKey, prior.id)
+          : "main";
+        if (problem.payload.kind !== "main" && phase === "main")
+          throw new ApiFault(
+            409,
+            "invalid_state",
+            "يبدأ العلاج والنقل بإسناد مملوك من الحلقة التعليمية فقط.",
+          );
+        if (prior && phase === "main")
+          await invalidatePhysicsRootEpisodes(tx, owner.ownerKey, prior.id);
+        await recordPhysicsExposure(tx, owner.ownerKey, problem);
         const revision = prior ? prior.revision + 1 : 0;
         const [history] = await tx.$queryRaw<
           { level: number | null; assisted: boolean | null }[]
@@ -235,7 +278,10 @@ export class PhysicsService {
       },
     );
     const currentSubmission = async (tx: Prisma.TransactionClient) => {
+      await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtextextended(${owner.ownerKey},0))`;
       await this.accounts.authorizeInTransaction(tx, owner);
+      await requireProductLearningAccess(tx, owner, this.store.syntheticData);
+      await requirePhysicsAssignmentCurrent(tx, owner.ownerKey, prepared.id);
       const [current] = await tx.$queryRaw<
         AttemptRow[]
       >`SELECT * FROM subject_attempts WHERE id=${prepared.id}::uuid AND owner_key=${owner.ownerKey} AND subject_code='physics' FOR UPDATE`;
@@ -311,6 +357,7 @@ export class PhysicsService {
       };
       await tx.$executeRaw`UPDATE subject_attempts SET verdict=${JSON.stringify(result)}::jsonb,updated_at=now() WHERE id=${prepared.id}::uuid AND revision=${prepared.revision}`;
       await tx.$executeRaw`INSERT INTO subject_attempt_events(id,attempt_id,revision,event_kind,result) VALUES(${randomUUID()}::uuid,${prepared.id}::uuid,${prepared.revision},'verified',${JSON.stringify(result)}::jsonb)`;
+      await finishPhysicsAssignment(tx, owner.ownerKey, current, result);
       return result;
     });
   }
@@ -331,67 +378,116 @@ export class PhysicsService {
         typeof b.confirmFullSolution !== "boolean")
     )
       throw productInvalid();
-    return productMutation(
-      this.store,
+    const currentAttempt = async (tx: Prisma.TransactionClient) => {
+      await this.accounts.authorizeInTransaction(tx, owner);
+      await requireProductLearningAccess(tx, owner, this.store.syntheticData);
+      await requirePhysicsHintAllowed(tx, owner.ownerKey, id);
+      const [a] = await tx.$queryRaw<
+        AttemptRow[]
+      >`SELECT * FROM subject_attempts WHERE id=${id}::uuid AND owner_key=${owner.ownerKey} AND subject_code='physics' FOR UPDATE`;
+      if (!a) throw missing();
+      if (a.revision !== revision)
+        throw new ApiFault(
+          409,
+          "revision_conflict",
+          "تغيّرت المحاولة؛ حدّثها أولًا.",
+          [],
+          a.revision,
+        );
+      return a;
+    };
+    return new RunnerCoordinator(this.store).run(
       owner,
       request,
       "physics.hint:" + uuid(id),
       b,
-      async (tx) => {
-        await this.accounts.authorizeInTransaction(tx, owner);
-        const [a] = await tx.$queryRaw<
-          AttemptRow[]
-        >`SELECT * FROM subject_attempts WHERE id=${id}::uuid AND owner_key=${owner.ownerKey} AND subject_code='physics' FOR UPDATE`;
-        if (!a) throw missing();
-        if (a.revision !== revision)
-          throw new ApiFault(
-            409,
-            "revision_conflict",
-            "تغيّرت المحاولة؛ حدّثها أولًا.",
-            [],
-            a.revision,
+      {
+        prepare: async (tx) => {
+          const a = await currentAttempt(tx);
+          const p = await this.problem(tx, a.problem_revision_id, true);
+          if (p.payload.kind === "transfer")
+            throw new ApiFault(
+              409,
+              "invalid_state",
+              "هذا سؤال نقل مستقل؛ أكمل محاولتك دون تلميح.",
+            );
+          if (
+            level === 4
+              ? b.confirmFullSolution !== true
+              : level > Math.min(a.assistance_level + 1, 3)
+          )
+            throw new ApiFault(
+              409,
+              "invalid_state",
+              "ابدأ بالتلميح التالي؛ كشف الحل الكامل يحتاج تأكيدًا صريحًا.",
+            );
+          const hint = p.payload.hints.find(
+            (h) => h.level === level && h.reviewed,
           );
-        const p = await this.problem(tx, a.problem_revision_id, true);
-        if (p.payload.kind === "transfer")
-          throw new ApiFault(
-            409,
-            "invalid_state",
-            "هذا سؤال نقل مستقل؛ أكمل محاولتك دون تلميح.",
-          );
-        if (
-          level === 4
-            ? b.confirmFullSolution !== true
-            : level > Math.min(a.assistance_level + 1, 3)
-        )
-          throw new ApiFault(
-            409,
-            "invalid_state",
-            "ابدأ بالتلميح التالي؛ كشف الحل الكامل يحتاج تأكيدًا صريحًا.",
-          );
-        const hint = p.payload.hints.find(
-          (h) => h.level === level && h.reviewed,
-        );
-        if (!hint)
-          throw new ApiFault(
-            503,
-            "ai_unavailable",
-            "لا يتوفر تلميح مراجع بهذا المستوى الآن. بقيت محاولتك محفوظة.",
-          );
-        const next = revision + 1,
-          highest = Math.max(a.assistance_level, level);
-        const result: PhysicsHint = {
-          attemptId: id,
-          revision: next,
-          level: level as 1 | 2 | 3 | 4,
-          textAr: hint.textAr,
-          source: "reviewed_template",
-          independentEvidence: false,
-          reasonAr:
-            "لنراجع العلاقة والوحدة تدريجيًا؛ السبب المحتمل ليس حكمًا على فهمك.",
-        };
-        await tx.$executeRaw`UPDATE subject_attempts SET revision=${next},assistance_level=${highest},independent=false,verdict=jsonb_set(jsonb_set(jsonb_set(verdict,'{independentEvidence}','false'::jsonb),'{assistanceLevel}',${JSON.stringify(highest)}::jsonb),'{revision}',${JSON.stringify(next)}::jsonb),updated_at=now() WHERE id=${id}::uuid`;
-        await tx.$executeRaw`INSERT INTO subject_attempt_events(id,attempt_id,revision,event_kind,result) VALUES(${randomUUID()}::uuid,${id}::uuid,${next},'hint',${JSON.stringify(result)}::jsonb)`;
-        return result;
+          if (!hint)
+            throw new ApiFault(
+              503,
+              "ai_unavailable",
+              "لا يتوفر تلميح مراجع بهذا المستوى الآن. بقيت محاولتك محفوظة.",
+            );
+          return {
+            runs: 0,
+            snapshot: {
+              problemRevisionId: a.problem_revision_id,
+              reviewedTextAr: hint.textAr,
+              skillCodes: p.payload.skillCodes,
+              previousHintLevel: a.assistance_level,
+              observationCode: [
+                "wrong_value",
+                "wrong_unit",
+                "correct",
+              ].includes(a.verdict.status)
+                ? a.verdict.status
+                : "unavailable",
+            },
+          };
+        },
+        execute: async (snapshot) =>
+          level < 4 && snapshot.observationCode !== "unavailable"
+            ? composeSubjectHint({
+                store: this.store,
+                owner,
+                subject: "physics",
+                level: level as 1 | 2 | 3,
+                reviewedTextAr: snapshot.reviewedTextAr,
+                skillCodes: snapshot.skillCodes,
+                previousHintLevel: snapshot.previousHintLevel,
+                observationCode: snapshot.observationCode,
+              })
+            : {
+                textAr: snapshot.reviewedTextAr,
+                source: "reviewed_template" as const,
+                reasonCode: "REVIEWED_ONLY",
+              },
+        finish: async (tx, snapshot, composed) => {
+          const a = await currentAttempt(tx);
+          if (a.problem_revision_id !== snapshot.problemRevisionId)
+            throw missing();
+          const generated =
+            composed.source === "llm_validated" &&
+            (await canDeliverSubjectAi(tx, owner));
+          const next = revision + 1,
+            highest = Math.max(a.assistance_level, level);
+          const result: PhysicsHint = {
+            attemptId: id,
+            revision: next,
+            level: level as 1 | 2 | 3 | 4,
+            textAr: generated ? composed.textAr : snapshot.reviewedTextAr,
+            source: generated ? "llm_validated" : "reviewed_template",
+            independentEvidence: false,
+            reasonAr:
+              "لنراجع العلاقة والوحدة تدريجيًا؛ السبب المحتمل ليس حكمًا على فهمك.",
+          };
+          await tx.$executeRaw`UPDATE subject_attempts SET revision=${next},assistance_level=${highest},independent=false,verdict=jsonb_set(jsonb_set(jsonb_set(verdict,'{independentEvidence}','false'::jsonb),'{assistanceLevel}',${JSON.stringify(highest)}::jsonb),'{revision}',${JSON.stringify(next)}::jsonb),updated_at=now() WHERE id=${id}::uuid`;
+          await invalidatePhysicsRootEpisodes(tx, owner.ownerKey, id);
+          await tx.$executeRaw`INSERT INTO subject_attempt_events(id,attempt_id,revision,event_kind,result) VALUES(${randomUUID()}::uuid,${id}::uuid,${next},'hint',${JSON.stringify(result)}::jsonb)`;
+          return result;
+        },
       },
     );
   }
@@ -413,6 +509,32 @@ export class PhysicsController {
     @Param("id") id: string,
   ) {
     return productEnvelope(r, await this.service.resume(r, id));
+  }
+  @Get("attempts/:id/learning") async learning(
+    @Req() r: RequestContext,
+    @Param("id") id: string,
+  ) {
+    return productEnvelope(r, await this.service.learning.current(r, id));
+  }
+  @Post("attempts/:id/remediation") @HttpCode(200) async remediation(
+    @Req() r: RequestContext,
+    @Param("id") id: string,
+    @Body() b: unknown,
+  ) {
+    return productEnvelope(
+      r,
+      await this.service.learning.assign(r, id, "remediation", b),
+    );
+  }
+  @Post("attempts/:id/transfer") @HttpCode(200) async transfer(
+    @Req() r: RequestContext,
+    @Param("id") id: string,
+    @Body() b: unknown,
+  ) {
+    return productEnvelope(
+      r,
+      await this.service.learning.assign(r, id, "transfer", b),
+    );
   }
   @Post("attempts") @HttpCode(200) async submit(
     @Req() r: RequestContext,

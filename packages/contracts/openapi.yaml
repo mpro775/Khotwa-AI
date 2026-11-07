@@ -4,7 +4,7 @@
 openapi: 3.1.0
 info:
   title: خُطوة AI — عقد واجهات NestJS
-  version: 1.1.0-development
+  version: 1.2.0-development
   description: |-
     مواصفة OpenAPI 3.1 لنسخة هاكثون شِراع (P0).
 
@@ -2959,6 +2959,290 @@ paths:
           $ref: "#/components/responses/E500"
         "503":
           $ref: "#/components/responses/E503"
+  /api/v1/me/ai-consent:
+    get:
+      operationId: getAccountAiConsent
+      summary: موافقة المساعد الخارجي الحالية للمالك فقط
+      tags:
+        - حسابات الطلاب
+      security:
+        - AccountCookie: []
+      responses:
+        "200":
+          description: نجاح
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountAiConsentEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+    post:
+      operationId: setAccountAiConsent
+      summary: اختيار صريح منسوخ للموافقة أو سحبها؛ لا إذن لإرسال كود الطالب
+      tags:
+        - حسابات الطلاب
+      security:
+        - AccountCookie: []
+      responses:
+        "200":
+          description: نجاح
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountAiConsentEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      parameters:
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountAiConsentInput"
+  /api/v1/me/learning-consent:
+    get:
+      operationId: getAccountLearningConsent
+      summary: موافقة رحلة التعلم الحقيقية المنسوخة؛ لا إذن لمزود خارجي
+      tags:
+        - حسابات الطلاب
+      security:
+        - AccountCookie: []
+      responses:
+        "200":
+          description: نجاح
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountLearningConsentEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+    post:
+      operationId: setAccountLearningConsent
+      summary: موافقة رحلة التعلم الحقيقية المنسوخة؛ لا إذن لمزود خارجي
+      tags:
+        - حسابات الطلاب
+      security:
+        - AccountCookie: []
+      responses:
+        "200":
+          description: نجاح
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountLearningConsentEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      parameters:
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountLearningConsentInput"
+  /api/v1/physics/attempts/{id}/learning:
+    get:
+      operationId: getPhysicsLearningLoop
+      tags:
+        - الفيزياء
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: إسنادات فيزياء مملوكة مرتبطة بإصدار الأصل؛ النقل مستقل بلا تلميحات
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PhysicsLearningEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/physics/attempts/{id}/remediation:
+    post:
+      operationId: startPhysicsRemediation
+      tags:
+        - الفيزياء
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      responses:
+        "200":
+          description: إسنادات فيزياء مملوكة مرتبطة بإصدار الأصل؛ النقل مستقل بلا تلميحات
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PhysicsLearningEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PhysicsLearningInput"
+  /api/v1/physics/attempts/{id}/transfer:
+    post:
+      operationId: startPhysicsTransfer
+      tags:
+        - الفيزياء
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      responses:
+        "200":
+          description: إسنادات فيزياء مملوكة مرتبطة بإصدار الأصل؛ النقل مستقل بلا تلميحات
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PhysicsLearningEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PhysicsLearningInput"
 components:
   securitySchemes:
     GuestCookie:
@@ -5750,6 +6034,43 @@ components:
         mathTimeouts:
           type: integer
           minimum: 0
+        aiCost:
+          type: object
+          additionalProperties: false
+          description: Token counts are provider-reported; monetary amounts are estimates using operator-supplied micro-USD prices, never an invoice.
+          properties:
+            status:
+              type: string
+              enum:
+                - estimated
+                - unknown
+                - mixed
+                - not_invoked
+            currency:
+              const: USD
+            estimatedCalls:
+              type: integer
+              minimum: 0
+            reportedTokenCalls:
+              type: integer
+              minimum: 0
+            unknownTokenCalls:
+              type: integer
+              minimum: 0
+            pricingVersions:
+              type: array
+              items:
+                type: string
+            actualBilledCostMicros:
+              type: "null"
+          required:
+            - status
+            - currency
+            - estimatedCalls
+            - reportedTokenCalls
+            - unknownTokenCalls
+            - pricingVersions
+            - actualBilledCostMicros
         scope:
           type: string
         percentileMinimumSamples:
@@ -6245,7 +6566,10 @@ components:
           type: string
           maxLength: 1200
         source:
-          const: reviewed_template
+          type: string
+          enum:
+            - reviewed_template
+            - llm_validated
         independentEvidence:
           const: false
         reasonAr:
@@ -6397,6 +6721,17 @@ components:
             - ai_suggested
         reviewed:
           type: boolean
+        errorCode:
+          anyOf:
+            - type: string
+              enum:
+                - ERR-ALG-01
+                - ERR-ALG-02
+                - ERR-ALG-03
+                - ERR-ALG-04
+                - ERR-ALG-05
+                - ERR-ALG-06
+            - type: "null"
       required:
         - level
         - textAr
@@ -6563,6 +6898,8 @@ components:
           type: string
           minLength: 1
           maxLength: 80
+        programming:
+          $ref: "#/components/schemas/ProgrammingValidation"
       required:
         - valid
         - issues
@@ -6759,7 +7096,10 @@ components:
           minLength: 1
           maxLength: 1200
         source:
-          const: reviewed_template
+          type: string
+          enum:
+            - reviewed_template
+            - llm_validated
         reasonAr:
           type: string
           minLength: 1
@@ -6864,7 +7204,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/ProductContentHint"
-          maxItems: 4
+          maxItems: 28
         algebra:
           $ref: "#/components/schemas/StudioAlgebraContent"
         physics:
@@ -7438,6 +7778,277 @@ components:
       required:
         - data
         - meta
+    AccountAiConsent:
+      type: object
+      additionalProperties: false
+      properties:
+        enabled:
+          type: boolean
+        policyVersion:
+          const: external-ai-v1
+        updatedAt:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: "null"
+      required:
+        - enabled
+        - policyVersion
+        - updatedAt
+    AccountAiConsentInput:
+      type: object
+      additionalProperties: false
+      properties:
+        enabled:
+          type: boolean
+        policyVersion:
+          const: external-ai-v1
+      required:
+        - enabled
+      allOf:
+        - if:
+            properties:
+              enabled:
+                const: true
+            required:
+              - enabled
+          then:
+            required:
+              - policyVersion
+    AccountAiConsentEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/AccountAiConsent"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    AccountLearningConsent:
+      type: object
+      additionalProperties: false
+      properties:
+        enabled:
+          type: boolean
+        policyVersion:
+          const: real-learning-v1
+        updatedAt:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: "null"
+      required:
+        - enabled
+        - policyVersion
+        - updatedAt
+    AccountLearningConsentInput:
+      type: object
+      additionalProperties: false
+      properties:
+        enabled:
+          type: boolean
+        policyVersion:
+          const: real-learning-v1
+      required:
+        - enabled
+      allOf:
+        - if:
+            properties:
+              enabled:
+                const: true
+            required:
+              - enabled
+          then:
+            required:
+              - policyVersion
+    AccountLearningConsentEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/AccountLearningConsent"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    PhysicsLearningInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+      required:
+        - expectedRevision
+    PhysicsLearningAssignment:
+      type: object
+      additionalProperties: false
+      properties:
+        id: &a1
+          type: string
+          format: uuid
+        phase:
+          enum:
+            - remediation
+            - transfer
+        attemptId: *a1
+        problem:
+          $ref: "#/components/schemas/PhysicsProblem"
+        status:
+          enum:
+            - assigned
+            - completed
+            - invalidated
+        independent:
+          type: boolean
+      required:
+        - id
+        - phase
+        - attemptId
+        - problem
+        - status
+        - independent
+    PhysicsLearningLoop:
+      type: object
+      additionalProperties: false
+      properties:
+        episodeId:
+          anyOf:
+            - &a1
+              type: string
+              format: uuid
+            - type: "null"
+        rootAttemptId: *a1
+        rootRevision:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+        state:
+          enum:
+            - not_started
+            - remediating
+            - awaiting_transfer
+            - finished
+            - cancelled
+        reasonAr:
+          type: string
+          minLength: 1
+          maxLength: 2000
+        assignments:
+          type: array
+          maxItems: 2
+          items:
+            $ref: "#/components/schemas/PhysicsLearningAssignment"
+      required:
+        - episodeId
+        - rootAttemptId
+        - rootRevision
+        - state
+        - reasonAr
+        - assignments
+    PhysicsLearningEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/PhysicsLearningLoop"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    ProgrammingValidation:
+      type: object
+      additionalProperties: false
+      properties:
+        status: &a1
+          type: string
+          enum:
+            - queued
+            - running
+            - succeeded
+            - compile_error
+            - runtime_error
+            - timeout
+            - resource_limit
+            - service_error
+        passed:
+          type: integer
+          minimum: 0
+          maximum: 12
+        total:
+          type: integer
+          minimum: 0
+          maximum: 12
+        allPassed: &a2
+          type: boolean
+        public:
+          type: object
+          additionalProperties: false
+          properties:
+            passed:
+              type: integer
+              minimum: 0
+              maximum: 12
+            total:
+              type: integer
+              minimum: 0
+              maximum: 12
+          required:
+            - passed
+            - total
+        hidden:
+          type: object
+          additionalProperties: false
+          properties:
+            passed:
+              type: integer
+              minimum: 0
+              maximum: 12
+            total:
+              type: integer
+              minimum: 0
+              maximum: 12
+          required:
+            - passed
+            - total
+        cases:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              index:
+                type: integer
+                minimum: 0
+                maximum: 11
+              visibility:
+                type: string
+                enum:
+                  - public
+                  - hidden
+              status: *a1
+              passed: *a2
+              executed: *a2
+            required:
+              - index
+              - visibility
+              - status
+              - passed
+              - executed
+          maxItems: 12
+      required:
+        - status
+        - passed
+        - total
+        - allPassed
+        - public
+        - hidden
+        - cases
   examples:
     VerifyValid:
       summary: انتقال صحيح بالتوزيع

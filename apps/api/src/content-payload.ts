@@ -48,17 +48,22 @@ export function parsePayload(raw: unknown): ContentPayload {
     p.skillCodes.length < 1 ||
     p.skillCodes.length > 8 ||
     !Array.isArray(p.hints) ||
-    p.hints.length > 4
+    p.hints.length > 28
   )
     throw productInvalid();
   const hints = p.hints.map((rawHint) => {
     const h = record(rawHint);
-    only(h, ["level", "textAr", "source", "reviewed"]);
+    only(h, ["level", "textAr", "source", "reviewed", "errorCode"]);
     if (
       ![1, 2, 3, 4].includes(Number(h.level)) ||
       typeof h.level !== "number" ||
       !["manual", "ai_suggested"].includes(String(h.source)) ||
-      typeof h.reviewed !== "boolean"
+      typeof h.reviewed !== "boolean" ||
+      (h.errorCode !== undefined &&
+        h.errorCode !== null &&
+        (p.subject !== "algebra" ||
+          typeof h.errorCode !== "string" ||
+          !/^ERR-ALG-0[1-6]$/.test(h.errorCode)))
     )
       throw productInvalid();
     return {
@@ -66,10 +71,21 @@ export function parsePayload(raw: unknown): ContentPayload {
       textAr: textField(h.textAr, 1200),
       source: h.source as "manual" | "ai_suggested",
       reviewed: h.reviewed,
+      ...(h.errorCode === undefined
+        ? {}
+        : {
+            errorCode:
+              h.errorCode as ContentPayload["hints"][number]["errorCode"],
+          }),
     };
   });
-  if (new Set(hints.map((h) => h.level)).size !== hints.length)
-    throw productInvalid("مستويات التلميحات مكررة.");
+  if (
+    new Set(hints.map((h) => `${h.level}:${h.errorCode ?? "general"}`)).size !==
+    hints.length
+  )
+    throw productInvalid(
+      "لا تكرر المستوى ونمط الخطأ نفسيهما؛ يمكن إضافة قالب عام وآخر مخصص.",
+    );
   const payload: ContentPayload = {
     titleAr: textField(p.titleAr, 160),
     statementAr: textField(p.statementAr, 3000),
@@ -199,6 +215,22 @@ export function parsePayload(raw: unknown): ContentPayload {
         functionName.startsWith("__"))
     )
       throw productInvalid();
+    if (functionName) {
+      for (const test of tests) {
+        let args: unknown;
+        try {
+          args = JSON.parse(test.input);
+        } catch {
+          throw productInvalid(
+            "مدخل اختبار الدالة يجب أن يكون مصفوفة JSON للوسائط.",
+          );
+        }
+        if (!Array.isArray(args) || args.length > 16)
+          throw productInvalid(
+            "اختبار الدالة يدعم مصفوفة لا تتجاوز ١٦ وسيطًا.",
+          );
+      }
+    }
     payload.programming = {
       starterCode: textField(c.starterCode, 12000, 0),
       referenceCode: textField(c.referenceCode, 12000),

@@ -177,6 +177,38 @@ test("DEV-045: malformed successful response never becomes a trusted result", as
       error instanceof ProductFault && error.code === "invalid_response",
   );
 });
+test("Runner in-progress retries keep the same idempotency key", async () => {
+  const sent = [];
+  const api = new ProductApi(async (_path, init) => {
+    sent.push(init);
+    return sent.length === 1
+      ? Response.json(
+          { error: { code: "request_in_progress", messageAr: "قيد التنفيذ" } },
+          { status: 409 },
+        )
+      : response({ ok: "yes" });
+  });
+  const body = { sourceRaw: "print(1)", mode: "submit" };
+  await assert.rejects(
+    api.request(
+      "/programming/attempts",
+      (value) => textField(record(value).ok),
+      "POST",
+      body,
+    ),
+    (error) => error.code === "request_in_progress",
+  );
+  await api.request(
+    "/programming/attempts",
+    (value) => textField(record(value).ok),
+    "POST",
+    body,
+  );
+  assert.equal(
+    sent[0].headers["Idempotency-Key"],
+    sent[1].headers["Idempotency-Key"],
+  );
+});
 test("DEV-048/SEC: product client rejects nonlocal and protocol-relative routes", async () => {
   let called = false;
   const api = new ProductApi(async () => {

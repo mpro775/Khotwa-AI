@@ -1053,6 +1053,90 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/me/ai-consent": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** موافقة المساعد الخارجي الحالية للمالك فقط */
+        get: operations["getAccountAiConsent"];
+        put?: never;
+        /** اختيار صريح منسوخ للموافقة أو سحبها؛ لا إذن لإرسال كود الطالب */
+        post: operations["setAccountAiConsent"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/learning-consent": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** موافقة رحلة التعلم الحقيقية المنسوخة؛ لا إذن لمزود خارجي */
+        get: operations["getAccountLearningConsent"];
+        put?: never;
+        /** موافقة رحلة التعلم الحقيقية المنسوخة؛ لا إذن لمزود خارجي */
+        post: operations["setAccountLearningConsent"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/physics/attempts/{id}/learning": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getPhysicsLearningLoop"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/physics/attempts/{id}/remediation": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["startPhysicsRemediation"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/physics/attempts/{id}/transfer": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["startPhysicsTransfer"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -2045,6 +2129,18 @@ export interface components {
                 timeouts: number;
             };
             mathTimeouts: number;
+            /** @description Token counts are provider-reported; monetary amounts are estimates using operator-supplied micro-USD prices, never an invoice. */
+            aiCost?: {
+                /** @enum {string} */
+                status: "estimated" | "unknown" | "mixed" | "not_invoked";
+                /** @constant */
+                currency: "USD";
+                estimatedCalls: number;
+                reportedTokenCalls: number;
+                unknownTokenCalls: number;
+                pricingVersions: string[];
+                actualBilledCostMicros: null;
+            };
             scope: string;
             percentileMinimumSamples: number;
             usage: {
@@ -2207,8 +2303,8 @@ export interface components {
             revision: number;
             level: number;
             textAr: string;
-            /** @constant */
-            source: "reviewed_template";
+            /** @enum {string} */
+            source: "reviewed_template" | "llm_validated";
             /** @constant */
             independentEvidence: false;
             reasonAr: string;
@@ -2260,6 +2356,7 @@ export interface components {
             /** @enum {string} */
             source: "manual" | "ai_suggested";
             reviewed: boolean;
+            errorCode?: ("ERR-ALG-01" | "ERR-ALG-02" | "ERR-ALG-03" | "ERR-ALG-04" | "ERR-ALG-05" | "ERR-ALG-06") | null;
         };
         StudioAlgebraContent: {
             equationRaw: string;
@@ -2304,6 +2401,7 @@ export interface components {
             /** Format: date-time */
             checkedAt: string;
             engine: string;
+            programming?: components["schemas"]["ProgrammingValidation"];
         };
         ProductPublicAlgebra: {
             equationRaw: string;
@@ -2361,8 +2459,8 @@ export interface components {
             revision: number;
             level: number;
             textAr: string;
-            /** @constant */
-            source: "reviewed_template";
+            /** @enum {string} */
+            source: "reviewed_template" | "llm_validated";
             reasonAr: string;
         };
         TutoringPlan: {
@@ -2562,6 +2660,89 @@ export interface components {
         TutoringPlanEnvelope: {
             data: components["schemas"]["TutoringPlan"];
             meta: components["schemas"]["Meta"];
+        };
+        AccountAiConsent: {
+            enabled: boolean;
+            /** @constant */
+            policyVersion: "external-ai-v1";
+            updatedAt: string | null;
+        };
+        AccountAiConsentInput: {
+            enabled: boolean;
+            /** @constant */
+            policyVersion?: "external-ai-v1";
+        } & unknown;
+        AccountAiConsentEnvelope: {
+            data: components["schemas"]["AccountAiConsent"];
+            meta: components["schemas"]["Meta"];
+        };
+        AccountLearningConsent: {
+            enabled: boolean;
+            /** @constant */
+            policyVersion: "real-learning-v1";
+            updatedAt: string | null;
+        };
+        AccountLearningConsentInput: {
+            enabled: boolean;
+            /** @constant */
+            policyVersion?: "real-learning-v1";
+        } & unknown;
+        AccountLearningConsentEnvelope: {
+            data: components["schemas"]["AccountLearningConsent"];
+            meta: components["schemas"]["Meta"];
+        };
+        PhysicsLearningInput: {
+            expectedRevision: number;
+        };
+        PhysicsLearningAssignment: {
+            /** Format: uuid */
+            id: string;
+            /** @enum {unknown} */
+            phase: "remediation" | "transfer";
+            /** Format: uuid */
+            attemptId: string;
+            problem: components["schemas"]["PhysicsProblem"];
+            /** @enum {unknown} */
+            status: "assigned" | "completed" | "invalidated";
+            independent: boolean;
+        };
+        PhysicsLearningLoop: {
+            episodeId: string | null;
+            /** Format: uuid */
+            rootAttemptId: string;
+            rootRevision: number;
+            /** @enum {unknown} */
+            state: "not_started" | "remediating" | "awaiting_transfer" | "finished" | "cancelled";
+            reasonAr: string;
+            assignments: components["schemas"]["PhysicsLearningAssignment"][];
+        };
+        PhysicsLearningEnvelope: {
+            data: components["schemas"]["PhysicsLearningLoop"];
+            meta: components["schemas"]["Meta"];
+        };
+        ProgrammingValidation: {
+            /** @enum {string} */
+            status: "queued" | "running" | "succeeded" | "compile_error" | "runtime_error" | "timeout" | "resource_limit" | "service_error";
+            passed: number;
+            total: number;
+            allPassed: boolean;
+            public: {
+                passed: number;
+                total: number;
+            };
+            hidden: {
+                passed: number;
+                total: number;
+            };
+            cases: {
+                index: number;
+                /** @enum {string} */
+                visibility: "public" | "hidden";
+                /** @enum {string} */
+                status: "queued" | "running" | "succeeded" | "compile_error" | "runtime_error" | "timeout" | "resource_limit" | "service_error";
+                passed: boolean;
+                executed: boolean;
+            }[];
         };
     };
     responses: {
@@ -5138,6 +5319,251 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ProblemEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getAccountAiConsent: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description نجاح */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccountAiConsentEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    setAccountAiConsent: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AccountAiConsentInput"];
+            };
+        };
+        responses: {
+            /** @description نجاح */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccountAiConsentEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getAccountLearningConsent: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description نجاح */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccountLearningConsentEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    setAccountLearningConsent: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AccountLearningConsentInput"];
+            };
+        };
+        responses: {
+            /** @description نجاح */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AccountLearningConsentEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getPhysicsLearningLoop: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description إسنادات فيزياء مملوكة مرتبطة بإصدار الأصل؛ النقل مستقل بلا تلميحات */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PhysicsLearningEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    startPhysicsRemediation: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PhysicsLearningInput"];
+            };
+        };
+        responses: {
+            /** @description إسنادات فيزياء مملوكة مرتبطة بإصدار الأصل؛ النقل مستقل بلا تلميحات */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PhysicsLearningEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    startPhysicsTransfer: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PhysicsLearningInput"];
+            };
+        };
+        responses: {
+            /** @description إسنادات فيزياء مملوكة مرتبطة بإصدار الأصل؛ النقل مستقل بلا تلميحات */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PhysicsLearningEnvelope"];
                 };
             };
             400: components["responses"]["E400"];

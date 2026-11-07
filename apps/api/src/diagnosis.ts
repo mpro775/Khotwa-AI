@@ -5,9 +5,15 @@ import { ApiFault } from "./http";
 import { requireUnassistedProbe } from "./assistance";
 import type { AttemptRow, GuestAuth, Store } from "./store";
 import {
+  realLearningConfigured,
+  requireLearningAccess,
+} from "./learning-access";
+import {
   DIAGNOSIS_POLICY,
   ErrorCode,
   observeTransition,
+  contextualHypothesis,
+  VerifiedContextTransition,
 } from "./diagnosis-rules";
 type Tx = Prisma.TransactionClient;
 type Candidate = Schema<"DiagnosisCandidate">;
@@ -19,7 +25,7 @@ const unavailable = () =>
   );
 const enabled = () =>
   process.env.PH06_API_ENABLED === "true" &&
-  process.env.KHOTWA_SYNTHETIC_DATA === "true";
+  (process.env.KHOTWA_SYNTHETIC_DATA === "true" || realLearningConfigured());
 const record = (v: unknown): Record<string, unknown> => {
   if (!v || typeof v !== "object" || Array.isArray(v))
     throw new ApiFault(500, "internal_error", "تعذر اعتماد مادة السؤال.");
@@ -60,16 +66,19 @@ async function available(tx: Tx, d: DiagnosisRow): Promise<boolean> {
 export async function projectDiagnosis(
   tx: Tx,
   report: Schema<"VerificationReport">,
+  auth: GuestAuth,
   latest = true,
 ): Promise<Schema<"VerificationReport">> {
   const initial = report.diagnosisCandidate;
   if (!initial?.diagnosisId) return report;
   const empty = { ...report, diagnosisCandidate: null };
-  if (!enabled() || !report.isCurrent) return empty;
+  if (!enabled() || !report.isCurrent || !auth?.row?.id) return empty;
   const [d] = await tx.$queryRaw<
-    DiagnosisRow[]
-  >`SELECT d.* FROM current_diagnoses d JOIN attempts a ON a.id=d.attempt_id JOIN learning_sessions l ON l.id=a.learning_session_id WHERE d.id=${initial.diagnosisId}::uuid AND d.diagnosis_policy_version=${DIAGNOSIS_POLICY} AND l.is_synthetic`;
-  if (!d || !(await available(tx, d))) return empty;
+    (DiagnosisRow & { learning_is_synthetic: boolean })[]
+  >`SELECT d.*,l.is_synthetic AS learning_is_synthetic FROM current_diagnoses d JOIN attempts a ON a.id=d.attempt_id JOIN learning_sessions l ON l.id=a.learning_session_id WHERE d.id=${initial.diagnosisId}::uuid AND d.attempt_id=${report.attemptId}::uuid AND d.attempt_revision=${report.attemptRevision} AND d.diagnosis_policy_version=${DIAGNOSIS_POLICY} AND l.guest_session_id=${auth.row.id}::uuid`;
+  if (!d) return empty;
+  await requireLearningAccess(tx, auth, d.learning_is_synthetic);
+  if (!(await available(tx, d))) return empty;
   if (d.template_id) {
     const [template] = await tx.$queryRaw<
       { id: string }[]
@@ -94,9 +103,9 @@ export class DiagnosisService {
     readonly store: Store,
     readonly active = false,
   ) {
-    if (active && !store.syntheticData)
+    if (active && !store.syntheticData && !realLearningConfigured())
       throw new Error(
-        "PH-06 requires an explicitly synthetic review environment while Gate-1 is blocked",
+        "Diagnosis requires synthetic data or explicitly configured real learning",
       );
   }
   private async skill(
@@ -133,22 +142,27 @@ export class DiagnosisService {
     verdicts: Schema<"TransitionVerdict">[],
     before: Record<string, unknown> | null,
     after: Record<string, unknown> | null,
+    preceding: readonly VerifiedContextTransition[] = [],
+    auth?: GuestAuth,
   ): Promise<Candidate | null> {
     if (!this.active || a.attempt_kind === "transfer") return null;
     const index = verdicts.findIndex((v) => v.mathStatus !== "verified_valid"),
       verdict = verdicts[index];
     if (!verdict) return null;
-    const h = observeTransition(
+    const initial = observeTransition(
       before,
       after,
       verdict,
       verdicts.slice(0, index).every((v) => v.mathStatus === "verified_valid"),
     );
-    if (!h) return null;
+    if (!initial) return null;
+    const context = contextualHypothesis(initial, preceding, verdict),
+      h = context.hypothesis;
     const [learning] = await tx.$queryRaw<
       { release_id: string; is_synthetic: boolean }[]
-    >`SELECT release_id,is_synthetic FROM learning_sessions WHERE id=${a.learning_session_id}::uuid`;
-    if (!learning?.is_synthetic) return null;
+    >`SELECT release_id,is_synthetic FROM learning_sessions WHERE id=${a.learning_session_id}::uuid AND (${auth?.row.id ?? null}::uuid IS NULL OR guest_session_id=${auth?.row.id ?? null}::uuid)`;
+    if (!learning || (!auth && !learning.is_synthetic)) return null;
+    if (auth) await requireLearningAccess(tx, auth, learning.is_synthetic);
     const [previous] = await tx.$queryRaw<
       DiagnosisRow[]
     >`SELECT * FROM current_diagnoses WHERE attempt_id=${a.id}::uuid AND attempt_revision=${a.revision} AND diagnosis_policy_version=${DIAGNOSIS_POLICY}`;
@@ -198,6 +212,13 @@ export class DiagnosisService {
       candidates: h.candidates,
       family: h.family,
       observation: h.observation,
+      contextualInference: {
+        policy: DIAGNOSIS_POLICY,
+        previousWindow: preceding.slice(-2).length,
+        supportingConcepts: context.supportingConcepts,
+        initialState: initial.state,
+        resultState: h.state,
+      },
       firstBlockingIndex: index,
       engineVersion: verdict.engineVersion,
       notationProfileVersion: verdict.notationProfileVersion,
@@ -212,7 +233,7 @@ export class DiagnosisService {
           .map((c) => [c.error_code, c.catalog_version]),
       ),
       templateVersion: template?.template_version ?? null,
-      syntheticReviewOnly: true,
+      syntheticReviewOnly: learning.is_synthetic,
       boundedPrecedingTransitions: verdicts
         .slice(Math.max(0, index - 2), index + 1)
         .map((v) => ({
@@ -245,7 +266,8 @@ export class DiagnosisService {
     const [l] = await tx.$queryRaw<
       { is_synthetic: boolean }[]
     >`SELECT is_synthetic FROM learning_sessions WHERE id=${a.learning_session_id}::uuid`;
-    if (!l?.is_synthetic || a.status === "stopped") throw unavailable();
+    if (!l || a.status === "stopped") throw unavailable();
+    await requireLearningAccess(tx, auth, l.is_synthetic);
     await requireUnassistedProbe(tx, a);
     return a;
   }

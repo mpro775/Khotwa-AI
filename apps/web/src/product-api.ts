@@ -152,13 +152,14 @@ export class ProductApi {
       );
     }
     if (!response.ok) {
+      const error = record(raw.error);
       if (
         response.status >= 400 &&
         response.status < 500 &&
-        ![408, 429].includes(response.status)
+        ![408, 429].includes(response.status) &&
+        error.code !== "request_in_progress"
       )
         this.retries.delete(operation);
-      const error = record(raw.error);
       const meta = raw.meta ? record(raw.meta) : {};
       throw new ProductFault(
         response.status,

@@ -1,6 +1,6 @@
 import type { Schema } from "./contracts";
 
-export const DIAGNOSIS_POLICY = "conservative-algebra-1.1.0";
+export const DIAGNOSIS_POLICY = "conservative-algebra-1.2.0";
 export type ErrorCode = `ERR-ALG-0${1 | 2 | 3 | 4 | 5 | 6}`;
 type Node = {
   type: string;
@@ -15,6 +15,110 @@ export interface Hypothesis {
   observation: string;
   family: string | null;
   state: "tentative" | "needs_probe" | "unresolved";
+}
+export interface VerifiedContextTransition {
+  before: Record<string, unknown> | null;
+  after: Record<string, unknown> | null;
+  verdict: Pick<
+    Schema<"TransitionVerdict">,
+    "mathStatus" | "engineVersion" | "notationProfileVersion"
+  >;
+}
+/** Context changes only the cautious causal interpretation. Every supporting
+ * edge must already be proved by the same pinned engine/notation profile. */
+export function contextualHypothesis(
+  h: Hypothesis,
+  preceding: readonly VerifiedContextTransition[],
+  current: Pick<
+    Schema<"TransitionVerdict">,
+    "engineVersion" | "notationProfileVersion"
+  >,
+): { hypothesis: Hypothesis; supportingConcepts: string[] } {
+  const concepts: string[] = [];
+  for (const edge of preceding.slice(-2)) {
+    if (
+      edge.verdict.mathStatus !== "verified_valid" ||
+      edge.verdict.engineVersion !== current.engineVersion ||
+      edge.verdict.notationProfileVersion !== current.notationProfileVersion
+    )
+      continue;
+    const before = root(edge.before),
+      after = root(edge.after);
+    if (!before || !after) continue;
+    if (same(before, after)) continue;
+    const [a, b] = oriented(before),
+      [c, d] = oriented(after);
+    const factor =
+      a.type === "Multiply" ? (integer(a.left) ?? integer(a.right)) : null;
+    const inside =
+      a.type === "Multiply"
+        ? integer(a.left) !== null
+          ? a.right
+          : a.left
+        : undefined;
+    const innerPair = inside ? pair(inside) : null,
+      expandedPair = pair(c);
+    if (
+      factor !== null &&
+      factor !== 1n &&
+      innerPair &&
+      expandedPair &&
+      expandedPair[0] === factor * innerPair[0] &&
+      expandedPair[1] === factor * innerPair[1] &&
+      same(b, d)
+    )
+      concepts.push(factor < 0n ? "negative_distribution" : "distribution");
+    const initialPair = pair(a),
+      initialCoefficient = coefficient(a);
+    if (
+      (((initialPair && initialPair[1] !== 0n) ||
+        (initialCoefficient !== null && initialCoefficient !== 1n)) &&
+        variable(c) &&
+        integer(d) !== null &&
+        !variable(a)) ||
+      (initialPair &&
+        initialPair[1] !== 0n &&
+        coefficient(c) === initialPair[0] &&
+        integer(b) !== null &&
+        integer(d) !== null)
+    )
+      concepts.push("inverse_operation");
+    if (
+      variable(a) &&
+      variable(c) &&
+      ["Add", "Subtract", "Multiply", "Divide"].includes(b.type) &&
+      integer(b) !== null &&
+      integer(d) !== null &&
+      (d.type === "Integer" ||
+        (d.type === "Negate" && d.operand?.type === "Integer"))
+    )
+      concepts.push("integer_arithmetic");
+  }
+  const relevant =
+    h.primary === "ERR-ALG-01"
+      ? concepts.includes("distribution") ||
+        concepts.includes("negative_distribution")
+      : h.primary === "ERR-ALG-06"
+        ? concepts.includes("negative_distribution")
+        : h.primary === "ERR-ALG-02" || h.primary === "ERR-ALG-04"
+          ? concepts.includes("inverse_operation")
+          : h.primary === "ERR-ALG-03"
+            ? concepts.includes("inverse_operation")
+            : h.primary === "ERR-ALG-05"
+              ? concepts.includes("integer_arithmetic")
+              : false;
+  return {
+    hypothesis: relevant
+      ? {
+          ...h,
+          state: "tentative",
+          observation:
+            h.observation +
+            " ظهرت في آخر خطوتين عملية من الفكرة نفسها ثبت تكافؤها؛ لذلك يبقى السهو المحلي تفسيرًا بديلًا مهمًا ولا نجزم بضعف المفهوم.",
+        }
+      : h,
+    supportingConcepts: relevant ? [...new Set(concepts)] : [],
+  };
 }
 const unknown = (): Hypothesis => ({
   primary: null,

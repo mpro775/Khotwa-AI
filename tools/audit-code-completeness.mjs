@@ -286,11 +286,9 @@ const validate = compiler.compile({
 });
 const content = [];
 const contentIssues = [];
-for (const filename of [
-  "algebra-expansion.draft.v1.json",
-  "physics-kinematics.draft.v1.json",
-  "python-basics.draft.v1.json",
-]) {
+for (const filename of readdirSync(resolve(root, "apps/api/data"))
+  .filter((name) => name.endsWith(".draft.v1.json"))
+  .sort()) {
   const bank = JSON.parse(read("apps/api/data/" + filename)),
     lessons = new Map();
   for (const [index, item] of bank.entries()) {
@@ -446,6 +444,36 @@ const retentionIssues = Object.entries(retention)
       typeof value === "boolean" && key !== "sqlExecuted" && !value,
   )
   .map(([key]) => key);
+const retentionAmendments = [];
+for (const name of [
+  "0018_durable_runner_work",
+  "0019_physics_learning",
+  "0020_learning_ai_consents",
+]) {
+  const sql = read(`apps/api/prisma/migrations/${name}/migration.sql`);
+  const substitutions = [
+    ...sql.matchAll(
+      /definition\s*:=\s*replace\(definition,\s*'((?:''|[^'])*)',\s*(?:'((?:''|[^'])*)'|\$([A-Za-z_]\w*)\$([\s\S]*?)\$\3\$)\s*\);/g,
+    ),
+  ];
+  if (!substitutions.length)
+    retentionIssues.push(`${name}: no literal substitutions reconstructed`);
+  for (const match of substitutions) {
+    const needle = match[1].replaceAll("''", "'");
+    const replacement =
+      match[2] === undefined ? match[4] : match[2].replaceAll("''", "'");
+    const occurrences = retentionDefinition.split(needle).length - 1;
+    retentionAmendments.push({
+      migration: name,
+      needleOccurrences: occurrences,
+    });
+    if (occurrences !== 1)
+      retentionIssues.push(
+        `${name}: expected one baseline occurrence, got ${occurrences}`,
+      );
+    retentionDefinition = retentionDefinition.replace(needle, replacement);
+  }
+}
 const report = {
   mode: "static-only; no app imports, tests, services, database or provider calls",
   schemaTables: tables.size,
@@ -474,6 +502,7 @@ const report = {
   originalTasks: tasks,
   retention: {
     ...retention,
+    sourceAmendments: retentionAmendments,
     reconstructedDefinitionSha256: createHash("sha256")
       .update(retentionDefinition)
       .digest("hex"),

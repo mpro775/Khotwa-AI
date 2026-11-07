@@ -31,12 +31,25 @@ const code = {
 };
 const subject = enumeration("algebra", "physics", "programming");
 const schemas = {
-  ProductContentHint: obj({
-    level: num(1, 4),
-    textAr: str(1200),
-    source: enumeration("manual", "ai_suggested"),
-    reviewed: bool,
-  }),
+  ProductContentHint: obj(
+    {
+      level: num(1, 4),
+      textAr: str(1200),
+      source: enumeration("manual", "ai_suggested"),
+      reviewed: bool,
+      errorCode: nullable(
+        enumeration(
+          "ERR-ALG-01",
+          "ERR-ALG-02",
+          "ERR-ALG-03",
+          "ERR-ALG-04",
+          "ERR-ALG-05",
+          "ERR-ALG-06",
+        ),
+      ),
+    },
+    ["level", "textAr", "source", "reviewed"],
+  ),
   StudioAlgebraContent: obj({
     equationRaw: str(256),
     answerRaw: str(256),
@@ -164,7 +177,7 @@ const schemas = {
     revision: num(),
     level: num(1, 4),
     textAr: str(1200),
-    source: { const: "reviewed_template" },
+    source: enumeration("reviewed_template", "llm_validated"),
     reasonAr: str(2000),
   }),
   TutoringPlan: obj({
@@ -182,6 +195,27 @@ const schemas = {
     previousHintLevel: num(0, 4),
   }),
 };
+schemas.ProgrammingValidation = obj({
+  status: schemas.ProgrammingResult.properties.status,
+  passed: num(0, 12),
+  total: num(0, 12),
+  allPassed: bool,
+  public: obj({ passed: num(0, 12), total: num(0, 12) }),
+  hidden: obj({ passed: num(0, 12), total: num(0, 12) }),
+  cases: arr(
+    obj({
+      index: num(0, 11),
+      visibility: enumeration("public", "hidden"),
+      status: schemas.ProgrammingResult.properties.status,
+      passed: bool,
+      executed: bool,
+    }),
+    12,
+  ),
+});
+schemas.StudioContentValidation.properties.programming = ref(
+  "ProgrammingValidation",
+);
 schemas.StudioContentPayload = {
   ...obj(
     {
@@ -196,7 +230,7 @@ schemas.StudioContentPayload = {
       difficulty: num(1, 3),
       kind: enumeration("main", "remediation", "transfer"),
       familyCode: code,
-      hints: arr(ref("ProductContentHint"), 4),
+      hints: arr(ref("ProductContentHint"), 28),
       algebra: ref("StudioAlgebraContent"),
       physics: ref("StudioPhysicsContent"),
       programming: ref("StudioProgrammingContent"),
@@ -623,7 +657,7 @@ for (const [path, value] of Object.entries(paths))
     doc.setIn(["paths", path, method], operation);
 for (const [name, value] of Object.entries(schemas))
   doc.setIn(["components", "schemas", name], value);
-doc.setIn(["info", "version"], "1.1.0-development");
+doc.setIn(["info", "version"], "1.2.0-development");
 const suffix =
   "\n\nامتداد تطوير 2026-11-07: الحسابات واستوديو المحتوى والحركة الخطية وPython عبر NestJS، وفق planning/roadmap/EXECUTION.md. وصف P0 أعلاه تاريخي ولا يعني اعتماد تشغيل Beta أو اجتياز الاختبارات المؤجلة. تشغيل الكود خلف Runner معزول، وجميع المراجع والاختبارات المخفية محجوبة عن استجابات الطالب.";
 const description = String(doc.getIn(["info", "description"]));

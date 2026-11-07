@@ -2,6 +2,7 @@ import {
   HINT_REPLY_SCHEMA,
   HINT_SYSTEM_PROMPT,
   validateTutorReply,
+  AiProviderFailure,
 } from "./ai-tutor";
 import type { AiTutorPort, AiReply, HintContext } from "./ai-tutor";
 import { GeminiQuota } from "./gemini-quota";
@@ -66,6 +67,18 @@ async function boundedJson(response: Response): Promise<unknown> {
     await reader.cancel().catch(() => undefined);
   }
 }
+function billingOutputTokens(
+  metric: GeminiMetric,
+  model: string,
+): number | null {
+  return metric.actualModel?.replace(/^models\//, "") === model &&
+    metric.totalTokens !== null &&
+    metric.inputTokens !== null &&
+    metric.outputTokens !== null &&
+    metric.totalTokens >= metric.inputTokens + metric.outputTokens
+    ? metric.totalTokens - metric.inputTokens
+    : null;
+}
 /** Network-only adapter: no DB, learner identifiers, answer keys, tools or retries. */
 export class GeminiAdapter implements AiTutorPort {
   readonly kind = "gemini";
@@ -80,7 +93,7 @@ export class GeminiAdapter implements AiTutorPort {
     this.generation !== undefined && this.enabled;
   constructor(
     private readonly settings: GeminiSettings,
-    readonly quota: GeminiQuota,
+    readonly quota: Pick<GeminiQuota, "reserve" | "stopForQuota" | "close">,
     private readonly scopeEnabled: () => boolean,
     private readonly audit: (metric: GeminiMetric) => void = (metric) =>
       console.info(JSON.stringify(metric)),
@@ -96,6 +109,9 @@ export class GeminiAdapter implements AiTutorPort {
   }
   get enabled() {
     return this.scopeEnabled();
+  }
+  get model() {
+    return this.settings.model;
   }
   async adaptHint(context: HintContext, signal: AbortSignal): Promise<AiReply> {
     if (!this.enabled || signal.aborted || this.inFlight)
@@ -282,6 +298,7 @@ export class GeminiAdapter implements AiTutorPort {
         promptVersion: context.promptVersion,
         inputTokens: metric.inputTokens,
         outputTokens: metric.outputTokens,
+        billingOutputTokens: billingOutputTokens(metric, this.settings.model),
       };
       const verdict = validateTutorReply(
         reply,
@@ -299,7 +316,11 @@ export class GeminiAdapter implements AiTutorPort {
       return reply;
     } catch {
       if (signal.aborted) metric.outcome = "GEMINI_ABORTED";
-      throw Error("GEMINI_SAFE_FAILURE");
+      throw new AiProviderFailure({
+        inputTokens: metric.inputTokens,
+        outputTokens: metric.outputTokens,
+        billingOutputTokens: billingOutputTokens(metric, this.settings.model),
+      });
     } finally {
       metric.latencyMs = Math.round((performance.now() - start) * 1000) / 1000;
       this.inFlight = false;

@@ -65,6 +65,8 @@ export class PhysicsGateway {
           }),
         },
       );
+      if ([408, 504].includes(response.status))
+        betaTelemetry.recordMathTimeout();
       if (
         !response.ok ||
         !response.headers.get("content-type")?.includes("application/json")
@@ -132,6 +134,11 @@ export class PhysicsGateway {
         (r.unitCorrect !== true || r.valueCorrect !== false)
       )
         throw unavailable();
+      if (
+        r.status === "service_error" &&
+        ["MATH_TIMEOUT", "PHYSICS_TIMEOUT"].includes(r.reasonCode as string)
+      )
+        betaTelemetry.recordMathTimeout();
       return r as unknown as PhysicsResult;
     } catch (error) {
       if (

@@ -2,6 +2,12 @@ import { ApiFault } from "./http";
 import type { Schema } from "./contracts";
 export const TUTORING_POLICY = "tutoring-p0-0.7.0";
 export const HINT_PROMPT_VERSION = "hint-rephrase-1.1.0";
+export function matchesHintErrorCode(
+  errorCode: string | null,
+  pattern: string | null,
+): boolean {
+  return errorCode === null || (pattern !== null && errorCode === pattern);
+}
 export function nextHintLevel(
   input: Schema<"HintInput">,
   kind: Schema<"Attempt">["kind"],

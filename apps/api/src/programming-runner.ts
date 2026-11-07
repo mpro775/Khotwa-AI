@@ -1,15 +1,23 @@
 import type {
   ProgrammingResult,
   ProgrammingTest,
+  ProgrammingValidation,
 } from "../../../packages/contracts/src/product";
 import { setTimeout as delay } from "node:timers/promises";
 
-export type Execution = Pick<ProgrammingResult, "status" | "stdout" | "stderr">;
+export type Execution = Pick<
+  ProgrammingResult,
+  "status" | "stdout" | "stderr"
+> & {
+  /** Internal only: a remotely accepted job may still exist. */
+  uncertain?: boolean;
+};
 export interface RunnerPort {
   execute(
     source: string,
     input: string,
     signal?: AbortSignal,
+    onAccepted?: (token: string) => Promise<void>,
   ): Promise<Execution>;
 }
 export interface RunnerSettings {
@@ -118,6 +126,7 @@ export class Judge0Runner implements RunnerPort {
     source: string,
     input: string,
     parentSignal?: AbortSignal,
+    onAccepted?: (token: string) => Promise<void>,
   ): Promise<Execution> {
     if (!this.settings.enabled) return unavailable();
     const signal = parentSignal
@@ -148,7 +157,8 @@ export class Judge0Runner implements RunnerPort {
         typeof submitted.token !== "string" ||
         !/^[a-zA-Z0-9-]{1,80}$/.test(submitted.token)
       )
-        return unavailable();
+        return { ...unavailable(), uncertain: true };
+      await onAccepted?.(submitted.token);
       for (let i = 0; i < 60; i++) {
         const result = await this.call(
           "/submissions/" +
@@ -164,7 +174,7 @@ export class Judge0Runner implements RunnerPort {
           !("id" in status) ||
           typeof status.id !== "number"
         )
-          return unavailable();
+          return { ...unavailable(), uncertain: true };
         if (status.id === 1 || status.id === 2) {
           await delay(150, undefined, { signal });
           continue;
@@ -211,6 +221,7 @@ export class Judge0Runner implements RunnerPort {
         status: "timeout",
         stdout: "",
         stderr: "تجاوز التنفيذ المهلة المحددة.",
+        uncertain: true,
       };
     } catch {
       return signal.aborted
@@ -219,8 +230,9 @@ export class Judge0Runner implements RunnerPort {
             stdout: "",
             stderr:
               "انتهت مهلة خدمة التنفيذ؛ لا يدل ذلك وحده على خطأ في الكود.",
+            uncertain: true,
           }
-        : unavailable();
+        : { ...unavailable(), uncertain: true };
     }
   }
 }
@@ -266,7 +278,12 @@ export async function evaluateProgram(
   source: string,
   tests: ProgrammingTest[],
   functionName?: string,
-  options: { timeoutMs?: number } = {},
+  options: {
+    timeoutMs?: number;
+    onAccepted?: (token: string) => Promise<void>;
+    continueOnFailure?: boolean;
+    beforeDispatch?: () => Promise<void>;
+  } = {},
 ): Promise<{
   status: Execution["status"];
   stdout: string;
@@ -274,11 +291,21 @@ export async function evaluateProgram(
   passed: number;
   total: number;
   allPassed: boolean;
+  validation: ProgrammingValidation;
+  uncertain: boolean;
 }> {
   let passed = 0,
     stdout = "",
     stderr = "";
   let status: Execution["status"] = "succeeded";
+  let uncertain = false;
+  const cases: ProgrammingValidation["cases"] = tests.map((test, index) => ({
+    index,
+    visibility: test.hidden ? "hidden" : "public",
+    status: "queued",
+    passed: false,
+    executed: false,
+  }));
   const timeoutMs = options.timeoutMs ?? 25000;
   if (!Number.isInteger(timeoutMs) || timeoutMs < 1 || timeoutMs > 25000)
     throw new Error("invalid_evaluation_deadline");
@@ -289,9 +316,10 @@ export async function evaluateProgram(
     status: "timeout",
     stdout: "",
     stderr: "انتهت المهلة الإجمالية للاختبارات؛ لم تُحسب النتيجة نجاحًا.",
+    uncertain: true,
   });
   try {
-    for (const test of tests) {
+    for (const [index, test] of tests.entries()) {
       if (signal.aborted) {
         status = "timeout";
         stderr = "انتهت المهلة الإجمالية للاختبارات؛ لم تُحسب النتيجة نجاحًا.";
@@ -306,14 +334,36 @@ export async function evaluateProgram(
           signal.addEventListener("abort", onAbort, { once: true });
         });
         execution = await Promise.race([
-          runner.execute(input.source, input.input, signal),
+          (async () => {
+            await options.beforeDispatch?.();
+            if (signal.aborted) return timedOut();
+            return runner.execute(
+              input.source,
+              input.input,
+              signal,
+              options.onAccepted,
+            );
+          })(),
           timeout,
         ]);
       } catch {
-        execution = signal.aborted ? timedOut() : unavailable();
+        execution = signal.aborted
+          ? timedOut()
+          : { ...unavailable(), uncertain: true };
       } finally {
         if (onAbort) signal.removeEventListener("abort", onAbort);
       }
+      uncertain ||= execution.uncertain === true;
+      const passedCase =
+        execution.status === "succeeded" &&
+        normalizeOutput(execution.stdout) ===
+          normalizeOutput(test.expectedOutput);
+      cases[index] = {
+        ...cases[index]!,
+        status: execution.status,
+        passed: passedCase,
+        executed: true,
+      };
       if (!test.hidden) {
         stdout = displayOutput(execution.stdout);
         stderr = displayOutput(execution.stderr);
@@ -323,24 +373,35 @@ export async function evaluateProgram(
         if (test.hidden)
           stderr =
             "لم يكتمل تنفيذ إحدى حالات الاختبار المخفية. راجع الخطأ في الحالات العلنية.";
-        break;
+        if (!options.continueOnFailure || uncertain) break;
       }
-      if (
-        normalizeOutput(execution.stdout) ===
-        normalizeOutput(test.expectedOutput)
-      )
-        passed++;
+      if (passedCase) passed++;
     }
   } finally {
     clearTimeout(timer);
   }
+  const allPassed =
+    tests.length > 0 && passed === tests.length && status === "succeeded";
+  const summary = (visibility: "public" | "hidden") => ({
+    passed: cases.filter((c) => c.visibility === visibility && c.passed).length,
+    total: cases.filter((c) => c.visibility === visibility).length,
+  });
   return {
     status,
     stdout,
     stderr,
     passed,
     total: tests.length,
-    allPassed:
-      tests.length > 0 && passed === tests.length && status === "succeeded",
+    allPassed,
+    validation: {
+      status,
+      passed,
+      total: tests.length,
+      allPassed,
+      public: summary("public"),
+      hidden: summary("hidden"),
+      cases,
+    },
+    uncertain,
   };
 }

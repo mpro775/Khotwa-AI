@@ -24,6 +24,13 @@ interface BetaMetrics {
   p95Ms: number | null;
   usage: { name: string; value: number }[];
   ai: { name: string; value: number | null }[];
+  aiCost: {
+    status: string;
+    estimatedCalls: number;
+    reportedTokenCalls: number;
+    unknownTokenCalls: number;
+    pricingVersions: string[];
+  } | null;
   feedback: {
     id: string;
     kind: string;
@@ -62,6 +69,21 @@ function betaMetrics(value: unknown): BetaMetrics {
       name,
       value: nullableNumber(value),
     })),
+    aiCost:
+      r.aiCost === undefined
+        ? null
+        : {
+            status: textField(record(r.aiCost).status),
+            estimatedCalls: numberField(record(r.aiCost).estimatedCalls),
+            reportedTokenCalls: numberField(
+              record(r.aiCost).reportedTokenCalls,
+            ),
+            unknownTokenCalls: numberField(record(r.aiCost).unknownTokenCalls),
+            pricingVersions: arrayField(
+              record(r.aiCost).pricingVersions,
+              textField,
+            ),
+          },
     feedback: arrayField(r.feedback, (value) => {
       const f = record(value);
       return {
@@ -83,7 +105,8 @@ const metricLabels: Record<string, string> = {
   fallbackRatio: "نسبة البديل",
   inputTokens: "رموز الإدخال",
   outputTokens: "رموز الإخراج",
-  estimatedCostMicros: "تكلفة تقديرية (وحدات ميكرو)",
+  estimatedCostMicros:
+    "مجموع التكلفة المقدرة للاستدعاءات المسعّرة (ميكرو دولار)",
   unknownCostCalls: "استدعاءات بتكلفة غير معلومة",
   timeouts: "المهل المنتهية",
 };
@@ -266,6 +289,29 @@ export function BetaPanel({
                   </article>
                 ))}
               </div>
+              {metrics.aiCost && (
+                <p className="helper">
+                  حالة تقدير التكلفة:{" "}
+                  {(
+                    {
+                      estimated: "مقدرة",
+                      unknown: "غير معلومة",
+                      mixed: "مقدرة جزئيًا؛ توجد استدعاءات غير معلومة",
+                      not_invoked: "لم يسجل استدعاء مسعّر",
+                    } as Record<string, string>
+                  )[metrics.aiCost.status] ?? "غير معلومة"}
+                  . عدد الاستدعاءات المسعّرة:{" "}
+                  {metrics.aiCost.estimatedCalls.toLocaleString("ar")}؛ الرموز
+                  المبلغ عنها:{" "}
+                  {metrics.aiCost.reportedTokenCalls.toLocaleString("ar")}{" "}
+                  استدعاء، وغير المتاحة:{" "}
+                  {metrics.aiCost.unknownTokenCalls.toLocaleString("ar")}. نسخ
+                  جدول الأسعار:{" "}
+                  {metrics.aiCost.pricingVersions.join("، ") || "غير مهيأ"}.
+                  الأرقام المالية تقديرات بأسعار مهيأة، والفاتورة الفعلية غير
+                  مقاسة.
+                </p>
+              )}
               <p className="helper">
                 {metrics.disk
                   ? "المساحة المتاحة في نظام ملفات خدمة API: " +

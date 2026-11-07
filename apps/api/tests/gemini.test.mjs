@@ -314,6 +314,7 @@ test("environment factory keeps disabled behavior and rejects PH09/non-synthetic
     );
     assert.equal(disabled.ai.enabled, false);
     process.env.AI_ENABLED = "true";
+    process.env.PH08_GEMINI_OFFLINE = "true";
     process.env.PH08_API_ENABLED = "true";
     process.env.PH09_API_ENABLED = "true";
     assert.throws(

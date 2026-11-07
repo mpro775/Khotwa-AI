@@ -11,6 +11,7 @@ import {
 } from "../../../qa/ph06-fixtures.mjs";
 import { createActor } from "../../../qa/ph05-http-client.mjs";
 const require = createRequire(import.meta.url);
+const { DIAGNOSIS_POLICY } = require("../dist/diagnosis-rules.js");
 const exactGoldenResults = [];
 test(
   "PH-06 conservative diagnosis on real NestJS PostgreSQL Python",
@@ -141,7 +142,7 @@ test(
             assert.ok(stored.rows[0].basis_json.evidence.witness);
             assert.equal(
               stored.rows[0].diagnosis_policy_version,
-              "conservative-algebra-1.1.0",
+              DIAGNOSIS_POLICY,
             );
           }
         },

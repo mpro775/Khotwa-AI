@@ -335,7 +335,7 @@ test("unknown quota/unlimited or absent new-round authorization cannot activate 
           { requestTimeoutMs: 20000 },
           true,
         ),
-      /GEMINI_LIVE_AUTHORIZATION_ID/,
+      /HISTORICAL_PH08_LIVE_DISABLED_USE_FRESH_BETA/,
     );
     process.env.GEMINI_LIVE_AUTHORIZATION_ID = "unit-test-not-a-live-grant";
     process.env.GEMINI_DAILY_REMAINING = "unlimited";
@@ -348,7 +348,7 @@ test("unknown quota/unlimited or absent new-round authorization cannot activate 
           { requestTimeoutMs: 20000 },
           true,
         ),
-      /QUOTA_UNKNOWN/,
+      /HISTORICAL_PH08_LIVE_DISABLED_USE_FRESH_BETA/,
     );
     process.env.GEMINI_DAILY_REMAINING = "unknown";
     assert.throws(
@@ -360,7 +360,7 @@ test("unknown quota/unlimited or absent new-round authorization cannot activate 
           { requestTimeoutMs: 20000 },
           true,
         ),
-      /QUOTA_UNKNOWN/,
+      /HISTORICAL_PH08_LIVE_DISABLED_USE_FRESH_BETA/,
     );
   } finally {
     process.env = original;

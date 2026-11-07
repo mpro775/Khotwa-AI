@@ -1,6 +1,7 @@
 import { AsyncLocalStorage } from "node:async_hooks";
 import type { Schema } from "./contracts";
 import { NoExternalAi } from "./ai-tutor";
+import { BetaGeminiPort } from "./beta-gemini";
 import type { GuestAuth, Store } from "./store";
 import type { MathPort } from "./math-gateway";
 import { TutoringService, type TutoringLimits } from "./tutoring";
@@ -109,8 +110,29 @@ export function ph08TutoringFromEnvironment(
   active: boolean,
 ): TutoringService {
   const env = process.env;
+  // The closed Beta has a fresh, consent-aware runtime and must never inherit
+  // the historical PH08 review exception or its synthetic-only authorization.
+  if (env.BETA_GEMINI_ENABLED === "true") {
+    if (!active) throw Error("BETA_GEMINI_TUTORING_DISABLED");
+    const timeoutMs = Number(env.BETA_GEMINI_TIMEOUT_MS ?? "8000");
+    if (
+      !Number.isSafeInteger(timeoutMs) ||
+      timeoutMs < 1 ||
+      timeoutMs >= limits.requestTimeoutMs
+    )
+      throw Error("BETA_GEMINI_TIMEOUT_INVALID");
+    return new TutoringService(
+      store,
+      math,
+      new BetaGeminiPort(store),
+      { ...limits, aiTimeoutMs: timeoutMs },
+      active,
+    );
+  }
   if (env.AI_ENABLED !== "true")
     return new TutoringService(store, math, disabled, limits, active);
+  if (env.PH08_GEMINI_OFFLINE !== "true")
+    throw Error("HISTORICAL_PH08_LIVE_DISABLED_USE_FRESH_BETA");
   if (
     !active ||
     env.PH08_API_ENABLED !== "true" ||

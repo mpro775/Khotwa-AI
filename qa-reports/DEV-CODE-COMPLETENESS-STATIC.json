@@ -1,10 +1,10 @@
 {
   "mode": "static-only; no app imports, tests, services, database or provider calls",
-  "schemaTables": 46,
+  "schemaTables": 53,
   "sql": {
-    "templates": 300,
-    "inserts": 70,
-    "updates": 65,
+    "templates": 369,
+    "inserts": 79,
+    "updates": 80,
     "issues": [],
     "limitation": "Checks explicit INSERT/UPDATE column names only; does not parse/execute PostgreSQL or prove SELECT semantics, transaction correctness, triggers or isolation."
   },
@@ -18,11 +18,11 @@
       "PhysicsController",
       "ProgrammingController"
     ],
-    "operations": 36,
+    "operations": 43,
     "routes": [
       {
         "file": "apps/api/src/accounts.ts",
-        "line": 905,
+        "line": 1024,
         "controller": "AccountsController",
         "method": "get",
         "path": "/api/v1/me",
@@ -30,7 +30,39 @@
       },
       {
         "file": "apps/api/src/accounts.ts",
-        "line": 911,
+        "line": 1030,
+        "controller": "AccountsController",
+        "method": "get",
+        "path": "/api/v1/me/ai-consent",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/accounts.ts",
+        "line": 1033,
+        "controller": "AccountsController",
+        "method": "post",
+        "path": "/api/v1/me/ai-consent",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/accounts.ts",
+        "line": 1039,
+        "controller": "AccountsController",
+        "method": "get",
+        "path": "/api/v1/me/learning-consent",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/accounts.ts",
+        "line": 1042,
+        "controller": "AccountsController",
+        "method": "post",
+        "path": "/api/v1/me/learning-consent",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/accounts.ts",
+        "line": 1048,
         "controller": "AccountsController",
         "method": "post",
         "path": "/api/v1/auth/email/request",
@@ -38,7 +70,7 @@
       },
       {
         "file": "apps/api/src/accounts.ts",
-        "line": 917,
+        "line": 1054,
         "controller": "AccountsController",
         "method": "post",
         "path": "/api/v1/auth/email/verify",
@@ -46,7 +78,7 @@
       },
       {
         "file": "apps/api/src/accounts.ts",
-        "line": 924,
+        "line": 1061,
         "controller": "AccountsController",
         "method": "post",
         "path": "/api/v1/auth/logout",
@@ -54,7 +86,7 @@
       },
       {
         "file": "apps/api/src/accounts.ts",
-        "line": 932,
+        "line": 1069,
         "controller": "AccountsController",
         "method": "post",
         "path": "/api/v1/me/claim-guest",
@@ -62,7 +94,7 @@
       },
       {
         "file": "apps/api/src/accounts.ts",
-        "line": 938,
+        "line": 1075,
         "controller": "AccountsController",
         "method": "get",
         "path": "/api/v1/me/attempts",
@@ -70,7 +102,7 @@
       },
       {
         "file": "apps/api/src/accounts.ts",
-        "line": 941,
+        "line": 1078,
         "controller": "AccountsController",
         "method": "get",
         "path": "/api/v1/me/progress",
@@ -78,7 +110,7 @@
       },
       {
         "file": "apps/api/src/accounts.ts",
-        "line": 944,
+        "line": 1081,
         "controller": "AccountsController",
         "method": "get",
         "path": "/api/v1/me/export",
@@ -86,7 +118,7 @@
       },
       {
         "file": "apps/api/src/accounts.ts",
-        "line": 947,
+        "line": 1084,
         "controller": "AccountsController",
         "method": "delete",
         "path": "/api/v1/me",
@@ -94,7 +126,7 @@
       },
       {
         "file": "apps/api/src/beta-operations.ts",
-        "line": 373,
+        "line": 426,
         "controller": "BetaController",
         "method": "post",
         "path": "/api/v1/beta/feedback",
@@ -102,7 +134,7 @@
       },
       {
         "file": "apps/api/src/beta-operations.ts",
-        "line": 379,
+        "line": 432,
         "controller": "BetaController",
         "method": "get",
         "path": "/api/v1/beta/metrics",
@@ -110,7 +142,7 @@
       },
       {
         "file": "apps/api/src/beta-operations.ts",
-        "line": 382,
+        "line": 435,
         "controller": "BetaController",
         "method": "post",
         "path": "/api/v1/beta/access/revoke",
@@ -118,7 +150,7 @@
       },
       {
         "file": "apps/api/src/content-studio.ts",
-        "line": 688,
+        "line": 792,
         "controller": "ContentStudioController",
         "method": "get",
         "path": "/api/v1/studio/items",
@@ -126,7 +158,7 @@
       },
       {
         "file": "apps/api/src/content-studio.ts",
-        "line": 694,
+        "line": 798,
         "controller": "ContentStudioController",
         "method": "get",
         "path": "/api/v1/studio/items/:id",
@@ -134,7 +166,7 @@
       },
       {
         "file": "apps/api/src/content-studio.ts",
-        "line": 700,
+        "line": 804,
         "controller": "ContentStudioController",
         "method": "post",
         "path": "/api/v1/studio/items",
@@ -142,7 +174,7 @@
       },
       {
         "file": "apps/api/src/content-studio.ts",
-        "line": 703,
+        "line": 807,
         "controller": "ContentStudioController",
         "method": "delete",
         "path": "/api/v1/studio/items/:id",
@@ -150,7 +182,7 @@
       },
       {
         "file": "apps/api/src/content-studio.ts",
-        "line": 710,
+        "line": 814,
         "controller": "ContentStudioController",
         "method": "put",
         "path": "/api/v1/studio/items/:id",
@@ -158,7 +190,7 @@
       },
       {
         "file": "apps/api/src/content-studio.ts",
-        "line": 717,
+        "line": 821,
         "controller": "ContentStudioController",
         "method": "post",
         "path": "/api/v1/studio/items/:id/validate",
@@ -166,7 +198,7 @@
       },
       {
         "file": "apps/api/src/content-studio.ts",
-        "line": 724,
+        "line": 828,
         "controller": "ContentStudioController",
         "method": "post",
         "path": "/api/v1/studio/items/:id/transition",
@@ -174,7 +206,7 @@
       },
       {
         "file": "apps/api/src/content-studio.ts",
-        "line": 731,
+        "line": 835,
         "controller": "ContentStudioController",
         "method": "post",
         "path": "/api/v1/studio/import/preview",
@@ -182,7 +214,7 @@
       },
       {
         "file": "apps/api/src/content-studio.ts",
-        "line": 737,
+        "line": 841,
         "controller": "ContentStudioController",
         "method": "post",
         "path": "/api/v1/studio/import",
@@ -190,7 +222,7 @@
       },
       {
         "file": "apps/api/src/content-studio.ts",
-        "line": 740,
+        "line": 844,
         "controller": "ContentStudioController",
         "method": "get",
         "path": "/api/v1/studio/export",
@@ -198,7 +230,7 @@
       },
       {
         "file": "apps/api/src/content-studio.ts",
-        "line": 743,
+        "line": 847,
         "controller": "ContentStudioController",
         "method": "get",
         "path": "/api/v1/catalog",
@@ -206,7 +238,7 @@
       },
       {
         "file": "apps/api/src/content-studio.ts",
-        "line": 749,
+        "line": 853,
         "controller": "ContentStudioController",
         "method": "get",
         "path": "/api/v1/catalog/problems/:id",
@@ -214,7 +246,7 @@
       },
       {
         "file": "apps/api/src/content-studio.ts",
-        "line": 755,
+        "line": 859,
         "controller": "ContentStudioController",
         "method": "post",
         "path": "/api/v1/catalog/problems/:id/start",
@@ -222,7 +254,7 @@
       },
       {
         "file": "apps/api/src/physics.ts",
-        "line": 402,
+        "line": 498,
         "controller": "PhysicsController",
         "method": "get",
         "path": "/api/v1/physics/problems",
@@ -230,7 +262,7 @@
       },
       {
         "file": "apps/api/src/physics.ts",
-        "line": 405,
+        "line": 501,
         "controller": "PhysicsController",
         "method": "get",
         "path": "/api/v1/physics/problems/:id",
@@ -238,7 +270,7 @@
       },
       {
         "file": "apps/api/src/physics.ts",
-        "line": 411,
+        "line": 507,
         "controller": "PhysicsController",
         "method": "get",
         "path": "/api/v1/physics/attempts/:id",
@@ -246,7 +278,31 @@
       },
       {
         "file": "apps/api/src/physics.ts",
-        "line": 417,
+        "line": 513,
+        "controller": "PhysicsController",
+        "method": "get",
+        "path": "/api/v1/physics/attempts/:id/learning",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/physics.ts",
+        "line": 519,
+        "controller": "PhysicsController",
+        "method": "post",
+        "path": "/api/v1/physics/attempts/:id/remediation",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/physics.ts",
+        "line": 529,
+        "controller": "PhysicsController",
+        "method": "post",
+        "path": "/api/v1/physics/attempts/:id/transfer",
+        "status": 200
+      },
+      {
+        "file": "apps/api/src/physics.ts",
+        "line": 539,
         "controller": "PhysicsController",
         "method": "post",
         "path": "/api/v1/physics/attempts",
@@ -254,7 +310,7 @@
       },
       {
         "file": "apps/api/src/physics.ts",
-        "line": 423,
+        "line": 545,
         "controller": "PhysicsController",
         "method": "post",
         "path": "/api/v1/physics/attempts/:id/hints",
@@ -262,7 +318,7 @@
       },
       {
         "file": "apps/api/src/programming.ts",
-        "line": 348,
+        "line": 422,
         "controller": "ProgrammingController",
         "method": "get",
         "path": "/api/v1/programming/problems",
@@ -270,7 +326,7 @@
       },
       {
         "file": "apps/api/src/programming.ts",
-        "line": 351,
+        "line": 425,
         "controller": "ProgrammingController",
         "method": "get",
         "path": "/api/v1/programming/problems/:id",
@@ -278,7 +334,7 @@
       },
       {
         "file": "apps/api/src/programming.ts",
-        "line": 357,
+        "line": 431,
         "controller": "ProgrammingController",
         "method": "get",
         "path": "/api/v1/programming/attempts",
@@ -286,7 +342,7 @@
       },
       {
         "file": "apps/api/src/programming.ts",
-        "line": 360,
+        "line": 434,
         "controller": "ProgrammingController",
         "method": "get",
         "path": "/api/v1/programming/attempts/:id",
@@ -294,7 +350,7 @@
       },
       {
         "file": "apps/api/src/programming.ts",
-        "line": 366,
+        "line": 440,
         "controller": "ProgrammingController",
         "method": "post",
         "path": "/api/v1/programming/attempts",
@@ -302,7 +358,7 @@
       },
       {
         "file": "apps/api/src/programming.ts",
-        "line": 369,
+        "line": 443,
         "controller": "ProgrammingController",
         "method": "post",
         "path": "/api/v1/programming/attempts/:id/hints",
@@ -387,6 +443,45 @@
             "main": 3,
             "remediation": 0,
             "transfer": 0
+          }
+        },
+        "allHintsDraft": true,
+        "privateReferencesPresent": true
+      },
+      {
+        "file": "physics-learning.draft.v1.json",
+        "items": 12,
+        "subject": "physics",
+        "lessons": {
+          "constant_motion": {
+            "main": 0,
+            "remediation": 1,
+            "transfer": 1
+          },
+          "distance_displacement": {
+            "main": 0,
+            "remediation": 1,
+            "transfer": 1
+          },
+          "average_speed": {
+            "main": 0,
+            "remediation": 1,
+            "transfer": 1
+          },
+          "acceleration": {
+            "main": 0,
+            "remediation": 1,
+            "transfer": 1
+          },
+          "final_velocity": {
+            "main": 0,
+            "remediation": 1,
+            "transfer": 1
+          },
+          "displacement": {
+            "main": 0,
+            "remediation": 1,
+            "transfer": 1
           }
         },
         "allHintsDraft": true,
@@ -676,7 +771,33 @@
     "guestSevenDayPolicyUnchanged": true,
     "sqlExecuted": false,
     "limitation": "Text reconstruction and source predicates only; PostgreSQL grammar, privileges, locking, FK behavior and purge execution remain untested.",
-    "reconstructedDefinitionSha256": "2b3372383e0e9d67680ddb935d1c0aa82f34bf6d36468fbf67e252dee4594477",
+    "sourceAmendments": [
+      {
+        "migration": "0018_durable_runner_work",
+        "needleOccurrences": 1
+      },
+      {
+        "migration": "0018_durable_runner_work",
+        "needleOccurrences": 1
+      },
+      {
+        "migration": "0018_durable_runner_work",
+        "needleOccurrences": 1
+      },
+      {
+        "migration": "0019_physics_learning",
+        "needleOccurrences": 1
+      },
+      {
+        "migration": "0020_learning_ai_consents",
+        "needleOccurrences": 1
+      },
+      {
+        "migration": "0020_learning_ai_consents",
+        "needleOccurrences": 1
+      }
+    ],
+    "reconstructedDefinitionSha256": "6206901bd95cb9cda4a835381056f18aeb00737ad797d90061fceebb7fd9813c",
     "issues": []
   },
   "baseline": [

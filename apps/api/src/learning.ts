@@ -4,6 +4,10 @@ import { ApiFault } from "./http";
 import { output, type Schema } from "./contracts";
 import type { Store, GuestAuth, AttemptRow } from "./store";
 import { projectDiagnosis } from "./diagnosis";
+import {
+  realLearningConfigured,
+  requireLearningAccess,
+} from "./learning-access";
 import { DIAGNOSIS_POLICY } from "./diagnosis-rules";
 import { hasAssistance } from "./assistance";
 import {
@@ -23,6 +27,7 @@ type Episode = {
   created_at: Date;
   ended_at: Date | null;
   policy_version: string;
+  is_synthetic: boolean;
 };
 type Assignment = {
   id: string;
@@ -162,8 +167,10 @@ export class LearningService {
     readonly maxRemediation = 2,
     readonly maxTransfer = 2,
   ) {
-    if (active && !store.syntheticData)
-      throw Error("PH-08 requires explicitly synthetic review data");
+    if (active && !store.syntheticData && !realLearningConfigured())
+      throw Error(
+        "Learning requires synthetic data or explicitly configured real learning",
+      );
     if (
       ![maxRemediation, maxTransfer].every(
         (n) => Number.isSafeInteger(n) && n > 0 && n <= 10,
@@ -192,18 +199,20 @@ export class LearningService {
     const [l] = await tx.$queryRaw<
       { is_synthetic: boolean; status: string }[]
     >`SELECT is_synthetic,status FROM learning_sessions WHERE id=${a.learning_session_id}::uuid`;
-    if (!l?.is_synthetic || l.status !== "active" || a.status === "stopped")
-      throw blocked();
-    return a;
+    if (!l || l.status !== "active" || a.status === "stopped") throw blocked();
+    await requireLearningAccess(tx, auth, l.is_synthetic);
+    return { ...a, learning_is_synthetic: l.is_synthetic };
   }
   private async episode(tx: Tx, auth: GuestAuth, id: string): Promise<Episode> {
     const [e] = await tx.$queryRaw<
-      Episode[]
-    >`SELECT e.* FROM learning_episodes e JOIN attempts a ON a.id=e.root_attempt_id JOIN learning_sessions l ON l.id=a.learning_session_id WHERE e.id=${id}::uuid AND l.guest_session_id=${auth.row.id}::uuid FOR UPDATE OF e`;
+      (Episode & { learning_is_synthetic: boolean })[]
+    >`SELECT e.*,l.is_synthetic AS learning_is_synthetic FROM learning_episodes e JOIN attempts a ON a.id=e.root_attempt_id JOIN learning_sessions l ON l.id=a.learning_session_id WHERE e.id=${id}::uuid AND l.guest_session_id=${auth.row.id}::uuid FOR UPDATE OF e`;
     if (!e) throw missing();
+    await requireLearningAccess(tx, auth, e.learning_is_synthetic);
+    if (e.is_synthetic !== e.learning_is_synthetic) throw blocked();
     return e;
   }
-  private async report(tx: Tx, a: AttemptRow) {
+  private async report(tx: Tx, auth: GuestAuth, a: AttemptRow) {
     const [r] = await tx.$queryRaw<
       { report_json: unknown }[]
     >`SELECT report_json FROM verification_reports WHERE attempt_id=${a.id}::uuid AND attempt_revision=${a.revision} AND problem_revision_id=${a.problem_revision_id}::uuid AND scope='current_sequence' AND dispatch_status='finished' AND report_json->>'isCurrent'='true' ORDER BY finished_at DESC,id DESC LIMIT 1`;
@@ -211,6 +220,7 @@ export class LearningService {
     const result = await projectDiagnosis(
       tx,
       output("VerificationReport", r.report_json),
+      auth,
     );
     if (
       !result.transitions.length ||
@@ -290,7 +300,7 @@ export class LearningService {
       async (tx) => {
         const a = await this.attempt(tx, auth, id, body.expectedRevision);
         await requireAssignmentCurrent(tx, a.id);
-        const rootReport = await this.report(tx, a);
+        const rootReport = await this.report(tx, auth, a);
         const [openProbe] = await tx.$queryRaw<
           { id: string }[]
         >`SELECT p.id FROM diagnostic_probes p JOIN current_diagnoses d ON d.id=p.diagnosis_id WHERE d.attempt_id=${a.id}::uuid AND d.diagnosis_policy_version=${DIAGNOSIS_POLICY} AND NOT EXISTS(SELECT 1 FROM probe_responses r WHERE r.probe_id=p.id)`;
@@ -334,8 +344,9 @@ export class LearningService {
             created_at: new Date(),
             ended_at: null,
             policy_version: LEARNING_POLICY,
+            is_synthetic: a.learning_is_synthetic,
           };
-          await tx.$executeRaw`INSERT INTO learning_episodes(id,root_attempt_id,root_revision,skill_id,release_id,policy_version,state,is_synthetic) VALUES(${e.id}::uuid,${a.id}::uuid,${a.revision},${e.skill_id}::uuid,${e.release_id}::uuid,${LEARNING_POLICY},'remediating',true)`;
+          await tx.$executeRaw`INSERT INTO learning_episodes(id,root_attempt_id,root_revision,skill_id,release_id,policy_version,state,is_synthetic) VALUES(${e.id}::uuid,${a.id}::uuid,${a.revision},${e.skill_id}::uuid,${e.release_id}::uuid,${LEARNING_POLICY},'remediating',${e.is_synthetic})`;
           status = 201;
         }
         const assignments = await tx.$queryRaw<
@@ -346,7 +357,7 @@ export class LearningService {
           // Repeated root requests return the existing loop; only the current failed child may request a new activity.
           if (!linked || last.attempt_id !== a.id || last.invalidated_at)
             return { status: 200, data: await this.dto(tx, e) };
-          const report = await this.report(tx, a);
+          const report = await this.report(tx, auth, a);
           if (learningObservation(report, false) !== "needs_review")
             return { status: 200, data: await this.dto(tx, e) };
         }
@@ -405,7 +416,7 @@ export class LearningService {
           return { status: 201, data: await this.dto(tx, e) };
         if (!last.attempt_id) throw blocked();
         const child = await this.attempt(tx, auth, last.attempt_id),
-          r = await this.report(tx, child);
+          r = await this.report(tx, auth, child);
         if (last.phase === "transfer" && !r.completion.canMarkAttemptCompleted)
           return { status: 201, data: await this.dto(tx, e) };
         if (!r.completion.canMarkAttemptCompleted)
@@ -566,7 +577,8 @@ export class LearningService {
       const [l] = await tx.$queryRaw<
         { is_synthetic: boolean; release_id: string }[]
       >`SELECT is_synthetic,release_id FROM learning_sessions WHERE id=${learningId}::uuid AND guest_session_id=${auth.row.id}::uuid`;
-      if (!l?.is_synthetic) throw missing();
+      if (!l) throw missing();
+      await requireLearningAccess(tx, auth, l.is_synthetic);
       const skills = await tx.$queryRaw<
         { id: string; skill_code: string; name_ar: string }[]
       >`SELECT id,skill_code,name_ar FROM skills WHERE release_id=${l.release_id}::uuid AND status='active' AND (${skillId ?? null}::uuid IS NULL OR id=${skillId ?? null}::uuid) ORDER BY sort_order,id`;
@@ -581,7 +593,7 @@ export class LearningService {
       >`SELECT v.skill_id,v.event_kind,v.observation,v.created_at FROM skill_evidence v JOIN attempts a ON a.id=v.attempt_id JOIN learning_assignments x ON x.id=v.assignment_id JOIN learning_episodes e ON e.id=x.episode_id JOIN attempts root ON root.id=e.root_attempt_id JOIN content_pairings p ON p.id=x.pairing_id JOIN problem_revisions r ON r.id=a.problem_revision_id JOIN content_releases c ON c.id=e.release_id WHERE v.learning_session_id=${learningId}::uuid AND v.attempt_revision=a.revision AND v.assistance_revision=a.assistance_revision AND root.revision=e.root_revision AND e.state<>'cancelled' AND x.invalidated_at IS NULL AND p.enabled AND r.review_status='published' AND c.status='published' AND v.policy_version=${LEARNING_POLICY} AND (v.event_kind<>'transfer_observation' OR v.observation<>'positive' OR transfer_content_unexposed(a.id)) AND v.report_id=(SELECT id FROM verification_reports WHERE attempt_id=a.id AND attempt_revision=a.revision AND scope='current_sequence' AND dispatch_status='finished' AND report_json->>'isCurrent'='true' ORDER BY finished_at DESC,id DESC LIMIT 1) ORDER BY v.created_at DESC,v.id DESC`;
       return {
         learningSessionId: learningId,
-        isSynthetic: true,
+        isSynthetic: l.is_synthetic,
         skills: skills.map((s) => {
           const es = evidence.filter((e) => e.skill_id === s.id);
           return {
@@ -604,7 +616,10 @@ export class LearningService {
         }),
         updatedAt: new Date().toISOString(),
         noteAr:
-          "بيانات اختبار اصطناعية. الدليل يخص المحاولات الحالية وظروف المساعدة؛ عدم التقييم لا يعني صفرًا، ونجاح مسألة واحدة لا يثبت إتقانًا دائمًا.",
+          (l.is_synthetic
+            ? "بيانات اختبار اصطناعية. "
+            : "أدلة خاصة بحسابك وموافقتك الحالية. ") +
+          "الدليل يخص المحاولات الحالية وظروف المساعدة؛ عدم التقييم لا يعني صفرًا، ونجاح مسألة واحدة لا يثبت إتقانًا دائمًا.",
       };
     });
   }

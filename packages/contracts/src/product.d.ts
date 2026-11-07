@@ -11,6 +11,15 @@ export interface ContentHint {
   textAr: string;
   source: "manual" | "ai_suggested";
   reviewed: boolean;
+  /** Omitted/null keeps the legacy general-purpose hint. */
+  errorCode?:
+    | "ERR-ALG-01"
+    | "ERR-ALG-02"
+    | "ERR-ALG-03"
+    | "ERR-ALG-04"
+    | "ERR-ALG-05"
+    | "ERR-ALG-06"
+    | null;
 }
 export interface PhysicsContent {
   topic: "kinematics_1d";
@@ -74,6 +83,23 @@ export interface ContentValidation {
   issues: string[];
   checkedAt: string;
   engine: string;
+  /** Author/admin-only projection; never part of ProgrammingResult. */
+  programming?: ProgrammingValidation;
+}
+export interface ProgrammingValidation {
+  status: RunnerStatus;
+  passed: number;
+  total: number;
+  allPassed: boolean;
+  public: { passed: number; total: number };
+  hidden: { passed: number; total: number };
+  cases: {
+    index: number;
+    visibility: "public" | "hidden";
+    status: RunnerStatus;
+    passed: boolean;
+    executed: boolean;
+  }[];
 }
 export interface StudioItem {
   id: string;

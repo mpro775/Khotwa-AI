@@ -112,7 +112,7 @@ export class VerificationService {
           return {
             cached: publicMathReport(
               a.attempt_kind,
-              await projectDiagnosis(tx, report, false),
+              await projectDiagnosis(tx, report, auth, false),
             ),
           };
         }
@@ -369,6 +369,20 @@ export class VerificationService {
                   ? c.original.ast
                   : c.parses.get(s.steps[blocking - 1]!.version_id)!.ast,
                 c.parses.get(s.steps[blocking]!.version_id)!.ast,
+                verdicts
+                  .slice(Math.max(0, blocking - 2), blocking)
+                  .map((v, offset) => {
+                    const i = Math.max(0, blocking - 2) + offset;
+                    return {
+                      before:
+                        i === 0
+                          ? c.original.ast
+                          : c.parses.get(s.steps[i - 1]!.version_id)!.ast,
+                      after: c.parses.get(s.steps[i]!.version_id)!.ast,
+                      verdict: v,
+                    };
+                  }),
+                auth,
               )
             : null;
         const report = output("VerificationReport", {

@@ -174,6 +174,142 @@ paths:
           description: جلسة غير صالحة
         "404":
           description: محاولة غير متاحة
+  /api/v1/physics/attempts/{id}/learning:
+    get:
+      operationId: getPhysicsLearningLoop
+      tags:
+        - الفيزياء
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: إسنادات فيزياء مملوكة مرتبطة بإصدار الأصل؛ النقل مستقل بلا تلميحات
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PhysicsLearningEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/physics/attempts/{id}/remediation:
+    post:
+      operationId: startPhysicsRemediation
+      tags:
+        - الفيزياء
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      responses:
+        "200":
+          description: إسنادات فيزياء مملوكة مرتبطة بإصدار الأصل؛ النقل مستقل بلا تلميحات
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PhysicsLearningEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PhysicsLearningInput"
+  /api/v1/physics/attempts/{id}/transfer:
+    post:
+      operationId: startPhysicsTransfer
+      tags:
+        - الفيزياء
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      responses:
+        "200":
+          description: إسنادات فيزياء مملوكة مرتبطة بإصدار الأصل؛ النقل مستقل بلا تلميحات
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PhysicsLearningEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PhysicsLearningInput"
 components:
   schemas:
     PhysicsProblem:
@@ -320,7 +456,10 @@ components:
           type: string
           maxLength: 1200
         source:
-          const: reviewed_template
+          type: string
+          enum:
+            - reviewed_template
+            - llm_validated
         independentEvidence:
           const: false
         reasonAr:
@@ -451,3 +590,90 @@ components:
               maxLength: 16
         meta:
           $ref: "#/components/schemas/Meta"
+    PhysicsLearningInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+      required:
+        - expectedRevision
+    PhysicsLearningAssignment:
+      type: object
+      additionalProperties: false
+      properties:
+        id: &a5
+          type: string
+          format: uuid
+        phase:
+          enum:
+            - remediation
+            - transfer
+        attemptId: *a5
+        problem:
+          $ref: "#/components/schemas/PhysicsProblem"
+        status:
+          enum:
+            - assigned
+            - completed
+            - invalidated
+        independent:
+          type: boolean
+      required:
+        - id
+        - phase
+        - attemptId
+        - problem
+        - status
+        - independent
+    PhysicsLearningLoop:
+      type: object
+      additionalProperties: false
+      properties:
+        episodeId:
+          anyOf:
+            - &a5
+              type: string
+              format: uuid
+            - type: "null"
+        rootAttemptId: *a5
+        rootRevision:
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+        state:
+          enum:
+            - not_started
+            - remediating
+            - awaiting_transfer
+            - finished
+            - cancelled
+        reasonAr:
+          type: string
+          minLength: 1
+          maxLength: 2000
+        assignments:
+          type: array
+          maxItems: 2
+          items:
+            $ref: "#/components/schemas/PhysicsLearningAssignment"
+      required:
+        - episodeId
+        - rootAttemptId
+        - rootRevision
+        - state
+        - reasonAr
+        - assignments
+    PhysicsLearningEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/PhysicsLearningLoop"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta

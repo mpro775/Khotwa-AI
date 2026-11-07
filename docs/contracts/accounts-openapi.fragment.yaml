@@ -455,6 +455,154 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/BetaRevokeInput"
+  /api/v1/me/ai-consent:
+    get:
+      operationId: getAccountAiConsent
+      summary: موافقة المساعد الخارجي الحالية للمالك فقط
+      tags:
+        - حسابات الطلاب
+      security:
+        - AccountCookie: []
+      responses:
+        "200":
+          description: نجاح
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountAiConsentEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+    post:
+      operationId: setAccountAiConsent
+      summary: اختيار صريح منسوخ للموافقة أو سحبها؛ لا إذن لإرسال كود الطالب
+      tags:
+        - حسابات الطلاب
+      security:
+        - AccountCookie: []
+      responses:
+        "200":
+          description: نجاح
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountAiConsentEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      parameters:
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountAiConsentInput"
+  /api/v1/me/learning-consent:
+    get:
+      operationId: getAccountLearningConsent
+      summary: موافقة رحلة التعلم الحقيقية المنسوخة؛ لا إذن لمزود خارجي
+      tags:
+        - حسابات الطلاب
+      security:
+        - AccountCookie: []
+      responses:
+        "200":
+          description: نجاح
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountLearningConsentEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+    post:
+      operationId: setAccountLearningConsent
+      summary: موافقة رحلة التعلم الحقيقية المنسوخة؛ لا إذن لمزود خارجي
+      tags:
+        - حسابات الطلاب
+      security:
+        - AccountCookie: []
+      responses:
+        "200":
+          description: نجاح
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AccountLearningConsentEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      parameters:
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AccountLearningConsentInput"
 components:
   securitySchemes:
     AccountCookie:
@@ -875,6 +1023,43 @@ components:
         mathTimeouts:
           type: integer
           minimum: 0
+        aiCost:
+          type: object
+          additionalProperties: false
+          description: Token counts are provider-reported; monetary amounts are estimates using operator-supplied micro-USD prices, never an invoice.
+          properties:
+            status:
+              type: string
+              enum:
+                - estimated
+                - unknown
+                - mixed
+                - not_invoked
+            currency:
+              const: USD
+            estimatedCalls:
+              type: integer
+              minimum: 0
+            reportedTokenCalls:
+              type: integer
+              minimum: 0
+            unknownTokenCalls:
+              type: integer
+              minimum: 0
+            pricingVersions:
+              type: array
+              items:
+                type: string
+            actualBilledCostMicros:
+              type: "null"
+          required:
+            - status
+            - currency
+            - estimatedCalls
+            - reportedTokenCalls
+            - unknownTokenCalls
+            - pricingVersions
+            - actualBilledCostMicros
         scope:
           type: string
         percentileMinimumSamples:
@@ -1215,6 +1400,102 @@ components:
               const: true
           required:
             - revoked
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    AccountAiConsent:
+      type: object
+      additionalProperties: false
+      properties:
+        enabled:
+          type: boolean
+        policyVersion:
+          const: external-ai-v1
+        updatedAt:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: "null"
+      required:
+        - enabled
+        - policyVersion
+        - updatedAt
+    AccountAiConsentInput:
+      type: object
+      additionalProperties: false
+      properties:
+        enabled:
+          type: boolean
+        policyVersion:
+          const: external-ai-v1
+      required:
+        - enabled
+      allOf:
+        - if:
+            properties:
+              enabled:
+                const: true
+            required:
+              - enabled
+          then:
+            required:
+              - policyVersion
+    AccountAiConsentEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/AccountAiConsent"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    AccountLearningConsent:
+      type: object
+      additionalProperties: false
+      properties:
+        enabled:
+          type: boolean
+        policyVersion:
+          const: real-learning-v1
+        updatedAt:
+          anyOf:
+            - type: string
+              format: date-time
+            - type: "null"
+      required:
+        - enabled
+        - policyVersion
+        - updatedAt
+    AccountLearningConsentInput:
+      type: object
+      additionalProperties: false
+      properties:
+        enabled:
+          type: boolean
+        policyVersion:
+          const: real-learning-v1
+      required:
+        - enabled
+      allOf:
+        - if:
+            properties:
+              enabled:
+                const: true
+            required:
+              - enabled
+          then:
+            required:
+              - policyVersion
+    AccountLearningConsentEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/AccountLearningConsent"
         meta:
           $ref: "#/components/schemas/Meta"
       required:

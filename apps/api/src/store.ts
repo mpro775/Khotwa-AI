@@ -1,4 +1,8 @@
 import { publicMathReport } from "./learning-policy";
+import {
+  learningSessionIsSynthetic,
+  requireLearningAccess,
+} from "./learning-access";
 import { randomUUID } from "node:crypto";
 import { PrismaClient, Prisma } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
@@ -27,6 +31,7 @@ export interface GuestAuth {
   token: string;
   accountSessionId?: string;
   accountUserId?: string;
+  accountIsInternal?: boolean;
 }
 type LearningRow = {
   id: string;
@@ -202,10 +207,11 @@ export class Store implements OnModuleDestroy {
         (GuestRow & {
           account_session_id: string;
           account_user_id: string;
+          account_is_internal: boolean;
           email_normalized: string;
         })[]
       >`
-        SELECT g.*,s.id AS account_session_id,u.id AS account_user_id,u.email_normalized
+        SELECT g.*,s.id AS account_session_id,u.id AS account_user_id,u.is_internal AS account_is_internal,u.email_normalized
         FROM auth_sessions s JOIN users u ON u.id=s.user_id JOIN guest_sessions g ON g.id=u.learning_guest_id
         WHERE s.token_digest=${bytes(this.security.digest("account:" + accountToken))} AND s.revoked_at IS NULL AND s.expires_at>now() AND u.status='active' AND g.status='active'`;
       if (!account) {
@@ -238,6 +244,7 @@ export class Store implements OnModuleDestroy {
         token: accountToken,
         accountSessionId: account.account_session_id,
         accountUserId: account.account_user_id,
+        accountIsInternal: account.account_is_internal,
       };
     }
     if (!options.guestOnly && process.env.BETA_ENABLED === "true") {
@@ -403,6 +410,7 @@ export class Store implements OnModuleDestroy {
       LearningRow[]
     >`SELECT l.* FROM learning_sessions l WHERE l.id=${id}::uuid AND l.guest_session_id=${auth.row.id}::uuid`;
     if (!row) throw missing();
+    await requireLearningAccess(tx, auth, row.is_synthetic);
     return row;
   }
   async createLearning(
@@ -411,6 +419,8 @@ export class Store implements OnModuleDestroy {
     body: Schema<"CreateLearningSessionInput">,
   ): Promise<MutationResult<Schema<"LearningSession">>> {
     return this.mutate(auth, "learning.create", key, body, async (tx) => {
+      const synthetic = learningSessionIsSynthetic(auth, this.syntheticData);
+      await requireLearningAccess(tx, auth, synthetic);
       const [release] = await tx.$queryRaw<
         { id: string }[]
       >`SELECT id FROM content_releases WHERE status='published' AND release_code NOT LIKE 'studio-%' ORDER BY published_at DESC,id LIMIT 1 FOR SHARE`;
@@ -422,7 +432,7 @@ export class Store implements OnModuleDestroy {
         );
       const [row] = await tx.$queryRaw<
         LearningRow[]
-      >`INSERT INTO learning_sessions(id,guest_session_id,release_id,status,session_policy_version,is_synthetic) VALUES(${randomUUID()}::uuid,${auth.row.id}::uuid,${release.id}::uuid,'active','p0-policy-draft-1',${this.syntheticData}) RETURNING *`;
+      >`INSERT INTO learning_sessions(id,guest_session_id,release_id,status,session_policy_version,is_synthetic) VALUES(${randomUUID()}::uuid,${auth.row.id}::uuid,${release.id}::uuid,'active','p0-policy-draft-1',${synthetic}) RETURNING *`;
       if (!row) throw invalidState();
       return { status: 201, data: learningDto(row) };
     });
@@ -485,13 +495,18 @@ export class Store implements OnModuleDestroy {
     if (!rows[0] && ph08Active() && auth) {
       const assigned = await this.db.$queryRaw<
         ProblemRow[]
-      >`SELECT r.*,ps.skill_id FROM problem_revisions r JOIN learning_assignments x ON x.problem_revision_id=r.id JOIN learning_episodes e ON e.id=x.episode_id JOIN attempts a ON a.id=e.root_attempt_id JOIN learning_sessions l ON l.id=a.learning_session_id JOIN problem_skills ps ON ps.problem_revision_id=r.id AND ps.coverage_kind='primary' JOIN content_pairings p ON p.id=x.pairing_id JOIN content_releases c ON c.id=r.release_id WHERE r.problem_id=${id}::uuid AND l.guest_session_id=${auth.row.id}::uuid AND l.is_synthetic AND e.root_revision=a.revision AND e.state<>'cancelled' AND x.invalidated_at IS NULL AND p.enabled AND c.status='published' AND r.review_status='published' ORDER BY x.assigned_at DESC LIMIT 1`;
+      >`SELECT r.*,ps.skill_id FROM problem_revisions r JOIN learning_assignments x ON x.problem_revision_id=r.id JOIN learning_episodes e ON e.id=x.episode_id JOIN attempts a ON a.id=e.root_attempt_id JOIN learning_sessions l ON l.id=a.learning_session_id JOIN problem_skills ps ON ps.problem_revision_id=r.id AND ps.coverage_kind='primary' JOIN content_pairings p ON p.id=x.pairing_id JOIN content_releases c ON c.id=r.release_id WHERE r.problem_id=${id}::uuid AND l.guest_session_id=${auth.row.id}::uuid AND e.root_revision=a.revision AND e.state<>'cancelled' AND x.invalidated_at IS NULL AND p.enabled AND c.status='published' AND r.review_status='published' ORDER BY x.assigned_at DESC LIMIT 1`;
       if (assigned[0]) return this.problemDto(assigned[0]);
     }
     if (!rows[0]) throw missing();
     if (ph08Active() && auth)
       await this.db.$transaction(async (tx) => {
         await this.authorizeInTransaction(tx, auth);
+        await requireLearningAccess(
+          tx,
+          auth,
+          learningSessionIsSynthetic(auth, this.syntheticData),
+        );
         await recordExposure(tx, auth.row.id, rows[0]!.id, "catalog_read");
       });
     return this.problemDto(rows[0]);
@@ -575,10 +590,13 @@ export class Store implements OnModuleDestroy {
     id: string,
     lock = false,
   ): Promise<AttemptRow> {
-    const [row] = await tx.$queryRaw<AttemptRow[]>(
-      Prisma.sql`SELECT a.* FROM attempts a JOIN learning_sessions l ON l.id=a.learning_session_id WHERE a.id=${id}::uuid AND l.guest_session_id=${auth.row.id}::uuid ${lock ? Prisma.sql`FOR UPDATE OF a` : Prisma.empty}`,
+    const [row] = await tx.$queryRaw<
+      (AttemptRow & { learning_is_synthetic: boolean })[]
+    >(
+      Prisma.sql`SELECT a.*,l.is_synthetic AS learning_is_synthetic FROM attempts a JOIN learning_sessions l ON l.id=a.learning_session_id WHERE a.id=${id}::uuid AND l.guest_session_id=${auth.row.id}::uuid ${lock ? Prisma.sql`FOR UPDATE OF a` : Prisma.empty}`,
     );
     if (!row) throw missing();
+    await requireLearningAccess(tx, auth, row.learning_is_synthetic);
     return row;
   }
   private steps(tx: Tx, id: string): Promise<StepRow[]> {
@@ -586,7 +604,11 @@ export class Store implements OnModuleDestroy {
       StepRow[]
     >`SELECT s.*,v.id AS version_id,v.source_raw,p.parse_status,p.display_text FROM step_slots s JOIN step_versions v ON v.step_slot_id=s.id AND v.version_number=s.current_version LEFT JOIN LATERAL (SELECT parse_status,display_text FROM parse_results WHERE step_version_id=v.id AND engine_version='0.3.0' AND notation_profile_version='ar-mashriq-school-v1' ORDER BY created_at DESC,id DESC LIMIT 1) p ON true WHERE s.attempt_id=${id}::uuid AND s.is_active ORDER BY s.position`;
   }
-  private async attemptDto(tx: Tx, a: AttemptRow): Promise<Schema<"Attempt">> {
+  private async attemptDto(
+    tx: Tx,
+    a: AttemptRow,
+    auth: GuestAuth,
+  ): Promise<Schema<"Attempt">> {
     const [current] = await tx.$queryRaw<
       { report_json: unknown }[]
     >`SELECT report_json FROM verification_reports WHERE attempt_id=${a.id}::uuid AND attempt_revision=${a.revision} AND problem_revision_id=${a.problem_revision_id}::uuid AND engine_version='0.3.0' AND notation_profile=${a.notation_profile} AND dispatch_status='finished' AND report_json->>'isCurrent'='true' ORDER BY (scope='current_sequence') DESC,finished_at DESC,id DESC LIMIT 1`;
@@ -615,6 +637,7 @@ export class Store implements OnModuleDestroy {
             await projectDiagnosis(
               tx,
               output("VerificationReport", current.report_json),
+              auth,
             ),
           )
         : null,
@@ -627,9 +650,10 @@ export class Store implements OnModuleDestroy {
   ): Promise<MutationResult<Schema<"Attempt">>> {
     return this.mutate(auth, "attempt.create", key, body, async (tx) => {
       const learning = await this.learning(tx, auth, body.learningSessionId);
+      await requireLearningAccess(tx, auth, learning.is_synthetic);
       if (learning.status !== "active") throw invalidState();
       if (body.source.kind === "assignment") {
-        if (!ph08Active() || !learning.is_synthetic) throw missing();
+        if (!ph08Active()) throw missing();
         const [x] = await tx.$queryRaw<
           {
             id: string;
@@ -646,6 +670,7 @@ export class Store implements OnModuleDestroy {
             data: await this.attemptDto(
               tx,
               await this.attempt(tx, auth, x.attempt_id, true),
+              auth,
             ),
           };
         const [p] = await tx.$queryRaw<
@@ -657,7 +682,7 @@ export class Store implements OnModuleDestroy {
         >`INSERT INTO attempts(id,learning_session_id,problem_revision_id,attempt_kind,status,notation_profile) VALUES(${randomUUID()}::uuid,${learning.id}::uuid,${x.problem_revision_id}::uuid,${x.phase},'in_progress',${p.notation_profile}) RETURNING *`;
         if (!a) throw invalidState();
         await tx.$executeRaw`UPDATE learning_assignments SET attempt_id=${a.id}::uuid WHERE id=${x.id}::uuid`;
-        return { status: 201, data: await this.attemptDto(tx, a) };
+        return { status: 201, data: await this.attemptDto(tx, a, auth) };
       }
       const [problem] = await this.problemRows(
         tx,
@@ -670,12 +695,12 @@ export class Store implements OnModuleDestroy {
       if (!a) throw invalidState();
       if (ph08Active())
         await recordExposure(tx, auth.row.id, problem.id, "catalog_attempt");
-      return { status: 201, data: await this.attemptDto(tx, a) };
+      return { status: 201, data: await this.attemptDto(tx, a, auth) };
     });
   }
   async getAttempt(auth: GuestAuth, id: string): Promise<Schema<"Attempt">> {
     return this.db.$transaction(async (tx) =>
-      this.attemptDto(tx, await this.attempt(tx, auth, id, true)),
+      this.attemptDto(tx, await this.attempt(tx, auth, id, true), auth),
     );
   }
   async listAttempts(
@@ -691,7 +716,7 @@ export class Store implements OnModuleDestroy {
           AttemptRow[]
         >`SELECT * FROM attempts WHERE learning_session_id=${learningId}::uuid AND (${cursor}::uuid IS NULL OR id>${cursor}::uuid) ORDER BY id LIMIT ${limit + 1}`;
         const items = await Promise.all(
-          rows.slice(0, limit).map((a) => this.attemptDto(tx, a)),
+          rows.slice(0, limit).map((a) => this.attemptDto(tx, a, auth)),
         );
         return {
           items,

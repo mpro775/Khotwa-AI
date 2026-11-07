@@ -38,6 +38,56 @@ interface PhysicsResult {
   assistanceLevel: number;
   diagnosis: { state: string; messageAr: string };
 }
+interface PhysicsLoop {
+  episodeId: string | null;
+  rootAttemptId: string;
+  rootRevision: number;
+  state: string;
+  reasonAr: string;
+  assignments: {
+    id: string;
+    phase: "remediation" | "transfer";
+    attemptId: string;
+    problem: PhysicsProblem;
+    status: string;
+    independent: boolean;
+  }[];
+}
+function physicsLoop(value: unknown): PhysicsLoop {
+  const r = record(value),
+    state = textField(r.state);
+  if (
+    ![
+      "not_started",
+      "remediating",
+      "awaiting_transfer",
+      "finished",
+      "cancelled",
+    ].includes(state)
+  )
+    throw new Error("تعذر قراءة حالة التدريب.");
+  return {
+    episodeId: r.episodeId === null ? null : textField(r.episodeId),
+    rootAttemptId: textField(r.rootAttemptId),
+    rootRevision: numberField(r.rootRevision),
+    state,
+    reasonAr: textField(r.reasonAr),
+    assignments: arrayField(r.assignments, (v) => {
+      const a = record(v),
+        phase = textField(a.phase);
+      if (phase !== "remediation" && phase !== "transfer")
+        throw new Error("تعذر قراءة إسناد التدريب.");
+      return {
+        id: textField(a.id),
+        phase,
+        attemptId: textField(a.attemptId),
+        problem: physicsProblem(a.problem),
+        status: textField(a.status),
+        independent: booleanField(a.independent),
+      };
+    }),
+  };
+}
 interface CodeResult {
   attemptId: string;
   revision: number;
@@ -219,6 +269,7 @@ export function PhysicsWorkspace({
     [busy, setBusy] = useState(false),
     [error, setError] = useState(""),
     [draftChanged, setDraftChanged] = useState(false);
+  const [learning, setLearning] = useState<PhysicsLoop | null>(null);
   const generation = useRef(0);
   const problemIdentity = useRef<string | null>(null);
   useEffect(() => {
@@ -264,6 +315,7 @@ export function PhysicsWorkspace({
       setUnit(restored.unit);
       setHint(null);
       setDraftChanged(false);
+      await loadLearning(restored.result.id, ticket);
     } catch (e) {
       if (ticket === generation.current) setError(messageOf(e));
     } finally {
@@ -287,6 +339,7 @@ export function PhysicsWorkspace({
       setResult(null);
       setHint(null);
       setDraftChanged(false);
+      setLearning(null);
     } catch (e) {
       if (ticket === generation.current) setError(messageOf(e));
     } finally {
@@ -316,6 +369,7 @@ export function PhysicsWorkspace({
       if (next.problemRevisionId === problemIdentity.current) {
         setResult(next);
         if (ticket === generation.current) setDraftChanged(false);
+        if (ticket === generation.current) await loadLearning(next.id, ticket);
       }
     } catch (e) {
       if (ticket === generation.current) setError(messageOf(e));
@@ -350,7 +404,44 @@ export function PhysicsWorkspace({
               independentEvidence: false,
             },
         );
+        if (ticket === generation.current)
+          await loadLearning(result.id, ticket);
       }
+    } catch (e) {
+      if (ticket === generation.current) setError(messageOf(e));
+    } finally {
+      setBusy(false);
+    }
+  }
+  async function loadLearning(id: string, ticket = generation.current) {
+    try {
+      const next = await api.request(
+        `/physics/attempts/${id}/learning`,
+        physicsLoop,
+      );
+      if (ticket === generation.current) setLearning(next);
+    } catch (e) {
+      if (ticket === generation.current) setError(messageOf(e));
+    }
+  }
+  async function practice(phase: "remediation" | "transfer") {
+    if (!result) return;
+    setBusy(true);
+    setError("");
+    const ticket = generation.current;
+    try {
+      const loop = await api.request(
+        `/physics/attempts/${result.id}/${phase}`,
+        physicsLoop,
+        "POST",
+        { expectedRevision: result.revision },
+      );
+      if (ticket !== generation.current) return;
+      setLearning(loop);
+      const assignment = loop.assignments.find(
+        (a) => a.phase === phase && a.status !== "invalidated",
+      );
+      if (assignment) await restore(assignment.attemptId);
     } catch (e) {
       if (ticket === generation.current) setError(messageOf(e));
     } finally {
@@ -406,10 +497,32 @@ export function PhysicsWorkspace({
                   {Object.entries(problem.givens).map(([name, quantity]) => (
                     <div key={name}>
                       <dt>
-                        <bdi>{name}</bdi>
+                        {(
+                          {
+                            v: "السرعة المتجهة",
+                            v0: "السرعة الابتدائية",
+                            a: "التسارع",
+                            t: "الزمن",
+                            d: "المسافة",
+                            dx: "الإزاحة",
+                          } as Record<string, string>
+                        )[name] ?? name}{" "}
+                        <bdi>({name})</bdi>
                       </dt>
                       <dd>
-                        <bdi dir="ltr">{quantity}</bdi>
+                        <bdi dir="ltr">
+                          {quantity}{" "}
+                          {(
+                            {
+                              v: "m/s",
+                              v0: "m/s",
+                              a: "m/s²",
+                              t: "s",
+                              d: "m",
+                              dx: "m",
+                            } as Record<string, string>
+                          )[name] ?? ""}
+                        </bdi>
                       </dd>
                     </div>
                   ))}
@@ -522,15 +635,94 @@ export function PhysicsWorkspace({
                   )}
                 </section>
               )}
-              {result && !draftChanged && (
-                <ProgressiveHelp
-                  key={problem.revisionId}
-                  busy={busy}
-                  hint={hint}
-                  level={result.assistanceLevel}
-                  onHint={(level, confirm) => void help(level, confirm)}
-                />
+              {result && !draftChanged && learning && (
+                <section
+                  className="product-card"
+                  aria-labelledby="physics-learning-title"
+                >
+                  <h2 id="physics-learning-title">تدريب ثم نقل الفهم</h2>
+                  <p>{learning.reasonAr}</p>
+                  {learning.assignments.map((a) => (
+                    <article key={a.id}>
+                      <h3>
+                        {a.phase === "remediation"
+                          ? "تدريب موجّه"
+                          : "سؤال نقل مستقل"}
+                        : {a.problem.titleAr}
+                      </h3>
+                      <p>
+                        {a.status === "completed"
+                          ? "اكتملت الإجابة المتحققة"
+                          : a.status === "invalidated"
+                            ? "أُبطل الإسناد لتغيّر الأصل"
+                            : "إسناد حالي"}
+                        {a.phase === "transfer"
+                          ? " · دون تلميحات أو كشف حل"
+                          : " · المساعدة مسجلة"}
+                      </p>
+                      <button
+                        disabled={
+                          busy ||
+                          a.status === "invalidated" ||
+                          learning.state === "cancelled"
+                        }
+                        onClick={() => void restore(a.attemptId)}
+                      >
+                        افتح المحاولة المثبتة
+                      </button>
+                    </article>
+                  ))}
+                  <div className="actions">
+                    {["not_started", "cancelled"].includes(learning.state) &&
+                      ["correct", "wrong_value", "wrong_unit"].includes(
+                        result.status,
+                      ) &&
+                      learning.rootAttemptId === result.id && (
+                        <button
+                          disabled={busy}
+                          onClick={() => void practice("remediation")}
+                        >
+                          ابدأ تدريبًا على المهارة نفسها
+                        </button>
+                      )}
+                    {learning.state === "awaiting_transfer" && (
+                      <button
+                        disabled={busy}
+                        onClick={() => void practice("transfer")}
+                      >
+                        ابدأ سؤال نقل مختلفًا دون مساعدة
+                      </button>
+                    )}
+                    {learning.rootAttemptId !== result.id && (
+                      <button
+                        disabled={busy}
+                        onClick={() => void restore(learning.rootAttemptId)}
+                      >
+                        عد إلى المسألة الرئيسية
+                      </button>
+                    )}
+                  </div>
+                  {learning.state === "finished" && (
+                    <p>
+                      دليل نقل مستقل محدود، وليس درجة إتقان دائمة. يبقى مرتبطًا
+                      بإصدار المحاولة الأصلية.
+                    </p>
+                  )}
+                </section>
               )}
+              {result &&
+                !draftChanged &&
+                !learning?.assignments.some(
+                  (a) => a.attemptId === result.id && a.phase === "transfer",
+                ) && (
+                  <ProgressiveHelp
+                    key={problem.revisionId}
+                    busy={busy}
+                    hint={hint}
+                    level={result.assistanceLevel}
+                    onHint={(level, confirm) => void help(level, confirm)}
+                  />
+                )}
             </>
           ) : (
             <div className="product-card">

@@ -3,6 +3,10 @@ import type { Store, GuestAuth } from "./store";
 import { ApiFault } from "./http";
 import type { Schema } from "./contracts";
 import {
+  realLearningConfigured,
+  requireLearningAccess,
+} from "./learning-access";
+import {
   evidenceState,
   LEARNING_POLICY,
   type Observation,
@@ -42,8 +46,10 @@ export class ProgressService {
     readonly store: Store,
     readonly active = false,
   ) {
-    if (active && !store.syntheticData)
-      throw Error("PH09 requires explicitly synthetic review data");
+    if (active && !store.syntheticData && !realLearningConfigured())
+      throw Error(
+        "Progress requires synthetic data or explicitly configured real learning",
+      );
   }
   async progress(
     auth: GuestAuth,
@@ -57,8 +63,8 @@ export class ProgressService {
       const [l] = await tx.$queryRaw<
         { is_synthetic: boolean; release_id: string }[]
       >`SELECT is_synthetic,release_id FROM learning_sessions WHERE id=${learningId}::uuid AND guest_session_id=${auth.row.id}::uuid`;
-      if (!l?.is_synthetic)
-        throw new ApiFault(404, "not_found", "المورد غير متاح.");
+      if (!l) throw new ApiFault(404, "not_found", "المورد غير متاح.");
+      await requireLearningAccess(tx, auth, l.is_synthetic);
       const skills = await tx.$queryRaw<
         { id: string; skill_code: string; name_ar: string }[]
       >`SELECT id,skill_code,name_ar FROM skills WHERE release_id=${l.release_id}::uuid AND status='active' AND (${skillId ?? null}::uuid IS NULL OR id=${skillId ?? null}::uuid) ORDER BY sort_order,id`;
@@ -69,11 +75,14 @@ export class ProgressService {
       >`SELECT skill_id,event_kind,observation,created_at FROM current_skill_evidence WHERE learning_session_id=${learningId}::uuid AND policy_version=${LEARNING_POLICY} ORDER BY created_at DESC,id DESC`;
       return {
         learningSessionId: learningId,
-        isSynthetic: true,
+        isSynthetic: l.is_synthetic,
         skills: skills.map((s) => summarizeSkill(s, events)),
         updatedAt: new Date().toISOString(),
         noteAr:
-          "بيانات اختبار اصطناعية قيد المراجعة. المصدر هو آخر دليل صالح من التدريب والنقل في هذه الجلسة، بعد استبعاد النسخ القديمة والمساعدة من النقل المستقل. عدد الأدلة ليس درجة؛ عدم التقييم لا يعني صفرًا، ونجاح مسألة واحدة لا يثبت إتقانًا دائمًا.",
+          (l.is_synthetic
+            ? "بيانات اختبار اصطناعية قيد المراجعة. "
+            : "أدلة خاصة بحسابك وموافقتك الحالية. ") +
+          "المصدر هو آخر دليل صالح من التدريب والنقل في هذه الجلسة، بعد استبعاد النسخ القديمة والمساعدة من النقل المستقل. عدد الأدلة ليس درجة؛ عدم التقييم لا يعني صفرًا، ونجاح مسألة واحدة لا يثبت إتقانًا دائمًا.",
       };
     });
   }

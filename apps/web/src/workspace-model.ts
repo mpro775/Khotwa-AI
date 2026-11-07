@@ -94,7 +94,8 @@ export function canAdoptProgress(
   summary: Schema<"ProgressSummary">,
 ): boolean {
   return (
-    summary.learningSessionId === learningId && summary.isSynthetic === true
+    summary.learningSessionId === learningId &&
+    typeof summary.isSynthetic === "boolean"
   );
 }
 export function canAdoptTeacherExample(

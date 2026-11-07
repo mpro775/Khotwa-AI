@@ -1616,6 +1616,24 @@
           },
           "reviewed": {
             "type": "boolean"
+          },
+          "errorCode": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "ERR-ALG-01",
+                  "ERR-ALG-02",
+                  "ERR-ALG-03",
+                  "ERR-ALG-04",
+                  "ERR-ALG-05",
+                  "ERR-ALG-06"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -1831,6 +1849,9 @@
             "type": "string",
             "minLength": 1,
             "maxLength": 80
+          },
+          "programming": {
+            "$ref": "#/components/schemas/ProgrammingValidation"
           }
         },
         "required": [
@@ -2092,7 +2113,11 @@
             "maxLength": 1200
           },
           "source": {
-            "const": "reviewed_template"
+            "type": "string",
+            "enum": [
+              "reviewed_template",
+              "llm_validated"
+            ]
           },
           "reasonAr": {
             "type": "string",
@@ -2161,6 +2186,135 @@
           "reasonAr",
           "recentVerifiedErrors",
           "previousHintLevel"
+        ]
+      },
+      "ProgrammingValidation": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "queued",
+              "running",
+              "succeeded",
+              "compile_error",
+              "runtime_error",
+              "timeout",
+              "resource_limit",
+              "service_error"
+            ]
+          },
+          "passed": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 12
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 12
+          },
+          "allPassed": {
+            "type": "boolean"
+          },
+          "public": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "passed": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 12
+              },
+              "total": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 12
+              }
+            },
+            "required": [
+              "passed",
+              "total"
+            ]
+          },
+          "hidden": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "passed": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 12
+              },
+              "total": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 12
+              }
+            },
+            "required": [
+              "passed",
+              "total"
+            ]
+          },
+          "cases": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "index": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 11
+                },
+                "visibility": {
+                  "type": "string",
+                  "enum": [
+                    "public",
+                    "hidden"
+                  ]
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "queued",
+                    "running",
+                    "succeeded",
+                    "compile_error",
+                    "runtime_error",
+                    "timeout",
+                    "resource_limit",
+                    "service_error"
+                  ]
+                },
+                "passed": {
+                  "type": "boolean"
+                },
+                "executed": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "index",
+                "visibility",
+                "status",
+                "passed",
+                "executed"
+              ]
+            },
+            "maxItems": 12
+          }
+        },
+        "required": [
+          "status",
+          "passed",
+          "total",
+          "allPassed",
+          "public",
+          "hidden",
+          "cases"
         ]
       },
       "StudioContentPayload": {
@@ -2238,7 +2392,7 @@
             "items": {
               "$ref": "#/components/schemas/ProductContentHint"
             },
-            "maxItems": 4
+            "maxItems": 28
           },
           "algebra": {
             "$ref": "#/components/schemas/StudioAlgebraContent"

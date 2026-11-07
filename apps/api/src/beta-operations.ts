@@ -7,8 +7,11 @@ import { Store } from "./store";
 import type { GuestAuth } from "./store";
 import { uuid } from "./contracts";
 import { productEnvelope, productMutation } from "./product-core";
+import { estimateGeminiCost } from "./ai-cost";
 
 type AiUsage = {
+  billingOutputTokens?: number | null;
+  model?: string;
   provider: string;
   source: "llm_validated" | "reviewed_template";
   inputTokens: number | null;
@@ -34,6 +37,10 @@ class BetaTelemetry {
   private unknownCostCalls = 0;
   private aiTimeouts = 0;
   private mathTimeouts = 0;
+  private estimatedCostCalls = 0;
+  private reportedTokenCalls = 0;
+  private unknownTokenCalls = 0;
+  private pricingVersions = new Set<string>();
   private reset() {
     const today = new Date().toISOString().slice(0, 10);
     if (today !== this.day) {
@@ -51,6 +58,10 @@ class BetaTelemetry {
       this.unknownCostCalls = 0;
       this.aiTimeouts = 0;
       this.mathTimeouts = 0;
+      this.estimatedCostCalls = 0;
+      this.reportedTokenCalls = 0;
+      this.unknownTokenCalls = 0;
+      this.pricingVersions.clear();
     }
   }
   recordApi(status: number, durationMs: number) {
@@ -70,14 +81,41 @@ class BetaTelemetry {
       usage.invoked ??
       !["not_used", "disabled", "none"].includes(usage.provider);
     if (invoked) this.aiCalls++;
-    this.inputTokens += Math.max(0, Math.floor(usage.inputTokens ?? 0));
-    this.outputTokens += Math.max(0, Math.floor(usage.outputTokens ?? 0));
-    if (usage.estimatedCostMicros === null && invoked) this.unknownCostCalls++;
-    else if (usage.estimatedCostMicros !== null)
-      this.estimatedCostMicros += Math.max(
-        0,
-        Math.floor(usage.estimatedCostMicros),
-      );
+    const validTokens = (v: number | null) =>
+      v !== null && Number.isSafeInteger(v) && v >= 0;
+    this.inputTokens += validTokens(usage.inputTokens) ? usage.inputTokens! : 0;
+    this.outputTokens += validTokens(usage.outputTokens)
+      ? usage.outputTokens!
+      : 0;
+    if (invoked) {
+      if (validTokens(usage.inputTokens) && validTokens(usage.outputTokens))
+        this.reportedTokenCalls++;
+      else this.unknownTokenCalls++;
+    }
+    const estimate =
+      usage.provider === "gemini"
+        ? estimateGeminiCost(
+            usage.model,
+            usage.inputTokens,
+            usage.billingOutputTokens === undefined
+              ? usage.outputTokens
+              : usage.billingOutputTokens,
+            undefined,
+            invoked,
+          )
+        : null;
+    const cost = !invoked
+      ? null
+      : estimate
+        ? estimate.estimatedCostMicros
+        : usage.estimatedCostMicros;
+    if (cost === null && invoked) this.unknownCostCalls++;
+    else if (cost !== null && Number.isSafeInteger(cost) && cost >= 0) {
+      if (invoked) this.estimatedCostCalls++;
+      this.estimatedCostMicros += Math.max(0, Math.floor(cost));
+    }
+    if (estimate?.pricingVersion)
+      this.pricingVersions.add(estimate.pricingVersion);
     if (usage.timeout) this.aiTimeouts++;
   }
   recordMathTimeout() {
@@ -115,6 +153,21 @@ class BetaTelemetry {
         timeouts: this.aiTimeouts,
       },
       mathTimeouts: this.mathTimeouts,
+      aiCost: {
+        status: this.unknownCostCalls
+          ? this.estimatedCostCalls
+            ? "mixed"
+            : "unknown"
+          : this.estimatedCostCalls
+            ? "estimated"
+            : "not_invoked",
+        currency: "USD",
+        estimatedCalls: this.estimatedCostCalls,
+        reportedTokenCalls: this.reportedTokenCalls,
+        unknownTokenCalls: this.unknownTokenCalls,
+        pricingVersions: [...this.pricingVersions].sort(),
+        actualBilledCostMicros: null,
+      },
       scope: "current-process-since-start-or-utc-day-boundary",
       percentileMinimumSamples: 20,
     };

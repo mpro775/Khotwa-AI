@@ -1,0 +1,189 @@
+{
+  "auditDate": "2026-11-08",
+  "timeZone": "Asia/Riyadh",
+  "branch": "codex/posthack-roadmap",
+  "baselineCommit": "d5ea67d",
+  "decision": "SOURCE_IMPLEMENTATION_COMPLETE",
+  "scope": "CODE-01 through CODE-10 and all 46 original roadmap tasks; source completion only, not release approval.",
+  "tests": {
+    "nodeMain": 232,
+    "nodeWorkspace": 10,
+    "nodeUniqueTotal": 242,
+    "pythonMethods": 10,
+    "physicsPracticeSubtests": 12
+  },
+  "notRun": [
+    "service environment",
+    "PostgreSQL migrations/transactions/races",
+    "HTTP/E2E",
+    "live Gemini/SMTP",
+    "Judge0/Sandbox execution or isolation tests",
+    "load tests",
+    "Beta deployment",
+    "human content approval"
+  ],
+  "earlierFixtureCorrection": {
+    "cases": 3,
+    "reason": "Physics loop mock expected the previous joined proof query; declared internal-user proof fixture was updated for the split current-session query.",
+    "productionGuardsWeakened": false,
+    "goldenChanged": false
+  },
+  "reportValidation": {
+    "exit_code": 0,
+    "chunk_id": "afbdb0",
+    "result": {
+      "reports": [
+        {
+          "path": "qa-reports/DEV-CODE-COMPLETENESS-AUDIT.md",
+          "taskRows": 46,
+          "codeRows": 10,
+          "statusCounts": {
+            "IMPLEMENTED": 37,
+            "CONFIGURATION_PENDING": 3,
+            "TEST_PENDING": 6
+          }
+        },
+        {
+          "path": "qa-reports/DEV-SOURCE-FINAL-ACCEPTANCE.md",
+          "taskRows": 46,
+          "codeRows": 10,
+          "statusCounts": {
+            "IMPLEMENTED": 37,
+            "CONFIGURATION_PENDING": 3,
+            "TEST_PENDING": 6
+          }
+        }
+      ],
+      "recordedCommands": 13,
+      "nodeTests": 242,
+      "pythonMethods": 10
+    }
+  },
+  "diffCheck": {
+    "command": "git diff --check",
+    "chunk_id": "3c2aca",
+    "wall_time_seconds": 0.3536215,
+    "exit_code": 0,
+    "original_token_count": 118,
+    "output": "warning: in the working copy of 'apps/api/prisma/schema.prisma', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'ops/BETA-RUNBOOK.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'ops/beta.env.example', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'ops/runner/runner.env.example', LF will be replaced by CRLF the next time Git touches it\n"
+  },
+  "checks": [
+    {
+      "key": "build",
+      "chunk_id": "a8324f",
+      "wall_time_seconds": 0.000009,
+      "exit_code": 0,
+      "original_token_count": 643,
+      "output": "\n> khotwa-ai@0.1.0 build\n> npm run build --workspaces --if-present && node tools/python-task.mjs -m compileall -q services/math-engine/src\n\n\n> @khotwa/api@0.1.0 build\n> npm run generate && tsc -p tsconfig.json\n\n\n> @khotwa/api@0.1.0 generate\n> prisma generate --config prisma.config.ts\n\nLoaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma\\schema.prisma.\n\n✔ Generated Prisma Client (v7.10.1) to .\\..\\..\\node_modules\\@prisma\\client in 1.99s\n\nStart by importing your Prisma Client (See: https://pris.ly/d/importing-client)\n\n\n\n> @khotwa/web@0.1.0 build\n> tsc --noEmit && vite build\n\nvite v8.3.5 building client environment for production...\ntransforming...\n✓ 47 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                                         0.40 kB │ gzip:   0.28 kB\ndist/assets/KaTeX_Size4-Regular-Dl5lxZxV.woff2          4.92 kB\ndist/assets/KaTeX_Size2-Regular-Dy4dx90m.woff2          5.20 kB\ndist/assets/KaTeX_Size1-Regular-mCD8mA8B.woff2          5.46 kB\ndist/assets/KaTeX_Caligraphic-Regular-Di6jR-x-.woff2    6.90 kB\ndist/assets/KaTeX_Caligraphic-Bold-Dq_IR9rO.woff2       6.91 kB\ndist/assets/KaTeX_Script-Regular-D3wIWfF6.woff2         9.64 kB\ndist/assets/KaTeX_SansSerif-Regular-DDBCnlJ7.woff2     10.34 kB\ndist/assets/KaTeX_Fraktur-Regular-CTYiF6lA.woff2       11.31 kB\ndist/assets/KaTeX_Fraktur-Bold-CL6g_b3V.woff2          11.34 kB\ndist/assets/KaTeX_SansSerif-Italic-C3H0VqGB.woff2      12.02 kB\ndist/assets/KaTeX_SansSerif-Bold-D1sUS0GD.woff2        12.21 kB\ndist/assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2    13.56 kB\ndist/assets/KaTeX_Math-BoldItalic-CZnvNsCZ.woff2       16.40 kB\ndist/assets/KaTeX_Math-Italic-t53AETM-.woff2           16.44 kB\ndist/assets/KaTeX_Main-BoldItalic-DxDJ3AOS.woff2       16.78 kB\ndist/assets/KaTeX_Main-Italic-NWA7e6Wa.woff2           16.98 kB\ndist/assets/KaTeX_Main-Bold-Cx986IdX.woff2             25.32 kB\ndist/assets/KaTeX_Main-Regular-B22Nviop.woff2          26.27 kB\ndist/assets/KaTeX_AMS-Regular-BQhdFMY1.woff2           28.07 kB\ndist/assets/ArabicEditor-BnjoTxG4.css                   8.00 kB │ gzip:   4.20 kB\ndist/assets/index-BD0pVSXV.css                         17.39 kB │ gzip:   4.76 kB\ndist/assets/TeacherDemo-CyoaBVda.js                     5.05 kB │ gzip:   1.97 kB\ndist/assets/index-C63Dv6tE.js                         635.86 kB │ gzip: 134.30 kB\ndist/assets/ArabicEditor-DMz8O6vg.js                  816.77 kB │ gzip: 225.26 kB\n\n[plugin builtin:vite-reporter] \n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n✓ built in 550ms\n\n> @khotwa/contracts@0.1.0 build\n> tsc --noEmit\n\n",
+      "command": "npm run build"
+    },
+    {
+      "key": "webbuild",
+      "chunk_id": "f38c35",
+      "wall_time_seconds": 0.0000321,
+      "exit_code": 0,
+      "original_token_count": 562,
+      "output": "\n> @khotwa/web@0.1.0 build\n> tsc --noEmit && vite build\n\nvite v8.3.5 building client environment for production...\ntransforming...\n✓ 47 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                                         0.40 kB │ gzip:   0.28 kB\ndist/assets/KaTeX_Size4-Regular-Dl5lxZxV.woff2          4.92 kB\ndist/assets/KaTeX_Size2-Regular-Dy4dx90m.woff2          5.20 kB\ndist/assets/KaTeX_Size1-Regular-mCD8mA8B.woff2          5.46 kB\ndist/assets/KaTeX_Caligraphic-Regular-Di6jR-x-.woff2    6.90 kB\ndist/assets/KaTeX_Caligraphic-Bold-Dq_IR9rO.woff2       6.91 kB\ndist/assets/KaTeX_Script-Regular-D3wIWfF6.woff2         9.64 kB\ndist/assets/KaTeX_SansSerif-Regular-DDBCnlJ7.woff2     10.34 kB\ndist/assets/KaTeX_Fraktur-Regular-CTYiF6lA.woff2       11.31 kB\ndist/assets/KaTeX_Fraktur-Bold-CL6g_b3V.woff2          11.34 kB\ndist/assets/KaTeX_SansSerif-Italic-C3H0VqGB.woff2      12.02 kB\ndist/assets/KaTeX_SansSerif-Bold-D1sUS0GD.woff2        12.21 kB\ndist/assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2    13.56 kB\ndist/assets/KaTeX_Math-BoldItalic-CZnvNsCZ.woff2       16.40 kB\ndist/assets/KaTeX_Math-Italic-t53AETM-.woff2           16.44 kB\ndist/assets/KaTeX_Main-BoldItalic-DxDJ3AOS.woff2       16.78 kB\ndist/assets/KaTeX_Main-Italic-NWA7e6Wa.woff2           16.98 kB\ndist/assets/KaTeX_Main-Bold-Cx986IdX.woff2             25.32 kB\ndist/assets/KaTeX_Main-Regular-B22Nviop.woff2          26.27 kB\ndist/assets/KaTeX_AMS-Regular-BQhdFMY1.woff2           28.07 kB\ndist/assets/ArabicEditor-BnjoTxG4.css                   8.00 kB │ gzip:   4.20 kB\ndist/assets/index-BD0pVSXV.css                         17.39 kB │ gzip:   4.76 kB\ndist/assets/TeacherDemo-DNj2qXfu.js                     5.05 kB │ gzip:   1.97 kB\ndist/assets/index-CVuhu410.js                         635.88 kB │ gzip: 134.31 kB\ndist/assets/ArabicEditor-B7RMLJmS.js                  816.77 kB │ gzip: 225.26 kB\n\n[plugin builtin:vite-reporter] \n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n✓ built in 659ms\n",
+      "command": "npm run build --workspace @khotwa/web"
+    },
+    {
+      "key": "lint",
+      "chunk_id": "efbf11",
+      "wall_time_seconds": 0.0000089,
+      "exit_code": 0,
+      "original_token_count": 0,
+      "output": "\n> khotwa-ai@0.1.0 lint\n> eslint apps packages/contracts/src tools/*.mjs && node tools/python-task.mjs -m pycodestyle --max-line-length=88 --ignore=E203,W503 services/math-engine/src tools/dev_env.py tools/seed_demo.py\n\n",
+      "command": "npm run lint"
+    },
+    {
+      "key": "weblint",
+      "command": "npx --no-install eslint apps/web/src/workspace-model.ts",
+      "chunk_id": "978174",
+      "wall_time_seconds": 6.8444696,
+      "exit_code": 0,
+      "original_token_count": 0,
+      "output": ""
+    },
+    {
+      "key": "typecheck",
+      "chunk_id": "741906",
+      "wall_time_seconds": 0.0000116,
+      "exit_code": 0,
+      "original_token_count": 35,
+      "output": "\n> khotwa-ai@0.1.0 typecheck\n> npm run typecheck --workspaces --if-present && pyright\n\n\n> @khotwa/api@0.1.0 typecheck\n> npm run generate && tsc --noEmit\n\n\n> @khotwa/api@0.1.0 generate\n> prisma generate --config prisma.config.ts\n\nLoaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma\\schema.prisma.\n\n✔ Generated Prisma Client (v7.10.1) to .\\..\\..\\node_modules\\@prisma\\client in 1.44s\n\nStart by importing your Prisma Client (See: https://pris.ly/d/importing-client)\n\n\n\n> @khotwa/web@0.1.0 typecheck\n> tsc --noEmit\n\n\n> @khotwa/contracts@0.1.0 typecheck\n> tsc --noEmit\n\n0 errors, 0 warnings, 0 informations\n",
+      "command": "npm run typecheck"
+    },
+    {
+      "key": "format",
+      "command": "npm run format:check",
+      "chunk_id": "641163",
+      "wall_time_seconds": 7.4609098,
+      "exit_code": 0,
+      "original_token_count": 125,
+      "output": "\n> khotwa-ai@0.1.0 format:check\n> prettier --check package.json tsconfig.base.json eslint.config.mjs pyrightconfig.json compose.yaml Dockerfile .github/workflows/ci.yml \"apps/**/*.{ts,tsx,json,css,html}\" \"packages/contracts/src/index.ts\" \"tools/*.mjs\" && node tools/python-task.mjs -m black --check services/math-engine/src tools/dev_env.py tools/seed_demo.py\n\nChecking formatting...\nAll matched files use Prettier code style!\nAll done! \\u2728 \\U0001f370 \\u2728\r\n14 files would be left unchanged.\r\n"
+    },
+    {
+      "key": "contracts",
+      "command": "npm run contracts:check",
+      "chunk_id": "4e66ce",
+      "wall_time_seconds": 5.4752926,
+      "exit_code": 0,
+      "original_token_count": 38,
+      "output": "\n> khotwa-ai@0.1.0 contracts:check\n> node tools/contracts.mjs --check\n\nCanonical OpenAPI mirror, 4 JSON mirrors, and generated public types verified.\n"
+    },
+    {
+      "key": "static",
+      "command": "node tools/audit-code-completeness.mjs",
+      "chunk_id": "29778c",
+      "wall_time_seconds": 1.6152196,
+      "exit_code": 0,
+      "original_token_count": 57,
+      "output": "{\n  \"tasks\": 46,\n  \"tables\": 53,\n  \"sqlTemplates\": 369,\n  \"inserts\": 79,\n  \"updates\": 80,\n  \"sqlIssues\": [],\n  \"productOperations\": 43,\n  \"routeIssues\": [],\n  \"contentItems\": 76,\n  \"contentIssues\": [],\n  \"retentionIssues\": []\n}\n"
+    },
+    {
+      "key": "node",
+      "command": "node --test --test-concurrency=4 apps/api/tests/source-hints-cost.test.mjs apps/api/tests/source-subject-hints.test.mjs apps/api/tests/source-beta-runtime.test.mjs apps/api/tests/runner-coordinator.test.mjs apps/api/tests/content-programming-review.test.mjs apps/api/tests/real-learning-services.test.mjs apps/api/tests/learning-ai-consent.test.mjs apps/api/tests/physics-learning-context.test.mjs apps/api/tests/roadmap-contracts.test.mjs apps/api/tests/roadmap-tutoring-physics.test.mjs apps/api/tests/studio-pairings.test.mjs apps/api/tests/diagnosis.test.mjs apps/api/tests/learning.test.mjs apps/api/tests/progress.test.mjs apps/api/tests/tutoring.test.mjs apps/api/tests/gemini.test.mjs apps/api/tests/ph08-generative.test.mjs apps/api/tests/ph08-review-followup.test.mjs apps/api/tests/accounts-operations.test.mjs apps/web/tests/product-experience.test.mjs apps/web/tests/editor-model.test.mjs",
+      "chunk_id": "8b1bfc",
+      "wall_time_seconds": 6.2992421,
+      "exit_code": 0,
+      "original_token_count": 5339,
+      "output": "✔ email normalization rejects header injection and oversized addresses (2.0724ms)\n✔ account DTO rejects caller-selected ownership and role fields (1.9097ms)\n✔ mail capture stays server-side and SMTP refuses non-local plaintext (10.8026ms)\n✔ wrong OTP increments committed attempts instead of rolling back the counter (8.5967ms)\n✔ feedback redacts common secrets without discarding Arabic context (1.338ms)\n✔ telemetry excludes identities and suppresses percentiles for small samples (1.1539ms)\n✔ public Python runs never become independent submitted evidence (1.4657ms)\n✔ physics abstentions and pending service calls do not create negative evidence (0.7389ms)\n✔ lost successful OTP response replays the same session only for the original proof and key (5.2918ms)\n✔ identity refresh preserves a valid pending bootstrap proof (1.6827ms)\n✔ failed or expired cached mail delivery never replays a false queued success (2.3015ms)\n✔ new content reuses only reviewed catalog snapshots and preserves their reviewer evidence (2.8353ms)\n✔ absence of a reviewed source cannot manufacture a catalog or teacher approval (0.3414ms)\n✔ whole grading deadline bounds an unresponsive runner and cancels its signal (24.8754ms)\n✔ student content projection contains no hidden tests, reference code or physics answer (2.7556ms)\n✔ content importer parses every prepared draft without asserting review (3.5276ms)\n✔ content parser rejects unknown keys, mixed subjects, hidden flag spoofing and executable function names (1.2465ms)\n✔ publication checks reject incorrect algebra answers and unavailable isolated runner (2.607ms)\n✔ alternate source is accepted by case results, not by reference text comparison (0.8106ms)\n✔ hidden case stdout and stderr never reach public result on failure (0.6394ms)\n✔ function harness sends arguments without serializing expected or hidden labels into source (0.3862ms)\n✔ sandbox adapter refuses unreviewed isolation and always requests explicit private limits (40.3239ms)\n✔ runner response output limits and service failures fail closed (3ms)\n✔ six distinct structural observations remain hypotheses, including overlaps (4.3655ms)\n✔ valid, abstention, technical failure, missing witness and broken prior path cannot diagnose (0.3651ms)\n✔ a wrong isolated numeric answer does not reveal the procedure or a misconception (0.3215ms)\n✔ same structural one-sided change receives the same tentative policy for different numbers (0.3685ms)\n✔ reversed equation sides and harmless grouping do not require text matching (0.3168ms)\n✔ only owned bounded ASTs are eligible, and a zero division never becomes an arithmetic diagnosis (0.3035ms)\n✔ PH06 activation fails closed outside explicit synthetic review (1.0593ms)\n✔ rolling quota persists reservations, counts failures and respects the exact 60s boundary (25.8571ms)\n✔ actual remaining daily allowance and reset time fail closed (4.5343ms)\n✔ exclusive lock prevents a second process/adapter from bypassing the ledger (3.4735ms)\n✔ corrupt ledger and changed round configuration cannot replenish a round (6.8196ms)\n✔ structured request uses configurable model/minimal, secret header and local schema validation (52.4768ms)\n✔ local rejection: extra schema fields (8.0213ms)\n✔ local rejection: invented math verdict (5.8831ms)\n✔ local rejection: early answer despite false no-leak flag (5.4935ms)\n✔ local rejection: new unreviewed teaching meaning (5.6855ms)\n✔ local rejection: wrong template (5.5277ms)\n✔ local rejection: abstention (5.1092ms)\n✔ provider finish/JSON: AI_INVALID_JSON (5.5784ms)\n✔ provider finish/JSON: AI_TRUNCATED (5.4548ms)\n✔ provider finish/JSON: AI_REFUSED (5.2016ms)\n✔ 429 spends one reservation without retry or logging the response body (6.3692ms)\n✔ out-of-scope and pre-aborted calls never contact provider or reserve quota (3.5109ms)\n✔ second concurrent call is rejected without dispatch or reservation (9.2927ms)\n✔ environment factory keeps disabled behavior and rejects PH09/non-synthetic activation (1.8418ms)\n✔ real learning requires fresh configuration, verified account proof and current consent (4.3957ms)\n✔ product learning cannot treat anonymous real-mode attempts as synthetic (0.656ms)\n✔ Beta AI is off for paused, disabled, expired, unknown-quota or historical authorization (1.4824ms)\n✔ AI delivery requires both current learning and separate AI consent (1.6948ms)\n✔ consent writes require explicit current version to enable and permit versionless revocation (3.3612ms)\n✔ subject composer sends a minimized context and meters consumed usage before delivery recheck (4.9083ms)\n✔ claim rejects unresolved external work under global-before-owner lock order (1.412ms)\n✔ completed guest claim preserves Runner quota namespace and physics exposure provenance (0.891ms)\n✔ a subject-only synthetic guest cannot be relabeled into a real account by an empty algebra history (0.6729ms)\n✔ account physics progress excludes stale assignments and never calls guided practice independent (0.8881ms)\n✔ Store's common attempt boundary enforces current real-learning consent before downstream step or verification work (1.6684ms)\n✔ only a current verified complete chain supports a positive independent observation (2.0053ms)\n✔ syntax_error never creates negative or positive conceptual evidence (0.3298ms)\n✔ unsupported never creates negative or positive conceptual evidence (0.1933ms)\n✔ inconclusive never creates negative or positive conceptual evidence (0.1629ms)\n✔ service_error never creates negative or positive conceptual evidence (0.2113ms)\n✔ an invalid edge before a correct final answer cannot count as independent transfer (0.2358ms)\n✔ non-assessable attempts do not erase valid prior evidence; guided activity is never a transfer count (0.2466ms)\n✔ activation is restricted to synthetic stores and explicitly bounded finite loops (1.0508ms)\n✔ public transfer reports hide solution-bearing proofs on copies, without changing math truth (0.4833ms)\n✔ an unresolved verified difficulty remains follow-up after guided practice, while valid transfer evidence is retained (0.3158ms)\n✔ new compositional H1 is accepted and the old PH07 policy still rejects it (4.1089ms)\n✔ new compositional H2 is accepted and the old PH07 policy still rejects it (0.5906ms)\n✔ new compositional H3 is accepted and the old PH07 policy still rejects it (0.4432ms)\n✔ semantic rejection: numeric answer (0.3529ms)\n✔ semantic rejection: answer in words (0.2345ms)\n✔ semantic rejection: unverified equation (0.1207ms)\n✔ semantic rejection: invented verdict (0.1532ms)\n✔ semantic rejection: incorrect abstract math (0.1175ms)\n✔ semantic rejection: certain diagnosis (0.1844ms)\n✔ semantic rejection: polite certain diagnosis (0.3435ms)\n✔ semantic rejection: out of skill (0.3396ms)\n✔ semantic rejection: H2 disclosed in H1 (0.1817ms)\n✔ semantic rejection: unparsed suffix (0.1415ms)\n✔ semantic rejection: negated attention (0.1316ms)\n✔ semantic rejection: prompt injection (0.2086ms)\n✔ semantic rejection: HTML (0.0971ms)\n✔ semantic rejection: bidi (0.0893ms)\n✔ semantic rejection: literal old template (0.1442ms)\n✔ unresolved diagnosis permits only neutral balance guidance without inventing a cause (0.3526ms)\n✔ a profile outside the server skill mapping or independent transfer cannot authorize text (0.2179ms)\n✔ schema validation and the model's safety flag never bypass the semantic parser (0.3107ms)\n✔ server mappings cover the six patterns at H1-H3 and cannot authorize H4 (0.3967ms)\n✔ Gemini response supplies the exact novel display text; changing its response changes the accepted hint (45.7054ms)\n✔ provider failure and deadline return no raw text and cannot manufacture a generated source (24.6506ms)\n✔ unknown quota/unlimited or absent new-round authorization cannot activate a live factory or alter the old ledger (4.0263ms)\n✔ the division example is an existing tentative arithmetic observation, not new PH08 math policy (3.3084ms)\n✔ owner-approved SK06 arithmetic generation gate leaves the domain mapping unresolved (1.0104ms)\n✔ temporary SK06/ERR05 gate possible H1 cannot contact Gemini (9.9765ms)\n✔ temporary SK06/ERR05 gate possible H2 cannot contact Gemini (5.1164ms)\n✔ temporary SK06/ERR05 gate possible H3 cannot contact Gemini (9.856ms)\n✔ temporary SK06/ERR05 gate unresolved H1 cannot contact Gemini (4.3287ms)\n✔ temporary SK06/ERR05 gate unresolved H2 cannot contact Gemini (4.9995ms)\n✔ temporary SK06/ERR05 gate unresolved H3 cannot contact Gemini (3.4073ms)\n✔ SK08 possible H1 cannot dispatch or reserve Gemini quota (3.5947ms)\n✔ SK08 possible H2 cannot dispatch or reserve Gemini quota (5.0042ms)\n✔ SK08 possible H3 cannot dispatch or reserve Gemini quota (4.1895ms)\n✔ SK08 unresolved H1 cannot dispatch or reserve Gemini quota (3.6516ms)\n✔ SK08 unresolved H2 cannot dispatch or reserve Gemini quota (3.1103ms)\n✔ SK08 unresolved H3 cannot dispatch or reserve Gemini quota (3.0153ms)\n✔ fraction transfer remains blocked from generation before and after measurement exit (0.5384ms)\n✔ the review pack carries draft status, no signature and hashes bound to source and content (7.3304ms)\n✔ a future small four-attempt ceiling persists across restart without changing the previous ten-attempt ledger (37.2961ms)\n✔ all supplemental lessons have reviewed-gated distinct remedial/transfer candidates (4.6996ms)\n✔ exposure identity normalizes eastern digits, decimals and fractions without issuing a verdict (0.7628ms)\n✔ last-two proved same-concept successes change causal hypothesis conservatively, never math (2.28ms)\n✔ stale engines, abstentions, identities and context outside two preceding edges provide no causal support (0.5344ms)\n✔ ordinary correct inverse step influences a later balance-error alternative without overriding its proof (0.8274ms)\n✔ owned mocked learning flow assigns guided practice then a distinct independent transfer, with idempotent replay (8.0698ms)\n✔ wrong ownership, stale revision and service abstention cannot begin a learning loop (1.3146ms)\n✔ a disclosed equivalent context cannot be offered as fresh practice (0.8855ms)\n✔ not_assessed never becomes a percentage or a negative score (1.2766ms)\n✔ non-assessable and foreign-skill events do not create conceptual difficulty (0.4505ms)\n✔ guided completion and H4 context are separate from new independent transfer evidence (0.2175ms)\n✔ unresolved verified difficulty remains followup and failure does not erase a different valid transfer (0.1689ms)\n✔ teacher artifact is pinned, independently synthetic, and all numbers trace to rows (69.4222ms)\n✔ real-data flags, PII/extra fields, contradictory assistance, duplicate keys and cross-dataset examples fail closed (1.6997ms)\n✔ teacher reader has no configurable database source and cannot resolve a real attempt id (2.014ms)\n✔ PH09 progress cannot activate on a non-synthetic store (0.2804ms)\n✔ owner retention eligibility is seven days after actual absolute expiry, not last activity (0.4873ms)\n✔ idle expiry and logout start a limited retention window without claiming immediate deletion (0.5217ms)\n✔ real journey services require explicit startup configuration, then admit the owned consented session (7.3589ms)\n✔ withdrawn consent blocks diagnosis, tutoring, assignments and both progress projections (1.4678ms)\n✔ real accounts cannot reinterpret synthetic learner data and guessed session IDs remain private (0.7176ms)\n✔ diagnosis projection requires authenticated ownership and current real-learning consent (0.9357ms)\n✔ new learning episodes inherit the owned session flag instead of claiming synthetic data (1.7276ms)\n✔ all product NestJS operations and actual success codes occur in canonical OpenAPI (3.8008ms)\n✔ every canonical component schema compiles and all referenced definitions resolve (1436.247ms)\n✔ programming responses allow service outage but reject a leaked hidden test field (10.279ms)\n✔ public product contract excludes answer keys and private code tests (19.7148ms)\n✔ hint contracts require revision and bound source code; unknown fields are rejected (17.9786ms)\n✔ browser schema artifact contains no new private reference payloads or internal physics wire (1.6101ms)\n✔ adaptive help separates mathematical evidence from a candidate and abstention (1.9853ms)\n✔ recent repeated errors affect help without automatic full answer or mastery (0.3652ms)\n✔ AI context contains only bounded general help history and candidate tags (2.0786ms)\n✔ new natural Arabic forms need the correct server concept and disclosure level (1.5184ms)\n✔ studio algebra hints cannot smuggle equations into conceptual levels (0.8276ms)\n✔ private physics gateway validates revision, verdict consistency and redacted shape (48.0839ms)\n✔ private physics gateway never leaks a provider or transport exception (1.2986ms)\n✔ durable replay precedes revision validation and survives a new coordinator (7.453ms)\n✔ duplicate, owner and global reservations cannot dispatch concurrently (1.8245ms)\n✔ expired work is quarantined after restart; fresh keys cannot bypass it (2.0138ms)\n✔ student and author work share request and reserved-case quotas (1.7353ms)\n✔ ambiguous remote completion preserves its stable result and holds capacity (1.1884ms)\n✔ teacher public/hidden outcomes contain no private inputs, answers or outputs (1.595ms)\n✔ teacher validation distinguishes skipped cases and continues known per-case errors (0.9875ms)\n✔ Judge0 acceptance receipt is durably checkpointed before polling (27.9594ms)\n✔ a delayed dispatch gate cannot submit code after the whole grading deadline (6.86ms)\n✔ function test argument shape is rejected before any execution reservation (1.9954ms)\n✔ teacher validation endpoint persists public/hidden results and transition replay skips stale revision checks (7.1477ms)\n✔ late teacher validation cannot overwrite edited content and its retry never reruns reference code (3.059ms)\n✔ student submit persists its raw code, projects no teacher details, and refuses stale cached results (4.972ms)\n✔ Beta accepts only the reviewed core, approved variants and neutral wrappers, never a word-bag inversion (2.3303ms)\n✔ fresh Beta with PH09 enabled uses the shared validated Gemini transport and versioned priced reservation (62.4958ms)\n✔ a deadline reached during final authorization checking cannot dispatch or claim a provider invocation (6.2825ms)\n✔ authorization quota does not reset merely because the daily usage window rolls over (3.9394ms)\n✔ missing consent or prices prevent network dispatch and do not invent usage (2.1123ms)\n✔ Beta inversion safely falls back, meters invocation and durably stops this authorization (2.8011ms)\n✔ Beta unknown safely falls back, meters invocation and durably stops this authorization (2.955ms)\n✔ Beta excess safely falls back, meters invocation and durably stops this authorization (2.8911ms)\n✔ Beta quota safely falls back, meters invocation and durably stops this authorization (2.9238ms)\n✔ old PH08 authority, expired authority, pause and missing total-output policy cannot enable this runtime (1.5448ms)\n✔ legacy hints remain general; targeted variants preserve level and pattern without duplicates (4.1223ms)\n✔ an ERR catalog cannot be attached to a different subject or guessed from arbitrary input (1.04ms)\n✔ materialization saves scoped ERR and keeps the general fallback; only an existing reviewed catalog permits it (2.4637ms)\n✔ studio publication copies the reviewed skill catalog before binding authored ERR hints (2.8793ms)\n✔ reported token counts yield a versioned estimate, rounded once, never an invoice (0.6297ms)\n✔ missing usage, model, price, invalid rates, overflow and non-invocation never invent spending (0.408ms)\n✔ telemetry separates reported tokens, unknown prices and estimated subsets (0.6689ms)\n✔ rejected provider output retains only reported usage for billing; reasoning output is not silently free (0.7631ms)\n✔ HTTP200 worker timeout is counted independently of transport timeout, never as a student error (116.0886ms)\n✔ internal HTTP408/504 are declared service timeouts and never negative mathematical verdicts (2.0323ms)\n✔ programming: hint reaches the composer without private input and preserves verifier judgment (7.1041ms)\n✔ programming: consent revoked during generation falls back and stale generation is never saved (1.3188ms)\n✔ programming: revision change rejects a delayed generated hint (1.8219ms)\n✔ programming: independent transfer rejects hints before provider invocation (1.0747ms)\n✔ programming: explicit H4 uses reviewed content without Gemini (1.086ms)\n✔ physics: hint reaches the composer without private input and preserves verifier judgment (3.1419ms)\n✔ physics: consent revoked during generation falls back and stale generation is never saved (1.0249ms)\n✔ physics: revision change rejects a delayed generated hint (0.7714ms)\n✔ physics: independent transfer rejects hints before provider invocation (0.6328ms)\n✔ physics: explicit H4 uses reviewed content without Gemini (0.7656ms)\n✔ a programming hint cannot orphan a still-running verdict by advancing its revision (0.6956ms)\n✔ display-only equation copies cannot masquerade as fresh transfer (2.2278ms)\n✔ pairing needs reviewed published validated same-lesson sources with contrast (2.6872ms)\n✔ snapshot pairing clones into the new release without modifying source revisions (4.5155ms)\n✔ missing reviewed pair and already frozen release fail before snapshot writes (1.4277ms)\n✔ all six prepared lessons have coherent conceptual hints and eligible draft pairs after explicit simulated review (1.39ms)\n✔ explicit next requests progress from H0 through H3, never implicitly to H4 (1.2897ms)\n✔ H4 requires explicit confirmation and independent/probe modes cannot reveal any level (0.2415ms)\n✔ unassessable math and open confirmation questions never escalate hints (0.1934ms)\n✔ assistance eligibility survives legacy status and feature disabling (0.1687ms)\n✔ provider context allowlist omits identity, raw input, secrets, history and hidden transfer answers (0.2896ms)\n✔ structured usable output must match the exact version and approved level/template phrase (0.732ms)\n✔ invalid JSON, excess fields, refusal, truncation and oversized/token-invalid outputs are rejected (0.3109ms)\n✔ no-leak self-report cannot authorize a solution, injection, wrong math, Latin x, HTML or bidi control (0.332ms)\n✔ a hard deadline rejects an adapter that ignores cancellation without retrying (17.2392ms)\n✔ owner-disabled AI never calls a provider (0.7417ms)\n✔ AN-002: original ASCII digits stay distinct from a known Arabic display (2.7648ms)\n✔ AN-011: fraction recipe explicitly keeps numerator 1 and denominator 2 (1.1736ms)\n✔ known examples and aliases retain their own source without a parser claim (1.6315ms)\n✔ AN-013/018/020: ambiguous or unsupported samples never acquire a display meaning (0.2761ms)\n✔ AN-030: directional and other hidden controls are reported and kept visible in audit (0.7207ms)\n✔ a 257 code point paste is retained and flagged rather than silently truncated (0.4384ms)\n✔ new edits immediately invalidate the previous fixture meaning and local issue (0.3239ms)\n✔ unknown text, including x, is never aliased to س or treated as a successful parse (0.2251ms)\n✔ selection replacement preserves source order and exact punctuation (0.377ms)\n✔ issue selection translates Unicode code points into textarea UTF-16 offsets (0.405ms)\n✔ shallow editor guards flag foreign characters and unbalanced brackets but never assert math validity (0.9136ms)\n✔ deleting a pasted supplementary character does not split a UTF-16 surrogate pair (0.1322ms)\n✔ DEV-072: Tab inserts four spaces without changing surrounding Python or Arabic strings (1.5927ms)\n✔ DEV-072: selected lines indent and unindent while preserving final newline (0.2215ms)\n✔ DEV-072: Shift+Tab removes only leading spaces and keeps selection valid (0.1616ms)\n✔ DEV-072: Enter after a Python block continues indentation; start-of-document newline is safe (0.166ms)\n✔ DEV-024/SEC: identity switch removes only previous learning resource IDs (0.2417ms)\n✔ DEV-022: email login uses bootstrap CSRF while account writes use account CSRF (19.9716ms)\n✔ DEV-045: network retry reuses the idempotency key and preserves raw learner code (0.9216ms)\n✔ DEV-045: malformed successful response never becomes a trusted result (0.5776ms)\n✔ Runner in-progress retries keep the same idempotency key (0.9647ms)\n✔ DEV-048/SEC: product client rejects nonlocal and protocol-relative routes (0.2826ms)\n✔ DEV-071: public programming decoder exposes only starter code and public tests (0.3343ms)\n✔ DEV-073: pending polling reads the same result until terminal without new execution (13.2613ms)\n✔ DEV-073: aborting pending polling prevents another read and any late result adoption (0.3434ms)\n✔ DEV-073: failed pending-result read never becomes a successful execution (0.2704ms)\nℹ tests 232\nℹ suites 0\nℹ pass 232\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 6005.6194\n"
+    },
+    {
+      "key": "workspace",
+      "command": "node tools/test-workspace.mjs",
+      "chunk_id": "c671da",
+      "wall_time_seconds": 5.8012886,
+      "exit_code": 0,
+      "original_token_count": 273,
+      "output": "✔ hint responses cannot restore another attempt or an edited revision (3.4748ms)\n✔ probe responses are bound to the same current attempt, revision, hypothesis and probe (0.9203ms)\n✔ UI rejects late results after local edits, server revisions, resource changes or replaced step versions (1.1661ms)\n✔ all six statuses have distinct Arabic labels and abstention is not called wrong (0.5626ms)\n✔ client preserves explicit retry key, revision and raw while enforcing same-origin credentials (79.3828ms)\n✔ malformed or extra API fields cannot become frontend state (4.9962ms)\n✔ 503 and 409 remain typed operational failures rather than mathematical verdicts (4.2163ms)\n✔ browser validators run with dynamic code generation disabled (strict CSP) (32.8677ms)\n✔ progress cannot be adopted from a different session and teacher examples cannot cross dataset boundaries (0.6628ms)\n✔ teacher response validation rejects non-synthetic flags before rendering (5.6479ms)\nℹ tests 10\nℹ suites 0\nℹ pass 10\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 627.536\n"
+    },
+    {
+      "key": "python_physics",
+      "command": "$env:PYTHONPATH='services/math-engine/src'; node tools/python-task.mjs -m unittest discover -s services/math-engine/tests -p 'test_physics*.py' -v",
+      "chunk_id": "eda8a0",
+      "wall_time_seconds": 3.2824814,
+      "exit_code": 0,
+      "original_token_count": 318,
+      "output": "test_acceleration_alias_and_negative_displacement (test_physics.PhysicsTests.test_acceleration_alias_and_negative_displacement) ... ok\r\ntest_all_draft_references_are_computationally_consistent (test_physics.PhysicsTests.test_all_draft_references_are_computationally_consistent) ... ok\r\ntest_diagnostics_are_evidence_based (test_physics.PhysicsTests.test_diagnostics_are_evidence_based) ... ok\r\ntest_old_algebra_engine_remains_separate (test_physics.PhysicsTests.test_old_algebra_engine_remains_separate) ... ok\r\ntest_rounding_is_explicit_and_reference_is_exact (test_physics.PhysicsTests.test_rounding_is_explicit_and_reference_is_exact) ... ok\r\ntest_schema_and_reference_guards (test_physics.PhysicsTests.test_schema_and_reference_guards) ... ok\r\ntest_untrusted_numeric_language_is_bounded (test_physics.PhysicsTests.test_untrusted_numeric_language_is_bounded) ... ok\r\ntest_valid_and_wrong_values_and_units (test_physics.PhysicsTests.test_valid_and_wrong_values_and_units) ... ok\r\ntest_twelve_practice_transfer_drafts_have_exact_references (test_physics_learning_content.PhysicsLearningContentTests.test_twelve_practice_transfer_drafts_have_exact_references) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 9 tests in 0.220s\r\n\r\nOK\r\n"
+    },
+    {
+      "key": "python_content",
+      "command": "$env:PYTHONPATH='services/math-engine/src'; node tools/python-task.mjs -m unittest discover -s services/math-engine/tests -p 'test_roadmap_content.py' -v",
+      "chunk_id": "d83c44",
+      "wall_time_seconds": 3.7533932,
+      "exit_code": 0,
+      "original_token_count": 72,
+      "output": "test_24_algebra_drafts_have_true_answers_and_distinct_wrong_steps (test_roadmap_content.RoadmapContentTests.test_24_algebra_drafts_have_true_answers_and_distinct_wrong_steps) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 1 test in 0.728s\r\n\r\nOK\r\n"
+    },
+    {
+      "key": "golden",
+      "command": "git diff --exit-code d5ea67d -- docs/14-GOLDEN-DATASET.md docs/14-GOLDEN-DATASET.cases.json planning/roadmap",
+      "chunk_id": "ab43d5",
+      "wall_time_seconds": 0.2763606,
+      "exit_code": 0,
+      "original_token_count": 0,
+      "output": ""
+    }
+  ]
+}

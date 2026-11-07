@@ -42,7 +42,28 @@ export interface PhysicsHint {
   revision: number;
   level: 1 | 2 | 3 | 4;
   textAr: string;
-  source: "reviewed_template";
+  source: "reviewed_template" | "llm_validated";
   independentEvidence: false;
   reasonAr: string;
+}
+export interface PhysicsLearningAssignment {
+  id: string;
+  phase: "remediation" | "transfer";
+  attemptId: string;
+  problem: PhysicsProblem;
+  status: "assigned" | "completed" | "invalidated";
+  independent: boolean;
+}
+export interface PhysicsLearningLoop {
+  episodeId: string | null;
+  rootAttemptId: string;
+  rootRevision: number;
+  state:
+    | "not_started"
+    | "remediating"
+    | "awaiting_transfer"
+    | "finished"
+    | "cancelled";
+  reasonAr: string;
+  assignments: PhysicsLearningAssignment[];
 }

@@ -21,6 +21,7 @@ export interface HintContext {
   misconceptionCandidate: string | null;
 }
 export interface AiReply {
+  billingOutputTokens?: number | null;
   rawJson: string;
   finish: "complete" | "refused" | "truncated";
   contentVersion: string;
@@ -30,6 +31,7 @@ export interface AiReply {
   outputTokens: number | null;
 }
 export interface AiTutorPort {
+  readonly model?: string;
   readonly kind: "disabled" | "test_double" | "gemini";
   readonly enabled: boolean;
   readonly maximumCostUnits: number;
@@ -39,6 +41,17 @@ export interface AiTutorPort {
   ph08Meaning?(text: string, context: HintContext): DraftResult | null;
   requiresReviewedFallback?(): boolean;
   adaptHint(context: HintContext, signal: AbortSignal): Promise<AiReply>;
+}
+/** Only metering metadata survives a provider failure; no rejected text or secret. */
+export class AiProviderFailure extends Error {
+  constructor(
+    readonly usage: Pick<
+      AiReply,
+      "inputTokens" | "outputTokens" | "billingOutputTokens"
+    >,
+  ) {
+    super("GEMINI_SAFE_FAILURE");
+  }
 }
 /** No external provider is approved in this delivery. A real adapter is not activated. */
 export class NoExternalAi implements AiTutorPort {
@@ -133,6 +146,8 @@ export function safeTeachingText(text: string): boolean {
   );
 }
 export interface DraftResult {
+  billingOutputTokens?: number | null;
+  invoked?: boolean;
   text: string | null;
   reason: string;
   inputTokens?: number | null;
@@ -239,11 +254,15 @@ export async function composeWithDeadline(
       ...result,
       inputTokens: bounded(reply.inputTokens),
       outputTokens: bounded(reply.outputTokens),
+      ...(reply.billingOutputTokens === undefined
+        ? {}
+        : { billingOutputTokens: bounded(reply.billingOutputTokens) }),
     };
-  } catch {
+  } catch (error) {
     return {
       text: null,
       reason: signal.aborted ? "AI_TIMEOUT" : "AI_PROVIDER_ERROR",
+      ...(error instanceof AiProviderFailure ? error.usage : {}),
     };
   } finally {
     if (timer) clearTimeout(timer);

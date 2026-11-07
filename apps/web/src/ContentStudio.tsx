@@ -3,6 +3,7 @@ import type {
   ContentPayload,
   ContentStatus,
   PhysicsContent,
+  ProgrammingValidation,
   StudioItem,
 } from "../../../packages/contracts/src/product";
 import {
@@ -170,18 +171,31 @@ function formulaContent(
     ),
   };
 }
+const algebraErrorCodes = [
+  "ERR-ALG-01",
+  "ERR-ALG-02",
+  "ERR-ALG-03",
+  "ERR-ALG-04",
+  "ERR-ALG-05",
+  "ERR-ALG-06",
+] as const;
 function hintSlots(payload: ContentPayload): ContentPayload {
   return {
     ...payload,
-    hints: ([1, 2, 3, 4] as const).map(
-      (level) =>
-        payload.hints.find((hint) => hint.level === level) ?? {
-          level,
-          textAr: "",
-          source: "manual",
-          reviewed: false,
-        },
-    ),
+    hints: [
+      ...([1, 2, 3, 4] as const).map(
+        (level) =>
+          payload.hints.find(
+            (hint) => hint.level === level && !hint.errorCode,
+          ) ?? {
+            level,
+            textAr: "",
+            source: "manual" as const,
+            reviewed: false,
+          },
+      ),
+      ...payload.hints.filter((hint) => !!hint.errorCode),
+    ],
   };
 }
 function enumField<T extends string>(value: unknown, values: readonly T[]): T {
@@ -217,6 +231,14 @@ function contentPayload(value: unknown): ContentPayload {
         textAr: textField(h.textAr),
         source: enumField(h.source, ["manual", "ai_suggested"]),
         reviewed: booleanField(h.reviewed),
+        ...(h.errorCode === undefined
+          ? {}
+          : {
+              errorCode:
+                h.errorCode === null
+                  ? null
+                  : enumField(h.errorCode, algebraErrorCodes),
+            }),
       };
     }),
   };
@@ -300,6 +322,68 @@ function contentPayload(value: unknown): ContentPayload {
   }
   return p;
 }
+const runnerStatuses = [
+  "queued",
+  "running",
+  "succeeded",
+  "compile_error",
+  "runtime_error",
+  "timeout",
+  "resource_limit",
+  "service_error",
+] as const;
+const runnerLabels: Record<ProgrammingValidation["status"], string> = {
+  queued: "لم يُنفذ",
+  running: "قيد التنفيذ",
+  succeeded: "اكتمل التنفيذ",
+  compile_error: "خطأ في ترجمة الكود",
+  runtime_error: "خطأ أثناء التنفيذ",
+  timeout: "انتهت المهلة",
+  resource_limit: "تجاوز حد الموارد",
+  service_error: "تعذر التنفيذ",
+};
+function programmingValidation(value: unknown): ProgrammingValidation {
+  const r = record(value);
+  const count = (value: unknown) => {
+    const n = numberField(value);
+    if (!Number.isSafeInteger(n) || n < 0 || n > 12)
+      throw new Error("نتيجة اختبارات غير صالحة.");
+    return n;
+  };
+  const summary = (value: unknown) => {
+    const s = record(value),
+      passed = count(s.passed),
+      total = count(s.total);
+    if (passed > total) throw new Error("نتيجة اختبارات غير صالحة.");
+    return { passed, total };
+  };
+  const cases = arrayField(r.cases, (value) => {
+    const c = record(value);
+    return {
+      index: count(c.index),
+      visibility: enumField(c.visibility, ["public", "hidden"]),
+      status: enumField(c.status, runnerStatuses),
+      passed: booleanField(c.passed),
+      executed: booleanField(c.executed),
+    };
+  });
+  const result = {
+    status: enumField(r.status, runnerStatuses),
+    ...summary(r),
+    allPassed: booleanField(r.allPassed),
+    public: summary(r.public),
+    hidden: summary(r.hidden),
+    cases,
+  };
+  if (
+    cases.length !== result.total ||
+    cases.some((c, i) => c.index !== i || (c.passed && !c.executed)) ||
+    result.public.total + result.hidden.total !== result.total ||
+    result.public.passed + result.hidden.passed !== result.passed
+  )
+    throw new Error("نتيجة اختبارات غير صالحة.");
+  return result;
+}
 function studioItem(value: unknown): StudioItem {
   const r = record(value),
     v = r.validation === null ? null : record(r.validation);
@@ -323,6 +407,9 @@ function studioItem(value: unknown): StudioItem {
           issues: strings(v.issues),
           checkedAt: textField(v.checkedAt),
           engine: textField(v.engine),
+          ...(v.programming === undefined
+            ? {}
+            : { programming: programmingValidation(v.programming) }),
         }
       : null,
     createdAt: textField(r.createdAt),
@@ -1406,9 +1493,9 @@ export function ContentStudio({
                   <fieldset>
                     <legend>التلميحات المتدرجة</legend>
                     {payload.hints.map((hint, index) => (
-                      <div key={hint.level} className="hint-editor">
+                      <div key={index} className="hint-editor">
                         <Field
-                          id={"content-hint-" + hint.level}
+                          id={"content-hint-" + index}
                           label={
                             "H" +
                             hint.level +
@@ -1430,6 +1517,106 @@ export function ContentStudio({
                           multiline
                         />
                         <div className="actions">
+                          {payload.subject === "algebra" && (
+                            <>
+                              <label>
+                                نمط الخطأ{" "}
+                                <select
+                                  value={hint.errorCode ?? ""}
+                                  onChange={(e) =>
+                                    change({
+                                      ...payload,
+                                      hints: payload.hints.map((h, i) =>
+                                        i === index
+                                          ? {
+                                              ...h,
+                                              errorCode:
+                                                e.target.value === ""
+                                                  ? null
+                                                  : enumField(
+                                                      e.target.value,
+                                                      algebraErrorCodes,
+                                                    ),
+                                              reviewed: false,
+                                            }
+                                          : h,
+                                      ),
+                                    })
+                                  }
+                                >
+                                  <option value="">عام — دون تشخيص محدد</option>
+                                  {algebraErrorCodes.map((code) => (
+                                    <option
+                                      key={code}
+                                      value={code}
+                                      disabled={payload.hints.some(
+                                        (h, i) =>
+                                          i !== index &&
+                                          h.level === hint.level &&
+                                          h.errorCode === code,
+                                      )}
+                                    >
+                                      {code}
+                                    </option>
+                                  ))}
+                                </select>
+                              </label>
+                              {!!hint.errorCode && (
+                                <>
+                                  <label>
+                                    المستوى{" "}
+                                    <select
+                                      value={hint.level}
+                                      onChange={(e) =>
+                                        change({
+                                          ...payload,
+                                          hints: payload.hints.map((h, i) =>
+                                            i === index
+                                              ? {
+                                                  ...h,
+                                                  level: Number(
+                                                    e.target.value,
+                                                  ) as 1 | 2 | 3 | 4,
+                                                  reviewed: false,
+                                                }
+                                              : h,
+                                          ),
+                                        })
+                                      }
+                                    >
+                                      {([1, 2, 3, 4] as const).map((level) => (
+                                        <option
+                                          key={level}
+                                          value={level}
+                                          disabled={payload.hints.some(
+                                            (h, i) =>
+                                              i !== index &&
+                                              h.level === level &&
+                                              h.errorCode === hint.errorCode,
+                                          )}
+                                        >
+                                          H{level}
+                                        </option>
+                                      ))}
+                                    </select>
+                                  </label>
+                                  <button
+                                    type="button"
+                                    onClick={() =>
+                                      change({
+                                        ...payload,
+                                        hints: payload.hints.filter(
+                                          (_, i) => i !== index,
+                                        ),
+                                      })
+                                    }
+                                  >
+                                    احذف التلميح المخصص
+                                  </button>
+                                </>
+                              )}
+                            </>
+                          )}
                           <label>
                             المصدر{" "}
                             <select
@@ -1476,6 +1663,51 @@ export function ContentStudio({
                         </div>
                       </div>
                     ))}
+                    {payload.subject === "algebra" && (
+                      <button
+                        type="button"
+                        disabled={payload.hints.length >= 28}
+                        onClick={() => {
+                          const next = algebraErrorCodes
+                            .flatMap((errorCode) =>
+                              ([1, 2, 3, 4] as const).map((level) => ({
+                                errorCode,
+                                level,
+                              })),
+                            )
+                            .find(
+                              (candidate) =>
+                                !payload.hints.some(
+                                  (h) =>
+                                    h.level === candidate.level &&
+                                    h.errorCode === candidate.errorCode,
+                                ),
+                            );
+                          if (next)
+                            change({
+                              ...payload,
+                              hints: [
+                                ...payload.hints,
+                                {
+                                  ...next,
+                                  textAr: "",
+                                  source: "manual",
+                                  reviewed: false,
+                                },
+                              ],
+                            });
+                        }}
+                      >
+                        أضف تلميحًا مخصصًا لنمط خطأ
+                      </button>
+                    )}
+                    {payload.subject === "algebra" && (
+                      <p className="helper">
+                        يُستخدم القالب المخصص عند توافق التشخيص مع نمطه؛ أبقِ
+                        التلميحات العامة للحالات غير المحسومة. يجب أن يرتبط
+                        النمط بكتالوج المهارة المراجع قبل النشر.
+                      </p>
+                    )}
                   </fieldset>
                 </fieldset>
                 <div className="actions">
@@ -1591,6 +1823,67 @@ export function ContentStudio({
                       <li key={i}>{issue}</li>
                     ))}
                   </ul>
+                  {selected.validation.programming && (
+                    <div>
+                      <p>
+                        الاختبارات العلنية:{" "}
+                        {selected.validation.programming.public.passed.toLocaleString(
+                          "ar",
+                        )}{" "}
+                        من{" "}
+                        {selected.validation.programming.public.total.toLocaleString(
+                          "ar",
+                        )}{" "}
+                        · الاختبارات المخفية:{" "}
+                        {selected.validation.programming.hidden.passed.toLocaleString(
+                          "ar",
+                        )}{" "}
+                        من{" "}
+                        {selected.validation.programming.hidden.total.toLocaleString(
+                          "ar",
+                        )}
+                      </p>
+                      <div className="table-scroll">
+                        <table>
+                          <caption>
+                            نتائج فحص الحل المرجعي للمؤلف والمراجع
+                          </caption>
+                          <thead>
+                            <tr>
+                              <th scope="col">الحالة</th>
+                              <th scope="col">النوع</th>
+                              <th scope="col">التنفيذ</th>
+                              <th scope="col">النتيجة</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {selected.validation.programming.cases.map((c) => (
+                              <tr key={c.index}>
+                                <th scope="row">
+                                  {(c.index + 1).toLocaleString("ar")}
+                                </th>
+                                <td>
+                                  {c.visibility === "public" ? "علني" : "مخفي"}
+                                </td>
+                                <td>{runnerLabels[c.status]}</td>
+                                <td>
+                                  {!c.executed
+                                    ? "لم يُنفذ"
+                                    : c.passed
+                                      ? "اجتاز"
+                                      : "لم يجتز"}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                      <p className="helper">
+                        الحالة التي لم تُنفذ لا تُعد اجتيازًا. هذه التفاصيل خاصة
+                        بمراجعة المحتوى.
+                      </p>
+                    </div>
+                  )}
                   <p className="helper">
                     المحرك: <bdi dir="ltr">{selected.validation.engine}</bdi> ·{" "}
                     {new Date(selected.validation.checkedAt).toLocaleString(

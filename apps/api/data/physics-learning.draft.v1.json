@@ -1,0 +1,632 @@
+[
+  {
+    "titleAr": "الحركة بسرعة ثابتة — تدريب علاجي",
+    "statementAr": "في حركة على محور محدد وبمعطيات ثابتة، أوجد المسافة. القيم المعطاة بوحدات النظام الدولي: v = 17 m/s، t = 11 s.",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "constant_motion",
+    "lessonTitleAr": "الحركة بسرعة ثابتة",
+    "skillCodes": ["PHYS-CONSTANT_MOTION"],
+    "difficulty": 1,
+    "kind": "remediation",
+    "familyCode": "PHYS-PRACTICE-constant_motion",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ووحدتها قبل اختيار العلاقة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "المسافة تساوي مقدار السرعة الثابتة مضروبًا في الزمن.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "عوّض المعطيات مع إشاراتها ووحداتها في العلاقة ثم افصل الحساب العددي عن فحص الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "أولًا: المسافة تساوي مقدار السرعة الثابتة مضروبًا في الزمن.\nثانيًا: استعمل المعطيات بوحدات النظام الدولي كما هي مع حفظ إشارة المحور.\nثالثًا: النتيجة المرجعية بعد التعويض والتحقق: 187 m.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "constant_speed_distance",
+      "quantity": "distance",
+      "expectedDimension": "length",
+      "expectedValueSI": "187",
+      "expectedUnit": "m",
+      "tolerance": "0",
+      "givens": {
+        "v": "17",
+        "t": "11"
+      }
+    }
+  },
+  {
+    "titleAr": "الحركة بسرعة ثابتة — نقل فهم مستقل",
+    "statementAr": "في حركة على محور محدد وبمعطيات ثابتة، أوجد المسافة. القيم المعطاة بوحدات النظام الدولي: v = 19 m/s، t = 13 s.",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "constant_motion",
+    "lessonTitleAr": "الحركة بسرعة ثابتة",
+    "skillCodes": ["PHYS-CONSTANT_MOTION"],
+    "difficulty": 2,
+    "kind": "transfer",
+    "familyCode": "PHYS-TRANSFER-constant_motion",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ووحدتها قبل اختيار العلاقة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "المسافة تساوي مقدار السرعة الثابتة مضروبًا في الزمن.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "عوّض المعطيات مع إشاراتها ووحداتها في العلاقة ثم افصل الحساب العددي عن فحص الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "أولًا: المسافة تساوي مقدار السرعة الثابتة مضروبًا في الزمن.\nثانيًا: استعمل المعطيات بوحدات النظام الدولي كما هي مع حفظ إشارة المحور.\nثالثًا: النتيجة المرجعية بعد التعويض والتحقق: 247 m.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "constant_speed_distance",
+      "quantity": "distance",
+      "expectedDimension": "length",
+      "expectedValueSI": "247",
+      "expectedUnit": "m",
+      "tolerance": "0",
+      "givens": {
+        "v": "19",
+        "t": "13"
+      }
+    }
+  },
+  {
+    "titleAr": "المسافة والإزاحة — تدريب علاجي",
+    "statementAr": "في حركة على محور محدد وبمعطيات ثابتة، أوجد الإزاحة. القيم المعطاة بوحدات النظام الدولي: v = -7 m/s، t = 9 s.",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "distance_displacement",
+    "lessonTitleAr": "المسافة والإزاحة",
+    "skillCodes": ["PHYS-DISTANCE_DISPLACEMENT"],
+    "difficulty": 1,
+    "kind": "remediation",
+    "familyCode": "PHYS-PRACTICE-distance_displacement",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ووحدتها قبل اختيار العلاقة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "الإزاحة تساوي السرعة المتجهة مضروبة في الزمن، وإشارتها تتبع اتجاه المحور.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "عوّض المعطيات مع إشاراتها ووحداتها في العلاقة ثم افصل الحساب العددي عن فحص الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "أولًا: الإزاحة تساوي السرعة المتجهة مضروبة في الزمن، وإشارتها تتبع اتجاه المحور.\nثانيًا: استعمل المعطيات بوحدات النظام الدولي كما هي مع حفظ إشارة المحور.\nثالثًا: النتيجة المرجعية بعد التعويض والتحقق: -63 m.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "constant_velocity_displacement",
+      "quantity": "displacement",
+      "expectedDimension": "length",
+      "expectedValueSI": "-63",
+      "expectedUnit": "m",
+      "tolerance": "0",
+      "givens": {
+        "v": "-7",
+        "t": "9"
+      }
+    }
+  },
+  {
+    "titleAr": "المسافة والإزاحة — نقل فهم مستقل",
+    "statementAr": "في حركة على محور محدد وبمعطيات ثابتة، أوجد الإزاحة. القيم المعطاة بوحدات النظام الدولي: v = -11 m/s، t = 8 s.",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "distance_displacement",
+    "lessonTitleAr": "المسافة والإزاحة",
+    "skillCodes": ["PHYS-DISTANCE_DISPLACEMENT"],
+    "difficulty": 2,
+    "kind": "transfer",
+    "familyCode": "PHYS-TRANSFER-distance_displacement",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ووحدتها قبل اختيار العلاقة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "الإزاحة تساوي السرعة المتجهة مضروبة في الزمن، وإشارتها تتبع اتجاه المحور.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "عوّض المعطيات مع إشاراتها ووحداتها في العلاقة ثم افصل الحساب العددي عن فحص الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "أولًا: الإزاحة تساوي السرعة المتجهة مضروبة في الزمن، وإشارتها تتبع اتجاه المحور.\nثانيًا: استعمل المعطيات بوحدات النظام الدولي كما هي مع حفظ إشارة المحور.\nثالثًا: النتيجة المرجعية بعد التعويض والتحقق: -88 m.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "constant_velocity_displacement",
+      "quantity": "displacement",
+      "expectedDimension": "length",
+      "expectedValueSI": "-88",
+      "expectedUnit": "m",
+      "tolerance": "0",
+      "givens": {
+        "v": "-11",
+        "t": "8"
+      }
+    }
+  },
+  {
+    "titleAr": "السرعة المتوسطة — تدريب علاجي",
+    "statementAr": "في حركة على محور محدد وبمعطيات ثابتة، أوجد السرعة المتوسطة. القيم المعطاة بوحدات النظام الدولي: d = 132 m، t = 11 s.",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "average_speed",
+    "lessonTitleAr": "السرعة المتوسطة",
+    "skillCodes": ["PHYS-AVERAGE_SPEED"],
+    "difficulty": 1,
+    "kind": "remediation",
+    "familyCode": "PHYS-PRACTICE-average_speed",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ووحدتها قبل اختيار العلاقة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "السرعة المتوسطة تساوي المسافة الكلية مقسومة على الزمن المنقضي.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "عوّض المعطيات مع إشاراتها ووحداتها في العلاقة ثم افصل الحساب العددي عن فحص الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "أولًا: السرعة المتوسطة تساوي المسافة الكلية مقسومة على الزمن المنقضي.\nثانيًا: استعمل المعطيات بوحدات النظام الدولي كما هي مع حفظ إشارة المحور.\nثالثًا: النتيجة المرجعية بعد التعويض والتحقق: 12 m/s.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "average_speed",
+      "quantity": "speed",
+      "expectedDimension": "speed",
+      "expectedValueSI": "12",
+      "expectedUnit": "m/s",
+      "tolerance": "0",
+      "givens": {
+        "d": "132",
+        "t": "11"
+      }
+    }
+  },
+  {
+    "titleAr": "السرعة المتوسطة — نقل فهم مستقل",
+    "statementAr": "في حركة على محور محدد وبمعطيات ثابتة، أوجد السرعة المتوسطة. القيم المعطاة بوحدات النظام الدولي: d = 221 m، t = 13 s.",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "average_speed",
+    "lessonTitleAr": "السرعة المتوسطة",
+    "skillCodes": ["PHYS-AVERAGE_SPEED"],
+    "difficulty": 2,
+    "kind": "transfer",
+    "familyCode": "PHYS-TRANSFER-average_speed",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ووحدتها قبل اختيار العلاقة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "السرعة المتوسطة تساوي المسافة الكلية مقسومة على الزمن المنقضي.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "عوّض المعطيات مع إشاراتها ووحداتها في العلاقة ثم افصل الحساب العددي عن فحص الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "أولًا: السرعة المتوسطة تساوي المسافة الكلية مقسومة على الزمن المنقضي.\nثانيًا: استعمل المعطيات بوحدات النظام الدولي كما هي مع حفظ إشارة المحور.\nثالثًا: النتيجة المرجعية بعد التعويض والتحقق: 17 m/s.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "average_speed",
+      "quantity": "speed",
+      "expectedDimension": "speed",
+      "expectedValueSI": "17",
+      "expectedUnit": "m/s",
+      "tolerance": "0",
+      "givens": {
+        "d": "221",
+        "t": "13"
+      }
+    }
+  },
+  {
+    "titleAr": "التسارع — تدريب علاجي",
+    "statementAr": "في حركة على محور محدد وبمعطيات ثابتة، أوجد التسارع. القيم المعطاة بوحدات النظام الدولي: v = 41 m/s، v0 = 5 m/s، t = 12 s.",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "acceleration",
+    "lessonTitleAr": "التسارع",
+    "skillCodes": ["PHYS-ACCELERATION"],
+    "difficulty": 1,
+    "kind": "remediation",
+    "familyCode": "PHYS-PRACTICE-acceleration",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ووحدتها قبل اختيار العلاقة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "التسارع يساوي تغير السرعة المتجهة مقسومًا على الزمن المنقضي.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "عوّض المعطيات مع إشاراتها ووحداتها في العلاقة ثم افصل الحساب العددي عن فحص الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "أولًا: التسارع يساوي تغير السرعة المتجهة مقسومًا على الزمن المنقضي.\nثانيًا: استعمل المعطيات بوحدات النظام الدولي كما هي مع حفظ إشارة المحور.\nثالثًا: النتيجة المرجعية بعد التعويض والتحقق: 3 m/s².",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "acceleration",
+      "quantity": "acceleration",
+      "expectedDimension": "acceleration",
+      "expectedValueSI": "3",
+      "expectedUnit": "m/s²",
+      "tolerance": "0",
+      "givens": {
+        "v": "41",
+        "v0": "5",
+        "t": "12"
+      }
+    }
+  },
+  {
+    "titleAr": "التسارع — نقل فهم مستقل",
+    "statementAr": "في حركة على محور محدد وبمعطيات ثابتة، أوجد التسارع. القيم المعطاة بوحدات النظام الدولي: v = 74 m/s، v0 = 14 m/s، t = 15 s.",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "acceleration",
+    "lessonTitleAr": "التسارع",
+    "skillCodes": ["PHYS-ACCELERATION"],
+    "difficulty": 2,
+    "kind": "transfer",
+    "familyCode": "PHYS-TRANSFER-acceleration",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ووحدتها قبل اختيار العلاقة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "التسارع يساوي تغير السرعة المتجهة مقسومًا على الزمن المنقضي.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "عوّض المعطيات مع إشاراتها ووحداتها في العلاقة ثم افصل الحساب العددي عن فحص الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "أولًا: التسارع يساوي تغير السرعة المتجهة مقسومًا على الزمن المنقضي.\nثانيًا: استعمل المعطيات بوحدات النظام الدولي كما هي مع حفظ إشارة المحور.\nثالثًا: النتيجة المرجعية بعد التعويض والتحقق: 4 m/s².",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "acceleration",
+      "quantity": "acceleration",
+      "expectedDimension": "acceleration",
+      "expectedValueSI": "4",
+      "expectedUnit": "m/s²",
+      "tolerance": "0",
+      "givens": {
+        "v": "74",
+        "v0": "14",
+        "t": "15"
+      }
+    }
+  },
+  {
+    "titleAr": "السرعة النهائية — تدريب علاجي",
+    "statementAr": "في حركة على محور محدد وبمعطيات ثابتة، أوجد السرعة النهائية. القيم المعطاة بوحدات النظام الدولي: v0 = 7 m/s، a = 4 m/s²، t = 11 s.",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "final_velocity",
+    "lessonTitleAr": "السرعة النهائية",
+    "skillCodes": ["PHYS-FINAL_VELOCITY"],
+    "difficulty": 1,
+    "kind": "remediation",
+    "familyCode": "PHYS-PRACTICE-final_velocity",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ووحدتها قبل اختيار العلاقة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "السرعة النهائية تساوي السرعة الابتدائية مضافًا إليها حاصل ضرب التسارع في الزمن.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "عوّض المعطيات مع إشاراتها ووحداتها في العلاقة ثم افصل الحساب العددي عن فحص الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "أولًا: السرعة النهائية تساوي السرعة الابتدائية مضافًا إليها حاصل ضرب التسارع في الزمن.\nثانيًا: استعمل المعطيات بوحدات النظام الدولي كما هي مع حفظ إشارة المحور.\nثالثًا: النتيجة المرجعية بعد التعويض والتحقق: 51 m/s.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "final_velocity",
+      "quantity": "velocity",
+      "expectedDimension": "speed",
+      "expectedValueSI": "51",
+      "expectedUnit": "m/s",
+      "tolerance": "0",
+      "givens": {
+        "v0": "7",
+        "a": "4",
+        "t": "11"
+      }
+    }
+  },
+  {
+    "titleAr": "السرعة النهائية — نقل فهم مستقل",
+    "statementAr": "في حركة على محور محدد وبمعطيات ثابتة، أوجد السرعة النهائية. القيم المعطاة بوحدات النظام الدولي: v0 = -5 m/s، a = 3 m/s²، t = 12 s.",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "final_velocity",
+    "lessonTitleAr": "السرعة النهائية",
+    "skillCodes": ["PHYS-FINAL_VELOCITY"],
+    "difficulty": 2,
+    "kind": "transfer",
+    "familyCode": "PHYS-TRANSFER-final_velocity",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ووحدتها قبل اختيار العلاقة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "السرعة النهائية تساوي السرعة الابتدائية مضافًا إليها حاصل ضرب التسارع في الزمن.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "عوّض المعطيات مع إشاراتها ووحداتها في العلاقة ثم افصل الحساب العددي عن فحص الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "أولًا: السرعة النهائية تساوي السرعة الابتدائية مضافًا إليها حاصل ضرب التسارع في الزمن.\nثانيًا: استعمل المعطيات بوحدات النظام الدولي كما هي مع حفظ إشارة المحور.\nثالثًا: النتيجة المرجعية بعد التعويض والتحقق: 31 m/s.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "final_velocity",
+      "quantity": "velocity",
+      "expectedDimension": "speed",
+      "expectedValueSI": "31",
+      "expectedUnit": "m/s",
+      "tolerance": "0",
+      "givens": {
+        "v0": "-5",
+        "a": "3",
+        "t": "12"
+      }
+    }
+  },
+  {
+    "titleAr": "الإزاحة مع التسارع — تدريب علاجي",
+    "statementAr": "في حركة على محور محدد وبمعطيات ثابتة، أوجد الإزاحة. القيم المعطاة بوحدات النظام الدولي: v0 = 6 m/s، a = 2 m/s²، t = 11 s.",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "displacement",
+    "lessonTitleAr": "الإزاحة مع التسارع",
+    "skillCodes": ["PHYS-DISPLACEMENT"],
+    "difficulty": 1,
+    "kind": "remediation",
+    "familyCode": "PHYS-PRACTICE-displacement",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ووحدتها قبل اختيار العلاقة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "الإزاحة مع التسارع الثابت تجمع أثر السرعة الابتدائية وأثر نصف التسارع في مربع الزمن.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "عوّض المعطيات مع إشاراتها ووحداتها في العلاقة ثم افصل الحساب العددي عن فحص الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "أولًا: الإزاحة مع التسارع الثابت تجمع أثر السرعة الابتدائية وأثر نصف التسارع في مربع الزمن.\nثانيًا: استعمل المعطيات بوحدات النظام الدولي كما هي مع حفظ إشارة المحور.\nثالثًا: النتيجة المرجعية بعد التعويض والتحقق: 187 m.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "displacement",
+      "quantity": "displacement",
+      "expectedDimension": "length",
+      "expectedValueSI": "187",
+      "expectedUnit": "m",
+      "tolerance": "0",
+      "givens": {
+        "v0": "6",
+        "a": "2",
+        "t": "11"
+      }
+    }
+  },
+  {
+    "titleAr": "الإزاحة مع التسارع — نقل فهم مستقل",
+    "statementAr": "في حركة على محور محدد وبمعطيات ثابتة، أوجد الإزاحة. القيم المعطاة بوحدات النظام الدولي: v0 = -3 m/s، a = 2 m/s²، t = 13 s.",
+    "subject": "physics",
+    "unitCode": "kinematics_1d",
+    "unitTitleAr": "الحركة في خط مستقيم",
+    "lessonCode": "displacement",
+    "lessonTitleAr": "الإزاحة مع التسارع",
+    "skillCodes": ["PHYS-DISPLACEMENT"],
+    "difficulty": 2,
+    "kind": "transfer",
+    "familyCode": "PHYS-TRANSFER-displacement",
+    "hints": [
+      {
+        "level": 1,
+        "textAr": "حدد الكمية المطلوبة ووحدتها قبل اختيار العلاقة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 2,
+        "textAr": "الإزاحة مع التسارع الثابت تجمع أثر السرعة الابتدائية وأثر نصف التسارع في مربع الزمن.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 3,
+        "textAr": "عوّض المعطيات مع إشاراتها ووحداتها في العلاقة ثم افصل الحساب العددي عن فحص الوحدة.",
+        "source": "manual",
+        "reviewed": false
+      },
+      {
+        "level": 4,
+        "textAr": "أولًا: الإزاحة مع التسارع الثابت تجمع أثر السرعة الابتدائية وأثر نصف التسارع في مربع الزمن.\nثانيًا: استعمل المعطيات بوحدات النظام الدولي كما هي مع حفظ إشارة المحور.\nثالثًا: النتيجة المرجعية بعد التعويض والتحقق: 130 m.",
+        "source": "manual",
+        "reviewed": false
+      }
+    ],
+    "physics": {
+      "topic": "kinematics_1d",
+      "formula": "displacement",
+      "quantity": "displacement",
+      "expectedDimension": "length",
+      "expectedValueSI": "130",
+      "expectedUnit": "m",
+      "tolerance": "0",
+      "givens": {
+        "v0": "-3",
+        "a": "2",
+        "t": "13"
+      }
+    }
+  }
+]

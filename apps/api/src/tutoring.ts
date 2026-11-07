@@ -4,6 +4,9 @@ import {
   transferLearningKind,
 } from "./learning";
 import { createHash, randomUUID } from "node:crypto";
+import { estimateGeminiCost } from "./ai-cost";
+import { BetaGeminiPort, betaAiOwner, withBetaAiOwner } from "./beta-gemini";
+import { canDeliverExternalAi } from "./external-ai-access";
 import type { Prisma } from "@prisma/client";
 import { ApiFault } from "./http";
 import { output, Schema } from "./contracts";
@@ -12,6 +15,10 @@ import type { MathPort } from "./math-gateway";
 import { adaptiveTutoring, TutoringPlan } from "./adaptive-tutoring";
 import { betaTelemetry, reserveBetaAiBudget } from "./beta-operations";
 import { projectDiagnosis } from "./diagnosis";
+import {
+  realLearningConfigured,
+  requireLearningAccess,
+} from "./learning-access";
 import { DIAGNOSIS_POLICY } from "./diagnosis-rules";
 import {
   AiTutorPort,
@@ -26,6 +33,7 @@ import {
   hintLevel,
   HINT_PROMPT_VERSION,
   nextHintLevel,
+  matchesHintErrorCode,
   TUTORING_POLICY,
 } from "./tutoring-policy";
 type Tx = Prisma.TransactionClient;
@@ -145,8 +153,10 @@ export class TutoringService {
     readonly limits: TutoringLimits,
     readonly active = false,
   ) {
-    if (active && !store.syntheticData)
-      throw new Error("PH-07 requires explicitly synthetic review data");
+    if (active && !store.syntheticData && !realLearningConfigured())
+      throw new Error(
+        "Tutoring requires synthetic data or explicitly configured real learning",
+      );
     for (const value of Object.values(limits))
       if (!Number.isSafeInteger(value) || value <= 0 || value > 2147483647)
         throw new Error("Explicit bounded PH-07 test limits required");
@@ -186,12 +196,13 @@ export class TutoringService {
         is_synthetic: boolean;
       }[]
     >`SELECT p.original_equation_raw,l.release_id,l.is_synthetic FROM problem_revisions p JOIN learning_sessions l ON l.id=${a.learning_session_id}::uuid WHERE p.id=${a.problem_revision_id}::uuid AND p.release_id=l.release_id`;
-    if (!p?.is_synthetic || !p.original_equation_raw || a.status === "stopped")
+    if (!p || !p.original_equation_raw || a.status === "stopped")
       throw new ApiFault(
         409,
         "invalid_state",
         "المساعدة غير متاحة في سياق هذه المحاولة.",
       );
+    await requireLearningAccess(tx, auth, p.is_synthetic);
     const [row] = await tx.$queryRaw<
       { report_json: unknown }[]
     >`SELECT report_json FROM verification_reports WHERE attempt_id=${a.id}::uuid AND attempt_revision=${a.revision} AND problem_revision_id=${a.problem_revision_id}::uuid AND notation_profile=${a.notation_profile} AND engine_version='0.3.0' AND scope='current_sequence' AND dispatch_status='finished' AND report_json->>'isCurrent'='true' ORDER BY finished_at DESC,id DESC LIMIT 1`;
@@ -199,6 +210,7 @@ export class TutoringService {
       ? await projectDiagnosis(
           tx,
           output("VerificationReport", row.report_json),
+          auth,
         )
       : null;
     const steps = await this.store.readStepsInTransaction(tx, a.id);
@@ -407,9 +419,10 @@ export class TutoringService {
         );
         const [template] = await tx.$queryRaw<
           Template[]
-        >`SELECT * FROM intervention_templates WHERE release_id=${current.releaseId}::uuid AND hint_level=${level} AND policy_version=${TUTORING_POLICY} AND enabled AND is_synthetic AND (problem_revision_id=${a.problem_revision_id}::uuid OR problem_revision_id IS NULL) AND (${level}=4 OR error_code IS NULL OR error_code=${current.pattern}) ORDER BY (problem_revision_id IS NOT NULL) DESC,(error_code IS NOT NULL) DESC,template_version DESC,id LIMIT 1 FOR SHARE`;
+        >`SELECT * FROM intervention_templates WHERE release_id=${current.releaseId}::uuid AND hint_level=${level} AND policy_version=${TUTORING_POLICY} AND enabled AND is_synthetic AND (problem_revision_id=${a.problem_revision_id}::uuid OR problem_revision_id IS NULL) AND (error_code IS NULL OR error_code=${current.pattern}) ORDER BY (problem_revision_id IS NOT NULL) DESC,(error_code IS NOT NULL) DESC,template_version DESC,id LIMIT 1 FOR SHARE`;
         if (
           !template ||
+          !matchesHintErrorCode(template.error_code, current.pattern) ||
           template.review_status !== "reviewed" ||
           !template.reviewed_at ||
           !template.reviewed_by_role ||
@@ -586,6 +599,15 @@ export class TutoringService {
       async (tx) => {
         await this.store.authorizeInTransaction(tx, auth);
         const current = await this.current(tx, auth, s.current.a.id);
+        if (
+          this.ai instanceof BetaGeminiPort &&
+          reason === "AI_VALIDATED" &&
+          (!this.ai.enabled ||
+            !(await canDeliverExternalAi(tx, betaAiOwner(auth))))
+        ) {
+          text = s.template.text_ar;
+          reason = "BETA_AI_CONSENT_OR_AUTHORIZATION_CHANGED";
+        }
         const [job] = await tx.$queryRaw<
           { id: string }[]
         >`SELECT id FROM hint_requests WHERE id=${s.id}::uuid AND dispatch_status='running' AND deadline_at>now() FOR UPDATE`;
@@ -633,7 +655,7 @@ export class TutoringService {
         const audit = {
           outcome: reason,
           providerKind: s.aiContext ? this.ai.kind : "not_used",
-          actualLlmUsed: false,
+          actualLlmUsed: this.ai.kind === "gemini" && usage?.invoked === true,
           validatorAccepted:
             reason === "AI_VALIDATED" || reason === "PH08_GENERATED_VALIDATED",
           callReserved: s.aiReserved,
@@ -648,6 +670,18 @@ export class TutoringService {
           maxOutputTokens: this.limits.maxOutputTokens,
           reportedInputTokens: usage?.inputTokens ?? null,
           reportedOutputTokens: usage?.outputTokens ?? null,
+          geminiCost:
+            this.ai.kind === "gemini"
+              ? estimateGeminiCost(
+                  this.ai.model,
+                  usage?.inputTokens ?? null,
+                  usage?.billingOutputTokens === undefined
+                    ? (usage?.outputTokens ?? null)
+                    : usage.billingOutputTokens,
+                  undefined,
+                  usage?.invoked === true,
+                )
+              : null,
           ...this.ai.invocationAudit?.(),
         };
         await tx.$executeRaw`INSERT INTO tutoring_events(id,hint_request_id,attempt_id,attempt_revision,problem_revision_id,anchor_step_version_id,verification_result_id,diagnosis_id,template_id,event_type,hint_level,policy_version,prompt_version,content_version,context_key,rendered_text_ar,solution_steps,generation_source,independent_evidence_eligible,public_json,math_proof_json,audit_json)
@@ -678,23 +712,34 @@ export class TutoringService {
     );
     try {
       const proof = await this.mathProof(s, controller.signal);
+      const betaPort = this.ai instanceof BetaGeminiPort ? this.ai : null;
       const betaAllowed =
         s.aiContext && s.aiReserved
-          ? await reserveBetaAiBudget(
+          ? !!betaPort ||
+            (await reserveBetaAiBudget(
               this.store,
               auth,
               this.limits.maxInputBytes + this.limits.maxOutputTokens,
-            )
+            ))
           : false;
+      const invoke = async (): Promise<DraftResult> => {
+        const draft = await composeWithDeadline(
+          this.ai,
+          s.aiContext!,
+          controller.signal,
+          this.limits.aiTimeoutMs,
+          this.limits.maxOutputTokens,
+        );
+        return {
+          ...draft,
+          invoked: betaPort ? betaPort.invocationStarted() : true,
+        };
+      };
       const result: DraftResult =
         s.aiContext && s.aiReserved && betaAllowed
-          ? await composeWithDeadline(
-              this.ai,
-              s.aiContext,
-              controller.signal,
-              this.limits.aiTimeoutMs,
-              this.limits.maxOutputTokens,
-            )
+          ? await (betaPort
+              ? withBetaAiOwner(this.store, auth, invoke)
+              : invoke())
           : {
               text: null,
               reason:
@@ -702,6 +747,18 @@ export class TutoringService {
                   ? "BETA_AI_BUDGET_REJECTED"
                   : s.providerReason,
             };
+      const invoked = result.invoked ?? false;
+      betaTelemetry.recordAi({
+        model: this.ai.model,
+        billingOutputTokens: result.billingOutputTokens,
+        provider: invoked ? this.ai.kind : "not_used",
+        invoked,
+        source: result.text === null ? "reviewed_template" : "llm_validated",
+        inputTokens: result.inputTokens ?? null,
+        outputTokens: result.outputTokens ?? null,
+        estimatedCostMicros: null,
+        timeout: result.reason === "AI_TIMEOUT",
+      });
       if (controller.signal.aborted) throw unavailable();
       if (
         result.text === null &&
@@ -717,20 +774,8 @@ export class TutoringService {
         result.text ?? s.template.text_ar,
         result.reason,
         proof,
-        result,
+        { ...result, invoked },
       );
-      betaTelemetry.recordAi({
-        provider: s.aiReserved && betaAllowed ? this.ai.kind : "not_used",
-        invoked: s.aiReserved && betaAllowed,
-        source:
-          event.generationSource === "llm_validated"
-            ? "llm_validated"
-            : "reviewed_template",
-        inputTokens: result.inputTokens ?? null,
-        outputTokens: result.outputTokens ?? null,
-        estimatedCostMicros: null,
-        timeout: result.reason === "AI_TIMEOUT",
-      });
       return event;
     } catch (e) {
       await this.store.db.$transaction(async (tx) => {

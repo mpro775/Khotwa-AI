@@ -51,7 +51,9 @@ export function selectStudioPairing(
       !!s.reviewed_at &&
       !!s.published_at &&
       p.hints.every((h) => h.reviewed) &&
-      [1, 2, 3].every((level) => p.hints.some((h) => h.level === level)) &&
+      [1, 2, 3].every((level) =>
+        p.hints.some((h) => h.level === level && h.errorCode == null),
+      ) &&
       studioHintIssues(p).length === 0 &&
       pairingEquationKey(p.algebra.equationRaw) !==
         pairingEquationKey(root.algebra!.equationRaw)

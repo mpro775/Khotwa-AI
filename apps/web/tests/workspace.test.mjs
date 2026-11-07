@@ -306,6 +306,17 @@ test("progress cannot be adopted from a different session and teacher examples c
   );
   assert.equal(
     canAdoptProgress(id, { learningSessionId: id, isSynthetic: false }),
+    true,
+  );
+  assert.equal(
+    canAdoptProgress(id, { learningSessionId: id, isSynthetic: "false" }),
+    false,
+  );
+  assert.equal(
+    canAdoptProgress(id, {
+      learningSessionId: randomUUID(),
+      isSynthetic: false,
+    }),
     false,
   );
   assert.equal(

@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import {
+  AccountAiConsentPanel,
+  AccountLearningConsentPanel,
+} from "./AccountAiConsentPanel";
+import {
   ProductApi,
   ProductFault,
   type Identity,
@@ -431,6 +435,16 @@ export function AccountPanel({
               </button>
             </div>
           </div>
+          <AccountLearningConsentPanel
+            key={"learning:" + identity.user.id}
+            api={api}
+            accountId={identity.user.id}
+          />
+          <AccountAiConsentPanel
+            key={"ai:" + identity.user.id}
+            api={api}
+            accountId={identity.user.id}
+          />
           {identity.guestAvailable && (
             <div className="product-card">
               <h2>اربط محاولات الضيف الحالية</h2>

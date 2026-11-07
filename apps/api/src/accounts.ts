@@ -21,6 +21,8 @@ import { idempotencyHeader, uuid } from "./contracts";
 import { Store, type GuestAuth } from "./store";
 import { summarizeSkill, type ProgressEvidence } from "./progress";
 import { accountMailFromEnvironment, type AccountMail } from "./account-mail";
+import { REAL_LEARNING_POLICY, EXTERNAL_AI_POLICY } from "./learning-access";
+import { productMutation } from "./product-core";
 
 export type AccountRole = "student" | "teacher" | "content_manager" | "admin";
 export interface ProductActor {
@@ -602,9 +604,24 @@ export class AccountService {
         "لا توجد جلسة ضيف مستقلة صالحة للربط.",
       );
     return this.store.db.$transaction(async (tx) => {
+      await tx.$executeRaw`SELECT pg_advisory_xact_lock(71941020261118)`;
       await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtextextended(${actor.ownerKey},0))`;
       await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtextextended(${"guest:" + guest.row.id},0))`;
       await this.authorizeInTransaction(tx, actor);
+      const [runnerTable] = await tx.$queryRaw<
+        { present: boolean }[]
+      >`SELECT to_regclass('public.runner_work_requests') IS NOT NULL AS present`;
+      if (runnerTable?.present) {
+        const [active] = await tx.$queryRaw<
+          { id: string }[]
+        >`SELECT id FROM runner_work_requests WHERE owner_key=${"guest:" + guest.row.id} AND state IN ('running','interrupted') LIMIT 1 FOR UPDATE`;
+        if (active)
+          throw new ApiFault(
+            409,
+            "request_in_progress",
+            "انتظر اكتمال التنفيذ أو معالجة العمل المعلق قبل ربط الضيف بالحساب.",
+          );
+      }
       const [previous] = await tx.$queryRaw<
         { user_id: string; learning_session_count: number }[]
       >`SELECT user_id,learning_session_count FROM guest_account_claims WHERE guest_session_id=${guest.row.id}::uuid FOR UPDATE`;
@@ -628,6 +645,23 @@ export class AccountService {
           "invalid_state",
           "لا يمكن خلط البيانات الاصطناعية مع حسابات المتعلمين.",
         );
+      const [product] = await tx.$queryRaw<
+        { present: boolean }[]
+      >`SELECT to_regclass('public.subject_attempts') IS NOT NULL AS present`;
+      if (product?.present && !user.is_internal) {
+        // Guest subject journeys are explicitly synthetic-only. Legacy product
+        // rows have no independent provenance stamp; never relabel them real
+        // merely because there are no legacy algebra learning sessions.
+        const [guestProduct] = await tx.$queryRaw<
+          { id: string }[]
+        >`SELECT id FROM subject_attempts WHERE owner_key=${"guest:" + guest.row.id} LIMIT 1`;
+        if (guestProduct)
+          throw new ApiFault(
+            409,
+            "invalid_state",
+            "محاولات مواد الضيف اصطناعية ولا يمكن ربطها بحساب متعلم حقيقي.",
+          );
+      }
       await tx.$executeRaw`UPDATE learning_sessions SET guest_session_id=${actor.guestId}::uuid WHERE guest_session_id=${guest.row.id}::uuid`;
       // Exposure history is immutable. Preserve the original first-seen time
       // when copying; an existing canonical exposure already disqualifies fresh
@@ -635,11 +669,21 @@ export class AccountService {
       await tx.$executeRaw`INSERT INTO content_exposures(id,guest_session_id,problem_revision_id,learning_family,equation_hash,exposure_kind,first_seen_at)
         SELECT gen_random_uuid(),${actor.guestId}::uuid,problem_revision_id,learning_family,equation_hash,exposure_kind,first_seen_at FROM content_exposures WHERE guest_session_id=${guest.row.id}::uuid ON CONFLICT(guest_session_id,problem_revision_id) DO NOTHING`;
       // The table is added by the next independent roadmap migration.
-      const [product] = await tx.$queryRaw<
-        { present: boolean }[]
-      >`SELECT to_regclass('public.subject_attempts') IS NOT NULL AS present`;
       if (product?.present)
         await tx.$executeRaw`UPDATE subject_attempts SET owner_key=${actor.ownerKey} WHERE owner_key=${"guest:" + guest.row.id}`;
+      const [runner] = await tx.$queryRaw<
+        { present: boolean }[]
+      >`SELECT to_regclass('public.runner_work_requests') IS NOT NULL AS present`;
+      if (runner?.present)
+        await tx.$executeRaw`UPDATE runner_work_requests SET owner_key=${actor.ownerKey},key_digest=${guest.row.id + ":"}||key_digest WHERE owner_key=${"guest:" + guest.row.id}`;
+      const [physics] = await tx.$queryRaw<
+        { present: boolean }[]
+      >`SELECT to_regclass('public.physics_learning_episodes') IS NOT NULL AS present`;
+      if (physics?.present) {
+        await tx.$executeRaw`UPDATE physics_learning_episodes SET owner_key=${actor.ownerKey} WHERE owner_key=${"guest:" + guest.row.id}`;
+        await tx.$executeRaw`INSERT INTO physics_content_exposures(id,owner_key,origin_owner_key,problem_revision_id,family_code,context_key,created_at) SELECT gen_random_uuid(),${actor.ownerKey},origin_owner_key,problem_revision_id,family_code,context_key,created_at FROM physics_content_exposures WHERE owner_key=${"guest:" + guest.row.id} ON CONFLICT(owner_key,problem_revision_id) DO NOTHING`;
+        await tx.$executeRaw`DELETE FROM physics_content_exposures WHERE owner_key=${"guest:" + guest.row.id}`;
+      }
       await tx.$executeRaw`INSERT INTO guest_account_claims(id,guest_session_id,user_id,target_guest_id,learning_session_count,consent_version) VALUES(${randomUUID()}::uuid,${guest.row.id}::uuid,${actor.userId}::uuid,${actor.guestId}::uuid,${sessions.length},'explicit-account-link-v1')`;
       await tx.$executeRaw`UPDATE guest_sessions SET status='revoked',revoked_at=now() WHERE id=${guest.row.id}::uuid`;
       return { claimed: true, learningSessionCount: sessions.length };
@@ -677,6 +721,67 @@ export class AccountService {
       subjectAttempts: await this.subjectAttempts(actor, 50),
       nextCursor: null,
     };
+  }
+  async consent(request: RequestContext, kind: "ai" | "learning") {
+    const actor = await this.actor(request);
+    if (!actor.userId) throw denied();
+    const policyVersion =
+      kind === "ai" ? EXTERNAL_AI_POLICY : REAL_LEARNING_POLICY;
+    const rows =
+      kind === "ai"
+        ? await this.store.db.$queryRaw<
+            { enabled: boolean; policy_version: string; updated_at: Date }[]
+          >`SELECT enabled,policy_version,updated_at FROM account_ai_consents WHERE user_id=${actor.userId}::uuid`
+        : await this.store.db.$queryRaw<
+            { enabled: boolean; policy_version: string; updated_at: Date }[]
+          >`SELECT enabled,policy_version,updated_at FROM account_learning_consents WHERE user_id=${actor.userId}::uuid`;
+    const row = rows[0];
+    return {
+      enabled: row?.enabled === true && row.policy_version === policyVersion,
+      policyVersion,
+      updatedAt: row?.updated_at.toISOString() ?? null,
+    };
+  }
+  async setConsent(
+    request: RequestContext,
+    kind: "ai" | "learning",
+    raw: unknown,
+  ) {
+    const actor = await this.actor(request, true);
+    if (!actor.userId) throw denied();
+    const body = accountObject(raw, ["enabled", "policyVersion"]),
+      policyVersion = kind === "ai" ? EXTERNAL_AI_POLICY : REAL_LEARNING_POLICY;
+    if (
+      typeof body.enabled !== "boolean" ||
+      (body.enabled && body.policyVersion !== policyVersion)
+    )
+      throw new ApiFault(
+        422,
+        "invalid_input",
+        "الموافقة تتطلب إصدار السياسة المعروض حاليًا.",
+      );
+    return productMutation(
+      this.store,
+      actor,
+      request,
+      "account.consent." + kind,
+      body,
+      async (tx) => {
+        const rows =
+          kind === "ai"
+            ? await tx.$queryRaw<
+                { enabled: boolean; updated_at: Date }[]
+              >`INSERT INTO account_ai_consents(user_id,enabled,policy_version) VALUES(${actor.userId}::uuid,${body.enabled as boolean},${policyVersion}) ON CONFLICT(user_id) DO UPDATE SET enabled=EXCLUDED.enabled,policy_version=EXCLUDED.policy_version,updated_at=now() RETURNING enabled,updated_at`
+            : await tx.$queryRaw<
+                { enabled: boolean; updated_at: Date }[]
+              >`INSERT INTO account_learning_consents(user_id,enabled,policy_version) VALUES(${actor.userId}::uuid,${body.enabled as boolean},${policyVersion}) ON CONFLICT(user_id) DO UPDATE SET enabled=EXCLUDED.enabled,policy_version=EXCLUDED.policy_version,updated_at=now() RETURNING enabled,updated_at`;
+        return {
+          enabled: rows[0]!.enabled,
+          policyVersion,
+          updatedAt: rows[0]!.updated_at.toISOString(),
+        };
+      },
+    );
   }
   private async subjectAttempts(actor: ProductActor, limit: number) {
     const [relation] = await this.store.db.$queryRaw<
@@ -744,10 +849,14 @@ export class AccountService {
         independent: boolean;
         assistance_level: number;
         updated_at: Date;
+        learning_phase: "remediation" | "transfer" | null;
       }[]
     >`
-      SELECT a.subject_code,r.payload,a.verdict,a.independent,a.assistance_level,a.updated_at FROM subject_attempts a JOIN studio_revisions r ON r.id=a.problem_revision_id
-      WHERE a.owner_key=${actor.ownerKey} ORDER BY a.updated_at DESC LIMIT 1000`;
+      SELECT a.subject_code,r.payload,a.verdict,a.independent,a.assistance_level,a.updated_at,x.phase AS learning_phase FROM subject_attempts a JOIN studio_revisions r ON r.id=a.problem_revision_id
+      LEFT JOIN physics_learning_assignments x ON x.attempt_id=a.id
+      LEFT JOIN physics_learning_episodes e ON e.id=x.episode_id
+      LEFT JOIN subject_attempts root ON root.id=e.root_attempt_id
+      WHERE a.owner_key=${actor.ownerKey} AND (x.id IS NULL OR (x.invalidated_at IS NULL AND e.state<>'cancelled' AND e.owner_key=${actor.ownerKey} AND e.root_revision=root.revision)) ORDER BY a.updated_at DESC LIMIT 1000`;
     const groups = new Map<
       string,
       {
@@ -803,9 +912,19 @@ export class AccountService {
             ? verdict.status === "correct"
             : verdict.allPassed === true && verdict.passed === verdict.total);
         if (assessable) group.evidenceCount++;
-        if (success && row.independent && row.assistance_level === 0)
+        if (
+          success &&
+          row.learning_phase !== "remediation" &&
+          row.independent &&
+          row.assistance_level === 0
+        )
           group.independentCount++;
-        if (success && (!row.independent || row.assistance_level > 0))
+        if (
+          success &&
+          (row.learning_phase === "remediation" ||
+            !row.independent ||
+            row.assistance_level > 0)
+        )
           group.assistedCount++;
         group.state = group.independentCount
           ? "new_independent_evidence"
@@ -907,6 +1026,24 @@ export class AccountsController {
     @Res({ passthrough: true }) res: ResponseContext,
   ) {
     return envelope(req, await this.accounts.current(req, res));
+  }
+  @Get("me/ai-consent") async aiConsent(@Req() r: RequestContext) {
+    return envelope(r, await this.accounts.consent(r, "ai"));
+  }
+  @Post("me/ai-consent") @HttpCode(200) async setAiConsent(
+    @Req() r: RequestContext,
+    @Body() b: unknown,
+  ) {
+    return envelope(r, await this.accounts.setConsent(r, "ai", b));
+  }
+  @Get("me/learning-consent") async learningConsent(@Req() r: RequestContext) {
+    return envelope(r, await this.accounts.consent(r, "learning"));
+  }
+  @Post("me/learning-consent") @HttpCode(200) async setLearningConsent(
+    @Req() r: RequestContext,
+    @Body() b: unknown,
+  ) {
+    return envelope(r, await this.accounts.setConsent(r, "learning", b));
   }
   @Post("auth/email/request") @HttpCode(200) async request(
     @Req() req: RequestContext,
