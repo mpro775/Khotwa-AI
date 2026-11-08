@@ -20,11 +20,12 @@ import {
 } from "./product-api";
 import {
   bankItems,
-  learningItems,
-  learningRevision,
+  studioLearningItems as learningItems,
+  studioLearningRevision as learningRevision,
   skillMapData,
 } from "./learning-path-api";
 import { LessonRenderer } from "./LessonRenderer";
+import { StemLabAuthoring, newStemLab } from "./StemLabAuthoring";
 
 const statuses: Record<ContentStatus, string> = {
   draft: "مسودة",
@@ -51,6 +52,7 @@ const blockTitles: Record<LessonBlock["type"], string> = {
   completion_step: "خطوة مهيأة للإكمال",
   worked_example_ref: "مرجع مثال للتدريب",
   self_check_prompt: "سؤال تأمل اختياري",
+  subject_lab_activity: "مختبر تخصصي",
 };
 function emptyLesson(subject: Subject): LessonPayload {
   return {
@@ -890,6 +892,9 @@ export function PathStudio({
                               ...(type === "physics_example"
                                 ? { physics: structuredClone(defaultPhysics) }
                                 : {}),
+                              ...(type === "subject_lab_activity"
+                                ? { lab: newStemLab(payload.subject) }
+                                : {}),
                             });
                           }}
                         >
@@ -928,6 +933,16 @@ export function PathStudio({
                           blockChange(index, { ...block, textAr })
                         }
                       />
+                      {block.type === "subject_lab_activity" && block.lab && (
+                        <StemLabAuthoring
+                          value={block.lab}
+                          subject={payload.subject}
+                          skills={payload.skillCodes}
+                          onChange={(lab) =>
+                            blockChange(index, { ...block, lab })
+                          }
+                        />
+                      )}
                       {[
                         "math_example",
                         "worked_steps",

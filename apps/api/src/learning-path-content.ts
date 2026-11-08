@@ -55,6 +55,12 @@ import {
 import { validateGraph, type GraphEdge } from "./knowledge-graph";
 import { recordExposure } from "./learning";
 import { recordPhysicsExposures } from "./physics-learning";
+import {
+  parseLabBlock,
+  parsePhysicsActivity,
+  labMathSources,
+} from "./stem/lab-registry";
+import { validateMathLabSpec, validateMathLabContent } from "./stem/math-lab";
 
 type Tx = Prisma.TransactionClient;
 interface ContentRow {
@@ -98,6 +104,11 @@ export const learningStudentContentDto = (
     dto.payload = {
       ...dto.payload,
       contentBlocks: dto.payload.contentBlocks.map((block) => {
+        if (block.type === "subject_lab_activity" && block.lab) {
+          const { domainSpec: _, ...lab } = block.lab;
+          void _;
+          return { ...block, lab };
+        }
         if (block.type !== "completion_step") return block;
         const { steps: _, ...visible } = block;
         void _;
@@ -645,7 +656,59 @@ export class LearningPathContentService {
           "درس توزيع الأقواس يحتاج فقرتين ومثالين وخطأ شائعًا وسؤالي تدريب.",
         );
       for (const [blockIndex, b] of payload.contentBlocks.entries()) {
-        if (
+        if (b.type === "subject_lab_activity") {
+          try {
+            const lab = parseLabBlock(b.lab, payload.subject);
+            if (lab.subject === "algebra") {
+              const report = await validateMathLabContent(
+                validateMathLabSpec(lab.domainSpec),
+                this.math,
+                {
+                  attemptId: randomUUID(),
+                  attemptRevision: 0,
+                  problemRevisionId: id,
+                  notationProfile: "ar-mashriq-school-v1",
+                  domain: "reals",
+                },
+              );
+              if (!report.valid)
+                issues.push(
+                  ...report.issues.map(
+                    (v) => `المختبر ${blockIndex + 1}: ${v}`,
+                  ),
+                );
+            } else if (lab.subject === "physics") {
+              const spec = parsePhysicsActivity(lab.domainSpec);
+              if (
+                spec.privateValidation &&
+                (
+                  await this.physics.validateReference(
+                    id,
+                    spec.privateValidation.reference,
+                  )
+                ).status !== "correct"
+              )
+                issues.push("مرجع قيمة/وحدة المختبر غير متحقق.");
+            }
+            const sources = labMathSources(lab).map((s) =>
+              s.replace(/\s/g, ""),
+            );
+            if (
+              bank.some(
+                (p) =>
+                  payload.assessmentProblemRevisionIds.includes(p.revisionId) &&
+                  (p.familyCode === lab.familyCode ||
+                    (p.equationRaw &&
+                      sources.includes(p.equationRaw.replace(/\s/g, "")))),
+              )
+            )
+              issues.push(
+                "عائلة المختبر أو مثاله مكشوفة؛ اختر سؤال قياس مختلفًا.",
+              );
+          } catch {
+            issues.push(`المختبر ${blockIndex + 1} غير متحقق؛ النشر محجوب.`);
+          }
+        } else if (
           b.type === "math_example" ||
           b.type === "worked_steps" ||
           b.type === "completion_step"

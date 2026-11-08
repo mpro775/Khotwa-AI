@@ -76,6 +76,9 @@ const pending = [
   "TeacherExampleEnvelope",
   "AttemptListEnvelope",
   "ErrorEnvelope",
+  "StemLabCapabilitiesEnvelope",
+  "StemLabActivityEnvelope",
+  "StemLabSessionEnvelope",
 ];
 const selected = {};
 function visit(value) {

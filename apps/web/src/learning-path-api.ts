@@ -26,6 +26,7 @@ import {
   strings,
   subjectField,
   textField,
+  jsonValue,
 } from "./product-api";
 
 export function enumField<T extends string>(
@@ -84,7 +85,7 @@ export function physicsExample(value: unknown): PhysicsContent {
       : {}),
   };
 }
-export function lessonBlock(value: unknown): LessonBlock {
+export function lessonBlock(value: unknown, author = false): LessonBlock {
   const b = record(value);
   return {
     type: enumField(b.type, [
@@ -100,6 +101,7 @@ export function lessonBlock(value: unknown): LessonBlock {
       "completion_step",
       "worked_example_ref",
       "self_check_prompt",
+      "subject_lab_activity",
     ]),
     textAr: textField(b.textAr),
     ...(b.raw === undefined ? {} : { raw: textField(b.raw) }),
@@ -119,9 +121,32 @@ export function lessonBlock(value: unknown): LessonBlock {
     ...(b.problemRevisionId === undefined
       ? {}
       : { problemRevisionId: textField(b.problemRevisionId) }),
+    ...(b.lab === undefined
+      ? {}
+      : {
+          lab: (() => {
+            const l = record(b.lab);
+            if (l.schemaVersion !== "subject-lab-v1")
+              throw new Error("invalid_response");
+            return {
+              schemaVersion: "subject-lab-v1" as const,
+              subject: subjectField(l.subject),
+              labKind: textField(l.labKind),
+              objectiveAr: textField(l.objectiveAr),
+              familyCode: textField(l.familyCode),
+              skillCodes: strings(l.skillCodes),
+              ...(author && l.domainSpec !== undefined
+                ? { domainSpec: record(jsonValue(l.domainSpec)) }
+                : {}),
+            };
+          })(),
+        }),
   };
 }
-export function learningPayload(value: unknown): LearningContentPayload {
+export function learningPayload(
+  value: unknown,
+  author = false,
+): LearningContentPayload {
   const p = record(value);
   const common = {
     subject: subjectField(p.subject),
@@ -150,7 +175,9 @@ export function learningPayload(value: unknown): LearningContentPayload {
     skillCodes: strings(p.skillCodes),
     prerequisiteSkillCodes: strings(p.prerequisiteSkillCodes),
     prerequisiteLessonIds: strings(p.prerequisiteLessonIds),
-    contentBlocks: arrayField(p.contentBlocks, lessonBlock),
+    contentBlocks: arrayField(p.contentBlocks, (value) =>
+      lessonBlock(value, author),
+    ),
     practiceProblemRevisionIds: strings(p.practiceProblemRevisionIds),
     assessmentProblemRevisionIds: strings(p.assessmentProblemRevisionIds),
     errorCodes: strings(p.errorCodes),
@@ -177,7 +204,7 @@ export function contentValidation(value: unknown): LearningContentValidation {
     }),
   };
 }
-export function learningRevision(value: unknown): LearningContentRevision {
+function revisionData(value: unknown, author = false): LearningContentRevision {
   const r = record(value);
   return {
     id: textField(r.id),
@@ -191,7 +218,7 @@ export function learningRevision(value: unknown): LearningContentRevision {
       "published",
       "archived",
     ]),
-    payload: learningPayload(r.payload),
+    payload: learningPayload(r.payload, author),
     contentHash: textField(r.contentHash),
     validation: r.validation === null ? null : contentValidation(r.validation),
     createdAt: textField(r.createdAt),
@@ -199,6 +226,7 @@ export function learningRevision(value: unknown): LearningContentRevision {
     publishedAt: optionalText(r.publishedAt),
   };
 }
+export const learningRevision = (value: unknown) => revisionData(value);
 export function bankProblem(value: unknown): LearningBankProblem {
   const p = record(value);
   return {
@@ -287,6 +315,10 @@ export function skillMapData(value: unknown): LearningSkillMap {
 
 export const learningItems = (value: unknown) =>
   arrayField(record(value).items, learningRevision);
+export const studioLearningRevision = (value: unknown) =>
+  revisionData(value, true);
+export const studioLearningItems = (value: unknown) =>
+  arrayField(record(value).items, studioLearningRevision);
 export const bankItems = (value: unknown) =>
   arrayField(record(value).items, bankProblem);
 

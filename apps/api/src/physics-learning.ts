@@ -61,7 +61,12 @@ const publicProblem = (r: Revision): PhysicsProblem => ({
   allowedUnits: ["m", "s", "m/s", "m/s²", "km/h"],
 });
 /** Identity normalization only. The Python verifier alone decides physics. */
-export function physicsExposureKey(p: Pick<ContentPayload, "physics">): string {
+export function physicsExposureKey(p: {
+  physics?: Pick<
+    NonNullable<ContentPayload["physics"]>,
+    "formula" | "quantity" | "givens"
+  >;
+}): string {
   if (!p.physics) throw productInvalid();
   const numberKey = (raw: string) => {
     const normalized = raw

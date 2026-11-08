@@ -1,0 +1,148 @@
+{
+  "synthetic": true,
+  "reviewStatus": "draft",
+  "graphModels": [
+    {
+      "modelVersion": "linear_function_v1",
+      "a": 2,
+      "b": 1,
+      "xMin": -1,
+      "xMax": 1,
+      "step": 1
+    },
+    {
+      "modelVersion": "linear_function_v1",
+      "a": 0,
+      "b": 3,
+      "xMin": -2,
+      "xMax": 2,
+      "step": 1,
+      "targetY": 3
+    },
+    {
+      "modelVersion": "linear_function_v1",
+      "a": 0,
+      "b": 3,
+      "xMin": -2,
+      "xMax": 2,
+      "step": 1,
+      "targetY": 4
+    },
+    {
+      "modelVersion": "linear_function_v1",
+      "a": -2,
+      "b": 0,
+      "xMin": -3,
+      "xMax": 3,
+      "step": 0.25,
+      "targetY": 20
+    },
+    {
+      "modelVersion": "linear_function_v1",
+      "a": 0.1,
+      "b": 0.2,
+      "xMin": -1,
+      "xMax": 1,
+      "step": 0.1
+    },
+    {
+      "modelVersion": "linear_function_v1",
+      "a": 0.333333,
+      "b": 0.000001,
+      "xMin": 0,
+      "xMax": 1,
+      "step": 0.01
+    },
+    {
+      "modelVersion": "linear_function_v1",
+      "a": 999.999999,
+      "b": -999.999999,
+      "xMin": 999.999999,
+      "xMax": 1000,
+      "step": 0.000001
+    }
+  ],
+  "transitions": [
+    { "from": "٣(س+٢)=٩", "to": "٣س+٦=٩", "status": "verified_valid" },
+    { "from": "٣(س+٢)=٩", "to": "٣س+٢=٩", "status": "verified_invalid" },
+    { "from": "٣(س+٢)=٩", "to": "س+٢=٣", "status": "verified_valid" },
+    { "from": "س+٢=٣", "to": "س=١", "status": "verified_valid" },
+    { "from": "٢(س+٣)=١٠", "to": "٢س+٣=١٠", "status": "verified_invalid" },
+    { "from": "٢(س+٣)=١٠", "to": "٢س+٦=١٠", "status": "verified_valid" },
+    { "from": "-٢س+٤=١٠", "to": "س=-٣", "status": "verified_valid" },
+    { "from": "٠س=٠", "to": "١=١", "status": "verified_valid" },
+    { "from": "٠س=١", "to": "٢=٣", "status": "verified_valid" }
+  ],
+  "activities": [
+    {
+      "kind": "math_linear_graph_v1",
+      "model": {
+        "modelVersion": "linear_function_v1",
+        "a": 2,
+        "b": 1,
+        "xMin": -1,
+        "xMax": 1,
+        "step": 1
+      }
+    },
+    {
+      "kind": "math_method_comparison_v1",
+      "originalRaw": "٣(س+٢)=٩",
+      "methods": [
+        {
+          "id": "distribute",
+          "titleAr": "التوزيع أولًا",
+          "steps": ["٣س+٦=٩", "٣س=٣", "س=١"],
+          "mode": "solution"
+        },
+        {
+          "id": "divide",
+          "titleAr": "القسمة أولًا",
+          "steps": ["س+٢=٣", "س=١"],
+          "mode": "solution"
+        }
+      ],
+      "privateValidation": {
+        "acceptedMethodIds": ["distribute", "divide"],
+        "rubricAr": "الطريقتان تحفظان مجموعة الحلول."
+      }
+    },
+    {
+      "kind": "math_first_error_v1",
+      "originalRaw": "٣(س+٢)=٩",
+      "steps": ["٣س+٢=٩", "٣س=٧"],
+      "privateValidation": {
+        "expectedFirstInvalidStep": 1,
+        "reasonAr": "يلزم توزيع المعامل على جميع حدود القوس."
+      }
+    },
+    {
+      "kind": "math_why_question_v1",
+      "fromRaw": "٣س+٦=٩",
+      "toRaw": "٣س=٣",
+      "choices": [
+        { "id": "subtract", "textAr": "طرح العدد نفسه من الطرفين" },
+        { "id": "change", "textAr": "تغيير طرف واحد" }
+      ],
+      "privateValidation": {
+        "acceptedChoiceIds": ["subtract"],
+        "reasonAr": "طرح ستة من الطرفين يحفظ التكافؤ."
+      }
+    },
+    {
+      "kind": "math_completion_v1",
+      "originalRaw": "٣(س+٢)=٩",
+      "visibleSteps": ["٣س+٦=٩"],
+      "privateValidation": {
+        "completionRaw": "٣س=٣",
+        "workedSteps": ["س=١"],
+        "reasonAr": "اطرح ستة من الطرفين ثم اقسم على ثلاثة."
+      }
+    },
+    {
+      "kind": "math_equivalence_probe_v1",
+      "fromRaw": "٣(س+٢)=٩",
+      "toRaw": "س+٢=٣"
+    }
+  ]
+}

@@ -395,6 +395,7 @@ export function IntelligentLearningPanel({
   assessment,
   onAssessment,
   onOpenLesson,
+  onOpenLab,
 }: {
   api: ProductApi;
   trackRevisionId: string;
@@ -403,6 +404,7 @@ export function IntelligentLearningPanel({
   assessment: AssessmentSession | null;
   onAssessment: (value: AssessmentSession) => void;
   onOpenLesson: (id: string) => void;
+  onOpenLab?: (lessonId: string, blockIndex: number) => void;
 }) {
   const alive = useRef(true),
     loadEpoch = useRef(0),
@@ -540,6 +542,16 @@ export function IntelligentLearningPanel({
   }
   async function startActivity() {
     if (!activity) return;
+    if (
+      activity.labKind &&
+      activity.labBlockIndex !== undefined &&
+      activity.lessonRevisionId
+    ) {
+      if (onOpenLab)
+        onOpenLab(activity.lessonRevisionId, activity.labBlockIndex);
+      else onOpenLesson(activity.lessonRevisionId);
+      return;
+    }
     if (activity.activityKind === "diagnostic_probe") return;
     if (
       ["explanation", "worked_example", "prerequisite_repair"].includes(

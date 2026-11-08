@@ -51,9 +51,17 @@ const activityKinds: readonly ActivityKind[] = [
   "challenge",
   "reflection",
 ];
+function labReference(r: Record<string, unknown>) {
+  if (r.labKind === undefined && r.labBlockIndex === undefined) return {};
+  const index = numberField(r.labBlockIndex);
+  if (!Number.isInteger(index) || index < 0 || index >= 60)
+    throw new Error("invalid_response");
+  return { labKind: textField(r.labKind), labBlockIndex: index };
+}
 export function decisionData(value: unknown): NextActivityDecision {
   const r = record(value);
   return {
+    ...labReference(r),
     id: textField(r.id),
     decisionId: textField(r.decisionId),
     revision: numberField(r.revision),
@@ -73,6 +81,7 @@ export function decisionData(value: unknown): NextActivityDecision {
     alternatives: arrayField(r.alternatives, (value) => {
       const a = record(value);
       return {
+        ...labReference(a),
         activityKind: enumField(a.activityKind, activityKinds),
         lessonRevisionId: optionalText(a.lessonRevisionId),
         skillCode: optionalText(a.skillCode),
@@ -85,6 +94,7 @@ export function decisionData(value: unknown): NextActivityDecision {
 export function activityData(value: unknown): LearningActivity {
   const r = record(value);
   return {
+    ...labReference(r),
     id: textField(r.id),
     revision: numberField(r.revision),
     decisionId: textField(r.decisionId),

@@ -10,6 +10,8 @@ export type ActivityKind =
   | "challenge"
   | "reflection";
 export interface ActivityCandidate {
+  labBlockIndex?: number;
+  labKind?: string;
   activityKind: ActivityKind;
   lessonRevisionId: string;
   skillCode: string;
@@ -44,6 +46,11 @@ export function eligibleCandidates(candidates: readonly ActivityCandidate[]) {
         : !candidate.reviewed
           ? "unreviewed_content"
           : candidate.subject === "programming" &&
+              !(
+                candidate.activityKind === "guided_practice" &&
+                candidate.labKind &&
+                Number.isInteger(candidate.labBlockIndex)
+              ) &&
               !["explanation", "worked_example", "reflection"].includes(
                 candidate.activityKind,
               )
@@ -116,6 +123,8 @@ export function activityReason(code: string): string {
         additional_evidence:
           "نجمع دليلًا جديدًا مستقلًا دون افتراض إتقان دائم.",
         introduction: "الأدلة محدودة؛ يمكنك البدء بشرح منشور.",
+        subject_lab_practice:
+          "جرّب نشاطًا تخصصيًا منشورًا للفهم؛ نتيجته تدريب وليست قياسًا مستقلًا.",
         no_safe_activity: "لا يوجد نشاط منشور آمن متاح لهذه الحالة حاليًا.",
       } as Record<string, string>
     )[code] ?? "اقتراح تعليمي مبني على الأدلة الحالية، ويمكنك اختيار بديل آمن."

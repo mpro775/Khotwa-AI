@@ -1,0 +1,40 @@
+{
+  "recordedAt": "2026-11-08T02:46:12.174Z",
+  "node": "v26.7.0",
+  "platform": "win32",
+  "scope": "Focused synthetic B HTTP acceptance on newly created disposable PostgreSQL and private real SymPy; no existing database, production, third party, paid AI, student-code execution or fabricated human approval.",
+  "checks": [
+    {
+      "command": "Docker readiness",
+      "exitCode": 0,
+      "stdout": "29.9.1\n",
+      "stderr": "",
+      "seconds": 1.482
+    },
+    {
+      "command": "isolated b_test migrate deploy",
+      "exitCode": 0,
+      "stdout": "Datasource \"db\": PostgreSQL database \"b_test\", schema \"public\" at \"127.0.0.1:17182\"\n\n23 migrations found in prisma/migrations\n\nApplying migration `0001_ph04`\nApplying migration `0002_current_version_key`\nApplying migration `0003_content_integrity`\nApplying migration `0004_verification_reports`\nApplying migration `0005_conservative_diagnosis`\nApplying migration `0006_guided_tutoring`\nApplying migration `0007_preserve_legacy_assistance`\nApplying migration `0008_learning_episodes`\nApplying migration `0009_current_progress`\nApplying migration `0010_guest_retention`\nApplying migration `0011_accounts`\nApplying migration `0012_product_content`\nApplying migration `0013_beta`\nApplying migration `0014_studio_integrity`\nApplying migration `0015_roadmap_retention`\nApplying migration `0016_claimed_guest_retention`\nApplying migration `0018_durable_runner_work`\nApplying migration `0019_physics_learning`\nApplying migration `0020_learning_ai_consents`\nApplying migration `0021_learning_paths`\nApplying migration `0022_learning_assessments`\nApplying migration `0023_intelligent_learning_a`\nApplying migration `0024_stem_labs_b`\n\nThe following migration(s) have been applied:\n\nmigrations/\n  └─ 0001_ph04/\n    └─ migration.sql\n  └─ 0002_current_version_key/\n    └─ migration.sql\n  └─ 0003_content_integrity/\n    └─ migration.sql\n  └─ 0004_verification_reports/\n    └─ migration.sql\n  └─ 0005_conservative_diagnosis/\n    └─ migration.sql\n  └─ 0006_guided_tutoring/\n    └─ migration.sql\n  └─ 0007_preserve_legacy_assistance/\n    └─ migration.sql\n  └─ 0008_learning_episodes/\n    └─ migration.sql\n  └─ 0009_current_progress/\n    └─ migration.sql\n  └─ 0010_guest_retention/\n    └─ migration.sql\n  └─ 0011_accounts/\n    └─ migration.sql\n  └─ 0012_product_content/\n    └─ migration.sql\n  └─ 0013_beta/\n    └─ migration.sql\n  └─ 0014_studio_integrity/\n    └─ migration.sql\n  └─ 0015_roadmap_retention/\n    └─ migration.sql\n  └─ 0016_claimed_guest_retention/\n    └─ migration.sql\n  └─ 0018_durable_runner_work/\n    └─ migration.sql\n  └─ 0019_physics_learning/\n    └─ migration.sql\n  └─ 0020_learning_ai_consents/\n    └─ migration.sql\n  └─ 0021_learning_paths/\n    └─ migration.sql\n  └─ 0022_learning_assessments/\n    └─ migration.sql\n  └─ 0023_intelligent_learning_a/\n    └─ migration.sql\n  └─ 0024_stem_labs_b/\n    └─ migration.sql\n\nAll migrations have been successfully applied.\n",
+      "stderr": "Loaded Prisma config from apps\\api\\prisma.config.ts.\n\nPrisma schema loaded from apps\\api\\prisma\\schema.prisma.\n",
+      "seconds": 4.214
+    },
+    {
+      "command": "focused B synthetic real HTTP journey",
+      "exitCode": 0,
+      "stdout": "▶ B synthetic actual NestJS PostgreSQL SymPy journey\n  ✔ B flags default off and cannot be bypassed through direct routes (85.013ms)\n  ✔ B public lessons and activity routes redact all private rubrics (940.3007ms)\n  ✔ B owner-scoped start replay CAS and foreign UUID protection (382.6331ms)\n  ✔ B1 actual SymPy verifies six practice kinds without manufacturing independent evidence (1139.481ms)\n  ✔ B1 support records assistance before revealing a private worked step (116.6202ms)\n  ✔ B2 prediction must persist before reveal and direction reversal has correct distance (305.161ms)\n  ✔ B3 static trace Parsons and closed debug work while Runner and PhET remain off (515.6512ms)\n  ✔ B technical math outage preserves the submitted draft and returns a neutral result (105.0331ms)\n  ✔ B late verifier result cannot overwrite a newer owner revision (171.2795ms)\n  ✔ B archived pinned revision resumes while a newly published revision stays separate (47.9796ms)\n  ✔ B guest claim moves lab history atomically and keeps other owners excluded (262.7383ms)\n✔ B synthetic actual NestJS PostgreSQL SymPy journey (8470.4688ms)\nℹ tests 12\nℹ suites 0\nℹ pass 12\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 8964.8558\n",
+      "stderr": "",
+      "seconds": 9.129
+    }
+  ],
+  "failure": null,
+  "cleanup": [
+    {
+      "name": "khotwa-b-8df64453d6b5-math",
+      "exitCode": 0
+    },
+    {
+      "name": "khotwa-b-8df64453d6b5-db",
+      "exitCode": 0
+    }
+  ]
+}

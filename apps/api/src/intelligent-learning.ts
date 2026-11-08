@@ -127,12 +127,18 @@ export class IntelligentLearningService {
       const result = decideActivity(context.candidates),
         chosen = result.chosen,
         alternative = (c: NonNullable<typeof chosen>): ActivityAlternative => ({
+          ...(c.labKind
+            ? { labKind: c.labKind, labBlockIndex: c.labBlockIndex }
+            : {}),
           activityKind: c.activityKind,
           lessonRevisionId: c.lessonRevisionId,
           skillCode: c.skillCode,
           reasonCode: c.reasonCode,
         });
       const data: DecisionData = {
+        ...(chosen?.labKind
+          ? { labKind: chosen.labKind, labBlockIndex: chosen.labBlockIndex }
+          : {}),
         trackRevisionId: id,
         policyVersion: PEDAGOGY_POLICY,
         evidenceFingerprint: context.evidenceFingerprint,
@@ -216,13 +222,21 @@ export class IntelligentLearningService {
           (c) =>
             c?.activityKind === choice.activityKind &&
             c.lessonRevisionId === choice.lessonRevisionId &&
-            c.skillCode === choice.skillCode,
+            c.skillCode === choice.skillCode &&
+            c.labKind === choice.labKind &&
+            c.labBlockIndex === choice.labBlockIndex,
         );
         if (!candidate) throw stale();
         const activity = await records.create<ActivityData>(
           "activity",
           row.track_revision_id,
           {
+            ...(candidate.labKind
+              ? {
+                  labKind: candidate.labKind,
+                  labBlockIndex: candidate.labBlockIndex,
+                }
+              : {}),
             decisionId: row.id,
             trackRevisionId: row.track_revision_id,
             activityKind: candidate.activityKind,
@@ -290,6 +304,10 @@ export class IntelligentLearningService {
         assessment: await this.assessments.get(request, activity.assessmentId),
       };
     if (activity.revision !== expected) throw stale();
+    if (activity.labKind)
+      throw productInvalid(
+        "افتح المختبر من الدرس؛ القياس المستقل يبدأ بمهمة جديدة من خدمة التقييم.",
+      );
     if (
       !activity.lessonRevisionId ||
       ![

@@ -1103,6 +1103,2025 @@
         },
         "required": ["kind", "value"]
       },
+      "StemCodingPublicSpec": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "schemaVersion": { "type": "string", "const": "coding-lab-v1" },
+              "kind": { "type": "string", "const": "predict_output" },
+              "language": { "type": "string", "const": "python" },
+              "sourceCode": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 8000
+              },
+              "traceStepCount": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "measurementMode": {
+                "type": "string",
+                "const": "conceptual_practice"
+              },
+              "independentEligible": { "type": "boolean", "const": false }
+            },
+            "required": [
+              "schemaVersion",
+              "kind",
+              "language",
+              "sourceCode",
+              "traceStepCount",
+              "measurementMode",
+              "independentEligible"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "schemaVersion": { "type": "string", "const": "coding-lab-v1" },
+              "kind": { "type": "string", "const": "code_trace" },
+              "language": { "type": "string", "const": "python" },
+              "sourceCode": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 8000
+              },
+              "traceStepCount": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "measurementMode": {
+                "type": "string",
+                "const": "conceptual_practice"
+              },
+              "independentEligible": { "type": "boolean", "const": false }
+            },
+            "required": [
+              "schemaVersion",
+              "kind",
+              "language",
+              "sourceCode",
+              "traceStepCount",
+              "measurementMode",
+              "independentEligible"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "schemaVersion": { "type": "string", "const": "coding-lab-v1" },
+              "kind": { "type": "string", "const": "parsons_reorder" },
+              "language": { "type": "string", "const": "python" },
+              "lineItems": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "lineId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 80,
+                      "pattern": "^[A-Za-z0-9_-]+$"
+                    },
+                    "text": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 8000
+                    },
+                    "indentationLevel": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 8
+                    }
+                  },
+                  "required": ["lineId", "text", "indentationLevel"]
+                },
+                "minItems": 1,
+                "maxItems": 40
+              },
+              "traceStepCount": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "measurementMode": {
+                "type": "string",
+                "const": "conceptual_practice"
+              },
+              "independentEligible": { "type": "boolean", "const": false }
+            },
+            "required": [
+              "schemaVersion",
+              "kind",
+              "language",
+              "lineItems",
+              "traceStepCount",
+              "measurementMode",
+              "independentEligible"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "schemaVersion": { "type": "string", "const": "coding-lab-v1" },
+              "kind": { "type": "string", "const": "debug_select_fix" },
+              "language": { "type": "string", "const": "python" },
+              "sourceCode": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 8000
+              },
+              "patchOptions": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "patchId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 80,
+                      "pattern": "^[A-Za-z0-9_-]+$"
+                    },
+                    "labelAr": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 1000
+                    },
+                    "replacementCode": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 8000
+                    }
+                  },
+                  "required": ["patchId", "labelAr", "replacementCode"]
+                },
+                "minItems": 1,
+                "maxItems": 8
+              },
+              "traceStepCount": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "measurementMode": {
+                "type": "string",
+                "const": "conceptual_practice"
+              },
+              "independentEligible": { "type": "boolean", "const": false }
+            },
+            "required": [
+              "schemaVersion",
+              "kind",
+              "language",
+              "sourceCode",
+              "patchOptions",
+              "traceStepCount",
+              "measurementMode",
+              "independentEligible"
+            ]
+          }
+        ]
+      },
+      "StemCodingTraceStep": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "lineId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "sourceLine": { "type": "integer", "minimum": 1, "maximum": 100 },
+          "event": {
+            "type": "string",
+            "enum": ["assignment", "iteration", "condition", "return", "output"]
+          },
+          "variablesDisplay": {
+            "type": "object",
+            "maxProperties": 20,
+            "propertyNames": { "pattern": "^[A-Za-z][A-Za-z0-9_]{0,39}$" },
+            "additionalProperties": {
+              "anyOf": [
+                { "type": "string", "minLength": 0, "maxLength": 240 },
+                {
+                  "type": "number",
+                  "minimum": -1000000000,
+                  "maximum": 1000000000
+                },
+                { "type": "boolean" },
+                { "type": "null" }
+              ]
+            }
+          },
+          "stdoutCumulative": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 2000
+          },
+          "explanationAr": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          }
+        },
+        "required": [
+          "lineId",
+          "sourceLine",
+          "event",
+          "variablesDisplay",
+          "stdoutCumulative",
+          "explanationAr"
+        ]
+      },
+      "StemLabActivity": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "schemaVersion": { "type": "string", "const": "subject-lab-v1" },
+              "subject": { "type": "string", "const": "algebra" },
+              "labKind": {
+                "type": "string",
+                "enum": [
+                  "math_linear_graph_v1",
+                  "math_method_comparison_v1",
+                  "math_first_error_v1",
+                  "math_why_question_v1",
+                  "math_completion_v1",
+                  "math_equivalence_probe_v1"
+                ]
+              },
+              "objectiveAr": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              },
+              "familyCode": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100,
+                "pattern": "^[A-Za-z0-9_-]+$"
+              },
+              "skillCodes": {
+                "type": "array",
+                "items": { "type": "string", "minLength": 1, "maxLength": 80 },
+                "minItems": 1,
+                "maxItems": 40
+              },
+              "activityRevisionId": { "type": "string", "format": "uuid" },
+              "blockIndex": { "type": "integer", "minimum": 0, "maximum": 49 },
+              "domainSpec": {
+                "$ref": "#/components/schemas/StemMathPublicSpec"
+              }
+            },
+            "required": [
+              "schemaVersion",
+              "subject",
+              "labKind",
+              "objectiveAr",
+              "familyCode",
+              "skillCodes",
+              "activityRevisionId",
+              "blockIndex",
+              "domainSpec"
+            ],
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "labKind": {
+                      "type": "string",
+                      "const": "math_linear_graph_v1"
+                    }
+                  },
+                  "required": ["labKind"]
+                },
+                "then": {
+                  "properties": {
+                    "domainSpec": {
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "const": "math_linear_graph_v1"
+                        }
+                      },
+                      "required": ["kind"]
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "labKind": {
+                      "type": "string",
+                      "const": "math_method_comparison_v1"
+                    }
+                  },
+                  "required": ["labKind"]
+                },
+                "then": {
+                  "properties": {
+                    "domainSpec": {
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "const": "math_method_comparison_v1"
+                        }
+                      },
+                      "required": ["kind"]
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "labKind": {
+                      "type": "string",
+                      "const": "math_first_error_v1"
+                    }
+                  },
+                  "required": ["labKind"]
+                },
+                "then": {
+                  "properties": {
+                    "domainSpec": {
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "const": "math_first_error_v1"
+                        }
+                      },
+                      "required": ["kind"]
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "labKind": {
+                      "type": "string",
+                      "const": "math_why_question_v1"
+                    }
+                  },
+                  "required": ["labKind"]
+                },
+                "then": {
+                  "properties": {
+                    "domainSpec": {
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "const": "math_why_question_v1"
+                        }
+                      },
+                      "required": ["kind"]
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "labKind": {
+                      "type": "string",
+                      "const": "math_completion_v1"
+                    }
+                  },
+                  "required": ["labKind"]
+                },
+                "then": {
+                  "properties": {
+                    "domainSpec": {
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "const": "math_completion_v1"
+                        }
+                      },
+                      "required": ["kind"]
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "labKind": {
+                      "type": "string",
+                      "const": "math_equivalence_probe_v1"
+                    }
+                  },
+                  "required": ["labKind"]
+                },
+                "then": {
+                  "properties": {
+                    "domainSpec": {
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "const": "math_equivalence_probe_v1"
+                        }
+                      },
+                      "required": ["kind"]
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "schemaVersion": { "type": "string", "const": "subject-lab-v1" },
+              "subject": { "type": "string", "const": "physics" },
+              "labKind": {
+                "type": "string",
+                "enum": [
+                  "physics_prediction_experiment_v1",
+                  "physics_parameter_simulation_v1",
+                  "physics_graph_to_physics_v1",
+                  "physics_units_v1",
+                  "physics_misconception_contrast_v1"
+                ]
+              },
+              "objectiveAr": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              },
+              "familyCode": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100,
+                "pattern": "^[A-Za-z0-9_-]+$"
+              },
+              "skillCodes": {
+                "type": "array",
+                "items": { "type": "string", "minLength": 1, "maxLength": 80 },
+                "minItems": 1,
+                "maxItems": 40
+              },
+              "activityRevisionId": { "type": "string", "format": "uuid" },
+              "blockIndex": { "type": "integer", "minimum": 0, "maximum": 49 },
+              "domainSpec": {
+                "$ref": "#/components/schemas/StemPhysicsPublicSpec"
+              }
+            },
+            "required": [
+              "schemaVersion",
+              "subject",
+              "labKind",
+              "objectiveAr",
+              "familyCode",
+              "skillCodes",
+              "activityRevisionId",
+              "blockIndex",
+              "domainSpec"
+            ],
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "labKind": {
+                      "type": "string",
+                      "const": "physics_prediction_experiment_v1"
+                    }
+                  },
+                  "required": ["labKind"]
+                },
+                "then": {
+                  "properties": {
+                    "domainSpec": {
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "const": "physics_prediction_experiment_v1"
+                        }
+                      },
+                      "required": ["kind"]
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "labKind": {
+                      "type": "string",
+                      "const": "physics_parameter_simulation_v1"
+                    }
+                  },
+                  "required": ["labKind"]
+                },
+                "then": {
+                  "properties": {
+                    "domainSpec": {
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "const": "physics_parameter_simulation_v1"
+                        }
+                      },
+                      "required": ["kind"]
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "labKind": {
+                      "type": "string",
+                      "const": "physics_graph_to_physics_v1"
+                    }
+                  },
+                  "required": ["labKind"]
+                },
+                "then": {
+                  "properties": {
+                    "domainSpec": {
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "const": "physics_graph_to_physics_v1"
+                        }
+                      },
+                      "required": ["kind"]
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "labKind": { "type": "string", "const": "physics_units_v1" }
+                  },
+                  "required": ["labKind"]
+                },
+                "then": {
+                  "properties": {
+                    "domainSpec": {
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "const": "physics_units_v1"
+                        }
+                      },
+                      "required": ["kind"]
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "labKind": {
+                      "type": "string",
+                      "const": "physics_misconception_contrast_v1"
+                    }
+                  },
+                  "required": ["labKind"]
+                },
+                "then": {
+                  "properties": {
+                    "domainSpec": {
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "const": "physics_misconception_contrast_v1"
+                        }
+                      },
+                      "required": ["kind"]
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "schemaVersion": { "type": "string", "const": "subject-lab-v1" },
+              "subject": { "type": "string", "const": "programming" },
+              "labKind": {
+                "type": "string",
+                "enum": [
+                  "predict_output",
+                  "code_trace",
+                  "parsons_reorder",
+                  "debug_select_fix"
+                ]
+              },
+              "objectiveAr": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              },
+              "familyCode": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100,
+                "pattern": "^[A-Za-z0-9_-]+$"
+              },
+              "skillCodes": {
+                "type": "array",
+                "items": { "type": "string", "minLength": 1, "maxLength": 80 },
+                "minItems": 1,
+                "maxItems": 40
+              },
+              "activityRevisionId": { "type": "string", "format": "uuid" },
+              "blockIndex": { "type": "integer", "minimum": 0, "maximum": 49 },
+              "domainSpec": {
+                "$ref": "#/components/schemas/StemCodingPublicSpec"
+              }
+            },
+            "required": [
+              "schemaVersion",
+              "subject",
+              "labKind",
+              "objectiveAr",
+              "familyCode",
+              "skillCodes",
+              "activityRevisionId",
+              "blockIndex",
+              "domainSpec"
+            ],
+            "allOf": [
+              {
+                "if": {
+                  "properties": {
+                    "labKind": { "type": "string", "const": "predict_output" }
+                  },
+                  "required": ["labKind"]
+                },
+                "then": {
+                  "properties": {
+                    "domainSpec": {
+                      "properties": {
+                        "kind": { "type": "string", "const": "predict_output" }
+                      },
+                      "required": ["kind"]
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "labKind": { "type": "string", "const": "code_trace" }
+                  },
+                  "required": ["labKind"]
+                },
+                "then": {
+                  "properties": {
+                    "domainSpec": {
+                      "properties": {
+                        "kind": { "type": "string", "const": "code_trace" }
+                      },
+                      "required": ["kind"]
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "labKind": { "type": "string", "const": "parsons_reorder" }
+                  },
+                  "required": ["labKind"]
+                },
+                "then": {
+                  "properties": {
+                    "domainSpec": {
+                      "properties": {
+                        "kind": { "type": "string", "const": "parsons_reorder" }
+                      },
+                      "required": ["kind"]
+                    }
+                  }
+                }
+              },
+              {
+                "if": {
+                  "properties": {
+                    "labKind": { "type": "string", "const": "debug_select_fix" }
+                  },
+                  "required": ["labKind"]
+                },
+                "then": {
+                  "properties": {
+                    "domainSpec": {
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "const": "debug_select_fix"
+                        }
+                      },
+                      "required": ["kind"]
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "StemLabActivityEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/StemLabActivity" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "StemLabAnswer": {
+        "anyOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "observationAr": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2000
+              }
+            },
+            "required": ["observationAr"]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "methodIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80,
+                  "pattern": "^[A-Za-z0-9_-]+$"
+                },
+                "minItems": 1,
+                "maxItems": 6
+              },
+              "explanationAr": {
+                "type": "string",
+                "minLength": 0,
+                "maxLength": 2000
+              }
+            },
+            "required": ["methodIds"]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "transitionIndex": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 12
+              }
+            },
+            "required": ["transitionIndex"]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "choiceIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80,
+                  "pattern": "^[A-Za-z0-9_-]+$"
+                },
+                "minItems": 1,
+                "maxItems": 6
+              },
+              "explanationAr": {
+                "type": "string",
+                "minLength": 0,
+                "maxLength": 2000
+              }
+            },
+            "required": ["choiceIds"]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "raw": { "type": "string", "minLength": 1, "maxLength": 256 }
+            },
+            "required": ["raw"]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": { "equivalent": { "type": "boolean" } },
+            "required": ["equivalent"]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "output": { "type": "string", "minLength": 0, "maxLength": 2000 }
+            },
+            "required": ["output"]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "lines": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "lineId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 80,
+                      "pattern": "^[A-Za-z0-9_-]+$"
+                    },
+                    "indentationLevel": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 8
+                    }
+                  },
+                  "required": ["lineId", "indentationLevel"]
+                },
+                "minItems": 1,
+                "maxItems": 40
+              }
+            },
+            "required": ["lines"]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "patchId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80,
+                "pattern": "^[A-Za-z0-9_-]+$"
+              }
+            },
+            "required": ["patchId"]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "value": { "type": "string", "minLength": 1, "maxLength": 80 },
+              "unit": { "type": "string", "minLength": 1, "maxLength": 16 }
+            },
+            "required": ["value", "unit"]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "observationAr": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              },
+              "explanationAr": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1000
+              }
+            },
+            "required": [],
+            "minProperties": 1
+          }
+        ]
+      },
+      "StemLabArtifact": {
+        "anyOf": [
+          { "$ref": "#/components/schemas/StemLinearGraphArtifact" },
+          { "$ref": "#/components/schemas/StemPhysicsSnapshot" },
+          { "$ref": "#/components/schemas/StemMathDisclosedActivity" },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "traceSteps": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/StemCodingTraceStep" },
+                "minItems": 1,
+                "maxItems": 100
+              }
+            },
+            "required": ["traceSteps"]
+          },
+          { "$ref": "#/components/schemas/StemMathPublicSpec" }
+        ]
+      },
+      "StemLabCapabilities": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schemaVersion": { "type": "string", "const": "subject-lab-v1" },
+          "math": { "type": "boolean" },
+          "physics": { "type": "boolean" },
+          "codingNonExecuting": { "type": "boolean" },
+          "runnerBridge": { "type": "boolean", "const": false },
+          "phet": { "type": "boolean", "const": false },
+          "reasonCode": {
+            "type": "string",
+            "const": "synthetic_review_required"
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "math",
+          "physics",
+          "codingNonExecuting",
+          "runnerBridge",
+          "phet",
+          "reasonCode"
+        ]
+      },
+      "StemLabCapabilitiesEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/StemLabCapabilities" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "StemLabParameters": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "a": { "type": "number", "minimum": -1000000, "maximum": 1000000 },
+          "b": { "type": "number", "minimum": -1000000, "maximum": 1000000 },
+          "v_mps": {
+            "type": "number",
+            "minimum": -1000000,
+            "maximum": 1000000
+          },
+          "v0_mps": {
+            "type": "number",
+            "minimum": -1000000,
+            "maximum": 1000000
+          },
+          "a_mps2": {
+            "type": "number",
+            "minimum": -1000000,
+            "maximum": 1000000
+          },
+          "t_s": { "type": "number", "minimum": -1000000, "maximum": 1000000 },
+          "x0_m": { "type": "number", "minimum": -1000000, "maximum": 1000000 }
+        },
+        "maxProperties": 5
+      },
+      "StemLabResult": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "result": {
+            "type": "string",
+            "enum": [
+              "correct_practice",
+              "incorrect_practice",
+              "needs_review",
+              "cannot_determine"
+            ]
+          },
+          "domainVerifier": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "reasonCode": { "type": "string", "minLength": 1, "maxLength": 100 },
+          "feedbackAr": { "type": "string", "minLength": 1, "maxLength": 2000 },
+          "evidenceClass": { "type": "string", "const": "learning_only" },
+          "domainStatus": { "$ref": "#/components/schemas/MathStatus" },
+          "verificationReportIds": {
+            "type": "array",
+            "items": { "type": "string", "format": "uuid" },
+            "minItems": 0,
+            "maxItems": 12
+          }
+        },
+        "required": [
+          "result",
+          "domainVerifier",
+          "reasonCode",
+          "feedbackAr",
+          "evidenceClass"
+        ]
+      },
+      "StemLabSession": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "revision": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "trackRevisionId": { "type": "string", "format": "uuid" },
+          "lessonRevisionId": { "type": "string", "format": "uuid" },
+          "blockIndex": { "type": "integer", "minimum": 0, "maximum": 49 },
+          "subject": {
+            "type": "string",
+            "enum": ["algebra", "physics", "programming"]
+          },
+          "labKind": {
+            "type": "string",
+            "enum": [
+              "math_linear_graph_v1",
+              "math_method_comparison_v1",
+              "math_first_error_v1",
+              "math_why_question_v1",
+              "math_completion_v1",
+              "math_equivalence_probe_v1",
+              "physics_prediction_experiment_v1",
+              "physics_parameter_simulation_v1",
+              "physics_graph_to_physics_v1",
+              "physics_units_v1",
+              "physics_misconception_contrast_v1",
+              "predict_output",
+              "code_trace",
+              "parsons_reorder",
+              "debug_select_fix"
+            ]
+          },
+          "stage": {
+            "type": "string",
+            "enum": [
+              "opened",
+              "prediction_saved",
+              "revealed",
+              "explained",
+              "submitted"
+            ]
+          },
+          "activity": { "$ref": "#/components/schemas/StemLabActivity" },
+          "prediction": {
+            "anyOf": [
+              { "type": "string", "minLength": 1, "maxLength": 1000 },
+              { "type": "null" }
+            ]
+          },
+          "parameters": { "$ref": "#/components/schemas/StemLabParameters" },
+          "observation": {
+            "anyOf": [
+              { "type": "string", "minLength": 1, "maxLength": 1000 },
+              { "type": "null" }
+            ]
+          },
+          "explanation": {
+            "anyOf": [
+              { "type": "string", "minLength": 1, "maxLength": 1000 },
+              { "type": "null" }
+            ]
+          },
+          "assistanceLevel": { "type": "integer", "minimum": 0, "maximum": 4 },
+          "resultRevealed": { "type": "boolean" },
+          "artifact": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/StemLabArtifact" },
+              { "type": "null" }
+            ]
+          },
+          "result": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/StemLabResult" },
+              { "type": "null" }
+            ]
+          },
+          "answer": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/StemLabAnswer" },
+              { "type": "null" }
+            ]
+          },
+          "evidenceClass": { "type": "string", "const": "learning_only" },
+          "transfer": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "available": { "type": "boolean" },
+              "reasonCode": {
+                "type": "string",
+                "enum": [
+                  "runner_gate_blocked",
+                  "assessment_service_rechecks_novelty",
+                  "insufficient_novel_bank"
+                ]
+              }
+            },
+            "required": ["available", "reasonCode"],
+            "allOf": [
+              {
+                "if": {
+                  "properties": { "available": { "const": true } },
+                  "required": ["available"]
+                },
+                "then": {
+                  "properties": {
+                    "reasonCode": {
+                      "const": "assessment_service_rechecks_novelty"
+                    }
+                  }
+                },
+                "else": {
+                  "properties": {
+                    "reasonCode": {
+                      "enum": ["runner_gate_blocked", "insufficient_novel_bank"]
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "revision",
+          "trackRevisionId",
+          "lessonRevisionId",
+          "blockIndex",
+          "subject",
+          "labKind",
+          "stage",
+          "activity",
+          "prediction",
+          "parameters",
+          "observation",
+          "explanation",
+          "assistanceLevel",
+          "resultRevealed",
+          "artifact",
+          "result",
+          "answer",
+          "evidenceClass",
+          "transfer"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "resultRevealed": { "type": "boolean", "const": false }
+              },
+              "required": ["resultRevealed"]
+            },
+            "then": {
+              "properties": {
+                "artifact": {
+                  "anyOf": [
+                    { "$ref": "#/components/schemas/StemLinearGraphArtifact" },
+                    { "type": "null" }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      },
+      "StemLabSessionEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/StemLabSession" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "StemLinearGraphArtifact": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "model": { "$ref": "#/components/schemas/StemLinearGraphModel" },
+          "points": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "x": {
+                  "type": "number",
+                  "minimum": -1000000000,
+                  "maximum": 1000000000
+                },
+                "y": {
+                  "type": "number",
+                  "minimum": -1000000000,
+                  "maximum": 1000000000
+                }
+              },
+              "required": ["x", "y"]
+            },
+            "minItems": 2,
+            "maxItems": 101
+          },
+          "intersection": {
+            "anyOf": [
+              {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "kind": { "type": "string", "const": "all_reals" }
+                    },
+                    "required": ["kind"]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "kind": { "type": "string", "const": "empty" }
+                    },
+                    "required": ["kind"]
+                  },
+                  {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "kind": { "type": "string", "const": "single" },
+                      "x": {
+                        "type": "number",
+                        "minimum": -1000000000,
+                        "maximum": 1000000000
+                      },
+                      "inWindow": { "type": "boolean" }
+                    },
+                    "required": ["kind", "x", "inWindow"]
+                  }
+                ]
+              },
+              { "type": "null" }
+            ]
+          },
+          "axisLabels": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "xAr": { "type": "string", "const": "س" },
+              "yAr": { "type": "string", "const": "ص" }
+            },
+            "required": ["xAr", "yAr"]
+          },
+          "modelLabelAr": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "measurementMode": { "type": "string", "const": "learning_only" }
+        },
+        "required": [
+          "model",
+          "points",
+          "intersection",
+          "axisLabels",
+          "modelLabelAr",
+          "measurementMode"
+        ]
+      },
+      "StemLinearGraphModel": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "modelVersion": { "type": "string", "const": "linear_function_v1" },
+          "a": { "type": "number", "minimum": -1000, "maximum": 1000 },
+          "b": { "type": "number", "minimum": -1000, "maximum": 1000 },
+          "xMin": { "type": "number", "minimum": -1000, "maximum": 1000 },
+          "xMax": { "type": "number", "minimum": -1000, "maximum": 1000 },
+          "step": { "type": "number", "minimum": 0.000001, "maximum": 1000 },
+          "targetY": { "type": "number", "minimum": -1000, "maximum": 1000 }
+        },
+        "required": ["modelVersion", "a", "b", "xMin", "xMax", "step"]
+      },
+      "StemMathDisclosedActivity": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "math_method_comparison_v1"
+              },
+              "originalRaw": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              },
+              "methods": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 48,
+                      "pattern": "^[A-Za-z0-9_-]+$"
+                    },
+                    "titleAr": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "steps": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 256
+                      },
+                      "minItems": 1,
+                      "maxItems": 12
+                    }
+                  },
+                  "required": ["id", "titleAr", "steps"]
+                },
+                "minItems": 2,
+                "maxItems": 2
+              },
+              "revealedSupport": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "acceptedMethodIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 80,
+                      "pattern": "^[A-Za-z0-9_-]+$"
+                    },
+                    "minItems": 1,
+                    "maxItems": 2
+                  },
+                  "rubricAr": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 2000
+                  }
+                },
+                "required": ["acceptedMethodIds", "rubricAr"]
+              }
+            },
+            "required": ["kind", "originalRaw", "methods", "revealedSupport"]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": { "type": "string", "const": "math_first_error_v1" },
+              "originalRaw": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              },
+              "steps": {
+                "type": "array",
+                "items": { "type": "string", "minLength": 1, "maxLength": 256 },
+                "minItems": 1,
+                "maxItems": 12
+              },
+              "revealedSupport": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "expectedFirstInvalidStep": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 12
+                  },
+                  "reasonAr": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 2000
+                  }
+                },
+                "required": ["expectedFirstInvalidStep", "reasonAr"]
+              }
+            },
+            "required": ["kind", "originalRaw", "steps", "revealedSupport"]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": { "type": "string", "const": "math_why_question_v1" },
+              "fromRaw": { "type": "string", "minLength": 1, "maxLength": 256 },
+              "toRaw": { "type": "string", "minLength": 1, "maxLength": 256 },
+              "choices": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 80,
+                      "pattern": "^[A-Za-z0-9_-]+$"
+                    },
+                    "textAr": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 400
+                    }
+                  },
+                  "required": ["id", "textAr"]
+                },
+                "minItems": 1,
+                "maxItems": 6
+              },
+              "revealedSupport": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "acceptedChoiceIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 80,
+                      "pattern": "^[A-Za-z0-9_-]+$"
+                    },
+                    "minItems": 1,
+                    "maxItems": 6
+                  },
+                  "reasonAr": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 2000
+                  }
+                },
+                "required": ["acceptedChoiceIds", "reasonAr"]
+              }
+            },
+            "required": [
+              "kind",
+              "fromRaw",
+              "toRaw",
+              "choices",
+              "revealedSupport"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": { "type": "string", "const": "math_completion_v1" },
+              "originalRaw": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              },
+              "visibleSteps": {
+                "type": "array",
+                "items": { "type": "string", "minLength": 1, "maxLength": 256 },
+                "minItems": 0,
+                "maxItems": 12
+              },
+              "scaffoldActivity": {
+                "type": "string",
+                "const": "completion_step"
+              },
+              "revealedSupport": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "completionRaw": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                  },
+                  "workedSteps": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 256
+                    },
+                    "minItems": 1,
+                    "maxItems": 12
+                  },
+                  "reasonAr": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 2000
+                  }
+                },
+                "required": ["completionRaw", "workedSteps", "reasonAr"]
+              }
+            },
+            "required": [
+              "kind",
+              "originalRaw",
+              "visibleSteps",
+              "scaffoldActivity",
+              "revealedSupport"
+            ]
+          }
+        ]
+      },
+      "StemMathPublicSpec": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": { "type": "string", "const": "math_linear_graph_v1" },
+              "model": { "$ref": "#/components/schemas/StemLinearGraphModel" },
+              "points": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "x": {
+                      "type": "number",
+                      "minimum": -1000000000,
+                      "maximum": 1000000000
+                    },
+                    "y": {
+                      "type": "number",
+                      "minimum": -1000000000,
+                      "maximum": 1000000000
+                    }
+                  },
+                  "required": ["x", "y"]
+                },
+                "minItems": 2,
+                "maxItems": 101
+              },
+              "intersection": {
+                "anyOf": [
+                  {
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "kind": { "type": "string", "const": "all_reals" }
+                        },
+                        "required": ["kind"]
+                      },
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "kind": { "type": "string", "const": "empty" }
+                        },
+                        "required": ["kind"]
+                      },
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "kind": { "type": "string", "const": "single" },
+                          "x": {
+                            "type": "number",
+                            "minimum": -1000000000,
+                            "maximum": 1000000000
+                          },
+                          "inWindow": { "type": "boolean" }
+                        },
+                        "required": ["kind", "x", "inWindow"]
+                      }
+                    ]
+                  },
+                  { "type": "null" }
+                ]
+              },
+              "axisLabels": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "xAr": { "type": "string", "const": "س" },
+                  "yAr": { "type": "string", "const": "ص" }
+                },
+                "required": ["xAr", "yAr"]
+              },
+              "modelLabelAr": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "measurementMode": { "type": "string", "const": "learning_only" }
+            },
+            "required": [
+              "kind",
+              "model",
+              "points",
+              "intersection",
+              "axisLabels",
+              "modelLabelAr",
+              "measurementMode"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "math_method_comparison_v1"
+              },
+              "originalRaw": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              },
+              "methods": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 48,
+                      "pattern": "^[A-Za-z0-9_-]+$"
+                    },
+                    "titleAr": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "steps": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 256
+                      },
+                      "minItems": 1,
+                      "maxItems": 12
+                    }
+                  },
+                  "required": ["id", "titleAr", "steps"]
+                },
+                "minItems": 2,
+                "maxItems": 2
+              }
+            },
+            "required": ["kind", "originalRaw", "methods"]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": { "type": "string", "const": "math_first_error_v1" },
+              "originalRaw": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              },
+              "steps": {
+                "type": "array",
+                "items": { "type": "string", "minLength": 1, "maxLength": 256 },
+                "minItems": 1,
+                "maxItems": 12
+              }
+            },
+            "required": ["kind", "originalRaw", "steps"]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": { "type": "string", "const": "math_why_question_v1" },
+              "fromRaw": { "type": "string", "minLength": 1, "maxLength": 256 },
+              "toRaw": { "type": "string", "minLength": 1, "maxLength": 256 },
+              "choices": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 80,
+                      "pattern": "^[A-Za-z0-9_-]+$"
+                    },
+                    "textAr": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 400
+                    }
+                  },
+                  "required": ["id", "textAr"]
+                },
+                "minItems": 1,
+                "maxItems": 6
+              }
+            },
+            "required": ["kind", "fromRaw", "toRaw", "choices"]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": { "type": "string", "const": "math_completion_v1" },
+              "originalRaw": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 256
+              },
+              "visibleSteps": {
+                "type": "array",
+                "items": { "type": "string", "minLength": 1, "maxLength": 256 },
+                "minItems": 0,
+                "maxItems": 12
+              },
+              "scaffoldActivity": {
+                "type": "string",
+                "const": "completion_step"
+              }
+            },
+            "required": [
+              "kind",
+              "originalRaw",
+              "visibleSteps",
+              "scaffoldActivity"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "math_equivalence_probe_v1"
+              },
+              "fromRaw": { "type": "string", "minLength": 1, "maxLength": 256 },
+              "toRaw": { "type": "string", "minLength": 1, "maxLength": 256 }
+            },
+            "required": ["kind", "fromRaw", "toRaw"]
+          }
+        ]
+      },
+      "StemPhysicsModel": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "schemaVersion": { "type": "string", "const": "physics-lab-v1" },
+              "modelCode": {
+                "type": "string",
+                "const": "constant_velocity_1d"
+              },
+              "modelVersion": { "type": "string", "const": "1.0.0" },
+              "parameters": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "v_mps": {
+                    "type": "number",
+                    "minimum": -10000,
+                    "maximum": 10000
+                  },
+                  "t_s": { "type": "number", "minimum": 0, "maximum": 3600 },
+                  "x0_m": {
+                    "type": "number",
+                    "minimum": -1000000,
+                    "maximum": 1000000
+                  }
+                },
+                "required": ["v_mps", "t_s", "x0_m"]
+              },
+              "sampleCount": { "type": "integer", "minimum": 2, "maximum": 501 }
+            },
+            "required": [
+              "schemaVersion",
+              "modelCode",
+              "modelVersion",
+              "parameters"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "schemaVersion": { "type": "string", "const": "physics-lab-v1" },
+              "modelCode": {
+                "type": "string",
+                "const": "constant_acceleration_1d"
+              },
+              "modelVersion": { "type": "string", "const": "1.0.0" },
+              "parameters": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "v0_mps": {
+                    "type": "number",
+                    "minimum": -10000,
+                    "maximum": 10000
+                  },
+                  "a_mps2": {
+                    "type": "number",
+                    "minimum": -100,
+                    "maximum": 100
+                  },
+                  "t_s": { "type": "number", "minimum": 0, "maximum": 3600 },
+                  "x0_m": {
+                    "type": "number",
+                    "minimum": -1000000,
+                    "maximum": 1000000
+                  }
+                },
+                "required": ["v0_mps", "a_mps2", "t_s", "x0_m"]
+              },
+              "sampleCount": { "type": "integer", "minimum": 2, "maximum": 501 }
+            },
+            "required": [
+              "schemaVersion",
+              "modelCode",
+              "modelVersion",
+              "parameters"
+            ]
+          }
+        ]
+      },
+      "StemPhysicsPublicSpec": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "physics_prediction_experiment_v1",
+              "physics_parameter_simulation_v1",
+              "physics_graph_to_physics_v1",
+              "physics_units_v1",
+              "physics_misconception_contrast_v1"
+            ]
+          },
+          "model": { "$ref": "#/components/schemas/StemPhysicsModel" },
+          "predictionPromptAr": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "observationPromptAr": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "explanationPromptAr": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "assumptionsAr": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1, "maxLength": 500 },
+            "minItems": 1,
+            "maxItems": 8
+          },
+          "controlledVariables": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1, "maxLength": 500 },
+            "minItems": 1,
+            "maxItems": 8
+          },
+          "allowedUnits": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["m", "s", "m/s", "m/s²", "km/h"]
+            },
+            "minItems": 1,
+            "maxItems": 5
+          },
+          "quantity": {
+            "type": "string",
+            "enum": ["distance", "displacement", "velocity"]
+          }
+        },
+        "required": [
+          "kind",
+          "model",
+          "predictionPromptAr",
+          "observationPromptAr",
+          "explanationPromptAr",
+          "assumptionsAr",
+          "controlledVariables"
+        ]
+      },
+      "StemPhysicsSnapshot": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schemaVersion": {
+            "type": "string",
+            "const": "physics-lab-snapshot-v1"
+          },
+          "modelCode": {
+            "type": "string",
+            "enum": ["constant_velocity_1d", "constant_acceleration_1d"]
+          },
+          "modelVersion": { "type": "string", "const": "1.0.0" },
+          "unitSystem": { "type": "string", "const": "SI" },
+          "assumptions": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1, "maxLength": 100 },
+            "minItems": 1,
+            "maxItems": 8
+          },
+          "points": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "t_s": { "type": "number", "minimum": 0, "maximum": 3600 },
+                "x_m": {
+                  "type": "number",
+                  "minimum": -1000000000,
+                  "maximum": 1000000000
+                },
+                "v_mps": {
+                  "type": "number",
+                  "minimum": -1000000000,
+                  "maximum": 1000000000
+                }
+              },
+              "required": ["t_s", "x_m", "v_mps"]
+            },
+            "minItems": 1,
+            "maxItems": 501
+          },
+          "displacement_m": {
+            "type": "number",
+            "minimum": -1000000000,
+            "maximum": 1000000000
+          },
+          "distance_m": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000000000
+          },
+          "finalVelocity_mps": {
+            "type": "number",
+            "minimum": -1000000000,
+            "maximum": 1000000000
+          },
+          "reversalTime_s": {
+            "anyOf": [
+              { "type": "number", "minimum": 0, "maximum": 3600 },
+              { "type": "null" }
+            ]
+          },
+          "checksum": {
+            "type": "string",
+            "minLength": 64,
+            "maxLength": 64,
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "modelCode",
+          "modelVersion",
+          "unitSystem",
+          "assumptions",
+          "points",
+          "displacement_m",
+          "distance_m",
+          "finalVelocity_mps",
+          "reversalTime_s",
+          "checksum"
+        ]
+      },
       "Step": {
         "type": "object",
         "additionalProperties": false,

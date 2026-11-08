@@ -1,4 +1,5 @@
 import type { ContentStatus, PhysicsContent, SubjectCode } from "./product";
+import type { StemLabBlock } from "./stem-labs";
 
 export interface LessonBlock {
   type:
@@ -13,13 +14,15 @@ export interface LessonBlock {
     | "physics_example"
     | "completion_step"
     | "worked_example_ref"
-    | "self_check_prompt";
+    | "self_check_prompt"
+    | "subject_lab_activity";
   textAr: string;
   raw?: string;
   steps?: { raw: string; explanationAr: string }[];
   code?: string;
   physics?: PhysicsContent;
   problemRevisionId?: string;
+  lab?: StemLabBlock;
 }
 export interface LessonPayload {
   kind: "lesson";

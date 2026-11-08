@@ -1855,6 +1855,125 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/learning/labs/capabilities": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only B1–B3; published reviewed content and owner authorization required. No independent credit. Runner/PhET remain disabled. Writes require Origin, CSRF, scoped Idempotency-Key and expectedRevision where supplied. Session results are private/no-store; stale domain results cannot overwrite a newer revision. */
+        get: operations["getStemLabCapabilities"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/labs/activities/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only B1–B3; published reviewed content and owner authorization required. No independent credit. Runner/PhET remain disabled. Writes require Origin, CSRF, scoped Idempotency-Key and expectedRevision where supplied. Session results are private/no-store; stale domain results cannot overwrite a newer revision. */
+        get: operations["getStemLabActivity"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/labs/sessions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only B1–B3; published reviewed content and owner authorization required. No independent credit. Runner/PhET remain disabled. Writes require Origin, CSRF, scoped Idempotency-Key and expectedRevision where supplied. Session results are private/no-store; stale domain results cannot overwrite a newer revision. */
+        post: operations["startStemLabSession"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/labs/sessions/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only B1–B3; published reviewed content and owner authorization required. No independent credit. Runner/PhET remain disabled. Writes require Origin, CSRF, scoped Idempotency-Key and expectedRevision where supplied. Session results are private/no-store; stale domain results cannot overwrite a newer revision. */
+        get: operations["getStemLabSession"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/labs/sessions/{id}/events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only B1–B3; published reviewed content and owner authorization required. No independent credit. Runner/PhET remain disabled. Writes require Origin, CSRF, scoped Idempotency-Key and expectedRevision where supplied. Session results are private/no-store; stale domain results cannot overwrite a newer revision. */
+        post: operations["recordStemLabEvent"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/labs/sessions/{id}/submit": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only B1–B3; published reviewed content and owner authorization required. No independent credit. Runner/PhET remain disabled. Writes require Origin, CSRF, scoped Idempotency-Key and expectedRevision where supplied. Session results are private/no-store; stale domain results cannot overwrite a newer revision. */
+        post: operations["submitStemLabAnswer"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/labs/sessions/{id}/result": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only B1–B3; published reviewed content and owner authorization required. No independent credit. Runner/PhET remain disabled. Writes require Origin, CSRF, scoped Idempotency-Key and expectedRevision where supplied. Session results are private/no-store; stale domain results cannot overwrite a newer revision. */
+        get: operations["getStemLabResult"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -1865,6 +1984,9 @@ export interface components {
             lessonRevisionId: string | null;
             skillCode: string | null;
             reasonCode: string;
+            labBlockIndex?: number;
+            /** @enum {string} */
+            labKind?: "math_linear_graph_v1" | "math_method_comparison_v1" | "math_first_error_v1" | "math_why_question_v1" | "math_completion_v1" | "math_equivalence_probe_v1" | "physics_prediction_experiment_v1" | "physics_parameter_simulation_v1" | "physics_graph_to_physics_v1" | "physics_units_v1" | "physics_misconception_contrast_v1" | "predict_output" | "code_trace" | "parsons_reorder" | "debug_select_fix";
         };
         ANextActivityDecision: {
             id: string;
@@ -1882,6 +2004,9 @@ export interface components {
             reasonAr: string;
             alternatives: components["schemas"]["AActivityAlternative"][];
             expiresAt: string;
+            labBlockIndex?: number;
+            /** @enum {string} */
+            labKind?: "math_linear_graph_v1" | "math_method_comparison_v1" | "math_first_error_v1" | "math_why_question_v1" | "math_completion_v1" | "math_equivalence_probe_v1" | "physics_prediction_experiment_v1" | "physics_parameter_simulation_v1" | "physics_graph_to_physics_v1" | "physics_units_v1" | "physics_misconception_contrast_v1" | "predict_output" | "code_trace" | "parsons_reorder" | "debug_select_fix";
         };
         ALearningActivity: {
             id: string;
@@ -1896,6 +2021,9 @@ export interface components {
             assistanceLevel: number;
             sourceAttemptId: string | null;
             createdAt: string;
+            labBlockIndex?: number;
+            /** @enum {string} */
+            labKind?: "math_linear_graph_v1" | "math_method_comparison_v1" | "math_first_error_v1" | "math_why_question_v1" | "math_completion_v1" | "math_equivalence_probe_v1" | "physics_prediction_experiment_v1" | "physics_parameter_simulation_v1" | "physics_graph_to_physics_v1" | "physics_units_v1" | "physics_misconception_contrast_v1" | "predict_output" | "code_trace" | "parsons_reorder" | "debug_select_fix";
         };
         ALearnerSkillProjection: {
             skillCode: string;
@@ -3240,6 +3368,7 @@ export interface components {
                     goals: components["schemas"]["AGoal"][];
                     reflections: components["schemas"]["AReflection"][];
                     truncated: boolean;
+                    labs: components["schemas"]["StemLabExport"][];
                 };
                 user: components["schemas"]["AccountUser"] | null;
                 attempts: components["schemas"]["AccountAttempt"][];
@@ -3767,7 +3896,7 @@ export interface components {
         };
         LPLessonBlock: {
             /** @enum {string} */
-            type: "paragraph" | "heading" | "math_example" | "worked_steps" | "key_point" | "common_mistake" | "practice_link" | "code_example" | "physics_example" | "completion_step" | "worked_example_ref" | "self_check_prompt";
+            type: "paragraph" | "heading" | "math_example" | "worked_steps" | "key_point" | "common_mistake" | "practice_link" | "code_example" | "physics_example" | "completion_step" | "worked_example_ref" | "self_check_prompt" | "subject_lab_activity";
             textAr: string;
             raw?: string;
             steps?: {
@@ -3777,7 +3906,8 @@ export interface components {
             code?: string;
             physics?: components["schemas"]["StudioPhysicsContent"];
             problemRevisionId?: string;
-        };
+            lab?: components["schemas"]["StemLabPublicBlock"];
+        } & unknown;
         LPLessonPayload: {
             /** @constant */
             kind: "lesson";
@@ -4001,12 +4131,12 @@ export interface components {
             ruleVersion: string;
         };
         LPLearningContentEnvelope: {
-            data: components["schemas"]["LPLearningContentRevision"];
+            data: components["schemas"]["LPAuthorLearningContentRevision"];
             meta: components["schemas"]["Meta"];
         };
         LPLearningContentListEnvelope: {
             data: {
-                items: components["schemas"]["LPLearningContentRevision"][];
+                items: components["schemas"]["LPAuthorLearningContentRevision"][];
             };
             meta: components["schemas"]["Meta"];
         };
@@ -4033,7 +4163,7 @@ export interface components {
         };
         LPLearningEditInput: {
             expectedRevision: number;
-            payload: components["schemas"]["LPLearningContentPayload"];
+            payload: components["schemas"]["LPAuthorLearningContentPayload"];
         };
         LPLearningTransitionInput: {
             expectedRevision: number;
@@ -4110,6 +4240,774 @@ export interface components {
             action: "request_hint" | "show_full_solution";
             /** @constant */
             confirmAssistedCompletion?: true;
+        };
+        StemLinearGraphModel: {
+            /** @constant */
+            modelVersion: "linear_function_v1";
+            a: number;
+            b: number;
+            xMin: number;
+            xMax: number;
+            step: number;
+            targetY?: number;
+        };
+        StemLinearGraphArtifact: {
+            model: components["schemas"]["StemLinearGraphModel"];
+            points: {
+                x: number;
+                y: number;
+            }[];
+            intersection: ({
+                /** @constant */
+                kind: "all_reals";
+            } | {
+                /** @constant */
+                kind: "empty";
+            } | {
+                /** @constant */
+                kind: "single";
+                x: number;
+                inWindow: boolean;
+            }) | null;
+            axisLabels: {
+                /** @constant */
+                xAr: "س";
+                /** @constant */
+                yAr: "ص";
+            };
+            modelLabelAr: string;
+            /** @constant */
+            measurementMode: "learning_only";
+        };
+        StemMathAuthorSpec: {
+            /** @constant */
+            kind: "math_linear_graph_v1";
+            model: components["schemas"]["StemLinearGraphModel"];
+        } | {
+            /** @constant */
+            kind: "math_method_comparison_v1";
+            originalRaw: string;
+            methods: {
+                id: string;
+                titleAr: string;
+                steps: string[];
+                /** @enum {string} */
+                mode: "solution" | "common_mistake";
+            }[];
+            privateValidation: {
+                acceptedMethodIds: string[];
+                rubricAr: string;
+            };
+        } | {
+            /** @constant */
+            kind: "math_first_error_v1";
+            originalRaw: string;
+            steps: string[];
+            privateValidation: {
+                expectedFirstInvalidStep: number;
+                reasonAr: string;
+            };
+        } | {
+            /** @constant */
+            kind: "math_why_question_v1";
+            fromRaw: string;
+            toRaw: string;
+            choices: {
+                id: string;
+                textAr: string;
+            }[];
+            privateValidation: {
+                acceptedChoiceIds: string[];
+                reasonAr: string;
+            };
+        } | {
+            /** @constant */
+            kind: "math_completion_v1";
+            originalRaw: string;
+            visibleSteps: string[];
+            privateValidation: {
+                completionRaw: string;
+                workedSteps: string[];
+                reasonAr: string;
+            };
+        } | {
+            /** @constant */
+            kind: "math_equivalence_probe_v1";
+            fromRaw: string;
+            toRaw: string;
+        };
+        StemMathPublicSpec: {
+            /** @constant */
+            kind: "math_linear_graph_v1";
+            model: components["schemas"]["StemLinearGraphModel"];
+            points: {
+                x: number;
+                y: number;
+            }[];
+            intersection: ({
+                /** @constant */
+                kind: "all_reals";
+            } | {
+                /** @constant */
+                kind: "empty";
+            } | {
+                /** @constant */
+                kind: "single";
+                x: number;
+                inWindow: boolean;
+            }) | null;
+            axisLabels: {
+                /** @constant */
+                xAr: "س";
+                /** @constant */
+                yAr: "ص";
+            };
+            modelLabelAr: string;
+            /** @constant */
+            measurementMode: "learning_only";
+        } | {
+            /** @constant */
+            kind: "math_method_comparison_v1";
+            originalRaw: string;
+            methods: {
+                id: string;
+                titleAr: string;
+                steps: string[];
+            }[];
+        } | {
+            /** @constant */
+            kind: "math_first_error_v1";
+            originalRaw: string;
+            steps: string[];
+        } | {
+            /** @constant */
+            kind: "math_why_question_v1";
+            fromRaw: string;
+            toRaw: string;
+            choices: {
+                id: string;
+                textAr: string;
+            }[];
+        } | {
+            /** @constant */
+            kind: "math_completion_v1";
+            originalRaw: string;
+            visibleSteps: string[];
+            /** @constant */
+            scaffoldActivity: "completion_step";
+        } | {
+            /** @constant */
+            kind: "math_equivalence_probe_v1";
+            fromRaw: string;
+            toRaw: string;
+        };
+        StemMathDisclosedActivity: {
+            /** @constant */
+            kind: "math_method_comparison_v1";
+            originalRaw: string;
+            methods: {
+                id: string;
+                titleAr: string;
+                steps: string[];
+            }[];
+            revealedSupport: {
+                acceptedMethodIds: string[];
+                rubricAr: string;
+            };
+        } | {
+            /** @constant */
+            kind: "math_first_error_v1";
+            originalRaw: string;
+            steps: string[];
+            revealedSupport: {
+                expectedFirstInvalidStep: number;
+                reasonAr: string;
+            };
+        } | {
+            /** @constant */
+            kind: "math_why_question_v1";
+            fromRaw: string;
+            toRaw: string;
+            choices: {
+                id: string;
+                textAr: string;
+            }[];
+            revealedSupport: {
+                acceptedChoiceIds: string[];
+                reasonAr: string;
+            };
+        } | {
+            /** @constant */
+            kind: "math_completion_v1";
+            originalRaw: string;
+            visibleSteps: string[];
+            /** @constant */
+            scaffoldActivity: "completion_step";
+            revealedSupport: {
+                completionRaw: string;
+                workedSteps: string[];
+                reasonAr: string;
+            };
+        };
+        StemPhysicsModel: {
+            /** @constant */
+            schemaVersion: "physics-lab-v1";
+            /** @constant */
+            modelCode: "constant_velocity_1d";
+            /** @constant */
+            modelVersion: "1.0.0";
+            parameters: {
+                v_mps: number;
+                t_s: number;
+                x0_m: number;
+            };
+            sampleCount?: number;
+        } | {
+            /** @constant */
+            schemaVersion: "physics-lab-v1";
+            /** @constant */
+            modelCode: "constant_acceleration_1d";
+            /** @constant */
+            modelVersion: "1.0.0";
+            parameters: {
+                v0_mps: number;
+                a_mps2: number;
+                t_s: number;
+                x0_m: number;
+            };
+            sampleCount?: number;
+        };
+        StemPhysicsAuthorSpec: {
+            /** @enum {string} */
+            kind: "physics_prediction_experiment_v1" | "physics_parameter_simulation_v1" | "physics_graph_to_physics_v1" | "physics_units_v1" | "physics_misconception_contrast_v1";
+            model: components["schemas"]["StemPhysicsModel"];
+            predictionPromptAr: string;
+            observationPromptAr: string;
+            explanationPromptAr: string;
+            assumptionsAr: string[];
+            controlledVariables: string[];
+            privateValidation?: {
+                reference: components["schemas"]["StudioPhysicsContent"];
+            };
+        };
+        StemPhysicsPublicSpec: {
+            /** @enum {string} */
+            kind: "physics_prediction_experiment_v1" | "physics_parameter_simulation_v1" | "physics_graph_to_physics_v1" | "physics_units_v1" | "physics_misconception_contrast_v1";
+            model: components["schemas"]["StemPhysicsModel"];
+            predictionPromptAr: string;
+            observationPromptAr: string;
+            explanationPromptAr: string;
+            assumptionsAr: string[];
+            controlledVariables: string[];
+            allowedUnits?: ("m" | "s" | "m/s" | "m/s²" | "km/h")[];
+            /** @enum {string} */
+            quantity?: "distance" | "displacement" | "velocity";
+        };
+        StemPhysicsSnapshot: {
+            /** @constant */
+            schemaVersion: "physics-lab-snapshot-v1";
+            /** @enum {string} */
+            modelCode: "constant_velocity_1d" | "constant_acceleration_1d";
+            /** @constant */
+            modelVersion: "1.0.0";
+            /** @constant */
+            unitSystem: "SI";
+            assumptions: string[];
+            points: {
+                t_s: number;
+                x_m: number;
+                v_mps: number;
+            }[];
+            displacement_m: number;
+            distance_m: number;
+            finalVelocity_mps: number;
+            reversalTime_s: number | null;
+            checksum: string;
+        };
+        StemCodingTraceStep: {
+            lineId: string;
+            sourceLine: number;
+            /** @enum {string} */
+            event: "assignment" | "iteration" | "condition" | "return" | "output";
+            variablesDisplay: {
+                [key: string]: string | number | boolean | null;
+            };
+            stdoutCumulative: string;
+            explanationAr: string;
+        };
+        StemCodingAuthorSpec: {
+            /** @constant */
+            schemaVersion: "coding-lab-v1";
+            /** @constant */
+            kind: "predict_output";
+            /** @constant */
+            language: "python";
+            sourceCode: string;
+            privateValidation: {
+                rubricVersion: string;
+                expectedOutput: string;
+            };
+        } | {
+            /** @constant */
+            schemaVersion: "coding-lab-v1";
+            /** @constant */
+            kind: "code_trace";
+            /** @constant */
+            language: "python";
+            sourceCode: string;
+            privateValidation: {
+                rubricVersion: string;
+                expectedOutput: string;
+                traceSteps: components["schemas"]["StemCodingTraceStep"][];
+            };
+        } | {
+            /** @constant */
+            schemaVersion: "coding-lab-v1";
+            /** @constant */
+            kind: "parsons_reorder";
+            /** @constant */
+            language: "python";
+            sourceCode: string;
+            lineItems: {
+                lineId: string;
+                text: string;
+                indentationLevel: number;
+                isDistractor?: boolean;
+            }[];
+            privateValidation: {
+                rubricVersion: string;
+                validOrders?: string[][];
+                precedence?: [
+                    string,
+                    string
+                ][];
+            } | unknown | unknown;
+        } | {
+            /** @constant */
+            schemaVersion: "coding-lab-v1";
+            /** @constant */
+            kind: "debug_select_fix";
+            /** @constant */
+            language: "python";
+            sourceCode: string;
+            patchOptions: {
+                patchId: string;
+                labelAr: string;
+                replacementCode: string;
+            }[];
+            privateValidation: {
+                rubricVersion: string;
+                correctPatchIds: string[];
+            };
+        };
+        StemCodingPublicSpec: {
+            /** @constant */
+            schemaVersion: "coding-lab-v1";
+            /** @constant */
+            kind: "predict_output";
+            /** @constant */
+            language: "python";
+            sourceCode: string;
+            traceStepCount: number;
+            /** @constant */
+            measurementMode: "conceptual_practice";
+            /** @constant */
+            independentEligible: false;
+        } | {
+            /** @constant */
+            schemaVersion: "coding-lab-v1";
+            /** @constant */
+            kind: "code_trace";
+            /** @constant */
+            language: "python";
+            sourceCode: string;
+            traceStepCount: number;
+            /** @constant */
+            measurementMode: "conceptual_practice";
+            /** @constant */
+            independentEligible: false;
+        } | {
+            /** @constant */
+            schemaVersion: "coding-lab-v1";
+            /** @constant */
+            kind: "parsons_reorder";
+            /** @constant */
+            language: "python";
+            lineItems: {
+                lineId: string;
+                text: string;
+                indentationLevel: number;
+            }[];
+            traceStepCount: number;
+            /** @constant */
+            measurementMode: "conceptual_practice";
+            /** @constant */
+            independentEligible: false;
+        } | {
+            /** @constant */
+            schemaVersion: "coding-lab-v1";
+            /** @constant */
+            kind: "debug_select_fix";
+            /** @constant */
+            language: "python";
+            sourceCode: string;
+            patchOptions: {
+                patchId: string;
+                labelAr: string;
+                replacementCode: string;
+            }[];
+            traceStepCount: number;
+            /** @constant */
+            measurementMode: "conceptual_practice";
+            /** @constant */
+            independentEligible: false;
+        };
+        StemLabPublicBlock: {
+            /** @constant */
+            schemaVersion: "subject-lab-v1";
+            /** @constant */
+            subject: "algebra";
+            /** @enum {string} */
+            labKind: "math_linear_graph_v1" | "math_method_comparison_v1" | "math_first_error_v1" | "math_why_question_v1" | "math_completion_v1" | "math_equivalence_probe_v1";
+            objectiveAr: string;
+            familyCode: string;
+            skillCodes: string[];
+        } | {
+            /** @constant */
+            schemaVersion: "subject-lab-v1";
+            /** @constant */
+            subject: "physics";
+            /** @enum {string} */
+            labKind: "physics_prediction_experiment_v1" | "physics_parameter_simulation_v1" | "physics_graph_to_physics_v1" | "physics_units_v1" | "physics_misconception_contrast_v1";
+            objectiveAr: string;
+            familyCode: string;
+            skillCodes: string[];
+        } | {
+            /** @constant */
+            schemaVersion: "subject-lab-v1";
+            /** @constant */
+            subject: "programming";
+            /** @enum {string} */
+            labKind: "predict_output" | "code_trace" | "parsons_reorder" | "debug_select_fix";
+            objectiveAr: string;
+            familyCode: string;
+            skillCodes: string[];
+        };
+        StemLabAuthorBlock: ({
+            /** @constant */
+            schemaVersion: "subject-lab-v1";
+            /** @constant */
+            subject: "algebra";
+            /** @enum {string} */
+            labKind: "math_linear_graph_v1" | "math_method_comparison_v1" | "math_first_error_v1" | "math_why_question_v1" | "math_completion_v1" | "math_equivalence_probe_v1";
+            objectiveAr: string;
+            familyCode: string;
+            skillCodes: string[];
+            domainSpec: components["schemas"]["StemMathAuthorSpec"];
+        } & (unknown & unknown & unknown & unknown & unknown & unknown)) | ({
+            /** @constant */
+            schemaVersion: "subject-lab-v1";
+            /** @constant */
+            subject: "physics";
+            /** @enum {string} */
+            labKind: "physics_prediction_experiment_v1" | "physics_parameter_simulation_v1" | "physics_graph_to_physics_v1" | "physics_units_v1" | "physics_misconception_contrast_v1";
+            objectiveAr: string;
+            familyCode: string;
+            skillCodes: string[];
+            domainSpec: components["schemas"]["StemPhysicsAuthorSpec"];
+        } & (unknown & unknown & unknown & unknown & unknown)) | ({
+            /** @constant */
+            schemaVersion: "subject-lab-v1";
+            /** @constant */
+            subject: "programming";
+            /** @enum {string} */
+            labKind: "predict_output" | "code_trace" | "parsons_reorder" | "debug_select_fix";
+            objectiveAr: string;
+            familyCode: string;
+            skillCodes: string[];
+            domainSpec: components["schemas"]["StemCodingAuthorSpec"];
+        } & (unknown & unknown & unknown & unknown));
+        StemLabActivity: ({
+            /** @constant */
+            schemaVersion: "subject-lab-v1";
+            /** @constant */
+            subject: "algebra";
+            /** @enum {string} */
+            labKind: "math_linear_graph_v1" | "math_method_comparison_v1" | "math_first_error_v1" | "math_why_question_v1" | "math_completion_v1" | "math_equivalence_probe_v1";
+            objectiveAr: string;
+            familyCode: string;
+            skillCodes: string[];
+            /** Format: uuid */
+            activityRevisionId: string;
+            blockIndex: number;
+            domainSpec: components["schemas"]["StemMathPublicSpec"];
+        } & (unknown & unknown & unknown & unknown & unknown & unknown)) | ({
+            /** @constant */
+            schemaVersion: "subject-lab-v1";
+            /** @constant */
+            subject: "physics";
+            /** @enum {string} */
+            labKind: "physics_prediction_experiment_v1" | "physics_parameter_simulation_v1" | "physics_graph_to_physics_v1" | "physics_units_v1" | "physics_misconception_contrast_v1";
+            objectiveAr: string;
+            familyCode: string;
+            skillCodes: string[];
+            /** Format: uuid */
+            activityRevisionId: string;
+            blockIndex: number;
+            domainSpec: components["schemas"]["StemPhysicsPublicSpec"];
+        } & (unknown & unknown & unknown & unknown & unknown)) | ({
+            /** @constant */
+            schemaVersion: "subject-lab-v1";
+            /** @constant */
+            subject: "programming";
+            /** @enum {string} */
+            labKind: "predict_output" | "code_trace" | "parsons_reorder" | "debug_select_fix";
+            objectiveAr: string;
+            familyCode: string;
+            skillCodes: string[];
+            /** Format: uuid */
+            activityRevisionId: string;
+            blockIndex: number;
+            domainSpec: components["schemas"]["StemCodingPublicSpec"];
+        } & (unknown & unknown & unknown & unknown));
+        StemLabCapabilities: {
+            /** @constant */
+            schemaVersion: "subject-lab-v1";
+            math: boolean;
+            physics: boolean;
+            codingNonExecuting: boolean;
+            /** @constant */
+            runnerBridge: false;
+            /** @constant */
+            phet: false;
+            /** @constant */
+            reasonCode: "synthetic_review_required";
+        };
+        StemLabAnswer: {
+            observationAr: string;
+        } | {
+            methodIds: string[];
+            explanationAr?: string;
+        } | {
+            transitionIndex: number;
+        } | {
+            choiceIds: string[];
+            explanationAr?: string;
+        } | {
+            raw: string;
+        } | {
+            equivalent: boolean;
+        } | {
+            output: string;
+        } | {
+            lines: {
+                lineId: string;
+                indentationLevel: number;
+            }[];
+        } | {
+            patchId: string;
+        } | {
+            value: string;
+            unit: string;
+        } | {
+            observationAr?: string;
+            explanationAr?: string;
+        };
+        StemLabResult: {
+            /** @enum {string} */
+            result: "correct_practice" | "incorrect_practice" | "needs_review" | "cannot_determine";
+            domainVerifier: string;
+            reasonCode: string;
+            feedbackAr: string;
+            /** @constant */
+            evidenceClass: "learning_only";
+            domainStatus?: components["schemas"]["MathStatus"];
+            verificationReportIds?: string[];
+        };
+        StemLabArtifact: components["schemas"]["StemLinearGraphArtifact"] | components["schemas"]["StemPhysicsSnapshot"] | components["schemas"]["StemMathDisclosedActivity"] | {
+            traceSteps: components["schemas"]["StemCodingTraceStep"][];
+        } | components["schemas"]["StemMathPublicSpec"];
+        StemLabParameters: {
+            a?: number;
+            b?: number;
+            v_mps?: number;
+            v0_mps?: number;
+            a_mps2?: number;
+            t_s?: number;
+            x0_m?: number;
+        };
+        StemLabSession: {
+            /** Format: uuid */
+            id: string;
+            revision: number;
+            /** Format: uuid */
+            trackRevisionId: string;
+            /** Format: uuid */
+            lessonRevisionId: string;
+            blockIndex: number;
+            /** @enum {string} */
+            subject: "algebra" | "physics" | "programming";
+            /** @enum {string} */
+            labKind: "math_linear_graph_v1" | "math_method_comparison_v1" | "math_first_error_v1" | "math_why_question_v1" | "math_completion_v1" | "math_equivalence_probe_v1" | "physics_prediction_experiment_v1" | "physics_parameter_simulation_v1" | "physics_graph_to_physics_v1" | "physics_units_v1" | "physics_misconception_contrast_v1" | "predict_output" | "code_trace" | "parsons_reorder" | "debug_select_fix";
+            /** @enum {string} */
+            stage: "opened" | "prediction_saved" | "revealed" | "explained" | "submitted";
+            activity: components["schemas"]["StemLabActivity"];
+            prediction: string | null;
+            parameters: components["schemas"]["StemLabParameters"];
+            observation: string | null;
+            explanation: string | null;
+            assistanceLevel: number;
+            resultRevealed: boolean;
+            artifact: components["schemas"]["StemLabArtifact"] | null;
+            result: components["schemas"]["StemLabResult"] | null;
+            answer: components["schemas"]["StemLabAnswer"] | null;
+            /** @constant */
+            evidenceClass: "learning_only";
+            transfer: {
+                available: boolean;
+                /** @enum {string} */
+                reasonCode: "runner_gate_blocked" | "assessment_service_rechecks_novelty" | "insufficient_novel_bank";
+            } & unknown;
+        } & unknown;
+        StemLabStartInput: {
+            /** Format: uuid */
+            trackRevisionId: string;
+            /** Format: uuid */
+            lessonRevisionId: string;
+            blockIndex: number;
+        };
+        StemLabEventInput: {
+            expectedRevision: number;
+            /** @constant */
+            eventKind: "prediction_submitted";
+            payload: {
+                textAr: string;
+            };
+        } | {
+            expectedRevision: number;
+            /** @constant */
+            eventKind: "observation_saved";
+            payload: {
+                textAr: string;
+            };
+        } | {
+            expectedRevision: number;
+            /** @constant */
+            eventKind: "explanation_saved";
+            payload: {
+                textAr: string;
+            };
+        } | {
+            expectedRevision: number;
+            /** @constant */
+            eventKind: "simulation_revealed";
+            payload: Record<string, never>;
+        } | {
+            expectedRevision: number;
+            /** @constant */
+            eventKind: "scaffold_revealed";
+            payload: Record<string, never>;
+        } | {
+            expectedRevision: number;
+            /** @constant */
+            eventKind: "trace_step_revealed";
+            payload: {
+                index: number;
+            };
+        } | {
+            expectedRevision: number;
+            /** @constant */
+            eventKind: "simulation_parameter_changed";
+            payload: {
+                parameters: components["schemas"]["StemLabParameters"];
+            };
+        };
+        StemLabSubmitInput: {
+            expectedRevision: number;
+            answer: components["schemas"]["StemLabAnswer"];
+        };
+        StemLabCapabilitiesEnvelope: {
+            data: components["schemas"]["StemLabCapabilities"];
+            meta: components["schemas"]["Meta"];
+        };
+        StemLabActivityEnvelope: {
+            data: components["schemas"]["StemLabActivity"];
+            meta: components["schemas"]["Meta"];
+        };
+        StemLabSessionEnvelope: {
+            data: components["schemas"]["StemLabSession"];
+            meta: components["schemas"]["Meta"];
+        };
+        LPAuthorLessonBlock: {
+            /** @enum {string} */
+            type: "paragraph" | "heading" | "math_example" | "worked_steps" | "key_point" | "common_mistake" | "practice_link" | "code_example" | "physics_example" | "completion_step" | "worked_example_ref" | "self_check_prompt" | "subject_lab_activity";
+            textAr: string;
+            raw?: string;
+            steps?: {
+                raw: string;
+                explanationAr: string;
+            }[];
+            code?: string;
+            physics?: components["schemas"]["StudioPhysicsContent"];
+            problemRevisionId?: string;
+            lab?: components["schemas"]["StemLabAuthorBlock"];
+        } & unknown;
+        LPAuthorLessonPayload: {
+            /** @constant */
+            kind: "lesson";
+            /** @enum {string} */
+            subject: "algebra" | "physics" | "programming";
+            code: string;
+            titleAr: string;
+            descriptionAr: string;
+            objectives: string[];
+            skillCodes: string[];
+            prerequisiteSkillCodes: string[];
+            prerequisiteLessonIds: string[];
+            contentBlocks: components["schemas"]["LPAuthorLessonBlock"][];
+            practiceProblemRevisionIds: string[];
+            assessmentProblemRevisionIds: string[];
+            errorCodes: string[];
+            mappingPending: string[];
+        };
+        LPAuthorLearningContentPayload: components["schemas"]["LPAuthorLessonPayload"] | components["schemas"]["LPTrackPayload"];
+        LPAuthorLearningContentRevision: {
+            id: string;
+            itemId: string;
+            version: number;
+            editRevision: number;
+            /** @enum {string} */
+            status: "draft" | "in_review" | "approved" | "published" | "archived";
+            payload: components["schemas"]["LPAuthorLearningContentPayload"];
+            contentHash: string;
+            validation: components["schemas"]["LPLearningContentValidation"] | null;
+            createdAt: string;
+            reviewedAt: string | null;
+            publishedAt: string | null;
+        };
+        StemLabExport: {
+            /** Format: uuid */
+            id: string;
+            revision: number;
+            /** Format: uuid */
+            trackRevisionId: string;
+            /** Format: uuid */
+            lessonRevisionId: string;
+            blockIndex: number;
+            /** @enum {string} */
+            subject: "algebra" | "physics" | "programming";
+            /** @enum {string} */
+            labKind: "math_linear_graph_v1" | "math_method_comparison_v1" | "math_first_error_v1" | "math_why_question_v1" | "math_completion_v1" | "math_equivalence_probe_v1" | "physics_prediction_experiment_v1" | "physics_parameter_simulation_v1" | "physics_graph_to_physics_v1" | "physics_units_v1" | "physics_misconception_contrast_v1" | "predict_output" | "code_trace" | "parsons_reorder" | "debug_select_fix";
+            /** @enum {string} */
+            stage: "opened" | "prediction_saved" | "revealed" | "explained" | "submitted";
+            prediction: string | null;
+            observation: string | null;
+            explanation: string | null;
+            assistanceLevel: number;
+            /** @constant */
+            evidenceClass: "learning_only";
+            /** Format: date-time */
+            updatedAt: string;
         };
     };
     responses: {
@@ -7113,7 +8011,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["LPLearningContentPayload"];
+                "application/json": components["schemas"]["LPAuthorLearningContentPayload"];
             };
         };
         responses: {
@@ -8643,6 +9541,255 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["createAReflectionEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getStemLabCapabilities: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Owner-scoped response; no hidden answer keys. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StemLabCapabilitiesEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getStemLabActivity: {
+        parameters: {
+            query: {
+                blockIndex: number;
+            };
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Owner-scoped response; no hidden answer keys. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StemLabActivityEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    startStemLabSession: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StemLabStartInput"];
+            };
+        };
+        responses: {
+            /** @description Owner-scoped response; no hidden answer keys. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StemLabSessionEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getStemLabSession: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Owner-scoped response; no hidden answer keys. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StemLabSessionEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    recordStemLabEvent: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StemLabEventInput"];
+            };
+        };
+        responses: {
+            /** @description Owner-scoped response; no hidden answer keys. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StemLabSessionEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    submitStemLabAnswer: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StemLabSubmitInput"];
+            };
+        };
+        responses: {
+            /** @description Owner-scoped response; no hidden answer keys. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StemLabSessionEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getStemLabResult: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Owner-scoped response; no hidden answer keys. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StemLabSessionEnvelope"];
                 };
             };
             400: components["responses"]["E400"];

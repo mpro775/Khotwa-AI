@@ -1003,6 +1003,7 @@ model learning_recommendation_events {
 
 // A1–A8 synthetic-only state. Science evidence remains in canonical reports.
 model intelligent_learning_records {
+  // B lab state uses the existing version/history, claim and purge path (0024).
   id String @id @db.Uuid
   owner_key String
   kind String

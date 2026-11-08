@@ -14,7 +14,8 @@ export type ARecordKind =
   | "tutor"
   | "goal"
   | "reflection"
-  | "scaffold";
+  | "scaffold"
+  | "lab";
 export interface ARecord<T> {
   id: string;
   owner_key: string;

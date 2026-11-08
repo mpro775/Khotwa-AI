@@ -20,6 +20,8 @@ import type {
 import { physicsExposureKey } from "./physics-learning";
 import type { ContentPayload } from "../../../packages/contracts/src/product";
 import { diagnosisReviewBlocked } from "./deep-diagnosis";
+import { labFeature, labMathSources } from "./stem/lab-registry";
+import { readLabExposures } from "./stem/lab-exposure";
 
 export class PedagogyContextResolver {
   constructor(readonly assessments: LearningAssessmentService) {}
@@ -122,7 +124,11 @@ export class PedagogyContextResolver {
         ),
         exampleKeys = new Set(
           allBlocks
-            .flatMap((b) => [b.raw ?? "", ...(b.steps ?? []).map((s) => s.raw)])
+            .flatMap((b) => [
+              b.raw ?? "",
+              ...(b.steps ?? []).map((s) => s.raw),
+              ...labMathSources(b.lab),
+            ])
             .filter(Boolean)
             .map(normalizedLearningEquation),
         );
@@ -133,6 +139,7 @@ export class PedagogyContextResolver {
       );
       const fresh = bank.filter(
         (p) =>
+          !allBlocks.some((b) => b.lab?.familyCode === p.familyCode) &&
           !seen.some(
             (s) =>
               s.problem_revision_id === p.revisionId ||
@@ -159,6 +166,27 @@ export class PedagogyContextResolver {
               );
             })()),
       );
+      const labExposures = await readLabExposures(
+        tx,
+        context.owner.ownerKey,
+        context.track.payload.subject,
+      );
+      const novelBank = fresh.filter(
+        (p) =>
+          !labExposures.some(
+            (l) =>
+              l.family === p.familyCode ||
+              (p.physics &&
+                (() => {
+                  const ref = physicsRefs.find((r) => r.id === p.revisionId);
+                  return ref
+                    ? l.contexts.some(
+                        (c) => c.key === physicsExposureKey(ref.payload),
+                      )
+                    : true;
+                })()),
+          ),
+      );
       const diagnoses = await tx.$queryRaw<
         {
           attempt_id: string;
@@ -180,7 +208,7 @@ export class PedagogyContextResolver {
           skillCode = payload.skillCodes[0];
         if (!skillCode) continue;
         const summary = projection.find((p) => p.skillCode === skillCode),
-          questionCoverage = fresh.filter(
+          questionCoverage = novelBank.filter(
             (p) =>
               payload.assessmentProblemRevisionIds.includes(p.revisionId) &&
               (payload.subject !== "physics" || p.kind === "main"),
@@ -214,7 +242,20 @@ export class PedagogyContextResolver {
         add("explanation", "introduction");
         if (payload.contentBlocks.some((b) => b.steps?.length))
           add("worked_example", "introduction");
-        if (payload.practiceProblemRevisionIds.length)
+        const labBlockIndex =
+          process.env[labFeature(payload.subject)] === "true"
+            ? payload.contentBlocks.findIndex(
+                (b) =>
+                  b.type === "subject_lab_activity" &&
+                  b.lab?.skillCodes.includes(skillCode),
+              )
+            : -1;
+        if (labBlockIndex >= 0)
+          add("guided_practice", "subject_lab_practice", {
+            labBlockIndex,
+            labKind: payload.contentBlocks[labBlockIndex]!.lab!.labKind,
+          });
+        else if (payload.practiceProblemRevisionIds.length)
           add(
             "guided_practice",
             summary?.dimensions.supportedPractice === "observed"
@@ -287,6 +328,7 @@ export class PedagogyContextResolver {
             physicsExposures: physicsSeen
               .map((s) => [s.family_code, s.context_key])
               .sort(),
+            labExposures,
             reviews: reviews.map((r) => ({
               id: r.id,
               revision: r.revision,
@@ -301,6 +343,8 @@ export class PedagogyContextResolver {
               coverage: c.questionCoverage,
               novel: c.novel,
               sourceAttemptId: c.sourceAttemptId,
+              labKind: c.labKind,
+              labBlockIndex: c.labBlockIndex,
             })),
           }),
         )

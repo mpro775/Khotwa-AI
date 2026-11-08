@@ -7,6 +7,7 @@ import type { SubjectCode } from "../../../packages/contracts/src/product";
 import { parsePayload } from "./content-payload";
 import { uuid } from "./contracts";
 import { only, productInvalid, record, textField } from "./product-core";
+import { parseLabBlock } from "./stem/lab-registry";
 
 export const LEARNING_MAP_VERSION = "learning-path-map-1.0";
 export const ALGEBRA_ERROR_SKILLS: Record<string, string[]> = {
@@ -94,6 +95,7 @@ function block(value: unknown, subject: SubjectCode): LessonBlock {
     "code",
     "physics",
     "problemRevisionId",
+    "lab",
   ]);
   const type = textField(b.type, 30) as LessonBlock["type"];
   if (
@@ -110,10 +112,14 @@ function block(value: unknown, subject: SubjectCode): LessonBlock {
       "completion_step",
       "worked_example_ref",
       "self_check_prompt",
+      "subject_lab_activity",
     ].includes(type)
   )
     throw productInvalid();
   const result: LessonBlock = { type, textAr: textField(b.textAr, 3000) };
+  if (type === "subject_lab_activity")
+    result.lab = parseLabBlock(b.lab, subject);
+  else if (b.lab !== undefined) throw productInvalid();
   if (["math_example", "worked_steps", "completion_step"].includes(type)) {
     if (subject !== "algebra")
       throw productInvalid("المثال الجبري لا ينتمي لهذه المادة.");
@@ -243,6 +249,12 @@ export function parseLearningPayload(value: unknown): LearningContentPayload {
     errorCodes,
     mappingPending: strings(p.mappingPending, 12, (v) => textField(v, 200)),
   };
+  if (
+    result.contentBlocks.some((b) =>
+      b.lab?.skillCodes.some((s) => !skills.includes(s)),
+    )
+  )
+    throw productInvalid("مهارات المختبر يجب أن تنتمي إلى مهارات الدرس.");
   if (
     result.practiceProblemRevisionIds.some((id) =>
       result.assessmentProblemRevisionIds.includes(id),

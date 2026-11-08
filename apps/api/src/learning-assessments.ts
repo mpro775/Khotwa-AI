@@ -43,6 +43,8 @@ import { PhysicsService } from "./physics";
 import { recordExposure } from "./learning";
 import { physicsExposureKey, recordPhysicsExposure } from "./physics-learning";
 import type { ContentPayload } from "../../../packages/contracts/src/product";
+import { labMathSources } from "./stem/lab-registry";
+import { readLabExposures } from "./stem/lab-exposure";
 
 export const ASSESSMENT_RULE = "learning-path-evidence-1.0";
 export interface LearningObservation {
@@ -332,7 +334,11 @@ export class LearningAssessmentService {
     const equations = exposureTimes(
       viewed.flatMap((v) =>
         v.payload.contentBlocks
-          .flatMap((b) => [b.raw ?? "", ...(b.steps ?? []).map((s) => s.raw)])
+          .flatMap((b) => [
+            b.raw ?? "",
+            ...(b.steps ?? []).map((s) => s.raw),
+            ...labMathSources(b.lab),
+          ])
           .filter(Boolean)
           .map((raw): [string, Date] => [
             normalizedLearningEquation(raw),
@@ -352,13 +358,31 @@ export class LearningAssessmentService {
         [...assisted, ...disclosed].map((a) => [a.problem_id, a.exposed_at]),
       ),
       families: exposureTimes(
-        [...assisted, ...disclosed]
+        [
+          ...viewed.flatMap((v) =>
+            v.payload.contentBlocks.flatMap((b) =>
+              b.lab
+                ? [
+                    {
+                      learning_family: b.lab.familyCode,
+                      exposed_at: v.exposed_at,
+                    },
+                  ]
+                : [],
+            ),
+          ),
+          ...assisted,
+          ...disclosed,
+        ]
           .filter((a) => a.learning_family)
           .map((a) => [a.learning_family!, a.exposed_at]),
       ),
     };
   }
   private async physicsContamination(tx: Tx, ownerKey: string) {
+    const labs = (await readLabExposures(tx, ownerKey, "physics")).filter(
+      (l) => l.subject === "physics",
+    );
     const rows = await tx.$queryRaw<
       {
         id: string;
@@ -375,6 +399,9 @@ export class LearningAssessmentService {
       { payload: ContentPayload; exposed_at: Date }[]
     >`SELECT p.payload,min(e.created_at) AS exposed_at FROM learning_lesson_events e JOIN learning_content_revisions r ON r.id=e.lesson_revision_id JOIN studio_revisions p ON ((e.event_kind='lesson_viewed' AND EXISTS(SELECT 1 FROM jsonb_array_elements_text(r.payload->'practiceProblemRevisionIds') AS refs(value) WHERE refs.value=p.id::text)) OR EXISTS(SELECT 1 FROM jsonb_array_elements(r.payload->'contentBlocks') AS blocks(value) WHERE blocks.value->>'type'='worked_example_ref' AND blocks.value->>'problemRevisionId'=p.id::text)) WHERE e.owner_key=${ownerKey} AND r.payload->>'subject'='physics' AND p.payload->>'subject'='physics' GROUP BY p.payload`;
     const contexts = exposureTimes([
+      ...labs.flatMap((l) =>
+        l.contexts.map((c): [string, Date] => [c.key, new Date(c.at)]),
+      ),
       ...viewed.flatMap((v) =>
         v.payload.contentBlocks
           .filter((b) => b.physics)
@@ -400,6 +427,12 @@ export class LearningAssessmentService {
         rows.map((r) => [r.problem_revision_id, physicsExposureKey(r.payload)]),
       ),
       families: exposureTimes([
+        ...labs.map((l): [string, Date] => [l.family, l.created_at]),
+        ...viewed.flatMap((v) =>
+          v.payload.contentBlocks.flatMap((b): [string, Date][] =>
+            b.lab ? [[b.lab.familyCode, v.exposed_at]] : [],
+          ),
+        ),
         ...rows
           .filter((r) => r.assisted)
           .map((r): [string, Date] => [r.payload.familyCode, r.exposed_at]),
@@ -521,6 +554,11 @@ export class LearningAssessmentService {
               >`SELECT r.id,r.item_id,i.code,r.payload FROM studio_revisions r JOIN studio_items i ON i.id=r.item_id WHERE i.subject_code='physics' AND r.status='published'`
             : [];
         if (kind !== "practice") {
+          const labExposures = await readLabExposures(
+            tx,
+            owner.ownerKey,
+            track.payload.subject,
+          );
           const viewed = await tx.$queryRaw<
             { payload: LessonPayload }[]
           >`SELECT DISTINCT r.payload FROM learning_content_revisions r JOIN learning_lesson_events e ON e.lesson_revision_id=r.id WHERE e.owner_key=${owner.ownerKey} AND r.payload->>'kind'='lesson' AND r.payload->>'subject'=${track.payload.subject}`;
@@ -533,6 +571,7 @@ export class LearningAssessmentService {
               .flatMap((block) => [
                 block.raw ?? "",
                 ...(block.steps ?? []).map((s) => s.raw),
+                ...labMathSources(block.lab),
               ])
               .filter(Boolean)
               .map(normalizedLearningEquation),
@@ -547,6 +586,8 @@ export class LearningAssessmentService {
           >`SELECT p.id,p.problem_id,p.learning_family,p.original_equation_raw FROM content_exposures e JOIN problem_revisions p ON p.id=e.problem_revision_id WHERE e.guest_session_id=${auth.row.id}::uuid`;
           pool = pool.filter(
             (p) =>
+              !blocks.some((b) => b.lab?.familyCode === p.familyCode) &&
+              !labExposures.some((l) => l.family === p.familyCode) &&
               !practiceIds.has(p.revisionId) &&
               (!p.equationRaw ||
                 !solved.has(normalizedLearningEquation(p.equationRaw))) &&
@@ -576,6 +617,9 @@ export class LearningAssessmentService {
               const context = physicsExposureKey(reference.payload);
               return (
                 !exampleKeys.has(context) &&
+                !labExposures.some((l) =>
+                  l.contexts.some((c) => c.key === context),
+                ) &&
                 !seen.some(
                   (e) =>
                     e.family_code === p.familyCode || e.context_key === context,
@@ -615,6 +659,7 @@ export class LearningAssessmentService {
             (l.payload as LessonPayload).contentBlocks.flatMap((block) => [
               block.raw ?? "",
               ...(block.steps ?? []).map((s) => s.raw),
+              ...labMathSources(block.lab),
             ]),
           );
           const normalized = (s: string) =>

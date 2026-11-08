@@ -12,12 +12,16 @@ export type ActivityKind =
   | "challenge"
   | "reflection";
 export interface ActivityAlternative {
+  labBlockIndex?: number;
+  labKind?: string;
   activityKind: ActivityKind;
   lessonRevisionId: string | null;
   skillCode: string | null;
   reasonCode: string;
 }
 export interface NextActivityDecision {
+  labBlockIndex?: number;
+  labKind?: string;
   id: string;
   decisionId: string;
   revision: number;
@@ -35,6 +39,8 @@ export interface NextActivityDecision {
   expiresAt: string;
 }
 export interface LearningActivity {
+  labBlockIndex?: number;
+  labKind?: string;
   id: string;
   revision: number;
   decisionId: string;

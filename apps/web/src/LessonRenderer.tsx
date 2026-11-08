@@ -8,10 +8,12 @@ export function LessonRenderer({
   payload,
   validation,
   onPractice,
+  onLab,
 }: {
   payload: LessonPayload;
   validation?: LearningContentValidation | null;
   onPractice?: (problemRevisionId: string) => void;
+  onLab?: (blockIndex: number) => void;
 }) {
   return (
     <article className="learning-lesson" dir="rtl">
@@ -33,6 +35,24 @@ export function LessonRenderer({
           return <h3 key={index}>{block.textAr}</h3>;
         if (block.type === "paragraph")
           return <p key={index}>{block.textAr}</p>;
+        if (block.type === "subject_lab_activity")
+          return (
+            <aside key={index} className="lesson-callout">
+              <h3>{block.textAr}</h3>
+              <p>{block.lab?.objectiveAr}</p>
+              <p className="helper">
+                نشاط للتجربة والفهم؛ لا يُحسب اختبار إتقان مستقلًا.
+              </p>
+              {onLab ? (
+                <button onClick={() => onLab(index)}>افتح المختبر</button>
+              ) : (
+                <p className="helper">
+                  يبدأ المختبر من نسخة درس منشورة بعد المراجعة؛ هذه معاينة نصية
+                  لا تُسجل نشاط طالب.
+                </p>
+              )}
+            </aside>
+          );
         if (block.type === "self_check_prompt")
           return (
             <aside key={index} className="lesson-callout">

@@ -1034,16 +1034,17 @@ export class AccountService {
       { present: boolean }[]
     >`SELECT to_regclass('public.intelligent_learning_records') IS NOT NULL AS present`;
     if (!exists?.present)
-      return { goals: [], reflections: [], truncated: false };
+      return { goals: [], reflections: [], labs: [], truncated: false };
     // Never export private content snapshots or evaluator rules from other A kinds.
     const rows = await this.store.db.$queryRaw<
       {
         id: string;
         kind: string;
         revision: number;
-        data: AGoal | AReflection;
+        data: AGoal | AReflection | import("./stem/lab-state").LabData;
+        updated_at: Date;
       }[]
-    >`SELECT id,kind,revision,data FROM intelligent_learning_records WHERE owner_key=${actor.ownerKey} AND kind IN ('goal','reflection') ORDER BY created_at,id LIMIT 501`;
+    >`SELECT id,kind,revision,data,updated_at FROM intelligent_learning_records WHERE owner_key=${actor.ownerKey} AND kind IN ('goal','reflection','lab') ORDER BY created_at,id LIMIT 501`;
     const visible = rows.slice(0, 500);
     return {
       goals: visible
@@ -1080,6 +1081,27 @@ export class AccountService {
             verifiedOutcome: d.verifiedOutcome,
             messageAr: d.messageAr,
             createdAt: d.createdAt,
+          };
+        }),
+      labs: visible
+        .filter((r) => r.kind === "lab")
+        .map((r) => {
+          const d = r.data as import("./stem/lab-state").LabData;
+          return {
+            id: r.id,
+            revision: r.revision,
+            trackRevisionId: d.trackRevisionId,
+            lessonRevisionId: d.lessonRevisionId,
+            blockIndex: d.blockIndex,
+            subject: d.subject,
+            labKind: d.labKind,
+            stage: d.stage,
+            prediction: d.prediction,
+            observation: d.observation,
+            explanation: d.explanation,
+            assistanceLevel: d.assistanceLevel,
+            evidenceClass: "learning_only" as const,
+            updatedAt: r.updated_at.toISOString(),
           };
         }),
       truncated: rows.length > 500,

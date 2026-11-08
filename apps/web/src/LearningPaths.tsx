@@ -39,6 +39,7 @@ import {
 } from "./learning-path-session";
 import { LessonRenderer } from "./LessonRenderer";
 import { MathInput } from "./MathInput";
+import { StemLabPlayer } from "./StemLabs";
 import {
   DeepDiagnosisPanel,
   IntelligentLearningPanel,
@@ -198,6 +199,8 @@ export function LearningPaths({ api }: { api: ProductApi }) {
     [busy, setBusy] = useState(false),
     [error, setError] = useState(""),
     [notice, setNotice] = useState("");
+  const [labIndex, setLabIndex] = useState<number | null>(null);
+  useEffect(() => setLabIndex(null), [track?.id]);
   const selection = (next: Partial<PathSelection> = {}) => ({
     subject,
     trackId: track?.id ?? null,
@@ -318,7 +321,7 @@ export function LearningPaths({ api }: { api: ProductApi }) {
       );
     });
   }
-  async function openLesson(id: string) {
+  async function openLesson(id: string, openLabIndex?: number) {
     await work(async (version) => {
       const next = await api.request(`/learning/lessons/${id}`, lessonDetail);
       await api.request(`/learning/lessons/${id}/progress`, record, "POST", {
@@ -326,6 +329,7 @@ export function LearningPaths({ api }: { api: ProductApi }) {
       });
       if (version !== epoch.current) return;
       setLesson(next);
+      setLabIndex(openLabIndex ?? null);
       setSummary(null);
       setSession(null);
       setNotice(
@@ -515,6 +519,7 @@ export function LearningPaths({ api }: { api: ProductApi }) {
             selectedLessonId={lesson?.id}
             assessment={session}
             onOpenLesson={(id) => void openLesson(id)}
+            onOpenLab={(id, index) => void openLesson(id, index)}
             onAssessment={(next) => {
               if (next.trackRevisionId !== track.id) return;
               setSession(next);
@@ -611,7 +616,22 @@ export function LearningPaths({ api }: { api: ProductApi }) {
                 payload={lesson.payload}
                 validation={lesson.validation}
                 onPractice={() => void start("practice")}
+                onLab={setLabIndex}
               />
+              {labIndex !== null && (
+                <StemLabPlayer
+                  key={`${lesson.id}:${labIndex}`}
+                  api={api}
+                  trackRevisionId={track.id}
+                  lessonRevisionId={lesson.id}
+                  blockIndex={labIndex}
+                  onClose={() => setLabIndex(null)}
+                  onIndependent={() => {
+                    setLabIndex(null);
+                    void start("lesson_check");
+                  }}
+                />
+              )}
               <div className="actions">
                 <button
                   disabled={busy}

@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "stem-test-fixtures-v1",
+  "isSynthetic": true,
+  "reviewState": "draft",
+  "physics": {
+    "positiveVelocity": {
+      "schemaVersion": "physics-lab-v1",
+      "modelCode": "constant_velocity_1d",
+      "modelVersion": "1.0.0",
+      "parameters": { "v_mps": 3, "t_s": 4, "x0_m": 0 },
+      "sampleCount": 5
+    },
+    "reversal": {
+      "schemaVersion": "physics-lab-v1",
+      "modelCode": "constant_acceleration_1d",
+      "modelVersion": "1.0.0",
+      "parameters": { "v0_mps": 2, "a_mps2": -2, "t_s": 3, "x0_m": 0 },
+      "sampleCount": 4
+    }
+  },
+  "coding": {
+    "predict": {
+      "schemaVersion": "coding-lab-v1",
+      "kind": "predict_output",
+      "language": "python",
+      "sourceCode": "total = 0\nfor n in range(1, 4):\n    total += n\nprint(total)",
+      "privateValidation": {
+        "rubricVersion": "coding-rule-v1",
+        "expectedOutput": "6"
+      }
+    },
+    "trace": {
+      "schemaVersion": "coding-lab-v1",
+      "kind": "code_trace",
+      "language": "python",
+      "sourceCode": "total = 0\nfor n in range(1, 4):\n    total += n\nprint(total)",
+      "privateValidation": {
+        "rubricVersion": "coding-rule-v1",
+        "expectedOutput": "6",
+        "traceSteps": [
+          {
+            "lineId": "step-1",
+            "sourceLine": 3,
+            "event": "iteration",
+            "variablesDisplay": { "n": 1, "total": 1 },
+            "stdoutCumulative": "",
+            "explanationAr": "بعد التكرار الأول يصبح المجموع واحدًا."
+          },
+          {
+            "lineId": "step-2",
+            "sourceLine": 3,
+            "event": "iteration",
+            "variablesDisplay": { "n": 2, "total": 3 },
+            "stdoutCumulative": "",
+            "explanationAr": "بعد التكرار الثاني يصبح المجموع ثلاثة."
+          },
+          {
+            "lineId": "step-3",
+            "sourceLine": 3,
+            "event": "iteration",
+            "variablesDisplay": { "n": 3, "total": 6 },
+            "stdoutCumulative": "",
+            "explanationAr": "بعد التكرار الثالث يصبح المجموع ستة، والعدد أربعة لا يدخل المجال."
+          },
+          {
+            "lineId": "step-4",
+            "sourceLine": 4,
+            "event": "output",
+            "variablesDisplay": { "n": 3, "total": 6 },
+            "stdoutCumulative": "6",
+            "explanationAr": "تطبع التعليمة المجموع النهائي."
+          }
+        ]
+      }
+    },
+    "parsons": {
+      "schemaVersion": "coding-lab-v1",
+      "kind": "parsons_reorder",
+      "language": "python",
+      "sourceCode": "total = 0\nfor n in range(1, 4):\n    total += n\nprint(total)",
+      "lineItems": [
+        { "lineId": "D", "text": "print(total)", "indentationLevel": 0 },
+        {
+          "lineId": "B",
+          "text": "for n in range(1, 4):",
+          "indentationLevel": 0
+        },
+        { "lineId": "A", "text": "total = 0", "indentationLevel": 0 },
+        { "lineId": "C", "text": "total += n", "indentationLevel": 1 }
+      ],
+      "privateValidation": {
+        "rubricVersion": "parsons-rule-v1",
+        "validOrders": [["A", "B", "C", "D"]]
+      }
+    },
+    "debug": {
+      "schemaVersion": "coding-lab-v1",
+      "kind": "debug_select_fix",
+      "language": "python",
+      "sourceCode": "total = 0\nfor n in range(1, 3):\n    total += n\nprint(total)",
+      "patchOptions": [
+        {
+          "patchId": "include-three",
+          "labelAr": "تغيير الحد الأعلى إلى أربعة",
+          "replacementCode": "for n in range(1, 4):"
+        },
+        {
+          "patchId": "skip-one",
+          "labelAr": "بدء المجال من اثنين",
+          "replacementCode": "for n in range(2, 3):"
+        }
+      ],
+      "privateValidation": {
+        "rubricVersion": "debug-rule-v1",
+        "correctPatchIds": ["include-three"]
+      }
+    }
+  }
+}

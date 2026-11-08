@@ -1,0 +1,393 @@
+{
+  "recordedAt": "2026-11-08T03:00:55.072Z",
+  "branch": "codex/intelligent-learning-a",
+  "baselineCommit": "f210aec134c7cc7a32c6888ac8d66ee0e13642ca",
+  "status": "SOURCE_READY_FOR_REVIEW_ACCEPTANCE_PARTIAL",
+  "contractVersion": "1.5.0-development",
+  "scope": "B1-B3 local synthetic source, no C, deployment, real learners, external AI, Runner or PhET",
+  "tests": {
+    "sourceAndRegression": 175,
+    "pythonTargeted": 5,
+    "httpIntegration": 15,
+    "totalWithoutRepeatedRuns": 195,
+    "failures": 0
+  },
+  "gates": {
+    "scientificContent": "REVIEW_PENDING",
+    "interactiveDevices": "NOT_RUN",
+    "runner": "BLOCKED_GATE_R",
+    "phet": "BLOCKED_LICENSE"
+  },
+  "sourceFiles": [
+    {
+      "path": ".env.example",
+      "sha256": "4318a41e60615ee8f3ff738e8d44495fbc3b74eb3c7b0db4c29cae8aecb990f0"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "99e2c989e48a435d77ccbb9df22f83fef85357f947505307b4079d1a024799cd"
+    },
+    {
+      "path": "apps/api/prisma/migrations/0024_stem_labs_b/migration.sql",
+      "sha256": "d02b9757e3789cb210c1b74c88dfe5ca325bb8335a626c761ded6ce612470c6d"
+    },
+    {
+      "path": "apps/api/prisma/schema.prisma",
+      "sha256": "89435b1a0c5e064ae9a177ff9a20157c4e3050507f905a476f99374fd9ddde38"
+    },
+    {
+      "path": "apps/api/src/accounts.ts",
+      "sha256": "c8f6544f0fdca4f24c696701af58a238f8b76f53598a5bdbc586dd1f840e7f30"
+    },
+    {
+      "path": "apps/api/src/business.ts",
+      "sha256": "d4208abef418beeaadab55bad06c21a25758a847abeba5db96a0f46134ce1f6b"
+    },
+    {
+      "path": "apps/api/src/intelligent-learning-data.ts",
+      "sha256": "04767b02bc52308414cb837fd1bf49342ddd1e1dd27438dda841a38df5c6390e"
+    },
+    {
+      "path": "apps/api/src/intelligent-learning.ts",
+      "sha256": "e7b39ec38aab4e15883fcb0b00b669e8b5c00d9f75b65d23e4fb8a40c1ab6e4e"
+    },
+    {
+      "path": "apps/api/src/learning-assessments.ts",
+      "sha256": "105f80169f32eeb728ccaa76026c6b6304d352b934f4045e338007f7466c461e"
+    },
+    {
+      "path": "apps/api/src/learning-path-content.ts",
+      "sha256": "68a1140a4c41702e8f28b91a0493024a402123bd5b9d8bbdd2251b708d07aebe"
+    },
+    {
+      "path": "apps/api/src/learning-path-payload.ts",
+      "sha256": "edfe5e8d51d8a236e29911c9b1f40225ac649a0d7361e76bf4208691485aeec8"
+    },
+    {
+      "path": "apps/api/src/pedagogy-context.ts",
+      "sha256": "bd73c7c06df95cf8e8edc8b4a357f2dc36d1764d2739c652a7f05466d930f65a"
+    },
+    {
+      "path": "apps/api/src/pedagogy-engine.ts",
+      "sha256": "41fbd3e333274be545df80cab8c7ac9562d59f314d7afb44e35340b8f91e59d5"
+    },
+    {
+      "path": "apps/api/src/physics-learning.ts",
+      "sha256": "6dce521e1fbd730432cbf0ae11455c8cf7b88811c49e81107d956adf9d8b930d"
+    },
+    {
+      "path": "apps/api/src/stem/coding-lab.ts",
+      "sha256": "4a11bc0754cc146473bb051aff6301d378125668b6d90f9220c2697b0613b0c8"
+    },
+    {
+      "path": "apps/api/src/stem/lab-exposure.ts",
+      "sha256": "eeca4afff852b7203ac760dbabe9d2e7a47081bbbfbf12c3948c9284b1de9dfc"
+    },
+    {
+      "path": "apps/api/src/stem/lab-registry.ts",
+      "sha256": "cecbb5d63bae9a2175fe5db117109cc847c666d789f2b0ee3dc6f48442a26896"
+    },
+    {
+      "path": "apps/api/src/stem/lab-service.ts",
+      "sha256": "56b7b5310f5f020541622cdf6d3cee0bebe1af0e205839b3a57c4daa562324af"
+    },
+    {
+      "path": "apps/api/src/stem/lab-state.ts",
+      "sha256": "a259a33821891ec5a5b797e922b42700b32183c18e58480a598d5ee15ae7c736"
+    },
+    {
+      "path": "apps/api/src/stem/math-lab.ts",
+      "sha256": "1c8f4c0c434e6a42859c49ec573f0c5e69b30507d51a84d3a234aa2924cbdce5"
+    },
+    {
+      "path": "apps/api/src/stem/physics-inquiry.ts",
+      "sha256": "1c4270424ef446c82b344bcc0b242f9c18d9b1fd1e052c0f239934d9b130a2f1"
+    },
+    {
+      "path": "apps/api/tests/fixtures/stem-math.v1.json",
+      "sha256": "26688ba076588421994e936d91981aa6796129f3858f2008e4e7250785558db5"
+    },
+    {
+      "path": "apps/api/tests/fixtures/stem-models.v1.json",
+      "sha256": "171cc11994499b8bed068cf797c41a0f0e8c8f55b77b10c60c3e4197556e87d0"
+    },
+    {
+      "path": "apps/api/tests/stem-contracts.test.mjs",
+      "sha256": "1aa41d698b705715745490f5f4681e50ce3934f47bd0ba7c3f4ffabdcd1b1b82"
+    },
+    {
+      "path": "apps/api/tests/stem-lab-state.test.mjs",
+      "sha256": "c8ab0103257019c4c51fdbfa62774994a0efa87526f108a28d5bee34fa0eaab1"
+    },
+    {
+      "path": "apps/api/tests/stem-labs-live.test.mjs",
+      "sha256": "ab9051844fc1cf0a993f8b9b52f0d349ec0212d0fd458ebaa1740dd0c726189a"
+    },
+    {
+      "path": "apps/api/tests/stem-math-lab.test.mjs",
+      "sha256": "d7b3e5bc16f9b87d308901aca3c46f4a5b5f1311023417041f1952293d5f5b09"
+    },
+    {
+      "path": "apps/api/tests/stem-models.test.mjs",
+      "sha256": "d8e5be80f45963761e4c0b2de0058b1fba3a3cd77b0afe67999be7699a82c410"
+    },
+    {
+      "path": "apps/web/src/IntelligentLearningPanel.tsx",
+      "sha256": "c1b64dc3e40932bd9831a5807887658aeb69690f4a4a25c5e86a9648de38e9f1"
+    },
+    {
+      "path": "apps/web/src/LearningPaths.tsx",
+      "sha256": "754122716249292aaaf3df28ef84a32c6694bec1e844ad94479caddc52ea71ce"
+    },
+    {
+      "path": "apps/web/src/LessonRenderer.tsx",
+      "sha256": "418b479d7f31e172a56114c71794a98e49e2617d30469523615bd1895e8b50b6"
+    },
+    {
+      "path": "apps/web/src/PathStudio.tsx",
+      "sha256": "5ee7fc15e41f7e994956cfd350f9f96133c548ec23f98159870785b8cd57c023"
+    },
+    {
+      "path": "apps/web/src/StemLabAuthoring.tsx",
+      "sha256": "8ef87bd63f91e690e8f271bbcd6da75aa4009b91a4041ab128f1763b17bca930"
+    },
+    {
+      "path": "apps/web/src/StemLabs.tsx",
+      "sha256": "ff0f66604a24b0fe7776acdee1189b38f455c53a7ea41ebf9c3002240cd26d7b"
+    },
+    {
+      "path": "apps/web/src/api-schemas.json",
+      "sha256": "3f18e41ae39f98c3519d4d07dcd8960bc8693cfc5e8db6597fe12665b9716d60"
+    },
+    {
+      "path": "apps/web/src/intelligent-learning-api.ts",
+      "sha256": "5e3392df3aabe1429ffa736328a8c0d1a8a49da6d5ae4997ed01236ca5b2c42f"
+    },
+    {
+      "path": "apps/web/src/learning-path-api.ts",
+      "sha256": "1ba9507e3a59ec5ed57d659bb285b4cafb72051c5b2d97193da0e643bdfa98de"
+    },
+    {
+      "path": "apps/web/src/stem-lab-api.ts",
+      "sha256": "72eac1a3389100f722df1176d564ef8e4a09336953f0ee3f0a12a9b8a90b66c5"
+    },
+    {
+      "path": "apps/web/src/stem-lab-view.ts",
+      "sha256": "51ec66cd5529b08a018b785787c02ce84429307608513217c93c5b5796ad2739"
+    },
+    {
+      "path": "apps/web/src/stem-labs.css",
+      "sha256": "d4df8a62660c2e8cb9d86693f5293493aee46d702f6e468b271c53fd331db779"
+    },
+    {
+      "path": "apps/web/tests/stem-labs.test.mjs",
+      "sha256": "5a0b53cbfaa6536a702d83487e3749614bc1101dbfa54054c518a6bf463f0c3d"
+    },
+    {
+      "path": "docs/12-API-CONTRACT.yaml",
+      "sha256": "d9c874fb17500723dc12dc0aea766abbf76f8d51479650757af1e82d70621f9b"
+    },
+    {
+      "path": "docs/22-STEM-LABS-B.md",
+      "sha256": "21f85f087ee7e8706bd4a2b4ab0b79853df8de3eab9f46288a3602d97dee89bc"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/00-START-HERE.md",
+      "sha256": "107b51d6b7e0041a29ef597002e79132babe2f223d6fc152d411cdaccee57d19"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/01-SOURCE-BASELINE.md",
+      "sha256": "0e2fd17f332489413ebe713edfdfd176501541548c2bb9c1e3bcc1b43ef46d7e"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/02-BOUNDARIES-AND-ARCHITECTURE.md",
+      "sha256": "db3b2875450910ee630d673b25ed83c251f96d4c1f3a8ae5131c2bc50013cd19"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/03-B1-MATH-LAB-SPEC.md",
+      "sha256": "686bdc1e3c77fcb264012c6ec382e92dc4588acb61223585dd8a7d71d775201e"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/04-B1-VERIFICATION-AND-VISUALIZATIONS.md",
+      "sha256": "e606cdf9f17b320014cd2646823b1fc8cbfa19030e488f4a89123c86d8ee16d5"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/05-B1-AUTHORING-AND-UX.md",
+      "sha256": "14e005f37ae6676ceb78ffef9e18e1a796384a91843c346ff08fa6bca2b9c6e0"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/06-B2-PHYSICS-INQUIRY-SPEC.md",
+      "sha256": "e7aed1b9ad937b694266297c447b7bbba8c52fb5cbc8077b9ea8aba2a09bb477"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/07-B2-SIMULATION-MODELS-AND-VERIFICATION.md",
+      "sha256": "47f886822988a1e0500ffa4677a1946ab95e4f5a66bb179218684deca6f77beb"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/08-B2-PHET-LICENSE-AND-FALLBACK.md",
+      "sha256": "d191a7bdc750789b38ea237e83f96d3afecdffc15ebfca379ec43afc78499058"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/09-B2-AUTHORING-AND-UX.md",
+      "sha256": "88f36eb420780d7a3cdacb02a0ede35326e33bbf93fa729912ca10bfe857d6a1"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/10-B3-CODING-LAB-SPEC.md",
+      "sha256": "5dc988c170390f1f78f96a674eef4b3ed3a9515dce92056d13dd684565ae2925"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/11-B3-TRACING-PARSONS-DEBUGGING.md",
+      "sha256": "c3471159d8b3018efac7008097ee3cfae14b7d0fedef0f0af3d79bffa99eeb23"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/12-B3-RUNNER-GATE-AND-INTEGRATION.md",
+      "sha256": "9f7982dd1ca037f16b63e76c6ad6cce1a65d6e92dda1cbcaee138055089ed5be"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/13-A1-A8-INTEGRATION.md",
+      "sha256": "e480a2390df31f2a2e55be62b153f6eddc70d0d1f1aed0f72cf5c528c4ef5811"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/14-DATA-API-CONTRACT.md",
+      "sha256": "b51c15183e531934f43f5a45d94b7b8ff69c1dfb8915ad44004974b7dda88e79"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/15-PRIVACY-SECURITY-RELEASE.md",
+      "sha256": "0539dc12fb7610561f1a60c8652b187a8fc307f3aa67034670e3d5b5c55a414e"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/16-QA-AND-ACCEPTANCE.md",
+      "sha256": "806bd2dd9887dc7a154ae98e20051158e13f0c330d862d7d27db07bc724b7590"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/17-AGENT-EXECUTION-GATES.md",
+      "sha256": "20e3795a735a5a359239f250ff40af9f1484e2b632e68c9327734a2c000843fa"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/18-AGENT-START-COMMAND.md",
+      "sha256": "aff463195e1955caac6b8a24cc8dd7fd4f71e0ec0b2f5c0393b120f98d7feb67"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/19-DELIVERY-REPORT-TEMPLATE.md",
+      "sha256": "2f062ce16510679530a890a9e9a08e640a38a1f4642b565e711814351ce29342"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/20-GOLDEN-FIXTURES-AND-STUDENT-JOURNEYS.md",
+      "sha256": "e52dcbf9b8364a98f2bf16088e9ae3f660adc653e0a64353e318514ccdace75c"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/21-RESEARCH-AND-DESIGN-RATIONALE.md",
+      "sha256": "4917cdb84955991cc93a42e8e382b76469cf39f093c495ed57b703e6689cf06e"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/22-DECISIONS-AND-BLOCKERS.md",
+      "sha256": "b2a7ff51105cfa00ece771a498b64666833162042ebe307700dc7591fab0efec"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/23-SOURCE-CHANGE-MAP.md",
+      "sha256": "59ff8ec387402377b44ca94476187ade9195e6e97fd8fe9a708e72fc481a41b4"
+    },
+    {
+      "path": "docs/KHOTWA-B-STEM-LABS/24-MANUAL-STUDENT-ACCEPTANCE.md",
+      "sha256": "273d358390ccec19dda780f67fc61244c74f50f6be227e778791f89e52a2cfa4"
+    },
+    {
+      "path": "package.json",
+      "sha256": "e507b910b0750b6384e1fd0c854c71cc71e98f2715e08e2f895466050adfddbe"
+    },
+    {
+      "path": "packages/contracts/openapi.yaml",
+      "sha256": "d9c874fb17500723dc12dc0aea766abbf76f8d51479650757af1e82d70621f9b"
+    },
+    {
+      "path": "packages/contracts/src/generated/api-validators.cjs",
+      "sha256": "ac842a81fbd2317ccb67ec7c79df637804ba82695d1ad2449596d3ad9ddacfe6"
+    },
+    {
+      "path": "packages/contracts/src/generated/public-api.d.ts",
+      "sha256": "5e19cf0f391231b299a4f502726d23a2e068f863f2a0461f937495c29d6cbd4d"
+    },
+    {
+      "path": "packages/contracts/src/intelligent-learning.d.ts",
+      "sha256": "9c758431438eb670b204589f91554b35d5f61d6124762c49a829eb22f314fc2c"
+    },
+    {
+      "path": "packages/contracts/src/learning-paths.d.ts",
+      "sha256": "4fde17015d29f07a3de7544169bfffb8303ee4c2a49022dcd8acd63edf997de9"
+    },
+    {
+      "path": "packages/contracts/src/stem-labs.d.ts",
+      "sha256": "5d8014fa090c108503d9399d336caf2c7e27e25851f30f645c1a35cd9acefc55"
+    },
+    {
+      "path": "qa/stem-labs-journey.mjs",
+      "sha256": "8a0378acc44657effcb4d8733cd8aceb3d146dea3a34d81a43c687661e83faae"
+    },
+    {
+      "path": "services/math-engine/tests/stem_math_oracle.py",
+      "sha256": "d8acea1677a99fac1de9827d65bd39ff8eecf94202128aef6f1cdba32df195e8"
+    },
+    {
+      "path": "services/math-engine/tests/test_stem_math.py",
+      "sha256": "a2e46a3bc46e8f5b0396f3af2b693dfd9abab1ff98e2937215fc11e22913a498"
+    },
+    {
+      "path": "tools/contracts.mjs",
+      "sha256": "e7b0ae3d6050e5ce64bab93e6041e70d371f0217fcd5c554b023739a4deca53b"
+    },
+    {
+      "path": "tools/test-stem-labs.mjs",
+      "sha256": "04dd78847e079a8a8834ec0dd49a81530fbb542ae85028bfa90a749cc535b18b"
+    }
+  ],
+  "protectedFiles": [
+    {
+      "path": "docs/14-GOLDEN-DATASET.md",
+      "baselineSha256": "cb46458dc172cecfb0c111da28f223c221bfe082be89fc147920063e494b8f92",
+      "sha256": "cb46458dc172cecfb0c111da28f223c221bfe082be89fc147920063e494b8f92",
+      "normalizedContentUnchanged": true
+    },
+    {
+      "path": "docs/14-GOLDEN-DATASET.cases.json",
+      "baselineSha256": "1c3e5fec509a8fad930a3d05e9f5b764b6b060281ec7277a32575511095b7f12",
+      "sha256": "1c3e5fec509a8fad930a3d05e9f5b764b6b060281ec7277a32575511095b7f12",
+      "normalizedContentUnchanged": true
+    },
+    {
+      "path": "docs/06-MISCONCEPTIONS.md",
+      "baselineSha256": "3658eae4bb81842285f62ef2d8e8cca5c3219314bb3e59f779d76c08e8b76f33",
+      "sha256": "3658eae4bb81842285f62ef2d8e8cca5c3219314bb3e59f779d76c08e8b76f33",
+      "normalizedContentUnchanged": true
+    }
+  ],
+  "evidence": [
+    {
+      "path": "qa-reports/B-FINAL-CHECKS.json",
+      "sha256": "e7cfcb32454afec514b5e6ca19f61126402b4729087df079212cf67e63f79562"
+    },
+    {
+      "path": "qa-reports/B-INTEGRATION.json",
+      "sha256": "7c248f8a60afe430c36beebc218a10c46b7ff71cae7c4fb6df2a7558d9f3e473"
+    },
+    {
+      "path": "qa-reports/B-INTEGRATION-first.json",
+      "sha256": "7fa322bbf70413013d005fb98798a27bcd2646180ad2db4bc1529689d81209f8"
+    },
+    {
+      "path": "qa-reports/B-FINAL-ACCEPTANCE.md",
+      "sha256": "d890afe349506c37d4ee6906de3a17489858483180003cb91c0a7ed0190c5e7d"
+    },
+    {
+      "path": "qa-reports/B-FINAL-REVIEW.md",
+      "sha256": "7e69a8c9ae6101373a7f8551e674688296d8703a4e2b2eb712aba59ef39ac4fb"
+    }
+  ],
+  "runtime": {
+    "testContainersRemoved": true,
+    "existingDatabaseMigrated": false,
+    "servicesLeftRunning": false,
+    "externalProvidersCalled": false,
+    "pushed": false,
+    "deployed": false
+  }
+}

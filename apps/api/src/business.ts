@@ -57,6 +57,7 @@ import {
   IntelligentLearningExperiencesController,
   IntelligentLearningExperiencesService,
 } from "./intelligent-learning-experiences";
+import { StemLabController, StemLabService } from "./stem/lab-service";
 
 type AccessMode = "bootstrap" | "createGuest" | "current" | "logout";
 const Access = (mode: AccessMode) => SetMetadata("access", mode);
@@ -734,6 +735,7 @@ export class BusinessController {
     LearningAssessmentController,
     IntelligentLearningController,
     IntelligentLearningExperiencesController,
+    StemLabController,
   ],
   providers: [
     { provide: Security, useFactory: securityFromEnvironment },
@@ -819,6 +821,15 @@ export class BusinessController {
         TutoringService,
         PhysicsService,
       ],
+    },
+    {
+      provide: StemLabService,
+      useFactory: (
+        store: Store,
+        accounts: AccountService,
+        content: LearningPathContentService,
+      ) => new StemLabService(store, accounts, content),
+      inject: [Store, AccountService, LearningPathContentService],
     },
     {
       provide: IntelligentLearningService,
