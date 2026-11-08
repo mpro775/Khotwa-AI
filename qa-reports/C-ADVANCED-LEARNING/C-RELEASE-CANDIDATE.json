@@ -1,0 +1,441 @@
+{
+  "recordedAt": "2026-11-08T03:51:28.645Z",
+  "baseline": "6a4b6cbff39b46eebeed30ab8425b2ac729e177d",
+  "branch": "codex/intelligent-learning-a",
+  "workingTree": true,
+  "status": "SOURCE_CODE_COMPLETE",
+  "releaseAcceptance": "PARTIAL",
+  "humanScienceAcceptance": "PENDING",
+  "securityPrivacyApproval": "PENDING",
+  "manualDeviceAccessibility": "NOT_RUN",
+  "productionEnabled": false,
+  "flagsDefaults": {
+    "C_PROBLEM_LEARNING_ENABLED": "false",
+    "C_PROJECT_LEARNING_ENABLED": "false",
+    "C_UDL_CONTENT_ENABLED": "false",
+    "C_ADVANCED_STUDIO_ENABLED": "false",
+    "C_LEARNING_ANALYTICS_ENABLED": "false",
+    "C_COHORT_ANALYTICS_ENABLED": "false",
+    "C_PROJECT_UPLOADS_ENABLED": "false"
+  },
+  "sourceSha256": "1134b897a16922f4bf4d616f587da166c811c40bdc981ea2c68d8c6cfcb773c1",
+  "sourceFileCount": 99,
+  "tests": {
+    "source": 312,
+    "integrationC": 15,
+    "integrationB": 15,
+    "totalRunnerCases": 342
+  },
+  "checks": [
+    {
+      "path": "qa-reports/C-ADVANCED-LEARNING/C-TESTS.json",
+      "sha256": "3117021c16251faf4bef32de631d14f6a1677dd5f4e6011fab8329a86c373911"
+    },
+    {
+      "path": "qa-reports/C-ADVANCED-LEARNING/C-INTEGRATION.json",
+      "sha256": "4c9f1d6487e913399ed82f6dbed41ffdb70849dfc315dc288d1658fa28fe4bd4"
+    },
+    {
+      "path": "qa-reports/C-ADVANCED-LEARNING/B-REGRESSION.json",
+      "sha256": "26ad6cec61bba1585c5cac1f49bc871f641ba7550369a4d3959b2d7e48fffa43"
+    }
+  ],
+  "files": [
+    {
+      "path": ".env.example",
+      "sha256": "0d43685096aabd0a6068bcfe063e1fe617aa11400741f94a7991ede698866310"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "473fdc4f05940ad01981888bd53fc8c78cf32962773dad7cb5754c4bea70d6a8"
+    },
+    {
+      "path": "README.md",
+      "sha256": "8542c40af4f286c9c8100d3f31575b1e44ffe28a674e01abeb40c0a912a6a24b"
+    },
+    {
+      "path": "apps/api/prisma/migrations/0025_advanced_learning_c/migration.sql",
+      "sha256": "8cb7715731701e851a5c07d5092e04c70a0eefab0ef14b5585c4196ad6c4edf3"
+    },
+    {
+      "path": "apps/api/prisma/schema.prisma",
+      "sha256": "e72f5b47c42dedf3b381dbd9d49f9449d156cc603c826068c7746624f968bd17"
+    },
+    {
+      "path": "apps/api/src/accounts.ts",
+      "sha256": "f697c7be3d2c5bdbb79efbedc6956ddaa14bbb9ff4dbf5eb91f295dcf8a9f2ff"
+    },
+    {
+      "path": "apps/api/src/advanced-learning/activity-payload.ts",
+      "sha256": "33ed04bffe35b4cb460ee371b82371a75028a30eae3309b6bceddfc29a202a13"
+    },
+    {
+      "path": "apps/api/src/advanced-learning/analytics-projection.ts",
+      "sha256": "1ea14e31a9d1a8bbdb06a14b22479bdbdb54ae20335233adabe190e1c1342368"
+    },
+    {
+      "path": "apps/api/src/advanced-learning/analytics-service.ts",
+      "sha256": "b1b1410a01e7ebee89c0d289cbeb5642db5f72d8b85939fe2429641d1a50268a"
+    },
+    {
+      "path": "apps/api/src/advanced-learning/export-data.ts",
+      "sha256": "b404eb870a2cde4cbbaf1b53d281811c89501c5bfb0b88a9f57f7c9a71b13c9c"
+    },
+    {
+      "path": "apps/api/src/advanced-learning/workflow-state.ts",
+      "sha256": "5bfc0d3c1b7162db43d9c76af0d67ea2969aa8b9be09ee41a65e3c03e85d6910"
+    },
+    {
+      "path": "apps/api/src/advanced-learning/workflows.ts",
+      "sha256": "ff0606374ab47ed6e0461cf6a3457101bc04354830758fe11cbe0ba78f53a7e7"
+    },
+    {
+      "path": "apps/api/src/business.ts",
+      "sha256": "b6372d6b14193598d7a7788848f721a692eb96d5370ebc37ba8d166a5558b7b4"
+    },
+    {
+      "path": "apps/api/src/intelligent-learning-data.ts",
+      "sha256": "aed0c8b2c08fe7518215c283f3bd4b91b4cf5b7c10d99d6aa6cdb826f5b6d2ed"
+    },
+    {
+      "path": "apps/api/src/intelligent-learning.ts",
+      "sha256": "596946333f12cea4e6d4193acfbc1de380f63ec92d1b3b5f61244f3247383c6f"
+    },
+    {
+      "path": "apps/api/src/learning-path-content.ts",
+      "sha256": "832838f63bf4c4fb3adacfcc4fcfea4da66dd24bd86372667148587133cc11c4"
+    },
+    {
+      "path": "apps/api/src/learning-path-payload.ts",
+      "sha256": "4f387d6224abda188675e89d639435034e07edd39c166c6b16f8e5a17fbe8c28"
+    },
+    {
+      "path": "apps/api/src/pedagogy-context.ts",
+      "sha256": "3e7285de4568c465db76304c9dc866575b39c456eb65948cff9cad68794a65c4"
+    },
+    {
+      "path": "apps/api/src/pedagogy-engine.ts",
+      "sha256": "2df2db6d4ad9d1ee5885b04aa67280f99b17eccdcf606044e8700f836e9499f4"
+    },
+    {
+      "path": "apps/api/src/product-core.ts",
+      "sha256": "e78425e67ff4f55bf57e68a7ee44801c01ecd53d3efaa989c1baedad832a9914"
+    },
+    {
+      "path": "apps/api/src/stem/lab-exposure.ts",
+      "sha256": "6defabaa50bf3f2e25c5b307e9cc333e893d98c149d725240c18c8bbd7475549"
+    },
+    {
+      "path": "apps/api/tests/advanced-learning-analytics.test.mjs",
+      "sha256": "f798428ac8fbe2b04e65c1e10b59463e0fad1bd8833860dd5593a026b4bc7d24"
+    },
+    {
+      "path": "apps/api/tests/advanced-learning-live.test.mjs",
+      "sha256": "e334c4d93f40729d82feb9271dd7fe109b1d8268a20d19dd13e295569b621e0a"
+    },
+    {
+      "path": "apps/api/tests/advanced-learning-studio.test.mjs",
+      "sha256": "7aa4ca4f669209e0f42eac30ab6ea92ffad919d781079540156c72524f06c4ca"
+    },
+    {
+      "path": "apps/api/tests/advanced-learning-workflows.test.mjs",
+      "sha256": "1182695ef7b7618556ff8fe402a16d48e2d7f5d98a05c97cec9be5bc986dff75"
+    },
+    {
+      "path": "apps/api/tests/stem-contracts.test.mjs",
+      "sha256": "72c12b451ef57727ed8aa3d6d3586415f4e511665d9ed2c2bc3900cfe245022c"
+    },
+    {
+      "path": "apps/web/src/IntelligentLearningPanel.tsx",
+      "sha256": "367e3134528589a556870c3a6d44ed72d7671a52d8e7068f2a26ef5d575cc32d"
+    },
+    {
+      "path": "apps/web/src/LearningPaths.tsx",
+      "sha256": "716afac1272b5cc0dcc15bcdcfc7a9e873b8f78309cb89292c165965f4223cbd"
+    },
+    {
+      "path": "apps/web/src/LessonRenderer.tsx",
+      "sha256": "cb3fe62dc9493a3d3509da826a056e18fda0fc4ea3009bafdbf2aba39f3def58"
+    },
+    {
+      "path": "apps/web/src/PathStudio.tsx",
+      "sha256": "f2a937c0fd6000a95a82a8705f2272be798cad038239d353984543fd38170313"
+    },
+    {
+      "path": "apps/web/src/advanced-learning/AdvancedContentStudio.tsx",
+      "sha256": "04f3a622814b6d07db09345fe161ca1762828badcd9535056b5f790dd88513c3"
+    },
+    {
+      "path": "apps/web/src/advanced-learning/LearningAnalyticsDashboard.tsx",
+      "sha256": "dcd309d30946ff834821ca6752e2989c3edeaa4f7fd1ec90c578d61d9b26c0f0"
+    },
+    {
+      "path": "apps/web/src/advanced-learning/ProblemJourney.tsx",
+      "sha256": "376fcd53d2df80295495bd96f2e675b71fa2f0641f4ff71b1d5f3edd134d4dc6"
+    },
+    {
+      "path": "apps/web/src/advanced-learning/ProjectWorkspace.tsx",
+      "sha256": "1ba9c46a2a204dfa09249ffb4409b56a54461665793b31ad8fb4d8b756f33ce6"
+    },
+    {
+      "path": "apps/web/src/advanced-learning/RepresentationSwitcher.tsx",
+      "sha256": "7c8b9c76bf32220def88cc02168ec1bab6beec4bde189ffd3eca693fa01de1a8"
+    },
+    {
+      "path": "apps/web/src/advanced-learning/ReviewPanels.tsx",
+      "sha256": "f0b918753ff07aa206f059f0908501598a3ac4e22a790dcc76c34d1b23f798dd"
+    },
+    {
+      "path": "apps/web/src/advanced-learning/StudentPreferencesPanel.tsx",
+      "sha256": "37ea4547ecf47fa892b630087d41a40617b8f6a18f510bb176d30598b881b9db"
+    },
+    {
+      "path": "apps/web/src/advanced-learning/advanced-api.ts",
+      "sha256": "855338e81414fde357e33be585b2ce6d0bf840e17bb424fb52f52cf6cf4e763f"
+    },
+    {
+      "path": "apps/web/src/advanced-learning/advanced-learning.css",
+      "sha256": "029ac89ffb0f17c3e6508dcc6f5ffcc29a242219548e2cff1209d85233c9cd12"
+    },
+    {
+      "path": "apps/web/src/advanced-learning/display-preferences.ts",
+      "sha256": "3871c1c14744eae53d4d65d9dff0dc328956a7d4bea18e2823ec1eb5f6c54ef5"
+    },
+    {
+      "path": "apps/web/src/advanced-learning/draft-cache.ts",
+      "sha256": "f3d80d8007f2cafaa4cd9ad47841884d168d4a80a86f2adbaaffcc3251445f66"
+    },
+    {
+      "path": "apps/web/src/api-schemas.json",
+      "sha256": "e1e89d6e1cdf40ee4eab49131333f70150491d084dc88fdf0c69abda7dcf974f"
+    },
+    {
+      "path": "apps/web/src/intelligent-learning-api.ts",
+      "sha256": "37a3155c0108242243cbcdcc55313e70ea3e8da21e5f4083071151cdf114ba89"
+    },
+    {
+      "path": "apps/web/src/learning-path-api.ts",
+      "sha256": "625b9204b5faf34cc63022371692c5f475a503ba46fead79cccee3b8e1bbcf13"
+    },
+    {
+      "path": "apps/web/src/main.tsx",
+      "sha256": "54920f7432246cc199258906f4aa5c1c2fcc164153d540ea9e5954e42c685884"
+    },
+    {
+      "path": "apps/web/tests/advanced-learning.test.mjs",
+      "sha256": "2cfd11bc982b6d52400fe894d96926d7bc543741bdc9774ecb54598ee0b80b35"
+    },
+    {
+      "path": "docs/12-API-CONTRACT.yaml",
+      "sha256": "2b5d4a0f4721fd75fcc916b142da2e714817c8957c30332f6812bfe748aa2750"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/00-START-HERE.md",
+      "sha256": "843b43a0f1b798883d29bceb1f7e488bdbd22cd99fd58f6a1457f3e3d8e3572b"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/01-SOURCE-BASELINE.md",
+      "sha256": "c0a59ea714dfcf8d90b9d4c5d7ba89b2aaf6663a4842ff7d9e14b153070853a7"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/02-SCOPE-AND-ARCHITECTURE.md",
+      "sha256": "74a1df5e56c6ba52c29a4b17373039f4d52278f05767a77a492a1ba7410e20b1"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/03-C1-PROBLEM-BASED-LEARNING.md",
+      "sha256": "ffb7c6879fc76908bbdb0e36be8c88a74bf8b95e128bb660cc27ee0aa2097540"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/04-C1-STATE-MACHINE-AND-FEEDBACK.md",
+      "sha256": "d34d4060b056ad877eace983ccfe6de40dec28633c0f90377dcfe76a675730b0"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/05-C1-GOLDEN-PROBLEMS.md",
+      "sha256": "419a064d7dfbdbc64634651001252ab8b3388b36f92027513817e29a3d98e1fd"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/06-C2-PROJECT-BASED-LEARNING.md",
+      "sha256": "294d48d2598fba1796cac83e53c71af6f35f2a2f77271e6d495fec7c8ccb1606"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/07-C2-MILESTONES-RUBRICS.md",
+      "sha256": "23d5b69791b30ef8268ccd2ba04af9686cc74e86b7414b0d20e8fc78b08d8b75"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/08-C2-ARTIFACTS-SECURITY.md",
+      "sha256": "8fd7991e328ac2013fad841b957742272edbc7bd006f12c1307b5fa7565bb60f"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/09-C3-UDL-FRAMEWORK.md",
+      "sha256": "c236f10ee7e5b73fd8e2cd72b200694df21a0a81ea998820c2fa6c3abc688cbd"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/10-C3-ACCESSIBILITY-CHECKLIST.md",
+      "sha256": "bbb9d3f13545199a0956536d914d6f197f00027bd8ecbaaaf2de1ff960fe0f52"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/11-C3-ARABIC-STEM-UX.md",
+      "sha256": "0d3a9eaeaa6a1bc5a90e323a665366e6e14ca52cd7b8d8c7208cf5743e72ff3f"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/12-C4-CONTENT-STUDIO.md",
+      "sha256": "d50a0947ec65cce9c1371f5837cd6c745e0005ecf41f37524cc9a9d8a69b4f25"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/13-C4-SCHEMAS-VALIDATION.md",
+      "sha256": "01273f43783bcd264aba9a77d0e1d3679fe42464909d6c8775d5a019379e79c5"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/14-C4-REVIEW-AND-PUBLISH.md",
+      "sha256": "8c701c05685130b47fc6e75bb981a444d0abe2a2d2d8f42c942001f542cee601"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/15-C5-LEARNING-ANALYTICS.md",
+      "sha256": "1e98ac76c537d7288304e92d131eca3a60144f19b930bb27f3ea66fc449fe96c"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/16-C5-METRICS-DEFINITIONS.md",
+      "sha256": "9da225f583ad8fc063abc9e8e6cc6016cba3f8a2e46dae24561833034bce69d4"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/17-C5-DASHBOARDS-AND-VALIDITY.md",
+      "sha256": "ee9b845b1c7549a0a3e1689556fa58b52d9847e8373b31ac9b0c4218d66baf16"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/18-A-B-INTEGRATION.md",
+      "sha256": "5abccf7c95999c1f1583fad03f529871429e12eae3c037f8a43d077217a8d308"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/19-DATA-API-CONTRACT.md",
+      "sha256": "322a6fbc6e6083a9ba4357f51cf235cefc463626e9202bcf8ebf95fbc39e99ef"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/20-DATA-MODEL-MIGRATIONS.md",
+      "sha256": "10a306ff096c69c4b6f59aa6e685015a7c9efe1df3075ccb3cd76dc5d1141c6e"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/21-SECURITY-PRIVACY-CHILDREN.md",
+      "sha256": "17799e067059ec106d8dd664929c447bd6f668d1d702c1f8c448dcd85661f620"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/22-TEST-AND-ACCEPTANCE.md",
+      "sha256": "306bd0fb95a638b61dd814af935c1026029939e15ac4beea739e8a9f83cdb289"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/23-STUDENT-JOURNEYS-AND-REVIEW.md",
+      "sha256": "af304b4f104119a8aff2ea59371d35f03d11abd6563e066eda1c19f8d2451669"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/24-EXECUTION-ORDER-AND-GATES.md",
+      "sha256": "cd3358269bccd5bf2bc865c64f2142728fca90991d0f4e56c519428f17fbfb1d"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/25-AGENT-START-COMMAND.md",
+      "sha256": "573b6e327586880fd1a081a3dee82f5386b6aca06e984c0752999468982d7d6b"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/26-DELIVERY-REPORT-TEMPLATE.md",
+      "sha256": "6b590a0994711c823107cdf3034d0c69f035ce7fc32931ed802eb8b4e9ab5c0f"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/27-DECISIONS-AND-BLOCKERS.md",
+      "sha256": "ce4204add30bb6f55a63f68bb4007486de114aeb42bb9a5f3d4329056b9dcd9d"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/28-SOURCE-CHANGE-MAP.md",
+      "sha256": "f02822ed7e6f1a8fb6b13a5d4f14fa4d3e919995d87aec409224ed598441e85e"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/29-SYNTHETIC-CONTENT-FIXTURES.md",
+      "sha256": "04cb82ac304c0814f75fee0bf48348df7e6902596b1aa3c8a41a74a4ef7fa22d"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/30-ANALYTICS-EVENT-CONTRACT-AND-PRIVACY.md",
+      "sha256": "77d1ef0961340afe7154d2a1df80d0c6bce6b903da20444e0e56767cf532619e"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/31-FEATURE-FLAGS-AND-RELEASE.md",
+      "sha256": "f19bcf4e359f52a689bd632efce3e76b04fa4628c9d0b5719e9f20c8c389b5b5"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/32-OPERATIONS-AND-ROLLBACK.md",
+      "sha256": "04ef1cf843ca37e280e7afbfe9681b714099a60133ae2fe38e0d72104c6828c2"
+    },
+    {
+      "path": "docs/KHOTWA-C-ADVANCED-LEARNING/33-RESEARCH-AND-REFERENCES.md",
+      "sha256": "d24d82f9c7ba03aca31f6ee4498d755a4baf146a28b1e9234f528c2aee349031"
+    },
+    {
+      "path": "package.json",
+      "sha256": "d725c9025249252b82cbae5f3e299208e14d1b5498755356aa4d23107742689b"
+    },
+    {
+      "path": "packages/contracts/openapi.yaml",
+      "sha256": "2b5d4a0f4721fd75fcc916b142da2e714817c8957c30332f6812bfe748aa2750"
+    },
+    {
+      "path": "packages/contracts/src/advanced-learning-sessions.d.ts",
+      "sha256": "fae1170c4cf042994f0290b8fe753177a99968de7f354efd97a9d8636beaf216"
+    },
+    {
+      "path": "packages/contracts/src/advanced-learning.d.ts",
+      "sha256": "97928351c9709cfdc077155b1e76c9e240db66c298bcb674fd5d5c860c4b3992"
+    },
+    {
+      "path": "packages/contracts/src/generated/api-validators.cjs",
+      "sha256": "a137ee26699e2383b6599c6909ba6d5f9b78bd2330abcb6d675669bc60a87dd4"
+    },
+    {
+      "path": "packages/contracts/src/generated/public-api.d.ts",
+      "sha256": "95af682d71e42c46d1be33f36d24a0eb5e3abcc404858e0c26da9bc9ebdd7c6e"
+    },
+    {
+      "path": "packages/contracts/src/index.ts",
+      "sha256": "7db47c1d74bf1b94b26d4d362c6a2dca693b4d4db6fb89b3a0c6f844ab0f91b6"
+    },
+    {
+      "path": "packages/contracts/src/intelligent-learning.d.ts",
+      "sha256": "f3a34386bcad3ad934372d0ec67bf936d901fc39aad7a6e6adb58b6c53d99456"
+    },
+    {
+      "path": "packages/contracts/src/learning-paths.d.ts",
+      "sha256": "95fed7cbe212b7715dfefe7abd95698d02207ed704c65bd8ae79c9f6e72f764d"
+    },
+    {
+      "path": "qa/advanced-learning-domain-journey.mjs",
+      "sha256": "3bef83dd61056e7ab1eb12ad6c2148ed408e98024be0187df97a895133c70274"
+    },
+    {
+      "path": "qa/advanced-learning-journey.mjs",
+      "sha256": "2156db5bf9f927215aac9def4147f4c30aab312652a8267eb5fe93ab98a05b4a"
+    },
+    {
+      "path": "qa/fixtures/advanced-learning-c/fixtures.synthetic.json",
+      "sha256": "951429163e813fe52601b87cf6ccf010e0ea5b72b5bcba6bebfeb896f317abcd"
+    },
+    {
+      "path": "tools/check-advanced-learning.mjs",
+      "sha256": "14587de3372e400c1d55b939b1a1dd1d2415771c82a85499e45f5ae2382c0b38"
+    },
+    {
+      "path": "tools/check-c-backward-compatibility.mjs",
+      "sha256": "09c502edf7c0258a6576fd0e2cb99de5c49b3a85e268f5fdd1acfc856f1ccb16"
+    },
+    {
+      "path": "tools/contracts.mjs",
+      "sha256": "e411d9af45e6ecfbef4b49224dad44a1edac80c8824b1057415bcf9fbbadad5e"
+    },
+    {
+      "path": "tools/test-advanced-learning.mjs",
+      "sha256": "16bdc2b4e37811691b14083b645fb4918aea0af8d577de8badb8e5667c181789"
+    },
+    {
+      "path": "tools/test-stem-labs.mjs",
+      "sha256": "607cca05e8c8a40a52d3ae1ca42cabb5a13244712a0fcb5a053763f6cfe075ec"
+    },
+    {
+      "path": "tools/update-c-contracts.mjs",
+      "sha256": "8dcb04cdd9d7f50fab09e12eab0fc9879699cc7ad0b615dbb7008ac2cbb62d43"
+    }
+  ]
+}

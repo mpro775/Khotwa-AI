@@ -127,6 +127,9 @@ export class IntelligentLearningService {
       const result = decideActivity(context.candidates),
         chosen = result.chosen,
         alternative = (c: NonNullable<typeof chosen>): ActivityAlternative => ({
+          ...(c.advancedActivity
+            ? { advancedActivity: c.advancedActivity }
+            : {}),
           ...(c.labKind
             ? { labKind: c.labKind, labBlockIndex: c.labBlockIndex }
             : {}),
@@ -136,6 +139,9 @@ export class IntelligentLearningService {
           reasonCode: c.reasonCode,
         });
       const data: DecisionData = {
+        ...(chosen?.advancedActivity
+          ? { advancedActivity: chosen.advancedActivity }
+          : {}),
         ...(chosen?.labKind
           ? { labKind: chosen.labKind, labBlockIndex: chosen.labBlockIndex }
           : {}),
@@ -224,13 +230,19 @@ export class IntelligentLearningService {
             c.lessonRevisionId === choice.lessonRevisionId &&
             c.skillCode === choice.skillCode &&
             c.labKind === choice.labKind &&
-            c.labBlockIndex === choice.labBlockIndex,
+            c.labBlockIndex === choice.labBlockIndex &&
+            c.advancedActivity?.kind === choice.advancedActivity?.kind &&
+            c.advancedActivity?.blockIndex ===
+              choice.advancedActivity?.blockIndex,
         );
         if (!candidate) throw stale();
         const activity = await records.create<ActivityData>(
           "activity",
           row.track_revision_id,
           {
+            ...(candidate.advancedActivity
+              ? { advancedActivity: candidate.advancedActivity }
+              : {}),
             ...(candidate.labKind
               ? {
                   labKind: candidate.labKind,
@@ -304,7 +316,7 @@ export class IntelligentLearningService {
         assessment: await this.assessments.get(request, activity.assessmentId),
       };
     if (activity.revision !== expected) throw stale();
-    if (activity.labKind)
+    if (activity.labKind || activity.advancedActivity)
       throw productInvalid(
         "افتح المختبر من الدرس؛ القياس المستقل يبدأ بمهمة جديدة من خدمة التقييم.",
       );

@@ -4,7 +4,7 @@
 openapi: 3.1.0
 info:
   title: خُطوة AI — عقد واجهات NestJS
-  version: 1.5.0-development
+  version: 1.6.0-development
   description: |-
     مواصفة OpenAPI 3.1 لنسخة هاكثون شِراع (P0).
 
@@ -5885,6 +5885,1278 @@ paths:
           $ref: "#/components/responses/E500"
         "503":
           $ref: "#/components/responses/E503"
+  # BEGIN C ADVANCED PATHS
+  /api/v1/learning/problems/available:
+    get:
+      operationId: availableCproblem
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - &a2
+          name: trackRevisionId
+          in: query
+          required: true
+          schema: &a1
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CActivityListEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/problems/{id}:
+    get:
+      operationId: getCproblem
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: *a1
+        - &a3
+          name: blockIndex
+          in: query
+          required: true
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 49
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CActivityEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/projects/available:
+    get:
+      operationId: availableCproject
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - *a2
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CActivityListEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/projects/{id}:
+    get:
+      operationId: getCproject
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: *a1
+        - *a3
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CActivityEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/problem-sessions:
+    post:
+      operationId: startCProblem
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CProblemSessionEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CActivityStartInput"
+  /api/v1/learning/problem-sessions/{id}:
+    get:
+      operationId: getCProblem
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: *a1
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CProblemSessionEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/problem-sessions/{id}/finish:
+    post:
+      operationId: finishCProblem
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: *a1
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CProblemSessionEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CRevisionInput"
+  /api/v1/learning/project-runs:
+    post:
+      operationId: startCProject
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CProjectRunEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CActivityStartInput"
+  /api/v1/learning/project-runs/{id}:
+    get:
+      operationId: getCProject
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: *a1
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CProjectRunEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/project-runs/{id}/finish:
+    post:
+      operationId: finishCProject
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: *a1
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CProjectRunEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CRevisionInput"
+  /api/v1/learning/problem-sessions/{id}/steps:
+    post:
+      operationId: stepCProblem
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: *a1
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CProblemSessionEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CProblemStepInput"
+  /api/v1/learning/problem-sessions/{id}/feedback:
+    post:
+      operationId: feedbackCProblem
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: *a1
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CProblemSessionEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CProblemFeedbackInput"
+  /api/v1/learning/problem-sessions/{id}/support:
+    post:
+      operationId: supportCProblem
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: *a1
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CProblemSupportEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CProblemSupportInput"
+  /api/v1/learning/problem-sessions/{id}/assessment:
+    post:
+      operationId: assessmentCProblem
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: *a1
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CProblemAssessmentEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CRevisionInput"
+  /api/v1/learning/project-runs/{id}/assessment:
+    post:
+      operationId: assessmentCProject
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: *a1
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CProjectAssessmentEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CRevisionInput"
+  /api/v1/learning/project-runs/{id}/milestones/{code}:
+    post:
+      operationId: milestoneCProject
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: *a1
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 80
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CProjectRunEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CProjectMilestoneInput"
+  /api/v1/learning/project-runs/{id}/submissions:
+    post:
+      operationId: submitCProject
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: *a1
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CProjectRunEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CProjectSubmissionInput"
+  /api/v1/learning/project-runs/{id}/state:
+    post:
+      operationId: stateCProject
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: *a1
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CProjectRunEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CProjectStateInput"
+  /api/v1/studio/project-submissions/{id}/feedback:
+    post:
+      operationId: reviewCProject
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: *a1
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CProjectRunEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CProjectReviewInput"
+  /api/v1/studio/learning-content/{id}/reviews:
+    get:
+      operationId: listCContentReviews
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: *a1
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CContentReviewListEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+    post:
+      operationId: reviewCContent
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: *a1
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      responses:
+        "201":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CContentReviewEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CContentReviewInput"
+  /api/v1/learning/analytics/me:
+    get:
+      operationId: getCAnalytics
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - *a2
+        - name: window
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - "7"
+              - "14"
+              - "30"
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CAnalyticsDashboardEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/studio/learning-analytics/content:
+    get:
+      operationId: getCContentAnalytics
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: revisionId
+          in: query
+          required: true
+          schema: *a1
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CContentAnalyticsEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/analytics/cohort/{id}:
+    get:
+      operationId: blockedCCohortAnalytics
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: *a1
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CAnalyticsDashboardEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/studio/project-runs/{id}:
+    get:
+      operationId: inspectCProject
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: *a1
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CProjectRunEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/representations/{id}:
+    get:
+      operationId: getCRepresentations
+      tags:
+        - التعلم المتقدم C
+      description: Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: *a1
+        - *a3
+      responses:
+        "200":
+          description: Private response; TEST_ONLY synthetic data.
+          headers:
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CRepresentationSetEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  # END C ADVANCED PATHS
 components:
   securitySchemes:
     GuestCookie:
@@ -6183,6 +7455,22 @@ components:
             - code_trace
             - parsons_reorder
             - debug_select_fix
+        advancedActivity:
+          type: object
+          additionalProperties: false
+          properties:
+            kind:
+              type: string
+              enum:
+                - problem_based
+                - project_based
+            blockIndex:
+              type: integer
+              minimum: 0
+              maximum: 49
+          required:
+            - kind
+            - blockIndex
       required:
         - activityKind
         - lessonRevisionId
@@ -6254,6 +7542,22 @@ components:
             - code_trace
             - parsons_reorder
             - debug_select_fix
+        advancedActivity:
+          type: object
+          additionalProperties: false
+          properties:
+            kind:
+              type: string
+              enum:
+                - problem_based
+                - project_based
+            blockIndex:
+              type: integer
+              minimum: 0
+              maximum: 49
+          required:
+            - kind
+            - blockIndex
       required:
         - id
         - decisionId
@@ -6330,6 +7634,22 @@ components:
             - code_trace
             - parsons_reorder
             - debug_select_fix
+        advancedActivity:
+          type: object
+          additionalProperties: false
+          properties:
+            kind:
+              type: string
+              enum:
+                - problem_based
+                - project_based
+            blockIndex:
+              type: integer
+              minimum: 0
+              maximum: 49
+          required:
+            - kind
+            - blockIndex
       required:
         - id
         - revision
@@ -10104,6 +11424,8 @@ components:
                 - subjectAttempts
             noteAr:
               type: string
+            advancedLearning:
+              $ref: "#/components/schemas/CAdvancedLearningExport"
           required:
             - user
             - attempts
@@ -11820,6 +13142,9 @@ components:
             - worked_example_ref
             - self_check_prompt
             - subject_lab_activity
+            - problem_activity
+            - project_activity
+            - representation_set
         textAr:
           type: string
         raw:
@@ -11845,6 +13170,10 @@ components:
           type: string
         lab:
           $ref: "#/components/schemas/StemLabPublicBlock"
+        activity:
+          $ref: "#/components/schemas/CPublicActivity"
+        representation:
+          $ref: "#/components/schemas/CRepresentationSet"
       required:
         - type
         - textAr
@@ -11863,6 +13192,36 @@ components:
             not:
               required:
                 - lab
+        - if:
+            properties:
+              type:
+                type: string
+                enum:
+                  - problem_activity
+                  - project_activity
+            required:
+              - type
+          then:
+            required:
+              - activity
+          else:
+            not:
+              required:
+                - activity
+        - if:
+            properties:
+              type:
+                type: string
+                const: representation_set
+            required:
+              - type
+          then:
+            required:
+              - representation
+          else:
+            not:
+              required:
+                - representation
     LPLessonPayload:
       type: object
       additionalProperties: false
@@ -16144,6 +17503,9 @@ components:
             - worked_example_ref
             - self_check_prompt
             - subject_lab_activity
+            - problem_activity
+            - project_activity
+            - representation_set
         textAr:
           type: string
         raw:
@@ -16169,6 +17531,10 @@ components:
           type: string
         lab:
           $ref: "#/components/schemas/StemLabAuthorBlock"
+        activity:
+          $ref: "#/components/schemas/CAuthorActivity"
+        representation:
+          $ref: "#/components/schemas/CRepresentationSet"
       required:
         - type
         - textAr
@@ -16187,6 +17553,36 @@ components:
             not:
               required:
                 - lab
+        - if:
+            properties:
+              type:
+                type: string
+                enum:
+                  - problem_activity
+                  - project_activity
+            required:
+              - type
+          then:
+            required:
+              - activity
+          else:
+            not:
+              required:
+                - activity
+        - if:
+            properties:
+              type:
+                type: string
+                const: representation_set
+            required:
+              - type
+          then:
+            required:
+              - representation
+          else:
+            not:
+              required:
+                - representation
     LPAuthorLessonPayload:
       type: object
       additionalProperties: false
@@ -16407,6 +17803,1698 @@ components:
         - assistanceLevel
         - evidenceClass
         - updatedAt
+    # BEGIN C ADVANCED SCHEMAS
+    CRepresentation:
+      type: object
+      additionalProperties: false
+      properties:
+        code:
+          type: string
+          minLength: 1
+          maxLength: 80
+        kind:
+          type: string
+          enum:
+            - text
+            - table
+            - diagram
+            - stem_lab
+            - code
+        titleAr:
+          type: string
+          minLength: 1
+          maxLength: 160
+        accessibleText:
+          type: string
+          minLength: 1
+          maxLength: 3000
+        learningObjective:
+          type: string
+          minLength: 1
+          maxLength: 500
+        targetSkillCodes: &a2
+          type: array
+          items: &a3
+            type: string
+            minLength: 1
+            maxLength: 80
+          minItems: 1
+          maxItems: 8
+          uniqueItems: true
+        sameConstruct: &a1
+          type: boolean
+        assistanceExposure: *a1
+        evaluationMode:
+          type: string
+          const: learning_only
+        textAr:
+          type: string
+          minLength: 1
+          maxLength: 5000
+        altText:
+          type: string
+          minLength: 1
+          maxLength: 3000
+        columns:
+          type: array
+          items:
+            type: string
+            minLength: 1
+            maxLength: 160
+          minItems: 1
+          maxItems: 8
+        rows:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+              minLength: 1
+              maxLength: 200
+            minItems: 1
+            maxItems: 8
+          minItems: 1
+          maxItems: 40
+        labBlockIndex: &a4
+          type: integer
+          minimum: 0
+          maximum: 49
+        codeText:
+          type: string
+          minLength: 1
+          maxLength: 6000
+      required:
+        - code
+        - kind
+        - titleAr
+        - accessibleText
+        - learningObjective
+        - targetSkillCodes
+        - sameConstruct
+        - assistanceExposure
+        - evaluationMode
+      allOf:
+        - if:
+            properties:
+              kind:
+                type: string
+                const: text
+            required:
+              - kind
+          then:
+            required:
+              - textAr
+          else:
+            not:
+              anyOf:
+                - required:
+                    - textAr
+        - if:
+            properties:
+              kind:
+                type: string
+                const: table
+            required:
+              - kind
+          then:
+            required:
+              - columns
+              - rows
+          else:
+            not:
+              anyOf:
+                - required:
+                    - columns
+                - required:
+                    - rows
+        - if:
+            properties:
+              kind:
+                type: string
+                const: diagram
+            required:
+              - kind
+          then:
+            required:
+              - altText
+          else:
+            not:
+              anyOf:
+                - required:
+                    - altText
+        - if:
+            properties:
+              kind:
+                type: string
+                const: stem_lab
+            required:
+              - kind
+          then:
+            required:
+              - labBlockIndex
+          else:
+            not:
+              anyOf:
+                - required:
+                    - labBlockIndex
+        - if:
+            properties:
+              kind:
+                type: string
+                const: code
+            required:
+              - kind
+          then:
+            required:
+              - codeText
+          else:
+            not:
+              anyOf:
+                - required:
+                    - codeText
+    CRepresentationSet:
+      type: object
+      additionalProperties: false
+      properties:
+        schemaVersion:
+          type: string
+          const: udl-representation-v1
+        learningObjective:
+          type: string
+          minLength: 1
+          maxLength: 500
+        targetSkillCodes: *a2
+        variants:
+          type: array
+          items:
+            $ref: "#/components/schemas/CRepresentation"
+          minItems: 1
+          maxItems: 8
+        responseModes:
+          type: array
+          items:
+            type: string
+            enum:
+              - text
+              - choice
+              - equation
+              - code_text
+          minItems: 1
+          maxItems: 4
+          uniqueItems: true
+      required:
+        - schemaVersion
+        - learningObjective
+        - targetSkillCodes
+        - variants
+        - responseModes
+    CRubricCriterion:
+      type: object
+      additionalProperties: false
+      properties:
+        code:
+          type: string
+          minLength: 1
+          maxLength: 80
+        titleAr:
+          type: string
+          minLength: 1
+          maxLength: 160
+        descriptionAr:
+          type: string
+          minLength: 1
+          maxLength: 1000
+        levels:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              code:
+                type: string
+                minLength: 1
+                maxLength: 80
+              labelAr:
+                type: string
+                minLength: 1
+                maxLength: 160
+              descriptionAr:
+                type: string
+                minLength: 1
+                maxLength: 500
+            required:
+              - code
+              - labelAr
+              - descriptionAr
+          minItems: 2
+          maxItems: 5
+      required:
+        - code
+        - titleAr
+        - descriptionAr
+        - levels
+    CPrivateEvaluation:
+      type: object
+      additionalProperties: false
+      properties:
+        solutionKey:
+          type: string
+          minLength: 1
+          maxLength: 6000
+        privateRubric:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              criterionCode:
+                type: string
+                minLength: 1
+                maxLength: 80
+              noteAr:
+                type: string
+                minLength: 1
+                maxLength: 1000
+            required:
+              - criterionCode
+              - noteAr
+          minItems: 0
+          maxItems: 10
+        hints:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              level:
+                type: string
+                enum:
+                  - H0
+                  - H1
+                  - H2
+                  - H3
+                  - H4
+              textAr:
+                type: string
+                minLength: 1
+                maxLength: 1600
+            required:
+              - level
+              - textAr
+          minItems: 0
+          maxItems: 5
+        referenceCode:
+          type: string
+          minLength: 1
+          maxLength: 6000
+        hiddenTests:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              input:
+                type: string
+                minLength: 0
+                maxLength: 1000
+              expectedOutput:
+                type: string
+                minLength: 0
+                maxLength: 1000
+            required:
+              - input
+              - expectedOutput
+          minItems: 0
+          maxItems: 10
+      required: []
+    CPublicProblemActivity:
+      type: object
+      additionalProperties: false
+      properties:
+        schemaVersion: &a5
+          type: string
+          const: c-activity-v1
+        subject: &a6
+          type: string
+          enum:
+            - algebra
+            - physics
+            - programming
+        code: &a7
+          type: string
+          minLength: 1
+          maxLength: 80
+        titleAr: &a8
+          type: string
+          minLength: 1
+          maxLength: 160
+        objectives: &a9
+          type: array
+          items:
+            type: string
+            minLength: 1
+            maxLength: 500
+          minItems: 1
+          maxItems: 8
+        skillCodes: *a2
+        prerequisiteSkillCodes: &a10
+          type: array
+          items: *a3
+          minItems: 0
+          maxItems: 8
+          uniqueItems: true
+        publicBriefAr: &a11
+          type: string
+          minLength: 1
+          maxLength: 3000
+        familyCode: &a12
+          type: string
+          minLength: 1
+          maxLength: 80
+        supportPolicy: &a13
+          type: object
+          additionalProperties: false
+          properties:
+            hintsAllowed: *a1
+            revealMode:
+              type: string
+              enum:
+                - after_submit
+                - teacher_only
+          required:
+            - hintsAllowed
+            - revealMode
+        representations: &a14
+          type: array
+          items:
+            $ref: "#/components/schemas/CRepresentation"
+          minItems: 1
+          maxItems: 8
+        publicRubric: &a15
+          type: array
+          items:
+            $ref: "#/components/schemas/CRubricCriterion"
+          minItems: 1
+          maxItems: 10
+        type: &a16
+          type: string
+          const: problem_based
+        scenarioAr: &a17
+          type: string
+          minLength: 1
+          maxLength: 5000
+        constraints: &a18
+          type: array
+          items:
+            type: string
+            minLength: 1
+            maxLength: 500
+          minItems: 0
+          maxItems: 10
+        stages: &a19
+          type: array
+          items:
+            type: string
+            enum:
+              - frame
+              - plan
+              - investigate
+              - justify
+              - reflect
+          minItems: 5
+          maxItems: 5
+          const:
+            - frame
+            - plan
+            - investigate
+            - justify
+            - reflect
+          uniqueItems: true
+        verification: &a20
+          oneOf:
+            - type: object
+              additionalProperties: false
+              properties:
+                kind:
+                  type: string
+                  const: none
+              required:
+                - kind
+            - type: object
+              additionalProperties: false
+              properties:
+                kind:
+                  type: string
+                  const: bank_problem
+                problemRevisionId: &a21
+                  type: string
+                  format: uuid
+              required:
+                - kind
+                - problemRevisionId
+            - type: object
+              additionalProperties: false
+              properties:
+                kind:
+                  type: string
+                  const: stem_lab
+                blockIndex: *a4
+              required:
+                - kind
+                - blockIndex
+      required:
+        - schemaVersion
+        - subject
+        - code
+        - titleAr
+        - objectives
+        - skillCodes
+        - prerequisiteSkillCodes
+        - publicBriefAr
+        - familyCode
+        - supportPolicy
+        - representations
+        - publicRubric
+        - type
+        - scenarioAr
+        - constraints
+        - stages
+        - verification
+    CAuthorProblemActivity:
+      type: object
+      additionalProperties: false
+      properties:
+        schemaVersion: *a5
+        subject: *a6
+        code: *a7
+        titleAr: *a8
+        objectives: *a9
+        skillCodes: *a2
+        prerequisiteSkillCodes: *a10
+        publicBriefAr: *a11
+        familyCode: *a12
+        supportPolicy: *a13
+        representations: *a14
+        publicRubric: *a15
+        type: *a16
+        scenarioAr: *a17
+        constraints: *a18
+        stages: *a19
+        verification: *a20
+        privateEvaluation:
+          $ref: "#/components/schemas/CPrivateEvaluation"
+      required:
+        - schemaVersion
+        - subject
+        - code
+        - titleAr
+        - objectives
+        - skillCodes
+        - prerequisiteSkillCodes
+        - publicBriefAr
+        - familyCode
+        - supportPolicy
+        - representations
+        - publicRubric
+        - type
+        - scenarioAr
+        - constraints
+        - stages
+        - verification
+    CPublicProjectActivity:
+      type: object
+      additionalProperties: false
+      properties:
+        schemaVersion: *a5
+        subject: *a6
+        code: *a7
+        titleAr: *a8
+        objectives: *a9
+        skillCodes: *a2
+        prerequisiteSkillCodes: *a10
+        publicBriefAr: *a11
+        familyCode: *a12
+        supportPolicy: *a13
+        representations: *a14
+        publicRubric: *a15
+        type: &a22
+          type: string
+          const: project_based
+        projectLevel: &a23
+          type: string
+          enum:
+            - micro
+            - multi_lesson
+        drivingQuestionAr: &a24
+          type: string
+          minLength: 1
+          maxLength: 2000
+        milestones: &a25
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              code:
+                type: string
+                minLength: 1
+                maxLength: 80
+              titleAr:
+                type: string
+                minLength: 1
+                maxLength: 160
+              descriptionAr:
+                type: string
+                minLength: 1
+                maxLength: 1000
+              requiredArtifactKind:
+                type: string
+                enum:
+                  - text
+                  - json
+              required: *a1
+            required:
+              - code
+              - titleAr
+              - descriptionAr
+              - requiredArtifactKind
+              - required
+          minItems: 3
+          maxItems: 12
+        lessonRevisionIds: &a26
+          type: array
+          items: *a21
+          minItems: 0
+          maxItems: 20
+          uniqueItems: true
+      required:
+        - schemaVersion
+        - subject
+        - code
+        - titleAr
+        - objectives
+        - skillCodes
+        - prerequisiteSkillCodes
+        - publicBriefAr
+        - familyCode
+        - supportPolicy
+        - representations
+        - publicRubric
+        - type
+        - projectLevel
+        - drivingQuestionAr
+        - milestones
+        - lessonRevisionIds
+    CAuthorProjectActivity:
+      type: object
+      additionalProperties: false
+      properties:
+        schemaVersion: *a5
+        subject: *a6
+        code: *a7
+        titleAr: *a8
+        objectives: *a9
+        skillCodes: *a2
+        prerequisiteSkillCodes: *a10
+        publicBriefAr: *a11
+        familyCode: *a12
+        supportPolicy: *a13
+        representations: *a14
+        publicRubric: *a15
+        type: *a22
+        projectLevel: *a23
+        drivingQuestionAr: *a24
+        milestones: *a25
+        lessonRevisionIds: *a26
+        privateEvaluation:
+          $ref: "#/components/schemas/CPrivateEvaluation"
+      required:
+        - schemaVersion
+        - subject
+        - code
+        - titleAr
+        - objectives
+        - skillCodes
+        - prerequisiteSkillCodes
+        - publicBriefAr
+        - familyCode
+        - supportPolicy
+        - representations
+        - publicRubric
+        - type
+        - projectLevel
+        - drivingQuestionAr
+        - milestones
+        - lessonRevisionIds
+    CPublicActivity:
+      oneOf:
+        - $ref: "#/components/schemas/CPublicProblemActivity"
+        - $ref: "#/components/schemas/CPublicProjectActivity"
+    CAuthorActivity:
+      oneOf:
+        - $ref: "#/components/schemas/CAuthorProblemActivity"
+        - $ref: "#/components/schemas/CAuthorProjectActivity"
+    CActivityBrief:
+      type: object
+      additionalProperties: false
+      properties:
+        lessonRevisionId: *a21
+        blockIndex: *a4
+        activity: &a27
+          $ref: "#/components/schemas/CPublicActivity"
+      required:
+        - lessonRevisionId
+        - blockIndex
+        - activity
+    CActivityEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/CActivityBrief"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    CActivityListEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            items:
+              type: array
+              items:
+                $ref: "#/components/schemas/CActivityBrief"
+              minItems: 0
+              maxItems: 500
+            evidenceClass:
+              type: string
+              const: learning_only
+          required:
+            - items
+            - evidenceClass
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    CProblemSession:
+      type: object
+      additionalProperties: false
+      properties:
+        lessonRevisionId: *a21
+        blockIndex: *a4
+        activity: *a27
+        id: *a21
+        revision: &a28
+          type: integer
+          minimum: 0
+          maximum: 2147483647
+        trackRevisionId: *a21
+        stage:
+          type: string
+          enum:
+            - frame
+            - plan
+            - investigate
+            - justify
+            - reflect
+        status:
+          type: string
+          enum:
+            - active
+            - paused
+            - abandoned
+            - completed
+        answers:
+          type: object
+          additionalProperties: false
+          properties:
+            frame:
+              type: string
+              minLength: 1
+              maxLength: 3000
+            plan:
+              type: string
+              minLength: 1
+              maxLength: 3000
+            investigate:
+              type: string
+              minLength: 1
+              maxLength: 3000
+            justify:
+              type: string
+              minLength: 1
+              maxLength: 3000
+            reflect:
+              type: string
+              minLength: 1
+              maxLength: 3000
+          required: []
+        assistanceLevel:
+          type: integer
+          minimum: 0
+          maximum: 4
+        supportAr:
+          anyOf:
+            - type: string
+              minLength: 1
+              maxLength: 6000
+            - type: "null"
+        result:
+          anyOf:
+            - $ref: "#/components/schemas/StemLabResult"
+            - type: "null"
+        evidenceClass:
+          type: string
+          const: learning_only
+        readOnly: *a1
+        transfer:
+          type: object
+          additionalProperties: false
+          properties:
+            available:
+              type: boolean
+              const: false
+            reasonCode:
+              type: string
+              const: assessment_service_rechecks_novelty
+          required:
+            - available
+            - reasonCode
+        supportLinks:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              kind:
+                type: string
+                enum:
+                  - scaffold
+                  - tutor
+                  - reflection
+              id: *a21
+            required:
+              - kind
+              - id
+          minItems: 0
+          maxItems: 8
+        assessmentId: *a21
+      required:
+        - lessonRevisionId
+        - blockIndex
+        - activity
+        - id
+        - revision
+        - trackRevisionId
+        - stage
+        - status
+        - answers
+        - assistanceLevel
+        - supportAr
+        - result
+        - evidenceClass
+        - readOnly
+        - transfer
+    CProjectReview:
+      type: object
+      additionalProperties: false
+      properties:
+        id: *a21
+        rubricRevisionId: *a21
+        assessedSubmissionRevision: *a28
+        reviewerRole:
+          type: string
+          minLength: 1
+          maxLength: 80
+        decision:
+          type: string
+          enum:
+            - revision_requested
+            - accepted
+        criteria:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              criterionCode:
+                type: string
+                minLength: 1
+                maxLength: 80
+              levelCode:
+                type: string
+                minLength: 1
+                maxLength: 80
+              reasonAr:
+                type: string
+                minLength: 1
+                maxLength: 1000
+            required:
+              - criterionCode
+              - levelCode
+              - reasonAr
+          minItems: 1
+          maxItems: 10
+        feedbackAr:
+          type: string
+          minLength: 1
+          maxLength: 2000
+        reviewedAt: &a29
+          type: string
+          format: date-time
+      required:
+        - id
+        - rubricRevisionId
+        - assessedSubmissionRevision
+        - reviewerRole
+        - decision
+        - criteria
+        - feedbackAr
+        - reviewedAt
+    CProjectSubmission:
+      type: object
+      additionalProperties: false
+      properties:
+        id: *a21
+        revision: *a28
+        milestoneCode:
+          type: string
+          minLength: 1
+          maxLength: 80
+        artifactKind:
+          type: string
+          enum:
+            - text
+            - json
+        artifact: &a30
+          oneOf:
+            - type: string
+              minLength: 1
+              maxLength: 16000
+            - type: object
+              additionalProperties: true
+        isFinal: *a1
+        status:
+          type: string
+          enum:
+            - awaiting_feedback
+            - revision_requested
+            - accepted
+        createdAt: *a29
+        review:
+          anyOf:
+            - $ref: "#/components/schemas/CProjectReview"
+            - type: "null"
+      required:
+        - id
+        - revision
+        - milestoneCode
+        - artifactKind
+        - artifact
+        - isFinal
+        - status
+        - createdAt
+        - review
+    CProjectRun:
+      type: object
+      additionalProperties: false
+      properties:
+        lessonRevisionId: *a21
+        blockIndex: *a4
+        activity: *a27
+        id: *a21
+        revision: *a28
+        trackRevisionId: *a21
+        status:
+          type: string
+          enum:
+            - active
+            - paused
+            - withdrawn
+            - awaiting_feedback
+            - revision_requested
+            - review_pending
+            - feedback_ready
+            - completed
+        milestones:
+          type: object
+          additionalProperties:
+            type: string
+            minLength: 1
+            maxLength: 3000
+          maxProperties: 12
+        submissions:
+          type: array
+          items:
+            $ref: "#/components/schemas/CProjectSubmission"
+          minItems: 0
+          maxItems: 100
+        assistanceLevel:
+          type: integer
+          minimum: 0
+          maximum: 4
+        feedbackSeen: *a1
+        evidenceClass:
+          type: string
+          const: learning_only
+        readOnly: *a1
+        assessmentId: *a21
+      required:
+        - lessonRevisionId
+        - blockIndex
+        - activity
+        - id
+        - revision
+        - trackRevisionId
+        - status
+        - milestones
+        - submissions
+        - assistanceLevel
+        - feedbackSeen
+        - evidenceClass
+        - readOnly
+    CProblemSessionEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/CProblemSession"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    CProjectRunEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/CProjectRun"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    CActivityStartInput:
+      type: object
+      additionalProperties: false
+      properties:
+        trackRevisionId: *a21
+        lessonRevisionId: *a21
+        blockIndex: *a4
+      required:
+        - trackRevisionId
+        - lessonRevisionId
+        - blockIndex
+    CRevisionInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision: *a28
+      required:
+        - expectedRevision
+    CProblemStepInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision: *a28
+        stage:
+          type: string
+          enum:
+            - frame
+            - plan
+            - investigate
+            - justify
+            - reflect
+        textAr:
+          type: string
+          minLength: 0
+          maxLength: 3000
+        action:
+          type: string
+          enum:
+            - save
+            - pause
+            - resume
+            - abandon
+            - hint
+            - reveal
+      required:
+        - expectedRevision
+        - stage
+        - textAr
+    CProblemFeedbackInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision: *a28
+        answer:
+          type: object
+          additionalProperties: true
+        labSessionId: *a21
+      required:
+        - expectedRevision
+    CProjectMilestoneInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision: *a28
+        textAr:
+          type: string
+          minLength: 1
+          maxLength: 3000
+      required:
+        - expectedRevision
+        - textAr
+    CProjectSubmissionInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision: *a28
+        milestoneCode:
+          type: string
+          minLength: 1
+          maxLength: 80
+        artifactKind:
+          type: string
+          enum:
+            - text
+            - json
+        artifact: *a30
+        isFinal: *a1
+      required:
+        - expectedRevision
+        - milestoneCode
+        - artifactKind
+        - artifact
+        - isFinal
+    CProjectReviewInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision: *a28
+        decision:
+          type: string
+          enum:
+            - revision_requested
+            - accepted
+        criteria:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              criterionCode:
+                type: string
+                minLength: 1
+                maxLength: 80
+              levelCode:
+                type: string
+                minLength: 1
+                maxLength: 80
+              reasonAr:
+                type: string
+                minLength: 1
+                maxLength: 1000
+            required:
+              - criterionCode
+              - levelCode
+              - reasonAr
+          minItems: 1
+          maxItems: 10
+        feedbackAr:
+          type: string
+          minLength: 1
+          maxLength: 2000
+      required:
+        - expectedRevision
+        - decision
+        - criteria
+        - feedbackAr
+    CProjectStateInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision: *a28
+        action:
+          type: string
+          enum:
+            - pause
+            - resume
+            - withdraw
+      required:
+        - expectedRevision
+        - action
+    CProblemSupportInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision: *a28
+        kind:
+          type: string
+          enum:
+            - scaffold
+            - tutor
+            - reflection
+      required:
+        - expectedRevision
+        - kind
+    CProblemSupportEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            session:
+              $ref: "#/components/schemas/CProblemSession"
+            support:
+              type: object
+              additionalProperties: false
+              properties:
+                kind:
+                  type: string
+                  enum:
+                    - scaffold
+                    - tutor
+                    - reflection
+                id: *a21
+              required:
+                - kind
+                - id
+          required:
+            - session
+            - support
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    CProblemAssessmentEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            session:
+              $ref: "#/components/schemas/CProblemSession"
+            assessment:
+              $ref: "#/components/schemas/LPAssessmentSession"
+          required:
+            - session
+            - assessment
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    CProjectAssessmentEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            session:
+              $ref: "#/components/schemas/CProjectRun"
+            assessment:
+              $ref: "#/components/schemas/LPAssessmentSession"
+          required:
+            - session
+            - assessment
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    CContentReview:
+      type: object
+      additionalProperties: false
+      properties:
+        id: *a21
+        revisionId: *a21
+        reviewerId: *a21
+        reviewerRole:
+          type: string
+          enum:
+            - admin
+            - content_manager
+        scope:
+          type: string
+          enum:
+            - subject
+            - pedagogy
+            - accessibility
+            - security
+        contentHash:
+          type: string
+          minLength: 1
+          maxLength: 64
+        decision:
+          type: string
+          enum:
+            - approve
+            - changes_requested
+        notesAr:
+          type: string
+          minLength: 1
+          maxLength: 2000
+        reviewMode:
+          type: string
+          const: TEST_ONLY
+        reviewedAt: *a29
+      required:
+        - id
+        - revisionId
+        - reviewerId
+        - reviewerRole
+        - scope
+        - contentHash
+        - decision
+        - notesAr
+        - reviewMode
+        - reviewedAt
+    CContentReviewInput:
+      type: object
+      additionalProperties: false
+      properties:
+        expectedRevision: *a28
+        scope:
+          type: string
+          enum:
+            - subject
+            - pedagogy
+            - accessibility
+            - security
+        decision:
+          type: string
+          enum:
+            - approve
+            - changes_requested
+        notesAr:
+          type: string
+          minLength: 1
+          maxLength: 2000
+      required:
+        - expectedRevision
+        - scope
+        - decision
+        - notesAr
+    CContentReviewListEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            items:
+              type: array
+              items:
+                $ref: "#/components/schemas/CContentReview"
+              minItems: 0
+              maxItems: 200
+          required:
+            - items
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    CContentReviewEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            review:
+              $ref: "#/components/schemas/CContentReview"
+            content:
+              $ref: "#/components/schemas/LPAuthorLearningContentRevision"
+          required:
+            - review
+            - content
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    CMetric:
+      type: object
+      additionalProperties: false
+      properties:
+        metric:
+          type: string
+          minLength: 1
+          maxLength: 100
+        metricVersion:
+          type: string
+          minLength: 1
+          maxLength: 100
+        n: *a28
+        numerator: *a28
+        denominator: *a28
+        value:
+          anyOf:
+            - type: number
+            - type: "null"
+        status:
+          type: string
+          enum:
+            - observed
+            - not_measured
+            - suppressed
+        missingReason:
+          anyOf:
+            - type: string
+              minLength: 1
+              maxLength: 200
+            - type: "null"
+      required:
+        - metric
+        - metricVersion
+        - n
+        - numerator
+        - denominator
+        - value
+        - status
+        - missingReason
+    CAnalyticsDashboard:
+      type: object
+      additionalProperties: false
+      properties:
+        schemaVersion:
+          type: string
+          const: learning-metrics-v1
+        metricVersion:
+          type: string
+          const: c-metrics-1.0
+        trackRevisionId: *a21
+        generatedAt: *a29
+        window:
+          type: object
+          additionalProperties: false
+          properties:
+            from: *a29
+            to: *a29
+            days:
+              type: integer
+              enum:
+                - 7
+                - 14
+                - 30
+          required:
+            - from
+            - to
+            - days
+        synthetic:
+          type: boolean
+          const: true
+        metrics:
+          type: array
+          items:
+            $ref: "#/components/schemas/CMetric"
+          minItems: 0
+          maxItems: 50
+        activity:
+          type: object
+          additionalProperties: false
+          properties:
+            problemCompleted: *a28
+            projectCompleted: *a28
+            projectSubmitted: *a28
+          required:
+            - problemCompleted
+            - projectCompleted
+            - projectSubmitted
+        provenance:
+          type: array
+          items:
+            type: string
+            minLength: 1
+            maxLength: 160
+          minItems: 0
+          maxItems: 30
+        missingCount: *a28
+        notesAr:
+          type: array
+          items:
+            type: string
+            minLength: 1
+            maxLength: 1000
+          minItems: 0
+          maxItems: 30
+      required:
+        - schemaVersion
+        - metricVersion
+        - trackRevisionId
+        - generatedAt
+        - window
+        - synthetic
+        - metrics
+        - activity
+        - provenance
+        - missingCount
+        - notesAr
+    CContentAnalytics:
+      type: object
+      additionalProperties: false
+      properties:
+        schemaVersion:
+          type: string
+          const: learning-metrics-v1
+        revisionId: *a21
+        synthetic:
+          type: boolean
+          const: true
+        status:
+          type: string
+          const: suppressed
+        reasonCode:
+          type: string
+          const: privacy_threshold_pending
+        metrics:
+          type: array
+          items: {}
+          minItems: 0
+          maxItems: 0
+        quality:
+          type: object
+          additionalProperties: false
+          properties:
+            problemActivities: *a28
+            projectActivities: *a28
+            representationSets: *a28
+          required:
+            - problemActivities
+            - projectActivities
+            - representationSets
+        generatedAt: *a29
+      required:
+        - schemaVersion
+        - revisionId
+        - synthetic
+        - status
+        - reasonCode
+        - metrics
+        - quality
+        - generatedAt
+    CAnalyticsDashboardEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/CAnalyticsDashboard"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    CContentAnalyticsEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/CContentAnalytics"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    CRepresentationSetEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/CRepresentationSet"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    CAdvancedLearningExport:
+      type: object
+      additionalProperties: false
+      properties:
+        sessions:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              id: *a21
+              kind:
+                type: string
+                enum:
+                  - problem_session
+                  - project_run
+              revision: *a28
+              trackRevisionId: *a21
+              lessonRevisionId: *a21
+              blockIndex: *a4
+              status:
+                type: string
+                minLength: 1
+                maxLength: 80
+              assistanceLevel: *a28
+              evidenceClass:
+                type: string
+                const: learning_only
+              answers:
+                type: object
+                additionalProperties:
+                  type: string
+                  minLength: 1
+                  maxLength: 3000
+              milestones:
+                type: object
+                additionalProperties:
+                  type: string
+                  minLength: 1
+                  maxLength: 3000
+              updatedAt: *a29
+            required:
+              - id
+              - kind
+              - revision
+              - trackRevisionId
+              - lessonRevisionId
+              - blockIndex
+              - status
+              - assistanceLevel
+              - evidenceClass
+              - answers
+              - milestones
+              - updatedAt
+          minItems: 0
+          maxItems: 501
+        submissions:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              id: *a21
+              projectRunId: *a21
+              revision: *a28
+              milestoneCode:
+                type: string
+                minLength: 1
+                maxLength: 80
+              artifactKind:
+                type: string
+                enum:
+                  - text
+                  - json
+              artifact: *a30
+              isFinal: *a1
+              createdAt: *a29
+            required:
+              - id
+              - projectRunId
+              - revision
+              - milestoneCode
+              - artifactKind
+              - artifact
+              - isFinal
+              - createdAt
+          minItems: 0
+          maxItems: 501
+        reviews:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              submissionId: *a21
+              reviewerRole:
+                type: string
+                enum:
+                  - admin
+                  - content_manager
+              rubricRevisionId: *a21
+              decision:
+                type: string
+                enum:
+                  - accepted
+                  - revision_requested
+              criteria:
+                type: array
+                items:
+                  type: object
+                  additionalProperties: false
+                  properties:
+                    criterionCode:
+                      type: string
+                      minLength: 1
+                      maxLength: 80
+                    levelCode:
+                      type: string
+                      minLength: 1
+                      maxLength: 80
+                    reasonAr:
+                      type: string
+                      minLength: 1
+                      maxLength: 1000
+                  required:
+                    - criterionCode
+                    - levelCode
+                    - reasonAr
+                minItems: 1
+                maxItems: 10
+              feedbackAr:
+                type: string
+                minLength: 1
+                maxLength: 2000
+              reviewedAt: *a29
+            required:
+              - submissionId
+              - reviewerRole
+              - rubricRevisionId
+              - decision
+              - criteria
+              - feedbackAr
+              - reviewedAt
+          minItems: 0
+          maxItems: 501
+        truncated: *a1
+      required:
+        - sessions
+        - submissions
+        - truncated
+    # END C ADVANCED SCHEMAS
   examples:
     VerifyValid:
       summary: انتقال صحيح بالتوزيع

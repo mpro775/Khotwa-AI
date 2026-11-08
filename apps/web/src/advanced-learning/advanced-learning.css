@@ -1,0 +1,97 @@
+.advanced-learning {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.advanced-learning :is(button, input, textarea, select, summary):focus-visible {
+  outline: 3px solid #176759;
+  outline-offset: 4px;
+}
+.advanced-learning textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 7rem;
+  resize: vertical;
+}
+.c-stage-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding-block: 1rem;
+}
+.c-stage-nav button[aria-current="step"] {
+  border: 2px solid currentColor;
+  font-weight: 700;
+}
+.c-workspace {
+  padding: 1rem;
+  margin-block: 1rem;
+  border: 1px solid #73847d;
+  border-radius: 12px;
+}
+.c-workspace fieldset {
+  min-width: 0;
+  margin-block: 1rem;
+}
+.c-workspace label {
+  display: grid;
+  gap: 0.4rem;
+  margin-block: 0.8rem;
+}
+.c-workspace .check-row {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+.c-workspace pre {
+  overflow-x: auto;
+  text-align: left;
+  white-space: pre;
+}
+.c-workspace table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.c-workspace :is(th, td) {
+  padding: 0.6rem;
+  text-align: start;
+  border: 1px solid #73847d;
+}
+.c-feedback {
+  padding: 0.8rem;
+  border-inline-start: 4px solid #176759;
+  background: color-mix(in srgb, #176759 8%, transparent);
+}
+.c-high-contrast {
+  color: #000;
+  background: #fff;
+  --muted: #222;
+}
+.c-high-contrast :is(input, textarea, select, button) {
+  color: #000;
+  background: #fff;
+  border: 2px solid #000;
+}
+.c-high-contrast .helper {
+  color: #222;
+}
+.c-reduce-motion *,
+.c-reduce-motion *::before,
+.c-reduce-motion *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .advanced-learning * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+@media (max-width: 38rem) {
+  .c-stage-nav button {
+    flex: 1 1 10rem;
+  }
+  .c-workspace {
+    padding: 0.6rem;
+  }
+}

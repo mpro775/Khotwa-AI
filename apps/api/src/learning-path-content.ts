@@ -61,6 +61,12 @@ import {
   labMathSources,
 } from "./stem/lab-registry";
 import { validateMathLabSpec, validateMathLabContent } from "./stem/math-lab";
+import type { CContentReview } from "../../../packages/contracts/src/advanced-learning";
+import {
+  containsAdvancedContent,
+  C_REVIEW_SCOPES,
+  publicCActivity,
+} from "./advanced-learning/activity-payload";
 
 type Tx = Prisma.TransactionClient;
 interface ContentRow {
@@ -104,6 +110,8 @@ export const learningStudentContentDto = (
     dto.payload = {
       ...dto.payload,
       contentBlocks: dto.payload.contentBlocks.map((block) => {
+        if (block.activity)
+          return { ...block, activity: publicCActivity(block.activity) };
         if (block.type === "subject_lab_activity" && block.lab) {
           const { domainSpec: _, ...lab } = block.lab;
           void _;
@@ -118,6 +126,64 @@ export const learningStudentContentDto = (
   return dto;
 };
 
+interface ReviewRow {
+  id: string;
+  revision_id: string;
+  reviewer_id: string;
+  reviewer_role: "admin" | "content_manager";
+  scope: CContentReview["scope"];
+  content_hash: string;
+  decision: CContentReview["decision"];
+  notes_ar: string;
+  review_mode: "TEST_ONLY";
+  reviewed_at: Date;
+}
+const reviewDto = (r: ReviewRow): CContentReview => ({
+  id: r.id,
+  revisionId: r.revision_id,
+  reviewerId: r.reviewer_id,
+  reviewerRole: r.reviewer_role,
+  scope: r.scope,
+  contentHash: r.content_hash,
+  decision: r.decision,
+  notesAr: r.notes_ar,
+  reviewMode: r.review_mode,
+  reviewedAt: r.reviewed_at.toISOString(),
+});
+/** Test-only source approvals never stand in for scientific release approval. */
+export function assertAdvancedReviewGate(
+  hash: string,
+  author: string | null,
+  approver: string | null,
+  reviews: CContentReview[],
+): void {
+  if (!author || !approver || author === approver)
+    throw new ApiFault(
+      403,
+      "forbidden",
+      "يلزم فصل مؤلف المحتوى عن الموافق النهائي.",
+    );
+  for (const scope of C_REVIEW_SCOPES) {
+    const latest = reviews
+      .filter((r) => r.contentHash === hash && r.scope === scope)
+      .sort(
+        (a, b) =>
+          b.reviewedAt.localeCompare(a.reviewedAt) || b.id.localeCompare(a.id),
+      )[0];
+    if (
+      !latest ||
+      latest.reviewerId === author ||
+      latest.decision !== "approve" ||
+      latest.reviewMode !== "TEST_ONLY"
+    )
+      throw new ApiFault(
+        409,
+        "invalid_state",
+        "تحتاج النسخة الحالية مراجعات مستقلة للمادة والتربية والوصول والأمن، موسومة TEST_ONLY.",
+      );
+  }
+}
+
 export class LearningPathContentService {
   readonly physics = new PhysicsGateway();
   constructor(
@@ -126,6 +192,147 @@ export class LearningPathContentService {
     readonly math: MathPort,
     readonly studio: ContentStudioService,
   ) {}
+  private requireAdvancedAuthoring(payload: LearningContentPayload): void {
+    if (!containsAdvancedContent(payload)) return;
+    if (
+      !this.store.syntheticData ||
+      process.env.C_ADVANCED_STUDIO_ENABLED !== "true"
+    )
+      throw new ApiFault(
+        403,
+        "forbidden",
+        "استوديو C اصطناعي ومغلق افتراضيًا.",
+      );
+    if (
+      payload.kind === "lesson" &&
+      payload.contentBlocks.some(
+        (b) =>
+          b.type === "representation_set" || b.activity?.representations.length,
+      ) &&
+      process.env.C_UDL_CONTENT_ENABLED !== "true"
+    )
+      throw new ApiFault(403, "forbidden", "تمثيلات C3 مغلقة افتراضيًا.");
+  }
+  private async requireAdvancedIdentity(
+    tx: Tx,
+    actor: ProductOwner,
+    allowGuest = false,
+  ): Promise<void> {
+    if (!this.store.syntheticData)
+      throw new ApiFault(403, "forbidden", "برنامج C اصطناعي فقط.");
+    if (!actor.userId) {
+      if (allowGuest && actor.guestAuth) return;
+      throw new ApiFault(
+        403,
+        "forbidden",
+        "تأليف C يحتاج حسابًا اصطناعيًا داخليًا.",
+      );
+    }
+    const [internal] = await tx.$queryRaw<
+      { id: string }[]
+    >`SELECT u.id FROM users u JOIN auth_sessions s ON s.user_id=u.id WHERE u.id=${actor.userId}::uuid AND s.id=${actor.authSessionId ?? "00000000-0000-0000-0000-000000000000"}::uuid AND u.is_internal=true AND u.status='active' AND s.revoked_at IS NULL AND s.expires_at>now() FOR SHARE OF u,s`;
+    if (!internal)
+      throw new ApiFault(
+        403,
+        "forbidden",
+        "برنامج C للحسابات الاصطناعية الداخلية فقط.",
+      );
+  }
+  private async requireAdvancedActor(
+    tx: Tx,
+    actor: ProductOwner,
+    payload: LearningContentPayload,
+  ): Promise<void> {
+    if (!containsAdvancedContent(payload)) return;
+    this.requireAdvancedAuthoring(payload);
+    await this.requireAdvancedIdentity(tx, actor);
+  }
+  async reviews(request: RequestContext, id: string) {
+    const actor = await this.accounts.actor(request, false, editors);
+    const r = await this.row(id);
+    this.canEdit(r, actor);
+    await this.requireAdvancedActor(this.store.db, actor, r.payload);
+    const rows = await this.store.db.$queryRaw<
+      ReviewRow[]
+    >`SELECT * FROM learning_content_reviews WHERE revision_id=${r.id}::uuid ORDER BY reviewed_at DESC,id DESC LIMIT 200`;
+    return { items: rows.map(reviewDto) };
+  }
+  async representations(
+    request: RequestContext,
+    id: string,
+    rawIndex: unknown,
+  ) {
+    if (
+      !this.store.syntheticData ||
+      process.env.C_UDL_CONTENT_ENABLED !== "true"
+    )
+      throw new ApiFault(
+        403,
+        "forbidden",
+        "التمثيلات الاصطناعية مغلقة افتراضيًا.",
+      );
+    if (
+      typeof rawIndex !== "string" ||
+      !/^(?:[0-9]|[1-4][0-9])$/.test(rawIndex)
+    )
+      throw productInvalid();
+    const lesson = await this.lesson(request, id);
+    if (lesson.payload.kind !== "lesson") throw missing();
+    const representation =
+      lesson.payload.contentBlocks[Number(rawIndex)]?.representation;
+    if (!representation) throw missing();
+    return representation;
+  }
+  async review(request: RequestContext, id: string, raw: unknown) {
+    const actor = await this.accounts.actor(request, true, [
+      "content_manager",
+      "admin",
+    ]);
+    const b = record(raw);
+    only(b, ["expectedRevision", "scope", "decision", "notesAr"]);
+    const expected = revisionField(b.expectedRevision),
+      scope = textField(b.scope, 20),
+      decision = textField(b.decision, 20),
+      notes = textField(b.notesAr, 2000);
+    if (
+      !C_REVIEW_SCOPES.includes(scope as CContentReview["scope"]) ||
+      !["approve", "changes_requested"].includes(decision)
+    )
+      throw productInvalid();
+    return productMutation(
+      this.store,
+      actor,
+      request,
+      "learning-content.review:" + uuid(id),
+      b,
+      async (tx) => {
+        const r = await this.row(id, tx, true);
+        this.expected(r, expected);
+        await this.requireAdvancedActor(tx, actor, r.payload);
+        if (!containsAdvancedContent(r.payload) || r.status !== "in_review")
+          throw new ApiFault(
+            409,
+            "invalid_state",
+            "راجع محتوى C المحال للمراجعة فقط.",
+          );
+        if (r.created_by === actor.userId)
+          throw new ApiFault(403, "forbidden", "لا يراجع المؤلف مسودته بنفسه.");
+        const reviewId = randomUUID();
+        await tx.$executeRaw`INSERT INTO learning_content_reviews(id,revision_id,reviewer_id,reviewer_role,scope,content_hash,decision,notes_ar,review_mode) VALUES(${reviewId}::uuid,${r.id}::uuid,${actor.userId}::uuid,${actor.role},${scope},${r.content_hash},${decision},${notes},'TEST_ONLY')`;
+        await tx.$executeRaw`UPDATE learning_content_revisions SET edit_revision=edit_revision+1 WHERE id=${r.id}::uuid`;
+        await this.audit(tx, r, actor, "review:" + scope + ":" + decision);
+        const [written] = await tx.$queryRaw<
+          ReviewRow[]
+        >`SELECT * FROM learning_content_reviews WHERE id=${reviewId}::uuid`;
+        return {
+          review: reviewDto(written!),
+          content: learningContentDto(await this.row(id, tx)),
+        };
+      },
+      async (tx) =>
+        this.requireAdvancedActor(tx, actor, (await this.row(id, tx)).payload),
+    );
+  }
   async row(
     id: string,
     tx: Tx = this.store.db,
@@ -378,6 +585,8 @@ export class LearningPathContentService {
         await tx.$executeRaw`INSERT INTO learning_lesson_events(id,owner_key,lesson_revision_id,event_kind) SELECT ${randomUUID()}::uuid,${actor.ownerKey},${id}::uuid,'lesson_started' WHERE NOT EXISTS(SELECT 1 FROM learning_lesson_events WHERE owner_key=${actor.ownerKey} AND lesson_revision_id=${id}::uuid AND event_kind='lesson_started')`;
         const lesson = await this.row(id, tx);
         if (lesson.payload.kind !== "lesson") continue;
+        if (containsAdvancedContent(lesson.payload))
+          await this.requireAdvancedIdentity(tx, actor, true);
         if (includePractice)
           await tx.$executeRaw`INSERT INTO learning_lesson_events(id,owner_key,lesson_revision_id,event_kind) SELECT ${randomUUID()}::uuid,${actor.ownerKey},${id}::uuid,'lesson_viewed' WHERE NOT EXISTS(SELECT 1 FROM learning_lesson_events WHERE owner_key=${actor.ownerKey} AND lesson_revision_id=${id}::uuid AND event_kind='lesson_viewed')`;
         const refs = [
@@ -390,6 +599,14 @@ export class LearningPathContentService {
               .flatMap((b) =>
                 b.problemRevisionId ? [b.problemRevisionId] : [],
               ),
+            // Public C scenarios are already exposure, even before a session
+            // starts or the student asks for hints. Keep canonical A2 novelty.
+            ...lesson.payload.contentBlocks.flatMap((b) =>
+              b.activity?.type === "problem_based" &&
+              b.activity.verification.kind === "bank_problem"
+                ? [b.activity.verification.problemRevisionId]
+                : [],
+            ),
           ]),
         ];
         if (lesson.payload.subject === "algebra" && actor.guestId) {
@@ -487,12 +704,16 @@ export class LearningPathContentService {
     const rows = await this.store.db.$queryRaw<
       ContentRow[]
     >`SELECT * FROM learning_content_revisions WHERE (${subject}::text IS NULL OR payload->>'subject'=${subject}) AND (${kind}::text IS NULL OR payload->>'kind'=${kind}) AND (${status}::text IS NULL OR status=${status}) AND (${actor.role} <> 'teacher' OR created_by=${actor.userId}::uuid) ORDER BY created_at DESC,id LIMIT 300`;
+    if (rows.some((r) => containsAdvancedContent(r.payload)))
+      await this.requireAdvancedIdentity(this.store.db, actor);
     return { items: rows.map(learningContentDto) };
   }
   async detail(request: RequestContext, id: string) {
     const actor = await this.accounts.actor(request, false, editors),
       r = await this.row(id);
     this.canEdit(r, actor);
+    if (containsAdvancedContent(r.payload))
+      await this.requireAdvancedIdentity(this.store.db, actor);
     return learningContentDto(r);
   }
   private async insert(
@@ -500,6 +721,7 @@ export class LearningPathContentService {
     actor: ProductOwner,
     payload: LearningContentPayload,
   ) {
+    await this.requireAdvancedActor(tx, actor, payload);
     const itemId = randomUUID(),
       id = randomUUID();
     await tx.$executeRaw`INSERT INTO learning_content_items(id,code,subject_code,kind) VALUES(${itemId}::uuid,${payload.subject + ":" + payload.code + ":" + itemId},${payload.subject},${payload.kind})`;
@@ -511,6 +733,7 @@ export class LearningPathContentService {
   async create(request: RequestContext, raw: unknown) {
     const actor = await this.accounts.actor(request, true, editors),
       payload = parseLearningPayload(raw);
+    this.requireAdvancedAuthoring(payload);
     return productMutation(
       this.store,
       actor,
@@ -518,6 +741,7 @@ export class LearningPathContentService {
       "learning-content.create",
       payload,
       (tx) => this.insert(tx, actor, payload),
+      (tx) => this.requireAdvancedActor(tx, actor, payload),
     );
   }
   async edit(request: RequestContext, id: string, raw: unknown) {
@@ -526,6 +750,7 @@ export class LearningPathContentService {
     only(b, ["expectedRevision", "payload"]);
     const expected = revisionField(b.expectedRevision),
       payload = parseLearningPayload(b.payload);
+    this.requireAdvancedAuthoring(payload);
     return productMutation(
       this.store,
       actor,
@@ -534,6 +759,8 @@ export class LearningPathContentService {
       b,
       async (tx) => {
         const r = await this.row(id, tx, true);
+        await this.requireAdvancedActor(tx, actor, payload);
+        await this.requireAdvancedActor(tx, actor, r.payload);
         this.canEdit(r, actor);
         this.expected(r, expected);
         if (
@@ -551,6 +778,14 @@ export class LearningPathContentService {
         const changed = await this.row(id, tx);
         await this.audit(tx, changed, actor, "edit");
         return learningContentDto(changed);
+      },
+      async (tx) => {
+        await this.requireAdvancedActor(tx, actor, payload);
+        await this.requireAdvancedActor(
+          tx,
+          actor,
+          (await this.row(id, tx)).payload,
+        );
       },
     );
   }
@@ -656,7 +891,57 @@ export class LearningPathContentService {
           "درس توزيع الأقواس يحتاج فقرتين ومثالين وخطأ شائعًا وسؤالي تدريب.",
         );
       for (const [blockIndex, b] of payload.contentBlocks.entries()) {
-        if (b.type === "subject_lab_activity") {
+        if (b.activity) {
+          const activity = b.activity;
+          if (payload.mappingPending.length)
+            issues.push(
+              "نشاط C مرتبط بخريطة معلقة؛ يحتاج حسمًا علميًا قبل النشر.",
+            );
+          if (
+            activity.type === "problem_based" &&
+            activity.verification.kind === "bank_problem"
+          ) {
+            const ref = activity.verification.problemRevisionId;
+            const linked = await this.bank(payload.subject, [ref], tx);
+            if (
+              linked.length !== 1 ||
+              linked[0]!.skillCodes.some(
+                (s) => !activity.skillCodes.includes(s),
+              )
+            )
+              issues.push(
+                "مرجع تحقق المشكلة غير منشور أو خارج تغطية المهارات.",
+              );
+            if (
+              payload.assessmentProblemRevisionIds.includes(ref) ||
+              bank.some(
+                (p) =>
+                  payload.assessmentProblemRevisionIds.includes(p.revisionId) &&
+                  p.familyCode === activity.familyCode,
+              )
+            )
+              issues.push(
+                "نشاط C يكشف عائلة القياس المستقل؛ اختر سؤالًا جديدًا.",
+              );
+          }
+          if (activity.type === "project_based") {
+            for (const ref of activity.lessonRevisionIds) {
+              try {
+                const lesson = await this.row(ref, tx);
+                if (
+                  lesson.status !== "published" ||
+                  lesson.payload.kind !== "lesson" ||
+                  lesson.payload.subject !== payload.subject
+                )
+                  issues.push(
+                    "مرجع المشروع يشير إلى درس غير منشور أو مادة أخرى.",
+                  );
+              } catch {
+                issues.push("مرجع درس المشروع غير متاح.");
+              }
+            }
+          }
+        } else if (b.type === "subject_lab_activity") {
           try {
             const lab = parseLabBlock(b.lab, payload.subject);
             if (lab.subject === "algebra") {
@@ -815,6 +1100,7 @@ export class LearningPathContentService {
     const expected = revisionField(b.expectedRevision),
       snapshot = await this.row(id);
     this.canEdit(snapshot, actor);
+    await this.requireAdvancedActor(this.store.db, actor, snapshot.payload);
     const validation = await this.validatePayload(
       parseLearningPayload(snapshot.payload),
       id,
@@ -838,13 +1124,23 @@ export class LearningPathContentService {
         await this.audit(tx, r, actor, "validate");
         return learningContentDto(await this.row(id, tx));
       },
+      (tx) => this.requireAdvancedActor(tx, actor, snapshot.payload),
     );
   }
   private async lockReferences(tx: Tx, payload: LearningContentPayload) {
     const lessonRefs =
       payload.kind === "track"
         ? payload.units.flatMap((u) => u.lessonRevisionIds)
-        : payload.prerequisiteLessonIds;
+        : [
+            ...new Set([
+              ...payload.prerequisiteLessonIds,
+              ...payload.contentBlocks.flatMap((b) =>
+                b.activity?.type === "project_based"
+                  ? b.activity.lessonRevisionIds
+                  : [],
+              ),
+            ]),
+          ];
     if (lessonRefs.length) {
       const rows = await tx.$queryRaw<ContentRow[]>(
         Prisma.sql`SELECT * FROM learning_content_revisions WHERE id IN (${Prisma.join(lessonRefs.map((ref) => Prisma.sql`${ref}::uuid`))}) FOR SHARE`,
@@ -869,6 +1165,12 @@ export class LearningPathContentService {
           ...payload.assessmentProblemRevisionIds,
           ...payload.contentBlocks.flatMap((b) =>
             b.problemRevisionId ? [b.problemRevisionId] : [],
+          ),
+          ...payload.contentBlocks.flatMap((b) =>
+            b.activity?.type === "problem_based" &&
+            b.activity.verification.kind === "bank_problem"
+              ? [b.activity.verification.problemRevisionId]
+              : [],
           ),
         ]),
       ];
@@ -900,6 +1202,7 @@ export class LearningPathContentService {
       ["approve", "publish", "archive"].includes(action) ? ["admin"] : editors,
     );
     const snapshot = await this.row(id);
+    await this.requireAdvancedActor(this.store.db, actor, snapshot.payload);
     if (["submit", "revise"].includes(action)) this.canEdit(snapshot, actor);
     const validation = ["approve", "publish"].includes(action)
       ? await this.validatePayload(parseLearningPayload(snapshot.payload), id)
@@ -936,6 +1239,20 @@ export class LearningPathContentService {
         if (validation && !validation.valid)
           throw productInvalid(validation.issues.join(" "));
         if (validation) await this.lockReferences(tx, r.payload);
+        if (
+          ["approve", "publish"].includes(action) &&
+          containsAdvancedContent(r.payload)
+        ) {
+          const reviews = await tx.$queryRaw<
+            ReviewRow[]
+          >`SELECT * FROM learning_content_reviews WHERE revision_id=${r.id}::uuid AND content_hash=${r.content_hash} ORDER BY reviewed_at DESC,id DESC`;
+          assertAdvancedReviewGate(
+            r.content_hash,
+            r.created_by,
+            actor.userId,
+            reviews.map(reviewDto),
+          );
+        }
         if (action === "revise") {
           const [n] = await tx.$queryRaw<
             { version: number }[]
@@ -960,6 +1277,7 @@ export class LearningPathContentService {
         await this.audit(tx, changed, actor, action);
         return learningContentDto(changed);
       },
+      (tx) => this.requireAdvancedActor(tx, actor, snapshot.payload),
     );
   }
   async seed(request: RequestContext, raw: unknown) {
@@ -1117,5 +1435,27 @@ export class LearningPathContentController {
     @Body() b: unknown,
   ) {
     return this.content.transition(r, id, b).then((x) => productEnvelope(r, x));
+  }
+  @Get("studio/learning-content/:id/reviews") reviews(
+    @Req() r: RequestContext,
+    @Param("id") id: string,
+  ) {
+    return this.content.reviews(r, id).then((x) => productEnvelope(r, x));
+  }
+  @Get("learning/representations/:id") representations(
+    @Req() r: RequestContext,
+    @Param("id") id: string,
+    @Query("blockIndex") i: string,
+  ) {
+    return this.content
+      .representations(r, id, i)
+      .then((x) => productEnvelope(r, x));
+  }
+  @Post("studio/learning-content/:id/reviews") review(
+    @Req() r: RequestContext,
+    @Param("id") id: string,
+    @Body() b: unknown,
+  ) {
+    return this.content.review(r, id, b).then((x) => productEnvelope(r, x));
   }
 }

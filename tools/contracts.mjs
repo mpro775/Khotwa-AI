@@ -79,6 +79,16 @@ const pending = [
   "StemLabCapabilitiesEnvelope",
   "StemLabActivityEnvelope",
   "StemLabSessionEnvelope",
+  "CActivityEnvelope",
+  "CActivityListEnvelope",
+  "CProblemSessionEnvelope",
+  "CProblemSupportEnvelope",
+  "CProblemAssessmentEnvelope",
+  "CProjectAssessmentEnvelope",
+  "CProjectRunEnvelope",
+  "CAnalyticsDashboardEnvelope",
+  "CContentAnalyticsEnvelope",
+  "CRepresentationSetEnvelope",
 ];
 const selected = {};
 function visit(value) {

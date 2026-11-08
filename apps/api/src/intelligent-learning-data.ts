@@ -15,7 +15,9 @@ export type ARecordKind =
   | "goal"
   | "reflection"
   | "scaffold"
-  | "lab";
+  | "lab"
+  | "problem_session"
+  | "project_run";
 export interface ARecord<T> {
   id: string;
   owner_key: string;
@@ -50,6 +52,17 @@ async function authorizeA(
       "برنامج التعلم الذكي متاح للتجربة الاصطناعية فقط.",
     );
   if (owner.guestAuth) await store.authorizeInTransaction(tx, owner.guestAuth);
+  if (owner.userId) {
+    const [account] = await tx.$queryRaw<
+      { is_internal: boolean }[]
+    >`SELECT is_internal FROM users WHERE id=${owner.userId}::uuid FOR SHARE`;
+    if (!account?.is_internal)
+      throw new ApiFault(
+        403,
+        "forbidden",
+        "أنشطة A وB وC مخصصة لهويات الاختبار الاصطناعية فقط.",
+      );
+  }
   await requireProductLearningAccess(tx, owner, store.syntheticData);
 }
 
@@ -82,6 +95,7 @@ export function aMutation<T>(
       await authorizeA(store, owner, tx);
       return work(tx);
     },
+    (tx) => authorizeA(store, owner, tx),
   );
 }
 

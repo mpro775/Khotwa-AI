@@ -10,6 +10,10 @@ export type ActivityKind =
   | "challenge"
   | "reflection";
 export interface ActivityCandidate {
+  advancedActivity?: {
+    kind: "problem_based" | "project_based";
+    blockIndex: number;
+  };
   labBlockIndex?: number;
   labKind?: string;
   activityKind: ActivityKind;
@@ -48,8 +52,9 @@ export function eligibleCandidates(candidates: readonly ActivityCandidate[]) {
           : candidate.subject === "programming" &&
               !(
                 candidate.activityKind === "guided_practice" &&
-                candidate.labKind &&
-                Number.isInteger(candidate.labBlockIndex)
+                ((candidate.labKind &&
+                  Number.isInteger(candidate.labBlockIndex)) ||
+                  candidate.advancedActivity)
               ) &&
               !["explanation", "worked_example", "reflection"].includes(
                 candidate.activityKind,
@@ -125,6 +130,10 @@ export function activityReason(code: string): string {
         introduction: "الأدلة محدودة؛ يمكنك البدء بشرح منشور.",
         subject_lab_practice:
           "جرّب نشاطًا تخصصيًا منشورًا للفهم؛ نتيجته تدريب وليست قياسًا مستقلًا.",
+        problem_based_learning:
+          "جرّب مشكلة واقعية منشورة لاختيار خطة وتفسير النتيجة؛ النشاط تعلم وليس قياسًا مستقلاً.",
+        project_based_learning:
+          "ابنِ منتجًا صغيرًا وراجعه ضمن مشروع منشور؛ الإكمال لا يمنح إتقانًا مستقلاً.",
         no_safe_activity: "لا يوجد نشاط منشور آمن متاح لهذه الحالة حاليًا.",
       } as Record<string, string>
     )[code] ?? "اقتراح تعليمي مبني على الأدلة الحالية، ويمكنك اختيار بديل آمن."

@@ -94,8 +94,10 @@ const session = (activity) => ({
   },
 });
 
-test("B contract v1.5 adds seven operations that match NestJS decorators and success codes", () => {
-  assert.equal(spec.info.version, "1.5.0-development");
+test("B operations remain compatible in contract v1.5 and later additive v1 releases", () => {
+  const [major, minor] = spec.info.version.split(".");
+  assert.equal(major, "1");
+  assert.ok(Number(minor) >= 5, "STEM requires contract 1.5 or later");
   const canonical = Object.keys(spec.paths).filter((path) =>
     path.startsWith("/api/v1/learning/labs/"),
   );

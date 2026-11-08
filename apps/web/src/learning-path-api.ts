@@ -8,6 +8,7 @@ import type {
   LearningTrackDetail,
   LessonBlock,
 } from "../../../packages/contracts/src/learning-paths";
+import { activity, representationSet } from "./advanced-learning/advanced-api";
 import type { PhysicsContent } from "../../../packages/contracts/src/product";
 import type {
   AssessmentQuestion,
@@ -102,8 +103,17 @@ export function lessonBlock(value: unknown, author = false): LessonBlock {
       "worked_example_ref",
       "self_check_prompt",
       "subject_lab_activity",
+      "problem_activity",
+      "project_activity",
+      "representation_set",
     ]),
     textAr: textField(b.textAr),
+    ...(b.activity === undefined
+      ? {}
+      : { activity: activity(b.activity, author) }),
+    ...(b.representation === undefined
+      ? {}
+      : { representation: representationSet(b.representation) }),
     ...(b.raw === undefined ? {} : { raw: textField(b.raw) }),
     ...(b.steps === undefined
       ? {}

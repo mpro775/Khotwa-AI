@@ -221,7 +221,9 @@ try {
   }
   mkdirSync("qa-reports", { recursive: true });
   writeFileSync(
-    "qa-reports/B-INTEGRATION.json",
+    process.argv.includes("--report-c-regression")
+      ? "qa-reports/C-ADVANCED-LEARNING/B-REGRESSION.json"
+      : "qa-reports/B-INTEGRATION.json",
     JSON.stringify(
       {
         recordedAt: new Date().toISOString(),

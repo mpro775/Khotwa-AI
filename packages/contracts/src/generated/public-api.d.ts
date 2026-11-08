@@ -1974,6 +1974,432 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/learning/problems/available": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        get: operations["availableCproblem"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/problems/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        get: operations["getCproblem"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/projects/available": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        get: operations["availableCproject"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/projects/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        get: operations["getCproject"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/problem-sessions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        post: operations["startCProblem"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/problem-sessions/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        get: operations["getCProblem"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/problem-sessions/{id}/finish": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        post: operations["finishCProblem"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/project-runs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        post: operations["startCProject"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/project-runs/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        get: operations["getCProject"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/project-runs/{id}/finish": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        post: operations["finishCProject"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/problem-sessions/{id}/steps": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        post: operations["stepCProblem"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/problem-sessions/{id}/feedback": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        post: operations["feedbackCProblem"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/problem-sessions/{id}/support": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        post: operations["supportCProblem"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/problem-sessions/{id}/assessment": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        post: operations["assessmentCProblem"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/project-runs/{id}/assessment": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        post: operations["assessmentCProject"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/project-runs/{id}/milestones/{code}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        post: operations["milestoneCProject"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/project-runs/{id}/submissions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        post: operations["submitCProject"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/project-runs/{id}/state": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        post: operations["stateCProject"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/studio/project-submissions/{id}/feedback": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        post: operations["reviewCProject"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/studio/learning-content/{id}/reviews": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        get: operations["listCContentReviews"];
+        put?: never;
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        post: operations["reviewCContent"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/analytics/me": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        get: operations["getCAnalytics"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/studio/learning-analytics/content": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        get: operations["getCContentAnalytics"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/analytics/cohort/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        get: operations["blockedCCohortAnalytics"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/studio/project-runs/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        get: operations["inspectCProject"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/representations/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only C1–C5; feature flags default OFF. Owner/RBAC, Origin/CSRF, revision CAS, scoped idempotency and immutable content apply. C activity completion is learning_only. No external AI/Runner/PhET or human release approval is implied. */
+        get: operations["getCRepresentations"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -1987,6 +2413,11 @@ export interface components {
             labBlockIndex?: number;
             /** @enum {string} */
             labKind?: "math_linear_graph_v1" | "math_method_comparison_v1" | "math_first_error_v1" | "math_why_question_v1" | "math_completion_v1" | "math_equivalence_probe_v1" | "physics_prediction_experiment_v1" | "physics_parameter_simulation_v1" | "physics_graph_to_physics_v1" | "physics_units_v1" | "physics_misconception_contrast_v1" | "predict_output" | "code_trace" | "parsons_reorder" | "debug_select_fix";
+            advancedActivity?: {
+                /** @enum {string} */
+                kind: "problem_based" | "project_based";
+                blockIndex: number;
+            };
         };
         ANextActivityDecision: {
             id: string;
@@ -2007,6 +2438,11 @@ export interface components {
             labBlockIndex?: number;
             /** @enum {string} */
             labKind?: "math_linear_graph_v1" | "math_method_comparison_v1" | "math_first_error_v1" | "math_why_question_v1" | "math_completion_v1" | "math_equivalence_probe_v1" | "physics_prediction_experiment_v1" | "physics_parameter_simulation_v1" | "physics_graph_to_physics_v1" | "physics_units_v1" | "physics_misconception_contrast_v1" | "predict_output" | "code_trace" | "parsons_reorder" | "debug_select_fix";
+            advancedActivity?: {
+                /** @enum {string} */
+                kind: "problem_based" | "project_based";
+                blockIndex: number;
+            };
         };
         ALearningActivity: {
             id: string;
@@ -2024,6 +2460,11 @@ export interface components {
             labBlockIndex?: number;
             /** @enum {string} */
             labKind?: "math_linear_graph_v1" | "math_method_comparison_v1" | "math_first_error_v1" | "math_why_question_v1" | "math_completion_v1" | "math_equivalence_probe_v1" | "physics_prediction_experiment_v1" | "physics_parameter_simulation_v1" | "physics_graph_to_physics_v1" | "physics_units_v1" | "physics_misconception_contrast_v1" | "predict_output" | "code_trace" | "parsons_reorder" | "debug_select_fix";
+            advancedActivity?: {
+                /** @enum {string} */
+                kind: "problem_based" | "project_based";
+                blockIndex: number;
+            };
         };
         ALearnerSkillProjection: {
             skillCode: string;
@@ -3383,6 +3824,7 @@ export interface components {
                     subjectAttempts: number;
                 };
                 noteAr: string;
+                advancedLearning?: components["schemas"]["CAdvancedLearningExport"];
             };
             meta: components["schemas"]["Meta"];
         };
@@ -3896,7 +4338,7 @@ export interface components {
         };
         LPLessonBlock: {
             /** @enum {string} */
-            type: "paragraph" | "heading" | "math_example" | "worked_steps" | "key_point" | "common_mistake" | "practice_link" | "code_example" | "physics_example" | "completion_step" | "worked_example_ref" | "self_check_prompt" | "subject_lab_activity";
+            type: "paragraph" | "heading" | "math_example" | "worked_steps" | "key_point" | "common_mistake" | "practice_link" | "code_example" | "physics_example" | "completion_step" | "worked_example_ref" | "self_check_prompt" | "subject_lab_activity" | "problem_activity" | "project_activity" | "representation_set";
             textAr: string;
             raw?: string;
             steps?: {
@@ -3907,7 +4349,9 @@ export interface components {
             physics?: components["schemas"]["StudioPhysicsContent"];
             problemRevisionId?: string;
             lab?: components["schemas"]["StemLabPublicBlock"];
-        } & unknown;
+            activity?: components["schemas"]["CPublicActivity"];
+            representation?: components["schemas"]["CRepresentationSet"];
+        } & (unknown & unknown & unknown);
         LPLessonPayload: {
             /** @constant */
             kind: "lesson";
@@ -4940,7 +5384,7 @@ export interface components {
         };
         LPAuthorLessonBlock: {
             /** @enum {string} */
-            type: "paragraph" | "heading" | "math_example" | "worked_steps" | "key_point" | "common_mistake" | "practice_link" | "code_example" | "physics_example" | "completion_step" | "worked_example_ref" | "self_check_prompt" | "subject_lab_activity";
+            type: "paragraph" | "heading" | "math_example" | "worked_steps" | "key_point" | "common_mistake" | "practice_link" | "code_example" | "physics_example" | "completion_step" | "worked_example_ref" | "self_check_prompt" | "subject_lab_activity" | "problem_activity" | "project_activity" | "representation_set";
             textAr: string;
             raw?: string;
             steps?: {
@@ -4951,7 +5395,9 @@ export interface components {
             physics?: components["schemas"]["StudioPhysicsContent"];
             problemRevisionId?: string;
             lab?: components["schemas"]["StemLabAuthorBlock"];
-        } & unknown;
+            activity?: components["schemas"]["CAuthorActivity"];
+            representation?: components["schemas"]["CRepresentationSet"];
+        } & (unknown & unknown & unknown);
         LPAuthorLessonPayload: {
             /** @constant */
             kind: "lesson";
@@ -5008,6 +5454,610 @@ export interface components {
             evidenceClass: "learning_only";
             /** Format: date-time */
             updatedAt: string;
+        };
+        CRepresentation: {
+            code: string;
+            /** @enum {string} */
+            kind: "text" | "table" | "diagram" | "stem_lab" | "code";
+            titleAr: string;
+            accessibleText: string;
+            learningObjective: string;
+            targetSkillCodes: string[];
+            sameConstruct: boolean;
+            assistanceExposure: boolean;
+            /** @constant */
+            evaluationMode: "learning_only";
+            textAr?: string;
+            altText?: string;
+            columns?: string[];
+            rows?: string[][];
+            labBlockIndex?: number;
+            codeText?: string;
+        } & (unknown & unknown & unknown & unknown & unknown);
+        CRepresentationSet: {
+            /** @constant */
+            schemaVersion: "udl-representation-v1";
+            learningObjective: string;
+            targetSkillCodes: string[];
+            variants: components["schemas"]["CRepresentation"][];
+            responseModes: ("text" | "choice" | "equation" | "code_text")[];
+        };
+        CRubricCriterion: {
+            code: string;
+            titleAr: string;
+            descriptionAr: string;
+            levels: {
+                code: string;
+                labelAr: string;
+                descriptionAr: string;
+            }[];
+        };
+        CPrivateEvaluation: {
+            solutionKey?: string;
+            privateRubric?: {
+                criterionCode: string;
+                noteAr: string;
+            }[];
+            hints?: {
+                /** @enum {string} */
+                level: "H0" | "H1" | "H2" | "H3" | "H4";
+                textAr: string;
+            }[];
+            referenceCode?: string;
+            hiddenTests?: {
+                input: string;
+                expectedOutput: string;
+            }[];
+        };
+        CPublicProblemActivity: {
+            /** @constant */
+            schemaVersion: "c-activity-v1";
+            /** @enum {string} */
+            subject: "algebra" | "physics" | "programming";
+            code: string;
+            titleAr: string;
+            objectives: string[];
+            skillCodes: string[];
+            prerequisiteSkillCodes: string[];
+            publicBriefAr: string;
+            familyCode: string;
+            supportPolicy: {
+                hintsAllowed: boolean;
+                /** @enum {string} */
+                revealMode: "after_submit" | "teacher_only";
+            };
+            representations: components["schemas"]["CRepresentation"][];
+            publicRubric: components["schemas"]["CRubricCriterion"][];
+            /** @constant */
+            type: "problem_based";
+            scenarioAr: string;
+            constraints: string[];
+            /** @constant */
+            stages: [
+                "frame",
+                "plan",
+                "investigate",
+                "justify",
+                "reflect"
+            ];
+            verification: {
+                /** @constant */
+                kind: "none";
+            } | {
+                /** @constant */
+                kind: "bank_problem";
+                /** Format: uuid */
+                problemRevisionId: string;
+            } | {
+                /** @constant */
+                kind: "stem_lab";
+                blockIndex: number;
+            };
+        };
+        CAuthorProblemActivity: {
+            /** @constant */
+            schemaVersion: "c-activity-v1";
+            /** @enum {string} */
+            subject: "algebra" | "physics" | "programming";
+            code: string;
+            titleAr: string;
+            objectives: string[];
+            skillCodes: string[];
+            prerequisiteSkillCodes: string[];
+            publicBriefAr: string;
+            familyCode: string;
+            supportPolicy: {
+                hintsAllowed: boolean;
+                /** @enum {string} */
+                revealMode: "after_submit" | "teacher_only";
+            };
+            representations: components["schemas"]["CRepresentation"][];
+            publicRubric: components["schemas"]["CRubricCriterion"][];
+            /** @constant */
+            type: "problem_based";
+            scenarioAr: string;
+            constraints: string[];
+            /** @constant */
+            stages: [
+                "frame",
+                "plan",
+                "investigate",
+                "justify",
+                "reflect"
+            ];
+            verification: {
+                /** @constant */
+                kind: "none";
+            } | {
+                /** @constant */
+                kind: "bank_problem";
+                /** Format: uuid */
+                problemRevisionId: string;
+            } | {
+                /** @constant */
+                kind: "stem_lab";
+                blockIndex: number;
+            };
+            privateEvaluation?: components["schemas"]["CPrivateEvaluation"];
+        };
+        CPublicProjectActivity: {
+            /** @constant */
+            schemaVersion: "c-activity-v1";
+            /** @enum {string} */
+            subject: "algebra" | "physics" | "programming";
+            code: string;
+            titleAr: string;
+            objectives: string[];
+            skillCodes: string[];
+            prerequisiteSkillCodes: string[];
+            publicBriefAr: string;
+            familyCode: string;
+            supportPolicy: {
+                hintsAllowed: boolean;
+                /** @enum {string} */
+                revealMode: "after_submit" | "teacher_only";
+            };
+            representations: components["schemas"]["CRepresentation"][];
+            publicRubric: components["schemas"]["CRubricCriterion"][];
+            /** @constant */
+            type: "project_based";
+            /** @enum {string} */
+            projectLevel: "micro" | "multi_lesson";
+            drivingQuestionAr: string;
+            milestones: {
+                code: string;
+                titleAr: string;
+                descriptionAr: string;
+                /** @enum {string} */
+                requiredArtifactKind: "text" | "json";
+                required: boolean;
+            }[];
+            lessonRevisionIds: string[];
+        };
+        CAuthorProjectActivity: {
+            /** @constant */
+            schemaVersion: "c-activity-v1";
+            /** @enum {string} */
+            subject: "algebra" | "physics" | "programming";
+            code: string;
+            titleAr: string;
+            objectives: string[];
+            skillCodes: string[];
+            prerequisiteSkillCodes: string[];
+            publicBriefAr: string;
+            familyCode: string;
+            supportPolicy: {
+                hintsAllowed: boolean;
+                /** @enum {string} */
+                revealMode: "after_submit" | "teacher_only";
+            };
+            representations: components["schemas"]["CRepresentation"][];
+            publicRubric: components["schemas"]["CRubricCriterion"][];
+            /** @constant */
+            type: "project_based";
+            /** @enum {string} */
+            projectLevel: "micro" | "multi_lesson";
+            drivingQuestionAr: string;
+            milestones: {
+                code: string;
+                titleAr: string;
+                descriptionAr: string;
+                /** @enum {string} */
+                requiredArtifactKind: "text" | "json";
+                required: boolean;
+            }[];
+            lessonRevisionIds: string[];
+            privateEvaluation?: components["schemas"]["CPrivateEvaluation"];
+        };
+        CPublicActivity: components["schemas"]["CPublicProblemActivity"] | components["schemas"]["CPublicProjectActivity"];
+        CAuthorActivity: components["schemas"]["CAuthorProblemActivity"] | components["schemas"]["CAuthorProjectActivity"];
+        CActivityBrief: {
+            /** Format: uuid */
+            lessonRevisionId: string;
+            blockIndex: number;
+            activity: components["schemas"]["CPublicActivity"];
+        };
+        CActivityEnvelope: {
+            data: components["schemas"]["CActivityBrief"];
+            meta: components["schemas"]["Meta"];
+        };
+        CActivityListEnvelope: {
+            data: {
+                items: components["schemas"]["CActivityBrief"][];
+                /** @constant */
+                evidenceClass: "learning_only";
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        CProblemSession: {
+            /** Format: uuid */
+            lessonRevisionId: string;
+            blockIndex: number;
+            activity: components["schemas"]["CPublicActivity"];
+            /** Format: uuid */
+            id: string;
+            revision: number;
+            /** Format: uuid */
+            trackRevisionId: string;
+            /** @enum {string} */
+            stage: "frame" | "plan" | "investigate" | "justify" | "reflect";
+            /** @enum {string} */
+            status: "active" | "paused" | "abandoned" | "completed";
+            answers: {
+                frame?: string;
+                plan?: string;
+                investigate?: string;
+                justify?: string;
+                reflect?: string;
+            };
+            assistanceLevel: number;
+            supportAr: string | null;
+            result: components["schemas"]["StemLabResult"] | null;
+            /** @constant */
+            evidenceClass: "learning_only";
+            readOnly: boolean;
+            transfer: {
+                /** @constant */
+                available: false;
+                /** @constant */
+                reasonCode: "assessment_service_rechecks_novelty";
+            };
+            supportLinks?: {
+                /** @enum {string} */
+                kind: "scaffold" | "tutor" | "reflection";
+                /** Format: uuid */
+                id: string;
+            }[];
+            /** Format: uuid */
+            assessmentId?: string;
+        };
+        CProjectReview: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            rubricRevisionId: string;
+            assessedSubmissionRevision: number;
+            reviewerRole: string;
+            /** @enum {string} */
+            decision: "revision_requested" | "accepted";
+            criteria: {
+                criterionCode: string;
+                levelCode: string;
+                reasonAr: string;
+            }[];
+            feedbackAr: string;
+            /** Format: date-time */
+            reviewedAt: string;
+        };
+        CProjectSubmission: {
+            /** Format: uuid */
+            id: string;
+            revision: number;
+            milestoneCode: string;
+            /** @enum {string} */
+            artifactKind: "text" | "json";
+            artifact: string | {
+                [key: string]: unknown;
+            };
+            isFinal: boolean;
+            /** @enum {string} */
+            status: "awaiting_feedback" | "revision_requested" | "accepted";
+            /** Format: date-time */
+            createdAt: string;
+            review: components["schemas"]["CProjectReview"] | null;
+        };
+        CProjectRun: {
+            /** Format: uuid */
+            lessonRevisionId: string;
+            blockIndex: number;
+            activity: components["schemas"]["CPublicActivity"];
+            /** Format: uuid */
+            id: string;
+            revision: number;
+            /** Format: uuid */
+            trackRevisionId: string;
+            /** @enum {string} */
+            status: "active" | "paused" | "withdrawn" | "awaiting_feedback" | "revision_requested" | "review_pending" | "feedback_ready" | "completed";
+            milestones: {
+                [key: string]: string;
+            };
+            submissions: components["schemas"]["CProjectSubmission"][];
+            assistanceLevel: number;
+            feedbackSeen: boolean;
+            /** @constant */
+            evidenceClass: "learning_only";
+            readOnly: boolean;
+            /** Format: uuid */
+            assessmentId?: string;
+        };
+        CProblemSessionEnvelope: {
+            data: components["schemas"]["CProblemSession"];
+            meta: components["schemas"]["Meta"];
+        };
+        CProjectRunEnvelope: {
+            data: components["schemas"]["CProjectRun"];
+            meta: components["schemas"]["Meta"];
+        };
+        CActivityStartInput: {
+            /** Format: uuid */
+            trackRevisionId: string;
+            /** Format: uuid */
+            lessonRevisionId: string;
+            blockIndex: number;
+        };
+        CRevisionInput: {
+            expectedRevision: number;
+        };
+        CProblemStepInput: {
+            expectedRevision: number;
+            /** @enum {string} */
+            stage: "frame" | "plan" | "investigate" | "justify" | "reflect";
+            textAr: string;
+            /** @enum {string} */
+            action?: "save" | "pause" | "resume" | "abandon" | "hint" | "reveal";
+        };
+        CProblemFeedbackInput: {
+            expectedRevision: number;
+            answer?: {
+                [key: string]: unknown;
+            };
+            /** Format: uuid */
+            labSessionId?: string;
+        };
+        CProjectMilestoneInput: {
+            expectedRevision: number;
+            textAr: string;
+        };
+        CProjectSubmissionInput: {
+            expectedRevision: number;
+            milestoneCode: string;
+            /** @enum {string} */
+            artifactKind: "text" | "json";
+            artifact: string | {
+                [key: string]: unknown;
+            };
+            isFinal: boolean;
+        };
+        CProjectReviewInput: {
+            expectedRevision: number;
+            /** @enum {string} */
+            decision: "revision_requested" | "accepted";
+            criteria: {
+                criterionCode: string;
+                levelCode: string;
+                reasonAr: string;
+            }[];
+            feedbackAr: string;
+        };
+        CProjectStateInput: {
+            expectedRevision: number;
+            /** @enum {string} */
+            action: "pause" | "resume" | "withdraw";
+        };
+        CProblemSupportInput: {
+            expectedRevision: number;
+            /** @enum {string} */
+            kind: "scaffold" | "tutor" | "reflection";
+        };
+        CProblemSupportEnvelope: {
+            data: {
+                session: components["schemas"]["CProblemSession"];
+                support: {
+                    /** @enum {string} */
+                    kind: "scaffold" | "tutor" | "reflection";
+                    /** Format: uuid */
+                    id: string;
+                };
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        CProblemAssessmentEnvelope: {
+            data: {
+                session: components["schemas"]["CProblemSession"];
+                assessment: components["schemas"]["LPAssessmentSession"];
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        CProjectAssessmentEnvelope: {
+            data: {
+                session: components["schemas"]["CProjectRun"];
+                assessment: components["schemas"]["LPAssessmentSession"];
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        CContentReview: {
+            /** Format: uuid */
+            id: string;
+            /** Format: uuid */
+            revisionId: string;
+            /** Format: uuid */
+            reviewerId: string;
+            /** @enum {string} */
+            reviewerRole: "admin" | "content_manager";
+            /** @enum {string} */
+            scope: "subject" | "pedagogy" | "accessibility" | "security";
+            contentHash: string;
+            /** @enum {string} */
+            decision: "approve" | "changes_requested";
+            notesAr: string;
+            /** @constant */
+            reviewMode: "TEST_ONLY";
+            /** Format: date-time */
+            reviewedAt: string;
+        };
+        CContentReviewInput: {
+            expectedRevision: number;
+            /** @enum {string} */
+            scope: "subject" | "pedagogy" | "accessibility" | "security";
+            /** @enum {string} */
+            decision: "approve" | "changes_requested";
+            notesAr: string;
+        };
+        CContentReviewListEnvelope: {
+            data: {
+                items: components["schemas"]["CContentReview"][];
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        CContentReviewEnvelope: {
+            data: {
+                review: components["schemas"]["CContentReview"];
+                content: components["schemas"]["LPAuthorLearningContentRevision"];
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        CMetric: {
+            metric: string;
+            metricVersion: string;
+            n: number;
+            numerator: number;
+            denominator: number;
+            value: number | null;
+            /** @enum {string} */
+            status: "observed" | "not_measured" | "suppressed";
+            missingReason: string | null;
+        };
+        CAnalyticsDashboard: {
+            /** @constant */
+            schemaVersion: "learning-metrics-v1";
+            /** @constant */
+            metricVersion: "c-metrics-1.0";
+            /** Format: uuid */
+            trackRevisionId: string;
+            /** Format: date-time */
+            generatedAt: string;
+            window: {
+                /** Format: date-time */
+                from: string;
+                /** Format: date-time */
+                to: string;
+                /** @enum {integer} */
+                days: 7 | 14 | 30;
+            };
+            /** @constant */
+            synthetic: true;
+            metrics: components["schemas"]["CMetric"][];
+            activity: {
+                problemCompleted: number;
+                projectCompleted: number;
+                projectSubmitted: number;
+            };
+            provenance: string[];
+            missingCount: number;
+            notesAr: string[];
+        };
+        CContentAnalytics: {
+            /** @constant */
+            schemaVersion: "learning-metrics-v1";
+            /** Format: uuid */
+            revisionId: string;
+            /** @constant */
+            synthetic: true;
+            /** @constant */
+            status: "suppressed";
+            /** @constant */
+            reasonCode: "privacy_threshold_pending";
+            metrics: unknown[];
+            quality: {
+                problemActivities: number;
+                projectActivities: number;
+                representationSets: number;
+            };
+            /** Format: date-time */
+            generatedAt: string;
+        };
+        CAnalyticsDashboardEnvelope: {
+            data: components["schemas"]["CAnalyticsDashboard"];
+            meta: components["schemas"]["Meta"];
+        };
+        CContentAnalyticsEnvelope: {
+            data: components["schemas"]["CContentAnalytics"];
+            meta: components["schemas"]["Meta"];
+        };
+        CRepresentationSetEnvelope: {
+            data: components["schemas"]["CRepresentationSet"];
+            meta: components["schemas"]["Meta"];
+        };
+        CAdvancedLearningExport: {
+            sessions: {
+                /** Format: uuid */
+                id: string;
+                /** @enum {string} */
+                kind: "problem_session" | "project_run";
+                revision: number;
+                /** Format: uuid */
+                trackRevisionId: string;
+                /** Format: uuid */
+                lessonRevisionId: string;
+                blockIndex: number;
+                status: string;
+                assistanceLevel: number;
+                /** @constant */
+                evidenceClass: "learning_only";
+                answers: {
+                    [key: string]: string;
+                };
+                milestones: {
+                    [key: string]: string;
+                };
+                /** Format: date-time */
+                updatedAt: string;
+            }[];
+            submissions: {
+                /** Format: uuid */
+                id: string;
+                /** Format: uuid */
+                projectRunId: string;
+                revision: number;
+                milestoneCode: string;
+                /** @enum {string} */
+                artifactKind: "text" | "json";
+                artifact: string | {
+                    [key: string]: unknown;
+                };
+                isFinal: boolean;
+                /** Format: date-time */
+                createdAt: string;
+            }[];
+            reviews?: {
+                /** Format: uuid */
+                submissionId: string;
+                /** @enum {string} */
+                reviewerRole: "admin" | "content_manager";
+                /** Format: uuid */
+                rubricRevisionId: string;
+                /** @enum {string} */
+                decision: "accepted" | "revision_requested";
+                criteria: {
+                    criterionCode: string;
+                    levelCode: string;
+                    reasonAr: string;
+                }[];
+                feedbackAr: string;
+                /** Format: date-time */
+                reviewedAt: string;
+            }[];
+            truncated: boolean;
         };
     };
     responses: {
@@ -9790,6 +10840,968 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["StemLabSessionEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    availableCproblem: {
+        parameters: {
+            query: {
+                trackRevisionId: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CActivityListEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getCproblem: {
+        parameters: {
+            query: {
+                blockIndex: number;
+            };
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CActivityEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    availableCproject: {
+        parameters: {
+            query: {
+                trackRevisionId: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CActivityListEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getCproject: {
+        parameters: {
+            query: {
+                blockIndex: number;
+            };
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CActivityEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    startCProblem: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CActivityStartInput"];
+            };
+        };
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CProblemSessionEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getCProblem: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CProblemSessionEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    finishCProblem: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CRevisionInput"];
+            };
+        };
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CProblemSessionEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    startCProject: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CActivityStartInput"];
+            };
+        };
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CProjectRunEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getCProject: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CProjectRunEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    finishCProject: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CRevisionInput"];
+            };
+        };
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CProjectRunEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    stepCProblem: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CProblemStepInput"];
+            };
+        };
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CProblemSessionEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    feedbackCProblem: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CProblemFeedbackInput"];
+            };
+        };
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CProblemSessionEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    supportCProblem: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CProblemSupportInput"];
+            };
+        };
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CProblemSupportEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    assessmentCProblem: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CRevisionInput"];
+            };
+        };
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CProblemAssessmentEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    assessmentCProject: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CRevisionInput"];
+            };
+        };
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CProjectAssessmentEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    milestoneCProject: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+                code: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CProjectMilestoneInput"];
+            };
+        };
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CProjectRunEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    submitCProject: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CProjectSubmissionInput"];
+            };
+        };
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CProjectRunEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    stateCProject: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CProjectStateInput"];
+            };
+        };
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CProjectRunEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    reviewCProject: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CProjectReviewInput"];
+            };
+        };
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CProjectRunEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    listCContentReviews: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CContentReviewListEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    reviewCContent: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CContentReviewInput"];
+            };
+        };
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            201: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CContentReviewEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getCAnalytics: {
+        parameters: {
+            query: {
+                trackRevisionId: string;
+                window?: "7" | "14" | "30";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CAnalyticsDashboardEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getCContentAnalytics: {
+        parameters: {
+            query: {
+                revisionId: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CContentAnalyticsEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    blockedCCohortAnalytics: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CAnalyticsDashboardEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    inspectCProject: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CProjectRunEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getCRepresentations: {
+        parameters: {
+            query: {
+                blockIndex: number;
+            };
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Private response; TEST_ONLY synthetic data. */
+            200: {
+                headers: {
+                    "Cache-Control"?: "no-store";
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CRepresentationSetEnvelope"];
                 };
             };
             400: components["responses"]["E400"];

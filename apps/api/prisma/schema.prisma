@@ -1026,3 +1026,73 @@ model intelligent_learning_events {
   @@unique([record_id,revision])
   @@index([owner_key,created_at],map:"intelligent_learning_event_owner")
 }
+
+// C1/C2 state reuses ARecords; these are immutable content/artifact reviews.
+model learning_content_reviews {
+  id String @id @db.Uuid
+  revision_id String @db.Uuid
+  reviewer_id String @db.Uuid
+  reviewer_role String
+  scope String
+  content_hash String
+  decision String
+  notes_ar String
+  review_mode String
+  reviewed_at DateTime @default(now()) @db.Timestamptz(6)
+  @@index([revision_id,content_hash,scope,reviewed_at],map:"learning_content_review_gate")
+}
+model learning_project_submissions {
+  id String @id @db.Uuid
+  project_run_id String @db.Uuid
+  revision Int
+  milestone_code String
+  artifact_kind String
+  artifact_json Json
+  status String
+  is_final Boolean @default(false)
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  @@unique([project_run_id,revision])
+  @@index([project_run_id,created_at,id],map:"learning_project_submission_run")
+}
+model learning_project_reviews {
+  id String @id @db.Uuid
+  submission_id String @unique @db.Uuid
+  rubric_revision_id String @db.Uuid
+  reviewer_id String @db.Uuid
+  reviewer_role String
+  rubric_results Json
+  feedback_ar String
+  decision String
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+}
+model learning_analytics_events {
+  id String @id @db.Uuid
+  owner_key String
+  track_revision_id String @db.Uuid
+  source_table String
+  source_id String
+  source_revision Int
+  event_type String
+  event_version String
+  occurred_at DateTime @db.Timestamptz(6)
+  payload Json
+  @@unique([owner_key,track_revision_id,source_table,source_id,event_type])
+  @@index([owner_key,track_revision_id,occurred_at],map:"learning_analytics_owner_window")
+}
+model learning_analytics_projection_cursor {
+  owner_key String
+  track_revision_id String @db.Uuid
+  metric_version String
+  source_fingerprint String
+  projected_at DateTime @default(now()) @db.Timestamptz(6)
+  @@id([owner_key,track_revision_id,metric_version])
+}
+model learning_metrics_snapshots {
+  owner_key String
+  track_revision_id String @db.Uuid
+  metric_version String
+  window_days Int
+  data Json
+  generated_at DateTime @default(now()) @db.Timestamptz(6)
+  @@id([owner_key,track_revision_id,metric_version,window_days])
+}

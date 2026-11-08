@@ -58,6 +58,16 @@ import {
   IntelligentLearningExperiencesService,
 } from "./intelligent-learning-experiences";
 import { StemLabController, StemLabService } from "./stem/lab-service";
+import {
+  AdvancedLearningController,
+  AdvancedLearningService,
+  AdvancedProjectReviewController,
+  AdvancedProjectInspectorController,
+} from "./advanced-learning/workflows";
+import {
+  CAnalyticsController,
+  CAnalyticsService,
+} from "./advanced-learning/analytics-service";
 
 type AccessMode = "bootstrap" | "createGuest" | "current" | "logout";
 const Access = (mode: AccessMode) => SetMetadata("access", mode);
@@ -736,6 +746,10 @@ export class BusinessController {
     IntelligentLearningController,
     IntelligentLearningExperiencesController,
     StemLabController,
+    AdvancedLearningController,
+    AdvancedProjectReviewController,
+    AdvancedProjectInspectorController,
+    CAnalyticsController,
   ],
   providers: [
     { provide: Security, useFactory: securityFromEnvironment },
@@ -830,6 +844,48 @@ export class BusinessController {
         content: LearningPathContentService,
       ) => new StemLabService(store, accounts, content),
       inject: [Store, AccountService, LearningPathContentService],
+    },
+    {
+      provide: AdvancedLearningService,
+      useFactory: (
+        store: Store,
+        accounts: AccountService,
+        content: LearningPathContentService,
+        labs: StemLabService,
+        experiences: IntelligentLearningExperiencesService,
+        assessments: LearningAssessmentService,
+      ) =>
+        new AdvancedLearningService(
+          store,
+          accounts,
+          content,
+          labs,
+          experiences,
+          assessments,
+        ),
+      inject: [
+        Store,
+        AccountService,
+        LearningPathContentService,
+        StemLabService,
+        IntelligentLearningExperiencesService,
+        LearningAssessmentService,
+      ],
+    },
+    {
+      provide: CAnalyticsService,
+      useFactory: (
+        store: Store,
+        accounts: AccountService,
+        assessments: LearningAssessmentService,
+        content: LearningPathContentService,
+      ) => new CAnalyticsService(store, accounts, assessments, content),
+      inject: [
+        Store,
+        AccountService,
+        LearningAssessmentService,
+        LearningPathContentService,
+      ],
     },
     {
       provide: IntelligentLearningService,

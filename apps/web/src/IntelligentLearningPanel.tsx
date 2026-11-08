@@ -27,6 +27,7 @@ import {
   probeData,
   probeEvaluationData,
   reflectionData,
+  reflectionsData,
   reviewData,
   reviewListData,
   scaffoldData,
@@ -396,6 +397,8 @@ export function IntelligentLearningPanel({
   onAssessment,
   onOpenLesson,
   onOpenLab,
+  onOpenAdvanced,
+  nativeSupport,
 }: {
   api: ProductApi;
   trackRevisionId: string;
@@ -405,11 +408,17 @@ export function IntelligentLearningPanel({
   onAssessment: (value: AssessmentSession) => void;
   onOpenLesson: (id: string) => void;
   onOpenLab?: (lessonId: string, blockIndex: number) => void;
+  onOpenAdvanced?: (lessonId: string, blockIndex: number) => void;
+  nativeSupport?: {
+    kind: "scaffold" | "tutor" | "reflection";
+    id: string;
+  } | null;
 }) {
   const alive = useRef(true),
     loadEpoch = useRef(0),
     resume = useRef(savedResume(trackRevisionId)),
-    goalInput = useRef<HTMLInputElement>(null);
+    goalInput = useRef<HTMLInputElement>(null),
+    supportHeading = useRef<HTMLHeadingElement>(null);
   const [decision, setDecision] = useState<NextActivityDecision | null>(null),
     [activity, setActivity] = useState<LearningActivity | null>(null),
     [mastery, setMastery] = useState<MasteryResponse | null>(null),
@@ -498,6 +507,62 @@ export function IntelligentLearningPanel({
       loadEpoch.current++;
     };
   }, [api, trackRevisionId]);
+  useEffect(() => {
+    if (!nativeSupport) return;
+    let active = true;
+    setError("");
+    void (async () => {
+      if (nativeSupport.kind === "scaffold") {
+        const next = await api.request(
+          `/learning/scaffolds/${encodeURIComponent(nativeSupport.id)}`,
+          scaffoldData,
+        );
+        if (active && next.trackRevisionId === trackRevisionId) {
+          setScaffold(next);
+          remember({ scaffoldId: next.id });
+        }
+      } else if (nativeSupport.kind === "tutor") {
+        const next = await api.request(
+          `/learning/tutor-sessions/${encodeURIComponent(nativeSupport.id)}`,
+          tutorData,
+        );
+        if (active && next.trackRevisionId === trackRevisionId) {
+          setTutor(next);
+          remember({ tutorId: next.id });
+        }
+      } else {
+        const next = await api.request(
+          `/learning/reflections?trackRevisionId=${encodeURIComponent(trackRevisionId)}`,
+          reflectionsData,
+        );
+        const selected = next.reflections.find(
+          (item) => item.id === nativeSupport.id,
+        );
+        if (!selected) throw new Error("invalid_response");
+        if (active) {
+          setReflection(selected);
+          setReflectionOpen(true);
+          setGoals((previous) => previous ?? []);
+          setPhase("reflect");
+        }
+      }
+      if (active) {
+        setLoaded(true);
+        setNotice(
+          "هذه مساحة الدعم المرتبطة بالمشكلة. تبقى المساعدة مسجلة ولا تمنح إتقانًا مستقلاً.",
+        );
+        requestAnimationFrame(() => supportHeading.current?.focus());
+      }
+    })().catch((error) => {
+      if (active) {
+        setError(messageOf(error));
+        setLoaded(true);
+      }
+    });
+    return () => {
+      active = false;
+    };
+  }, [api, trackRevisionId, nativeSupport]);
   const assessmentKey = assessment
     ? `${assessment.id}:${assessment.revision}`
     : "";
@@ -542,6 +607,15 @@ export function IntelligentLearningPanel({
   }
   async function startActivity() {
     if (!activity) return;
+    if (activity.advancedActivity && activity.lessonRevisionId) {
+      if (onOpenAdvanced)
+        onOpenAdvanced(
+          activity.lessonRevisionId,
+          activity.advancedActivity.blockIndex,
+        );
+      else onOpenLesson(activity.lessonRevisionId);
+      return;
+    }
     if (
       activity.labKind &&
       activity.labBlockIndex !== undefined &&
@@ -726,7 +800,9 @@ export function IntelligentLearningPanel({
       aria-busy={busy}
     >
       <header>
-        <h3>خطوتك التعليمية التالية</h3>
+        <h3 ref={supportHeading} tabIndex={-1}>
+          خطوتك التعليمية التالية
+        </h3>
         <p>
           هذه توصية مبنية على محاولاتك المتاحة وقد تتغير. يمكنك اختيار مساعدة
           مناسبة أو متابعة دروسك.

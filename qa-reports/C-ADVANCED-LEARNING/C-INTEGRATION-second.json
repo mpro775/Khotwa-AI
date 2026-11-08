@@ -1,0 +1,40 @@
+{
+  "recordedAt": "2026-11-08T03:35:12.817Z",
+  "node": "v26.7.0",
+  "platform": "win32",
+  "scope": "Focused synthetic C HTTP acceptance on newly created disposable PostgreSQL and private real SymPy; no existing database, production, third party, paid AI, student-code execution or fabricated human approval.",
+  "checks": [
+    {
+      "command": "Docker readiness",
+      "exitCode": 0,
+      "stdout": "29.9.1\n",
+      "stderr": "",
+      "seconds": 3.414
+    },
+    {
+      "command": "isolated c_test migrate deploy",
+      "exitCode": 0,
+      "stdout": "Datasource \"db\": PostgreSQL database \"c_test\", schema \"public\" at \"127.0.0.1:30288\"\n\n24 migrations found in prisma/migrations\n\nApplying migration `0001_ph04`\nApplying migration `0002_current_version_key`\nApplying migration `0003_content_integrity`\nApplying migration `0004_verification_reports`\nApplying migration `0005_conservative_diagnosis`\nApplying migration `0006_guided_tutoring`\nApplying migration `0007_preserve_legacy_assistance`\nApplying migration `0008_learning_episodes`\nApplying migration `0009_current_progress`\nApplying migration `0010_guest_retention`\nApplying migration `0011_accounts`\nApplying migration `0012_product_content`\nApplying migration `0013_beta`\nApplying migration `0014_studio_integrity`\nApplying migration `0015_roadmap_retention`\nApplying migration `0016_claimed_guest_retention`\nApplying migration `0018_durable_runner_work`\nApplying migration `0019_physics_learning`\nApplying migration `0020_learning_ai_consents`\nApplying migration `0021_learning_paths`\nApplying migration `0022_learning_assessments`\nApplying migration `0023_intelligent_learning_a`\nApplying migration `0024_stem_labs_b`\nApplying migration `0025_advanced_learning_c`\n\nThe following migration(s) have been applied:\n\nmigrations/\n  └─ 0001_ph04/\n    └─ migration.sql\n  └─ 0002_current_version_key/\n    └─ migration.sql\n  └─ 0003_content_integrity/\n    └─ migration.sql\n  └─ 0004_verification_reports/\n    └─ migration.sql\n  └─ 0005_conservative_diagnosis/\n    └─ migration.sql\n  └─ 0006_guided_tutoring/\n    └─ migration.sql\n  └─ 0007_preserve_legacy_assistance/\n    └─ migration.sql\n  └─ 0008_learning_episodes/\n    └─ migration.sql\n  └─ 0009_current_progress/\n    └─ migration.sql\n  └─ 0010_guest_retention/\n    └─ migration.sql\n  └─ 0011_accounts/\n    └─ migration.sql\n  └─ 0012_product_content/\n    └─ migration.sql\n  └─ 0013_beta/\n    └─ migration.sql\n  └─ 0014_studio_integrity/\n    └─ migration.sql\n  └─ 0015_roadmap_retention/\n    └─ migration.sql\n  └─ 0016_claimed_guest_retention/\n    └─ migration.sql\n  └─ 0018_durable_runner_work/\n    └─ migration.sql\n  └─ 0019_physics_learning/\n    └─ migration.sql\n  └─ 0020_learning_ai_consents/\n    └─ migration.sql\n  └─ 0021_learning_paths/\n    └─ migration.sql\n  └─ 0022_learning_assessments/\n    └─ migration.sql\n  └─ 0023_intelligent_learning_a/\n    └─ migration.sql\n  └─ 0024_stem_labs_b/\n    └─ migration.sql\n  └─ 0025_advanced_learning_c/\n    └─ migration.sql\n\nAll migrations have been successfully applied.\n",
+      "stderr": "Loaded Prisma config from apps\\api\\prisma.config.ts.\n\nPrisma schema loaded from apps\\api\\prisma\\schema.prisma.\n",
+      "seconds": 5.523
+    },
+    {
+      "command": "focused C synthetic real HTTP journey",
+      "exitCode": 1,
+      "stdout": "▶ C synthetic actual NestJS PostgreSQL SymPy journey\n  ✔ C contracts auth public redaction draft exposure and published activities (373.401ms)\n  ✔ C1 session owner/CAS/idempotency/race and synthetic real HTTP stages (1338.0193ms)\n  ✔ C2 revision-requested immutable artifact then accepted final human-review mechanism (1297.3945ms)\n  ✔ C5 reconcile replay safe, honest nulls, role restrictions, no learner text (1169.5153ms)\n  ✔ C OFF preserves read-only state and rejects writes/replayed starts (37.2085ms)\n  ✖ C4 author/reviewer hash scopes gate, versioned publishing, no self approval (415.8887ms)\n✖ C synthetic actual NestJS PostgreSQL SymPy journey (11222.5822ms)\nℹ tests 7\nℹ suites 0\nℹ pass 5\nℹ fail 2\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 11848.0831\n\n✖ failing tests:\n\ntest at qa\\advanced-learning-journey.mjs:496:11\n✖ C4 author/reviewer hash scopes gate, versioned publishing, no self approval (415.8887ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n  + actual - expected\n  \n  + undefined\n  - 'TEST_ONLY'\n  \n      at TestContext.<anonymous> (file:///C:/Users/PC/Desktop/Projects/Khotwa%20AI%20Project/qa/advanced-learning-journey.mjs:557:16)\n      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n      at async Test.run (node:internal/test_runner/test:1404:7)\n      at async advancedLearningJourney (file:///C:/Users/PC/Desktop/Projects/Khotwa%20AI%20Project/qa/advanced-learning-journey.mjs:496:3)\n      at async TestContext.<anonymous> (file:///C:/Users/PC/Desktop/Projects/Khotwa%20AI%20Project/apps/api/tests/advanced-learning-live.test.mjs:136:5)\n      at async Test.run (node:internal/test_runner/test:1404:7)\n      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: undefined,\n    expected: 'TEST_ONLY',\n    operator: 'strictEqual',\n    diff: 'simple'\n  }\n",
+      "stderr": "",
+      "seconds": 12.035
+    }
+  ],
+  "failure": "focused C synthetic real HTTP journey failed",
+  "cleanup": [
+    {
+      "name": "khotwa-c-1c4c770f411a-math",
+      "exitCode": 0
+    },
+    {
+      "name": "khotwa-c-1c4c770f411a-db",
+      "exitCode": 0
+    }
+  ]
+}

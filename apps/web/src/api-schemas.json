@@ -154,6 +154,1084 @@
         },
         "required": ["data", "meta"]
       },
+      "CActivityBrief": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "lessonRevisionId": { "type": "string", "format": "uuid" },
+          "blockIndex": { "type": "integer", "minimum": 0, "maximum": 49 },
+          "activity": { "$ref": "#/components/schemas/CPublicActivity" }
+        },
+        "required": ["lessonRevisionId", "blockIndex", "activity"]
+      },
+      "CActivityEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/CActivityBrief" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "CActivityListEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "items": {
+                "type": "array",
+                "items": { "$ref": "#/components/schemas/CActivityBrief" },
+                "minItems": 0,
+                "maxItems": 500
+              },
+              "evidenceClass": { "type": "string", "const": "learning_only" }
+            },
+            "required": ["items", "evidenceClass"]
+          },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "CAnalyticsDashboard": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schemaVersion": { "type": "string", "const": "learning-metrics-v1" },
+          "metricVersion": { "type": "string", "const": "c-metrics-1.0" },
+          "trackRevisionId": { "type": "string", "format": "uuid" },
+          "generatedAt": { "type": "string", "format": "date-time" },
+          "window": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "from": { "type": "string", "format": "date-time" },
+              "to": { "type": "string", "format": "date-time" },
+              "days": { "type": "integer", "enum": [7, 14, 30] }
+            },
+            "required": ["from", "to", "days"]
+          },
+          "synthetic": { "type": "boolean", "const": true },
+          "metrics": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/CMetric" },
+            "minItems": 0,
+            "maxItems": 50
+          },
+          "activity": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "problemCompleted": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2147483647
+              },
+              "projectCompleted": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2147483647
+              },
+              "projectSubmitted": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2147483647
+              }
+            },
+            "required": [
+              "problemCompleted",
+              "projectCompleted",
+              "projectSubmitted"
+            ]
+          },
+          "provenance": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1, "maxLength": 160 },
+            "minItems": 0,
+            "maxItems": 30
+          },
+          "missingCount": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "notesAr": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1, "maxLength": 1000 },
+            "minItems": 0,
+            "maxItems": 30
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "metricVersion",
+          "trackRevisionId",
+          "generatedAt",
+          "window",
+          "synthetic",
+          "metrics",
+          "activity",
+          "provenance",
+          "missingCount",
+          "notesAr"
+        ]
+      },
+      "CAnalyticsDashboardEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/CAnalyticsDashboard" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "CContentAnalytics": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schemaVersion": { "type": "string", "const": "learning-metrics-v1" },
+          "revisionId": { "type": "string", "format": "uuid" },
+          "synthetic": { "type": "boolean", "const": true },
+          "status": { "type": "string", "const": "suppressed" },
+          "reasonCode": {
+            "type": "string",
+            "const": "privacy_threshold_pending"
+          },
+          "metrics": {
+            "type": "array",
+            "items": {},
+            "minItems": 0,
+            "maxItems": 0
+          },
+          "quality": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "problemActivities": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2147483647
+              },
+              "projectActivities": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2147483647
+              },
+              "representationSets": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2147483647
+              }
+            },
+            "required": [
+              "problemActivities",
+              "projectActivities",
+              "representationSets"
+            ]
+          },
+          "generatedAt": { "type": "string", "format": "date-time" }
+        },
+        "required": [
+          "schemaVersion",
+          "revisionId",
+          "synthetic",
+          "status",
+          "reasonCode",
+          "metrics",
+          "quality",
+          "generatedAt"
+        ]
+      },
+      "CContentAnalyticsEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/CContentAnalytics" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "CMetric": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "metric": { "type": "string", "minLength": 1, "maxLength": 100 },
+          "metricVersion": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "n": { "type": "integer", "minimum": 0, "maximum": 2147483647 },
+          "numerator": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "denominator": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "value": { "anyOf": [{ "type": "number" }, { "type": "null" }] },
+          "status": {
+            "type": "string",
+            "enum": ["observed", "not_measured", "suppressed"]
+          },
+          "missingReason": {
+            "anyOf": [
+              { "type": "string", "minLength": 1, "maxLength": 200 },
+              { "type": "null" }
+            ]
+          }
+        },
+        "required": [
+          "metric",
+          "metricVersion",
+          "n",
+          "numerator",
+          "denominator",
+          "value",
+          "status",
+          "missingReason"
+        ]
+      },
+      "CProblemAssessmentEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "session": { "$ref": "#/components/schemas/CProblemSession" },
+              "assessment": {
+                "$ref": "#/components/schemas/LPAssessmentSession"
+              }
+            },
+            "required": ["session", "assessment"]
+          },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "CProblemSession": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "lessonRevisionId": { "type": "string", "format": "uuid" },
+          "blockIndex": { "type": "integer", "minimum": 0, "maximum": 49 },
+          "activity": { "$ref": "#/components/schemas/CPublicActivity" },
+          "id": { "type": "string", "format": "uuid" },
+          "revision": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "trackRevisionId": { "type": "string", "format": "uuid" },
+          "stage": {
+            "type": "string",
+            "enum": ["frame", "plan", "investigate", "justify", "reflect"]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["active", "paused", "abandoned", "completed"]
+          },
+          "answers": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "frame": { "type": "string", "minLength": 1, "maxLength": 3000 },
+              "plan": { "type": "string", "minLength": 1, "maxLength": 3000 },
+              "investigate": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 3000
+              },
+              "justify": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 3000
+              },
+              "reflect": { "type": "string", "minLength": 1, "maxLength": 3000 }
+            },
+            "required": []
+          },
+          "assistanceLevel": { "type": "integer", "minimum": 0, "maximum": 4 },
+          "supportAr": {
+            "anyOf": [
+              { "type": "string", "minLength": 1, "maxLength": 6000 },
+              { "type": "null" }
+            ]
+          },
+          "result": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/StemLabResult" },
+              { "type": "null" }
+            ]
+          },
+          "evidenceClass": { "type": "string", "const": "learning_only" },
+          "readOnly": { "type": "boolean" },
+          "transfer": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "available": { "type": "boolean", "const": false },
+              "reasonCode": {
+                "type": "string",
+                "const": "assessment_service_rechecks_novelty"
+              }
+            },
+            "required": ["available", "reasonCode"]
+          },
+          "supportLinks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "enum": ["scaffold", "tutor", "reflection"]
+                },
+                "id": { "type": "string", "format": "uuid" }
+              },
+              "required": ["kind", "id"]
+            },
+            "minItems": 0,
+            "maxItems": 8
+          },
+          "assessmentId": { "type": "string", "format": "uuid" }
+        },
+        "required": [
+          "lessonRevisionId",
+          "blockIndex",
+          "activity",
+          "id",
+          "revision",
+          "trackRevisionId",
+          "stage",
+          "status",
+          "answers",
+          "assistanceLevel",
+          "supportAr",
+          "result",
+          "evidenceClass",
+          "readOnly",
+          "transfer"
+        ]
+      },
+      "CProblemSessionEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/CProblemSession" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "CProblemSupportEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "session": { "$ref": "#/components/schemas/CProblemSession" },
+              "support": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": ["scaffold", "tutor", "reflection"]
+                  },
+                  "id": { "type": "string", "format": "uuid" }
+                },
+                "required": ["kind", "id"]
+              }
+            },
+            "required": ["session", "support"]
+          },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "CProjectAssessmentEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "session": { "$ref": "#/components/schemas/CProjectRun" },
+              "assessment": {
+                "$ref": "#/components/schemas/LPAssessmentSession"
+              }
+            },
+            "required": ["session", "assessment"]
+          },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "CProjectReview": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "rubricRevisionId": { "type": "string", "format": "uuid" },
+          "assessedSubmissionRevision": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "reviewerRole": { "type": "string", "minLength": 1, "maxLength": 80 },
+          "decision": {
+            "type": "string",
+            "enum": ["revision_requested", "accepted"]
+          },
+          "criteria": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "criterionCode": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80
+                },
+                "levelCode": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80
+                },
+                "reasonAr": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000
+                }
+              },
+              "required": ["criterionCode", "levelCode", "reasonAr"]
+            },
+            "minItems": 1,
+            "maxItems": 10
+          },
+          "feedbackAr": { "type": "string", "minLength": 1, "maxLength": 2000 },
+          "reviewedAt": { "type": "string", "format": "date-time" }
+        },
+        "required": [
+          "id",
+          "rubricRevisionId",
+          "assessedSubmissionRevision",
+          "reviewerRole",
+          "decision",
+          "criteria",
+          "feedbackAr",
+          "reviewedAt"
+        ]
+      },
+      "CProjectRun": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "lessonRevisionId": { "type": "string", "format": "uuid" },
+          "blockIndex": { "type": "integer", "minimum": 0, "maximum": 49 },
+          "activity": { "$ref": "#/components/schemas/CPublicActivity" },
+          "id": { "type": "string", "format": "uuid" },
+          "revision": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "trackRevisionId": { "type": "string", "format": "uuid" },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "paused",
+              "withdrawn",
+              "awaiting_feedback",
+              "revision_requested",
+              "review_pending",
+              "feedback_ready",
+              "completed"
+            ]
+          },
+          "milestones": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 3000
+            },
+            "maxProperties": 12
+          },
+          "submissions": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/CProjectSubmission" },
+            "minItems": 0,
+            "maxItems": 100
+          },
+          "assistanceLevel": { "type": "integer", "minimum": 0, "maximum": 4 },
+          "feedbackSeen": { "type": "boolean" },
+          "evidenceClass": { "type": "string", "const": "learning_only" },
+          "readOnly": { "type": "boolean" },
+          "assessmentId": { "type": "string", "format": "uuid" }
+        },
+        "required": [
+          "lessonRevisionId",
+          "blockIndex",
+          "activity",
+          "id",
+          "revision",
+          "trackRevisionId",
+          "status",
+          "milestones",
+          "submissions",
+          "assistanceLevel",
+          "feedbackSeen",
+          "evidenceClass",
+          "readOnly"
+        ]
+      },
+      "CProjectRunEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/CProjectRun" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "CProjectSubmission": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "format": "uuid" },
+          "revision": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "milestoneCode": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "artifactKind": { "type": "string", "enum": ["text", "json"] },
+          "artifact": {
+            "oneOf": [
+              { "type": "string", "minLength": 1, "maxLength": 16000 },
+              { "type": "object", "additionalProperties": true }
+            ]
+          },
+          "isFinal": { "type": "boolean" },
+          "status": {
+            "type": "string",
+            "enum": ["awaiting_feedback", "revision_requested", "accepted"]
+          },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "review": {
+            "anyOf": [
+              { "$ref": "#/components/schemas/CProjectReview" },
+              { "type": "null" }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "revision",
+          "milestoneCode",
+          "artifactKind",
+          "artifact",
+          "isFinal",
+          "status",
+          "createdAt",
+          "review"
+        ]
+      },
+      "CPublicActivity": {
+        "oneOf": [
+          { "$ref": "#/components/schemas/CPublicProblemActivity" },
+          { "$ref": "#/components/schemas/CPublicProjectActivity" }
+        ]
+      },
+      "CPublicProblemActivity": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schemaVersion": { "type": "string", "const": "c-activity-v1" },
+          "subject": {
+            "type": "string",
+            "enum": ["algebra", "physics", "programming"]
+          },
+          "code": { "type": "string", "minLength": 1, "maxLength": 80 },
+          "titleAr": { "type": "string", "minLength": 1, "maxLength": 160 },
+          "objectives": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1, "maxLength": 500 },
+            "minItems": 1,
+            "maxItems": 8
+          },
+          "skillCodes": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1, "maxLength": 80 },
+            "minItems": 1,
+            "maxItems": 8,
+            "uniqueItems": true
+          },
+          "prerequisiteSkillCodes": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1, "maxLength": 80 },
+            "minItems": 0,
+            "maxItems": 8,
+            "uniqueItems": true
+          },
+          "publicBriefAr": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 3000
+          },
+          "familyCode": { "type": "string", "minLength": 1, "maxLength": 80 },
+          "supportPolicy": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "hintsAllowed": { "type": "boolean" },
+              "revealMode": {
+                "type": "string",
+                "enum": ["after_submit", "teacher_only"]
+              }
+            },
+            "required": ["hintsAllowed", "revealMode"]
+          },
+          "representations": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/CRepresentation" },
+            "minItems": 1,
+            "maxItems": 8
+          },
+          "publicRubric": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/CRubricCriterion" },
+            "minItems": 1,
+            "maxItems": 10
+          },
+          "type": { "type": "string", "const": "problem_based" },
+          "scenarioAr": { "type": "string", "minLength": 1, "maxLength": 5000 },
+          "constraints": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1, "maxLength": 500 },
+            "minItems": 0,
+            "maxItems": 10
+          },
+          "stages": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["frame", "plan", "investigate", "justify", "reflect"]
+            },
+            "minItems": 5,
+            "maxItems": 5,
+            "const": ["frame", "plan", "investigate", "justify", "reflect"],
+            "uniqueItems": true
+          },
+          "verification": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": { "kind": { "type": "string", "const": "none" } },
+                "required": ["kind"]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "kind": { "type": "string", "const": "bank_problem" },
+                  "problemRevisionId": { "type": "string", "format": "uuid" }
+                },
+                "required": ["kind", "problemRevisionId"]
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "kind": { "type": "string", "const": "stem_lab" },
+                  "blockIndex": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 49
+                  }
+                },
+                "required": ["kind", "blockIndex"]
+              }
+            ]
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "subject",
+          "code",
+          "titleAr",
+          "objectives",
+          "skillCodes",
+          "prerequisiteSkillCodes",
+          "publicBriefAr",
+          "familyCode",
+          "supportPolicy",
+          "representations",
+          "publicRubric",
+          "type",
+          "scenarioAr",
+          "constraints",
+          "stages",
+          "verification"
+        ]
+      },
+      "CPublicProjectActivity": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schemaVersion": { "type": "string", "const": "c-activity-v1" },
+          "subject": {
+            "type": "string",
+            "enum": ["algebra", "physics", "programming"]
+          },
+          "code": { "type": "string", "minLength": 1, "maxLength": 80 },
+          "titleAr": { "type": "string", "minLength": 1, "maxLength": 160 },
+          "objectives": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1, "maxLength": 500 },
+            "minItems": 1,
+            "maxItems": 8
+          },
+          "skillCodes": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1, "maxLength": 80 },
+            "minItems": 1,
+            "maxItems": 8,
+            "uniqueItems": true
+          },
+          "prerequisiteSkillCodes": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1, "maxLength": 80 },
+            "minItems": 0,
+            "maxItems": 8,
+            "uniqueItems": true
+          },
+          "publicBriefAr": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 3000
+          },
+          "familyCode": { "type": "string", "minLength": 1, "maxLength": 80 },
+          "supportPolicy": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "hintsAllowed": { "type": "boolean" },
+              "revealMode": {
+                "type": "string",
+                "enum": ["after_submit", "teacher_only"]
+              }
+            },
+            "required": ["hintsAllowed", "revealMode"]
+          },
+          "representations": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/CRepresentation" },
+            "minItems": 1,
+            "maxItems": 8
+          },
+          "publicRubric": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/CRubricCriterion" },
+            "minItems": 1,
+            "maxItems": 10
+          },
+          "type": { "type": "string", "const": "project_based" },
+          "projectLevel": {
+            "type": "string",
+            "enum": ["micro", "multi_lesson"]
+          },
+          "drivingQuestionAr": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "milestones": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "code": { "type": "string", "minLength": 1, "maxLength": 80 },
+                "titleAr": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                },
+                "descriptionAr": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1000
+                },
+                "requiredArtifactKind": {
+                  "type": "string",
+                  "enum": ["text", "json"]
+                },
+                "required": { "type": "boolean" }
+              },
+              "required": [
+                "code",
+                "titleAr",
+                "descriptionAr",
+                "requiredArtifactKind",
+                "required"
+              ]
+            },
+            "minItems": 3,
+            "maxItems": 12
+          },
+          "lessonRevisionIds": {
+            "type": "array",
+            "items": { "type": "string", "format": "uuid" },
+            "minItems": 0,
+            "maxItems": 20,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "subject",
+          "code",
+          "titleAr",
+          "objectives",
+          "skillCodes",
+          "prerequisiteSkillCodes",
+          "publicBriefAr",
+          "familyCode",
+          "supportPolicy",
+          "representations",
+          "publicRubric",
+          "type",
+          "projectLevel",
+          "drivingQuestionAr",
+          "milestones",
+          "lessonRevisionIds"
+        ]
+      },
+      "CRepresentation": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": { "type": "string", "minLength": 1, "maxLength": 80 },
+          "kind": {
+            "type": "string",
+            "enum": ["text", "table", "diagram", "stem_lab", "code"]
+          },
+          "titleAr": { "type": "string", "minLength": 1, "maxLength": 160 },
+          "accessibleText": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 3000
+          },
+          "learningObjective": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "targetSkillCodes": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1, "maxLength": 80 },
+            "minItems": 1,
+            "maxItems": 8,
+            "uniqueItems": true
+          },
+          "sameConstruct": { "type": "boolean" },
+          "assistanceExposure": { "type": "boolean" },
+          "evaluationMode": { "type": "string", "const": "learning_only" },
+          "textAr": { "type": "string", "minLength": 1, "maxLength": 5000 },
+          "altText": { "type": "string", "minLength": 1, "maxLength": 3000 },
+          "columns": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1, "maxLength": 160 },
+            "minItems": 1,
+            "maxItems": 8
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1, "maxLength": 200 },
+              "minItems": 1,
+              "maxItems": 8
+            },
+            "minItems": 1,
+            "maxItems": 40
+          },
+          "labBlockIndex": { "type": "integer", "minimum": 0, "maximum": 49 },
+          "codeText": { "type": "string", "minLength": 1, "maxLength": 6000 }
+        },
+        "required": [
+          "code",
+          "kind",
+          "titleAr",
+          "accessibleText",
+          "learningObjective",
+          "targetSkillCodes",
+          "sameConstruct",
+          "assistanceExposure",
+          "evaluationMode"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": { "kind": { "type": "string", "const": "text" } },
+              "required": ["kind"]
+            },
+            "then": { "required": ["textAr"] },
+            "else": { "not": { "anyOf": [{ "required": ["textAr"] }] } }
+          },
+          {
+            "if": {
+              "properties": { "kind": { "type": "string", "const": "table" } },
+              "required": ["kind"]
+            },
+            "then": { "required": ["columns", "rows"] },
+            "else": {
+              "not": {
+                "anyOf": [{ "required": ["columns"] }, { "required": ["rows"] }]
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "kind": { "type": "string", "const": "diagram" }
+              },
+              "required": ["kind"]
+            },
+            "then": { "required": ["altText"] },
+            "else": { "not": { "anyOf": [{ "required": ["altText"] }] } }
+          },
+          {
+            "if": {
+              "properties": {
+                "kind": { "type": "string", "const": "stem_lab" }
+              },
+              "required": ["kind"]
+            },
+            "then": { "required": ["labBlockIndex"] },
+            "else": { "not": { "anyOf": [{ "required": ["labBlockIndex"] }] } }
+          },
+          {
+            "if": {
+              "properties": { "kind": { "type": "string", "const": "code" } },
+              "required": ["kind"]
+            },
+            "then": { "required": ["codeText"] },
+            "else": { "not": { "anyOf": [{ "required": ["codeText"] }] } }
+          }
+        ]
+      },
+      "CRepresentationSet": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schemaVersion": {
+            "type": "string",
+            "const": "udl-representation-v1"
+          },
+          "learningObjective": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "targetSkillCodes": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1, "maxLength": 80 },
+            "minItems": 1,
+            "maxItems": 8,
+            "uniqueItems": true
+          },
+          "variants": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/CRepresentation" },
+            "minItems": 1,
+            "maxItems": 8
+          },
+          "responseModes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["text", "choice", "equation", "code_text"]
+            },
+            "minItems": 1,
+            "maxItems": 4,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "learningObjective",
+          "targetSkillCodes",
+          "variants",
+          "responseModes"
+        ]
+      },
+      "CRepresentationSetEnvelope": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "data": { "$ref": "#/components/schemas/CRepresentationSet" },
+          "meta": { "$ref": "#/components/schemas/Meta" }
+        },
+        "required": ["data", "meta"]
+      },
+      "CRubricCriterion": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": { "type": "string", "minLength": 1, "maxLength": 80 },
+          "titleAr": { "type": "string", "minLength": 1, "maxLength": 160 },
+          "descriptionAr": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000
+          },
+          "levels": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "code": { "type": "string", "minLength": 1, "maxLength": 80 },
+                "labelAr": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                },
+                "descriptionAr": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
+                }
+              },
+              "required": ["code", "labelAr", "descriptionAr"]
+            },
+            "minItems": 2,
+            "maxItems": 5
+          }
+        },
+        "required": ["code", "titleAr", "descriptionAr", "levels"]
+      },
       "Capabilities": {
         "type": "object",
         "additionalProperties": false,
@@ -410,6 +1488,163 @@
         "type": "string",
         "description": "المساعدة من دون تلميح إلى الحل الكامل.",
         "enum": ["H0", "H1", "H2", "H3", "H4"]
+      },
+      "LPAssessmentKind": {
+        "type": "string",
+        "enum": [
+          "diagnostic_pretest",
+          "lesson_check",
+          "post_remediation",
+          "practice",
+          "independent_check",
+          "retrieval_review"
+        ]
+      },
+      "LPAssessmentQuestion": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "problem": { "$ref": "#/components/schemas/LPLearningBankProblem" },
+          "attemptId": { "anyOf": [{ "type": "string" }, { "type": "null" }] },
+          "steps": { "type": "array", "items": { "type": "string" } },
+          "value": { "type": "string" },
+          "unit": { "type": "string" },
+          "status": { "anyOf": [{ "type": "string" }, { "type": "null" }] },
+          "independent": { "type": "boolean" },
+          "supportLevel": { "type": "number" },
+          "completed": { "type": "boolean" }
+        },
+        "required": [
+          "id",
+          "problem",
+          "attemptId",
+          "steps",
+          "value",
+          "unit",
+          "status",
+          "independent",
+          "supportLevel",
+          "completed"
+        ]
+      },
+      "LPAssessmentSession": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "revision": { "type": "number" },
+          "subject": {
+            "type": "string",
+            "enum": ["algebra", "physics", "programming"]
+          },
+          "kind": { "$ref": "#/components/schemas/LPAssessmentKind" },
+          "trackRevisionId": { "type": "string" },
+          "lessonRevisionId": {
+            "anyOf": [{ "type": "string" }, { "type": "null" }]
+          },
+          "status": { "type": "string", "enum": ["active", "completed"] },
+          "mode": { "type": "string", "enum": ["independent", "practice"] },
+          "questions": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/LPAssessmentQuestion" }
+          },
+          "coverage": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "requested": { "type": "number" },
+              "available": { "type": "number" },
+              "partial": { "type": "boolean" },
+              "messageAr": { "type": "string" }
+            },
+            "required": ["requested", "available", "partial", "messageAr"]
+          },
+          "createdAt": { "type": "string" }
+        },
+        "required": [
+          "id",
+          "revision",
+          "subject",
+          "kind",
+          "trackRevisionId",
+          "lessonRevisionId",
+          "status",
+          "mode",
+          "questions",
+          "coverage",
+          "createdAt"
+        ]
+      },
+      "LPLearningBankProblem": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "revisionId": { "type": "string" },
+          "problemId": { "type": "string" },
+          "source": { "type": "string", "enum": ["algebra", "studio"] },
+          "subject": {
+            "type": "string",
+            "enum": ["algebra", "physics", "programming"]
+          },
+          "titleAr": { "type": "string" },
+          "statementAr": { "type": "string" },
+          "skillCodes": { "type": "array", "items": { "type": "string" } },
+          "primarySkillCode": { "type": "string" },
+          "difficulty": { "type": "number" },
+          "kind": {
+            "type": "string",
+            "enum": ["main", "remediation", "transfer", "diagnostic"]
+          },
+          "familyCode": { "type": "string" },
+          "equationRaw": { "type": "string" },
+          "physics": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "quantity": { "type": "string" },
+              "givens": {
+                "type": "object",
+                "additionalProperties": { "type": "string" }
+              },
+              "allowedUnits": { "type": "array", "items": { "type": "string" } }
+            },
+            "required": ["quantity", "givens", "allowedUnits"]
+          },
+          "programming": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "starterCode": { "type": "string" },
+              "publicTests": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "input": { "type": "string" },
+                    "expectedOutput": { "type": "string" }
+                  },
+                  "required": ["input", "expectedOutput"]
+                }
+              }
+            },
+            "required": ["starterCode", "publicTests"]
+          }
+        },
+        "required": [
+          "revisionId",
+          "problemId",
+          "source",
+          "subject",
+          "titleAr",
+          "statementAr",
+          "skillCodes",
+          "primarySkillCode",
+          "difficulty",
+          "kind",
+          "familyCode"
+        ]
       },
       "LearningEpisode": {
         "type": "object",

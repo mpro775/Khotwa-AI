@@ -18,6 +18,7 @@ import {
 } from "./http";
 import { cookieValue, equal, hmac, secureCookie } from "./security";
 import { idempotencyHeader, uuid } from "./contracts";
+import { exportAdvancedLearning } from "./advanced-learning/export-data";
 import { Store, type GuestAuth } from "./store";
 import { summarizeSkill, type ProgressEvidence } from "./progress";
 import { accountMailFromEnvironment, type AccountMail } from "./account-mail";
@@ -666,6 +667,20 @@ export class AccountService {
             "محاولات مواد الضيف اصطناعية ولا يمكن ربطها بحساب متعلم حقيقي.",
           );
       }
+      const [syntheticRecords] = await tx.$queryRaw<
+        { present: boolean }[]
+      >`SELECT to_regclass('public.intelligent_learning_records') IS NOT NULL AS present`;
+      if (syntheticRecords?.present && !user.is_internal) {
+        const [guestActivity] = await tx.$queryRaw<
+          { id: string }[]
+        >`SELECT id FROM intelligent_learning_records WHERE owner_key=${"guest:" + guest.row.id} LIMIT 1`;
+        if (guestActivity)
+          throw new ApiFault(
+            409,
+            "invalid_state",
+            "أنشطة الضيف الاصطناعية لا تُنقل إلى حساب متعلم حقيقي.",
+          );
+      }
       await tx.$executeRaw`UPDATE learning_sessions SET guest_session_id=${actor.guestId}::uuid WHERE guest_session_id=${guest.row.id}::uuid`;
       // Exposure history is immutable. Preserve the original first-seen time
       // when copying; an existing canonical exposure already disqualifies fresh
@@ -698,6 +713,16 @@ export class AccountService {
       if (intelligent?.present) {
         await tx.$executeRaw`UPDATE intelligent_learning_events SET owner_key=${actor.ownerKey} WHERE owner_key=${"guest:" + guest.row.id}`;
         await tx.$executeRaw`UPDATE intelligent_learning_records SET owner_key=${actor.ownerKey} WHERE owner_key=${"guest:" + guest.row.id}`;
+      }
+      const [analytics] = await tx.$queryRaw<
+        { present: boolean }[]
+      >`SELECT to_regclass('public.learning_analytics_events') IS NOT NULL AS present`;
+      if (analytics?.present) {
+        // Canonical ownership was transferred above. Drop only rebuildable
+        // projections for both scopes to avoid stale snapshots/double counting.
+        await tx.$executeRaw`DELETE FROM learning_analytics_events WHERE owner_key IN (${actor.ownerKey},${"guest:" + guest.row.id})`;
+        await tx.$executeRaw`DELETE FROM learning_analytics_projection_cursor WHERE owner_key IN (${actor.ownerKey},${"guest:" + guest.row.id})`;
+        await tx.$executeRaw`DELETE FROM learning_metrics_snapshots WHERE owner_key IN (${actor.ownerKey},${"guest:" + guest.row.id})`;
       }
       await tx.$executeRaw`UPDATE guest_sessions SET status='revoked',revoked_at=now() WHERE id=${guest.row.id}::uuid`;
       return { claimed: true, learningSessionCount: sessions.length };
@@ -992,29 +1017,37 @@ export class AccountService {
     const [user] = await this.store.db.$queryRaw<
       UserRow[]
     >`SELECT * FROM users WHERE id=${actor.userId}::uuid`;
-    const [attempts, progress, steps, subjectAttempts, intelligentLearning] =
-      await Promise.all([
-        this.attempts(request),
-        this.progress(request),
-        this.store.db.$queryRaw<
-          {
-            attempt_id: string;
-            position: number;
-            version_number: number;
-            source_raw: string;
-            created_at: Date;
-          }[]
-        >`
+    const [
+      attempts,
+      progress,
+      steps,
+      subjectAttempts,
+      intelligentLearning,
+      advancedLearning,
+    ] = await Promise.all([
+      this.attempts(request),
+      this.progress(request),
+      this.store.db.$queryRaw<
+        {
+          attempt_id: string;
+          position: number;
+          version_number: number;
+          source_raw: string;
+          created_at: Date;
+        }[]
+      >`
         SELECT s.attempt_id,s.position,v.version_number,v.source_raw,v.created_at FROM step_versions v JOIN step_slots s ON s.id=v.step_slot_id
         JOIN attempts a ON a.id=s.attempt_id JOIN learning_sessions l ON l.id=a.learning_session_id WHERE l.guest_session_id=${actor.guestId}::uuid ORDER BY v.created_at LIMIT 5000`,
-        this.subjectAttempts(actor, 1000),
-        this.exportPlanning(actor),
-      ]);
+      this.subjectAttempts(actor, 1000),
+      this.exportPlanning(actor),
+      exportAdvancedLearning(this.store.db, actor.ownerKey),
+    ]);
     return {
       user: user ? userDto(user) : null,
       attempts: attempts.attempts,
       subjectAttempts,
       intelligentLearning,
+      advancedLearning,
       progress,
       steps: steps.map((s) => ({
         attemptId: s.attempt_id,

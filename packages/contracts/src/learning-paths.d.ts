@@ -1,5 +1,6 @@
 import type { ContentStatus, PhysicsContent, SubjectCode } from "./product";
 import type { StemLabBlock } from "./stem-labs";
+import type { CActivity, CRepresentationSet } from "./advanced-learning";
 
 export interface LessonBlock {
   type:
@@ -15,7 +16,10 @@ export interface LessonBlock {
     | "completion_step"
     | "worked_example_ref"
     | "self_check_prompt"
-    | "subject_lab_activity";
+    | "subject_lab_activity"
+    | "problem_activity"
+    | "project_activity"
+    | "representation_set";
   textAr: string;
   raw?: string;
   steps?: { raw: string; explanationAr: string }[];
@@ -23,6 +27,8 @@ export interface LessonBlock {
   physics?: PhysicsContent;
   problemRevisionId?: string;
   lab?: StemLabBlock;
+  activity?: CActivity;
+  representation?: CRepresentationSet;
 }
 export interface LessonPayload {
   kind: "lesson";

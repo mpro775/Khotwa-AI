@@ -22,6 +22,7 @@ import type { ContentPayload } from "../../../packages/contracts/src/product";
 import { diagnosisReviewBlocked } from "./deep-diagnosis";
 import { labFeature, labMathSources } from "./stem/lab-registry";
 import { readLabExposures } from "./stem/lab-exposure";
+import { parseCActivity } from "./advanced-learning/activity-payload";
 
 export class PedagogyContextResolver {
   constructor(readonly assessments: LearningAssessmentService) {}
@@ -266,6 +267,54 @@ export class PedagogyContextResolver {
                 summary?.dimensions.supportedPractice === "observed",
             },
           );
+        for (
+          let blockIndex = 0;
+          blockIndex < payload.contentBlocks.length;
+          blockIndex++
+        ) {
+          const block = payload.contentBlocks[blockIndex]!;
+          const advanced =
+            block.type === "problem_activity"
+              ? "problem_based"
+              : block.type === "project_activity"
+                ? "project_based"
+                : null;
+          if (
+            !advanced ||
+            process.env[
+              advanced === "problem_based"
+                ? "C_PROBLEM_LEARNING_ENABLED"
+                : "C_PROJECT_LEARNING_ENABLED"
+            ] !== "true"
+          )
+            continue;
+          const activity = parseCActivity(block.activity, payload.subject);
+          if (
+            !activity.skillCodes.includes(skillCode) ||
+            activity.prerequisiteSkillCodes.some(
+              (code) =>
+                !graph.nodes.some(
+                  (n) => n.skillCode === code && n.reviewState === "reviewed",
+                ),
+            )
+          )
+            continue;
+          add(
+            "guided_practice",
+            advanced === "problem_based"
+              ? "problem_based_learning"
+              : "project_based_learning",
+            {
+              advancedActivity: { kind: advanced, blockIndex },
+              recentlyAccepted: recent.some(
+                (r) =>
+                  r.data.lessonRevisionId === lesson.id &&
+                  r.data.advancedActivity?.kind === advanced &&
+                  r.data.advancedActivity?.blockIndex === blockIndex,
+              ),
+            },
+          );
+        }
         if (questionCoverage)
           add("independent_check", "additional_evidence", {
             independentSuccess:
@@ -345,6 +394,7 @@ export class PedagogyContextResolver {
               sourceAttemptId: c.sourceAttemptId,
               labKind: c.labKind,
               labBlockIndex: c.labBlockIndex,
+              advancedActivity: c.advancedActivity,
             })),
           }),
         )

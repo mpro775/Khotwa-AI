@@ -8,6 +8,10 @@ import { parsePayload } from "./content-payload";
 import { uuid } from "./contracts";
 import { only, productInvalid, record, textField } from "./product-core";
 import { parseLabBlock } from "./stem/lab-registry";
+import {
+  parseCActivity,
+  parseRepresentationSet,
+} from "./advanced-learning/activity-payload";
 
 export const LEARNING_MAP_VERSION = "learning-path-map-1.0";
 export const ALGEBRA_ERROR_SKILLS: Record<string, string[]> = {
@@ -96,6 +100,8 @@ function block(value: unknown, subject: SubjectCode): LessonBlock {
     "physics",
     "problemRevisionId",
     "lab",
+    "activity",
+    "representation",
   ]);
   const type = textField(b.type, 30) as LessonBlock["type"];
   if (
@@ -113,6 +119,9 @@ function block(value: unknown, subject: SubjectCode): LessonBlock {
       "worked_example_ref",
       "self_check_prompt",
       "subject_lab_activity",
+      "problem_activity",
+      "project_activity",
+      "representation_set",
     ].includes(type)
   )
     throw productInvalid();
@@ -120,6 +129,17 @@ function block(value: unknown, subject: SubjectCode): LessonBlock {
   if (type === "subject_lab_activity")
     result.lab = parseLabBlock(b.lab, subject);
   else if (b.lab !== undefined) throw productInvalid();
+  if (type === "problem_activity" || type === "project_activity") {
+    result.activity = parseCActivity(b.activity, subject);
+    if (
+      result.activity.type !==
+      (type === "problem_activity" ? "problem_based" : "project_based")
+    )
+      throw productInvalid();
+  } else if (b.activity !== undefined) throw productInvalid();
+  if (type === "representation_set")
+    result.representation = parseRepresentationSet(b.representation, subject);
+  else if (b.representation !== undefined) throw productInvalid();
   if (["math_example", "worked_steps", "completion_step"].includes(type)) {
     if (subject !== "algebra")
       throw productInvalid("المثال الجبري لا ينتمي لهذه المادة.");
@@ -255,6 +275,34 @@ export function parseLearningPayload(value: unknown): LearningContentPayload {
     )
   )
     throw productInvalid("مهارات المختبر يجب أن تنتمي إلى مهارات الدرس.");
+  if (
+    result.contentBlocks.some((b) =>
+      [
+        ...(b.activity?.skillCodes ?? []),
+        ...(b.representation?.targetSkillCodes ?? []),
+      ].some((s) => !skills.includes(s)),
+    )
+  )
+    throw productInvalid(
+      "مهارات النشاط والتمثيل يجب أن تنتمي إلى مهارات الدرس.",
+    );
+  for (const b of result.contentBlocks) {
+    const labRefs = [
+      ...(b.activity?.representations ?? []),
+      ...(b.representation?.variants ?? []),
+    ].flatMap((v) => (v.kind === "stem_lab" ? [v.labBlockIndex!] : []));
+    if (
+      b.activity?.type === "problem_based" &&
+      b.activity.verification.kind === "stem_lab"
+    )
+      labRefs.push(b.activity.verification.blockIndex);
+    if (
+      labRefs.some(
+        (i) => result.contentBlocks[i]?.type !== "subject_lab_activity",
+      )
+    )
+      throw productInvalid("مرجع التمثيل يشير إلى مختبر قانوني في الدرس نفسه.");
+  }
   if (
     result.practiceProblemRevisionIds.some((id) =>
       result.assessmentProblemRevisionIds.includes(id),

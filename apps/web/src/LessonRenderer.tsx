@@ -2,6 +2,13 @@ import type {
   LearningContentValidation,
   LessonPayload,
 } from "../../../packages/contracts/src/learning-paths";
+import { useState } from "react";
+import { RepresentationSwitcher } from "./advanced-learning/RepresentationSwitcher";
+import { StudentPreferencesPanel } from "./advanced-learning/StudentPreferencesPanel";
+import {
+  defaultDisplayPreferences,
+  displayClass,
+} from "./advanced-learning/display-preferences";
 
 /** React text nodes deliberately escape authored prose and code; no authored HTML executes. */
 export function LessonRenderer({
@@ -9,16 +16,24 @@ export function LessonRenderer({
   validation,
   onPractice,
   onLab,
+  onActivity,
 }: {
   payload: LessonPayload;
   validation?: LearningContentValidation | null;
   onPractice?: (problemRevisionId: string) => void;
   onLab?: (blockIndex: number) => void;
+  onActivity?: (blockIndex: number) => void;
 }) {
+  const [preferences, setPreferences] = useState(defaultDisplayPreferences);
   return (
-    <article className="learning-lesson" dir="rtl">
+    <article
+      className={`learning-lesson ${displayClass(preferences)}`}
+      style={{ fontSize: `${preferences.textScale}em` }}
+      dir="rtl"
+    >
       <h2>{payload.titleAr}</h2>
       <p>{payload.descriptionAr}</p>
+      <StudentPreferencesPanel value={preferences} onChange={setPreferences} />
       <section aria-label="أهداف الدرس">
         <h3>ماذا ستتعلم؟</h3>
         <ul>
@@ -31,6 +46,53 @@ export function LessonRenderer({
         const checked = validation?.examples.find(
           (example) => example.blockIndex === index,
         );
+        if (block.type === "representation_set" && block.representation)
+          return (
+            <section
+              key={index}
+              className="c-workspace"
+              aria-label={block.textAr}
+            >
+              <h3>{block.textAr}</h3>
+              <RepresentationSwitcher
+                variants={block.representation.variants}
+                onLab={onLab}
+              />
+            </section>
+          );
+        if (
+          (block.type === "problem_activity" ||
+            block.type === "project_activity") &&
+          block.activity
+        )
+          return (
+            <aside key={index} className="lesson-callout">
+              <h3>{block.activity.titleAr}</h3>
+              <p>{block.activity.publicBriefAr}</p>
+              <p className="helper">
+                {block.type === "problem_activity"
+                  ? "افهم الموقف واختر خطة وافحصها وفسّر نتيجتك."
+                  : "أنشئ منتَجًا عبر مراحل وتسليمات ومراجعة وتحسين."}{" "}
+                إكمال هذا النشاط للتعلّم، ولا يمنح إتقانًا مستقلًا.
+              </p>
+              {onActivity ? (
+                <button onClick={() => onActivity(index)}>
+                  {block.type === "problem_activity"
+                    ? "ابدأ المشكلة الواقعية"
+                    : "افتح مساحة المشروع"}
+                </button>
+              ) : (
+                <>
+                  <p className="helper">
+                    معاينة طالب نصية؛ لا تبدأ جلسة أو تسجل تقدمًا.
+                  </p>
+                  <RepresentationSwitcher
+                    variants={block.activity.representations}
+                  />
+                </>
+              )}
+            </aside>
+          );
         if (block.type === "heading")
           return <h3 key={index}>{block.textAr}</h3>;
         if (block.type === "paragraph")

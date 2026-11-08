@@ -1,0 +1,37 @@
+{
+  "recordedAt": "2026-11-08T03:38:41.072Z",
+  "baseline": "6a4b6cb",
+  "node": "v26.7.0",
+  "platform": "win32",
+  "checks": [
+    {
+      "command": "semantic OpenAPI comparison 6a4b6cb",
+      "exitCode": 0,
+      "legacyPaths": 114,
+      "changedSchemas": [
+        "AActivityAlternative",
+        "ALearningActivity",
+        "ANextActivityDecision",
+        "AccountExportEnvelope",
+        "LPAuthorLessonBlock",
+        "LPLessonBlock"
+      ]
+    },
+    {
+      "label": "contracts",
+      "command": "node tools/contracts.mjs --check",
+      "exitCode": 0,
+      "seconds": 12.072,
+      "stdout": "Canonical OpenAPI mirror, 4 JSON mirrors, and generated public types verified.\n",
+      "stderr": ""
+    },
+    {
+      "label": "format",
+      "command": "node C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js run format:check",
+      "exitCode": 1,
+      "seconds": 12.174,
+      "stdout": "\n> khotwa-ai@0.1.0 format:check\n> prettier --check package.json tsconfig.base.json eslint.config.mjs pyrightconfig.json compose.yaml Dockerfile .github/workflows/ci.yml \"apps/**/*.{ts,tsx,json,css,html}\" \"packages/contracts/src/index.ts\" \"tools/*.mjs\" && node tools/python-task.mjs -m black --check services/math-engine/src tools/dev_env.py tools/seed_demo.py\n\nChecking formatting...\n",
+      "stderr": "[warn] apps/web/src/advanced-learning/ProblemJourney.tsx\n[warn] apps/web/src/advanced-learning/ProjectWorkspace.tsx\n[warn] apps/web/src/IntelligentLearningPanel.tsx\n[warn] apps/web/src/LearningPaths.tsx\n[warn] Code style issues found in 4 files. Run Prettier with --write to fix.\n"
+    }
+  ]
+}

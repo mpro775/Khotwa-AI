@@ -26,6 +26,17 @@ import {
 } from "./learning-path-api";
 import { LessonRenderer } from "./LessonRenderer";
 import { StemLabAuthoring, newStemLab } from "./StemLabAuthoring";
+import {
+  CActivityAuthoring,
+  RepresentationSetAuthoring,
+  newActivity,
+  newRepresentationSet,
+} from "./advanced-learning/AdvancedContentStudio";
+import {
+  AdvancedReviewPanel,
+  ProjectReviewerPanel,
+} from "./advanced-learning/ReviewPanels";
+import { ContentQualityPanel } from "./advanced-learning/LearningAnalyticsDashboard";
 
 const statuses: Record<ContentStatus, string> = {
   draft: "مسودة",
@@ -53,6 +64,9 @@ const blockTitles: Record<LessonBlock["type"], string> = {
   worked_example_ref: "مرجع مثال للتدريب",
   self_check_prompt: "سؤال تأمل اختياري",
   subject_lab_activity: "مختبر تخصصي",
+  problem_activity: "مشكلة واقعية — C1",
+  project_activity: "مشروع بنتاج ومراجعة — C2",
+  representation_set: "تمثيلات وبدائل وصول — C3",
 };
 function emptyLesson(subject: Subject): LessonPayload {
   return {
@@ -217,6 +231,7 @@ export function PathStudio({
     [subject, setSubject] = useState<Subject>("algebra"),
     [status, setStatus] = useState(""),
     [kind, setKind] = useState(""),
+    [advancedFilter, setAdvancedFilter] = useState(""),
     [map, setMap] = useState<LearningSkillMap | null>(null),
     [bank, setBank] = useState<LearningBankProblem[]>([]),
     [bankSkill, setBankSkill] = useState(""),
@@ -381,6 +396,14 @@ export function PathStudio({
           ? /PHY|PHYS/i.test(skill.skillCode)
           : /PY|PROG/i.test(skill.skillCode),
     ) ?? [];
+  const visibleItems = items.filter(
+    (item) =>
+      !advancedFilter ||
+      (item.payload.kind === "lesson" &&
+        item.payload.contentBlocks.some(
+          (block) => block.type === advancedFilter,
+        )),
+  );
   if (!authorized)
     return (
       <div className="product-card">
@@ -420,6 +443,18 @@ export function PathStudio({
                   {label}
                 </option>
               ))}
+            </select>
+          </label>
+          <label>
+            أنشطة التعلم المتقدم
+            <select
+              value={advancedFilter}
+              onChange={(event) => setAdvancedFilter(event.target.value)}
+            >
+              <option value="">كل الأنشطة</option>
+              <option value="problem_activity">مشكلات واقعية</option>
+              <option value="project_activity">مشاريع ومنتجات</option>
+              <option value="representation_set">تمثيلات وبدائل وصول</option>
             </select>
           </label>
           <label>
@@ -477,9 +512,9 @@ export function PathStudio({
           >
             أعدّ حزم V2.2 كمسودات
           </button>
-          {!items.length && <p>لا توجد نسخ تطابق التصفية.</p>}
+          {!visibleItems.length && <p>لا توجد نسخ تطابق التصفية.</p>}
           <ul className="path-studio-list">
-            {items.map((item) => (
+            {visibleItems.map((item) => (
               <li key={item.id}>
                 <button
                   disabled={busy}
@@ -492,6 +527,10 @@ export function PathStudio({
                     إصدار {item.version.toLocaleString("ar")} ·{" "}
                     {statuses[item.status]}
                   </small>
+                  {item.payload.kind === "lesson" &&
+                    !!item.payload.mappingPending.length && (
+                      <small>علاقات مهارية معلقة للمراجعة</small>
+                    )}
                 </button>
               </li>
             ))}
@@ -895,6 +934,25 @@ export function PathStudio({
                               ...(type === "subject_lab_activity"
                                 ? { lab: newStemLab(payload.subject) }
                                 : {}),
+                              ...(type === "problem_activity" ||
+                              type === "project_activity"
+                                ? {
+                                    activity: newActivity(
+                                      payload.subject,
+                                      payload.skillCodes,
+                                      type === "problem_activity"
+                                        ? "problem_based"
+                                        : "project_based",
+                                    ),
+                                  }
+                                : {}),
+                              ...(type === "representation_set"
+                                ? {
+                                    representation: newRepresentationSet(
+                                      payload.skillCodes,
+                                    ),
+                                  }
+                                : {}),
                             });
                           }}
                         >
@@ -940,6 +998,25 @@ export function PathStudio({
                           skills={payload.skillCodes}
                           onChange={(lab) =>
                             blockChange(index, { ...block, lab })
+                          }
+                        />
+                      )}
+                      {block.activity && (
+                        <CActivityAuthoring
+                          value={block.activity}
+                          skills={payload.skillCodes}
+                          onChange={(activity) =>
+                            blockChange(index, { ...block, activity })
+                          }
+                        />
+                      )}
+                      {block.representation && (
+                        <RepresentationSetAuthoring
+                          value={block.representation}
+                          subject={payload.subject}
+                          skills={payload.skillCodes}
+                          onChange={(representation) =>
+                            blockChange(index, { ...block, representation })
                           }
                         />
                       )}
@@ -1469,6 +1546,33 @@ export function PathStudio({
               </p>
             </section>
           )}
+          {selected &&
+            selected.payload.kind === "lesson" &&
+            selected.payload.contentBlocks.some(
+              (block) => block.activity || block.representation,
+            ) && (
+              <>
+                <AdvancedReviewPanel
+                  key={selected.id}
+                  api={api}
+                  revision={selected}
+                  enabled={
+                    !dirty &&
+                    !!identity?.user &&
+                    ["admin", "content_manager"].includes(identity.user.role)
+                  }
+                  onContent={(content) => {
+                    open(content);
+                    void load();
+                  }}
+                />
+                <ContentQualityPanel api={api} revisionId={selected.id} />
+              </>
+            )}
+          {identity?.user &&
+            ["admin", "content_manager"].includes(identity.user.role) && (
+              <ProjectReviewerPanel api={api} />
+            )}
           {selected && (
             <details>
               <summary>الإصدار والبصمة</summary>

@@ -58,10 +58,24 @@ function labReference(r: Record<string, unknown>) {
     throw new Error("invalid_response");
   return { labKind: textField(r.labKind), labBlockIndex: index };
 }
+function advancedReference(r: Record<string, unknown>) {
+  if (r.advancedActivity === undefined) return {};
+  const a = record(r.advancedActivity),
+    blockIndex = numberField(a.blockIndex);
+  if (!Number.isInteger(blockIndex) || blockIndex < 0 || blockIndex >= 50)
+    throw new Error("invalid_response");
+  return {
+    advancedActivity: {
+      kind: enumField(a.kind, ["problem_based", "project_based"]),
+      blockIndex,
+    },
+  };
+}
 export function decisionData(value: unknown): NextActivityDecision {
   const r = record(value);
   return {
     ...labReference(r),
+    ...advancedReference(r),
     id: textField(r.id),
     decisionId: textField(r.decisionId),
     revision: numberField(r.revision),
@@ -82,6 +96,7 @@ export function decisionData(value: unknown): NextActivityDecision {
       const a = record(value);
       return {
         ...labReference(a),
+        ...advancedReference(a),
         activityKind: enumField(a.activityKind, activityKinds),
         lessonRevisionId: optionalText(a.lessonRevisionId),
         skillCode: optionalText(a.skillCode),
@@ -95,6 +110,7 @@ export function activityData(value: unknown): LearningActivity {
   const r = record(value);
   return {
     ...labReference(r),
+    ...advancedReference(r),
     id: textField(r.id),
     revision: numberField(r.revision),
     decisionId: textField(r.decisionId),

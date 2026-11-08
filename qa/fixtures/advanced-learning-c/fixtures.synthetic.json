@@ -1,0 +1,702 @@
+{
+  "schemaVersion": "c-fixtures-v1",
+  "reviewStatus": "TEST_ONLY",
+  "humanApproval": null,
+  "problems": [
+    {
+      "schemaVersion": "c-activity-v1",
+      "subject": "algebra",
+      "code": "MATH-C-P1",
+      "titleAr": "اختيار تكلفة خدمة",
+      "objectives": [
+        "تفسير نموذج تكلفة خطي"
+      ],
+      "skillCodes": [
+        "SK-ALG-07"
+      ],
+      "prerequisiteSkillCodes": [],
+      "publicBriefAr": "قارن العرضين وفسر قرارك دون الاكتفاء بحالة واحدة.",
+      "familyCode": "MATH-C-TRAINING-P1",
+      "supportPolicy": {
+        "hintsAllowed": true,
+        "revealMode": "after_submit"
+      },
+      "representations": [
+        {
+          "code": "text",
+          "kind": "text",
+          "titleAr": "الوصف النصي",
+          "accessibleText": "تحتاج أسرة إلى خدمة توصيل. العرض الأول رسومه ١٠ ريالات مع ريالين لكل طلب، والثاني ٤ ريالات لكل طلب. متى يصبح كل عرض أوفر؟ حدد معنى المتغير ووحدته وافتراضاتك.",
+          "learningObjective": "تفسير نموذج تكلفة خطي",
+          "targetSkillCodes": [
+            "SK-ALG-07"
+          ],
+          "sameConstruct": true,
+          "assistanceExposure": false,
+          "evaluationMode": "learning_only",
+          "textAr": "تحتاج أسرة إلى خدمة توصيل. العرض الأول رسومه ١٠ ريالات مع ريالين لكل طلب، والثاني ٤ ريالات لكل طلب. متى يصبح كل عرض أوفر؟ حدد معنى المتغير ووحدته وافتراضاتك."
+        }
+      ],
+      "publicRubric": [
+        {
+          "code": "understanding",
+          "titleAr": "فهم المهمة",
+          "descriptionAr": "حدد الهدف والمعطيات والقيود.",
+          "levels": [
+            {
+              "code": "needs_support",
+              "labelAr": "يحتاج دعمًا",
+              "descriptionAr": "المتطلبات غير واضحة."
+            },
+            {
+              "code": "documented",
+              "labelAr": "موثق",
+              "descriptionAr": "الهدف والحدود والتبرير موثقة."
+            }
+          ]
+        },
+        {
+          "code": "reasoning",
+          "titleAr": "التفسير والمراجعة",
+          "descriptionAr": "فسر قرارك وبيّن ما راجعته.",
+          "levels": [
+            {
+              "code": "needs_support",
+              "labelAr": "يحتاج دعمًا",
+              "descriptionAr": "التبرير يحتاج تطويرًا."
+            },
+            {
+              "code": "documented",
+              "labelAr": "موثق",
+              "descriptionAr": "فحص الافتراضات والنتيجة موثق."
+            }
+          ]
+        }
+      ],
+      "privateEvaluation": {
+        "privateRubric": [
+          {
+            "criterionCode": "understanding",
+            "noteAr": "مراجعة بشرية مطلوبة للسياق."
+          }
+        ],
+        "hints": [
+          {
+            "level": "H1",
+            "textAr": "ما المعطيات والمطلوب؟ اكتب الوحدات والقيود."
+          },
+          {
+            "level": "H2",
+            "textAr": "جرّب حالة بسيطة ثم افحص تعميم خطتك."
+          },
+          {
+            "level": "H3",
+            "textAr": "راجع الافتراضات وحدود النتيجة في السياق."
+          }
+        ],
+        "solutionKey": "هذه إرشادات مراجعة اصطناعية خاصة للاختبار؛ لا تمنح اعتمادًا علميًا."
+      },
+      "type": "problem_based",
+      "scenarioAr": "تحتاج أسرة إلى خدمة توصيل. العرض الأول رسومه ١٠ ريالات مع ريالين لكل طلب، والثاني ٤ ريالات لكل طلب. متى يصبح كل عرض أوفر؟ حدد معنى المتغير ووحدته وافتراضاتك.",
+      "constraints": [
+        "العمل فردي واصطناعي.",
+        "التفسير المفتوح يحتاج مراجعة بشرية."
+      ],
+      "stages": [
+        "frame",
+        "plan",
+        "investigate",
+        "justify",
+        "reflect"
+      ],
+      "verification": {
+        "kind": "none"
+      }
+    },
+    {
+      "schemaVersion": "c-activity-v1",
+      "subject": "physics",
+      "code": "PHY-C-P1",
+      "titleAr": "رحلة ضمن موعد",
+      "objectives": [
+        "تفسير المسافة والزمن والسرعة المتوسطة"
+      ],
+      "skillCodes": [
+        "PHYS-AVERAGE_SPEED"
+      ],
+      "prerequisiteSkillCodes": [],
+      "publicBriefAr": "اعرض خطة رحلة خطية موثقة بالزمن والوحدات.",
+      "familyCode": "PHY-C-TRAINING-P1",
+      "supportPolicy": {
+        "hintsAllowed": true,
+        "revealMode": "after_submit"
+      },
+      "representations": [
+        {
+          "code": "text",
+          "kind": "text",
+          "titleAr": "الوصف النصي",
+          "accessibleText": "يسير عامل توصيل في خط مستقيم ١٢٠ مترًا خلال ٣٠ ثانية، ويتوقف ١٠ ثوان ثم يسير ٨٠ مترًا خلال ٢٠ ثانية. هل يقطع ٢٠٠ متر ضمن دقيقة؟ وضح أثر التوقف والوحدات.",
+          "learningObjective": "تفسير المسافة والزمن والسرعة المتوسطة",
+          "targetSkillCodes": [
+            "PHYS-AVERAGE_SPEED"
+          ],
+          "sameConstruct": true,
+          "assistanceExposure": false,
+          "evaluationMode": "learning_only",
+          "textAr": "يسير عامل توصيل في خط مستقيم ١٢٠ مترًا خلال ٣٠ ثانية، ويتوقف ١٠ ثوان ثم يسير ٨٠ مترًا خلال ٢٠ ثانية. هل يقطع ٢٠٠ متر ضمن دقيقة؟ وضح أثر التوقف والوحدات."
+        }
+      ],
+      "publicRubric": [
+        {
+          "code": "understanding",
+          "titleAr": "فهم المهمة",
+          "descriptionAr": "حدد الهدف والمعطيات والقيود.",
+          "levels": [
+            {
+              "code": "needs_support",
+              "labelAr": "يحتاج دعمًا",
+              "descriptionAr": "المتطلبات غير واضحة."
+            },
+            {
+              "code": "documented",
+              "labelAr": "موثق",
+              "descriptionAr": "الهدف والحدود والتبرير موثقة."
+            }
+          ]
+        },
+        {
+          "code": "reasoning",
+          "titleAr": "التفسير والمراجعة",
+          "descriptionAr": "فسر قرارك وبيّن ما راجعته.",
+          "levels": [
+            {
+              "code": "needs_support",
+              "labelAr": "يحتاج دعمًا",
+              "descriptionAr": "التبرير يحتاج تطويرًا."
+            },
+            {
+              "code": "documented",
+              "labelAr": "موثق",
+              "descriptionAr": "فحص الافتراضات والنتيجة موثق."
+            }
+          ]
+        }
+      ],
+      "privateEvaluation": {
+        "privateRubric": [
+          {
+            "criterionCode": "understanding",
+            "noteAr": "مراجعة بشرية مطلوبة للسياق."
+          }
+        ],
+        "hints": [
+          {
+            "level": "H1",
+            "textAr": "ما المعطيات والمطلوب؟ اكتب الوحدات والقيود."
+          },
+          {
+            "level": "H2",
+            "textAr": "جرّب حالة بسيطة ثم افحص تعميم خطتك."
+          },
+          {
+            "level": "H3",
+            "textAr": "راجع الافتراضات وحدود النتيجة في السياق."
+          }
+        ],
+        "solutionKey": "هذه إرشادات مراجعة اصطناعية خاصة للاختبار؛ لا تمنح اعتمادًا علميًا."
+      },
+      "type": "problem_based",
+      "scenarioAr": "يسير عامل توصيل في خط مستقيم ١٢٠ مترًا خلال ٣٠ ثانية، ويتوقف ١٠ ثوان ثم يسير ٨٠ مترًا خلال ٢٠ ثانية. هل يقطع ٢٠٠ متر ضمن دقيقة؟ وضح أثر التوقف والوحدات.",
+      "constraints": [
+        "العمل فردي واصطناعي.",
+        "التفسير المفتوح يحتاج مراجعة بشرية."
+      ],
+      "stages": [
+        "frame",
+        "plan",
+        "investigate",
+        "justify",
+        "reflect"
+      ],
+      "verification": {
+        "kind": "none"
+      }
+    },
+    {
+      "schemaVersion": "c-activity-v1",
+      "subject": "programming",
+      "code": "CODE-C-P1",
+      "titleAr": "آلة حساب رسوم",
+      "objectives": [
+        "تفسير شروط خوارزمية بسيطة"
+      ],
+      "skillCodes": [
+        "PY-CONDITIONS"
+      ],
+      "prerequisiteSkillCodes": [],
+      "publicBriefAr": "صمم خوارزمية رسوم مع حالات حافة واختبارات متوقعة.",
+      "familyCode": "CODE-C-TRAINING-P1",
+      "supportPolicy": {
+        "hintsAllowed": true,
+        "revealMode": "after_submit"
+      },
+      "representations": [
+        {
+          "code": "text",
+          "kind": "text",
+          "titleAr": "الوصف النصي",
+          "accessibleText": "تقدم مكتبة رسم اشتراك ثابتًا ورسمًا لكل استعارة. صمم وصفًا لخوارزمية تحدد الرسم للحالات الحدية، وناقش المدخلات غير الصالحة. هذا نشاط غير تنفيذي.",
+          "learningObjective": "تفسير شروط خوارزمية بسيطة",
+          "targetSkillCodes": [
+            "PY-CONDITIONS"
+          ],
+          "sameConstruct": true,
+          "assistanceExposure": false,
+          "evaluationMode": "learning_only",
+          "textAr": "تقدم مكتبة رسم اشتراك ثابتًا ورسمًا لكل استعارة. صمم وصفًا لخوارزمية تحدد الرسم للحالات الحدية، وناقش المدخلات غير الصالحة. هذا نشاط غير تنفيذي."
+        }
+      ],
+      "publicRubric": [
+        {
+          "code": "understanding",
+          "titleAr": "فهم المهمة",
+          "descriptionAr": "حدد الهدف والمعطيات والقيود.",
+          "levels": [
+            {
+              "code": "needs_support",
+              "labelAr": "يحتاج دعمًا",
+              "descriptionAr": "المتطلبات غير واضحة."
+            },
+            {
+              "code": "documented",
+              "labelAr": "موثق",
+              "descriptionAr": "الهدف والحدود والتبرير موثقة."
+            }
+          ]
+        },
+        {
+          "code": "reasoning",
+          "titleAr": "التفسير والمراجعة",
+          "descriptionAr": "فسر قرارك وبيّن ما راجعته.",
+          "levels": [
+            {
+              "code": "needs_support",
+              "labelAr": "يحتاج دعمًا",
+              "descriptionAr": "التبرير يحتاج تطويرًا."
+            },
+            {
+              "code": "documented",
+              "labelAr": "موثق",
+              "descriptionAr": "فحص الافتراضات والنتيجة موثق."
+            }
+          ]
+        }
+      ],
+      "privateEvaluation": {
+        "privateRubric": [
+          {
+            "criterionCode": "understanding",
+            "noteAr": "مراجعة بشرية مطلوبة للسياق."
+          }
+        ],
+        "hints": [
+          {
+            "level": "H1",
+            "textAr": "ما المعطيات والمطلوب؟ اكتب الوحدات والقيود."
+          },
+          {
+            "level": "H2",
+            "textAr": "جرّب حالة بسيطة ثم افحص تعميم خطتك."
+          },
+          {
+            "level": "H3",
+            "textAr": "راجع الافتراضات وحدود النتيجة في السياق."
+          }
+        ],
+        "solutionKey": "هذه إرشادات مراجعة اصطناعية خاصة للاختبار؛ لا تمنح اعتمادًا علميًا."
+      },
+      "type": "problem_based",
+      "scenarioAr": "تقدم مكتبة رسم اشتراك ثابتًا ورسمًا لكل استعارة. صمم وصفًا لخوارزمية تحدد الرسم للحالات الحدية، وناقش المدخلات غير الصالحة. هذا نشاط غير تنفيذي.",
+      "constraints": [
+        "العمل فردي واصطناعي.",
+        "التفسير المفتوح يحتاج مراجعة بشرية."
+      ],
+      "stages": [
+        "frame",
+        "plan",
+        "investigate",
+        "justify",
+        "reflect"
+      ],
+      "verification": {
+        "kind": "none"
+      }
+    }
+  ],
+  "projects": [
+    {
+      "schemaVersion": "c-activity-v1",
+      "subject": "algebra",
+      "code": "MATH-C-J1",
+      "titleAr": "اختيار تكلفة خدمة",
+      "objectives": [
+        "تفسير نموذج تكلفة خطي"
+      ],
+      "skillCodes": [
+        "SK-ALG-07"
+      ],
+      "prerequisiteSkillCodes": [],
+      "publicBriefAr": "قارن العرضين وفسر قرارك دون الاكتفاء بحالة واحدة.",
+      "familyCode": "MATH-C-TRAINING-J1",
+      "supportPolicy": {
+        "hintsAllowed": true,
+        "revealMode": "after_submit"
+      },
+      "representations": [
+        {
+          "code": "text",
+          "kind": "text",
+          "titleAr": "الوصف النصي",
+          "accessibleText": "تحتاج أسرة إلى خدمة توصيل. العرض الأول رسومه ١٠ ريالات مع ريالين لكل طلب، والثاني ٤ ريالات لكل طلب. متى يصبح كل عرض أوفر؟ حدد معنى المتغير ووحدته وافتراضاتك.",
+          "learningObjective": "تفسير نموذج تكلفة خطي",
+          "targetSkillCodes": [
+            "SK-ALG-07"
+          ],
+          "sameConstruct": true,
+          "assistanceExposure": false,
+          "evaluationMode": "learning_only",
+          "textAr": "تحتاج أسرة إلى خدمة توصيل. العرض الأول رسومه ١٠ ريالات مع ريالين لكل طلب، والثاني ٤ ريالات لكل طلب. متى يصبح كل عرض أوفر؟ حدد معنى المتغير ووحدته وافتراضاتك."
+        }
+      ],
+      "publicRubric": [
+        {
+          "code": "understanding",
+          "titleAr": "فهم المهمة",
+          "descriptionAr": "حدد الهدف والمعطيات والقيود.",
+          "levels": [
+            {
+              "code": "needs_support",
+              "labelAr": "يحتاج دعمًا",
+              "descriptionAr": "المتطلبات غير واضحة."
+            },
+            {
+              "code": "documented",
+              "labelAr": "موثق",
+              "descriptionAr": "الهدف والحدود والتبرير موثقة."
+            }
+          ]
+        },
+        {
+          "code": "reasoning",
+          "titleAr": "التفسير والمراجعة",
+          "descriptionAr": "فسر قرارك وبيّن ما راجعته.",
+          "levels": [
+            {
+              "code": "needs_support",
+              "labelAr": "يحتاج دعمًا",
+              "descriptionAr": "التبرير يحتاج تطويرًا."
+            },
+            {
+              "code": "documented",
+              "labelAr": "موثق",
+              "descriptionAr": "فحص الافتراضات والنتيجة موثق."
+            }
+          ]
+        }
+      ],
+      "privateEvaluation": {
+        "privateRubric": [
+          {
+            "criterionCode": "understanding",
+            "noteAr": "مراجعة بشرية مطلوبة للسياق."
+          }
+        ],
+        "hints": [
+          {
+            "level": "H1",
+            "textAr": "ما المعطيات والمطلوب؟ اكتب الوحدات والقيود."
+          },
+          {
+            "level": "H2",
+            "textAr": "جرّب حالة بسيطة ثم افحص تعميم خطتك."
+          },
+          {
+            "level": "H3",
+            "textAr": "راجع الافتراضات وحدود النتيجة في السياق."
+          }
+        ],
+        "solutionKey": "هذه إرشادات مراجعة اصطناعية خاصة للاختبار؛ لا تمنح اعتمادًا علميًا."
+      },
+      "type": "project_based",
+      "projectLevel": "micro",
+      "drivingQuestionAr": "قارن العرضين وفسر قرارك دون الاكتفاء بحالة واحدة.",
+      "lessonRevisionIds": [],
+      "milestones": [
+        {
+          "code": "plan",
+          "titleAr": "التخطيط",
+          "descriptionAr": "حدد المشكلة والمتطلبات وخطة المنتج.",
+          "requiredArtifactKind": "text",
+          "required": true
+        },
+        {
+          "code": "build",
+          "titleAr": "بناء النموذج",
+          "descriptionAr": "اكتب نموذجك والافتراضات والحالات التجريبية.",
+          "requiredArtifactKind": "text",
+          "required": true
+        },
+        {
+          "code": "reflect",
+          "titleAr": "المراجعة والتأمل",
+          "descriptionAr": "وثق التعديلات بعد النقد والاختبار.",
+          "requiredArtifactKind": "text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "schemaVersion": "c-activity-v1",
+      "subject": "physics",
+      "code": "PHY-C-J1",
+      "titleAr": "رحلة ضمن موعد",
+      "objectives": [
+        "تفسير المسافة والزمن والسرعة المتوسطة"
+      ],
+      "skillCodes": [
+        "PHYS-AVERAGE_SPEED"
+      ],
+      "prerequisiteSkillCodes": [],
+      "publicBriefAr": "اعرض خطة رحلة خطية موثقة بالزمن والوحدات.",
+      "familyCode": "PHY-C-TRAINING-J1",
+      "supportPolicy": {
+        "hintsAllowed": true,
+        "revealMode": "after_submit"
+      },
+      "representations": [
+        {
+          "code": "text",
+          "kind": "text",
+          "titleAr": "الوصف النصي",
+          "accessibleText": "يسير عامل توصيل في خط مستقيم ١٢٠ مترًا خلال ٣٠ ثانية، ويتوقف ١٠ ثوان ثم يسير ٨٠ مترًا خلال ٢٠ ثانية. هل يقطع ٢٠٠ متر ضمن دقيقة؟ وضح أثر التوقف والوحدات.",
+          "learningObjective": "تفسير المسافة والزمن والسرعة المتوسطة",
+          "targetSkillCodes": [
+            "PHYS-AVERAGE_SPEED"
+          ],
+          "sameConstruct": true,
+          "assistanceExposure": false,
+          "evaluationMode": "learning_only",
+          "textAr": "يسير عامل توصيل في خط مستقيم ١٢٠ مترًا خلال ٣٠ ثانية، ويتوقف ١٠ ثوان ثم يسير ٨٠ مترًا خلال ٢٠ ثانية. هل يقطع ٢٠٠ متر ضمن دقيقة؟ وضح أثر التوقف والوحدات."
+        }
+      ],
+      "publicRubric": [
+        {
+          "code": "understanding",
+          "titleAr": "فهم المهمة",
+          "descriptionAr": "حدد الهدف والمعطيات والقيود.",
+          "levels": [
+            {
+              "code": "needs_support",
+              "labelAr": "يحتاج دعمًا",
+              "descriptionAr": "المتطلبات غير واضحة."
+            },
+            {
+              "code": "documented",
+              "labelAr": "موثق",
+              "descriptionAr": "الهدف والحدود والتبرير موثقة."
+            }
+          ]
+        },
+        {
+          "code": "reasoning",
+          "titleAr": "التفسير والمراجعة",
+          "descriptionAr": "فسر قرارك وبيّن ما راجعته.",
+          "levels": [
+            {
+              "code": "needs_support",
+              "labelAr": "يحتاج دعمًا",
+              "descriptionAr": "التبرير يحتاج تطويرًا."
+            },
+            {
+              "code": "documented",
+              "labelAr": "موثق",
+              "descriptionAr": "فحص الافتراضات والنتيجة موثق."
+            }
+          ]
+        }
+      ],
+      "privateEvaluation": {
+        "privateRubric": [
+          {
+            "criterionCode": "understanding",
+            "noteAr": "مراجعة بشرية مطلوبة للسياق."
+          }
+        ],
+        "hints": [
+          {
+            "level": "H1",
+            "textAr": "ما المعطيات والمطلوب؟ اكتب الوحدات والقيود."
+          },
+          {
+            "level": "H2",
+            "textAr": "جرّب حالة بسيطة ثم افحص تعميم خطتك."
+          },
+          {
+            "level": "H3",
+            "textAr": "راجع الافتراضات وحدود النتيجة في السياق."
+          }
+        ],
+        "solutionKey": "هذه إرشادات مراجعة اصطناعية خاصة للاختبار؛ لا تمنح اعتمادًا علميًا."
+      },
+      "type": "project_based",
+      "projectLevel": "micro",
+      "drivingQuestionAr": "اعرض خطة رحلة خطية موثقة بالزمن والوحدات.",
+      "lessonRevisionIds": [],
+      "milestones": [
+        {
+          "code": "plan",
+          "titleAr": "التخطيط",
+          "descriptionAr": "حدد المشكلة والمتطلبات وخطة المنتج.",
+          "requiredArtifactKind": "text",
+          "required": true
+        },
+        {
+          "code": "build",
+          "titleAr": "بناء النموذج",
+          "descriptionAr": "اكتب نموذجك والافتراضات والحالات التجريبية.",
+          "requiredArtifactKind": "text",
+          "required": true
+        },
+        {
+          "code": "reflect",
+          "titleAr": "المراجعة والتأمل",
+          "descriptionAr": "وثق التعديلات بعد النقد والاختبار.",
+          "requiredArtifactKind": "text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "schemaVersion": "c-activity-v1",
+      "subject": "programming",
+      "code": "CODE-C-J1",
+      "titleAr": "آلة حساب رسوم",
+      "objectives": [
+        "تفسير شروط خوارزمية بسيطة"
+      ],
+      "skillCodes": [
+        "PY-CONDITIONS"
+      ],
+      "prerequisiteSkillCodes": [],
+      "publicBriefAr": "صمم خوارزمية رسوم مع حالات حافة واختبارات متوقعة.",
+      "familyCode": "CODE-C-TRAINING-J1",
+      "supportPolicy": {
+        "hintsAllowed": true,
+        "revealMode": "after_submit"
+      },
+      "representations": [
+        {
+          "code": "text",
+          "kind": "text",
+          "titleAr": "الوصف النصي",
+          "accessibleText": "تقدم مكتبة رسم اشتراك ثابتًا ورسمًا لكل استعارة. صمم وصفًا لخوارزمية تحدد الرسم للحالات الحدية، وناقش المدخلات غير الصالحة. هذا نشاط غير تنفيذي.",
+          "learningObjective": "تفسير شروط خوارزمية بسيطة",
+          "targetSkillCodes": [
+            "PY-CONDITIONS"
+          ],
+          "sameConstruct": true,
+          "assistanceExposure": false,
+          "evaluationMode": "learning_only",
+          "textAr": "تقدم مكتبة رسم اشتراك ثابتًا ورسمًا لكل استعارة. صمم وصفًا لخوارزمية تحدد الرسم للحالات الحدية، وناقش المدخلات غير الصالحة. هذا نشاط غير تنفيذي."
+        }
+      ],
+      "publicRubric": [
+        {
+          "code": "understanding",
+          "titleAr": "فهم المهمة",
+          "descriptionAr": "حدد الهدف والمعطيات والقيود.",
+          "levels": [
+            {
+              "code": "needs_support",
+              "labelAr": "يحتاج دعمًا",
+              "descriptionAr": "المتطلبات غير واضحة."
+            },
+            {
+              "code": "documented",
+              "labelAr": "موثق",
+              "descriptionAr": "الهدف والحدود والتبرير موثقة."
+            }
+          ]
+        },
+        {
+          "code": "reasoning",
+          "titleAr": "التفسير والمراجعة",
+          "descriptionAr": "فسر قرارك وبيّن ما راجعته.",
+          "levels": [
+            {
+              "code": "needs_support",
+              "labelAr": "يحتاج دعمًا",
+              "descriptionAr": "التبرير يحتاج تطويرًا."
+            },
+            {
+              "code": "documented",
+              "labelAr": "موثق",
+              "descriptionAr": "فحص الافتراضات والنتيجة موثق."
+            }
+          ]
+        }
+      ],
+      "privateEvaluation": {
+        "privateRubric": [
+          {
+            "criterionCode": "understanding",
+            "noteAr": "مراجعة بشرية مطلوبة للسياق."
+          }
+        ],
+        "hints": [
+          {
+            "level": "H1",
+            "textAr": "ما المعطيات والمطلوب؟ اكتب الوحدات والقيود."
+          },
+          {
+            "level": "H2",
+            "textAr": "جرّب حالة بسيطة ثم افحص تعميم خطتك."
+          },
+          {
+            "level": "H3",
+            "textAr": "راجع الافتراضات وحدود النتيجة في السياق."
+          }
+        ],
+        "solutionKey": "هذه إرشادات مراجعة اصطناعية خاصة للاختبار؛ لا تمنح اعتمادًا علميًا."
+      },
+      "type": "project_based",
+      "projectLevel": "micro",
+      "drivingQuestionAr": "صمم خوارزمية رسوم مع حالات حافة واختبارات متوقعة.",
+      "lessonRevisionIds": [],
+      "milestones": [
+        {
+          "code": "plan",
+          "titleAr": "التخطيط",
+          "descriptionAr": "حدد المشكلة والمتطلبات وخطة المنتج.",
+          "requiredArtifactKind": "text",
+          "required": true
+        },
+        {
+          "code": "build",
+          "titleAr": "بناء النموذج",
+          "descriptionAr": "اكتب نموذجك والافتراضات والحالات التجريبية.",
+          "requiredArtifactKind": "text",
+          "required": true
+        },
+        {
+          "code": "reflect",
+          "titleAr": "المراجعة والتأمل",
+          "descriptionAr": "وثق التعديلات بعد النقد والاختبار.",
+          "requiredArtifactKind": "text",
+          "required": true
+        }
+      ]
+    }
+  ]
+}

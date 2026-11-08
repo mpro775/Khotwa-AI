@@ -12,6 +12,10 @@ export type ActivityKind =
   | "challenge"
   | "reflection";
 export interface ActivityAlternative {
+  advancedActivity?: {
+    kind: "problem_based" | "project_based";
+    blockIndex: number;
+  };
   labBlockIndex?: number;
   labKind?: string;
   activityKind: ActivityKind;
@@ -20,6 +24,10 @@ export interface ActivityAlternative {
   reasonCode: string;
 }
 export interface NextActivityDecision {
+  advancedActivity?: {
+    kind: "problem_based" | "project_based";
+    blockIndex: number;
+  };
   labBlockIndex?: number;
   labKind?: string;
   id: string;
@@ -39,6 +47,10 @@ export interface NextActivityDecision {
   expiresAt: string;
 }
 export interface LearningActivity {
+  advancedActivity?: {
+    kind: "problem_based" | "project_based";
+    blockIndex: number;
+  };
   labBlockIndex?: number;
   labKind?: string;
   id: string;

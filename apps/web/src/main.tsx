@@ -2,6 +2,7 @@ import { StrictMode, lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import "./style.css";
 import "./workspace.css";
+import "./advanced-learning/advanced-learning.css";
 import { ProductShell } from "./ProductShell";
 const EditorLab = lazy(() =>
   import("./ArabicEditor").then((module) => ({ default: module.ArabicEditor })),

@@ -13,6 +13,8 @@
     "packages/*"
   ],
   "scripts": {
+    "test:advanced": "npm run build --workspace @khotwa/api && node --test apps/api/tests/advanced-learning-analytics.test.mjs apps/api/tests/advanced-learning-studio.test.mjs apps/api/tests/advanced-learning-workflows.test.mjs apps/web/tests/advanced-learning.test.mjs",
+    "test:advanced:integration": "npm run build --workspace @khotwa/api && node tools/test-advanced-learning.mjs",
     "test:labs": "npm run build --workspace @khotwa/api && node --test apps/api/tests/stem-math-lab.test.mjs apps/api/tests/stem-models.test.mjs apps/api/tests/stem-lab-state.test.mjs apps/api/tests/stem-contracts.test.mjs apps/web/tests/stem-labs.test.mjs",
     "test:labs:integration": "npm run build --workspace @khotwa/api && node tools/test-stem-labs.mjs",
     "test:intelligent": "npm run build --workspace @khotwa/api && node --test apps/api/tests/intelligent-core.test.mjs apps/api/tests/intelligent-learning-experiences.test.mjs apps/api/tests/learning-paths.test.mjs apps/web/tests/intelligent-learning.test.mjs apps/web/tests/learning-paths.test.mjs",

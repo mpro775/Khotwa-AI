@@ -80,13 +80,19 @@ export async function readLabExposures(
       subject: string;
       created_at: Date;
       contexts: LabContextExposure[];
+      exposed_families: string[];
     }[]
-  >`SELECT data->>'familyCode' AS family,data->>'subject' AS subject,created_at,COALESCE(data->'contextExposures','[]'::jsonb) AS contexts FROM intelligent_learning_records WHERE owner_key=${ownerKey} AND kind='lab'`;
+  >`SELECT data->>'familyCode' AS family,data->>'subject' AS subject,created_at,COALESCE(data->'contextExposures','[]'::jsonb) AS contexts,COALESCE(data->'exposedFamilies','[]'::jsonb) AS exposed_families FROM intelligent_learning_records WHERE owner_key=${ownerKey} AND kind IN ('lab','problem_session','project_run')`;
   const viewed = await tx.$queryRaw<
     { payload: LessonPayload; exposed_at: Date }[]
   >`SELECT r.payload,min(e.created_at) AS exposed_at FROM learning_content_revisions r JOIN learning_lesson_events e ON e.lesson_revision_id=r.id WHERE e.owner_key=${ownerKey} AND r.payload->>'kind'='lesson' GROUP BY r.id,r.payload`;
   const exposures = [
-    ...sessions,
+    ...sessions.flatMap((s) =>
+      [...new Set([s.family, ...(s.exposed_families ?? [])])].map((family) => ({
+        ...s,
+        family,
+      })),
+    ),
     ...viewed.flatMap((v) =>
       v.payload.contentBlocks.flatMap((b) =>
         b.lab
@@ -101,7 +107,16 @@ export async function readLabExposures(
                 })),
               },
             ]
-          : [],
+          : b.activity
+            ? [
+                {
+                  family: b.activity.familyCode,
+                  subject: b.activity.subject,
+                  created_at: v.exposed_at,
+                  contexts: [],
+                },
+              ]
+            : [],
       ),
     ),
   ];

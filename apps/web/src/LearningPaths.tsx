@@ -40,6 +40,9 @@ import {
 import { LessonRenderer } from "./LessonRenderer";
 import { MathInput } from "./MathInput";
 import { StemLabPlayer } from "./StemLabs";
+import { ProblemJourney } from "./advanced-learning/ProblemJourney";
+import { ProjectWorkspace } from "./advanced-learning/ProjectWorkspace";
+import { LearningAnalyticsDashboard } from "./advanced-learning/LearningAnalyticsDashboard";
 import {
   DeepDiagnosisPanel,
   IntelligentLearningPanel,
@@ -200,7 +203,16 @@ export function LearningPaths({ api }: { api: ProductApi }) {
     [error, setError] = useState(""),
     [notice, setNotice] = useState("");
   const [labIndex, setLabIndex] = useState<number | null>(null);
-  useEffect(() => setLabIndex(null), [track?.id]);
+  const [activityIndex, setActivityIndex] = useState<number | null>(null);
+  const [nativeSupport, setNativeSupport] = useState<{
+    kind: "scaffold" | "tutor" | "reflection";
+    id: string;
+  } | null>(null);
+  useEffect(() => {
+    setLabIndex(null);
+    setActivityIndex(null);
+    setNativeSupport(null);
+  }, [track?.id]);
   const selection = (next: Partial<PathSelection> = {}) => ({
     subject,
     trackId: track?.id ?? null,
@@ -321,7 +333,11 @@ export function LearningPaths({ api }: { api: ProductApi }) {
       );
     });
   }
-  async function openLesson(id: string, openLabIndex?: number) {
+  async function openLesson(
+    id: string,
+    openLabIndex?: number,
+    openActivityIndex?: number,
+  ) {
     await work(async (version) => {
       const next = await api.request(`/learning/lessons/${id}`, lessonDetail);
       await api.request(`/learning/lessons/${id}/progress`, record, "POST", {
@@ -330,6 +346,7 @@ export function LearningPaths({ api }: { api: ProductApi }) {
       if (version !== epoch.current) return;
       setLesson(next);
       setLabIndex(openLabIndex ?? null);
+      setActivityIndex(openActivityIndex ?? null);
       setSummary(null);
       setSession(null);
       setNotice(
@@ -520,6 +537,10 @@ export function LearningPaths({ api }: { api: ProductApi }) {
             assessment={session}
             onOpenLesson={(id) => void openLesson(id)}
             onOpenLab={(id, index) => void openLesson(id, index)}
+            onOpenAdvanced={(id, index) =>
+              void openLesson(id, undefined, index)
+            }
+            nativeSupport={nativeSupport}
             onAssessment={(next) => {
               if (next.trackRevisionId !== track.id) return;
               setSession(next);
@@ -602,6 +623,11 @@ export function LearningPaths({ api }: { api: ProductApi }) {
                   />
                 </section>
               )}
+              <LearningAnalyticsDashboard
+                key={track.id}
+                api={api}
+                trackRevisionId={track.id}
+              />
             </>
           )}
           {lesson && !session && lesson.payload.kind === "lesson" && (
@@ -617,7 +643,43 @@ export function LearningPaths({ api }: { api: ProductApi }) {
                 validation={lesson.validation}
                 onPractice={() => void start("practice")}
                 onLab={setLabIndex}
+                onActivity={setActivityIndex}
               />
+              {activityIndex !== null &&
+                (() => {
+                  const activity =
+                    lesson.payload.kind === "lesson"
+                      ? lesson.payload.contentBlocks[activityIndex]?.activity
+                      : undefined;
+                  const common = {
+                    api,
+                    trackRevisionId: track.id,
+                    lessonRevisionId: lesson.id,
+                    blockIndex: activityIndex,
+                    onClose: () => setActivityIndex(null),
+                    onLab: setLabIndex,
+                    onNativeSupport: setNativeSupport,
+                    onIndependent: (assessment: AssessmentSession) => {
+                      setActivityIndex(null);
+                      setSession(assessment);
+                      setSummary(null);
+                      remember(selection({ assessmentId: assessment.id }));
+                    },
+                  };
+                  return activity?.type === "problem_based" ? (
+                    <ProblemJourney
+                      key={`${lesson.id}:problem:${activityIndex}`}
+                      {...common}
+                      activity={activity}
+                    />
+                  ) : activity?.type === "project_based" ? (
+                    <ProjectWorkspace
+                      key={`${lesson.id}:project:${activityIndex}`}
+                      {...common}
+                      activity={activity}
+                    />
+                  ) : null;
+                })()}
               {labIndex !== null && (
                 <StemLabPlayer
                   key={`${lesson.id}:${labIndex}`}

@@ -58,6 +58,7 @@ export async function productMutation<T>(
   operation: string,
   body: unknown,
   work: (tx: Prisma.TransactionClient) => Promise<T>,
+  authorizeReplay?: (tx: Prisma.TransactionClient) => Promise<void>,
 ): Promise<T> {
   const key = idempotencyHeader(request.headers["idempotency-key"]);
   const digest = store.security.keyDigest(key);
@@ -74,6 +75,9 @@ export async function productMutation<T>(
       } else if (owner.guestAuth)
         await store.authorizeInTransaction(tx, owner.guestAuth);
       else throw new ApiFault(401, "unauthenticated", "ابدأ جلسة للمتابعة.");
+      // Domain guards must protect cached responses too, including when release
+      // mode or account provenance has changed since the original request.
+      if (authorizeReplay) await authorizeReplay(tx);
       const [old] = await tx.$queryRaw<
         { fingerprint: string; response_cache: T }[]
       >`SELECT fingerprint,response_cache FROM product_mutations WHERE owner_key=${owner.ownerKey} AND operation=${operation} AND key_digest=${digest} AND expires_at>now()`;
