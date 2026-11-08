@@ -1,0 +1,48 @@
+{
+  "recordedAt": "2026-11-08T04:22:01.224Z",
+  "node": "v26.7.0",
+  "platform": "win32",
+  "scope": "One focused synthetic HTTP journey; ephemeral test DB and real private math; no paid AI, runner, production or load tests. Test workflow actors do not constitute human content approval.",
+  "checks": [
+    {
+      "command": "Docker readiness",
+      "exitCode": 0,
+      "stdout": "29.9.1\n",
+      "stderr": "",
+      "seconds": 0.893
+    },
+    {
+      "command": "isolated Prisma migrate deploy",
+      "exitCode": 0,
+      "stdout": "Datasource \"db\": PostgreSQL database \"v22_test\", schema \"public\" at \"127.0.0.1:42575\"\n\n24 migrations found in prisma/migrations\n\nApplying migration `0001_ph04`\nApplying migration `0002_current_version_key`\nApplying migration `0003_content_integrity`\nApplying migration `0004_verification_reports`\nApplying migration `0005_conservative_diagnosis`\nApplying migration `0006_guided_tutoring`\nApplying migration `0007_preserve_legacy_assistance`\nApplying migration `0008_learning_episodes`\nApplying migration `0009_current_progress`\nApplying migration `0010_guest_retention`\nApplying migration `0011_accounts`\nApplying migration `0012_product_content`\nApplying migration `0013_beta`\nApplying migration `0014_studio_integrity`\nApplying migration `0015_roadmap_retention`\nApplying migration `0016_claimed_guest_retention`\nApplying migration `0018_durable_runner_work`\nApplying migration `0019_physics_learning`\nApplying migration `0020_learning_ai_consents`\nApplying migration `0021_learning_paths`\nApplying migration `0022_learning_assessments`\nApplying migration `0023_intelligent_learning_a`\nApplying migration `0024_stem_labs_b`\nApplying migration `0025_advanced_learning_c`\n\nThe following migration(s) have been applied:\n\nmigrations/\n  └─ 0001_ph04/\n    └─ migration.sql\n  └─ 0002_current_version_key/\n    └─ migration.sql\n  └─ 0003_content_integrity/\n    └─ migration.sql\n  └─ 0004_verification_reports/\n    └─ migration.sql\n  └─ 0005_conservative_diagnosis/\n    └─ migration.sql\n  └─ 0006_guided_tutoring/\n    └─ migration.sql\n  └─ 0007_preserve_legacy_assistance/\n    └─ migration.sql\n  └─ 0008_learning_episodes/\n    └─ migration.sql\n  └─ 0009_current_progress/\n    └─ migration.sql\n  └─ 0010_guest_retention/\n    └─ migration.sql\n  └─ 0011_accounts/\n    └─ migration.sql\n  └─ 0012_product_content/\n    └─ migration.sql\n  └─ 0013_beta/\n    └─ migration.sql\n  └─ 0014_studio_integrity/\n    └─ migration.sql\n  └─ 0015_roadmap_retention/\n    └─ migration.sql\n  └─ 0016_claimed_guest_retention/\n    └─ migration.sql\n  └─ 0018_durable_runner_work/\n    └─ migration.sql\n  └─ 0019_physics_learning/\n    └─ migration.sql\n  └─ 0020_learning_ai_consents/\n    └─ migration.sql\n  └─ 0021_learning_paths/\n    └─ migration.sql\n  └─ 0022_learning_assessments/\n    └─ migration.sql\n  └─ 0023_intelligent_learning_a/\n    └─ migration.sql\n  └─ 0024_stem_labs_b/\n    └─ migration.sql\n  └─ 0025_advanced_learning_c/\n    └─ migration.sql\n\nAll migrations have been successfully applied.\n",
+      "stderr": "Loaded Prisma config from apps\\api\\prisma.config.ts.\n\nPrisma schema loaded from apps\\api\\prisma\\schema.prisma.\n",
+      "seconds": 5.027
+    },
+    {
+      "command": "focused V2.2 NestJS/PostgreSQL/SymPy HTTP journey",
+      "exitCode": 0,
+      "stdout": "▶ V2.2 focused synthetic author/student journey uses actual NestJS PostgreSQL and SymPy\n  ✔ author validates with real math and publishes only through role-controlled workflow; drafts stay private (1468.594ms)\n  ✔ A3 reviewed-for-test probe updates a possible hypothesis without changing the native verdict (2067.0835ms)\n  ✔ A1/A4 safe decision read does not expose examples; deterministic reuse, owner, CAS and replay (893.4381ms)\n  ✔ A2/A8 plan and prediction never create mastery; new native independent answers can achieve a goal (2754.9621ms)\n  ✔ A5 persisted schedules are deduplicated; injected deadline does not manufacture retention (776.1317ms)\n  ✔ A6 persists one-step disclosures and owner history without awarding independence (360.2079ms)\n  ✔ A7 offline dialogue resumes, rejects unconfirmed H4 and exits independent measurement before help (1313.8046ms)\n  ✔ A-SEC-02 explicit guest claim moves A history atomically; export is owner-safe and deletion revokes access (612.2927ms)\n  ✔ A6 native S0→S1→S2→S3→S4 uses reviewed-for-test distinct questions and real verifier (4033.2437ms)\n  ✔ assessment is pinned, independently verified, idempotent and private (4160.0867ms)\n  ✔ H2 practice stays assisted; fresh post-remediation questions produce actual evidence (2865.391ms)\n  ✔ published revisions remain pinned after the author creates and publishes a new revision (891.2559ms)\n  ✔ physics uses the shared path with actual value/unit verification; programming stays read-only without Runner (3161.6075ms)\n✔ V2.2 focused synthetic author/student journey uses actual NestJS PostgreSQL and SymPy (29258.4546ms)\nℹ Verified 238 HTTP responses against canonical OpenAPI; PostgreSQL17.6 and actual SymPy; synthetic test actors only.\nℹ tests 14\nℹ suites 0\nℹ pass 14\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 32543.5471\n",
+      "stderr": "",
+      "seconds": 32.844
+    }
+  ],
+  "failure": null,
+  "resourcesCreated": [
+    "khotwa-v22-2367d47b957a-db",
+    "khotwa-v22-2367d47b957a-math"
+  ],
+  "cleanup": [
+    {
+      "name": "khotwa-v22-2367d47b957a-math",
+      "exitCode": 0
+    },
+    {
+      "name": "khotwa-v22-2367d47b957a-db",
+      "exitCode": 0
+    }
+  ],
+  "resourcesCleanedUp": [
+    "khotwa-v22-2367d47b957a-math",
+    "khotwa-v22-2367d47b957a-db"
+  ]
+}

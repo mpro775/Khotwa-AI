@@ -2,6 +2,11 @@ import { spawnSync } from "node:child_process";
 import { randomBytes } from "node:crypto";
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import {
+  cleanupTestContainers,
+  integrationReportPath,
+  syntheticIntegrationEnvironment,
+} from "./integration-test-options.mjs";
 
 // Only resources created with this random invocation prefix can be migrated or
 // removed. No existing developer or production database is selected.
@@ -28,8 +33,13 @@ const redact = (value) =>
     value ?? "",
   );
 const checks = [],
-  created = [],
-  cleanup = [];
+  created = [];
+const reportFile = integrationReportPath(
+  process.argv.slice(2),
+  process.argv.includes("--report-c-regression")
+    ? "qa-reports/C-ADVANCED-LEARNING/B-REGRESSION.json"
+    : "qa-reports/B-INTEGRATION.json",
+);
 let failure = null;
 function command(executable, args, env = process.env) {
   const started = Date.now();
@@ -61,6 +71,7 @@ try {
   docker(["image", "inspect", "khotwa-mvp-local-math:latest"]);
   docker([
     "run",
+    "--pull=never",
     "-d",
     "--name",
     database,
@@ -85,6 +96,7 @@ try {
   created.push(database);
   docker([
     "run",
+    "--pull=never",
     "-d",
     "--name",
     math,
@@ -111,7 +123,7 @@ try {
   const dbPort = docker(["port", database, "5432/tcp"]).split(":").at(-1),
     mathPort = docker(["port", math, "8001/tcp"]).split(":").at(-1);
   const env = {
-    ...process.env,
+    ...syntheticIntegrationEnvironment(),
     ...secrets,
     B_INTEGRATION: "true",
     B_TEST_CONTAINER: database,
@@ -215,15 +227,14 @@ try {
   console.error(failure);
   process.exitCode = 1;
 } finally {
-  for (const name of created.reverse()) {
-    const result = command("docker", ["rm", "-f", name]);
-    cleanup.push({ name, exitCode: result.exitCode });
+  const cleanup = cleanupTestContainers(created, command);
+  if (cleanup.some((result) => result.exitCode !== 0)) {
+    failure ??= "Task-owned resource cleanup failed";
+    process.exitCode = 1;
   }
-  mkdirSync("qa-reports", { recursive: true });
+  mkdirSync(path.dirname(reportFile), { recursive: true });
   writeFileSync(
-    process.argv.includes("--report-c-regression")
-      ? "qa-reports/C-ADVANCED-LEARNING/B-REGRESSION.json"
-      : "qa-reports/B-INTEGRATION.json",
+    reportFile,
     JSON.stringify(
       {
         recordedAt: new Date().toISOString(),

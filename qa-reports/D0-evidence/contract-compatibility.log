@@ -1,0 +1,8 @@
+{
+  "baseline": "6a4b6cb",
+  "status": "PASS_TESTED",
+  "existingPathObjectsPreserved": 114,
+  "existingSchemasPreservedExceptAuthorizedAdditions": 282,
+  "newPaths": 25,
+  "newSchemas": 42
+}

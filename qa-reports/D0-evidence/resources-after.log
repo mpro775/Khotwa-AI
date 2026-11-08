@@ -1,0 +1,8 @@
+2881cdcb0ea0 khotwa-v22-manual-ac31c8bbb3-math khotwa-mvp-local-math:latest
+f423cea08c0a khotwa-v22-manual-ac31c8bbb3-db postgres:17.6-alpine3.22
+e990e357e93c khotwa-ph09-86f18b7263f8-math-proxy-1 khotwa-mvp-local-tools
+11c7c9e0c127 khotwa-ph09-86f18b7263f8-retention-1 khotwa-mvp-local-tools
+126f48eab3fa khotwa-ph09-86f18b7263f8-web-1 7b69f3d57474
+3cf7f484a505 khotwa-ph09-86f18b7263f8-api-1 275b4e663651
+8aca5e288228 khotwa-ph09-86f18b7263f8-db postgres:17.6-alpine3.22
+6f42c01cd088 khotwa-ph09-86f18b7263f8-math f089a90c73b5

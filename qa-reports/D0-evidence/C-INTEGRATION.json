@@ -1,0 +1,45 @@
+{
+  "recordedAt": "2026-11-08T04:26:19.752Z",
+  "node": "v26.7.0",
+  "platform": "win32",
+  "scope": "Focused synthetic C HTTP acceptance on newly created disposable PostgreSQL and private real SymPy; no existing database, production, third party, paid AI, student-code execution or fabricated human approval.",
+  "checks": [
+    {
+      "command": "Docker readiness",
+      "exitCode": 0,
+      "stdout": "29.9.1\n",
+      "stderr": "",
+      "seconds": 1.485
+    },
+    {
+      "command": "isolated c_test migrate deploy",
+      "exitCode": 0,
+      "stdout": "Datasource \"db\": PostgreSQL database \"c_test\", schema \"public\" at \"127.0.0.1:44326\"\n\n24 migrations found in prisma/migrations\n\nApplying migration `0001_ph04`\nApplying migration `0002_current_version_key`\nApplying migration `0003_content_integrity`\nApplying migration `0004_verification_reports`\nApplying migration `0005_conservative_diagnosis`\nApplying migration `0006_guided_tutoring`\nApplying migration `0007_preserve_legacy_assistance`\nApplying migration `0008_learning_episodes`\nApplying migration `0009_current_progress`\nApplying migration `0010_guest_retention`\nApplying migration `0011_accounts`\nApplying migration `0012_product_content`\nApplying migration `0013_beta`\nApplying migration `0014_studio_integrity`\nApplying migration `0015_roadmap_retention`\nApplying migration `0016_claimed_guest_retention`\nApplying migration `0018_durable_runner_work`\nApplying migration `0019_physics_learning`\nApplying migration `0020_learning_ai_consents`\nApplying migration `0021_learning_paths`\nApplying migration `0022_learning_assessments`\nApplying migration `0023_intelligent_learning_a`\nApplying migration `0024_stem_labs_b`\nApplying migration `0025_advanced_learning_c`\n\nThe following migration(s) have been applied:\n\nmigrations/\n  └─ 0001_ph04/\n    └─ migration.sql\n  └─ 0002_current_version_key/\n    └─ migration.sql\n  └─ 0003_content_integrity/\n    └─ migration.sql\n  └─ 0004_verification_reports/\n    └─ migration.sql\n  └─ 0005_conservative_diagnosis/\n    └─ migration.sql\n  └─ 0006_guided_tutoring/\n    └─ migration.sql\n  └─ 0007_preserve_legacy_assistance/\n    └─ migration.sql\n  └─ 0008_learning_episodes/\n    └─ migration.sql\n  └─ 0009_current_progress/\n    └─ migration.sql\n  └─ 0010_guest_retention/\n    └─ migration.sql\n  └─ 0011_accounts/\n    └─ migration.sql\n  └─ 0012_product_content/\n    └─ migration.sql\n  └─ 0013_beta/\n    └─ migration.sql\n  └─ 0014_studio_integrity/\n    └─ migration.sql\n  └─ 0015_roadmap_retention/\n    └─ migration.sql\n  └─ 0016_claimed_guest_retention/\n    └─ migration.sql\n  └─ 0018_durable_runner_work/\n    └─ migration.sql\n  └─ 0019_physics_learning/\n    └─ migration.sql\n  └─ 0020_learning_ai_consents/\n    └─ migration.sql\n  └─ 0021_learning_paths/\n    └─ migration.sql\n  └─ 0022_learning_assessments/\n    └─ migration.sql\n  └─ 0023_intelligent_learning_a/\n    └─ migration.sql\n  └─ 0024_stem_labs_b/\n    └─ migration.sql\n  └─ 0025_advanced_learning_c/\n    └─ migration.sql\n\nAll migrations have been successfully applied.\n",
+      "stderr": "Loaded Prisma config from apps\\api\\prisma.config.ts.\n\nPrisma schema loaded from apps\\api\\prisma\\schema.prisma.\n",
+      "seconds": 3.039
+    },
+    {
+      "command": "focused C synthetic real HTTP journey",
+      "exitCode": 0,
+      "stdout": "▶ C synthetic actual NestJS PostgreSQL SymPy journey\n  ✔ C contracts auth public redaction draft exposure and published activities (426.4082ms)\n  ✔ C1 session owner/CAS/idempotency/race and synthetic real HTTP stages (1387.8889ms)\n  ✔ C2 revision-requested immutable artifact then accepted final human-review mechanism (1482.6055ms)\n  ✔ C5 reconcile replay safe, honest nulls, role restrictions, no learner text (1170.4707ms)\n  ✔ C OFF preserves read-only state and rejects writes/replayed starts (44.2475ms)\n  ✔ C4 author/reviewer hash scopes gate, versioned publishing, no self approval (644.4732ms)\n  ✔ C claim atomically transfers runs/artifacts, clears stale projection and supports safe export/deletion (546.9978ms)\n  ✔ C guest retention purge removes dependent artifacts and derived analytics through existing policy (301.0644ms)\n  ✔ C domain TEST_ONLY answers verified by real SymPy before fixture publication (116.3488ms)\n  ✔ C1 real SymPy wrong/correct alternate final retains learning-only and redacts evidence (391.0996ms)\n  ✔ C1 closed native support gate then owner-scoped real offline A7 bridge (337.7058ms)\n  ✔ C1 delayed real domain response cannot overwrite edited stage (169.012ms)\n  ✔ C1 assisted completion hands off only novel families to canonical A2 real verifier (839.0015ms)\n  ✔ C2 explicit pause/resume/withdraw preserves immutable workflow boundary (219.5047ms)\n✔ C synthetic actual NestJS PostgreSQL SymPy journey (12176.5786ms)\nℹ tests 15\nℹ suites 0\nℹ pass 15\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 12522.0059\n",
+      "stderr": "",
+      "seconds": 12.632
+    },
+    {
+      "command": "task-owned c_test pg_dump/restore into new c_restore",
+      "exitCode": 0,
+      "counts": "10:6:2"
+    }
+  ],
+  "failure": null,
+  "cleanup": [
+    {
+      "name": "khotwa-c-05debf71b581-math",
+      "exitCode": 0
+    },
+    {
+      "name": "khotwa-c-05debf71b581-db",
+      "exitCode": 0
+    }
+  ]
+}

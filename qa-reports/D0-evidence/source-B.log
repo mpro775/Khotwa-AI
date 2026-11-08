@@ -1,0 +1,103 @@
+
+> khotwa-ai@0.1.0 test:labs
+> npm run build --workspace @khotwa/api && node --test apps/api/tests/stem-math-lab.test.mjs apps/api/tests/stem-models.test.mjs apps/api/tests/stem-lab-state.test.mjs apps/api/tests/stem-contracts.test.mjs apps/web/tests/stem-labs.test.mjs
+
+
+> @khotwa/api@0.1.0 build
+> npm run generate && tsc -p tsconfig.json
+
+
+> @khotwa/api@0.1.0 generate
+> prisma generate --config prisma.config.ts
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+
+✔ Generated Prisma Client (v7.10.1) to .\..\..\node_modules\@prisma\client in 1.18s
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+
+✔ B operations remain compatible in contract v1.5 and later additive v1 releases (3.7587ms)
+✔ B schemas compile and preserve the existing strict A contracts with optional lab targets (639.0533ms)
+✔ B strict public activity union accepts actual projections and rejects hidden keys or a mismatched subject/kind (33.2891ms)
+✔ B author/public lesson split requires domainSpec only for Studio and never on a student block (64.0991ms)
+✔ B Parsons schema rejects solved source while retaining only shuffled public line items (0.8266ms)
+✔ B event and submit schemas require CAS and allowlisted bounded payloads without client verdicts (1.1085ms)
+✔ B session schema enforces neutral evidence and forbids premature artifacts or runner capability (13.5755ms)
+✔ B browser validators reach public STEM schemas only, never author rubrics or expected outputs (4.3135ms)
+✔ B math support is valid only after durable disclosure, and equivalence fallback remains typed (1.8681ms)
+✔ B account export includes safe owner lab history while rejecting answers, artifacts and private specs (22.2198ms)
+✔ B physics value/unit activities publish only quantity and unit allowlist, never the private reference (3.1754ms)
+✔ B content allowlists all six math types and redacts every private key (9.0561ms)
+✔ B subject boundaries, skill gate and unknown executable payloads reject (2.9278ms)
+✔ B public lesson metadata contains no private domain or Parsons solution (6.2562ms)
+✔ B lesson lab skills must be a subset of the owning lesson (0.7705ms)
+✔ B2 prediction must commit before reveal; it is immutable after commit (2.026ms)
+✔ B2 parameter changes invalidate prior derived result and preserve prediction/support (2.6566ms)
+✔ B trace reveals require prediction and sequential support history (0.8846ms)
+✔ B explanation is a bounded self-report, not a domain result (0.7795ms)
+✔ B physics exploration identities retain earlier parameter scenarios (5.0226ms)
+✔ B completion and alternate-method sources enter the exposure identity list (1.2586ms)
+✔ B client cannot supply a verdict or independent evidence through answer (2.1125ms)
+✔ B physics scalar reference must match the visible model identity (3.5641ms)
+✔ B GET-only lesson exposure blocks equivalent physics contexts across families (1.627ms)
+✔ B reuses A1 guided practice for nonexecuting coding, never independent Python (0.7775ms)
+✔ B capabilities stay closed with flags absent and reject real-learning storage (2.0119ms)
+✔ B negative-velocity distance exposure covers signed and magnitude givens without changing positive contexts (2.1798ms)
+✔ B exposure families are scoped to their subject even when algebra and physics share a family code (2.2449ms)
+✔ B1 six domain specifications are strict and public projections redact answer keys (9.0985ms)
+✔ B1 graph and table use one point list with exact decimal stepping (1.0451ms)
+✔ B1 generated points agree with an independent Python Fraction oracle (262.0646ms)
+✔ B1 zero coefficient distinguishes horizontal all-reals and empty intersections (0.8042ms)
+✔ B1 graph bounds prevent unbounded points, nonfinite values and imprecise domains (1.6802ms)
+✔ B1 only first proven invalid transition is selected and later errors remain locked (1.5941ms)
+✔ B1 unsupported before a bad transition returns cannot_determine (0.407ms)
+✔ B1 syntax_error before a bad transition returns cannot_determine (0.2227ms)
+✔ B1 inconclusive before a bad transition returns cannot_determine (0.6583ms)
+✔ B1 service_error before a bad transition returns cannot_determine (0.7321ms)
+✔ B1 throw before a bad transition returns cannot_determine (0.5887ms)
+✔ B1 fraction and trigonometry activities abstain without expanding the algebra scope (0.9258ms)
+✔ B1 equivalent alternative methods remain valid with no forced unique method (2.0571ms)
+✔ B1 author validation rejects a false correct method and an incomplete method (0.7135ms)
+✔ B1 intentional common mistakes require mode plus a proven invalid transition (0.9794ms)
+✔ B1 first-error answer is checked against domain reports, not a client verdict (0.7325ms)
+✔ B1 why selection uses a reviewed key only after a verified transformation (0.6983ms)
+✔ B1 completion and worked reveal remain assisted practice with safe public content (0.7486ms)
+✔ B1 an incorrect student equivalence judgment does not alter the domain verdict (0.3821ms)
+✔ B1 graph observations preserve free text without pretending it is independently verified (0.2536ms)
+✔ B1 duplicate or unknown choice IDs and invalid private author fields are rejected (2.0783ms)
+✔ B2-T02 constant signed motion shares trajectory/table values and stable checksum (6.5718ms)
+✔ B2-T04 reversal splits distance at turning point rather than abs(displacement) (0.7399ms)
+✔ B2 model properties preserve endpoint, translation, distance and signed velocity (4.3976ms)
+✔ B2 zero time, stationary model and bounded sample endpoints stay finite (2.0985ms)
+✔ B2-T05 explicit allowlisted SI conversions keep dimensions separate (1.1758ms)
+✔ B2-T07 unsupported versions, resource floods and extra executable fields are rejected (1.6889ms)
+✔ B3-T01 range(1,4) uses pinned static totals 1,3,6 and output 6 without execution (8.6063ms)
+✔ B3-T02 Parsons validates the order and indentation without exposing the answer (2.2647ms)
+✔ B3-T03 multiple valid orders and reviewed precedence DAGs both accept ties (2.3356ms)
+✔ B3 static debug uses closed reviewed patches, never free form source execution (1.2856ms)
+✔ B3-T04 all static results remain conceptual practice after reveal or success (0.7214ms)
+✔ B3-T09 explicit public projection redacts rubrics, trace states, distractor keys and answers (1.5182ms)
+✔ B3 validates immutable snapshots, empty output, preserved spaces and mismatched trace references (1.7446ms)
+✔ B3 rejects duplicate/unknown lines and inconsistent reviewed orders (1.3894ms)
+✔ B content decoders retain private author data only in Studio, while the lesson preview discloses no key (25.6334ms)
+✔ B1 graph and table use the same signed server values, including zero slope, with accessible labels (56.1785ms)
+✔ B2 a premature artifact remains hidden until prediction/reveal; no client-generated result is accepted (1.8311ms)
+✔ B3 Parsons uses shuffled public lines without a solved source; reorder preserves indentation and offers keyboard controls (3.2842ms)
+✔ B3 disclosed trace values and support are projected explicitly; reference answers remain absent (1.2704ms)
+✔ B abstention feedback is neutral and authored prose is escaped in SVG, status and code (4.0302ms)
+✔ B resume resource IDs are track/lesson/block scoped and cleared on account switch (1.0976ms)
+✔ A1 lab references survive decoding without turning guided practice into a new activity enum (0.8951ms)
+✔ Every author activity kind starts with a complete editable draft template (1771.9823ms)
+✔ B2 scalar exercise exposes its target quantity and its editable template matches the published model (1.7027ms)
+✔ B resume keeps separately saved reflection edits and marks the older submitted outcome stale (0.428ms)
+ℹ tests 74
+ℹ suites 0
+ℹ pass 74
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4495.8132

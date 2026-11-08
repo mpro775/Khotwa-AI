@@ -1,0 +1,95 @@
+
+> khotwa-ai@0.1.0 test:intelligent
+> npm run build --workspace @khotwa/api && node --test apps/api/tests/intelligent-core.test.mjs apps/api/tests/intelligent-learning-experiences.test.mjs apps/api/tests/learning-paths.test.mjs apps/web/tests/intelligent-learning.test.mjs apps/web/tests/learning-paths.test.mjs
+
+
+> @khotwa/api@0.1.0 build
+> npm run generate && tsc -p tsconfig.json
+
+
+> @khotwa/api@0.1.0 generate
+> prisma generate --config prisma.config.ts
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+
+✔ Generated Prisma Client (v7.10.1) to .\..\..\node_modules\@prisma\client in 1.88s
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+
+✔ A1 deterministic priorities and safe eligibility across twelve contexts (6.3716ms)
+✔ A2 exposure and assisted correctness remain separate from independence (5.3075ms)
+✔ A2 distinct comparable current evidence, transfer and technical abstention (3.1841ms)
+✔ A2 retention requires canonical evidence after a spaced anchor, not an overdue clock (1.011ms)
+✔ A3 candidates remain possible and technical states never acquire a misconception (1.1563ms)
+✔ A3 answered probe can support a candidate only with the canonical supported result (0.7234ms)
+✔ A4 required cycles are named, helpful and pending edges never create gates (1.6515ms)
+✔ A4 missing primary coverage stays explicit and graph snapshots are immutable values (2.4259ms)
+✔ A-SEC-01 A1 activity reads are owner scoped even when an ID is known (4.109ms)
+✔ A-SEC-03 exitMeasurement marks canonical attempt as assisted before any tutor reveal (4.8234ms)
+✔ A1 stale evidence is rejected inside the owner mutation while an accepted decision resumes one activity (3.3282ms)
+✔ A4 track publication validates a required cycle without changing its existing published revision (2.7027ms)
+✔ A flags cannot be bypassed through the existing assessment start route (2.3878ms)
+✔ explicit lesson read exposes only returned practice and inline worked references, never hidden assessment refs (3.8975ms)
+✔ practice disclosure contaminates identity, family and equation only at or after the disclosure time (1.5594ms)
+✔ A3 transfer exception requires a synthetic path exit and keeps native transfer and hinted attempts sealed (1.8481ms)
+✔ A5 fake clock day 0→1→3→7→14, experimental intervals and assisted evidence (9.1493ms)
+✔ A6 stage labels never grant independence; reveal history and source snapshot retained (2.4892ms)
+✔ A7 offline bounded dialogue, H4 confirmation, unknown language and hostile provider fallback (3.4494ms)
+✔ A8 self-report cannot satisfy goals; distinct later verified problems only (0.8349ms)
+✔ A5 orchestration schedules/deduplicates without content exposure, and rejects another owner (15.3138ms)
+✔ A5 start replay creates one native measurement; finish uses canonical independent status (12.5357ms)
+✔ A5 timing and current anchor are checked against canonical verification, not browser clock (5.6915ms)
+✔ A8 concurrent evidence edit rejects checkin rather than persisting stale achievement (13.8974ms)
+✔ A6 full stage lifecycle keeps S0/S1 assisted and uses distinct native S4 check (15.2996ms)
+✔ A7 independent tutor requires explicit exit; resume safe H4 and owner checks (5.9255ms)
+✔ A5 invalidated source never leaves started/null and is excluded from actionable due reviews (4.1621ms)
+✔ A5 no fresh coverage preserves schedule with no false failure or success (3.3705ms)
+✔ A features remain inaccessible outside the synthetic boundary and when flags are off (1.5184ms)
+✔ A7 standalone H4 uses validated source examples and confirmation; replay survives ended state (6.1615ms)
+✔ A8 confidence 100 and reflection do not increase goal count; replay/CAS/owner bounded (5.4889ms)
+✔ A7 current canonical unit error and technical abstention guide dialogue without judging student text (3.5907ms)
+✔ A8 goal edits preserve the starting evidence baseline and reject empty changes (2.6631ms)
+✔ A8 reflection refuses stale verification snapshot at persistence time (1.1872ms)
+✔ A6 support during S4 exits measurement and requires a fresh native question generation (6.5048ms)
+✔ only exposure before a verified submission affects that historical independent result (2.7059ms)
+✔ one error is tentative; repeated independent errors retain auditable evidence (6.2918ms)
+✔ repeated steps and retries of one problem cannot supply two independent problems (0.7554ms)
+✔ support never becomes independent evidence and outages do not become errors (0.9269ms)
+✔ two later successes at comparable difficulty can replace a previous review need (1.2793ms)
+✔ recommendations exclude unpublished lessons and pending mappings (1.576ms)
+✔ a reviewed prerequisite with negative evidence is offered before its dependent lesson (1.033ms)
+✔ lesson parsing rejects invented skills, blocked fractions and another subject's example (3.6924ms)
+✔ lesson validation cannot approve an invalid transformation or unpublished problem link (9.9357ms)
+✔ assessment requests reject client verdicts, extra owner keys and missing revisions (180.1702ms)
+✔ all V2.2 schemas compile without unresolved references (3450.3172ms)
+✔ V2.2 NestJS routes and success codes are documented in canonical OpenAPI (3.4129ms)
+✔ A1 public decision/activity decoders exclude private keys and reject unknown activity kinds (4.6641ms)
+✔ A2 assisted evidence does not become independent or a percentage in the rendered UI (186.7462ms)
+✔ A2 malformed dimension cannot be shown as trusted progress (0.7348ms)
+✔ A3 diagnosis projection keeps hypotheses tentative and strips probe answers (0.6517ms)
+✔ A4 graph renders reviewed coverage only as actionable lesson links (3.6241ms)
+✔ A5 scheduled/deferred review states do not invent retention success (0.9515ms)
+✔ A6 scaffold decoder and completion renderer disclose only approved visible fields (14.8612ms)
+✔ A7 tutor is assisted, local, bounded and cannot silently accept an external verdict (1.172ms)
+✔ A8 confidence/self-report remains separate from canonical outcome (0.6874ms)
+✔ A8 editing a goal submits CAS without replacing its original evidence baseline (3.1018ms)
+✔ A/UI flag-off handling preserves the legacy path without suppressing network failures (0.65ms)
+✔ A/UI A1-off keeps A2 and A5 available without preloading any question bank (1.5432ms)
+✔ A/SEC resume IDs are track-scoped and cleared on identity switch (0.9741ms)
+✔ LP/SEC: public bank projection discards hidden keys and private code tests (17.5807ms)
+✔ LP/MATH: subject verdict mismatch cannot become a trusted assessment result (6.343ms)
+✔ LP/SEC: lesson renderer escapes prose and code and keeps math source intact (86.8322ms)
+✔ LP/Content: unknown structured block types are rejected before render (1.285ms)
+✔ LP/Raw: draft restores exact Arabic/whitespace even while input exceeds engine limits (1.1557ms)
+✔ LP/SEC: identity switch removes saved path IDs and raw drafts but retains unrelated preferences (0.6935ms)
+ℹ tests 66
+ℹ suites 0
+ℹ pass 66
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10611.964

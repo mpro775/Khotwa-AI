@@ -1,0 +1,23 @@
+
+> khotwa-ai@0.1.0 test:labs:integration
+> npm run build --workspace @khotwa/api && node tools/test-stem-labs.mjs --report-dir qa-reports/D0-evidence
+
+
+> @khotwa/api@0.1.0 build
+> npm run generate && tsc -p tsconfig.json
+
+
+> @khotwa/api@0.1.0 generate
+> prisma generate --config prisma.config.ts
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+
+✔ Generated Prisma Client (v7.10.1) to .\..\..\node_modules\@prisma\client in 1.03s
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+
+isolated b_test migrate deploy: PASS
+focused B synthetic real HTTP journey: PASS

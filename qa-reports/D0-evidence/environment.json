@@ -1,0 +1,15 @@
+{
+  "recordedAt": "2026-11-08T04:24:50.2067032Z",
+  "timezone": "Asia/Riyadh",
+  "node": "v26.7.0",
+  "npm": "11.17.0",
+  "python": "Python 3.14.3",
+  "docker": "29.9.1",
+  "dockerContext": "desktop-linux",
+  "dockerEndpoint": "npipe:////./pipe/dockerDesktopLinuxEngine",
+  "images": [
+    "sha256:ef257d85f76e48da1c64832459b59fcaba1a4dac97bf5d7450c77753542eee94 [\"postgres:17.6-alpine3.22\"]",
+    "sha256:f060e106cb1ee0cc536597d226f131c265f0425405265c5642b36c2d837abd73 [\"khotwa-mvp-local-math:latest\"]"
+  ],
+  "scope": "synthetic-only; task-owned disposable databases; no external AI, SMTP, Runner or PhET"
+}

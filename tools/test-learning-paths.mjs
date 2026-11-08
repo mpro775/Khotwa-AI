@@ -2,6 +2,11 @@ import { spawnSync } from "node:child_process";
 import { randomBytes } from "node:crypto";
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import {
+  cleanupTestContainers,
+  integrationReportPath,
+  syntheticIntegrationEnvironment,
+} from "./integration-test-options.mjs";
 
 // A single focused HTTP journey. Existing developer/production resources are
 // never selected, migrated or stopped; all resource names are created here.
@@ -32,12 +37,19 @@ const checks = [];
 const created = [];
 const serve = process.argv.includes("--serve");
 const intelligent = process.argv.includes("--intelligent-learning");
-function command(executable, args, env = process.env) {
+const reportFile = integrationReportPath(
+  process.argv.slice(2),
+  intelligent
+    ? "qa-reports/A-INTEGRATION.json"
+    : "qa-reports/V2.2-INTEGRATION.json",
+);
+function command(executable, args, env = process.env, timeout = 180000) {
   const started = Date.now();
   const result = spawnSync(executable, args, {
     env,
     encoding: "utf8",
     maxBuffer: 8000000,
+    timeout,
     windowsHide: true,
   });
   return {
@@ -55,8 +67,19 @@ function docker(args) {
 }
 let failure = null;
 try {
+  const dockerReady = command("docker", [
+    "info",
+    "--format",
+    "{{.ServerVersion}}",
+  ]);
+  checks.push({ command: "Docker readiness", ...dockerReady });
+  if (dockerReady.exitCode !== 0)
+    throw new Error("NOT_RUN: Docker unavailable");
+  docker(["image", "inspect", "postgres:17.6-alpine3.22"]);
+  docker(["image", "inspect", "khotwa-mvp-local-math:latest"]);
   docker([
     "run",
+    "--pull=never",
     "-d",
     "--name",
     database,
@@ -81,6 +104,7 @@ try {
   created.push(database);
   docker([
     "run",
+    "--pull=never",
     "-d",
     "--name",
     math,
@@ -107,7 +131,7 @@ try {
   const dbPort = docker(["port", database, "5432/tcp"]).split(":").at(-1);
   const mathPort = docker(["port", math, "8001/tcp"]).split(":").at(-1);
   const env = {
-    ...process.env,
+    ...syntheticIntegrationEnvironment(),
     ...secrets,
     V22_INTEGRATION: "true",
     V22_TEST_CONTAINER: database,
@@ -204,7 +228,12 @@ try {
       ["--test", "apps/api/tests/learning-paths-live.test.mjs"],
     ],
   ]) {
-    const result = command(process.execPath, args, env);
+    const result = command(
+      process.execPath,
+      args,
+      env,
+      serve ? 960000 : 180000,
+    );
     checks.push({ command: name, ...result });
     console.log(name + ": " + (result.exitCode === 0 ? "PASS" : "FAIL"));
     if (result.exitCode !== 0) {
@@ -218,12 +247,14 @@ try {
   process.exitCode = 1;
 } finally {
   // Remove only the unique containers successfully created in this invocation.
-  for (const name of created.reverse()) command("docker", ["rm", "-f", name]);
-  mkdirSync("qa-reports", { recursive: true });
+  const cleanup = cleanupTestContainers(created, command);
+  if (cleanup.some((result) => result.exitCode !== 0)) {
+    failure ??= "Task-owned resource cleanup failed";
+    process.exitCode = 1;
+  }
+  mkdirSync(path.dirname(reportFile), { recursive: true });
   writeFileSync(
-    intelligent
-      ? "qa-reports/A-INTEGRATION.json"
-      : "qa-reports/V2.2-INTEGRATION.json",
+    reportFile,
     JSON.stringify(
       {
         recordedAt: new Date().toISOString(),
@@ -233,7 +264,11 @@ try {
           "One focused synthetic HTTP journey; ephemeral test DB and real private math; no paid AI, runner, production or load tests. Test workflow actors do not constitute human content approval.",
         checks,
         failure,
-        resourcesCleanedUp: created,
+        resourcesCreated: created,
+        cleanup,
+        resourcesCleanedUp: cleanup
+          .filter((result) => result.exitCode === 0)
+          .map((result) => result.name),
       },
       null,
       2,

@@ -1,0 +1,167 @@
+{
+  "recordedAt": "2026-11-08T04:28:15.8640342Z",
+  "scope": "new D0 execution; source synthetic only; counts are runner cases including parent cases; no duplicate A rerun counted",
+  "source": [
+    {
+      "name": "A",
+      "command": "npm run test:intelligent",
+      "exitCode": 0,
+      "tests": 66,
+      "pass": 66,
+      "fail": 0,
+      "skipped": 0,
+      "evidence": "qa-reports/D0-evidence/source-A.log"
+    },
+    {
+      "name": "B",
+      "command": "npm run test:labs",
+      "exitCode": 0,
+      "tests": 74,
+      "pass": 74,
+      "fail": 0,
+      "skipped": 0,
+      "evidence": "qa-reports/D0-evidence/source-B.log"
+    },
+    {
+      "name": "C",
+      "command": "npm run test:advanced",
+      "exitCode": 0,
+      "tests": 58,
+      "pass": 58,
+      "fail": 0,
+      "skipped": 0,
+      "evidence": "qa-reports/D0-evidence/source-C.log"
+    },
+    {
+      "name": "regression",
+      "command": "node --test apps/api/tests/accounts-operations.test.mjs apps/api/tests/content-programming-review.test.mjs apps/api/tests/roadmap-contracts.test.mjs apps/api/tests/roadmap-tutoring-physics.test.mjs apps/api/tests/studio-pairings.test.mjs apps/web/tests/editor-model.test.mjs apps/web/tests/product-experience.test.mjs apps/api/tests/security.test.mjs apps/api/tests/math-gateway.test.mjs apps/api/tests/diagnosis.test.mjs apps/api/tests/tutoring.test.mjs",
+      "exitCode": 0,
+      "tests": 114,
+      "pass": 114,
+      "fail": 0,
+      "skipped": 0,
+      "evidence": "qa-reports/D0-evidence/source-regression.log"
+    },
+    {
+      "name": "D0-tools",
+      "command": "node --test tools/tests/d0-release-integrity.test.mjs tools/tests/integration-test-options.test.mjs",
+      "exitCode": 0,
+      "tests": 7,
+      "pass": 7,
+      "fail": 0,
+      "skipped": 0,
+      "evidence": "qa-reports/D0-evidence/d0-tools-tests.log"
+    }
+  ],
+  "sourceTotal": 319,
+  "python": {
+    "tests": 5,
+    "command": "PYTHONPATH=services/math-engine/src node tools/python-task.mjs -X utf8 -m unittest discover -s services/math-engine/tests -p test_stem_math.py -v",
+    "evidence": "qa-reports/D0-evidence/python-B.log",
+    "exitCode": 0
+  },
+  "integration": [
+    {
+      "name": "A",
+      "command": "npm run test:intelligent:integration -- --report-dir qa-reports/D0-evidence",
+      "exitCode": 0,
+      "tests": 14,
+      "pass": 14,
+      "cleanup": [
+        {
+          "name": "khotwa-v22-8a7f36139238-math",
+          "exitCode": 0
+        },
+        {
+          "name": "khotwa-v22-8a7f36139238-db",
+          "exitCode": 0
+        }
+      ],
+      "evidence": "qa-reports/D0-evidence/A-INTEGRATION.json"
+    },
+    {
+      "name": "B",
+      "command": "npm run test:labs:integration -- --report-dir qa-reports/D0-evidence",
+      "exitCode": 0,
+      "tests": 15,
+      "pass": 15,
+      "cleanup": [
+        {
+          "name": "khotwa-b-ff87c21b7f7f-math",
+          "exitCode": 0
+        },
+        {
+          "name": "khotwa-b-ff87c21b7f7f-db",
+          "exitCode": 0
+        }
+      ],
+      "evidence": "qa-reports/D0-evidence/B-INTEGRATION.json"
+    },
+    {
+      "name": "C",
+      "command": "npm run test:advanced:integration -- --report-dir qa-reports/D0-evidence",
+      "exitCode": 0,
+      "tests": 15,
+      "pass": 15,
+      "cleanup": [
+        {
+          "name": "khotwa-c-05debf71b581-math",
+          "exitCode": 0
+        },
+        {
+          "name": "khotwa-c-05debf71b581-db",
+          "exitCode": 0
+        }
+      ],
+      "evidence": "qa-reports/D0-evidence/C-INTEGRATION.json"
+    }
+  ],
+  "integrationTotal": 44,
+  "quality": [
+    {
+      "command": "npm run contracts:check",
+      "exitCode": 0,
+      "seconds": 9.964,
+      "log": "qa-reports/D0-evidence/contracts.log"
+    },
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "seconds": 45.961,
+      "log": "qa-reports/D0-evidence/typecheck.log"
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "seconds": 31.204,
+      "log": "qa-reports/D0-evidence/build.log"
+    }
+  ],
+  "compatibility": {
+    "command": "node tools/check-c-backward-compatibility.mjs",
+    "evidence": "qa-reports/D0-evidence/contract-compatibility.log",
+    "exitCode": 0
+  },
+  "existingResourcesUnchanged": true,
+  "auxiliary": [
+    {
+      "command": "npx eslint tools/d0-release-integrity.mjs tools/integration-test-options.mjs tools/test-learning-paths.mjs tools/test-stem-labs.mjs tools/test-advanced-learning.mjs tools/tests/d0-release-integrity.test.mjs tools/tests/integration-test-options.test.mjs",
+      "evidence": "qa-reports/D0-evidence/lint.log",
+      "exitCode": 0
+    },
+    {
+      "command": "npx prettier --check tools/d0-release-integrity.mjs tools/integration-test-options.mjs tools/test-learning-paths.mjs tools/test-stem-labs.mjs tools/test-advanced-learning.mjs tools/tests/d0-release-integrity.test.mjs tools/tests/integration-test-options.test.mjs",
+      "evidence": "qa-reports/D0-evidence/format-check.log",
+      "exitCode": 0
+    },
+    {
+      "command": "npx prettier --ignore-path .gitignore --check qa-reports/D0-RELEASE-INTEGRITY.md qa-reports/D0-BLOCKERS-AND-OWNERS.md qa-reports/D0-REAL-LEARNING-DESIGN.md qa-reports/D0-MANUAL-ACCEPTANCE-PLAN.md qa-reports/D0-FINAL-READINESS.md",
+      "evidence": "qa-reports/D0-evidence/reports-format-check.log",
+      "exitCode": 0
+    },
+    {
+      "exitCode": 0,
+      "command": "git diff --check"
+    }
+  ]
+}

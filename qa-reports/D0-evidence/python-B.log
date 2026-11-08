@@ -1,0 +1,10 @@
+test_all_authored_correct_methods_are_complete (test_stem_math.StemMathTests.test_all_authored_correct_methods_are_complete) ... ok
+test_exact_graph_oracle_handles_negative_zero_and_decimal_values (test_stem_math.StemMathTests.test_exact_graph_oracle_handles_negative_zero_and_decimal_values) ... ok
+test_existing_verifier_confirms_lab_transitions (test_stem_math.StemMathTests.test_existing_verifier_confirms_lab_transitions) ... ok
+test_fixtures_are_synthetic_drafts_not_published_content (test_stem_math.StemMathTests.test_fixtures_are_synthetic_drafts_not_published_content) ... ok
+test_unsupported_language_is_not_a_false_invalid_transition (test_stem_math.StemMathTests.test_unsupported_language_is_not_a_false_invalid_transition) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 2.865s
+
+OK

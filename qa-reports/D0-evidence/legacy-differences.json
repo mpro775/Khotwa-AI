@@ -1,0 +1,22 @@
+[
+  {
+    "path": "apps/api/prisma/migrations/0025_advanced_learning_c/migration.sql",
+    "expectedSha256": "8cb7715731701e851a5c07d5092e04c70a0eefab0ef14b5585c4196ad6c4edf3",
+    "actualSha256": "c20c11c9a523125b18c9ef610c20a22568738ed09fd9fd71b8ffc4b965541a82"
+  },
+  {
+    "path": "apps/api/prisma/schema.prisma",
+    "expectedSha256": "e72f5b47c42dedf3b381dbd9d49f9449d156cc603c826068c7746624f968bd17",
+    "actualSha256": "8f8bf9fd3c0b766ee8778d8d5673c58413cbfd033957bbcea3384041b09122fc"
+  },
+  {
+    "path": "tools/test-advanced-learning.mjs",
+    "expectedSha256": "16bdc2b4e37811691b14083b645fb4918aea0af8d577de8badb8e5667c181789",
+    "actualSha256": "ff3aec58627f41243193f01d5b2d2627a0d0feec27a08a4ff96402b3657f028f"
+  },
+  {
+    "path": "tools/test-stem-labs.mjs",
+    "expectedSha256": "607cca05e8c8a40a52d3ae1ca42cabb5a13244712a0fcb5a053763f6cfe075ec",
+    "actualSha256": "a3869e6be4ab2416be23958afc52dcfcb6f66a3d90b26789ec75f762aab9d681"
+  }
+]

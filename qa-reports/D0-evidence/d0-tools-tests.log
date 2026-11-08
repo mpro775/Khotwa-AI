@@ -1,0 +1,15 @@
+✔ D0 inventories reject private paths and path traversal before reading (20.2685ms)
+✔ D0 verification detects byte changes, deletion and inventory additions (8.1367ms)
+✔ report directory keeps D0 evidence separate and retains legacy defaults (4.8718ms)
+✔ invalid or repeated report options fail before starting infrastructure (0.9439ms)
+✔ synthetic tests cannot inherit external credentials or enable services (1.3245ms)
+✔ cleanup only removes scoped resources and records failures truthfully (2.8793ms)
+✔ mixed-case credentials and flag aliases stay absent in a child process (189.3065ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 536.0256

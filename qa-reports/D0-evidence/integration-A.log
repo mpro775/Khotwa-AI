@@ -1,0 +1,23 @@
+
+> khotwa-ai@0.1.0 test:intelligent:integration
+> npm run build --workspace @khotwa/api && node tools/test-learning-paths.mjs --intelligent-learning --report-dir qa-reports/D0-evidence
+
+
+> @khotwa/api@0.1.0 build
+> npm run generate && tsc -p tsconfig.json
+
+
+> @khotwa/api@0.1.0 generate
+> prisma generate --config prisma.config.ts
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+
+✔ Generated Prisma Client (v7.10.1) to .\..\..\node_modules\@prisma\client in 591ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+
+isolated Prisma migrate deploy: PASS
+focused V2.2 NestJS/PostgreSQL/SymPy HTTP journey: PASS

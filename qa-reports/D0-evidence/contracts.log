@@ -1,0 +1,5 @@
+
+> khotwa-ai@0.1.0 contracts:check
+> node tools/contracts.mjs --check
+
+Canonical OpenAPI mirror, 4 JSON mirrors, and generated public types verified.

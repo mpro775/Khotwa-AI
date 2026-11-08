@@ -1,0 +1,87 @@
+
+> khotwa-ai@0.1.0 test:advanced
+> npm run build --workspace @khotwa/api && node --test apps/api/tests/advanced-learning-analytics.test.mjs apps/api/tests/advanced-learning-studio.test.mjs apps/api/tests/advanced-learning-workflows.test.mjs apps/web/tests/advanced-learning.test.mjs
+
+
+> @khotwa/api@0.1.0 build
+> npm run generate && tsc -p tsconfig.json
+
+
+> @khotwa/api@0.1.0 generate
+> prisma generate --config prisma.config.ts
+
+Loaded Prisma config from prisma.config.ts.
+
+Prisma schema loaded from prisma\schema.prisma.
+
+✔ Generated Prisma Client (v7.10.1) to .\..\..\node_modules\@prisma\client in 671ms
+
+Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+
+
+✔ C5 separates independent, assisted, abstained and activity denominators (9.9503ms)
+✔ C5 no baseline, retention or transfer means null with reason, never zero success (0.5883ms)
+✔ C5 replay ten times and out-of-order corrections preserves one denominator (0.903ms)
+✔ C5 revised assisted classification supersedes former independent result (0.562ms)
+✔ C5 canonical A2 semantic/problem dedupe cannot count equivalent problems twice (0.5929ms)
+✔ C5 delayed retention requires canonical independent followup, new problem, due and anchor (1.2003ms)
+✔ C5 rejects invalid time and drops all private/PII/raw extra properties (0.8002ms)
+✔ C5 source cannot infer learning from completed project or reflection (0.4314ms)
+✔ C5 cohort is blocked even when a feature flag is set (1.6182ms)
+✔ C5 flag off denies before reading sources (0.9256ms)
+✔ C5 repeated window params are invalid rather than coerced into a valid window (0.545ms)
+✔ C5 conflicting equal-version deliveries cannot preserve a false independent outcome (0.396ms)
+✔ A/B/C synthetic guard rejects real identities even with real-learning configured (0.8112ms)
+✔ synthetic authorization applies before product idempotency cache replay (0.9472ms)
+✔ C author and public views roundtrip with strict, separate private boundaries (247.8423ms)
+✔ learner lesson DTO cannot reveal C solutions or private evaluation hints (82.0421ms)
+✔ C strict parser rejects injected verdicts, URLs, hidden key fields and unsupported skills (1.1065ms)
+✔ all C references stay inside lesson subject, skill coverage and B lab registry (0.8649ms)
+✔ UDL requires a full text fallback and preserves construct and objective across variants (0.6962ms)
+✔ project milestones and open rubric preserve review rather than inventing an autonomous grade (0.8601ms)
+✔ publishing C requires independent, current-hash approvals for all four scopes (0.5129ms)
+✔ a later change request blocks publish even if an earlier review approved it (1.153ms)
+✔ Studio validates C verification references and refuses exposure of independent family (1.5471ms)
+✔ viewing a C lesson records canonical bank exposure before starting any session (1.9707ms)
+✔ C authoring feature is closed by default and synthetic-only without modifying legacy lessons (1.2718ms)
+✔ C4 rejects a real author even when global synthetic and real-learning gates are enabled (0.8346ms)
+✔ every additive C schema compiles and writes reject forged identity or private fields (1268.349ms)
+✔ browser schema closure has public C data and contains no author evaluation schemas (2.7841ms)
+✔ six TEST_ONLY fixtures parse, redact private solutions and preserve authentic stages (7.1251ms)
+✔ alternate strategy text is preserved, edits invalidate feedback, and input immutable (1.1446ms)
+✔ student can revisit a stage without linear strategy lock (0.5958ms)
+✔ pause/resume and abandonment never permit silent resurrection (1.8216ms)
+✔ bounded stages and event budget reject malformed or runaway activity (0.991ms)
+✔ text code artifacts remain literal nonexecuted data (4.5386ms)
+✔ artifacts enforce type, bytes, depth, numbers and forbidden key limits (2.2011ms)
+✔ C1 canonical algebra verifier accepts alternatives without grading reasoning (1.7583ms)
+✔ canonical abstentions remain neutral and never become a learner error (0.7334ms)
+✔ open reasoning and programming never receive an autonomous grade (0.9735ms)
+✔ linked B session reuses ownership path and requires matching pinned context (1.0615ms)
+✔ A1 permits published C programming learning without opening independent execution (0.405ms)
+✔ native support and assessment adapters report closed feature gates (1.1616ms)
+✔ C public decoder removes keys, rubric, tests, hints at the activity boundary (5.3754ms)
+✔ C lesson public decoding and private author roundtrip share one format (1.1865ms)
+✔ C session decoding enforces learning-only evidence and strips private data (6.6685ms)
+✔ C representations reject a fabricated independent evaluation mode (0.4888ms)
+✔ C table representation exposes caption, row and column headings and fallback text (24.8168ms)
+✔ C code representation escapes HTML and preserves LTR indentation (8.4347ms)
+✔ C Studio learner preview never renders author-only evaluation keys (6.678ms)
+✔ C problem and project views disclose synthetic, assistance and review limits (17.564ms)
+✔ C zero denominator and suppressed metrics cannot become zero percent (1.3567ms)
+✔ C dashboard requests no data until invoked, with accessible window and honest missingness (52.6352ms)
+✔ C A1 adapter preserves the versioned advanced activity reference and rejects bad indices (2.6114ms)
+✔ C mutations retain same-origin CSRF/idempotency transport and safe retry (49.1416ms)
+✔ C revision-zero unsent answer survives local navigation without caching a verdict or private key (1.2411ms)
+✔ C project draft retains pending artifact text and version for an explicit stale-draft comparison (0.3536ms)
+✔ C malformed or oversized cache cannot become a restored learner draft (0.4404ms)
+✔ C identity cleanup removes raw local drafts and resource IDs (0.4587ms)
+✔ C unavailable browser storage does not throw or alter the in-memory draft (0.5938ms)
+ℹ tests 58
+ℹ suites 0
+ℹ pass 58
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5092.6284

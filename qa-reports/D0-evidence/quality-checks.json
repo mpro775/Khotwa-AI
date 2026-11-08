@@ -1,0 +1,20 @@
+[
+  {
+    "command": "npm run contracts:check",
+    "exitCode": 0,
+    "seconds": 9.964,
+    "log": "qa-reports/D0-evidence/contracts.log"
+  },
+  {
+    "command": "npm run typecheck",
+    "exitCode": 0,
+    "seconds": 45.961,
+    "log": "qa-reports/D0-evidence/typecheck.log"
+  },
+  {
+    "command": "npm run build",
+    "exitCode": 0,
+    "seconds": 31.204,
+    "log": "qa-reports/D0-evidence/build.log"
+  }
+]
