@@ -42,6 +42,8 @@ const schema33 = {
         "session_expired",
         "revision_conflict",
         "idempotency_conflict",
+        "stale_decision",
+        "no_safe_activity",
         "request_in_progress",
         "invalid_state",
         "content_version_conflict",
@@ -193,6 +195,8 @@ function validate22(
                 data0 === "session_expired" ||
                 data0 === "revision_conflict" ||
                 data0 === "idempotency_conflict" ||
+                data0 === "stale_decision" ||
+                data0 === "no_safe_activity" ||
                 data0 === "request_in_progress" ||
                 data0 === "invalid_state" ||
                 data0 === "content_version_conflict" ||

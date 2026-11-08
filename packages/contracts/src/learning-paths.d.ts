@@ -10,7 +10,10 @@ export interface LessonBlock {
     | "common_mistake"
     | "practice_link"
     | "code_example"
-    | "physics_example";
+    | "physics_example"
+    | "completion_step"
+    | "worked_example_ref"
+    | "self_check_prompt";
   textAr: string;
   raw?: string;
   steps?: { raw: string; explanationAr: string }[];

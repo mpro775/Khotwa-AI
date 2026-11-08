@@ -1,0 +1,67 @@
+{
+  "recordedAt": "2026-11-08T02:09:03.308Z",
+  "baseline": "51435ef863745a7145ee0c80927a56817cda7e67",
+  "node": "v26.7.0",
+  "platform": "win32",
+  "checks": [
+    {
+      "command": "legacy semantic API comparison against 51435ef863745a7145ee0c80927a56817cda7e67",
+      "exitCode": 0,
+      "legacyPaths": 83,
+      "changedSchemas": [
+        "AccountExportEnvelope",
+        "ErrorDetail",
+        "LPAssessmentKind",
+        "LPLessonBlock"
+      ]
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe tools/contracts.mjs --check",
+      "label": "contracts",
+      "exitCode": 0,
+      "seconds": 2.566,
+      "stdout": "Canonical OpenAPI mirror, 4 JSON mirrors, and generated public types verified.\n",
+      "stderr": ""
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js run format:check",
+      "label": "format",
+      "exitCode": 0,
+      "seconds": 5.258,
+      "stdout": "\n> khotwa-ai@0.1.0 format:check\n> prettier --check package.json tsconfig.base.json eslint.config.mjs pyrightconfig.json compose.yaml Dockerfile .github/workflows/ci.yml \"apps/**/*.{ts,tsx,json,css,html}\" \"packages/contracts/src/index.ts\" \"tools/*.mjs\" && node tools/python-task.mjs -m black --check services/math-engine/src tools/dev_env.py tools/seed_demo.py\n\nChecking formatting...\nAll matched files use Prettier code style!\n",
+      "stderr": "All done! \\u2728 \\U0001f370 \\u2728\r\n14 files would be left unchanged.\r\n"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js run lint",
+      "label": "lint",
+      "exitCode": 0,
+      "seconds": 7.31,
+      "stdout": "\n> khotwa-ai@0.1.0 lint\n> eslint apps packages/contracts/src tools/*.mjs && node tools/python-task.mjs -m pycodestyle --max-line-length=88 --ignore=E203,W503 services/math-engine/src tools/dev_env.py tools/seed_demo.py\n\n",
+      "stderr": ""
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js run typecheck",
+      "label": "typecheck",
+      "exitCode": 0,
+      "seconds": 24.02,
+      "stdout": "\n> khotwa-ai@0.1.0 typecheck\n> npm run typecheck --workspaces --if-present && pyright\n\n\n> @khotwa/api@0.1.0 typecheck\n> npm run generate && tsc --noEmit\n\n\n> @khotwa/api@0.1.0 generate\n> prisma generate --config prisma.config.ts\n\n\n✔ Generated Prisma Client (v7.10.1) to .\\..\\..\\node_modules\\@prisma\\client in 642ms\n\nStart by importing your Prisma Client (See: https://pris.ly/d/importing-client)\n\n\n\n> @khotwa/web@0.1.0 typecheck\n> tsc --noEmit\n\n\n> @khotwa/contracts@0.1.0 typecheck\n> tsc --noEmit\n\n0 errors, 0 warnings, 0 informations\n",
+      "stderr": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma\\schema.prisma.\n"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe C:/Program Files/nodejs/node_modules/npm/bin/npm-cli.js run build",
+      "label": "build",
+      "exitCode": 0,
+      "seconds": 21.59,
+      "stdout": "\n> khotwa-ai@0.1.0 build\n> npm run build --workspaces --if-present && node tools/python-task.mjs -m compileall -q services/math-engine/src\n\n\n> @khotwa/api@0.1.0 build\n> npm run generate && tsc -p tsconfig.json\n\n\n> @khotwa/api@0.1.0 generate\n> prisma generate --config prisma.config.ts\n\n\n✔ Generated Prisma Client (v7.10.1) to .\\..\\..\\node_modules\\@prisma\\client in 859ms\n\nStart by importing your Prisma Client (See: https://pris.ly/d/importing-client)\n\n\n\n> @khotwa/web@0.1.0 build\n> tsc --noEmit && vite build\n\nvite v8.3.5 building client environment for production...\ntransforming...\n✓ 54 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                                         0.40 kB │ gzip:   0.28 kB\ndist/assets/KaTeX_Size4-Regular-Dl5lxZxV.woff2          4.92 kB\ndist/assets/KaTeX_Size2-Regular-Dy4dx90m.woff2          5.20 kB\ndist/assets/KaTeX_Size1-Regular-mCD8mA8B.woff2          5.46 kB\ndist/assets/KaTeX_Caligraphic-Regular-Di6jR-x-.woff2    6.90 kB\ndist/assets/KaTeX_Caligraphic-Bold-Dq_IR9rO.woff2       6.91 kB\ndist/assets/KaTeX_Script-Regular-D3wIWfF6.woff2         9.64 kB\ndist/assets/KaTeX_SansSerif-Regular-DDBCnlJ7.woff2     10.34 kB\ndist/assets/KaTeX_Fraktur-Regular-CTYiF6lA.woff2       11.31 kB\ndist/assets/KaTeX_Fraktur-Bold-CL6g_b3V.woff2          11.34 kB\ndist/assets/KaTeX_SansSerif-Italic-C3H0VqGB.woff2      12.02 kB\ndist/assets/KaTeX_SansSerif-Bold-D1sUS0GD.woff2        12.21 kB\ndist/assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2    13.56 kB\ndist/assets/KaTeX_Math-BoldItalic-CZnvNsCZ.woff2       16.40 kB\ndist/assets/KaTeX_Math-Italic-t53AETM-.woff2           16.44 kB\ndist/assets/KaTeX_Main-BoldItalic-DxDJ3AOS.woff2       16.78 kB\ndist/assets/KaTeX_Main-Italic-NWA7e6Wa.woff2           16.98 kB\ndist/assets/KaTeX_Main-Bold-Cx986IdX.woff2             25.32 kB\ndist/assets/KaTeX_Main-Regular-B22Nviop.woff2          26.27 kB\ndist/assets/KaTeX_AMS-Regular-BQhdFMY1.woff2           28.07 kB\ndist/assets/ArabicEditor-BnjoTxG4.css                   8.00 kB │ gzip:   4.20 kB\ndist/assets/index-CzxTnrsp.css                         20.91 kB │ gzip:   5.51 kB\ndist/assets/TeacherDemo-5AbbfZMl.js                     5.05 kB │ gzip:   1.97 kB\ndist/assets/index-BCQFnaAm.js                         732.45 kB │ gzip: 157.28 kB\ndist/assets/ArabicEditor-CZXm014V.js                  816.77 kB │ gzip: 225.26 kB\n\n✓ built in 519ms\n\n> @khotwa/contracts@0.1.0 build\n> tsc --noEmit\n\n",
+      "stderr": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma\\schema.prisma.\n[plugin builtin:vite-reporter] \n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n"
+    },
+    {
+      "command": "C:\\Program Files\\nodejs\\node.exe --test apps/api/tests/intelligent-core.test.mjs apps/api/tests/intelligent-learning-experiences.test.mjs apps/api/tests/learning-paths.test.mjs apps/web/tests/intelligent-learning.test.mjs apps/web/tests/learning-paths.test.mjs",
+      "label": "targeted A + V2.2 regressions",
+      "exitCode": 0,
+      "seconds": 3.38,
+      "stdout": "✔ A1 deterministic priorities and safe eligibility across twelve contexts (3.9891ms)\n✔ A2 exposure and assisted correctness remain separate from independence (1.2199ms)\n✔ A2 distinct comparable current evidence, transfer and technical abstention (2.4261ms)\n✔ A2 retention requires canonical evidence after a spaced anchor, not an overdue clock (0.6716ms)\n✔ A3 candidates remain possible and technical states never acquire a misconception (0.9569ms)\n✔ A3 answered probe can support a candidate only with the canonical supported result (0.6491ms)\n✔ A4 required cycles are named, helpful and pending edges never create gates (1.8895ms)\n✔ A4 missing primary coverage stays explicit and graph snapshots are immutable values (2.4936ms)\n✔ A-SEC-01 A1 activity reads are owner scoped even when an ID is known (3.2677ms)\n✔ A-SEC-03 exitMeasurement marks canonical attempt as assisted before any tutor reveal (3.719ms)\n✔ A1 stale evidence is rejected inside the owner mutation while an accepted decision resumes one activity (2.2695ms)\n✔ A4 track publication validates a required cycle without changing its existing published revision (5.7465ms)\n✔ A flags cannot be bypassed through the existing assessment start route (2.665ms)\n✔ explicit lesson read exposes only returned practice and inline worked references, never hidden assessment refs (3.112ms)\n✔ practice disclosure contaminates identity, family and equation only at or after the disclosure time (2.581ms)\n✔ A3 transfer exception requires a synthetic path exit and keeps native transfer and hinted attempts sealed (2.0954ms)\n✔ A5 fake clock day 0→1→3→7→14, experimental intervals and assisted evidence (4.2339ms)\n✔ A6 stage labels never grant independence; reveal history and source snapshot retained (1.1766ms)\n✔ A7 offline bounded dialogue, H4 confirmation, unknown language and hostile provider fallback (3.0433ms)\n✔ A8 self-report cannot satisfy goals; distinct later verified problems only (0.9117ms)\n✔ A5 orchestration schedules/deduplicates without content exposure, and rejects another owner (11.4633ms)\n✔ A5 start replay creates one native measurement; finish uses canonical independent status (12.1524ms)\n✔ A5 timing and current anchor are checked against canonical verification, not browser clock (3.9764ms)\n✔ A8 concurrent evidence edit rejects checkin rather than persisting stale achievement (3.2512ms)\n✔ A6 full stage lifecycle keeps S0/S1 assisted and uses distinct native S4 check (13.22ms)\n✔ A7 independent tutor requires explicit exit; resume safe H4 and owner checks (4.8927ms)\n✔ A5 invalidated source never leaves started/null and is excluded from actionable due reviews (2.8775ms)\n✔ A5 no fresh coverage preserves schedule with no false failure or success (3.1521ms)\n✔ A features remain inaccessible outside the synthetic boundary and when flags are off (1.0474ms)\n✔ A7 standalone H4 uses validated source examples and confirmation; replay survives ended state (5.2937ms)\n✔ A8 confidence 100 and reflection do not increase goal count; replay/CAS/owner bounded (5.3469ms)\n✔ A7 current canonical unit error and technical abstention guide dialogue without judging student text (3.3265ms)\n✔ A8 goal edits preserve the starting evidence baseline and reject empty changes (2.8106ms)\n✔ A8 reflection refuses stale verification snapshot at persistence time (1.2374ms)\n✔ A6 support during S4 exits measurement and requires a fresh native question generation (5.8902ms)\n✔ only exposure before a verified submission affects that historical independent result (1.6613ms)\n✔ one error is tentative; repeated independent errors retain auditable evidence (3.7642ms)\n✔ repeated steps and retries of one problem cannot supply two independent problems (0.3521ms)\n✔ support never becomes independent evidence and outages do not become errors (0.3186ms)\n✔ two later successes at comparable difficulty can replace a previous review need (0.4721ms)\n✔ recommendations exclude unpublished lessons and pending mappings (0.2715ms)\n✔ a reviewed prerequisite with negative evidence is offered before its dependent lesson (0.5134ms)\n✔ lesson parsing rejects invented skills, blocked fractions and another subject's example (2.0372ms)\n✔ lesson validation cannot approve an invalid transformation or unpublished problem link (2.0009ms)\n✔ assessment requests reject client verdicts, extra owner keys and missing revisions (96.1621ms)\n✔ all V2.2 schemas compile without unresolved references (448.2557ms)\n✔ V2.2 NestJS routes and success codes are documented in canonical OpenAPI (2.0675ms)\n✔ A1 public decision/activity decoders exclude private keys and reject unknown activity kinds (5.929ms)\n✔ A2 assisted evidence does not become independent or a percentage in the rendered UI (73.6054ms)\n✔ A2 malformed dimension cannot be shown as trusted progress (0.6649ms)\n✔ A3 diagnosis projection keeps hypotheses tentative and strips probe answers (0.8735ms)\n✔ A4 graph renders reviewed coverage only as actionable lesson links (3.5251ms)\n✔ A5 scheduled/deferred review states do not invent retention success (0.8353ms)\n✔ A6 scaffold decoder and completion renderer disclose only approved visible fields (3.7969ms)\n✔ A7 tutor is assisted, local, bounded and cannot silently accept an external verdict (1.2923ms)\n✔ A8 confidence/self-report remains separate from canonical outcome (0.6156ms)\n✔ A8 editing a goal submits CAS without replacing its original evidence baseline (5.2138ms)\n✔ A/UI flag-off handling preserves the legacy path without suppressing network failures (0.8178ms)\n✔ A/UI A1-off keeps A2 and A5 available without preloading any question bank (2.5507ms)\n✔ A/SEC resume IDs are track-scoped and cleared on identity switch (0.9728ms)\n✔ LP/SEC: public bank projection discards hidden keys and private code tests (9.3862ms)\n✔ LP/MATH: subject verdict mismatch cannot become a trusted assessment result (3.0592ms)\n✔ LP/SEC: lesson renderer escapes prose and code and keeps math source intact (30.3031ms)\n✔ LP/Content: unknown structured block types are rejected before render (1.0926ms)\n✔ LP/Raw: draft restores exact Arabic/whitespace even while input exceeds engine limits (1.0796ms)\n✔ LP/SEC: identity switch removes saved path IDs and raw drafts but retains unrelated preferences (0.6416ms)\nℹ tests 66\nℹ suites 0\nℹ pass 66\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 3248.1534\n",
+      "stderr": ""
+    }
+  ]
+}

@@ -107,11 +107,14 @@ function block(value: unknown, subject: SubjectCode): LessonBlock {
       "practice_link",
       "code_example",
       "physics_example",
+      "completion_step",
+      "worked_example_ref",
+      "self_check_prompt",
     ].includes(type)
   )
     throw productInvalid();
   const result: LessonBlock = { type, textAr: textField(b.textAr, 3000) };
-  if (["math_example", "worked_steps"].includes(type)) {
+  if (["math_example", "worked_steps", "completion_step"].includes(type)) {
     if (subject !== "algebra")
       throw productInvalid("المثال الجبري لا ينتمي لهذه المادة.");
     result.raw = textField(b.raw, 256);
@@ -151,7 +154,7 @@ function block(value: unknown, subject: SubjectCode): LessonBlock {
       physics: b.physics,
     }).physics;
   } else if (b.physics !== undefined) throw productInvalid();
-  if (type === "practice_link")
+  if (type === "practice_link" || type === "worked_example_ref")
     result.problemRevisionId = uuid(textField(b.problemRevisionId, 36));
   else if (b.problemRevisionId !== undefined) throw productInvalid();
   return result;

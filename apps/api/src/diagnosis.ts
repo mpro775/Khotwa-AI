@@ -2,7 +2,7 @@ import { randomUUID, randomInt, createHash } from "node:crypto";
 import type { Prisma } from "@prisma/client";
 import { output, Schema } from "./contracts";
 import { ApiFault } from "./http";
-import { requireUnassistedProbe } from "./assistance";
+import { requireUnassistedProbe, exitedSyntheticPathProbe } from "./assistance";
 import type { AttemptRow, GuestAuth, Store } from "./store";
 import {
   realLearningConfigured,
@@ -145,7 +145,12 @@ export class DiagnosisService {
     preceding: readonly VerifiedContextTransition[] = [],
     auth?: GuestAuth,
   ): Promise<Candidate | null> {
-    if (!this.active || a.attempt_kind === "transfer") return null;
+    if (
+      !this.active ||
+      (a.attempt_kind === "transfer" &&
+        !(await exitedSyntheticPathProbe(tx, a)))
+    )
+      return null;
     const index = verdicts.findIndex((v) => v.mathStatus !== "verified_valid"),
       verdict = verdicts[index];
     if (!verdict) return null;

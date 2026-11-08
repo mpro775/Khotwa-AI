@@ -1,0 +1,484 @@
+{
+  "release": "intelligent-learning-a-local-2026-11-08",
+  "scope": "synthetic-only",
+  "baseline": "51435ef863745a7145ee0c80927a56817cda7e67",
+  "branch": "codex/intelligent-learning-a",
+  "commitResult": null,
+  "sourceSnapshotHash": "2b05427486a731592620c8f0cad9eceb6c8ccbd65f58f320f9e84fe6e26291cb",
+  "sourceFiles": [
+    {
+      "path": "apps/api/prisma/migrations/0023_intelligent_learning_a/migration.sql",
+      "sha256": "9e9cd825c9b691041578bacace41b15c2cc8e5ad28cf3cc1b7e32291ff322890"
+    },
+    {
+      "path": "apps/api/prisma/schema.prisma",
+      "sha256": "ed9405ede873a3d737b83928c375ec71f55d4899f9fbf1785b780e980ffcb2b5"
+    },
+    {
+      "path": "apps/api/src/account-mail.ts",
+      "sha256": "3af4a3511cb6451e97ddef38d284c42097cffbf4d89b1189c256539b4c304e44"
+    },
+    {
+      "path": "apps/api/src/accounts.ts",
+      "sha256": "fa7e453f074c4e612ecaba5bce461a424071d1ba050c4b14f3dd218dae3e51cb"
+    },
+    {
+      "path": "apps/api/src/adaptive-tutoring.ts",
+      "sha256": "0c6adc476f8173729f9b616e3f4d85ec533b3af0c4bb0526ea9dad780f188cce"
+    },
+    {
+      "path": "apps/api/src/ai-cost.ts",
+      "sha256": "93b2a76e43b8358717abc950d205a79b409a4c5fb26a33cd2e7f0e8264de7851"
+    },
+    {
+      "path": "apps/api/src/ai-port.ts",
+      "sha256": "491bba5c0c5f322433346cc07477af8306a76b555bc1de478c44366b0db6b37a"
+    },
+    {
+      "path": "apps/api/src/ai-tutor.ts",
+      "sha256": "4d7b893325b1683ab2e79981d1305ea02a88a283aada49bdbb5b478bf89cafee"
+    },
+    {
+      "path": "apps/api/src/application.ts",
+      "sha256": "127dd41c946f28279e72639e0dc950b55fc4aa252df32d0c347dcc7df11b37a3"
+    },
+    {
+      "path": "apps/api/src/assistance.ts",
+      "sha256": "5b0f773ee461093e1be6a2274ab6d342be66d2ffa2fa83bbda002be623a4252d"
+    },
+    {
+      "path": "apps/api/src/beta-gemini.ts",
+      "sha256": "a1bb73cc8a1425707cf2aa0ca9cc51429151dd644129438ce95d9be38b835882"
+    },
+    {
+      "path": "apps/api/src/beta-operations.ts",
+      "sha256": "9caf310388b9dd59587264bbec092ea4ca2498bd2efb46f9c9887eb42c31c462"
+    },
+    {
+      "path": "apps/api/src/business.ts",
+      "sha256": "b8f1c44b3b2b2afef061860c79323e228ee513a8a6befc6be04675027d6e057d"
+    },
+    {
+      "path": "apps/api/src/content-payload.ts",
+      "sha256": "75ce540b26f689b5e7f7c662cb43b1f7b5c60adeaeafcf0b4c069ddddcd18d0b"
+    },
+    {
+      "path": "apps/api/src/content-studio.ts",
+      "sha256": "f7426cc4e5c376e1ffadc29f0f967383c82b3d35dc1c496b2f38fd741e1b53c2"
+    },
+    {
+      "path": "apps/api/src/contracts.ts",
+      "sha256": "2f4b0f492d2e64fd76c74c93aa47f64ea4678b7b7cea313243c30b917498d811"
+    },
+    {
+      "path": "apps/api/src/deep-diagnosis.ts",
+      "sha256": "048a7cbc4c43e872fff3bdc5ae2e7f9553754705ddc03e169ff279abe4d3f3f7"
+    },
+    {
+      "path": "apps/api/src/diagnosis-rules.ts",
+      "sha256": "12bd2401b2cac520385dace670be6c0508e391044950d0bfbc7ab1c1c9962166"
+    },
+    {
+      "path": "apps/api/src/diagnosis.ts",
+      "sha256": "db64b6c8306a80fe639812a60e6e44e8963d4d252e206f23dbdd17af75bbf870"
+    },
+    {
+      "path": "apps/api/src/external-ai-access.ts",
+      "sha256": "8ae975ca631f3c7adb746ab404eddc105853e52c601bf9e5a1e2e43d8790ccaa"
+    },
+    {
+      "path": "apps/api/src/gemini-adapter.ts",
+      "sha256": "a1b22f3d38fa08e6db3ff1709d4076c109291157b4b2b9673ab83ac40410bed9"
+    },
+    {
+      "path": "apps/api/src/gemini-quota.ts",
+      "sha256": "0614a4dc01e3831cd57a56d3096b14240ede33124550145a063d11beaf5f2046"
+    },
+    {
+      "path": "apps/api/src/health.ts",
+      "sha256": "e112dcc22312d9a4c6bc95d22d37473557a4486a2e95bbdb78c1148a7dcab87b"
+    },
+    {
+      "path": "apps/api/src/http.ts",
+      "sha256": "e8373b24817d79a1ab5cdffcf89564d45355f56e4ec5de499e90c34fee58afb8"
+    },
+    {
+      "path": "apps/api/src/intelligent-learning-data.ts",
+      "sha256": "11de1d634aadd514a25fc54188ad0ae4fff4ffd08f7f83227472e8ca429a5e6c"
+    },
+    {
+      "path": "apps/api/src/intelligent-learning-experiences.ts",
+      "sha256": "d3868e1bcb08efbce0f17ef1470ffc59f7d5e7d153683ae7e6daf8f248117e38"
+    },
+    {
+      "path": "apps/api/src/intelligent-learning.ts",
+      "sha256": "28c8118ca72d3a9505e7f611353a8a363c52c37a7f046d5804a430a9fa1ac189"
+    },
+    {
+      "path": "apps/api/src/knowledge-graph.ts",
+      "sha256": "305676d8edbd27448aa2a9a77af23be57924473773e7893fed454e7d140ea7a5"
+    },
+    {
+      "path": "apps/api/src/learning-access.ts",
+      "sha256": "880deefdd25dc0b0e1a459a816a61de07baff789d5e922f6293ba1979906d9ba"
+    },
+    {
+      "path": "apps/api/src/learning-assessments.ts",
+      "sha256": "4d1bfdba4c60638d88a98308e0f1f1e4ce8f907275d157acb0db102495ff2844"
+    },
+    {
+      "path": "apps/api/src/learning-path-content.ts",
+      "sha256": "ca41d68d613c021964ed9f787a8d289d008b5e6a81a89e589d07434f901fa48a"
+    },
+    {
+      "path": "apps/api/src/learning-path-payload.ts",
+      "sha256": "76cbaef2bb18f2ce07c7a76f02a783bea64b60a131a1a04e01761d5c62414260"
+    },
+    {
+      "path": "apps/api/src/learning-policy.ts",
+      "sha256": "17c9f076e6f10e446d421c22ba29105ff1623af7fc48a6b8d43e801fc0cb307a"
+    },
+    {
+      "path": "apps/api/src/learning.ts",
+      "sha256": "3c21a2b765d9a203efb45811a558e8535346bbc98f2b2ad796e8df7537a1b0ce"
+    },
+    {
+      "path": "apps/api/src/main.ts",
+      "sha256": "04d28b0b41ce17fbac23151d81f52e89c8c2f73b379d9a045faa6af0c9da96b7"
+    },
+    {
+      "path": "apps/api/src/mastery-model.ts",
+      "sha256": "7c149bd454e7554632a20e1cec56509325ad2a813a1da097e337f732a51831b4"
+    },
+    {
+      "path": "apps/api/src/math-gateway.ts",
+      "sha256": "b5bc4c9de0934fa19b47e64e17cdb555dd51b1e8f5d552161d627bcc42ab3214"
+    },
+    {
+      "path": "apps/api/src/metacognition.ts",
+      "sha256": "424a384439e191ef2f5177924637d5856d24a5fcac2cc41e9e82514946ae7c8b"
+    },
+    {
+      "path": "apps/api/src/pedagogy-context.ts",
+      "sha256": "dc2a1abda064e6c834d02de77663d1e5ab340947d275cf2a4c37b837ee341eb4"
+    },
+    {
+      "path": "apps/api/src/pedagogy-engine.ts",
+      "sha256": "dcc6c32b6c142c897edf1af2c3ffe5010106df7a634f8eb20cd3bb58253cf92f"
+    },
+    {
+      "path": "apps/api/src/ph08-gemini.ts",
+      "sha256": "03d9968fb50690cde438fc850a1622097a93b519878be61ac0dfc32f34bf8411"
+    },
+    {
+      "path": "apps/api/src/ph08-generative.ts",
+      "sha256": "1194a926e9d3686ea92cb6aa4a10362dac9a20e4cf2e0ebb1e68841e5a013479"
+    },
+    {
+      "path": "apps/api/src/ph08-reviewed-content.ts",
+      "sha256": "3f91bcdc29d3406aa228878b753f496bbae97ed95ccb13a58c6045ae23fc1a07"
+    },
+    {
+      "path": "apps/api/src/physics-gateway.ts",
+      "sha256": "e2931c9037f66f53c8c5b0b30985110d54ad45b6afa8f0fa5d2349619b2f44af"
+    },
+    {
+      "path": "apps/api/src/physics-learning.ts",
+      "sha256": "4cff545316bc71d2abf69b0b7c2b28e4bc0924036adc186498d626bdbacd1b57"
+    },
+    {
+      "path": "apps/api/src/physics.ts",
+      "sha256": "3e98df595c51d418a3d5036a53f654f08f82d026f617b52854335266f1b1058b"
+    },
+    {
+      "path": "apps/api/src/product-core.ts",
+      "sha256": "4d328fa8c9ad79403c4d1213da73f658dc946d3890ccf2578e8bcfc872623a5b"
+    },
+    {
+      "path": "apps/api/src/programming-runner.ts",
+      "sha256": "092b80099a90adebdbf0954a534371290ffbbc618df8da19aec9baea16d33cc5"
+    },
+    {
+      "path": "apps/api/src/programming.ts",
+      "sha256": "5322ddf336fd65495fcec1de1599e5505d934439b91973667d468fa33fc3ccf1"
+    },
+    {
+      "path": "apps/api/src/progress.ts",
+      "sha256": "3b4f5331998e218bae9fa63e477f698968d4749ad404af0d616eeb9f1c81befe"
+    },
+    {
+      "path": "apps/api/src/retention-review.ts",
+      "sha256": "45572a9e63f522440e09aaa3fc748f2dddaded69953f84e6af0256011be4be58"
+    },
+    {
+      "path": "apps/api/src/retrieval-scheduler.ts",
+      "sha256": "73184001b23f59042f711fd8464969cba80e4a7e786817d67be7b86985bbe72b"
+    },
+    {
+      "path": "apps/api/src/runner-coordinator.ts",
+      "sha256": "cd568fd81ba74a056e3157e9b4e6c43b66178fd571388f7e2f0b8991fedef005"
+    },
+    {
+      "path": "apps/api/src/scaffolding.ts",
+      "sha256": "153b0631f2ee60c58ee003d809a0d70212f2d4571095883c33295c48b7126e75"
+    },
+    {
+      "path": "apps/api/src/security.ts",
+      "sha256": "3fe5edb3c39f457a40b671f1f6bda65426dac93d7c43fac0859bd70ec75361a8"
+    },
+    {
+      "path": "apps/api/src/socratic-tutor.ts",
+      "sha256": "d03af93c535bb779d6d621e98ec1fcf88b82f3acc7bf129aecb94a1b1090777b"
+    },
+    {
+      "path": "apps/api/src/store.ts",
+      "sha256": "865d80512549d3b601e5bc0be4202ea7dbb6389bba4fd57faba1ce0720704e81"
+    },
+    {
+      "path": "apps/api/src/studio-diagnosis.ts",
+      "sha256": "2f66eb78d13483de68c392018cb8676469c37e666c766844dfffe1da678e5ddd"
+    },
+    {
+      "path": "apps/api/src/studio-pairings.ts",
+      "sha256": "d3506f52d02b8b702ff9b4ff089375ee414f01f18dc8822d91462cc3484c03a8"
+    },
+    {
+      "path": "apps/api/src/studio-tutoring.ts",
+      "sha256": "9857ee99deae42a44b529231544d1671349e15f5c1a1369c77795d186f9051c5"
+    },
+    {
+      "path": "apps/api/src/subject-ai.ts",
+      "sha256": "fd8e2f8afab694d21524e400acb9075cb8a438bdee313c18e0da3007261f6458"
+    },
+    {
+      "path": "apps/api/src/teacher-demo.ts",
+      "sha256": "92df30d37f9cd7d587d87f68d6aa88736c7aa465e0196ee0a0babaeff9758514"
+    },
+    {
+      "path": "apps/api/src/tutoring-policy.ts",
+      "sha256": "32b86c76c293b8d1ab80e461ce8d77e7becd3b1977fdbdd44b9382044f620d96"
+    },
+    {
+      "path": "apps/api/src/tutoring.ts",
+      "sha256": "9102625b28d0c937acbb89694cba5cb26f8fcaa87972a46236f1ab90fe6c907e"
+    },
+    {
+      "path": "apps/api/src/verification.ts",
+      "sha256": "964f20e15f159b21999622c5ee61d92a649e076883dccb59e2a465a2e0ecc8c9"
+    },
+    {
+      "path": "apps/web/src/AccountAiConsentPanel.tsx",
+      "sha256": "202f8455c4d03121ff7c1b1af7d59d1e8ed9c8d9b8c428335fdc2199510866d7"
+    },
+    {
+      "path": "apps/web/src/AccountPanel.tsx",
+      "sha256": "b2b4caeb439b4ee9201f1426f1a7436a452e10522bf14aa5f83e072b985cb7d4"
+    },
+    {
+      "path": "apps/web/src/ArabicEditor.tsx",
+      "sha256": "d8854475dc89f60f81a9201e7f498000dfd828cd3a84f98439598a80b4c52683"
+    },
+    {
+      "path": "apps/web/src/BetaPanel.tsx",
+      "sha256": "6fb3d54636a87412788e24e3202da9ad1ea542293cbd5522f1ca41bd3c672e32"
+    },
+    {
+      "path": "apps/web/src/ContentStudio.tsx",
+      "sha256": "165d3cf9c92443e4651e8892a39c1dfd73d3da7f1de112f0d984a65600baf48c"
+    },
+    {
+      "path": "apps/web/src/DiagnosticPanel.tsx",
+      "sha256": "2759c19bd82fdf7adbcc0b567b395ba2494ab82cae5079aff9b06172bc0393b4"
+    },
+    {
+      "path": "apps/web/src/EpisodePanel.tsx",
+      "sha256": "fa129a342b7e3b18a771b4e4901ff83fd1018370741997d4762e32b4a0c982bb"
+    },
+    {
+      "path": "apps/web/src/FormulaPreview.tsx",
+      "sha256": "495dc807bafdb81c5d2da81149d32c301ee42c863ba8b5dacb802d9bf72b1fb5"
+    },
+    {
+      "path": "apps/web/src/HintPanel.tsx",
+      "sha256": "509f56684f6ff59645cc31ad34c1107df30e21450622a2d263c76f556e8cb475"
+    },
+    {
+      "path": "apps/web/src/IntelligentLearningPanel.tsx",
+      "sha256": "358c8e0ea0aa74152235a7b4d282b022b6ec7f628fe77043e076925a4f4336fa"
+    },
+    {
+      "path": "apps/web/src/LearningPaths.tsx",
+      "sha256": "a2a85b76eaaf4a062af04821b3be0c8827649627f997f572964a0019318f4483"
+    },
+    {
+      "path": "apps/web/src/LessonRenderer.tsx",
+      "sha256": "309ba7c5596004fad2a613bef76695e7a3a9aff25505693f460547e49aa0d38d"
+    },
+    {
+      "path": "apps/web/src/MathInput.tsx",
+      "sha256": "f2fb62a7cf7c4bef649f86ce5cf359f12787a8ed58d92c29edf01bb87ef0ba57"
+    },
+    {
+      "path": "apps/web/src/MathLiveProbe.tsx",
+      "sha256": "f92423f802ac3834edd5cac7b7de22656f2ffe61b91c325eafa270e5b23be8d3"
+    },
+    {
+      "path": "apps/web/src/PathStudio.tsx",
+      "sha256": "c988403b30ec863573e3217431ef858455664a91b356f5fc504b56ccf8244819"
+    },
+    {
+      "path": "apps/web/src/ProductShell.tsx",
+      "sha256": "c6cfebdb4298de9db359868f0c2d48e7c4c415b7cda1e22efa71fe34497cb768"
+    },
+    {
+      "path": "apps/web/src/StudentProgress.tsx",
+      "sha256": "c447936ab90cb62c246e263ae51678ffd7a921ecd980ff289edf3c9dd821f1ac"
+    },
+    {
+      "path": "apps/web/src/StudentWorkspace.tsx",
+      "sha256": "91f4ceb8e1f0c65e787cfa0ecb7b3000ce2bb4ee18e25cb6215cc92961c474d4"
+    },
+    {
+      "path": "apps/web/src/SubjectWorkspace.tsx",
+      "sha256": "1fe5c25f757461cbe3d1ab1778a2a48436071aec9ba1ad9b149fb7190102762b"
+    },
+    {
+      "path": "apps/web/src/TeacherDemo.tsx",
+      "sha256": "d0856900aee4c6e390aa142b81f8b927820c070c1581d37c73dcf5645faac442"
+    },
+    {
+      "path": "apps/web/src/api-client.ts",
+      "sha256": "693e37f14f9dadd5eba0a4e4195f96905eeaf6a7dee4d2b24d5a142151abdf10"
+    },
+    {
+      "path": "apps/web/src/api-schemas.json",
+      "sha256": "41dbc33f5491c3940e310fcaf8fb59bc7ba082846ed631a85021de33d90362d5"
+    },
+    {
+      "path": "apps/web/src/code-editor-model.ts",
+      "sha256": "2003d09ea042ea367a42422d34556e6e55cdfb66659f291ee13b6c22f1ad2188"
+    },
+    {
+      "path": "apps/web/src/editor-fixtures.ts",
+      "sha256": "f50658e6f965a75fd4c7b040f8605ff5ce296ffd472629b1f10a233bd2561516"
+    },
+    {
+      "path": "apps/web/src/editor-model.ts",
+      "sha256": "bcb74ef445d9256e1161288b5b388383ad81dcde1d1fd6b1b9d7f26c698c77eb"
+    },
+    {
+      "path": "apps/web/src/intelligent-learning-api.ts",
+      "sha256": "8ee2a73a5b298fd4337cae931e94d11a29448b7b0b70e7d5740d55a553b9c9d2"
+    },
+    {
+      "path": "apps/web/src/learning-path-api.ts",
+      "sha256": "fe2020260401e9daff73e05317db540a40e355e6b039b91379f76e52b6ea4199"
+    },
+    {
+      "path": "apps/web/src/learning-path-session.ts",
+      "sha256": "cdbc2ff0854669d3e57d42d5670aae155e2a71381f8bae7b6a4631ffe03798e1"
+    },
+    {
+      "path": "apps/web/src/main.tsx",
+      "sha256": "9551cc2cbd00d7836849d927eb4c52ff037934daf9f83f9375c4a1007e8c5295"
+    },
+    {
+      "path": "apps/web/src/product-api.ts",
+      "sha256": "9b99fbe2e422bc34b57af3ecfb1440c61a68a7accd0cc8a86d6fb124c35b37cc"
+    },
+    {
+      "path": "apps/web/src/product-session.ts",
+      "sha256": "66b22f40d1aba8e5b577e6bbee3c7c0eebdaaaa7e40ce754f74df47c5d298acf"
+    },
+    {
+      "path": "apps/web/src/product.css",
+      "sha256": "3cc1d03481dae8701734e94e85312d83b63ba2b65d44c6b5e8a35db3a28b324b"
+    },
+    {
+      "path": "apps/web/src/programming-poll.ts",
+      "sha256": "8e74c60fe0ea7a52d083fe49057ff853f156d724133aaf38cad158880e4ab34f"
+    },
+    {
+      "path": "apps/web/src/style.css",
+      "sha256": "17b866f60bfb97f67d58062484d8785a7d66099516ddd7189234814ff6f47b7b"
+    },
+    {
+      "path": "apps/web/src/workspace-model.ts",
+      "sha256": "1e158fa6b22c6c9a33ec6669182ebce65376738c3ff90bc8b5f2eae904f14eee"
+    },
+    {
+      "path": "apps/web/src/workspace.css",
+      "sha256": "911ffcbcef00b406f72a83e166e966b0b0e4eb256eff1948332d81cd4d51b18b"
+    },
+    {
+      "path": "docs/12-API-CONTRACT.yaml",
+      "sha256": "3268653b95d40ab4615f803b0e3bc3915f6948b82fa11716ea4e1164a8abc73a"
+    },
+    {
+      "path": "packages/contracts/src/generated/api-validators.cjs",
+      "sha256": "fb541a5f6be54476573cab5e5e2776dbbbf0206f2f17029f3bf146fbebe805c0"
+    },
+    {
+      "path": "packages/contracts/src/generated/api-validators.d.cts",
+      "sha256": "03652908fca4fe7c62db4987c370ad3d56b2eb8391e644c3859aa9c2dd1083d9"
+    },
+    {
+      "path": "packages/contracts/src/generated/public-api.d.ts",
+      "sha256": "cac92fb0b385cb7f9fc7e829fa70cde8baf49c6bcfcab8c54fb5ceb393240861"
+    },
+    {
+      "path": "packages/contracts/src/index.ts",
+      "sha256": "42cd998d616e73545d96ac2a45c35adc8afc3de28a49fd0149bc1992f6018c23"
+    },
+    {
+      "path": "packages/contracts/src/intelligent-learning.d.ts",
+      "sha256": "36a5faab4ebca424d1f83bfaeb96117a669f8d8b8f418e1fdc769320bfa8f034"
+    },
+    {
+      "path": "packages/contracts/src/learning-assessments.d.ts",
+      "sha256": "d7f47305921c87e13d54f1db30f5ee236fd7a6f5f252e15a83f1e02de2827265"
+    },
+    {
+      "path": "packages/contracts/src/learning-paths.d.ts",
+      "sha256": "b768613ca74582a262c3bcbd19ee871e150df33ce5c145ba77aae4c04235c671"
+    },
+    {
+      "path": "packages/contracts/src/product-physics.d.ts",
+      "sha256": "2f2185db774d33a64a342b64d7640673a8bb9b5a04afc08819cf674dcc4c6ac7"
+    },
+    {
+      "path": "packages/contracts/src/product.d.ts",
+      "sha256": "ab94fdff71361f39492c1a2b89ee657d3ed9906db808a2b1c9a488b7270a704a"
+    }
+  ],
+  "golden": [
+    {
+      "path": "docs/14-GOLDEN-DATASET.cases.json",
+      "sha256": "1c3e5fec509a8fad930a3d05e9f5b764b6b060281ec7277a32575511095b7f12",
+      "unchanged": true
+    },
+    {
+      "path": "docs/14-GOLDEN-DATASET.md",
+      "sha256": "cb46458dc172cecfb0c111da28f223c221bfe082be89fc147920063e494b8f92",
+      "unchanged": true
+    }
+  ],
+  "node": "v26.7.0",
+  "platform": "win32",
+  "contractsVersion": "1.4.0-development",
+  "unitTests": 66,
+  "legacyTests": 17,
+  "liveTests": 14,
+  "validatedHttpResponses": 238,
+  "migration": "0023_intelligent_learning_a",
+  "migrationAppliedOnlyToNewEphemeralTestDatabase": true,
+  "externalAi": false,
+  "runner": false,
+  "realLearning": false,
+  "deployed": false,
+  "pushed": false,
+  "browser": "BLOCKED_CERTIFICATE",
+  "humanContentApproval": "pending",
+  "technicalStatus": "PASS",
+  "releaseStatus": "PARTIAL"
+}

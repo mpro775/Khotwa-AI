@@ -49,6 +49,14 @@ import {
   LearningAssessmentController,
   LearningAssessmentService,
 } from "./learning-assessments";
+import {
+  IntelligentLearningController,
+  IntelligentLearningService,
+} from "./intelligent-learning";
+import {
+  IntelligentLearningExperiencesController,
+  IntelligentLearningExperiencesService,
+} from "./intelligent-learning-experiences";
 
 type AccessMode = "bootstrap" | "createGuest" | "current" | "logout";
 const Access = (mode: AccessMode) => SetMetadata("access", mode);
@@ -724,6 +732,8 @@ export class BusinessController {
     ProgrammingController,
     LearningPathContentController,
     LearningAssessmentController,
+    IntelligentLearningController,
+    IntelligentLearningExperiencesController,
   ],
   providers: [
     { provide: Security, useFactory: securityFromEnvironment },
@@ -808,6 +818,43 @@ export class BusinessController {
         VerificationService,
         TutoringService,
         PhysicsService,
+      ],
+    },
+    {
+      provide: IntelligentLearningService,
+      useFactory: (
+        store: Store,
+        accounts: AccountService,
+        assessments: LearningAssessmentService,
+        diagnosis: DiagnosisService,
+      ) =>
+        new IntelligentLearningService(store, accounts, assessments, diagnosis),
+      inject: [
+        Store,
+        AccountService,
+        LearningAssessmentService,
+        DiagnosisService,
+      ],
+    },
+    {
+      provide: IntelligentLearningExperiencesService,
+      useFactory: (
+        store: Store,
+        accounts: AccountService,
+        content: LearningPathContentService,
+        assessments: LearningAssessmentService,
+      ) =>
+        new IntelligentLearningExperiencesService(
+          store,
+          accounts,
+          content,
+          assessments,
+        ),
+      inject: [
+        Store,
+        AccountService,
+        LearningPathContentService,
+        LearningAssessmentService,
       ],
     },
     {

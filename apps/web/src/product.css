@@ -796,6 +796,51 @@ pre {
 .path-studio fieldset:disabled {
   opacity: 0.85;
 }
+.intelligent-learning > section,
+.intelligent-learning > details {
+  margin-block: 1rem;
+}
+.intelligent-learning details > summary {
+  cursor: pointer;
+  padding-block: 0.7rem;
+  font-weight: 700;
+}
+.intelligent-learning label {
+  display: block;
+  margin-block: 0.8rem;
+}
+.intelligent-dimensions dl > div {
+  margin-block: 0.65rem;
+}
+.intelligent-dimensions dt {
+  font-weight: 700;
+}
+.intelligent-dimensions dd {
+  margin-inline-start: 0;
+}
+.intelligent-graph li {
+  margin-block: 0.75rem;
+}
+.intelligent-graph button {
+  margin-inline-start: 0.6rem;
+}
+.intelligent-tutor ol {
+  list-style: none;
+  padding: 0;
+}
+.tutor-turn {
+  margin-block: 0.7rem;
+  padding: 0.75rem;
+  border-inline-start: 3px solid #497568;
+  background: #fff;
+  overflow-wrap: anywhere;
+}
+.tutor-turn.student {
+  border-inline-start-color: #5a7187;
+}
+.tutor-turn p {
+  white-space: pre-wrap;
+}
 @media (max-width: 700px) {
   .learning-subjects {
     grid-template-columns: 1fr;

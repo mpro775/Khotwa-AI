@@ -294,6 +294,8 @@
               "session_expired",
               "revision_conflict",
               "idempotency_conflict",
+              "stale_decision",
+              "no_safe_activity",
               "request_in_progress",
               "invalid_state",
               "content_version_conflict",

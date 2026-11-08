@@ -1445,10 +1445,718 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/learning/next-activity": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        get: operations["getANextActivity"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/activities/accept": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        post: operations["acceptAActivity"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/activities/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        get: operations["getAActivity"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/activities/{id}/start-assessment": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        post: operations["startAActivityAssessment"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/mastery": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        get: operations["getAMastery"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/knowledge-graph": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        get: operations["getAKnowledgeGraph"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/deep-diagnosis": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        get: operations["getADeepDiagnosis"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/deep-diagnosis/probe": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        post: operations["offerADeepProbe"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/reviews/schedule": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        post: operations["scheduleAReviews"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/reviews/due": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        get: operations["getADueReviews"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/reviews/{id}/start": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        post: operations["startAReview"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/reviews/{id}/defer": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        post: operations["deferAReview"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/reviews/{id}/finish": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        post: operations["finishAReview"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/scaffolds": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        post: operations["startAScaffold"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/scaffolds/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        get: operations["getAScaffold"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/scaffolds/{id}/reveal": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        post: operations["revealAScaffold"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/scaffolds/{id}/advance": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        post: operations["advanceAScaffold"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/tutor-sessions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        post: operations["startATutor"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/tutor-sessions/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        get: operations["getATutor"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/tutor-sessions/{id}/reply": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        post: operations["replyATutor"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/goals": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        get: operations["getAGoals"];
+        put?: never;
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        post: operations["createAGoal"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/goals/{id}/checkin": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        post: operations["checkinAGoal"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/goals/{id}/update": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        post: operations["updateAGoal"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/learning/reflections": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        get: operations["getAReflections"];
+        put?: never;
+        /** @description Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning. */
+        post: operations["createAReflection"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        AActivityKind: "explanation" | "worked_example" | "diagnostic_probe" | "guided_practice" | "prerequisite_repair" | "independent_check" | "retrieval_review" | "challenge" | "reflection";
+        AActivityAlternative: {
+            activityKind: components["schemas"]["AActivityKind"];
+            lessonRevisionId: string | null;
+            skillCode: string | null;
+            reasonCode: string;
+        };
+        ANextActivityDecision: {
+            id: string;
+            decisionId: string;
+            revision: number;
+            trackRevisionId: string;
+            policyVersion: string;
+            evidenceFingerprint: string;
+            sourceAttemptId: string | null;
+            mappingSnapshotHash: string;
+            activityKind: components["schemas"]["AActivityKind"] | "no_safe_activity";
+            lessonRevisionId: string | null;
+            skillCode: string | null;
+            reasonCode: string;
+            reasonAr: string;
+            alternatives: components["schemas"]["AActivityAlternative"][];
+            expiresAt: string;
+        };
+        ALearningActivity: {
+            id: string;
+            revision: number;
+            decisionId: string;
+            trackRevisionId: string;
+            activityKind: components["schemas"]["AActivityKind"];
+            lessonRevisionId: string | null;
+            skillCode: string | null;
+            status: "active" | "completed";
+            assessmentId: string | null;
+            assistanceLevel: number;
+            sourceAttemptId: string | null;
+            createdAt: string;
+        };
+        ALearnerSkillProjection: {
+            skillCode: string;
+            titleAr: string;
+            dimensions: {
+                exposure: "not_seen" | "seen";
+                supportedPractice: "none" | "observed";
+                independentPerformance: "none" | "limited_evidence" | "consistent_evidence" | "needs_review";
+                transfer: "not_tested" | "evidence" | "needs_review";
+                retention: "not_due" | "due" | "observed_retained" | "review_needed" | "insufficient_data";
+                evidenceQuality: "insufficient" | "partial" | "eligible";
+            };
+            counts: {
+                assisted: number;
+                eligibleIndependent: number;
+                independentErrors: number;
+            };
+            evidenceIds: string[];
+            reasonCodes: string[];
+        };
+        AMasteryResponse: {
+            trackRevisionId: string;
+            modelVersion: string;
+            evidenceFingerprint: string;
+            computedAt: string;
+            skills: components["schemas"]["ALearnerSkillProjection"][];
+        };
+        AKnowledgeGraph: {
+            trackRevisionId: string;
+            graphVersion: string;
+            mappingSnapshotHash: string;
+            nodes: {
+                skillCode: string;
+                titleAr: string;
+                /** @enum {string} */
+                subject: "algebra" | "physics" | "programming";
+                lessonRevisionId: string | null;
+                reviewState: "reviewed" | "mapping_pending" | "missing_coverage";
+            }[];
+            edges: {
+                fromSkill: string;
+                toSkill: string;
+                relationKind: "required" | "helpful" | "cross_subject_support";
+                rationaleAr: string;
+                reviewState: "reviewed" | "pending";
+            }[];
+            issues: string[];
+        };
+        ADeepDiagnosis: {
+            attemptId: string;
+            attemptRevision: number;
+            state: "candidate" | "probe_offered" | "probe_answered" | "unresolved" | "technical_abstain" | "review_blocked";
+            candidateCauses: {
+                errorCode: string;
+                candidateSkillCodes: string[];
+                basisEvidenceIds: string[];
+                confidenceLabel: "possible" | "supported" | "unresolved";
+            }[];
+            probeId: string | null;
+            nextIntervention: "clarifying_question" | "short_explanation" | "targeted_practice" | "no_safe_probe";
+            policyVersion: string;
+        };
+        AReview: {
+            id: string;
+            revision: number;
+            trackRevisionId: string;
+            lessonRevisionId: string;
+            skillCode: string;
+            sourceEvidenceId: string;
+            policyVersion: string;
+            dueAt: string;
+            status: "scheduled" | "deferred" | "started" | "completed" | "coverage_limited";
+            assessmentId: string | null;
+            retentionOutcome: "not_tested" | "independent" | "assisted" | "needs_review" | "unassessable";
+            anchorAt: string;
+            stepIndex: number;
+        };
+        AReviewList: {
+            policyVersion: string;
+            reviews: components["schemas"]["AReview"][];
+        };
+        AScaffoldSession: {
+            id: string;
+            revision: number;
+            trackRevisionId: string;
+            lessonRevisionId: string;
+            skillCode: string;
+            stage: "S0" | "S1" | "S2" | "S3" | "S4";
+            status: "active" | "completed" | "unverified";
+            contentVersion: number;
+            problemRaw: string | null;
+            visibleSteps: {
+                raw: string;
+                explanationAr: string;
+            }[];
+            supportCount: number;
+            assessmentId: string | null;
+            independentEligible: boolean;
+            messageAr: string;
+        };
+        ATutorSession: {
+            id: string;
+            revision: number;
+            trackRevisionId: string;
+            lessonRevisionId: string;
+            skillCode: string;
+            state: "awaiting_student" | "completed" | "safe_handoff" | "failed";
+            hintLevel: 0 | 1 | 2 | 3 | 4;
+            turnCount: number;
+            maxTurns: number;
+            /** @constant */
+            assistance: true;
+            source: "offline_reviewed_template" | "synthetic_template";
+            turns: {
+                role: "tutor" | "student";
+                textAr: string;
+                hintLevel: number;
+            }[];
+            assessmentId: string | null;
+            messageAr: string;
+        };
+        AGoal: {
+            id: string;
+            revision: number;
+            trackRevisionId: string;
+            lessonRevisionId: string;
+            skillCode: string;
+            targetIndependentCount: number;
+            textAr: string;
+            status: "active" | "achieved" | "skipped";
+            independentCount: number;
+            createdAt: string;
+            updatedAt: string;
+        };
+        AReflection: {
+            id: string;
+            trackRevisionId: string;
+            activityId: string | null;
+            goalId: string | null;
+            phase: "predict" | "monitor" | "reflect";
+            confidence: number | null;
+            textAr: string;
+            skipped: boolean;
+            verifiedOutcome: "correct" | "error" | "assisted" | "unassessable" | "not_tested";
+            messageAr: string;
+            createdAt: string;
+        };
+        AStartedActivity: {
+            activity: components["schemas"]["ALearningActivity"];
+            assessment: components["schemas"]["LPAssessmentSession"];
+        };
+        getANextActivityEnvelope: {
+            data: components["schemas"]["ANextActivityDecision"];
+            meta: components["schemas"]["Meta"];
+        };
+        acceptAActivityEnvelope: {
+            data: components["schemas"]["ALearningActivity"];
+            meta: components["schemas"]["Meta"];
+        };
+        getAActivityEnvelope: {
+            data: components["schemas"]["ALearningActivity"];
+            meta: components["schemas"]["Meta"];
+        };
+        startAActivityAssessmentEnvelope: {
+            data: components["schemas"]["AStartedActivity"];
+            meta: components["schemas"]["Meta"];
+        };
+        getAMasteryEnvelope: {
+            data: components["schemas"]["AMasteryResponse"];
+            meta: components["schemas"]["Meta"];
+        };
+        getAKnowledgeGraphEnvelope: {
+            data: components["schemas"]["AKnowledgeGraph"];
+            meta: components["schemas"]["Meta"];
+        };
+        getADeepDiagnosisEnvelope: {
+            data: components["schemas"]["ADeepDiagnosis"];
+            meta: components["schemas"]["Meta"];
+        };
+        scheduleAReviewsEnvelope: {
+            data: components["schemas"]["AReviewList"];
+            meta: components["schemas"]["Meta"];
+        };
+        getADueReviewsEnvelope: {
+            data: components["schemas"]["AReviewList"];
+            meta: components["schemas"]["Meta"];
+        };
+        startAReviewEnvelope: {
+            data: {
+                review: components["schemas"]["AReview"];
+                assessment: components["schemas"]["LPAssessmentSession"];
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        deferAReviewEnvelope: {
+            data: components["schemas"]["AReview"];
+            meta: components["schemas"]["Meta"];
+        };
+        finishAReviewEnvelope: {
+            data: components["schemas"]["AReview"];
+            meta: components["schemas"]["Meta"];
+        };
+        startAScaffoldEnvelope: {
+            data: components["schemas"]["AScaffoldSession"];
+            meta: components["schemas"]["Meta"];
+        };
+        getAScaffoldEnvelope: {
+            data: components["schemas"]["AScaffoldSession"];
+            meta: components["schemas"]["Meta"];
+        };
+        revealAScaffoldEnvelope: {
+            data: components["schemas"]["AScaffoldSession"];
+            meta: components["schemas"]["Meta"];
+        };
+        advanceAScaffoldEnvelope: {
+            data: {
+                scaffold: components["schemas"]["AScaffoldSession"];
+                assessment: components["schemas"]["LPAssessmentSession"] | null;
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        startATutorEnvelope: {
+            data: components["schemas"]["ATutorSession"];
+            meta: components["schemas"]["Meta"];
+        };
+        getATutorEnvelope: {
+            data: components["schemas"]["ATutorSession"];
+            meta: components["schemas"]["Meta"];
+        };
+        replyATutorEnvelope: {
+            data: components["schemas"]["ATutorSession"];
+            meta: components["schemas"]["Meta"];
+        };
+        getAGoalsEnvelope: {
+            data: {
+                goals: components["schemas"]["AGoal"][];
+            };
+            meta: components["schemas"]["Meta"];
+        };
+        createAGoalEnvelope: {
+            data: components["schemas"]["AGoal"];
+            meta: components["schemas"]["Meta"];
+        };
+        checkinAGoalEnvelope: {
+            data: components["schemas"]["AGoal"];
+            meta: components["schemas"]["Meta"];
+        };
+        updateAGoalEnvelope: {
+            data: components["schemas"]["AGoal"];
+            meta: components["schemas"]["Meta"];
+        };
+        createAReflectionEnvelope: {
+            data: components["schemas"]["AReflection"];
+            meta: components["schemas"]["Meta"];
+        };
+        getAReflectionsEnvelope: {
+            data: {
+                reflections: components["schemas"]["AReflection"][];
+            };
+            meta: components["schemas"]["Meta"];
+        };
         Meta: {
             /**
              * Format: uuid
@@ -2128,7 +2836,7 @@ export interface components {
              * @description رمز خطأ تطبيقي ثابت للمستهلك.
              * @enum {string}
              */
-            code: "invalid_input" | "unauthenticated" | "forbidden" | "not_found" | "session_expired" | "revision_conflict" | "idempotency_conflict" | "request_in_progress" | "invalid_state" | "content_version_conflict" | "math_unsupported" | "math_inconclusive" | "math_unavailable" | "ai_unavailable" | "rate_limited" | "internal_error" | "csrf_invalid";
+            code: "invalid_input" | "unauthenticated" | "forbidden" | "not_found" | "session_expired" | "revision_conflict" | "idempotency_conflict" | "stale_decision" | "no_safe_activity" | "request_in_progress" | "invalid_state" | "content_version_conflict" | "math_unsupported" | "math_inconclusive" | "math_unavailable" | "ai_unavailable" | "rate_limited" | "internal_error" | "csrf_invalid";
             messageAr: string;
             issues: components["schemas"]["ValidationIssue"][];
             currentRevision: number | null;
@@ -2528,6 +3236,11 @@ export interface components {
         };
         AccountExportEnvelope: {
             data: {
+                intelligentLearning?: {
+                    goals: components["schemas"]["AGoal"][];
+                    reflections: components["schemas"]["AReflection"][];
+                    truncated: boolean;
+                };
                 user: components["schemas"]["AccountUser"] | null;
                 attempts: components["schemas"]["AccountAttempt"][];
                 subjectAttempts: components["schemas"]["AccountSubjectAttempt"][];
@@ -3054,7 +3767,7 @@ export interface components {
         };
         LPLessonBlock: {
             /** @enum {string} */
-            type: "paragraph" | "heading" | "math_example" | "worked_steps" | "key_point" | "common_mistake" | "practice_link" | "code_example" | "physics_example";
+            type: "paragraph" | "heading" | "math_example" | "worked_steps" | "key_point" | "common_mistake" | "practice_link" | "code_example" | "physics_example" | "completion_step" | "worked_example_ref" | "self_check_prompt";
             textAr: string;
             raw?: string;
             steps?: {
@@ -3206,7 +3919,7 @@ export interface components {
             }[];
         };
         /** @enum {string} */
-        LPAssessmentKind: "diagnostic_pretest" | "lesson_check" | "post_remediation" | "practice";
+        LPAssessmentKind: "diagnostic_pretest" | "lesson_check" | "post_remediation" | "practice" | "independent_check" | "retrieval_review";
         /** @enum {string} */
         LPLearningEvidenceState: "not_assessed" | "needs_review" | "practicing_with_support" | "independent_evidence" | "insufficient_evidence";
         LPAssessmentQuestion: {
@@ -6915,6 +7628,1021 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["LPLearningProgressEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getANextActivity: {
+        parameters: {
+            query: {
+                trackRevisionId: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Owner-scoped safe student response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["getANextActivityEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    acceptAActivity: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    /** Format: uuid */
+                    decisionId: string;
+                    expectedRevision: number;
+                    alternativeIndex?: number;
+                };
+            };
+        };
+        responses: {
+            /** @description Owner-scoped safe student response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["acceptAActivityEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getAActivity: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Owner-scoped safe student response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["getAActivityEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    startAActivityAssessment: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    expectedRevision: number;
+                };
+            };
+        };
+        responses: {
+            /** @description Owner-scoped safe student response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["startAActivityAssessmentEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getAMastery: {
+        parameters: {
+            query: {
+                trackRevisionId: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Owner-scoped safe student response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["getAMasteryEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getAKnowledgeGraph: {
+        parameters: {
+            query: {
+                trackRevisionId: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Owner-scoped safe student response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["getAKnowledgeGraphEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getADeepDiagnosis: {
+        parameters: {
+            query: {
+                attemptId: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Owner-scoped safe student response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["getADeepDiagnosisEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    offerADeepProbe: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    /** Format: uuid */
+                    attemptId: string;
+                    expectedRevision: number;
+                };
+            };
+        };
+        responses: {
+            /** @description Owner-scoped safe student response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProbeEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    scheduleAReviews: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    /** Format: uuid */
+                    trackRevisionId: string;
+                };
+            };
+        };
+        responses: {
+            /** @description Owner-scoped safe student response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["scheduleAReviewsEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getADueReviews: {
+        parameters: {
+            query: {
+                trackRevisionId: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Owner-scoped safe student response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["getADueReviewsEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    startAReview: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    expectedRevision: number;
+                };
+            };
+        };
+        responses: {
+            /** @description Owner-scoped safe student response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["startAReviewEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    deferAReview: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    expectedRevision: number;
+                    /** @enum {unknown} */
+                    reason: "student_choice" | "later";
+                    days: number;
+                };
+            };
+        };
+        responses: {
+            /** @description Owner-scoped safe student response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["deferAReviewEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    finishAReview: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    expectedRevision: number;
+                };
+            };
+        };
+        responses: {
+            /** @description Owner-scoped safe student response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["finishAReviewEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    startAScaffold: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    /** Format: uuid */
+                    trackRevisionId: string;
+                    /** Format: uuid */
+                    lessonRevisionId: string;
+                    skillCode: string;
+                };
+            };
+        };
+        responses: {
+            /** @description Owner-scoped safe student response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["startAScaffoldEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getAScaffold: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Owner-scoped safe student response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["getAScaffoldEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    revealAScaffold: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    expectedRevision: number;
+                };
+            };
+        };
+        responses: {
+            /** @description Owner-scoped safe student response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["revealAScaffoldEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    advanceAScaffold: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    expectedRevision: number;
+                    /** Format: uuid */
+                    assessmentId?: string;
+                    skipExample?: boolean;
+                };
+            };
+        };
+        responses: {
+            /** @description Owner-scoped safe student response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["advanceAScaffoldEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    startATutor: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    /** Format: uuid */
+                    trackRevisionId: string;
+                    /** Format: uuid */
+                    lessonRevisionId: string;
+                    skillCode: string;
+                    /** Format: uuid */
+                    assessmentId?: string;
+                    /** Format: uuid */
+                    questionId?: string;
+                    expectedAssessmentRevision?: number;
+                    exitMeasurement?: boolean;
+                };
+            };
+        };
+        responses: {
+            /** @description Owner-scoped safe student response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["startATutorEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getATutor: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Owner-scoped safe student response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["getATutorEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    replyATutor: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    expectedRevision: number;
+                    textAr?: string;
+                    /** @enum {unknown} */
+                    action: "reply" | "next_hint" | "try_independent" | "stop" | "show_solution";
+                    confirmFullSolution?: boolean;
+                };
+            };
+        };
+        responses: {
+            /** @description Owner-scoped safe student response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["replyATutorEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getAGoals: {
+        parameters: {
+            query: {
+                trackRevisionId: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Owner-scoped safe student response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["getAGoalsEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    createAGoal: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    /** Format: uuid */
+                    trackRevisionId: string;
+                    /** Format: uuid */
+                    lessonRevisionId: string;
+                    skillCode: string;
+                    targetIndependentCount: number;
+                    textAr: string;
+                };
+            };
+        };
+        responses: {
+            /** @description Owner-scoped safe student response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["createAGoalEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    checkinAGoal: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    expectedRevision: number;
+                    skipped: boolean;
+                };
+            };
+        };
+        responses: {
+            /** @description Owner-scoped safe student response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["checkinAGoalEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    updateAGoal: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    expectedRevision: number;
+                    textAr?: string;
+                    targetIndependentCount?: number;
+                };
+            };
+        };
+        responses: {
+            /** @description Owner-scoped safe student response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["updateAGoalEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    getAReflections: {
+        parameters: {
+            query: {
+                trackRevisionId: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Owner-scoped safe student response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["getAReflectionsEnvelope"];
+                };
+            };
+            400: components["responses"]["E400"];
+            401: components["responses"]["E401"];
+            403: components["responses"]["E403"];
+            404: components["responses"]["E404"];
+            409: components["responses"]["E409"];
+            422: components["responses"]["E422"];
+            429: components["responses"]["E429"];
+            500: components["responses"]["E500"];
+            503: components["responses"]["E503"];
+        };
+    };
+    createAReflection: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description رمز CSRF مستخرج من bootstrap؛ مطلوب مع cookies لجميع العمليات المحدثة. */
+                "X-CSRF-Token": components["parameters"]["Csrf"];
+                /** @description مفتاح فريد للعملية؛ إعادة المفتاح مع الحمولة نفسها تعيد نتيجة العملية دون تكرار الآثار. يُحفظ ملخصه فقط. */
+                "Idempotency-Key": components["parameters"]["Idempotency"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": {
+                    /** Format: uuid */
+                    trackRevisionId: string;
+                    activityId?: string | null;
+                    goalId?: string | null;
+                    /** @enum {unknown} */
+                    phase: "predict" | "monitor" | "reflect";
+                    confidence?: number;
+                    textAr?: string;
+                    skipped: boolean;
+                };
+            };
+        };
+        responses: {
+            /** @description Owner-scoped safe student response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["createAReflectionEnvelope"];
                 };
             };
             400: components["responses"]["E400"];

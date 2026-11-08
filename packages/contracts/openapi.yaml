@@ -4,7 +4,7 @@
 openapi: 3.1.0
 info:
   title: خُطوة AI — عقد واجهات NestJS
-  version: 1.3.0-development
+  version: 1.4.0-development
   description: |-
     مواصفة OpenAPI 3.1 لنسخة هاكثون شِراع (P0).
 
@@ -4162,6 +4162,1387 @@ paths:
           $ref: "#/components/responses/E500"
         "503":
           $ref: "#/components/responses/E503"
+  # BEGIN INTELLIGENT A PATHS
+  /api/v1/learning/next-activity:
+    get:
+      operationId: getANextActivity
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: trackRevisionId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getANextActivityEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/activities/accept:
+    post:
+      operationId: acceptAActivity
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                decisionId:
+                  type: string
+                  format: uuid
+                expectedRevision:
+                  type: integer
+                  minimum: 0
+                alternativeIndex:
+                  type: integer
+                  minimum: 0
+              required:
+                - decisionId
+                - expectedRevision
+      responses:
+        "201":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/acceptAActivityEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/activities/{id}:
+    get:
+      operationId: getAActivity
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAActivityEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/activities/{id}/start-assessment:
+    post:
+      operationId: startAActivityAssessment
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                expectedRevision:
+                  type: integer
+                  minimum: 0
+              required:
+                - expectedRevision
+      responses:
+        "201":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/startAActivityAssessmentEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/mastery:
+    get:
+      operationId: getAMastery
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: trackRevisionId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAMasteryEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/knowledge-graph:
+    get:
+      operationId: getAKnowledgeGraph
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: trackRevisionId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAKnowledgeGraphEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/deep-diagnosis:
+    get:
+      operationId: getADeepDiagnosis
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: attemptId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getADeepDiagnosisEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/deep-diagnosis/probe:
+    post:
+      operationId: offerADeepProbe
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                attemptId:
+                  type: string
+                  format: uuid
+                expectedRevision:
+                  type: integer
+                  minimum: 0
+              required:
+                - attemptId
+                - expectedRevision
+      responses:
+        "201":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProbeEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/reviews/schedule:
+    post:
+      operationId: scheduleAReviews
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                trackRevisionId:
+                  type: string
+                  format: uuid
+              required:
+                - trackRevisionId
+      responses:
+        "201":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/scheduleAReviewsEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/reviews/due:
+    get:
+      operationId: getADueReviews
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: trackRevisionId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getADueReviewsEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/reviews/{id}/start:
+    post:
+      operationId: startAReview
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                expectedRevision:
+                  type: integer
+                  minimum: 0
+              required:
+                - expectedRevision
+      responses:
+        "201":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/startAReviewEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/reviews/{id}/defer:
+    post:
+      operationId: deferAReview
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                expectedRevision:
+                  type: integer
+                  minimum: 0
+                reason:
+                  enum:
+                    - student_choice
+                    - later
+                days:
+                  type: integer
+                  minimum: 1
+                  maximum: 7
+              required:
+                - expectedRevision
+                - reason
+                - days
+      responses:
+        "201":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deferAReviewEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/reviews/{id}/finish:
+    post:
+      operationId: finishAReview
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                expectedRevision:
+                  type: integer
+                  minimum: 0
+              required:
+                - expectedRevision
+      responses:
+        "201":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/finishAReviewEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/scaffolds:
+    post:
+      operationId: startAScaffold
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                trackRevisionId:
+                  type: string
+                  format: uuid
+                lessonRevisionId:
+                  type: string
+                  format: uuid
+                skillCode:
+                  type: string
+              required:
+                - trackRevisionId
+                - lessonRevisionId
+                - skillCode
+      responses:
+        "201":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/startAScaffoldEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/scaffolds/{id}:
+    get:
+      operationId: getAScaffold
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAScaffoldEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/scaffolds/{id}/reveal:
+    post:
+      operationId: revealAScaffold
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                expectedRevision:
+                  type: integer
+                  minimum: 0
+              required:
+                - expectedRevision
+      responses:
+        "201":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/revealAScaffoldEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/scaffolds/{id}/advance:
+    post:
+      operationId: advanceAScaffold
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                expectedRevision:
+                  type: integer
+                  minimum: 0
+                assessmentId:
+                  type: string
+                  format: uuid
+                skipExample:
+                  type: boolean
+              required:
+                - expectedRevision
+      responses:
+        "201":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/advanceAScaffoldEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/tutor-sessions:
+    post:
+      operationId: startATutor
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                trackRevisionId:
+                  type: string
+                  format: uuid
+                lessonRevisionId:
+                  type: string
+                  format: uuid
+                skillCode:
+                  type: string
+                assessmentId:
+                  type: string
+                  format: uuid
+                questionId:
+                  type: string
+                  format: uuid
+                expectedAssessmentRevision:
+                  type: integer
+                  minimum: 0
+                exitMeasurement:
+                  type: boolean
+              required:
+                - trackRevisionId
+                - lessonRevisionId
+                - skillCode
+      responses:
+        "201":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/startATutorEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/tutor-sessions/{id}:
+    get:
+      operationId: getATutor
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getATutorEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/tutor-sessions/{id}/reply:
+    post:
+      operationId: replyATutor
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                expectedRevision:
+                  type: integer
+                  minimum: 0
+                textAr:
+                  type: string
+                  maxLength: 1000
+                action:
+                  enum:
+                    - reply
+                    - next_hint
+                    - try_independent
+                    - stop
+                    - show_solution
+                confirmFullSolution:
+                  type: boolean
+              required:
+                - expectedRevision
+                - action
+      responses:
+        "201":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/replyATutorEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/goals:
+    get:
+      operationId: getAGoals
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: trackRevisionId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAGoalsEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+    post:
+      operationId: createAGoal
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                trackRevisionId:
+                  type: string
+                  format: uuid
+                lessonRevisionId:
+                  type: string
+                  format: uuid
+                skillCode:
+                  type: string
+                targetIndependentCount:
+                  type: integer
+                  minimum: 1
+                  maximum: 5
+                textAr:
+                  type: string
+                  maxLength: 240
+              required:
+                - trackRevisionId
+                - lessonRevisionId
+                - skillCode
+                - targetIndependentCount
+                - textAr
+      responses:
+        "201":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAGoalEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/goals/{id}/checkin:
+    post:
+      operationId: checkinAGoal
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                expectedRevision:
+                  type: integer
+                  minimum: 0
+                skipped:
+                  type: boolean
+              required:
+                - expectedRevision
+                - skipped
+      responses:
+        "201":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/checkinAGoalEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/goals/{id}/update:
+    post:
+      operationId: updateAGoal
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                expectedRevision:
+                  type: integer
+                  minimum: 0
+                textAr:
+                  type: string
+                  minLength: 1
+                  maxLength: 240
+                targetIndependentCount:
+                  type: integer
+                  minimum: 1
+                  maximum: 5
+              required:
+                - expectedRevision
+      responses:
+        "201":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateAGoalEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  /api/v1/learning/reflections:
+    post:
+      operationId: createAReflection
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - $ref: "#/components/parameters/Csrf"
+        - $ref: "#/components/parameters/Idempotency"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              properties:
+                trackRevisionId:
+                  type: string
+                  format: uuid
+                activityId:
+                  anyOf:
+                    - type: string
+                      format: uuid
+                    - type: "null"
+                goalId:
+                  anyOf:
+                    - type: string
+                      format: uuid
+                    - type: "null"
+                phase:
+                  enum:
+                    - predict
+                    - monitor
+                    - reflect
+                confidence:
+                  type: integer
+                  minimum: 0
+                  maximum: 100
+                textAr:
+                  type: string
+                  maxLength: 1000
+                skipped:
+                  type: boolean
+              required:
+                - trackRevisionId
+                - phase
+                - skipped
+      responses:
+        "201":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAReflectionEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+    get:
+      operationId: getAReflections
+      tags:
+        - التعلم الذكي A
+      description: Synthetic-only A1–A8. Feature disabled returns 403; reads never reveal hidden answers. Writes require Origin/CSRF, owner-scoped idempotency and current revision. Existing V2.2 routes retain their meaning.
+      security:
+        - GuestCookie: []
+        - AccountCookie: []
+      parameters:
+        - name: trackRevisionId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Owner-scoped safe student response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAReflectionsEnvelope"
+        "400":
+          $ref: "#/components/responses/E400"
+        "401":
+          $ref: "#/components/responses/E401"
+        "403":
+          $ref: "#/components/responses/E403"
+        "404":
+          $ref: "#/components/responses/E404"
+        "409":
+          $ref: "#/components/responses/E409"
+        "422":
+          $ref: "#/components/responses/E422"
+        "429":
+          $ref: "#/components/responses/E429"
+        "500":
+          $ref: "#/components/responses/E500"
+        "503":
+          $ref: "#/components/responses/E503"
+  # END INTELLIGENT A PATHS
 components:
   securitySchemes:
     GuestCookie:
@@ -4410,6 +5791,1023 @@ components:
             type: string
             format: uuid
   schemas:
+    # BEGIN INTELLIGENT A SCHEMAS
+    AActivityKind:
+      anyOf:
+        - const: explanation
+        - const: worked_example
+        - const: diagnostic_probe
+        - const: guided_practice
+        - const: prerequisite_repair
+        - const: independent_check
+        - const: retrieval_review
+        - const: challenge
+        - const: reflection
+    AActivityAlternative:
+      type: object
+      additionalProperties: false
+      properties:
+        activityKind:
+          $ref: "#/components/schemas/AActivityKind"
+        lessonRevisionId:
+          anyOf:
+            - type: string
+            - type: "null"
+        skillCode:
+          anyOf:
+            - type: string
+            - type: "null"
+        reasonCode:
+          type: string
+      required:
+        - activityKind
+        - lessonRevisionId
+        - skillCode
+        - reasonCode
+    ANextActivityDecision:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        decisionId:
+          type: string
+        revision:
+          type: number
+        trackRevisionId:
+          type: string
+        policyVersion:
+          type: string
+        evidenceFingerprint:
+          type: string
+        sourceAttemptId:
+          anyOf:
+            - type: string
+            - type: "null"
+        mappingSnapshotHash:
+          type: string
+        activityKind:
+          anyOf:
+            - $ref: "#/components/schemas/AActivityKind"
+            - const: no_safe_activity
+        lessonRevisionId:
+          anyOf:
+            - type: string
+            - type: "null"
+        skillCode:
+          anyOf:
+            - type: string
+            - type: "null"
+        reasonCode:
+          type: string
+        reasonAr:
+          type: string
+        alternatives:
+          type: array
+          items:
+            $ref: "#/components/schemas/AActivityAlternative"
+        expiresAt:
+          type: string
+      required:
+        - id
+        - decisionId
+        - revision
+        - trackRevisionId
+        - policyVersion
+        - evidenceFingerprint
+        - sourceAttemptId
+        - mappingSnapshotHash
+        - activityKind
+        - lessonRevisionId
+        - skillCode
+        - reasonCode
+        - reasonAr
+        - alternatives
+        - expiresAt
+    ALearningActivity:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        revision:
+          type: number
+        decisionId:
+          type: string
+        trackRevisionId:
+          type: string
+        activityKind:
+          $ref: "#/components/schemas/AActivityKind"
+        lessonRevisionId:
+          anyOf:
+            - type: string
+            - type: "null"
+        skillCode:
+          anyOf:
+            - type: string
+            - type: "null"
+        status:
+          anyOf:
+            - const: active
+            - const: completed
+        assessmentId:
+          anyOf:
+            - type: string
+            - type: "null"
+        assistanceLevel:
+          type: number
+        sourceAttemptId:
+          anyOf:
+            - type: string
+            - type: "null"
+        createdAt:
+          type: string
+      required:
+        - id
+        - revision
+        - decisionId
+        - trackRevisionId
+        - activityKind
+        - lessonRevisionId
+        - skillCode
+        - status
+        - assessmentId
+        - assistanceLevel
+        - sourceAttemptId
+        - createdAt
+    ALearnerSkillProjection:
+      type: object
+      additionalProperties: false
+      properties:
+        skillCode:
+          type: string
+        titleAr:
+          type: string
+        dimensions:
+          type: object
+          additionalProperties: false
+          properties:
+            exposure:
+              anyOf:
+                - const: not_seen
+                - const: seen
+            supportedPractice:
+              anyOf:
+                - const: none
+                - const: observed
+            independentPerformance:
+              anyOf:
+                - const: none
+                - const: limited_evidence
+                - const: consistent_evidence
+                - const: needs_review
+            transfer:
+              anyOf:
+                - const: not_tested
+                - const: evidence
+                - const: needs_review
+            retention:
+              anyOf:
+                - const: not_due
+                - const: due
+                - const: observed_retained
+                - const: review_needed
+                - const: insufficient_data
+            evidenceQuality:
+              anyOf:
+                - const: insufficient
+                - const: partial
+                - const: eligible
+          required:
+            - exposure
+            - supportedPractice
+            - independentPerformance
+            - transfer
+            - retention
+            - evidenceQuality
+        counts:
+          type: object
+          additionalProperties: false
+          properties:
+            assisted:
+              type: number
+            eligibleIndependent:
+              type: number
+            independentErrors:
+              type: number
+          required:
+            - assisted
+            - eligibleIndependent
+            - independentErrors
+        evidenceIds:
+          type: array
+          items:
+            type: string
+        reasonCodes:
+          type: array
+          items:
+            type: string
+      required:
+        - skillCode
+        - titleAr
+        - dimensions
+        - counts
+        - evidenceIds
+        - reasonCodes
+    AMasteryResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        trackRevisionId:
+          type: string
+        modelVersion:
+          type: string
+        evidenceFingerprint:
+          type: string
+        computedAt:
+          type: string
+        skills:
+          type: array
+          items:
+            $ref: "#/components/schemas/ALearnerSkillProjection"
+      required:
+        - trackRevisionId
+        - modelVersion
+        - evidenceFingerprint
+        - computedAt
+        - skills
+    AKnowledgeGraph:
+      type: object
+      additionalProperties: false
+      properties:
+        trackRevisionId:
+          type: string
+        graphVersion:
+          type: string
+        mappingSnapshotHash:
+          type: string
+        nodes:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              skillCode:
+                type: string
+              titleAr:
+                type: string
+              subject:
+                type: string
+                enum:
+                  - algebra
+                  - physics
+                  - programming
+              lessonRevisionId:
+                anyOf:
+                  - type: string
+                  - type: "null"
+              reviewState:
+                anyOf:
+                  - const: reviewed
+                  - const: mapping_pending
+                  - const: missing_coverage
+            required:
+              - skillCode
+              - titleAr
+              - subject
+              - lessonRevisionId
+              - reviewState
+        edges:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              fromSkill:
+                type: string
+              toSkill:
+                type: string
+              relationKind:
+                anyOf:
+                  - const: required
+                  - const: helpful
+                  - const: cross_subject_support
+              rationaleAr:
+                type: string
+              reviewState:
+                anyOf:
+                  - const: reviewed
+                  - const: pending
+            required:
+              - fromSkill
+              - toSkill
+              - relationKind
+              - rationaleAr
+              - reviewState
+        issues:
+          type: array
+          items:
+            type: string
+      required:
+        - trackRevisionId
+        - graphVersion
+        - mappingSnapshotHash
+        - nodes
+        - edges
+        - issues
+    ADeepDiagnosis:
+      type: object
+      additionalProperties: false
+      properties:
+        attemptId:
+          type: string
+        attemptRevision:
+          type: number
+        state:
+          anyOf:
+            - const: candidate
+            - const: probe_offered
+            - const: probe_answered
+            - const: unresolved
+            - const: technical_abstain
+            - const: review_blocked
+        candidateCauses:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              errorCode:
+                type: string
+              candidateSkillCodes:
+                type: array
+                items:
+                  type: string
+              basisEvidenceIds:
+                type: array
+                items:
+                  type: string
+              confidenceLabel:
+                anyOf:
+                  - const: possible
+                  - const: supported
+                  - const: unresolved
+            required:
+              - errorCode
+              - candidateSkillCodes
+              - basisEvidenceIds
+              - confidenceLabel
+        probeId:
+          anyOf:
+            - type: string
+            - type: "null"
+        nextIntervention:
+          anyOf:
+            - const: clarifying_question
+            - const: short_explanation
+            - const: targeted_practice
+            - const: no_safe_probe
+        policyVersion:
+          type: string
+      required:
+        - attemptId
+        - attemptRevision
+        - state
+        - candidateCauses
+        - probeId
+        - nextIntervention
+        - policyVersion
+    AReview:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        revision:
+          type: number
+        trackRevisionId:
+          type: string
+        lessonRevisionId:
+          type: string
+        skillCode:
+          type: string
+        sourceEvidenceId:
+          type: string
+        policyVersion:
+          type: string
+        dueAt:
+          type: string
+        status:
+          anyOf:
+            - const: scheduled
+            - const: deferred
+            - const: started
+            - const: completed
+            - const: coverage_limited
+        assessmentId:
+          anyOf:
+            - type: string
+            - type: "null"
+        retentionOutcome:
+          anyOf:
+            - const: not_tested
+            - const: independent
+            - const: assisted
+            - const: needs_review
+            - const: unassessable
+        anchorAt:
+          type: string
+        stepIndex:
+          type: number
+      required:
+        - id
+        - revision
+        - trackRevisionId
+        - lessonRevisionId
+        - skillCode
+        - sourceEvidenceId
+        - policyVersion
+        - dueAt
+        - status
+        - assessmentId
+        - retentionOutcome
+        - anchorAt
+        - stepIndex
+    AReviewList:
+      type: object
+      additionalProperties: false
+      properties:
+        policyVersion:
+          type: string
+        reviews:
+          type: array
+          items:
+            $ref: "#/components/schemas/AReview"
+      required:
+        - policyVersion
+        - reviews
+    AScaffoldSession:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        revision:
+          type: number
+        trackRevisionId:
+          type: string
+        lessonRevisionId:
+          type: string
+        skillCode:
+          type: string
+        stage:
+          anyOf:
+            - const: S0
+            - const: S1
+            - const: S2
+            - const: S3
+            - const: S4
+        status:
+          anyOf:
+            - const: active
+            - const: completed
+            - const: unverified
+        contentVersion:
+          type: number
+        problemRaw:
+          anyOf:
+            - type: string
+            - type: "null"
+        visibleSteps:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              raw:
+                type: string
+              explanationAr:
+                type: string
+            required:
+              - raw
+              - explanationAr
+        supportCount:
+          type: number
+        assessmentId:
+          anyOf:
+            - type: string
+            - type: "null"
+        independentEligible:
+          type: boolean
+        messageAr:
+          type: string
+      required:
+        - id
+        - revision
+        - trackRevisionId
+        - lessonRevisionId
+        - skillCode
+        - stage
+        - status
+        - contentVersion
+        - problemRaw
+        - visibleSteps
+        - supportCount
+        - assessmentId
+        - independentEligible
+        - messageAr
+    ATutorSession:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        revision:
+          type: number
+        trackRevisionId:
+          type: string
+        lessonRevisionId:
+          type: string
+        skillCode:
+          type: string
+        state:
+          anyOf:
+            - const: awaiting_student
+            - const: completed
+            - const: safe_handoff
+            - const: failed
+        hintLevel:
+          anyOf:
+            - const: 0
+            - const: 1
+            - const: 2
+            - const: 3
+            - const: 4
+        turnCount:
+          type: number
+        maxTurns:
+          type: number
+        assistance:
+          const: true
+        source:
+          anyOf:
+            - const: offline_reviewed_template
+            - const: synthetic_template
+        turns:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            properties:
+              role:
+                anyOf:
+                  - const: tutor
+                  - const: student
+              textAr:
+                type: string
+              hintLevel:
+                type: number
+            required:
+              - role
+              - textAr
+              - hintLevel
+        assessmentId:
+          anyOf:
+            - type: string
+            - type: "null"
+        messageAr:
+          type: string
+      required:
+        - id
+        - revision
+        - trackRevisionId
+        - lessonRevisionId
+        - skillCode
+        - state
+        - hintLevel
+        - turnCount
+        - maxTurns
+        - assistance
+        - source
+        - turns
+        - assessmentId
+        - messageAr
+    AGoal:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        revision:
+          type: number
+        trackRevisionId:
+          type: string
+        lessonRevisionId:
+          type: string
+        skillCode:
+          type: string
+        targetIndependentCount:
+          type: number
+        textAr:
+          type: string
+        status:
+          anyOf:
+            - const: active
+            - const: achieved
+            - const: skipped
+        independentCount:
+          type: number
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+        - id
+        - revision
+        - trackRevisionId
+        - lessonRevisionId
+        - skillCode
+        - targetIndependentCount
+        - textAr
+        - status
+        - independentCount
+        - createdAt
+        - updatedAt
+    AReflection:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        trackRevisionId:
+          type: string
+        activityId:
+          anyOf:
+            - type: string
+            - type: "null"
+        goalId:
+          anyOf:
+            - type: string
+            - type: "null"
+        phase:
+          anyOf:
+            - const: predict
+            - const: monitor
+            - const: reflect
+        confidence:
+          anyOf:
+            - type: number
+            - type: "null"
+        textAr:
+          type: string
+        skipped:
+          type: boolean
+        verifiedOutcome:
+          anyOf:
+            - const: correct
+            - const: error
+            - const: assisted
+            - const: unassessable
+            - const: not_tested
+        messageAr:
+          type: string
+        createdAt:
+          type: string
+      required:
+        - id
+        - trackRevisionId
+        - activityId
+        - goalId
+        - phase
+        - confidence
+        - textAr
+        - skipped
+        - verifiedOutcome
+        - messageAr
+        - createdAt
+    AStartedActivity:
+      type: object
+      additionalProperties: false
+      properties:
+        activity:
+          $ref: "#/components/schemas/ALearningActivity"
+        assessment:
+          $ref: "#/components/schemas/LPAssessmentSession"
+      required:
+        - activity
+        - assessment
+    getANextActivityEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/ANextActivityDecision"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    acceptAActivityEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/ALearningActivity"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    getAActivityEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/ALearningActivity"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    startAActivityAssessmentEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/AStartedActivity"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    getAMasteryEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/AMasteryResponse"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    getAKnowledgeGraphEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/AKnowledgeGraph"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    getADeepDiagnosisEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/ADeepDiagnosis"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    scheduleAReviewsEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/AReviewList"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    getADueReviewsEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/AReviewList"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    startAReviewEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            review:
+              $ref: "#/components/schemas/AReview"
+            assessment:
+              $ref: "#/components/schemas/LPAssessmentSession"
+          required:
+            - review
+            - assessment
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    deferAReviewEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/AReview"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    finishAReviewEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/AReview"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    startAScaffoldEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/AScaffoldSession"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    getAScaffoldEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/AScaffoldSession"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    revealAScaffoldEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/AScaffoldSession"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    advanceAScaffoldEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            scaffold:
+              $ref: "#/components/schemas/AScaffoldSession"
+            assessment:
+              anyOf:
+                - $ref: "#/components/schemas/LPAssessmentSession"
+                - type: "null"
+          required:
+            - scaffold
+            - assessment
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    startATutorEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/ATutorSession"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    getATutorEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/ATutorSession"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    replyATutorEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/ATutorSession"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    getAGoalsEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            goals:
+              type: array
+              items:
+                $ref: "#/components/schemas/AGoal"
+          required:
+            - goals
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    createAGoalEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/AGoal"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    checkinAGoalEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/AGoal"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    updateAGoalEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/AGoal"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    createAReflectionEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          $ref: "#/components/schemas/AReflection"
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    getAReflectionsEnvelope:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          additionalProperties: false
+          properties:
+            reflections:
+              type: array
+              items:
+                $ref: "#/components/schemas/AReflection"
+          required:
+            - reflections
+        meta:
+          $ref: "#/components/schemas/Meta"
+      required:
+        - data
+        - meta
+    # END INTELLIGENT A SCHEMAS
     Meta:
       type: object
       additionalProperties: false
@@ -6068,6 +8466,8 @@ components:
             - session_expired
             - revision_conflict
             - idempotency_conflict
+            - stale_decision
+            - no_safe_activity
             - request_in_progress
             - invalid_state
             - content_version_conflict
@@ -7229,6 +9629,21 @@ components:
           type: object
           additionalProperties: false
           properties:
+            intelligentLearning:
+              type: object
+              additionalProperties: false
+              properties:
+                goals:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/AGoal'
+                reflections:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/AReflection'
+                truncated:
+                  type: boolean
+              required: [goals, reflections, truncated]
             user:
               anyOf:
                 - $ref: "#/components/schemas/AccountUser"
@@ -8984,6 +11399,9 @@ components:
             - practice_link
             - code_example
             - physics_example
+            - completion_step
+            - worked_example_ref
+            - self_check_prompt
         textAr:
           type: string
         raw:
@@ -9504,6 +11922,8 @@ components:
         - lesson_check
         - post_remediation
         - practice
+        - independent_check
+        - retrieval_review
     LPLearningEvidenceState:
       type: string
       enum:

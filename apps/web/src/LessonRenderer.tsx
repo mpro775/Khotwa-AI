@@ -33,6 +33,31 @@ export function LessonRenderer({
           return <h3 key={index}>{block.textAr}</h3>;
         if (block.type === "paragraph")
           return <p key={index}>{block.textAr}</p>;
+        if (block.type === "self_check_prompt")
+          return (
+            <aside key={index} className="lesson-callout">
+              <h3>راجع طريقة تفكيرك — اختياري</h3>
+              <p>{block.textAr}</p>
+              <p className="helper">
+                يمكنك تجاوز هذا السؤال؛ التأمل وحده لا يضيف دليل فهم.
+              </p>
+            </aside>
+          );
+        if (block.type === "completion_step")
+          return (
+            <figure key={index} className="lesson-example">
+              <figcaption>{block.textAr}</figcaption>
+              {block.raw && (
+                <bdi dir="ltr" className="math-text lesson-equation">
+                  {block.raw}
+                </bdi>
+              )}
+              <p className="helper">
+                أكمل الخطوة في نشاط التدريب. هذا مثال مهيأ بمساعدة، ولا يُحسب
+                قياسًا مستقلًا.
+              </p>
+            </figure>
+          );
         if (block.type === "key_point" || block.type === "common_mistake")
           return (
             <aside key={index} className={"lesson-callout " + block.type}>
@@ -44,13 +69,18 @@ export function LessonRenderer({
               <p>{block.textAr}</p>
             </aside>
           );
-        if (block.type === "practice_link")
+        if (
+          block.type === "practice_link" ||
+          block.type === "worked_example_ref"
+        )
           return (
             <div key={index} className="lesson-callout">
               <p>{block.textAr}</p>
               {onPractice && block.problemRevisionId && (
                 <button onClick={() => onPractice(block.problemRevisionId!)}>
-                  جرّب هذا التدريب
+                  {block.type === "worked_example_ref"
+                    ? "افتح المثال في التدريب"
+                    : "جرّب هذا التدريب"}
                 </button>
               )}
             </div>

@@ -8,6 +8,8 @@ import pg from "pg";
 import { parse } from "yaml";
 import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
+import { intelligentLearningJourney } from "../../../qa/intelligent-learning-a-journey.mjs";
+import { intelligentLearningScaffoldJourney } from "../../../qa/intelligent-learning-a-scaffold-journey.mjs";
 
 const require = createRequire(import.meta.url);
 const enabled = process.env.V22_INTEGRATION === "true";
@@ -139,7 +141,7 @@ test(
     const { Store } = require("../dist/store.js");
     const { MathGateway } = require("../dist/math-gateway.js");
     const app = await createApplication(true);
-    await app.listen(0, "127.0.0.1");
+    await app.listen(Number(process.env.A_TEST_HTTP_PORT ?? 0), "127.0.0.1");
     let closed = false;
     const close = async () => {
       if (closed) return;
@@ -158,6 +160,9 @@ test(
       const jar = new Map(Object.entries(initial));
       return {
         csrf: null,
+        cookieSnapshot() {
+          return Object.fromEntries(jar);
+        },
         async request(path, method = "GET", body, options = {}) {
           const headers = {
             origin: process.env.PUBLIC_APP_ORIGIN,
@@ -427,6 +432,26 @@ test(
           await transition(invalid, "approve", 422);
         },
       );
+      if (process.env.A_INTEGRATION === "true" && !subjectsOnly)
+        await intelligentLearningJourney({
+          t,
+          pool,
+          actor,
+          track,
+          lesson,
+          fixtures,
+          app,
+        });
+      if (process.env.A_INTEGRATION === "true" && !subjectsOnly)
+        await intelligentLearningScaffoldJourney({
+          t,
+          pool,
+          actor,
+          admin,
+          fixtures,
+          app,
+          lesson,
+        });
       await t.test(
         "assessment is pinned, independently verified, idempotent and private",
         { skip: subjectsOnly },

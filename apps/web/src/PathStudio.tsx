@@ -48,6 +48,9 @@ const blockTitles: Record<LessonBlock["type"], string> = {
   practice_link: "رابط تدريب",
   code_example: "مثال كود",
   physics_example: "مثال قيمة ووحدة",
+  completion_step: "خطوة مهيأة للإكمال",
+  worked_example_ref: "مرجع مثال للتدريب",
+  self_check_prompt: "سؤال تأمل اختياري",
 };
 function emptyLesson(subject: Subject): LessonPayload {
   return {
@@ -730,6 +733,50 @@ export function PathStudio({
                 />
                 <fieldset>
                   <legend>المهارات القانونية والمقدمات</legend>
+                  {map && (
+                    <details>
+                      <summary>
+                        راجع علاقات المهارات وتغطية الدروس الحالية
+                      </summary>
+                      <p className="helper">
+                        هذا المرجع يعرض روابط المهارات القائمة. اختيار مقدمة في
+                        المسودة يحتاج تحققًا ومراجعة؛ لا ينشئ اعتمادًا علميًا
+                        تلقائيًا.
+                      </p>
+                      <ul>
+                        {legalSkills.map((skill) => (
+                          <li key={skill.skillCode}>
+                            <strong>{skill.titleAr}</strong>
+                            <p>
+                              المقدمات:{" "}
+                              {skill.prerequisiteSkillCodes
+                                .map(
+                                  (code) =>
+                                    map.skills.find(
+                                      (item) => item.skillCode === code,
+                                    )?.titleAr ?? code,
+                                )
+                                .join("، ") ||
+                                "لا توجد مقدمات مثبتة في هذا المرجع"}
+                              .
+                            </p>
+                            {!skill.lessonRevisionId && (
+                              <p className="helper">
+                                لا يوجد درس أساسي منشور مرتبط بهذه المهارة؛ لا
+                                ننشئ رابطًا إلى مسودة.
+                              </p>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                      {map.mappingPending.length > 0 && (
+                        <p className="helper">
+                          توجد علاقات معلقة للمراجعة؛ لا تستعملها لتوصية علاج
+                          حاسمة.
+                        </p>
+                      )}
+                    </details>
+                  )}
                   {!legalSkills.length && (
                     <p>
                       لا توجد مهارات قانونية محمّلة لهذه المادة؛ لا تُخترع رموز
@@ -829,9 +876,11 @@ export function PathStudio({
                             blockChange(index, {
                               type,
                               textAr: block.textAr,
-                              ...(["math_example", "worked_steps"].includes(
-                                type,
-                              )
+                              ...([
+                                "math_example",
+                                "worked_steps",
+                                "completion_step",
+                              ].includes(type)
                                 ? {
                                     raw: "",
                                     steps: [{ raw: "", explanationAr: "" }],
@@ -855,11 +904,13 @@ export function PathStudio({
                                       "code_example",
                                       "math_example",
                                       "worked_steps",
+                                      "completion_step",
                                     ].includes(type)
                                   : ![
                                       "physics_example",
                                       "math_example",
                                       "worked_steps",
+                                      "completion_step",
                                     ].includes(type),
                             )
                             .map(([type, title]) => (
@@ -877,9 +928,11 @@ export function PathStudio({
                           blockChange(index, { ...block, textAr })
                         }
                       />
-                      {["math_example", "worked_steps"].includes(
-                        block.type,
-                      ) && (
+                      {[
+                        "math_example",
+                        "worked_steps",
+                        "completion_step",
+                      ].includes(block.type) && (
                         <>
                           <Text
                             label="المعادلة الأصلية للمثال"
@@ -960,7 +1013,9 @@ export function PathStudio({
                           }
                         />
                       )}
-                      {block.type === "practice_link" && (
+                      {["practice_link", "worked_example_ref"].includes(
+                        block.type,
+                      ) && (
                         <label>
                           السؤال المرتبط
                           <select

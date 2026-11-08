@@ -5,6 +5,8 @@ export type AssessmentKind =
   | "diagnostic_pretest"
   | "lesson_check"
   | "post_remediation"
+  | "independent_check"
+  | "retrieval_review"
   | "practice";
 export type LearningEvidenceState =
   | "not_assessed"

@@ -52,6 +52,9 @@ import {
   learningSubject,
   parseLearningPayload,
 } from "./learning-path-payload";
+import { validateGraph, type GraphEdge } from "./knowledge-graph";
+import { recordExposure } from "./learning";
+import { recordPhysicsExposures } from "./physics-learning";
 
 type Tx = Prisma.TransactionClient;
 interface ContentRow {
@@ -86,6 +89,23 @@ export const learningContentDto = (r: ContentRow): LearningContentRevision => ({
   reviewedAt: r.reviewed_at?.toISOString() ?? null,
   publishedAt: r.published_at?.toISOString() ?? null,
 });
+/** Completion answers are revealed only by the owned scaffold state. */
+export const learningStudentContentDto = (
+  r: ContentRow,
+): LearningContentRevision => {
+  const dto = learningContentDto(r);
+  if (dto.payload.kind === "lesson")
+    dto.payload = {
+      ...dto.payload,
+      contentBlocks: dto.payload.contentBlocks.map((block) => {
+        if (block.type !== "completion_step") return block;
+        const { steps: _, ...visible } = block;
+        void _;
+        return visible;
+      }),
+    };
+  return dto;
+};
 
 export class LearningPathContentService {
   readonly physics = new PhysicsGateway();
@@ -326,7 +346,7 @@ export class LearningPathContentService {
         lesson.payload.subject !== r.payload.subject
       )
         continue;
-      lessons.push(learningContentDto(lesson));
+      lessons.push(learningStudentContentDto(lesson));
     }
     await this.recordReadExposure(
       actor,
@@ -334,13 +354,50 @@ export class LearningPathContentService {
     );
     return { ...learningContentDto(r), lessons };
   }
-  private async recordReadExposure(actor: ProductOwner, lessonIds: string[]) {
+  private async recordReadExposure(
+    actor: ProductOwner,
+    lessonIds: string[],
+    includePractice = false,
+  ) {
     if (!lessonIds.length) return;
     await this.store.db.$transaction(async (tx) => {
       await tx.$executeRaw`SELECT pg_advisory_xact_lock(hashtextextended(${actor.ownerKey},0))`;
       await requireProductLearningAccess(tx, actor, this.store.syntheticData);
       for (const id of lessonIds) {
         await tx.$executeRaw`INSERT INTO learning_lesson_events(id,owner_key,lesson_revision_id,event_kind) SELECT ${randomUUID()}::uuid,${actor.ownerKey},${id}::uuid,'lesson_started' WHERE NOT EXISTS(SELECT 1 FROM learning_lesson_events WHERE owner_key=${actor.ownerKey} AND lesson_revision_id=${id}::uuid AND event_kind='lesson_started')`;
+        const lesson = await this.row(id, tx);
+        if (lesson.payload.kind !== "lesson") continue;
+        if (includePractice)
+          await tx.$executeRaw`INSERT INTO learning_lesson_events(id,owner_key,lesson_revision_id,event_kind) SELECT ${randomUUID()}::uuid,${actor.ownerKey},${id}::uuid,'lesson_viewed' WHERE NOT EXISTS(SELECT 1 FROM learning_lesson_events WHERE owner_key=${actor.ownerKey} AND lesson_revision_id=${id}::uuid AND event_kind='lesson_viewed')`;
+        const refs = [
+          ...new Set([
+            ...(includePractice
+              ? lesson.payload.practiceProblemRevisionIds
+              : []),
+            ...lesson.payload.contentBlocks
+              .filter((b) => b.type === "worked_example_ref")
+              .flatMap((b) =>
+                b.problemRevisionId ? [b.problemRevisionId] : [],
+              ),
+          ]),
+        ];
+        if (lesson.payload.subject === "algebra" && actor.guestId) {
+          for (const ref of refs)
+            await recordExposure(
+              tx,
+              actor.guestId,
+              ref,
+              "learning_lesson_practice",
+            );
+        }
+        if (lesson.payload.subject === "physics" && refs.length) {
+          const revisions = await tx.$queryRaw<
+            { id: string; payload: ContentPayload }[]
+          >(
+            Prisma.sql`SELECT id,payload FROM studio_revisions WHERE id IN (${Prisma.join(refs.map((ref) => Prisma.sql`${ref}::uuid`))}) AND status IN ('published','archived') AND payload->>'subject'='physics'`,
+          );
+          await recordPhysicsExposures(tx, actor.ownerKey, revisions);
+        }
       }
     });
   }
@@ -358,9 +415,9 @@ export class LearningPathContentService {
       if (r.status !== "archived" || !r.published_at || !pin) throw missing();
     }
     const p = r.payload;
-    await this.recordReadExposure(actor, [r.id]);
+    await this.recordReadExposure(actor, [r.id], true);
     return {
-      ...learningContentDto(r),
+      ...learningStudentContentDto(r),
       practiceProblems: await this.bank(
         p.subject,
         p.practiceProblemRevisionIds,
@@ -495,11 +552,30 @@ export class LearningPathContentService {
       examples: LearningContentValidation["examples"] = [];
     if (payload.kind === "track") {
       const ids = payload.units.flatMap((u) => u.lessonRevisionIds);
+      const graphNodes: { skillCode: string }[] = [],
+        graphEdges: GraphEdge[] = [];
       if (!ids.length || new Set(ids).size !== ids.length)
         issues.push("يلزم درس منشور واحد على الأقل دون تكرار.");
       for (const ref of ids) {
         try {
           const r = await this.row(ref, tx);
+          if (r.payload.kind === "lesson" && r.status === "published") {
+            for (const skill of [
+              ...r.payload.skillCodes,
+              ...r.payload.prerequisiteSkillCodes,
+            ])
+              if (!graphNodes.some((n) => n.skillCode === skill))
+                graphNodes.push({ skillCode: skill });
+            for (const skill of r.payload.skillCodes)
+              for (const prerequisite of r.payload.prerequisiteSkillCodes)
+                graphEdges.push({
+                  fromSkill: skill,
+                  toSkill: prerequisite,
+                  relationKind: "required",
+                  rationaleAr: "متطلب الدرس المنشور",
+                  reviewState: "reviewed",
+                });
+          }
           if (
             r.status !== "published" ||
             r.payload.kind !== "lesson" ||
@@ -510,6 +586,8 @@ export class LearningPathContentService {
           issues.push("مرجع درس غير متاح.");
         }
       }
+      for (const issue of validateGraph(graphNodes, graphEdges))
+        issues.push("خريطة المتطلبات غير صالحة: " + issue);
     } else {
       const refs = [
         ...payload.practiceProblemRevisionIds,
@@ -567,7 +645,11 @@ export class LearningPathContentService {
           "درس توزيع الأقواس يحتاج فقرتين ومثالين وخطأ شائعًا وسؤالي تدريب.",
         );
       for (const [blockIndex, b] of payload.contentBlocks.entries()) {
-        if (b.type === "math_example" || b.type === "worked_steps") {
+        if (
+          b.type === "math_example" ||
+          b.type === "worked_steps" ||
+          b.type === "completion_step"
+        ) {
           try {
             const context = {
               attemptId: randomUUID(),

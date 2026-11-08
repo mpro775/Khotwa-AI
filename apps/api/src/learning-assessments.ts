@@ -33,7 +33,10 @@ import {
   learningSessionIsSynthetic,
   requireProductLearningAccess,
 } from "./learning-access";
-import { LearningPathContentService } from "./learning-path-content";
+import {
+  LearningPathContentService,
+  learningContentDto,
+} from "./learning-path-content";
 import { VerificationService } from "./verification";
 import { TutoringService } from "./tutoring";
 import { PhysicsService } from "./physics";
@@ -42,6 +45,21 @@ import { physicsExposureKey, recordPhysicsExposure } from "./physics-learning";
 import type { ContentPayload } from "../../../packages/contracts/src/product";
 
 export const ASSESSMENT_RULE = "learning-path-evidence-1.0";
+export interface LearningObservation {
+  skillCode: string;
+  problemId: string;
+  difficulty: number;
+  evidenceId: string;
+  contentKey?: string;
+  outcome: "correct" | "error" | "assisted" | "unassessable";
+  time: string;
+  kind?: AssessmentKind | "transfer";
+  attemptId?: string;
+  attemptRevision?: number;
+  verifiedCorrect?: boolean;
+  assessmentId?: string;
+  transferEligible?: boolean;
+}
 type Tx = Prisma.TransactionClient;
 type AssessmentRow = {
   id: string;
@@ -303,6 +321,14 @@ export class LearningAssessmentService {
     const viewed = await tx.$queryRaw<
       { payload: LessonPayload; exposed_at: Date }[]
     >`SELECT r.payload,min(e.created_at) AS exposed_at FROM learning_content_revisions r JOIN learning_lesson_events e ON e.lesson_revision_id=r.id WHERE e.owner_key=${ownerKey} AND r.payload->>'kind'='lesson' AND r.payload->>'subject'='algebra' GROUP BY r.id,r.payload`;
+    const disclosed = await tx.$queryRaw<
+      {
+        problem_id: string;
+        learning_family: string | null;
+        original_equation_raw: string;
+        exposed_at: Date;
+      }[]
+    >`SELECT p.problem_id,p.learning_family,p.original_equation_raw,min(e.created_at) AS exposed_at FROM learning_lesson_events e JOIN learning_content_revisions r ON r.id=e.lesson_revision_id JOIN problem_revisions p ON ((e.event_kind='lesson_viewed' AND EXISTS(SELECT 1 FROM jsonb_array_elements_text(r.payload->'practiceProblemRevisionIds') AS refs(value) WHERE refs.value=p.id::text)) OR EXISTS(SELECT 1 FROM jsonb_array_elements(r.payload->'contentBlocks') AS blocks(value) WHERE blocks.value->>'type'='worked_example_ref' AND blocks.value->>'problemRevisionId'=p.id::text)) WHERE e.owner_key=${ownerKey} AND r.payload->>'subject'='algebra' GROUP BY p.problem_id,p.learning_family,p.original_equation_raw`;
     const equations = exposureTimes(
       viewed.flatMap((v) =>
         v.payload.contentBlocks
@@ -314,7 +340,7 @@ export class LearningAssessmentService {
           ]),
       ),
     );
-    for (const a of assisted)
+    for (const a of [...assisted, ...disclosed])
       if (a.original_equation_raw) {
         const key = normalizedLearningEquation(a.original_equation_raw);
         if (!equations.has(key) || a.exposed_at < equations.get(key)!)
@@ -323,10 +349,10 @@ export class LearningAssessmentService {
     return {
       equations,
       problems: exposureTimes(
-        assisted.map((a) => [a.problem_id, a.exposed_at]),
+        [...assisted, ...disclosed].map((a) => [a.problem_id, a.exposed_at]),
       ),
       families: exposureTimes(
-        assisted
+        [...assisted, ...disclosed]
           .filter((a) => a.learning_family)
           .map((a) => [a.learning_family!, a.exposed_at]),
       ),
@@ -345,8 +371,11 @@ export class LearningAssessmentService {
     const viewed = await tx.$queryRaw<
       { payload: LessonPayload; exposed_at: Date }[]
     >`SELECT r.payload,min(e.created_at) AS exposed_at FROM learning_content_revisions r JOIN learning_lesson_events e ON e.lesson_revision_id=r.id WHERE e.owner_key=${ownerKey} AND r.payload->>'subject'='physics' AND r.payload->>'kind'='lesson' GROUP BY r.id,r.payload`;
-    const contexts = exposureTimes(
-      viewed.flatMap((v) =>
+    const disclosed = await tx.$queryRaw<
+      { payload: ContentPayload; exposed_at: Date }[]
+    >`SELECT p.payload,min(e.created_at) AS exposed_at FROM learning_lesson_events e JOIN learning_content_revisions r ON r.id=e.lesson_revision_id JOIN studio_revisions p ON ((e.event_kind='lesson_viewed' AND EXISTS(SELECT 1 FROM jsonb_array_elements_text(r.payload->'practiceProblemRevisionIds') AS refs(value) WHERE refs.value=p.id::text)) OR EXISTS(SELECT 1 FROM jsonb_array_elements(r.payload->'contentBlocks') AS blocks(value) WHERE blocks.value->>'type'='worked_example_ref' AND blocks.value->>'problemRevisionId'=p.id::text)) WHERE e.owner_key=${ownerKey} AND r.payload->>'subject'='physics' AND p.payload->>'subject'='physics' GROUP BY p.payload`;
+    const contexts = exposureTimes([
+      ...viewed.flatMap((v) =>
         v.payload.contentBlocks
           .filter((b) => b.physics)
           .map((b): [string, Date] => [
@@ -354,7 +383,11 @@ export class LearningAssessmentService {
             v.exposed_at,
           ]),
       ),
-    );
+      ...disclosed.map((d): [string, Date] => [
+        physicsExposureKey(d.payload),
+        d.exposed_at,
+      ]),
+    ]);
     for (const r of rows)
       if (r.assisted) {
         const key = physicsExposureKey(r.payload);
@@ -366,11 +399,15 @@ export class LearningAssessmentService {
       byRevision: new Map(
         rows.map((r) => [r.problem_revision_id, physicsExposureKey(r.payload)]),
       ),
-      families: exposureTimes(
-        rows
+      families: exposureTimes([
+        ...rows
           .filter((r) => r.assisted)
-          .map((r) => [r.payload.familyCode, r.exposed_at]),
-      ),
+          .map((r): [string, Date] => [r.payload.familyCode, r.exposed_at]),
+        ...disclosed.map((r): [string, Date] => [
+          r.payload.familyCode,
+          r.exposed_at,
+        ]),
+      ]),
     };
   }
   async start(
@@ -387,6 +424,8 @@ export class LearningAssessmentService {
         "lesson_check",
         "post_remediation",
         "practice",
+        "retrieval_review",
+        "independent_check",
       ].includes(String(b.kind))
     )
       throw productInvalid();
@@ -395,6 +434,19 @@ export class LearningAssessmentService {
         b.lessonRevisionId === undefined
           ? null
           : uuid(textField(b.lessonRevisionId, 36));
+    if (
+      ["retrieval_review", "independent_check"].includes(kind) &&
+      (!this.store.syntheticData ||
+        (kind === "retrieval_review"
+          ? process.env.SPACED_REVIEW_ENABLED !== "true"
+          : process.env.PEDAGOGY_ENGINE_ENABLED !== "true" &&
+            process.env.FADING_SCAFFOLD_ENABLED !== "true"))
+    )
+      throw new ApiFault(
+        403,
+        "forbidden",
+        "هذا النوع من النشاط متاح للتجربة الاصطناعية المفعّلة فقط.",
+      );
     const track = await this.content.track(request, trackId);
     if (track.payload.subject === "programming")
       throw new ApiFault(
@@ -532,7 +584,14 @@ export class LearningAssessmentService {
             });
           }
         }
-        if (kind === "post_remediation" || kind === "lesson_check") {
+        if (
+          [
+            "post_remediation",
+            "lesson_check",
+            "retrieval_review",
+            "independent_check",
+          ].includes(kind)
+        ) {
           const priorPathItems = await tx.$queryRaw<
             { problem_snapshot: LearningBankProblem }[]
           >`SELECT i.problem_snapshot FROM learning_assessment_items i JOIN learning_assessments x ON x.id=i.assessment_id WHERE x.owner_key=${owner.ownerKey} AND x.subject_code=${track.payload.subject}`;
@@ -996,7 +1055,41 @@ export class LearningAssessmentService {
       },
     };
   }
-  private async evidence(
+  /** Mark non-classic support before revealing a scaffold or tutor prompt. */
+  async exitMeasurement(request: RequestContext, id: string, raw: unknown) {
+    const { owner, auth } = await this.identity(request, true),
+      b = record(raw);
+    only(b, ["expectedRevision", "questionId"]);
+    const expected = revisionField(b.expectedRevision),
+      questionId = uuid(textField(b.questionId, 36));
+    await productMutation(
+      this.store,
+      owner,
+      keyRequest(request, ":exit-measurement"),
+      "assessment.exit:" + uuid(id),
+      b,
+      async (tx) => {
+        const row = await this.row(tx, owner, id, true);
+        if (row.revision !== expected) throw conflict(row.revision);
+        const item = (await this.items(tx, id)).find(
+          (i) => i.id === questionId,
+        );
+        if (!item) throw missing();
+        if (item.attempt_id) {
+          await this.store.readAttemptInTransaction(tx, auth, item.attempt_id);
+          await tx.$executeRaw`UPDATE attempts SET independent_evidence_eligible=false,assistance_revision=assistance_revision+1 WHERE id=${item.attempt_id}::uuid`;
+        } else if (item.subject_attempt_id) {
+          await tx.$executeRaw`UPDATE subject_attempts SET independent=false,assistance_level=GREATEST(assistance_level,1) WHERE id=${item.subject_attempt_id}::uuid AND owner_key=${owner.ownerKey}`;
+        } else {
+          await tx.$executeRaw`UPDATE learning_assessments SET revision=revision+1 WHERE id=${id}::uuid`;
+        }
+        await tx.$executeRaw`UPDATE learning_assessment_items SET measurement_exited_at=COALESCE(measurement_exited_at,now()) WHERE id=${questionId}::uuid`;
+        return true;
+      },
+    );
+    return this.get(request, id);
+  }
+  private async evidenceObservations(
     tx: Tx,
     owner: ProductActor,
     auth: GuestAuth,
@@ -1014,57 +1107,60 @@ export class LearningAssessmentService {
         independent: boolean;
         original_equation_raw: string;
         learning_family: string | null;
+        item_kind: string;
       }[]
-    >`SELECT DISTINCT ON(a.problem_revision_id) a.problem_revision_id,p.problem_id,p.original_equation_raw,p.learning_family,s.skill_code AS primary_skill,p.difficulty_band AS difficulty,r.id,r.report_json,r.finished_at AS created_at,(a.independent_evidence_eligible AND a.highest_hint_level_seen=0 AND NOT a.full_solution_seen AND i.measurement_exited_at IS NULL) AS independent FROM learning_assessment_items i JOIN learning_assessments x ON x.id=i.assessment_id JOIN attempts a ON a.id=i.attempt_id JOIN problem_revisions p ON p.id=a.problem_revision_id JOIN problem_skills ps ON ps.problem_revision_id=p.id AND ps.coverage_kind='primary' JOIN skills s ON s.id=ps.skill_id JOIN verification_reports r ON r.attempt_id=a.id AND r.attempt_revision=a.revision AND r.scope='current_sequence' AND r.dispatch_status='finished' AND r.report_json->>'isCurrent'='true' WHERE x.owner_key=${owner.ownerKey} AND x.subject_code=${row.subject_code} ORDER BY a.problem_revision_id,r.finished_at DESC,r.id DESC`;
+    >`SELECT DISTINCT ON(a.problem_revision_id) a.problem_revision_id,p.problem_id,p.original_equation_raw,p.learning_family,p.item_kind,s.skill_code AS primary_skill,p.difficulty_band AS difficulty,r.id,r.report_json,r.finished_at AS created_at,(a.independent_evidence_eligible AND a.highest_hint_level_seen=0 AND NOT a.full_solution_seen AND i.measurement_exited_at IS NULL) AS independent FROM learning_assessment_items i JOIN learning_assessments x ON x.id=i.assessment_id JOIN attempts a ON a.id=i.attempt_id JOIN problem_revisions p ON p.id=a.problem_revision_id JOIN problem_skills ps ON ps.problem_revision_id=p.id AND ps.coverage_kind='primary' JOIN skills s ON s.id=ps.skill_id JOIN verification_reports r ON r.attempt_id=a.id AND r.attempt_revision=a.revision AND r.scope='current_sequence' AND r.dispatch_status='finished' AND r.report_json->>'isCurrent'='true' WHERE x.owner_key=${owner.ownerKey} AND x.subject_code=${row.subject_code} ORDER BY a.problem_revision_id,r.finished_at DESC,r.id DESC`;
     const contamination =
       row.subject_code === "algebra"
         ? await this.algebraContamination(tx, owner.ownerKey, auth.row.id)
         : null;
-    const observations: Parameters<typeof summarizeSkillEvidence>[0] =
-      source.map((s) => {
-        const report = output("VerificationReport", s.report_json);
-        const invalid = report.transitions.some(
-            (t) => t.mathStatus === "verified_invalid",
-          ),
-          assessable =
-            report.transitions.length > 0 &&
-            report.transitions.every((t) =>
-              ["verified_valid", "verified_invalid"].includes(t.mathStatus),
-            );
-        return {
-          skillCode: s.primary_skill,
-          problemId: s.problem_id,
-          contentKey: normalizedLearningEquation(s.original_equation_raw),
-          difficulty: s.difficulty,
-          evidenceId: s.id,
-          time: s.created_at.toISOString(),
-          outcome: !assessable
-            ? "unassessable"
-            : !s.independent ||
-                (contamination &&
-                  (temporalLearningExposure(
-                    contamination.problems.get(s.problem_id),
-                    s.created_at,
-                  ) ||
-                    (s.learning_family &&
-                      temporalLearningExposure(
-                        contamination.families.get(s.learning_family),
-                        s.created_at,
-                      )) ||
+    const observations: LearningObservation[] = source.map((s) => {
+      const report = output("VerificationReport", s.report_json);
+      const invalid = report.transitions.some(
+          (t) => t.mathStatus === "verified_invalid",
+        ),
+        assessable =
+          report.transitions.length > 0 &&
+          report.transitions.every((t) =>
+            ["verified_valid", "verified_invalid"].includes(t.mathStatus),
+          );
+      return {
+        skillCode: s.primary_skill,
+        problemId: s.problem_id,
+        contentKey: normalizedLearningEquation(s.original_equation_raw),
+        difficulty: s.difficulty,
+        evidenceId: s.id,
+        time: s.created_at.toISOString(),
+        verifiedCorrect:
+          assessable && !invalid && report.completion.canMarkAttemptCompleted,
+        transferEligible: s.item_kind === "transfer",
+        outcome: !assessable
+          ? "unassessable"
+          : !s.independent ||
+              (contamination &&
+                (temporalLearningExposure(
+                  contamination.problems.get(s.problem_id),
+                  s.created_at,
+                ) ||
+                  (s.learning_family &&
                     temporalLearningExposure(
-                      contamination.equations.get(
-                        normalizedLearningEquation(s.original_equation_raw),
-                      ),
+                      contamination.families.get(s.learning_family),
                       s.created_at,
-                    )))
-              ? "assisted"
-              : invalid
-                ? "error"
-                : report.completion.canMarkAttemptCompleted
-                  ? "correct"
-                  : "unassessable",
-        };
-      });
+                    )) ||
+                  temporalLearningExposure(
+                    contamination.equations.get(
+                      normalizedLearningEquation(s.original_equation_raw),
+                    ),
+                    s.created_at,
+                  )))
+            ? "assisted"
+            : invalid
+              ? "error"
+              : report.completion.canMarkAttemptCompleted
+                ? "correct"
+                : "unassessable",
+      };
+    });
     if (row.subject_code === "algebra") {
       const old = await tx.$queryRaw<
         {
@@ -1076,8 +1172,9 @@ export class LearningAssessmentService {
           independent: boolean;
           created_at: Date;
           original_equation_raw: string;
+          item_kind: string;
         }[]
-      >`SELECT s.skill_code AS skill_code,p.problem_id,p.original_equation_raw,p.difficulty_band AS difficulty,e.id,e.observation,e.created_at,(e.event_kind='transfer_observation' AND a.independent_evidence_eligible AND a.highest_hint_level_seen=0 AND NOT a.full_solution_seen) AS independent FROM current_skill_evidence e JOIN learning_sessions l ON l.id=e.learning_session_id JOIN attempts a ON a.id=e.attempt_id JOIN skills s ON s.id=e.skill_id JOIN problem_revisions p ON p.id=e.problem_revision_id WHERE l.guest_session_id=${auth.row.id}::uuid`;
+      >`SELECT s.skill_code AS skill_code,p.problem_id,p.original_equation_raw,p.item_kind,p.difficulty_band AS difficulty,e.id,e.observation,e.created_at,(e.event_kind='transfer_observation' AND a.independent_evidence_eligible AND a.highest_hint_level_seen=0 AND NOT a.full_solution_seen) AS independent FROM current_skill_evidence e JOIN learning_sessions l ON l.id=e.learning_session_id JOIN attempts a ON a.id=e.attempt_id JOIN skills s ON s.id=e.skill_id JOIN problem_revisions p ON p.id=e.problem_revision_id WHERE l.guest_session_id=${auth.row.id}::uuid`;
       observations.push(
         ...old.map((e) => ({
           skillCode: e.skill_code,
@@ -1086,6 +1183,9 @@ export class LearningAssessmentService {
           difficulty: e.difficulty,
           evidenceId: e.id,
           time: e.created_at.toISOString(),
+          kind: e.independent ? ("transfer" as const) : undefined,
+          transferEligible: e.independent && e.item_kind === "transfer",
+          verifiedCorrect: e.observation === "positive",
           outcome:
             e.observation === "non_assessable"
               ? ("unassessable" as const)
@@ -1124,6 +1224,8 @@ export class LearningAssessmentService {
           difficulty: p.problem_snapshot.difficulty,
           evidenceId: p.id,
           time: (p.verified_at ?? p.updated_at).toISOString(),
+          verifiedCorrect: p.verdict.status === "correct",
+          transferEligible: p.problem_snapshot.kind === "transfer",
           outcome: !["correct", "wrong_unit", "wrong_value"].includes(
             p.verdict.status,
           )
@@ -1155,12 +1257,140 @@ export class LearningAssessmentService {
         l.payload.kind === "lesson" ? l.payload.skillCodes : [],
       ),
     );
+    return observations.filter((item) => allowedSkills.has(item.skillCode));
+  }
+  private async evidence(
+    tx: Tx,
+    owner: ProductActor,
+    auth: GuestAuth,
+    row: AssessmentRow,
+  ) {
     return summarizeSkillEvidence(
-      observations,
-      row.mapping_snapshot.map.skills.filter((s) =>
-        allowedSkills.has(s.skillCode),
+      await this.evidenceObservations(tx, owner, auth, row),
+      row.mapping_snapshot.map.skills.filter((skill) =>
+        row.mapping_snapshot.lessons.some(
+          (lesson) =>
+            lesson.payload.kind === "lesson" &&
+            lesson.payload.skillCodes.includes(skill.skillCode),
+        ),
       ),
     );
+  }
+  /** Read only context: unlike track()/lesson(), this does not expose examples. */
+  async context(
+    request: RequestContext,
+    trackId: string,
+    existing?: { tx: Tx; owner: ProductActor; auth: GuestAuth },
+  ) {
+    const { owner, auth } = existing ?? (await this.identity(request));
+    const work = async (tx: Tx) => {
+      await this.accounts.authorizeInTransaction(tx, owner);
+      await requireProductLearningAccess(tx, owner, this.store.syntheticData);
+      const source = await this.content.row(uuid(trackId), tx);
+      if (source.status !== "published" || source.payload.kind !== "track")
+        throw missing();
+      const lessons: LearningContentRevision[] = [];
+      for (const id of source.payload.units.flatMap(
+        (unit) => unit.lessonRevisionIds,
+      )) {
+        const lesson = await this.content.row(id, tx);
+        if (
+          lesson.status === "published" &&
+          lesson.payload.kind === "lesson" &&
+          lesson.payload.subject === source.payload.subject
+        )
+          lessons.push(learningContentDto(lesson));
+      }
+      const map = await this.content.skillMap(tx, true);
+      const row: AssessmentRow = {
+        id: "",
+        owner_key: owner.ownerKey,
+        guest_session_id: auth.row.id,
+        subject_code: source.payload.subject,
+        track_revision_id: source.id,
+        lesson_revision_id: null,
+        kind: "diagnostic_pretest",
+        revision: 0,
+        rule_version: ASSESSMENT_RULE,
+        mapping_snapshot: { map, lessons },
+        coverage: { requested: 0, available: 0, partial: false, messageAr: "" },
+        created_at: new Date(),
+      };
+      const base = await this.evidenceObservations(tx, owner, auth, row);
+      const provenance = await tx.$queryRaw<
+        {
+          evidence_id: string;
+          attempt_id: string;
+          revision: number;
+          kind: AssessmentKind;
+          updated_at: Date;
+          assessment_id: string;
+        }[]
+      >`SELECT r.id AS evidence_id,a.id AS attempt_id,a.revision::int AS revision,x.kind,a.updated_at,x.id AS assessment_id FROM learning_assessments x JOIN learning_assessment_items i ON i.assessment_id=x.id JOIN attempts a ON a.id=i.attempt_id JOIN verification_reports r ON r.attempt_id=a.id AND r.attempt_revision=a.revision WHERE x.owner_key=${owner.ownerKey} UNION ALL SELECT a.id,a.id,a.revision,x.kind,a.updated_at,x.id FROM learning_assessments x JOIN learning_assessment_items i ON i.assessment_id=x.id JOIN subject_attempts a ON a.id=i.subject_attempt_id WHERE x.owner_key=${owner.ownerKey} AND a.owner_key=${owner.ownerKey}`;
+      const observations: LearningObservation[] = base
+        .map((item) => {
+          const ref = provenance.find((p) => p.evidence_id === item.evidenceId);
+          return {
+            ...item,
+            kind: ref?.kind ?? item.kind,
+            attemptId: ref?.attempt_id,
+            attemptRevision: ref?.revision,
+            assessmentId: ref?.assessment_id,
+          };
+        })
+        .sort((a, b) => a.evidenceId.localeCompare(b.evidenceId));
+      const events = await tx.$queryRaw<
+        { lesson_revision_id: string }[]
+      >`SELECT DISTINCT lesson_revision_id FROM learning_lesson_events WHERE owner_key=${owner.ownerKey}`;
+      const attemptVersions = await tx.$queryRaw<
+        {
+          id: string;
+          revision: string;
+          assistance_revision: number;
+          updated_at: Date;
+        }[]
+      >`SELECT a.id,a.revision::text,a.assistance_revision,a.updated_at FROM attempts a JOIN learning_sessions l ON l.id=a.learning_session_id WHERE l.guest_session_id=${auth.row.id}::uuid ORDER BY a.id`;
+      const evidenceFingerprint = createHash("sha256")
+        .update(
+          JSON.stringify({
+            observations,
+            attemptVersions,
+            provenance: provenance.sort((a, b) =>
+              a.evidence_id.localeCompare(b.evidence_id),
+            ),
+            content: [
+              source,
+              ...lessons.map((l) => ({
+                id: l.id,
+                content_hash: l.contentHash,
+              })),
+            ].map((l) => ({ id: l.id, hash: l.content_hash })),
+            map,
+            events: events.map((e) => e.lesson_revision_id).sort(),
+          }),
+        )
+        .digest("hex");
+      return {
+        owner,
+        auth,
+        track: { ...learningContentDto(source), lessons },
+        map,
+        observations,
+        skills: summarizeSkillEvidence(
+          observations,
+          map.skills.filter((s) =>
+            lessons.some(
+              (l) =>
+                l.payload.kind === "lesson" &&
+                l.payload.skillCodes.includes(s.skillCode),
+            ),
+          ),
+        ),
+        viewedLessonIds: events.map((e) => e.lesson_revision_id),
+        evidenceFingerprint,
+      };
+    };
+    return existing ? work(existing.tx) : this.store.db.$transaction(work);
   }
   async summary(
     request: RequestContext,

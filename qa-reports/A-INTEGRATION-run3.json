@@ -1,0 +1,27 @@
+{
+  "recordedAt": "2026-11-08T02:01:37.899Z",
+  "node": "v26.7.0",
+  "platform": "win32",
+  "scope": "One focused synthetic HTTP journey; ephemeral test DB and real private math; no paid AI, runner, production or load tests. Test workflow actors do not constitute human content approval.",
+  "checks": [
+    {
+      "command": "isolated Prisma migrate deploy",
+      "exitCode": 0,
+      "stdout": "Datasource \"db\": PostgreSQL database \"v22_test\", schema \"public\" at \"127.0.0.1:3978\"\n\n22 migrations found in prisma/migrations\n\nApplying migration `0001_ph04`\nApplying migration `0002_current_version_key`\nApplying migration `0003_content_integrity`\nApplying migration `0004_verification_reports`\nApplying migration `0005_conservative_diagnosis`\nApplying migration `0006_guided_tutoring`\nApplying migration `0007_preserve_legacy_assistance`\nApplying migration `0008_learning_episodes`\nApplying migration `0009_current_progress`\nApplying migration `0010_guest_retention`\nApplying migration `0011_accounts`\nApplying migration `0012_product_content`\nApplying migration `0013_beta`\nApplying migration `0014_studio_integrity`\nApplying migration `0015_roadmap_retention`\nApplying migration `0016_claimed_guest_retention`\nApplying migration `0018_durable_runner_work`\nApplying migration `0019_physics_learning`\nApplying migration `0020_learning_ai_consents`\nApplying migration `0021_learning_paths`\nApplying migration `0022_learning_assessments`\nApplying migration `0023_intelligent_learning_a`\n\nThe following migration(s) have been applied:\n\nmigrations/\n  └─ 0001_ph04/\n    └─ migration.sql\n  └─ 0002_current_version_key/\n    └─ migration.sql\n  └─ 0003_content_integrity/\n    └─ migration.sql\n  └─ 0004_verification_reports/\n    └─ migration.sql\n  └─ 0005_conservative_diagnosis/\n    └─ migration.sql\n  └─ 0006_guided_tutoring/\n    └─ migration.sql\n  └─ 0007_preserve_legacy_assistance/\n    └─ migration.sql\n  └─ 0008_learning_episodes/\n    └─ migration.sql\n  └─ 0009_current_progress/\n    └─ migration.sql\n  └─ 0010_guest_retention/\n    └─ migration.sql\n  └─ 0011_accounts/\n    └─ migration.sql\n  └─ 0012_product_content/\n    └─ migration.sql\n  └─ 0013_beta/\n    └─ migration.sql\n  └─ 0014_studio_integrity/\n    └─ migration.sql\n  └─ 0015_roadmap_retention/\n    └─ migration.sql\n  └─ 0016_claimed_guest_retention/\n    └─ migration.sql\n  └─ 0018_durable_runner_work/\n    └─ migration.sql\n  └─ 0019_physics_learning/\n    └─ migration.sql\n  └─ 0020_learning_ai_consents/\n    └─ migration.sql\n  └─ 0021_learning_paths/\n    └─ migration.sql\n  └─ 0022_learning_assessments/\n    └─ migration.sql\n  └─ 0023_intelligent_learning_a/\n    └─ migration.sql\n\nAll migrations have been successfully applied.\n",
+      "stderr": "Loaded Prisma config from apps\\api\\prisma.config.ts.\n\nPrisma schema loaded from apps\\api\\prisma\\schema.prisma.\n",
+      "seconds": 3.432
+    },
+    {
+      "command": "focused V2.2 NestJS/PostgreSQL/SymPy HTTP journey",
+      "exitCode": 1,
+      "stdout": "✖ V2.2 focused synthetic author/student journey uses actual NestJS PostgreSQL and SymPy (2421.8359ms)\nℹ tests 1\nℹ suites 0\nℹ pass 0\nℹ fail 1\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 3584.5717\n\n✖ failing tests:\n\ntest at apps\\api\\tests\\learning-paths-live.test.mjs:127:1\n✖ V2.2 focused synthetic author/student journey uses actual NestJS PostgreSQL and SymPy (2421.8359ms)\n  [TypeError: fetch failed] {\n    [cause]: Error: bad port\n        at makeNetworkError (node:internal/deps/undici/undici:12443:35)\n        at mainFetch (node:internal/deps/undici/undici:13880:22)\n        at fetching (node:internal/deps/undici/undici:13867:7)\n        at fetch (node:internal/deps/undici/undici:13728:20)\n        at fetch (node:internal/deps/undici/undici:18606:10)\n        at fetch (node:internal/bootstrap/web/exposed-window-or-worker:83:12)\n        at Object.request (file:///C:/Users/PC/Desktop/Projects/Khotwa%20AI%20Project/apps/api/tests/learning-paths-live.test.mjs:179:34)\n        at Object.start (file:///C:/Users/PC/Desktop/Projects/Khotwa%20AI%20Project/apps/api/tests/learning-paths-live.test.mjs:231:35)\n        at TestContext.<anonymous> (file:///C:/Users/PC/Desktop/Projects/Khotwa%20AI%20Project/apps/api/tests/learning-paths-live.test.mjs:330:21)\n        at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n  }\n",
+      "stderr": "",
+      "seconds": 3.705
+    }
+  ],
+  "failure": "focused V2.2 NestJS/PostgreSQL/SymPy HTTP journey failed",
+  "resourcesCleanedUp": [
+    "khotwa-v22-d636d5240ad4-math",
+    "khotwa-v22-d636d5240ad4-db"
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "intelligent-learning-a-fixtures-v1",
+  "dataClassification": "synthetic_only",
+  "scientificReviewStatus": "not_human_reviewed",
+  "publicationAllowed": false,
+  "descriptionAr": "حالات مستقلة للتطوير؛ التوقعات ليست نتائج تشغيل ولا اعتمادًا علميًا أو تعديلًا لـGolden الأصلي.",
+  "cases": [
+    {
+      "id": "A1-SAFE-01",
+      "stages": ["A1"],
+      "context": { "subject": "algebra", "publishedEligibleCandidates": 0, "externalAi": false },
+      "expected": { "activityKind": "no_safe_activity", "revealsQuestion": false },
+      "evidenceTest": "apps/api/tests/intelligent-core.test.mjs"
+    },
+    {
+      "id": "A2-A6-ASSISTED-01",
+      "stages": ["A2", "A6"],
+      "context": {
+        "stage": "S1",
+        "skillCode": "SK-ALG-04",
+        "raw": "٢(س + ٣) = ١٠",
+        "revealedSteps": ["٢س + ٦ = ١٠", "٢س = ٤"],
+        "studentStep": "س = ٢"
+      },
+      "expected": { "eligibleIndependent": false, "supportedPractice": "observed" },
+      "evidenceTest": "apps/api/tests/intelligent-learning-experiences.test.mjs"
+    },
+    {
+      "id": "A3-ALG-DISTRIBUTION-01",
+      "stages": ["A3"],
+      "context": {
+        "before": "٢(س + ٣) = ١٠",
+        "after": "٢س + ٣ = ١٠",
+        "correctAlternative": ["س + ٣ = ٥", "س = ٢"],
+        "probeReviewedForRealLearners": false
+      },
+      "expected": { "mathStatus": "verified_invalid", "diagnosisCertainty": "possible", "publishNewProbe": false },
+      "evidenceTest": "apps/api/tests/intelligent-core.test.mjs"
+    },
+    {
+      "id": "A4-GRAPH-CYCLE-01",
+      "stages": ["A4"],
+      "context": { "edges": [["SK-ALG-01", "SK-ALG-04"], ["SK-ALG-04", "SK-ALG-01"]] },
+      "expected": { "eligible": false, "diagnostic": "cycle" },
+      "evidenceTest": "apps/api/tests/intelligent-core.test.mjs"
+    },
+    {
+      "id": "A5-TIMELINE-01",
+      "stages": ["A5"],
+      "context": {
+        "policyVersion": "retrieval-a5-synthetic-v1",
+        "anchorAt": "2026-11-08T09:00:00.000Z",
+        "intervalDays": [1, 3, 7, 14, 30],
+        "clockSource": "server_injected_for_test"
+      },
+      "expected": {
+        "firstDueAt": "2026-11-09T09:00:00.000Z",
+        "qualifiedRetentionRequires": ["current_anchor", "fresh_question", "verified_correct", "unassisted", "verified_at_on_or_after_due"],
+        "missedReviewIsConceptualFailure": false
+      },
+      "evidenceTest": "apps/api/tests/intelligent-learning-experiences.test.mjs"
+    },
+    {
+      "id": "A5-COVERAGE-01",
+      "stages": ["A1", "A5"],
+      "context": { "freshEligibleQuestions": 0, "priorExposureRetained": true },
+      "expected": { "status": "coverage_limited", "retentionOutcome": "not_tested", "clearExposureHistory": false },
+      "evidenceTest": "apps/api/tests/intelligent-learning-experiences.test.mjs"
+    },
+    {
+      "id": "A7-H4-OFFLINE-01",
+      "stages": ["A6", "A7"],
+      "context": { "externalAi": false, "request": "show_solution", "confirmFullSolution": true, "independentBeforeRequest": true },
+      "expected": { "exitMeasurementBeforeDisclosure": true, "hintLevel": 4, "eligibleIndependentAfterRequest": false, "fallbackWhenNoReviewedSolution": "safe_handoff" },
+      "evidenceTest": "apps/api/tests/intelligent-learning-experiences.test.mjs"
+    },
+    {
+      "id": "A8-HIGH-CONFIDENCE-WRONG-01",
+      "stages": ["A8"],
+      "context": { "confidence": 100, "textAr": "أنا متأكد تمامًا", "canonicalOutcome": "error" },
+      "expected": { "verifiedOutcome": "error", "selfReportRaisesMastery": false, "messageAr": "توقعك مختلف عن نتيجة السؤال المتحققة؛ ما الخطوة التي ستراجعها؟" },
+      "evidenceTest": "apps/api/tests/intelligent-learning-experiences.test.mjs"
+    },
+    {
+      "id": "A-SUB-PHYSICS-UNIT-01",
+      "stages": ["A1", "A3", "A5"],
+      "context": { "subject": "physics", "velocity": "3 m/s", "time": "4 s", "answerValue": "12", "answerUnit": "s" },
+      "expected": { "subjectVerdict": "wrong_unit", "confirmedMotionMisconception": false },
+      "evidenceTest": "qa/intelligent-learning-a-journey.mjs"
+    },
+    {
+      "id": "A-SUB-PYTHON-READ-01",
+      "stages": ["A1", "A7", "A8"],
+      "context": { "subject": "programming", "code": "message = 'Hello'\nprint(message)", "runnerEnabled": false },
+      "expected": { "readingAllowed": true, "executeEnabled": false, "independentProgrammingEvidence": false },
+      "evidenceTest": "qa/intelligent-learning-a-journey.mjs"
+    }
+  ]
+}

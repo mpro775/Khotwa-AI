@@ -39,6 +39,10 @@ import {
 } from "./learning-path-session";
 import { LessonRenderer } from "./LessonRenderer";
 import { MathInput } from "./MathInput";
+import {
+  DeepDiagnosisPanel,
+  IntelligentLearningPanel,
+} from "./IntelligentLearningPanel";
 
 const subjects: Record<Subject, string> = {
   algebra: "الرياضيات",
@@ -503,6 +507,21 @@ export function LearningPaths({ api }: { api: ProductApi }) {
             )}
           </div>
           <h2>{track.payload.titleAr}</h2>
+          <IntelligentLearningPanel
+            key={track.id}
+            api={api}
+            trackRevisionId={track.id}
+            lessons={track.lessons}
+            selectedLessonId={lesson?.id}
+            assessment={session}
+            onOpenLesson={(id) => void openLesson(id)}
+            onAssessment={(next) => {
+              if (next.trackRevisionId !== track.id) return;
+              setSession(next);
+              setSummary(null);
+              remember(selection({ assessmentId: next.id }));
+            }}
+          />
           {!lesson && !session && track.payload.kind === "track" && (
             <>
               <p>{track.payload.descriptionAr}</p>
@@ -757,7 +776,8 @@ function AssessmentPanel({
     [notice, setNotice] = useState(""),
     [hint, setHint] = useState<HintView | null>(null),
     [confirmHelp, setConfirmHelp] = useState(false),
-    [confirmSolution, setConfirmSolution] = useState(false);
+    [confirmSolution, setConfirmSolution] = useState(false),
+    [diagnosisEpoch, setDiagnosisEpoch] = useState(0);
   const active = useRef(true);
   useEffect(() => {
     active.current = true;
@@ -814,6 +834,7 @@ function AssessmentPanel({
       );
       if (!active.current) return;
       adopt(next);
+      setDiagnosisEpoch((current) => current + 1);
       setHint(null);
       setNotice(
         "حُفظت الإجابة والتحقق على النسخة الحالية. يمكنك تعديلها وإعادة التحقق.",
@@ -1049,6 +1070,25 @@ function AssessmentPanel({
           </span>
         </p>
       )}
+      {question.attemptId &&
+        !dirty &&
+        ["verified_invalid", "wrong_unit", "wrong_value"].includes(
+          question.status ?? "",
+        ) && (
+          <DeepDiagnosisPanel
+            key={`${question.id}:${diagnosisEpoch}`}
+            api={api}
+            attemptId={question.attemptId}
+            measurementIndependent={question.independent}
+            onProbeOpened={async () => {
+              const next = await api.request(
+                `/assessments/${session.id}`,
+                assessmentSession,
+              );
+              if (active.current) adopt(next);
+            }}
+          />
+        )}
       <div className="actions">
         <button
           className="primary"

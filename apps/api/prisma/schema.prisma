@@ -1000,3 +1000,28 @@ model learning_recommendation_events {
   recommendation Json?
   created_at DateTime @default(now()) @db.Timestamptz(6)
 }
+
+// A1–A8 synthetic-only state. Science evidence remains in canonical reports.
+model intelligent_learning_records {
+  id String @id @db.Uuid
+  owner_key String
+  kind String
+  track_revision_id String @db.Uuid
+  parent_id String? @db.Uuid
+  revision Int @default(0)
+  data Json
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  updated_at DateTime @default(now()) @db.Timestamptz(6)
+  @@unique([owner_key,id])
+  @@index([owner_key,kind,track_revision_id,created_at],map:"intelligent_learning_owner_kind")
+}
+model intelligent_learning_events {
+  id String @id @db.Uuid
+  record_id String @db.Uuid
+  owner_key String
+  revision Int
+  data Json
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  @@unique([record_id,revision])
+  @@index([owner_key,created_at],map:"intelligent_learning_event_owner")
+}

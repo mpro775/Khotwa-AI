@@ -13,6 +13,8 @@
     "packages/*"
   ],
   "scripts": {
+    "test:intelligent": "npm run build --workspace @khotwa/api && node --test apps/api/tests/intelligent-core.test.mjs apps/api/tests/intelligent-learning-experiences.test.mjs apps/api/tests/learning-paths.test.mjs apps/web/tests/intelligent-learning.test.mjs apps/web/tests/learning-paths.test.mjs",
+    "test:intelligent:integration": "npm run build --workspace @khotwa/api && node tools/test-learning-paths.mjs --intelligent-learning",
     "contracts": "node tools/contracts.mjs",
     "contracts:check": "node tools/contracts.mjs --check",
     "lint": "eslint apps packages/contracts/src tools/*.mjs && node tools/python-task.mjs -m pycodestyle --max-line-length=88 --ignore=E203,W503 services/math-engine/src tools/dev_env.py tools/seed_demo.py",

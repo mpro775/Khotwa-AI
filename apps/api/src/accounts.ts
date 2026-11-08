@@ -23,6 +23,10 @@ import { summarizeSkill, type ProgressEvidence } from "./progress";
 import { accountMailFromEnvironment, type AccountMail } from "./account-mail";
 import { REAL_LEARNING_POLICY, EXTERNAL_AI_POLICY } from "./learning-access";
 import { productMutation } from "./product-core";
+import type {
+  AGoal,
+  AReflection,
+} from "../../../packages/contracts/src/intelligent-learning";
 
 export type AccountRole = "student" | "teacher" | "content_manager" | "admin";
 export interface ProductActor {
@@ -688,6 +692,13 @@ export class AccountService {
       await tx.$executeRaw`UPDATE learning_assessments SET owner_key=${actor.ownerKey},guest_session_id=${actor.guestId}::uuid WHERE owner_key=${"guest:" + guest.row.id} AND guest_session_id=${guest.row.id}::uuid`;
       await tx.$executeRaw`UPDATE learning_lesson_events SET owner_key=${actor.ownerKey} WHERE owner_key=${"guest:" + guest.row.id}`;
       await tx.$executeRaw`UPDATE learning_recommendation_events SET owner_key=${actor.ownerKey} WHERE owner_key=${"guest:" + guest.row.id}`;
+      const [intelligent] = await tx.$queryRaw<
+        { present: boolean }[]
+      >`SELECT to_regclass('public.intelligent_learning_records') IS NOT NULL AS present`;
+      if (intelligent?.present) {
+        await tx.$executeRaw`UPDATE intelligent_learning_events SET owner_key=${actor.ownerKey} WHERE owner_key=${"guest:" + guest.row.id}`;
+        await tx.$executeRaw`UPDATE intelligent_learning_records SET owner_key=${actor.ownerKey} WHERE owner_key=${"guest:" + guest.row.id}`;
+      }
       await tx.$executeRaw`UPDATE guest_sessions SET status='revoked',revoked_at=now() WHERE id=${guest.row.id}::uuid`;
       return { claimed: true, learningSessionCount: sessions.length };
     });
@@ -981,26 +992,29 @@ export class AccountService {
     const [user] = await this.store.db.$queryRaw<
       UserRow[]
     >`SELECT * FROM users WHERE id=${actor.userId}::uuid`;
-    const [attempts, progress, steps, subjectAttempts] = await Promise.all([
-      this.attempts(request),
-      this.progress(request),
-      this.store.db.$queryRaw<
-        {
-          attempt_id: string;
-          position: number;
-          version_number: number;
-          source_raw: string;
-          created_at: Date;
-        }[]
-      >`
+    const [attempts, progress, steps, subjectAttempts, intelligentLearning] =
+      await Promise.all([
+        this.attempts(request),
+        this.progress(request),
+        this.store.db.$queryRaw<
+          {
+            attempt_id: string;
+            position: number;
+            version_number: number;
+            source_raw: string;
+            created_at: Date;
+          }[]
+        >`
         SELECT s.attempt_id,s.position,v.version_number,v.source_raw,v.created_at FROM step_versions v JOIN step_slots s ON s.id=v.step_slot_id
         JOIN attempts a ON a.id=s.attempt_id JOIN learning_sessions l ON l.id=a.learning_session_id WHERE l.guest_session_id=${actor.guestId}::uuid ORDER BY v.created_at LIMIT 5000`,
-      this.subjectAttempts(actor, 1000),
-    ]);
+        this.subjectAttempts(actor, 1000),
+        this.exportPlanning(actor),
+      ]);
     return {
       user: user ? userDto(user) : null,
       attempts: attempts.attempts,
       subjectAttempts,
+      intelligentLearning,
       progress,
       steps: steps.map((s) => ({
         attemptId: s.attempt_id,
@@ -1013,6 +1027,62 @@ export class AccountService {
       limits: { attempts: 50, stepVersions: 5000, subjectAttempts: 1000 },
       noteAr:
         "يتضمن التصدير بيانات حسابك فقط، مع الحدود المذكورة. لا يتضمن أسرار الجلسات أو مفاتيح الحلول.",
+    };
+  }
+  private async exportPlanning(actor: ProductActor) {
+    const [exists] = await this.store.db.$queryRaw<
+      { present: boolean }[]
+    >`SELECT to_regclass('public.intelligent_learning_records') IS NOT NULL AS present`;
+    if (!exists?.present)
+      return { goals: [], reflections: [], truncated: false };
+    // Never export private content snapshots or evaluator rules from other A kinds.
+    const rows = await this.store.db.$queryRaw<
+      {
+        id: string;
+        kind: string;
+        revision: number;
+        data: AGoal | AReflection;
+      }[]
+    >`SELECT id,kind,revision,data FROM intelligent_learning_records WHERE owner_key=${actor.ownerKey} AND kind IN ('goal','reflection') ORDER BY created_at,id LIMIT 501`;
+    const visible = rows.slice(0, 500);
+    return {
+      goals: visible
+        .filter((r) => r.kind === "goal")
+        .map((r) => {
+          const d = r.data as AGoal;
+          return {
+            id: r.id,
+            revision: r.revision,
+            trackRevisionId: d.trackRevisionId,
+            lessonRevisionId: d.lessonRevisionId,
+            skillCode: d.skillCode,
+            targetIndependentCount: d.targetIndependentCount,
+            textAr: d.textAr,
+            status: d.status,
+            independentCount: d.independentCount,
+            createdAt: d.createdAt,
+            updatedAt: d.updatedAt,
+          };
+        }),
+      reflections: visible
+        .filter((r) => r.kind === "reflection")
+        .map((r) => {
+          const d = r.data as AReflection;
+          return {
+            id: r.id,
+            trackRevisionId: d.trackRevisionId,
+            activityId: d.activityId,
+            goalId: d.goalId,
+            phase: d.phase,
+            confidence: d.confidence,
+            textAr: d.textAr,
+            skipped: d.skipped,
+            verifiedOutcome: d.verifiedOutcome,
+            messageAr: d.messageAr,
+            createdAt: d.createdAt,
+          };
+        }),
+      truncated: rows.length > 500,
     };
   }
 }

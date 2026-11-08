@@ -31,6 +31,7 @@ const redact = (value) =>
 const checks = [];
 const created = [];
 const serve = process.argv.includes("--serve");
+const intelligent = process.argv.includes("--intelligent-learning");
 function command(executable, args, env = process.env) {
   const started = Date.now();
   const result = spawnSync(executable, args, {
@@ -144,6 +145,18 @@ try {
     PH07_GUEST_COST_UNITS: "1000",
     PH07_GLOBAL_COST_UNITS: "10000",
     PH07_MAX_PARALLEL: "2",
+    A_INTEGRATION: String(intelligent),
+    A_TEST_HTTP_PORT: intelligent ? "18463" : "0",
+    PEDAGOGY_ENGINE_ENABLED: String(intelligent),
+    MASTERY_PROJECTION_ENABLED: String(intelligent),
+    DEEP_DIAGNOSIS_ENABLED: String(intelligent),
+    KNOWLEDGE_GRAPH_A_ENABLED: String(intelligent),
+    SPACED_REVIEW_ENABLED: String(intelligent),
+    FADING_SCAFFOLD_ENABLED: String(intelligent),
+    SOCRATIC_TUTOR_ENABLED: String(intelligent),
+    SOCRATIC_EXTERNAL_AI_ENABLED: "false",
+    METACOGNITION_ENABLED: String(intelligent),
+    PROGRAMMING_RUNNER_ENABLED: "false",
   };
   const until = Date.now() + 30000;
   let ready = false;
@@ -208,7 +221,9 @@ try {
   for (const name of created.reverse()) command("docker", ["rm", "-f", name]);
   mkdirSync("qa-reports", { recursive: true });
   writeFileSync(
-    "qa-reports/V2.2-INTEGRATION.json",
+    intelligent
+      ? "qa-reports/A-INTEGRATION.json"
+      : "qa-reports/V2.2-INTEGRATION.json",
     JSON.stringify(
       {
         recordedAt: new Date().toISOString(),

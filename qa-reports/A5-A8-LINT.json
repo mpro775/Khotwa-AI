@@ -1,0 +1,8 @@
+{
+  "command": "npx eslint apps/api/src/retrieval-scheduler.ts apps/api/src/scaffolding.ts apps/api/src/socratic-tutor.ts apps/api/src/metacognition.ts apps/api/src/intelligent-learning-experiences.ts apps/api/src/learning-path-payload.ts apps/api/src/learning-path-content.ts",
+  "chunk_id": "fbb52a",
+  "wall_time_seconds": 3.3232312,
+  "exit_code": 0,
+  "original_token_count": 0,
+  "output": ""
+}

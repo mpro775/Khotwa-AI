@@ -1,0 +1,8 @@
+{
+  "command": "npx tsc -p apps/api/tsconfig.json --noEmit",
+  "session_id": 25411,
+  "completion_chunk_id": "b6b135",
+  "exit_code": 0,
+  "output": "",
+  "environment": {"node": "v26.7.0", "platform": "win32", "date": "2026-11-08"}
+}
