@@ -511,7 +511,12 @@ export function LearningPaths({ api }: { api: ProductApi }) {
                 disabled={busy || subject === "programming"}
                 onClick={() => void start("diagnostic_pretest")}
               >
-                اختبر مستواك في {subject === "algebra" ? "الجبر" : "الفيزياء"}
+                اختبر مستواك في{" "}
+                {subject === "algebra"
+                  ? "الجبر"
+                  : subject === "physics"
+                    ? "الفيزياء"
+                    : "Python"}
               </button>
               {subject === "programming" && (
                 <p className="helper">

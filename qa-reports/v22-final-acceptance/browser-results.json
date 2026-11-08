@@ -1,0 +1,222 @@
+{
+  "observedAt": "2026-11-08T00:40:58.094Z",
+  "browser": "Chrome",
+  "origin": "https://localhost:8462",
+  "tlsInterstitial": false,
+  "teacherWorkflow": [
+    "created ALG-CHROME-L04 v1",
+    "previewed content",
+    "math-internal-v1 validation passed",
+    "submitted for review",
+    "test-only approval",
+    "published lesson",
+    "linked and published ALG-BASIC track"
+  ],
+  "preTest": [
+    {
+      "n": 1,
+      "equation": "٢(س + ٤) = ١٨",
+      "input": "٢س + ٤ = ١٨",
+      "verdict": "verified_invalid"
+    },
+    {
+      "n": 2,
+      "equation": "٦(س + ٤) = ٥٤",
+      "input": "٦س + ٤ = ٥٤",
+      "verdict": "verified_invalid"
+    },
+    {
+      "n": 3,
+      "equation": "٦(س + ١) = ١٨",
+      "input": "٦س + ١ = ١٨",
+      "verdict": "verified_invalid"
+    },
+    {
+      "n": 4,
+      "equation": "٥(س + ١) = ٣٠",
+      "input": "٥س + ١ = ٣٠",
+      "verdict": "verified_invalid"
+    },
+    {
+      "n": 5,
+      "equation": "٢(س + ٥) = ١٤",
+      "input": "٢س + ٥ = ١٤",
+      "verdict": "verified_invalid"
+    },
+    {
+      "n": 6,
+      "equation": "٣(س + ٥) = ٢٤",
+      "input": "٣س + ٥ = ٢٤",
+      "verdict": "verified_invalid"
+    },
+    {
+      "n": 7,
+      "equation": "٣(س + ٢) = ١٨",
+      "input": "٣س + ٢ = ١٨",
+      "verdict": "verified_invalid"
+    },
+    {
+      "n": 8,
+      "equation": "٤(س + ٤) = ٢٨",
+      "input": "٤س + ٤ = ٢٨",
+      "verdict": "verified_invalid"
+    },
+    {
+      "n": 9,
+      "equation": "٥(س + ٤) = ٤٠",
+      "input": "٥س + ٤ = ٤٠",
+      "verdict": "verified_invalid"
+    },
+    {
+      "n": 10,
+      "equation": "٣(س + ١) = ١٢",
+      "input": "٣س + ١ = ١٢",
+      "verdict": "verified_invalid"
+    }
+  ],
+  "practice": [
+    {
+      "n": 1,
+      "equation": "٦(س + ٢) = ٣٠",
+      "input": "س = ٣",
+      "hints": [
+        "H1",
+        "H2"
+      ],
+      "verdict": "verified_valid",
+      "independent": false
+    },
+    {
+      "n": 2,
+      "equation": "٤(س + ٥) = ٣٦",
+      "input": "س = ٤",
+      "verdict": "verified_valid",
+      "independent": false
+    },
+    {
+      "n": 3,
+      "equation": "٥(س + ٢) = ٢٠",
+      "input": "س = ٢",
+      "verdict": "verified_valid",
+      "independent": false
+    }
+  ],
+  "hints": [
+    "H1: تأمل الحدين داخل القوس.",
+    "H2: المعامل خارج القوس يضرب كل حد داخله."
+  ],
+  "postAssessment": [
+    {
+      "equation": "١٤ = ٢(س − ١)",
+      "input": "س = ٨",
+      "verdict": "verified_valid",
+      "independent": true
+    },
+    {
+      "equation": "٤(٣ − س) = ٢٠",
+      "input": "س = −٢",
+      "verdict": "verified_valid",
+      "independent": true
+    }
+  ],
+  "resume": {
+    "reload": true,
+    "autoResumedFirstUnanswered": 2,
+    "previousSavedInput": "س = ٨",
+    "previousReportRestored": true,
+    "afterServiceRestart": {
+      "sameAssessmentId": "b92221df-87ae-4ef6-ae0f-1fa0d6c9153d",
+      "savedAnswerVisible": "س = ٨",
+      "summaryUnchanged": true
+    }
+  },
+  "algebraSummary": {
+    "independentCorrect": 2,
+    "independentIncorrect": 10,
+    "assisted": 3,
+    "state": "independent_evidence"
+  },
+  "physics": {
+    "lessonRead": true,
+    "practice": {
+      "givens": {
+        "v": "3 m/s",
+        "t": "4 s"
+      },
+      "inputWrong": {
+        "value": "١٢",
+        "unit": "s",
+        "visibleVerdict": "الوحدة تحتاج مراجعة"
+      },
+      "corrected": {
+        "value": "١٢",
+        "unit": "m",
+        "visibleVerdict": "القيمة والوحدة صحيحتان"
+      },
+      "independent": false
+    },
+    "postAttempt": {
+      "visibleError": "لا توجد أسئلة كافية جديدة ومراجعة لهذا التقييم بعد. ارجع للدرس أو اختر التدريب.",
+      "pendingInvestigation": false,
+      "resolution": "Lazy legacy catalog fetch, no novelty relaxation or exposure deletion"
+    },
+    "retest": {
+      "actor": "student-c",
+      "bankOpenedBeforeAssessment": false,
+      "questions": [
+        {
+          "v": 4,
+          "t": 8,
+          "inputValue": "٣٢",
+          "unit": "m",
+          "verdict": "correct"
+        },
+        {
+          "v": 8,
+          "t": 7,
+          "inputValue": "٥٦",
+          "unit": "m",
+          "verdict": "correct"
+        }
+      ],
+      "summary": {
+        "independentCorrect": 2,
+        "independentIncorrect": 0,
+        "assisted": 0,
+        "state": "independent_evidence"
+      },
+      "assessmentId": "fa185fca-9313-4033-9d4d-d6158865238a"
+    }
+  },
+  "python": {
+    "lessonRead": true,
+    "practiceEnabled": false,
+    "independentCheckEnabled": false,
+    "runnerExecuted": false,
+    "finalLabel": "اختبر مستواك في Python",
+    "finalPretestEnabled": false
+  },
+  "isolation": {
+    "crossStudent": {
+      "actor": "student-b",
+      "assessmentId": "b92221df-87ae-4ef6-ae0f-1fa0d6c9153d",
+      "errorCode": "not_found",
+      "requestId": "a8562902-95a9-48a5-9f9a-9fb08721ba3e"
+    },
+    "draft": {
+      "lessonId": "9125c2fe-eaa1-4014-83f3-739407184de3",
+      "visibleResponse": "{\"error\":{\"code\":\"not_found\",\"messageAr\":\"المحتوى التعليمي غير متاح.\",\"issues\":[],\"currentRevision\":null,\"retryable\":false,\"retryAfterSeconds\":null},\"meta\":{\"requestId\":\"22acb665-30ab-4279-a64c-23c31dcee938\",\"serverTime\":\"2026-11-08T00:42:49.685Z\",\"apiVersion\":\"1\"}}"
+    }
+  },
+  "versionRetention": {
+    "newLessonCode": "ALG-CHROME-L04",
+    "publishedVersion": 1,
+    "createdVersion": 2,
+    "newVersionStatus": "draft",
+    "draftId": "8fc9ea95-8f98-423d-a2dc-c325498d4aa7",
+    "studentDraftResponse": "{\"error\":{\"code\":\"not_found\",\"messageAr\":\"المحتوى التعليمي غير متاح.\",\"issues\":[],\"currentRevision\":null,\"retryable\":false,\"retryAfterSeconds\":null},\"meta\":{\"requestId\":\"fdb10448-5c6c-4bb8-9e28-a39493e168c4\",\"serverTime\":\"2026-11-08T00:43:56.494Z\",\"apiVersion\":\"1\"}}",
+    "publishedId": "50e776e6-0d7e-411e-b4ec-81543efcf742",
+    "studentPublishedStillAccessible": true
+  },
+  "updatedAt": "2026-11-08T00:49:53.1307217Z"
+}

@@ -94,7 +94,9 @@ export class ProductApi {
   private csrf: string | null = null;
   private loginCsrf: string | null = null;
   private readonly retries = new Map<string, string>();
-  constructor(private readonly transport: typeof fetch = fetch) {}
+  constructor(
+    private readonly transport: typeof fetch = fetch.bind(globalThis),
+  ) {}
   async request<T>(
     path: string,
     decode: Decoder<T>,

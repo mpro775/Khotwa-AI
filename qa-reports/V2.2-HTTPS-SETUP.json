@@ -1,0 +1,86 @@
+{
+  "recordedAt": "2026-11-08T00:43:50.2532198Z",
+  "action": "Status",
+  "scope": "V2.2 local development only; exact server leaf trusted for current Windows user, no CA or machine-wide trust",
+  "thumbprint": "F4519BB5984D42A84540A8D167332CDE6CDBDD25",
+  "sha256": "C46DB9BDD5BC14B84CB0F19CBADA85E43607F2F479D4944265996DB98DF79271",
+  "subject": "O=Khotwa AI local development, CN=localhost",
+  "issuer": "O=Khotwa AI local development, CN=localhost",
+  "notBeforeUtc": "2026-11-08T00:21:44.0000000Z",
+  "notAfterUtc": "2026-12-08T00:21:44.0000000Z",
+  "dnsNames": [
+    "localhost"
+  ],
+  "ipAddresses": [
+    "127.0.0.1"
+  ],
+  "certificateAuthority": false,
+  "purpose": "TLS Web Server Authentication",
+  "privateKeyDirectoryAclRestricted": true,
+  "privateKeyInheritedFromRestrictedDirectory": true,
+  "trustBefore": {
+    "installedInCurrentUserRoot": true,
+    "windowsChainValidForServerAuth": true,
+    "chainStatus": []
+  },
+  "trustAfter": {
+    "installedInCurrentUserRoot": true,
+    "windowsChainValidForServerAuth": true,
+    "chainStatus": []
+  },
+  "browserCertificateValidationDisabled": false,
+  "machineTrustChanged": false,
+  "otherCertificatesChanged": false,
+  "privateKeyLocation": ".local/v22-tls/key.pem (ignored by Git; never included in evidence)",
+  "removeTrustCommand": "pwsh -NoProfile -File tools/v22-local-https.ps1 -Action RemoveTrust",
+  "importMethod": "certutil.exe -f -user -addstore Root exact managed cert.cer",
+  "eventHistory": [
+    {
+      "recordedAt": "2026-11-08T00:23:20.6249491Z",
+      "action": "Trust",
+      "thumbprint": "F4519BB5984D42A84540A8D167332CDE6CDBDD25",
+      "trustBefore": {
+        "installedInCurrentUserRoot": false,
+        "windowsChainValidForServerAuth": false,
+        "chainStatus": [
+          "UntrustedRoot"
+        ]
+      },
+      "trustAfter": {
+        "installedInCurrentUserRoot": true,
+        "windowsChainValidForServerAuth": true,
+        "chainStatus": []
+      }
+    },
+    {
+      "recordedAt": "2026-11-08T00:24:05.1094329Z",
+      "action": "Status",
+      "thumbprint": "F4519BB5984D42A84540A8D167332CDE6CDBDD25",
+      "trustBefore": {
+        "installedInCurrentUserRoot": true,
+        "windowsChainValidForServerAuth": true,
+        "chainStatus": []
+      },
+      "trustAfter": {
+        "installedInCurrentUserRoot": true,
+        "windowsChainValidForServerAuth": true,
+        "chainStatus": []
+      }
+    },
+    {
+      "recordedAt": "2026-11-08T00:43:50.2532198Z",
+      "action": "Status",
+      "thumbprint": "F4519BB5984D42A84540A8D167332CDE6CDBDD25",
+      "trustBefore": {
+        "installedInCurrentUserRoot": true,
+        "windowsChainValidForServerAuth": true,
+        "chainStatus": []
+      },
+      "trustAfter": {
+        "installedInCurrentUserRoot": true,
+        "windowsChainValidForServerAuth": true,
+        "chainStatus": []
+      }
+    }
+  ]
+}

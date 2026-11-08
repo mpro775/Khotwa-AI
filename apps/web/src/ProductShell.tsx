@@ -38,7 +38,9 @@ const labels: Record<View, string> = {
 export function ProductShell() {
   const api = useRef(new ProductApi()).current;
   const previousOwner = useRef<string | undefined>(undefined);
+  const catalogRequest = useRef(0);
   const [ownerEpoch, setOwnerEpoch] = useState(0);
+  const [legacyCatalogOpen, setLegacyCatalogOpen] = useState(false);
   const [view, setView] = useState<View>("home"),
     [identity, setIdentity] = useState<Identity | null>(null),
     [catalog, setCatalog] = useState<Catalog | null>(null),
@@ -76,6 +78,10 @@ export function ProductShell() {
       setProgrammingSelection(null);
       setPhysicsResume(null);
       setProgrammingResume(null);
+      catalogRequest.current++;
+      setCatalog(null);
+      setLegacyCatalogOpen(false);
+      setBusy(false);
       setOwnerEpoch((epoch) => epoch + 1);
     }
     previousOwner.current = owner;
@@ -96,8 +102,10 @@ export function ProductShell() {
     };
   }, [api]);
   useEffect(() => {
-    if (ready) void loadCatalog();
-  }, [ready, identity?.user?.id]);
+    // Fetching the legacy catalog discloses every listed question. Keep that
+    // exposure out of the learning-path entry until the learner opens the bank.
+    if (ready && legacyCatalogOpen && !catalog && !busy) void loadCatalog();
+  }, [ready, legacyCatalogOpen, identity?.user?.id]);
   function navigate(next: View) {
     setView(next);
     if (next === "physics") setVisitedPhysics(true);
@@ -107,14 +115,17 @@ export function ProductShell() {
     );
   }
   async function loadCatalog() {
+    const version = ++catalogRequest.current;
+    setLegacyCatalogOpen(true);
     setBusy(true);
     setError("");
     try {
-      setCatalog(await api.request("/catalog", catalogData));
+      const loaded = await api.request("/catalog", catalogData);
+      if (version === catalogRequest.current) setCatalog(loaded);
     } catch (e) {
-      setError(messageOf(e));
+      if (version === catalogRequest.current) setError(messageOf(e));
     } finally {
-      setBusy(false);
+      if (version === catalogRequest.current) setBusy(false);
     }
   }
   async function startGuest() {
@@ -180,7 +191,7 @@ export function ProductShell() {
         >
           خُطوة <span lang="en">AI</span>
         </a>
-        <span className="beta-badge">Beta محدودة</span>
+        <span className="beta-badge">نسخة تجريبية</span>
         <button className="identity-button" onClick={() => navigate("account")}>
           {identity?.user ? (
             <>
@@ -272,7 +283,11 @@ export function ProductShell() {
             <span>٤ · جرّب مسألة جديدة</span>
           </div>
           {ready && <LearningPaths key={ownerEpoch} api={api} />}
-          <details className="legacy-problem-bank">
+          <details
+            className="legacy-problem-bank"
+            open={legacyCatalogOpen}
+            onToggle={(event) => setLegacyCatalogOpen(event.currentTarget.open)}
+          >
             <summary>بنك المسائل ومساحات التدريب الحالية</summary>
             {catalog?.subjects.length ? (
               catalog.subjects.map((subject) => (

@@ -48,7 +48,9 @@ export class ClientFault extends Error {
 }
 export class ApiClient {
   private csrf: string | null = null;
-  constructor(private readonly transport: typeof fetch = fetch) {}
+  constructor(
+    private readonly transport: typeof fetch = fetch.bind(globalThis),
+  ) {}
   async request<K extends EnvelopeName>(
     path: string,
     schema: K,

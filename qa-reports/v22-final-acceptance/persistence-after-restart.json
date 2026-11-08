@@ -1,0 +1,1646 @@
+{
+  "recordedAt": "2026-11-08T00:46:19.821Z",
+  "scope": "Persisted synthetic local manual test data only; no raw answers, tokens, passwords or learner identities exported",
+  "source": "Real dedicated PostgreSQL queried directly, not a UI mock",
+  "counts": {
+    "learning_content_revisions": 8,
+    "learning_content_events": 30,
+    "learning_assessments": 4,
+    "learning_assessment_items": 16,
+    "learning_lesson_events": 11,
+    "learning_recommendation_events": 4,
+    "attempts": 15,
+    "step_versions": 16,
+    "verification_reports": 16,
+    "subject_attempts": 1
+  },
+  "content": [
+    {
+      "id": "9125c2fe-eaa1-4014-83f3-739407184de3",
+      "item_id": "f6926a4c-001d-42d0-8b6b-a0a5135d34ce",
+      "version": 1,
+      "status": "draft",
+      "code": "ALG-L04",
+      "subject": "algebra",
+      "title_ar": "توزيع الأقواس — بيئة اختبار",
+      "reviewed_at": null,
+      "published_at": null
+    },
+    {
+      "id": "9cdad763-4eda-461c-b929-856511b8c3ed",
+      "item_id": "30a0b363-ccf8-4d91-8629-06cf2609c262",
+      "version": 1,
+      "status": "published",
+      "code": "ALG-BASIC",
+      "subject": "algebra",
+      "title_ar": "الجبر الأساسي — بيئة اختبار",
+      "reviewed_at": "2026-11-08T00:38:03.305Z",
+      "published_at": "2026-11-08T00:38:04.322Z"
+    },
+    {
+      "id": "ffbb8585-7d3a-4558-aeb9-ddff4ee95ba2",
+      "item_id": "57277cab-dd2d-4739-915d-895161d08759",
+      "version": 1,
+      "status": "published",
+      "code": "PHY-MANUAL-L01",
+      "subject": "physics",
+      "title_ar": "السرعة والمسافة والوحدات — بيئة اختبار",
+      "reviewed_at": "2026-11-08T00:24:59.880Z",
+      "published_at": "2026-11-08T00:24:59.929Z"
+    },
+    {
+      "id": "91177a31-d04e-401a-82d6-505f2ec3dd3f",
+      "item_id": "7388e440-6c0b-43fd-9c99-c50283ee1f12",
+      "version": 1,
+      "status": "published",
+      "code": "PHY-MANUAL-TRACK",
+      "subject": "physics",
+      "title_ar": "الحركة الخطية والوحدات — بيئة اختبار",
+      "reviewed_at": "2026-11-08T00:25:00.024Z",
+      "published_at": "2026-11-08T00:25:00.072Z"
+    },
+    {
+      "id": "4736aacf-10e2-4347-9b54-162d7b4dacb7",
+      "item_id": "bc3cb022-fc0b-42e5-a64f-635a1be1407f",
+      "version": 1,
+      "status": "published",
+      "code": "PY-MANUAL-L01",
+      "subject": "programming",
+      "title_ar": "الطباعة والمتغيرات — بيئة اختبار للقراءة",
+      "reviewed_at": "2026-11-08T00:25:00.170Z",
+      "published_at": "2026-11-08T00:25:00.199Z"
+    },
+    {
+      "id": "97f552ac-bbb9-4517-9ad0-6db766764275",
+      "item_id": "697d81ad-5bde-463b-9a87-a691393f3bf7",
+      "version": 1,
+      "status": "published",
+      "code": "PY-MANUAL-TRACK",
+      "subject": "programming",
+      "title_ar": "Python للمبتدئين — بيئة اختبار",
+      "reviewed_at": "2026-11-08T00:25:00.291Z",
+      "published_at": "2026-11-08T00:25:00.329Z"
+    },
+    {
+      "id": "50e776e6-0d7e-411e-b4ec-81543efcf742",
+      "item_id": "e551b81b-e75c-4702-a82d-018af461ba02",
+      "version": 1,
+      "status": "published",
+      "code": "ALG-CHROME-L04",
+      "subject": "algebra",
+      "title_ar": "توزيع الأقواس — قبول Chrome",
+      "reviewed_at": "2026-11-08T00:37:45.496Z",
+      "published_at": "2026-11-08T00:37:45.803Z"
+    },
+    {
+      "id": "8fc9ea95-8f98-423d-a2dc-c325498d4aa7",
+      "item_id": "e551b81b-e75c-4702-a82d-018af461ba02",
+      "version": 2,
+      "status": "draft",
+      "code": "ALG-CHROME-L04",
+      "subject": "algebra",
+      "title_ar": "توزيع الأقواس — قبول Chrome",
+      "reviewed_at": null,
+      "published_at": null
+    }
+  ],
+  "assessments": [
+    {
+      "id": "635b2f5f-ed37-471f-aa6d-cc4a599a9956",
+      "subject_code": "algebra",
+      "kind": "diagnostic_pretest",
+      "revision": 10,
+      "track_revision_id": "9cdad763-4eda-461c-b929-856511b8c3ed",
+      "lesson_revision_id": null,
+      "created_at": "2026-11-08T00:38:39.570Z"
+    },
+    {
+      "id": "7988889f-684c-44e5-be45-875da1f4c184",
+      "subject_code": "algebra",
+      "kind": "practice",
+      "revision": 8,
+      "track_revision_id": "9cdad763-4eda-461c-b929-856511b8c3ed",
+      "lesson_revision_id": "50e776e6-0d7e-411e-b4ec-81543efcf742",
+      "created_at": "2026-11-08T00:39:40.146Z"
+    },
+    {
+      "id": "b92221df-87ae-4ef6-ae0f-1fa0d6c9153d",
+      "subject_code": "algebra",
+      "kind": "post_remediation",
+      "revision": 2,
+      "track_revision_id": "9cdad763-4eda-461c-b929-856511b8c3ed",
+      "lesson_revision_id": "50e776e6-0d7e-411e-b4ec-81543efcf742",
+      "created_at": "2026-11-08T00:40:10.863Z"
+    },
+    {
+      "id": "cc2642b2-6b93-412c-8e52-9d64ffb5e3fe",
+      "subject_code": "physics",
+      "kind": "practice",
+      "revision": 3,
+      "track_revision_id": "91177a31-d04e-401a-82d6-505f2ec3dd3f",
+      "lesson_revision_id": "ffbb8585-7d3a-4558-aeb9-ddff4ee95ba2",
+      "created_at": "2026-11-08T00:41:06.602Z"
+    }
+  ],
+  "reports": [
+    {
+      "id": "77fc3523-580a-4c69-852a-d4d15257c1e9",
+      "attempt_id": "d73b9a28-3689-4257-8a69-cbb06c31f700",
+      "attempt_revision": "1",
+      "engine_version": "0.3.0",
+      "scope": "current_sequence",
+      "dispatch_status": "finished",
+      "finished_at": "2026-11-08T00:38:43.543Z",
+      "completion": {
+        "state": "not_complete",
+        "explanationAr": "تحتاج السلسلة إلى مراجعة انتقال قبل اعتماد اكتمال الحل.",
+        "canMarkAttemptCompleted": false
+      },
+      "math_statuses": [
+        "verified_invalid"
+      ]
+    },
+    {
+      "id": "55d83b42-63bd-44aa-bde4-041d3baa91d0",
+      "attempt_id": "73695e9e-fa68-44e8-a88e-e9390d70a537",
+      "attempt_revision": "1",
+      "engine_version": "0.3.0",
+      "scope": "current_sequence",
+      "dispatch_status": "finished",
+      "finished_at": "2026-11-08T00:38:56.484Z",
+      "completion": {
+        "state": "not_complete",
+        "explanationAr": "تحتاج السلسلة إلى مراجعة انتقال قبل اعتماد اكتمال الحل.",
+        "canMarkAttemptCompleted": false
+      },
+      "math_statuses": [
+        "verified_invalid"
+      ]
+    },
+    {
+      "id": "8e8154e0-9508-4298-bd9a-3f65331d13ad",
+      "attempt_id": "b86eef7f-6803-4ef5-adad-dce2ecf578ce",
+      "attempt_revision": "1",
+      "engine_version": "0.3.0",
+      "scope": "current_sequence",
+      "dispatch_status": "finished",
+      "finished_at": "2026-11-08T00:39:11.215Z",
+      "completion": {
+        "state": "not_complete",
+        "explanationAr": "تحتاج السلسلة إلى مراجعة انتقال قبل اعتماد اكتمال الحل.",
+        "canMarkAttemptCompleted": false
+      },
+      "math_statuses": [
+        "verified_invalid"
+      ]
+    },
+    {
+      "id": "8a101aa5-f48e-4253-9d05-5cf1bce5d77e",
+      "attempt_id": "aa2db40a-c80c-46c9-b0f0-14442876a5ee",
+      "attempt_revision": "1",
+      "engine_version": "0.3.0",
+      "scope": "current_sequence",
+      "dispatch_status": "finished",
+      "finished_at": "2026-11-08T00:39:13.151Z",
+      "completion": {
+        "state": "not_complete",
+        "explanationAr": "تحتاج السلسلة إلى مراجعة انتقال قبل اعتماد اكتمال الحل.",
+        "canMarkAttemptCompleted": false
+      },
+      "math_statuses": [
+        "verified_invalid"
+      ]
+    },
+    {
+      "id": "10ae14b4-7e93-426f-828f-4edd9271e652",
+      "attempt_id": "5b78724e-391d-4650-b11b-bc965483851e",
+      "attempt_revision": "1",
+      "engine_version": "0.3.0",
+      "scope": "current_sequence",
+      "dispatch_status": "finished",
+      "finished_at": "2026-11-08T00:39:15.159Z",
+      "completion": {
+        "state": "not_complete",
+        "explanationAr": "تحتاج السلسلة إلى مراجعة انتقال قبل اعتماد اكتمال الحل.",
+        "canMarkAttemptCompleted": false
+      },
+      "math_statuses": [
+        "verified_invalid"
+      ]
+    },
+    {
+      "id": "cd1b5a03-b5fc-4b12-b1f4-693728efd211",
+      "attempt_id": "a5f89815-f696-4631-a884-ecbe7464db5c",
+      "attempt_revision": "1",
+      "engine_version": "0.3.0",
+      "scope": "current_sequence",
+      "dispatch_status": "finished",
+      "finished_at": "2026-11-08T00:39:17.203Z",
+      "completion": {
+        "state": "not_complete",
+        "explanationAr": "تحتاج السلسلة إلى مراجعة انتقال قبل اعتماد اكتمال الحل.",
+        "canMarkAttemptCompleted": false
+      },
+      "math_statuses": [
+        "verified_invalid"
+      ]
+    },
+    {
+      "id": "fa51cd12-c153-4b89-b8f2-6244d3a0dbc9",
+      "attempt_id": "0dded804-5caa-419d-9850-132b028e94a6",
+      "attempt_revision": "1",
+      "engine_version": "0.3.0",
+      "scope": "current_sequence",
+      "dispatch_status": "finished",
+      "finished_at": "2026-11-08T00:39:24.581Z",
+      "completion": {
+        "state": "not_complete",
+        "explanationAr": "تحتاج السلسلة إلى مراجعة انتقال قبل اعتماد اكتمال الحل.",
+        "canMarkAttemptCompleted": false
+      },
+      "math_statuses": [
+        "verified_invalid"
+      ]
+    },
+    {
+      "id": "309a29e9-efc1-4473-9fd0-7cd96558c808",
+      "attempt_id": "f1b5aaeb-0953-4ca5-a283-d9ece572f47b",
+      "attempt_revision": "1",
+      "engine_version": "0.3.0",
+      "scope": "current_sequence",
+      "dispatch_status": "finished",
+      "finished_at": "2026-11-08T00:39:26.588Z",
+      "completion": {
+        "state": "not_complete",
+        "explanationAr": "تحتاج السلسلة إلى مراجعة انتقال قبل اعتماد اكتمال الحل.",
+        "canMarkAttemptCompleted": false
+      },
+      "math_statuses": [
+        "verified_invalid"
+      ]
+    },
+    {
+      "id": "5ab99098-6980-4a17-8f46-017c7c8b7f8b",
+      "attempt_id": "04febf70-3afc-44aa-be9f-a9cd67d68799",
+      "attempt_revision": "1",
+      "engine_version": "0.3.0",
+      "scope": "current_sequence",
+      "dispatch_status": "finished",
+      "finished_at": "2026-11-08T00:39:28.624Z",
+      "completion": {
+        "state": "not_complete",
+        "explanationAr": "تحتاج السلسلة إلى مراجعة انتقال قبل اعتماد اكتمال الحل.",
+        "canMarkAttemptCompleted": false
+      },
+      "math_statuses": [
+        "verified_invalid"
+      ]
+    },
+    {
+      "id": "1b4e9d17-43b8-40b4-8d8d-06e085b412b1",
+      "attempt_id": "d268d8c5-ef5a-4932-92fd-3b020b5c708b",
+      "attempt_revision": "1",
+      "engine_version": "0.3.0",
+      "scope": "current_sequence",
+      "dispatch_status": "finished",
+      "finished_at": "2026-11-08T00:39:30.638Z",
+      "completion": {
+        "state": "not_complete",
+        "explanationAr": "تحتاج السلسلة إلى مراجعة انتقال قبل اعتماد اكتمال الحل.",
+        "canMarkAttemptCompleted": false
+      },
+      "math_statuses": [
+        "verified_invalid"
+      ]
+    },
+    {
+      "id": "9cb5a1f0-a1e9-4c60-aba7-d4a977cfd232",
+      "attempt_id": "8c3507f1-ca49-4cec-8c8d-3f614cd20ec0",
+      "attempt_revision": "1",
+      "engine_version": "0.3.0",
+      "scope": "current_sequence",
+      "dispatch_status": "finished",
+      "finished_at": "2026-11-08T00:39:44.387Z",
+      "completion": {
+        "state": "not_complete",
+        "explanationAr": "تحتاج السلسلة إلى مراجعة انتقال قبل اعتماد اكتمال الحل.",
+        "canMarkAttemptCompleted": false
+      },
+      "math_statuses": [
+        "verified_invalid"
+      ]
+    },
+    {
+      "id": "a892a170-1772-4211-ae52-94c9401cfce0",
+      "attempt_id": "8c3507f1-ca49-4cec-8c8d-3f614cd20ec0",
+      "attempt_revision": "2",
+      "engine_version": "0.3.0",
+      "scope": "current_sequence",
+      "dispatch_status": "finished",
+      "finished_at": "2026-11-08T00:39:55.248Z",
+      "completion": {
+        "state": "verified_complete",
+        "explanationAr": "اكتملت سلسلة الحل رياضيًا وتحققت النهاية في المسألة الأصلية.",
+        "canMarkAttemptCompleted": true
+      },
+      "math_statuses": [
+        "verified_valid"
+      ]
+    },
+    {
+      "id": "b0c4cda3-6d3a-401b-b40f-abc6841e0cac",
+      "attempt_id": "181ed899-3b25-430f-b9b4-6e8023c73b5d",
+      "attempt_revision": "1",
+      "engine_version": "0.3.0",
+      "scope": "current_sequence",
+      "dispatch_status": "finished",
+      "finished_at": "2026-11-08T00:40:05.934Z",
+      "completion": {
+        "state": "verified_complete",
+        "explanationAr": "اكتملت سلسلة الحل رياضيًا وتحققت النهاية في المسألة الأصلية.",
+        "canMarkAttemptCompleted": true
+      },
+      "math_statuses": [
+        "verified_valid"
+      ]
+    },
+    {
+      "id": "3396f214-fdc3-4699-9c09-7e8261bad022",
+      "attempt_id": "dc57b229-8d5c-446e-be8f-8d4129d0ce93",
+      "attempt_revision": "1",
+      "engine_version": "0.3.0",
+      "scope": "current_sequence",
+      "dispatch_status": "finished",
+      "finished_at": "2026-11-08T00:40:07.856Z",
+      "completion": {
+        "state": "verified_complete",
+        "explanationAr": "اكتملت سلسلة الحل رياضيًا وتحققت النهاية في المسألة الأصلية.",
+        "canMarkAttemptCompleted": true
+      },
+      "math_statuses": [
+        "verified_valid"
+      ]
+    },
+    {
+      "id": "2584cce8-a43b-48fe-83be-0ff136fd371e",
+      "attempt_id": "ebcfc7d1-f968-4148-905c-e0322595dd0b",
+      "attempt_revision": "1",
+      "engine_version": "0.3.0",
+      "scope": "current_sequence",
+      "dispatch_status": "finished",
+      "finished_at": "2026-11-08T00:40:17.728Z",
+      "completion": {
+        "state": "verified_complete",
+        "explanationAr": "اكتملت سلسلة الحل رياضيًا وتحققت النهاية في المسألة الأصلية.",
+        "canMarkAttemptCompleted": true
+      },
+      "math_statuses": [
+        "verified_valid"
+      ]
+    },
+    {
+      "id": "e9e639b1-b10b-4acf-90de-eb37bd3871fe",
+      "attempt_id": "a415a7b2-efc6-47ae-8065-2f48ef561790",
+      "attempt_revision": "1",
+      "engine_version": "0.3.0",
+      "scope": "current_sequence",
+      "dispatch_status": "finished",
+      "finished_at": "2026-11-08T00:40:48.243Z",
+      "completion": {
+        "state": "verified_complete",
+        "explanationAr": "اكتملت سلسلة الحل رياضيًا وتحققت النهاية في المسألة الأصلية.",
+        "canMarkAttemptCompleted": true
+      },
+      "math_statuses": [
+        "verified_valid"
+      ]
+    }
+  ],
+  "subjectAttempts": [
+    {
+      "id": "19c10544-0070-438d-899e-bcf0f52a03ba",
+      "subject_code": "physics",
+      "problem_revision_id": "7b8ce1b0-b2c4-4b03-b6aa-e3320f7f2e74",
+      "revision": 1,
+      "status": "correct",
+      "independent": false,
+      "assistance_level": 0,
+      "updated_at": "2026-11-08T00:41:20.244Z"
+    }
+  ],
+  "databaseVolume": "khotwa-v22-manual-ac31c8bbb3-data",
+  "dataRetained": true,
+  "httpRequests": [
+    {
+      "at": "2026-11-08T00:29:26.213Z",
+      "method": "GET",
+      "path": "/api/v1/me",
+      "status": 200,
+      "requestId": "ecaad2e8-b900-48d3-a897-932c9e129ca0"
+    },
+    {
+      "at": "2026-11-08T00:33:57.454Z",
+      "method": "GET",
+      "path": "/api/v1/me",
+      "status": 200,
+      "requestId": "fd9ba513-c72b-41bb-9764-9617188e27ea"
+    },
+    {
+      "at": "2026-11-08T00:33:57.604Z",
+      "method": "GET",
+      "path": "/api/v1/learning/tracks",
+      "status": 200,
+      "requestId": "d5b83cdd-7cd9-43a6-882d-d78af76aa44d"
+    },
+    {
+      "at": "2026-11-08T00:33:57.630Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "bc51a4fd-55a1-4b85-85c7-aebce91ca323"
+    },
+    {
+      "at": "2026-11-08T00:33:57.651Z",
+      "method": "GET",
+      "path": "/api/v1/me/learning-consent",
+      "status": 200,
+      "requestId": "a2cc61d1-4375-419b-84fa-6a823e648264"
+    },
+    {
+      "at": "2026-11-08T00:33:57.665Z",
+      "method": "GET",
+      "path": "/api/v1/me/ai-consent",
+      "status": 200,
+      "requestId": "ef4de8f1-6c1b-426b-9f19-bc6d42a3e7bb"
+    },
+    {
+      "at": "2026-11-08T00:33:57.686Z",
+      "method": "GET",
+      "path": "/api/v1/studio/items",
+      "status": 200,
+      "requestId": "843050cb-22d9-46d2-a93c-32006af52ad2"
+    },
+    {
+      "at": "2026-11-08T00:33:57.687Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "28c00069-0a0f-41aa-a129-95c74413d9cc"
+    },
+    {
+      "at": "2026-11-08T00:33:57.696Z",
+      "method": "GET",
+      "path": "/api/v1/catalog",
+      "status": 200,
+      "requestId": "c452ba0b-6207-48bd-bed1-f8df0ccc8b50"
+    },
+    {
+      "at": "2026-11-08T00:33:57.708Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-bank",
+      "status": 200,
+      "requestId": "cd6f9dd0-c384-42f7-a412-580d72a097d9"
+    },
+    {
+      "at": "2026-11-08T00:33:57.756Z",
+      "method": "GET",
+      "path": "/api/v1/learning/skill-map",
+      "status": 200,
+      "requestId": "a4476112-548e-4904-a459-a8626ffbcd92"
+    },
+    {
+      "at": "2026-11-08T00:34:03.248Z",
+      "method": "GET",
+      "path": "/api/v1/me",
+      "status": 200,
+      "requestId": "cfc22ab6-37f4-4168-b192-dca418d2ebaf"
+    },
+    {
+      "at": "2026-11-08T00:34:03.290Z",
+      "method": "GET",
+      "path": "/api/v1/learning/tracks",
+      "status": 200,
+      "requestId": "55ad39d8-14ba-4c74-b219-875a67e4cada"
+    },
+    {
+      "at": "2026-11-08T00:34:03.293Z",
+      "method": "GET",
+      "path": "/api/v1/me/learning-consent",
+      "status": 200,
+      "requestId": "83e4f961-df86-4196-93d0-b2265fa45b26"
+    },
+    {
+      "at": "2026-11-08T00:34:03.294Z",
+      "method": "GET",
+      "path": "/api/v1/me/ai-consent",
+      "status": 200,
+      "requestId": "c10cc116-6828-4c02-be95-fc725ce4ec30"
+    },
+    {
+      "at": "2026-11-08T00:34:03.300Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "4b43058a-351e-413f-9195-11cf582829e0"
+    },
+    {
+      "at": "2026-11-08T00:34:03.302Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "6375ca44-680c-4ed4-a120-0b7985bbdfce"
+    },
+    {
+      "at": "2026-11-08T00:34:03.317Z",
+      "method": "GET",
+      "path": "/api/v1/studio/items",
+      "status": 200,
+      "requestId": "e1479a42-57b8-429d-92d8-3b161dafcee5"
+    },
+    {
+      "at": "2026-11-08T00:34:03.321Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-bank",
+      "status": 200,
+      "requestId": "f2145eaf-57fc-4987-a68d-a33015b1a111"
+    },
+    {
+      "at": "2026-11-08T00:34:03.329Z",
+      "method": "GET",
+      "path": "/api/v1/learning/skill-map",
+      "status": 200,
+      "requestId": "b2d924b2-4923-4987-833a-e1f2a23237a3"
+    },
+    {
+      "at": "2026-11-08T00:34:03.332Z",
+      "method": "GET",
+      "path": "/api/v1/catalog",
+      "status": 200,
+      "requestId": "3eaa9f70-f56d-410f-bb1f-10e57c06e792"
+    },
+    {
+      "at": "2026-11-08T00:37:19.522Z",
+      "method": "POST",
+      "path": "/api/v1/studio/learning-content",
+      "status": 201,
+      "requestId": "62e2f84c-c7b1-447b-91b2-4e660cff411e"
+    },
+    {
+      "at": "2026-11-08T00:37:19.569Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "ada6e013-9c07-495b-a24a-ff19e08fd5ce"
+    },
+    {
+      "at": "2026-11-08T00:37:19.599Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "17646f86-3e5c-448e-b01e-aa32ad1dda9c"
+    },
+    {
+      "at": "2026-11-08T00:37:30.114Z",
+      "method": "POST",
+      "path": "/api/v1/studio/learning-content/50e776e6-0d7e-411e-b4ec-81543efcf742/validate",
+      "status": 201,
+      "requestId": "acf8f6cf-690f-4db9-8c0e-37c295107d90"
+    },
+    {
+      "at": "2026-11-08T00:37:30.133Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "2357635f-7acd-4254-ad2b-dbd9edf436ce"
+    },
+    {
+      "at": "2026-11-08T00:37:30.166Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "e683eba2-0530-44cd-9179-9db62372ef92"
+    },
+    {
+      "at": "2026-11-08T00:37:41.401Z",
+      "method": "POST",
+      "path": "/api/v1/studio/learning-content/50e776e6-0d7e-411e-b4ec-81543efcf742/transition",
+      "status": 201,
+      "requestId": "6d4d076d-b822-4b58-90b5-5ed0fd44d7ca"
+    },
+    {
+      "at": "2026-11-08T00:37:41.416Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "e4196b59-01b5-4081-95bb-e41641a4ad75"
+    },
+    {
+      "at": "2026-11-08T00:37:41.438Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "b7fe1bce-d61d-441c-ace8-05b3a85c8fb8"
+    },
+    {
+      "at": "2026-11-08T00:37:45.526Z",
+      "method": "POST",
+      "path": "/api/v1/studio/learning-content/50e776e6-0d7e-411e-b4ec-81543efcf742/transition",
+      "status": 201,
+      "requestId": "0834f6e4-5d71-4398-98f4-c98bac461eee"
+    },
+    {
+      "at": "2026-11-08T00:37:45.538Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "64e2df83-5390-420c-aae9-2ac1e8bd6409"
+    },
+    {
+      "at": "2026-11-08T00:37:45.538Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "dd14b467-0e0c-4f2a-bc31-5a90b0f7fa8a"
+    },
+    {
+      "at": "2026-11-08T00:37:45.833Z",
+      "method": "POST",
+      "path": "/api/v1/studio/learning-content/50e776e6-0d7e-411e-b4ec-81543efcf742/transition",
+      "status": 201,
+      "requestId": "79186cee-442d-418b-a224-8b01b237f5f7"
+    },
+    {
+      "at": "2026-11-08T00:37:45.845Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "cf769309-137e-4680-8f5d-f840f007253e"
+    },
+    {
+      "at": "2026-11-08T00:37:45.846Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "c3c3a01a-d340-4b1a-9de3-42efea19c4ab"
+    },
+    {
+      "at": "2026-11-08T00:37:55.160Z",
+      "method": "PUT",
+      "path": "/api/v1/studio/learning-content/9cdad763-4eda-461c-b929-856511b8c3ed",
+      "status": 200,
+      "requestId": "98753e97-427e-4a05-bb04-45824278ea13"
+    },
+    {
+      "at": "2026-11-08T00:37:55.183Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "c6bfd1f5-91da-4254-a853-f08f601d541a"
+    },
+    {
+      "at": "2026-11-08T00:37:55.189Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "aebd9e4a-2ac4-4c8c-b6af-f71712bbb365"
+    },
+    {
+      "at": "2026-11-08T00:38:01.252Z",
+      "method": "POST",
+      "path": "/api/v1/studio/learning-content/9cdad763-4eda-461c-b929-856511b8c3ed/validate",
+      "status": 201,
+      "requestId": "f7a5e250-8bf7-4df1-85c7-3d4d51688058"
+    },
+    {
+      "at": "2026-11-08T00:38:01.262Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "ada2779a-e89a-4736-b4ac-426af90095ae"
+    },
+    {
+      "at": "2026-11-08T00:38:01.267Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "7b469406-e4ba-4239-bbd4-9d3134fbe780"
+    },
+    {
+      "at": "2026-11-08T00:38:02.314Z",
+      "method": "POST",
+      "path": "/api/v1/studio/learning-content/9cdad763-4eda-461c-b929-856511b8c3ed/transition",
+      "status": 201,
+      "requestId": "ebc43791-bfd4-404f-b202-1e37d1ddf679"
+    },
+    {
+      "at": "2026-11-08T00:38:02.369Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "3721c778-6ad4-4a23-8355-45aeb7920a18"
+    },
+    {
+      "at": "2026-11-08T00:38:02.371Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "efa4a7c7-8c0d-4daa-bcae-856816d0cd87"
+    },
+    {
+      "at": "2026-11-08T00:38:03.323Z",
+      "method": "POST",
+      "path": "/api/v1/studio/learning-content/9cdad763-4eda-461c-b929-856511b8c3ed/transition",
+      "status": 201,
+      "requestId": "1c90445f-0b84-415a-9515-1c64e215c23d"
+    },
+    {
+      "at": "2026-11-08T00:38:03.364Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "cc49c0e5-ef77-45cf-a11c-b8f0dead55ac"
+    },
+    {
+      "at": "2026-11-08T00:38:03.364Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "583c32fe-efbb-4de2-994c-488f2e1df055"
+    },
+    {
+      "at": "2026-11-08T00:38:04.343Z",
+      "method": "POST",
+      "path": "/api/v1/studio/learning-content/9cdad763-4eda-461c-b929-856511b8c3ed/transition",
+      "status": 201,
+      "requestId": "37d17816-4eed-4bc1-bb96-c3770a157294"
+    },
+    {
+      "at": "2026-11-08T00:38:04.377Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "0e41cecc-7a70-49c5-8a72-8a2f6bef290b"
+    },
+    {
+      "at": "2026-11-08T00:38:04.378Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "5fd51324-a97d-404d-bc82-238246558503"
+    },
+    {
+      "at": "2026-11-08T00:38:17.678Z",
+      "method": "GET",
+      "path": "/api/v1/me",
+      "status": 200,
+      "requestId": "5c4071a3-4789-40e1-b7f0-e9b36a3bb797"
+    },
+    {
+      "at": "2026-11-08T00:38:17.725Z",
+      "method": "GET",
+      "path": "/api/v1/learning/tracks",
+      "status": 200,
+      "requestId": "60e3f855-18fd-44ae-a3bd-16e35449e475"
+    },
+    {
+      "at": "2026-11-08T00:38:17.735Z",
+      "method": "GET",
+      "path": "/api/v1/me/ai-consent",
+      "status": 200,
+      "requestId": "12bfabae-98f3-4420-82bc-bad615d20f3b"
+    },
+    {
+      "at": "2026-11-08T00:38:17.752Z",
+      "method": "GET",
+      "path": "/api/v1/me/learning-consent",
+      "status": 200,
+      "requestId": "9b140b1e-1c46-4bb3-a87c-2154ee0863d5"
+    },
+    {
+      "at": "2026-11-08T00:38:17.775Z",
+      "method": "GET",
+      "path": "/api/v1/catalog",
+      "status": 200,
+      "requestId": "beeeeee5-6a27-458d-a6d4-63e67f6697b7"
+    },
+    {
+      "at": "2026-11-08T00:38:25.757Z",
+      "method": "GET",
+      "path": "/api/v1/learning/tracks/9cdad763-4eda-461c-b929-856511b8c3ed",
+      "status": 200,
+      "requestId": "132933c7-c539-448b-8f27-808e9cc7654e"
+    },
+    {
+      "at": "2026-11-08T00:38:25.862Z",
+      "method": "GET",
+      "path": "/api/v1/learning/progress",
+      "status": 200,
+      "requestId": "0b8d8ba7-8407-45d5-8189-42ca9ec35ffd"
+    },
+    {
+      "at": "2026-11-08T00:38:33.564Z",
+      "method": "GET",
+      "path": "/api/v1/learning/lessons/50e776e6-0d7e-411e-b4ec-81543efcf742",
+      "status": 200,
+      "requestId": "1d358528-2945-46f7-a68b-5a6835bd7b5a"
+    },
+    {
+      "at": "2026-11-08T00:38:33.609Z",
+      "method": "POST",
+      "path": "/api/v1/learning/lessons/50e776e6-0d7e-411e-b4ec-81543efcf742/progress",
+      "status": 201,
+      "requestId": "e84f83f8-36e7-48e0-8503-084930aa532c"
+    },
+    {
+      "at": "2026-11-08T00:38:39.809Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/start",
+      "status": 201,
+      "requestId": "8fa215f2-41b5-43bd-a91d-647c2d2559c7"
+    },
+    {
+      "at": "2026-11-08T00:38:43.686Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/635b2f5f-ed37-471f-aa6d-cc4a599a9956/answer",
+      "status": 201,
+      "requestId": "7ea42811-1d76-4338-aafe-9810f96c1ada"
+    },
+    {
+      "at": "2026-11-08T00:38:56.594Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/635b2f5f-ed37-471f-aa6d-cc4a599a9956/answer",
+      "status": 201,
+      "requestId": "23d893ce-371e-44a9-81f1-f04c0bee3247"
+    },
+    {
+      "at": "2026-11-08T00:39:11.360Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/635b2f5f-ed37-471f-aa6d-cc4a599a9956/answer",
+      "status": 201,
+      "requestId": "a8036377-837e-4991-b613-1ba93f79e733"
+    },
+    {
+      "at": "2026-11-08T00:39:13.232Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/635b2f5f-ed37-471f-aa6d-cc4a599a9956/answer",
+      "status": 201,
+      "requestId": "db16011e-be78-455f-9c93-c2de3e724629"
+    },
+    {
+      "at": "2026-11-08T00:39:15.229Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/635b2f5f-ed37-471f-aa6d-cc4a599a9956/answer",
+      "status": 201,
+      "requestId": "93b9e83e-0f10-4c03-a7dc-6a2a3a8fbe95"
+    },
+    {
+      "at": "2026-11-08T00:39:17.280Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/635b2f5f-ed37-471f-aa6d-cc4a599a9956/answer",
+      "status": 201,
+      "requestId": "8b4b370a-e6c0-4cc5-98d3-e0ca2b7e5141"
+    },
+    {
+      "at": "2026-11-08T00:39:24.655Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/635b2f5f-ed37-471f-aa6d-cc4a599a9956/answer",
+      "status": 201,
+      "requestId": "7f586f28-7b57-4958-8ce6-51ac620f694f"
+    },
+    {
+      "at": "2026-11-08T00:39:26.660Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/635b2f5f-ed37-471f-aa6d-cc4a599a9956/answer",
+      "status": 201,
+      "requestId": "c86a560a-4d26-46c4-8c70-b56a318002c6"
+    },
+    {
+      "at": "2026-11-08T00:39:28.706Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/635b2f5f-ed37-471f-aa6d-cc4a599a9956/answer",
+      "status": 201,
+      "requestId": "30ed353d-300d-4a77-ab84-d7abb4ee8174"
+    },
+    {
+      "at": "2026-11-08T00:39:30.716Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/635b2f5f-ed37-471f-aa6d-cc4a599a9956/answer",
+      "status": 201,
+      "requestId": "4f534e9c-45c1-46c4-a5c4-2ede6d13da21"
+    },
+    {
+      "at": "2026-11-08T00:39:31.712Z",
+      "method": "GET",
+      "path": "/api/v1/assessments/635b2f5f-ed37-471f-aa6d-cc4a599a9956/summary",
+      "status": 200,
+      "requestId": "108e957a-160d-4e9a-87f8-e68742d67c2c"
+    },
+    {
+      "at": "2026-11-08T00:39:31.718Z",
+      "method": "GET",
+      "path": "/api/v1/learning/progress",
+      "status": 200,
+      "requestId": "3f4de6c3-6485-424c-908f-3d61e2a9687f"
+    },
+    {
+      "at": "2026-11-08T00:39:39.038Z",
+      "method": "GET",
+      "path": "/api/v1/learning/lessons/50e776e6-0d7e-411e-b4ec-81543efcf742",
+      "status": 200,
+      "requestId": "1cc13cea-1cb3-4791-82c3-9c17ee0f015d"
+    },
+    {
+      "at": "2026-11-08T00:39:39.083Z",
+      "method": "POST",
+      "path": "/api/v1/learning/lessons/50e776e6-0d7e-411e-b4ec-81543efcf742/progress",
+      "status": 201,
+      "requestId": "cf5ce5cf-8c05-4589-8cf1-af31348fa5da"
+    },
+    {
+      "at": "2026-11-08T00:39:40.218Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/start",
+      "status": 201,
+      "requestId": "599a826c-1fd3-4141-92ba-e02268664a93"
+    },
+    {
+      "at": "2026-11-08T00:39:44.444Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/7988889f-684c-44e5-be45-875da1f4c184/answer",
+      "status": 201,
+      "requestId": "0358fbfd-f0cd-4c00-8f24-addcc4544788"
+    },
+    {
+      "at": "2026-11-08T00:39:45.511Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/7988889f-684c-44e5-be45-875da1f4c184/support",
+      "status": 201,
+      "requestId": "d8b0d7e0-bac0-4c82-81f8-9f514b0fe9b2"
+    },
+    {
+      "at": "2026-11-08T00:39:54.902Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/7988889f-684c-44e5-be45-875da1f4c184/support",
+      "status": 201,
+      "requestId": "99de84ff-eef5-4f90-b4b2-4817331e52a6"
+    },
+    {
+      "at": "2026-11-08T00:39:55.297Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/7988889f-684c-44e5-be45-875da1f4c184/answer",
+      "status": 201,
+      "requestId": "a03fcf7a-f486-45fe-8a79-13435c2d7e7e"
+    },
+    {
+      "at": "2026-11-08T00:40:06.009Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/7988889f-684c-44e5-be45-875da1f4c184/answer",
+      "status": 201,
+      "requestId": "da53909b-98df-4604-8609-6a311090d6b3"
+    },
+    {
+      "at": "2026-11-08T00:40:07.906Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/7988889f-684c-44e5-be45-875da1f4c184/answer",
+      "status": 201,
+      "requestId": "47738475-a0eb-42f9-b1f5-169a5b9919ff"
+    },
+    {
+      "at": "2026-11-08T00:40:08.888Z",
+      "method": "GET",
+      "path": "/api/v1/assessments/7988889f-684c-44e5-be45-875da1f4c184/summary",
+      "status": 200,
+      "requestId": "b7317afa-d52d-4c21-921b-881f8de0fc2b"
+    },
+    {
+      "at": "2026-11-08T00:40:08.916Z",
+      "method": "GET",
+      "path": "/api/v1/learning/progress",
+      "status": 200,
+      "requestId": "e71a92eb-02d6-4cfa-a090-4190563c79f4"
+    },
+    {
+      "at": "2026-11-08T00:40:09.838Z",
+      "method": "GET",
+      "path": "/api/v1/learning/lessons/50e776e6-0d7e-411e-b4ec-81543efcf742",
+      "status": 200,
+      "requestId": "9e9741a2-0d1c-4705-b520-c0684cb79dcc"
+    },
+    {
+      "at": "2026-11-08T00:40:09.922Z",
+      "method": "POST",
+      "path": "/api/v1/learning/lessons/50e776e6-0d7e-411e-b4ec-81543efcf742/progress",
+      "status": 201,
+      "requestId": "0f56bce9-5744-43ea-9a13-2a4cc518ef8f"
+    },
+    {
+      "at": "2026-11-08T00:40:10.941Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/start",
+      "status": 201,
+      "requestId": "fa1c8399-8e55-4a04-bd53-1951970d4430"
+    },
+    {
+      "at": "2026-11-08T00:40:17.778Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/b92221df-87ae-4ef6-ae0f-1fa0d6c9153d/answer",
+      "status": 201,
+      "requestId": "87258988-e704-45a1-92c4-1599c43c2eaa"
+    },
+    {
+      "at": "2026-11-08T00:40:18.044Z",
+      "method": "GET",
+      "path": "/api/v1/me",
+      "status": 200,
+      "requestId": "4d672d02-b770-4c7c-b6c6-d2e70b8923a5"
+    },
+    {
+      "at": "2026-11-08T00:40:18.085Z",
+      "method": "GET",
+      "path": "/api/v1/learning/tracks",
+      "status": 200,
+      "requestId": "0948a7b5-fe8a-4d0d-9cbd-72dc619a787d"
+    },
+    {
+      "at": "2026-11-08T00:40:18.089Z",
+      "method": "GET",
+      "path": "/api/v1/me/ai-consent",
+      "status": 200,
+      "requestId": "4001d4a5-4b95-4f35-a6c6-d94d99e53151"
+    },
+    {
+      "at": "2026-11-08T00:40:18.104Z",
+      "method": "GET",
+      "path": "/api/v1/me/learning-consent",
+      "status": 200,
+      "requestId": "17107d51-2e50-4d99-8c16-7216a4de32c1"
+    },
+    {
+      "at": "2026-11-08T00:40:18.118Z",
+      "method": "GET",
+      "path": "/api/v1/catalog",
+      "status": 200,
+      "requestId": "99526c63-1a0c-4909-9bda-c14b58f37de5"
+    },
+    {
+      "at": "2026-11-08T00:40:18.120Z",
+      "method": "GET",
+      "path": "/api/v1/assessments/b92221df-87ae-4ef6-ae0f-1fa0d6c9153d",
+      "status": 200,
+      "requestId": "64689b2e-5f3d-4328-974a-30ff0d1c487a"
+    },
+    {
+      "at": "2026-11-08T00:40:18.140Z",
+      "method": "GET",
+      "path": "/api/v1/learning/tracks/9cdad763-4eda-461c-b929-856511b8c3ed",
+      "status": 200,
+      "requestId": "f65e93f7-ef86-4f12-83a9-616c9517d8eb"
+    },
+    {
+      "at": "2026-11-08T00:40:18.158Z",
+      "method": "GET",
+      "path": "/api/v1/learning/lessons/50e776e6-0d7e-411e-b4ec-81543efcf742",
+      "status": 200,
+      "requestId": "22257161-1fab-4cf1-8ed5-791aee85cf0f"
+    },
+    {
+      "at": "2026-11-08T00:40:18.236Z",
+      "method": "GET",
+      "path": "/api/v1/learning/progress",
+      "status": 200,
+      "requestId": "af2396e9-ad9b-4f91-9cf1-4a79645ae9a3"
+    },
+    {
+      "at": "2026-11-08T00:40:48.328Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/b92221df-87ae-4ef6-ae0f-1fa0d6c9153d/answer",
+      "status": 201,
+      "requestId": "2b297b9c-b78a-49a8-ae4a-556ac6bd6486"
+    },
+    {
+      "at": "2026-11-08T00:40:49.178Z",
+      "method": "GET",
+      "path": "/api/v1/assessments/b92221df-87ae-4ef6-ae0f-1fa0d6c9153d/summary",
+      "status": 200,
+      "requestId": "d307ac03-befb-4e2a-8cab-fb29d2acbe89"
+    },
+    {
+      "at": "2026-11-08T00:40:49.218Z",
+      "method": "GET",
+      "path": "/api/v1/learning/progress",
+      "status": 200,
+      "requestId": "06ff23fc-ecdb-4f47-b88c-fc32d078261a"
+    },
+    {
+      "at": "2026-11-08T00:40:58.249Z",
+      "method": "GET",
+      "path": "/api/v1/learning/tracks",
+      "status": 200,
+      "requestId": "690938d3-4f2d-4347-bcb7-3295f61b0687"
+    },
+    {
+      "at": "2026-11-08T00:40:59.444Z",
+      "method": "GET",
+      "path": "/api/v1/learning/tracks/91177a31-d04e-401a-82d6-505f2ec3dd3f",
+      "status": 200,
+      "requestId": "a24519e3-ce20-4db9-8afd-b2132527ff5f"
+    },
+    {
+      "at": "2026-11-08T00:40:59.681Z",
+      "method": "GET",
+      "path": "/api/v1/learning/progress",
+      "status": 200,
+      "requestId": "d3dfcae8-6d7b-4044-a459-92939416bbec"
+    },
+    {
+      "at": "2026-11-08T00:41:03.244Z",
+      "method": "GET",
+      "path": "/api/v1/learning/lessons/ffbb8585-7d3a-4558-aeb9-ddff4ee95ba2",
+      "status": 200,
+      "requestId": "b6733e4b-d839-4869-8dff-a61bab8cd21c"
+    },
+    {
+      "at": "2026-11-08T00:41:03.340Z",
+      "method": "POST",
+      "path": "/api/v1/learning/lessons/ffbb8585-7d3a-4558-aeb9-ddff4ee95ba2/progress",
+      "status": 201,
+      "requestId": "d9b7c7a3-e2c0-46fc-b734-7d76d4febbf2"
+    },
+    {
+      "at": "2026-11-08T00:41:06.657Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/start",
+      "status": 201,
+      "requestId": "1f262e22-15ac-45f4-ad38-28c2cc4fd1d7"
+    },
+    {
+      "at": "2026-11-08T00:41:13.205Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/cc2642b2-6b93-412c-8e52-9d64ffb5e3fe/answer",
+      "status": 201,
+      "requestId": "6580d597-119a-40d2-a88f-32aa428ce874"
+    },
+    {
+      "at": "2026-11-08T00:41:20.300Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/cc2642b2-6b93-412c-8e52-9d64ffb5e3fe/answer",
+      "status": 201,
+      "requestId": "88f3697b-6817-4184-bf13-48f7095148e4"
+    },
+    {
+      "at": "2026-11-08T00:41:21.498Z",
+      "method": "GET",
+      "path": "/api/v1/assessments/cc2642b2-6b93-412c-8e52-9d64ffb5e3fe/summary",
+      "status": 200,
+      "requestId": "0ad6ab33-bf0a-4946-8aa9-183173902cb1"
+    },
+    {
+      "at": "2026-11-08T00:41:21.570Z",
+      "method": "GET",
+      "path": "/api/v1/learning/progress",
+      "status": 200,
+      "requestId": "0841135c-20f3-4589-a6de-46cd76567c99"
+    },
+    {
+      "at": "2026-11-08T00:41:27.860Z",
+      "method": "GET",
+      "path": "/api/v1/learning/lessons/ffbb8585-7d3a-4558-aeb9-ddff4ee95ba2",
+      "status": 200,
+      "requestId": "a6dd388f-754b-40d8-8b3e-6df14ea802e9"
+    },
+    {
+      "at": "2026-11-08T00:41:27.919Z",
+      "method": "POST",
+      "path": "/api/v1/learning/lessons/ffbb8585-7d3a-4558-aeb9-ddff4ee95ba2/progress",
+      "status": 201,
+      "requestId": "353d00ed-3e67-4a36-8c22-0a60eab896aa"
+    },
+    {
+      "at": "2026-11-08T00:41:28.995Z",
+      "method": "POST",
+      "path": "/api/v1/assessments/start",
+      "status": 409,
+      "requestId": "a6a849ba-e0fb-4cff-81fe-3a280a79ce86"
+    },
+    {
+      "at": "2026-11-08T00:42:04.061Z",
+      "method": "GET",
+      "path": "/api/v1/learning/tracks",
+      "status": 200,
+      "requestId": "792fd027-eb1f-42d7-ae4a-e988ede3a7cb"
+    },
+    {
+      "at": "2026-11-08T00:42:05.100Z",
+      "method": "GET",
+      "path": "/api/v1/learning/tracks/97f552ac-bbb9-4517-9ad0-6db766764275",
+      "status": 200,
+      "requestId": "fb722f98-eb47-4644-bf68-f393bf8931e9"
+    },
+    {
+      "at": "2026-11-08T00:42:05.181Z",
+      "method": "GET",
+      "path": "/api/v1/learning/progress",
+      "status": 200,
+      "requestId": "270b953b-622c-4114-8647-7d3faee1b0ed"
+    },
+    {
+      "at": "2026-11-08T00:42:06.163Z",
+      "method": "GET",
+      "path": "/api/v1/learning/lessons/4736aacf-10e2-4347-9b54-162d7b4dacb7",
+      "status": 200,
+      "requestId": "93dd77af-bfc5-45f9-98c7-b8dd5dab7059"
+    },
+    {
+      "at": "2026-11-08T00:42:06.272Z",
+      "method": "POST",
+      "path": "/api/v1/learning/lessons/4736aacf-10e2-4347-9b54-162d7b4dacb7/progress",
+      "status": 201,
+      "requestId": "f06998e9-4077-4b3a-92d4-737f841c4d68"
+    },
+    {
+      "at": "2026-11-08T00:42:41.309Z",
+      "method": "GET",
+      "path": "/api/v1/me",
+      "status": 200,
+      "requestId": "d9cf296b-f8d5-445a-9146-170b0aa0748f"
+    },
+    {
+      "at": "2026-11-08T00:42:41.373Z",
+      "method": "GET",
+      "path": "/api/v1/learning/tracks",
+      "status": 200,
+      "requestId": "a8e21c6f-a9f9-4a0a-8717-632169f341ad"
+    },
+    {
+      "at": "2026-11-08T00:42:41.418Z",
+      "method": "GET",
+      "path": "/api/v1/me/learning-consent",
+      "status": 200,
+      "requestId": "ed05ebfd-df26-43ef-b7d8-700212e084e4"
+    },
+    {
+      "at": "2026-11-08T00:42:41.431Z",
+      "method": "GET",
+      "path": "/api/v1/me/ai-consent",
+      "status": 200,
+      "requestId": "33ea14b9-c0a0-49e5-8ff0-3c91b3b421b7"
+    },
+    {
+      "at": "2026-11-08T00:42:41.445Z",
+      "method": "GET",
+      "path": "/api/v1/learning/tracks/97f552ac-bbb9-4517-9ad0-6db766764275",
+      "status": 200,
+      "requestId": "7dc060d6-a1bc-4830-9fe2-cffadcdf54d9"
+    },
+    {
+      "at": "2026-11-08T00:42:41.467Z",
+      "method": "GET",
+      "path": "/api/v1/learning/lessons/4736aacf-10e2-4347-9b54-162d7b4dacb7",
+      "status": 200,
+      "requestId": "2db80827-ed5a-4a04-9ecc-24c02ff31a93"
+    },
+    {
+      "at": "2026-11-08T00:42:41.485Z",
+      "method": "GET",
+      "path": "/api/v1/catalog",
+      "status": 200,
+      "requestId": "0bce6794-1ed4-489b-9a8c-58c00436cd78"
+    },
+    {
+      "at": "2026-11-08T00:42:41.529Z",
+      "method": "GET",
+      "path": "/api/v1/learning/progress",
+      "status": 200,
+      "requestId": "f806e9f9-615d-47de-b71b-f73f26d27959"
+    },
+    {
+      "at": "2026-11-08T00:42:41.530Z",
+      "method": "GET",
+      "path": "/api/v1/assessments/b92221df-87ae-4ef6-ae0f-1fa0d6c9153d/summary",
+      "status": 404,
+      "requestId": "a8562902-95a9-48a5-9f9a-9fb08721ba3e"
+    },
+    {
+      "at": "2026-11-08T00:42:49.685Z",
+      "method": "GET",
+      "path": "/api/v1/learning/lessons/9125c2fe-eaa1-4014-83f3-739407184de3",
+      "status": 404,
+      "requestId": "22acb665-30ab-4279-a64c-23c31dcee938"
+    },
+    {
+      "at": "2026-11-08T00:42:49.948Z",
+      "method": "GET",
+      "path": "/api/v1/me",
+      "status": 200,
+      "requestId": "03d38977-58d2-4a49-9953-c869eec7a232"
+    },
+    {
+      "at": "2026-11-08T00:42:49.989Z",
+      "method": "GET",
+      "path": "/api/v1/learning/tracks",
+      "status": 200,
+      "requestId": "e45f40b1-a618-44cc-93eb-7460ca10ec3b"
+    },
+    {
+      "at": "2026-11-08T00:42:50.016Z",
+      "method": "GET",
+      "path": "/api/v1/me/learning-consent",
+      "status": 200,
+      "requestId": "6b1399bf-1830-476d-8554-711862f7e02e"
+    },
+    {
+      "at": "2026-11-08T00:42:50.022Z",
+      "method": "GET",
+      "path": "/api/v1/me/ai-consent",
+      "status": 200,
+      "requestId": "03ddb2b0-d3fc-4304-a5be-a8af5569e7dd"
+    },
+    {
+      "at": "2026-11-08T00:42:50.039Z",
+      "method": "GET",
+      "path": "/api/v1/learning/tracks/97f552ac-bbb9-4517-9ad0-6db766764275",
+      "status": 200,
+      "requestId": "bf2020c1-0528-4a01-a35a-e6f135865b9f"
+    },
+    {
+      "at": "2026-11-08T00:42:50.049Z",
+      "method": "GET",
+      "path": "/api/v1/learning/lessons/4736aacf-10e2-4347-9b54-162d7b4dacb7",
+      "status": 200,
+      "requestId": "d9a0c755-95a8-4888-8b62-d7cf7deedc6c"
+    },
+    {
+      "at": "2026-11-08T00:42:50.063Z",
+      "method": "GET",
+      "path": "/api/v1/catalog",
+      "status": 200,
+      "requestId": "d309cee2-f65d-4083-8f4b-ce30ebf16fb3"
+    },
+    {
+      "at": "2026-11-08T00:42:50.151Z",
+      "method": "GET",
+      "path": "/api/v1/learning/progress",
+      "status": 200,
+      "requestId": "65787140-b906-4a1e-a174-a12418ebe194"
+    },
+    {
+      "at": "2026-11-08T00:42:51.210Z",
+      "method": "GET",
+      "path": "/api/v1/me",
+      "status": 200,
+      "requestId": "d34404b5-0f46-465e-ad0b-51f130aa04dd"
+    },
+    {
+      "at": "2026-11-08T00:42:51.273Z",
+      "method": "GET",
+      "path": "/api/v1/learning/tracks",
+      "status": 200,
+      "requestId": "77ed1c50-e586-4eef-b1c1-ca2573488280"
+    },
+    {
+      "at": "2026-11-08T00:42:51.302Z",
+      "method": "GET",
+      "path": "/api/v1/me/ai-consent",
+      "status": 200,
+      "requestId": "6b5aa943-b372-4be7-afce-2d771121ae3e"
+    },
+    {
+      "at": "2026-11-08T00:42:51.304Z",
+      "method": "GET",
+      "path": "/api/v1/me/learning-consent",
+      "status": 200,
+      "requestId": "40054b18-9d9e-4fa3-8242-21d8290eef8b"
+    },
+    {
+      "at": "2026-11-08T00:42:51.313Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "25e96ab2-e441-47e6-8e06-2ab05d5c229a"
+    },
+    {
+      "at": "2026-11-08T00:42:51.324Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "ada14a3c-208b-45c5-b034-4aec7e7cfef2"
+    },
+    {
+      "at": "2026-11-08T00:42:51.341Z",
+      "method": "GET",
+      "path": "/api/v1/learning/tracks/97f552ac-bbb9-4517-9ad0-6db766764275",
+      "status": 200,
+      "requestId": "51a7c6b6-48e1-41e3-bdd5-d53901045127"
+    },
+    {
+      "at": "2026-11-08T00:42:51.351Z",
+      "method": "GET",
+      "path": "/api/v1/studio/items",
+      "status": 200,
+      "requestId": "bee6849e-51f9-4ee2-af8f-575d002d64b1"
+    },
+    {
+      "at": "2026-11-08T00:42:51.362Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-bank",
+      "status": 200,
+      "requestId": "f9027033-d903-4841-acbb-4d1c9074f57c"
+    },
+    {
+      "at": "2026-11-08T00:42:51.367Z",
+      "method": "GET",
+      "path": "/api/v1/learning/lessons/4736aacf-10e2-4347-9b54-162d7b4dacb7",
+      "status": 200,
+      "requestId": "b0200c7e-67a7-4602-9f9d-866207cc2dd5"
+    },
+    {
+      "at": "2026-11-08T00:42:51.390Z",
+      "method": "GET",
+      "path": "/api/v1/catalog",
+      "status": 200,
+      "requestId": "aee89514-e975-4ea8-9ea5-c1badeb578c8"
+    },
+    {
+      "at": "2026-11-08T00:42:51.423Z",
+      "method": "GET",
+      "path": "/api/v1/learning/skill-map",
+      "status": 200,
+      "requestId": "a45ad919-99e7-4094-ac0b-2d918fdba8bc"
+    },
+    {
+      "at": "2026-11-08T00:42:51.456Z",
+      "method": "GET",
+      "path": "/api/v1/learning/progress",
+      "status": 200,
+      "requestId": "6a5b255c-ecb5-45f0-bf7a-e9a2cb7fc3d8"
+    },
+    {
+      "at": "2026-11-08T00:43:01.574Z",
+      "method": "POST",
+      "path": "/api/v1/studio/learning-content/50e776e6-0d7e-411e-b4ec-81543efcf742/transition",
+      "status": 201,
+      "requestId": "a9f85cf3-5c99-42dc-90f8-22aa76182851"
+    },
+    {
+      "at": "2026-11-08T00:43:01.598Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "21756c23-52ec-4782-8f0c-a07c1d4e6797"
+    },
+    {
+      "at": "2026-11-08T00:43:01.639Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "311f08e0-e522-4dbf-baa0-6d6be1c1a561"
+    },
+    {
+      "at": "2026-11-08T00:43:24.281Z",
+      "method": "PUT",
+      "path": "/api/v1/studio/learning-content/8fc9ea95-8f98-423d-a2dc-c325498d4aa7",
+      "status": 200,
+      "requestId": "d13bee97-2632-4091-ab15-01d30f89e133"
+    },
+    {
+      "at": "2026-11-08T00:43:24.298Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "85a5fc6d-c06f-4433-8473-561a6e285c9a"
+    },
+    {
+      "at": "2026-11-08T00:43:24.320Z",
+      "method": "GET",
+      "path": "/api/v1/studio/learning-content",
+      "status": 200,
+      "requestId": "2d8ec71d-3180-4e11-8dd5-764d700d616b"
+    },
+    {
+      "at": "2026-11-08T00:43:29.308Z",
+      "method": "GET",
+      "path": "/api/v1/me",
+      "status": 200,
+      "requestId": "49ae6684-015f-4d24-be45-bc85e09da3f7"
+    },
+    {
+      "at": "2026-11-08T00:43:29.379Z",
+      "method": "GET",
+      "path": "/api/v1/learning/tracks",
+      "status": 200,
+      "requestId": "33ef8cf4-c2ca-434a-98a7-ad724eac8bde"
+    },
+    {
+      "at": "2026-11-08T00:43:29.414Z",
+      "method": "GET",
+      "path": "/api/v1/learning/tracks/97f552ac-bbb9-4517-9ad0-6db766764275",
+      "status": 200,
+      "requestId": "7a63f640-7ade-40e7-871a-796087150291"
+    },
+    {
+      "at": "2026-11-08T00:43:29.439Z",
+      "method": "GET",
+      "path": "/api/v1/learning/lessons/4736aacf-10e2-4347-9b54-162d7b4dacb7",
+      "status": 200,
+      "requestId": "20a0cbbd-f349-4b76-9f26-ea509acd5813"
+    },
+    {
+      "at": "2026-11-08T00:43:29.452Z",
+      "method": "GET",
+      "path": "/api/v1/me/ai-consent",
+      "status": 200,
+      "requestId": "5e01c63e-6a1e-4bec-810c-a0d14d4dfb78"
+    },
+    {
+      "at": "2026-11-08T00:43:29.455Z",
+      "method": "GET",
+      "path": "/api/v1/me/learning-consent",
+      "status": 200,
+      "requestId": "ef0e6987-b820-4e8f-9cd2-fa2be327bb11"
+    },
+    {
+      "at": "2026-11-08T00:43:29.502Z",
+      "method": "GET",
+      "path": "/api/v1/catalog",
+      "status": 200,
+      "requestId": "45c78097-cda2-4c52-b45a-873584745edd"
+    },
+    {
+      "at": "2026-11-08T00:43:29.656Z",
+      "method": "GET",
+      "path": "/api/v1/learning/progress",
+      "status": 200,
+      "requestId": "9703c8c5-1731-418a-aca4-13885218ea99"
+    },
+    {
+      "at": "2026-11-08T00:43:56.495Z",
+      "method": "GET",
+      "path": "/api/v1/learning/lessons/8fc9ea95-8f98-423d-a2dc-c325498d4aa7",
+      "status": 404,
+      "requestId": "fdb10448-5c6c-4bb8-9e28-a39493e168c4"
+    },
+    {
+      "at": "2026-11-08T00:43:56.615Z",
+      "method": "GET",
+      "path": "/api/v1/learning/lessons/50e776e6-0d7e-411e-b4ec-81543efcf742",
+      "status": 200,
+      "requestId": "76cb5f62-6330-400f-8a2e-b1945da36827"
+    },
+    {
+      "at": "2026-11-08T00:43:56.820Z",
+      "method": "GET",
+      "path": "/api/v1/me",
+      "status": 200,
+      "requestId": "8e1342b2-4284-417c-8b98-9b9d0656eb99"
+    },
+    {
+      "at": "2026-11-08T00:43:56.842Z",
+      "method": "GET",
+      "path": "/api/v1/learning/tracks",
+      "status": 200,
+      "requestId": "33a9a32d-bf75-45e0-8e37-28a12191221d"
+    },
+    {
+      "at": "2026-11-08T00:43:56.893Z",
+      "method": "GET",
+      "path": "/api/v1/learning/lessons/4736aacf-10e2-4347-9b54-162d7b4dacb7",
+      "status": 200,
+      "requestId": "7f200a6f-b165-4645-b2d4-6f7e0e6a3967"
+    },
+    {
+      "at": "2026-11-08T00:43:56.916Z",
+      "method": "GET",
+      "path": "/api/v1/me/learning-consent",
+      "status": 200,
+      "requestId": "bb432f3e-8d1a-40fe-8157-0a4f7af6acd2"
+    },
+    {
+      "at": "2026-11-08T00:43:56.926Z",
+      "method": "GET",
+      "path": "/api/v1/me/ai-consent",
+      "status": 200,
+      "requestId": "b0fd1aa6-f83b-4234-9e2e-b59b306c535a"
+    },
+    {
+      "at": "2026-11-08T00:43:56.940Z",
+      "method": "GET",
+      "path": "/api/v1/learning/tracks/97f552ac-bbb9-4517-9ad0-6db766764275",
+      "status": 200,
+      "requestId": "6d4a72c3-34a7-4f79-bd24-30fe5bc7869c"
+    },
+    {
+      "at": "2026-11-08T00:43:56.954Z",
+      "method": "GET",
+      "path": "/api/v1/catalog",
+      "status": 200,
+      "requestId": "3e1c3a15-41fb-4033-9b25-640e6f6a00ba"
+    },
+    {
+      "at": "2026-11-08T00:43:57.022Z",
+      "method": "GET",
+      "path": "/api/v1/learning/progress",
+      "status": 200,
+      "requestId": "4a72e21c-878c-4eb7-8068-7dc345f94814"
+    }
+  ]
+}

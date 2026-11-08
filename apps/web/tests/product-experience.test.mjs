@@ -41,11 +41,59 @@ const {
 } = trustedModule(
   fileURLToPath(new URL("../src/product-api.ts", import.meta.url)),
 );
+const { ApiClient, ClientFault } = trustedModule(
+  fileURLToPath(new URL("../src/api-client.ts", import.meta.url)),
+);
 const response = (data, status = 200) =>
   new Response(JSON.stringify({ data, meta: { requestId: "test" } }), {
     status,
     headers: { "content-type": "application/json" },
   });
+
+test("V2.2: default browser fetch retains its global receiver in both API clients", async (t) => {
+  const calls = [];
+  t.mock.method(globalThis, "fetch", function (path) {
+    if (this !== globalThis) throw new TypeError("Illegal invocation");
+    calls.push(path);
+    if (path === "/api/v1/me")
+      return Promise.resolve(
+        response({ user: null, csrfToken: null, guestAvailable: false }),
+      );
+    return Promise.resolve(
+      Response.json(
+        {
+          error: {
+            code: "forbidden",
+            messageAr: "طلب غير مسموح.",
+            issues: [],
+            currentRevision: null,
+            retryable: false,
+            retryAfterSeconds: null,
+          },
+          meta: {
+            requestId: "11111111-1111-4111-8111-111111111111",
+            serverTime: "2026-11-08T00:00:00Z",
+            apiVersion: "1",
+          },
+        },
+        { status: 403 },
+      ),
+    );
+  });
+  assert.deepEqual(await new ProductApi().me(), {
+    user: null,
+    csrfToken: null,
+    guestAvailable: false,
+  });
+  await assert.rejects(
+    new ApiClient().request("/bootstrap", "BootstrapEnvelope"),
+    (error) =>
+      error instanceof ClientFault &&
+      error.status === 403 &&
+      error.code === "forbidden",
+  );
+  assert.deepEqual(calls, ["/api/v1/me", "/api/v1/bootstrap"]);
+});
 
 test("DEV-072: Tab inserts four spaces without changing surrounding Python or Arabic strings", () => {
   const raw = 'print("مرحبا")';
